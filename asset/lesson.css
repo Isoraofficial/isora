@@ -1,0 +1,210 @@
+.box-prasyarat {
+ position: relative;
+ display: inline-block;
+ margin:15px 0px 0px 0px;}
+.btn-prasyarat {
+ padding: 7px 11px;
+ letter-spacing:0.4px;
+ border: 1px solid #daa520;
+ border-radius: 4px;
+ font-size:13px;
+ font-weight: 400;
+ cursor: pointer;
+ color:#daa520;
+ background: #222222;}
+.content-prasyarat {
+ position: absolute;
+ top: 100%;
+ left: 0;
+ margin-top: 8px;
+ width: 300px;
+ padding: 10px;
+ background: #121212;
+ border: 0.5px solid #aaa;
+ border-radius: 8px;
+ box-shadow: 0 8px 20px -4px #161616;
+ opacity: 0;
+ transform: translateY(-6px);
+ pointer-events: none;
+ transition: opacity 0.25s ease, transform 0.25s ease;
+ z-index:99;}
+.box-prasyarat:hover .content-prasyarat {
+ opacity: 1;
+ transform: translateY(0);
+ pointer-events: auto;}
+.content-prasyarat ul li{
+ font-size:14px;
+ line-height:19px;}
+.lesson-text {
+ display: block;
+ max-width: 100%;
+ overflow-x: auto;
+ overflow-y: hidden;
+ height: max-content;
+ margin-bottom: 4px;}
+.title-page {
+ font-size: 18px !important;
+ font-weight: 750 !important;
+ margin: auto 0px;}
+.lesson {
+ width: 90%;
+ overflow:auto;
+ display:block;
+ margin: 20px auto 25px auto;}
+.lesson-section {
+ width: 100%;
+ display:block;
+ box-sizing: border-box;}
+.lesson-title {
+ font-size: 17px;
+ font-weight: bold;
+ font-family: "Bricolage Grotesque", sans-serif;
+ color: #f1f2f3;
+ line-height: 22px;
+ letter-spacing: 0.8px;}
+.lesson-section-heading {
+ font-size: 16px;
+ font-weight: 700;
+ font-family: "Bricolage Grotesque", sans-serif;
+ color: #22d3ee;
+ padding: 6px 0px;
+ margin: 15px 0 10px 0;
+ border-bottom: 2px solid rgba(34, 211, 238, 0.25);
+ letter-spacing: 1px;}
+.lesson-subheading {
+ font-family: 'Bricolage Grotesque', serif;
+ font-weight: 600;
+ font-size: 15.5px;
+ color: #e8e8e8;
+ margin: 18px 0 8px 0;
+ letter-spacing: 0.7px;}
+.lesson-subheading-alt {
+ font-weight: 650;
+ font-size: 14.5px;
+ color: #d9d9d9;
+ letter-spacing: 0.5px;
+ margin: 10px 0 4px 0;}
+.lesson-text {
+ display: block;
+ max-width: 100%;
+ overflow-x: auto;
+ overflow-y: hidden;
+ height: max-content;
+ margin-bottom: 4px;}
+.lesson-table {
+ width: 100%;
+ height: max-content;
+ max-width: 100%;
+ margin: 12px 0px;
+ box-sizing: border-box;
+ display: block;
+ overflow-x: auto;
+ overflow-y: hidden;
+ border-radius:4px;
+ border: 1px solid rgba(212, 175, 55, 0.3);
+ -webkit-overflow-scrolling: touch;
+ overscroll-behavior-x: contain;
+ contain: layout paint;}
+table {
+ width: 100%;
+ table-layout: auto;
+ box-sizing: border-box;
+ border-collapse: collapse;
+ margin: 18px 0;
+ font-size: 13.8px;
+ background: rgba(20, 20, 20, 0.6);}
+th,
+td {
+ padding: 12px 12px 11px 12px;
+ text-align: left;
+ border: 1px solid rgba(212, 175, 55, 0.2);
+ vertical-align: top;}
+th {
+ color: #e5e5e5;
+ font-family: 'Bricolage Grotesque', serif;
+ font-size: 11.9px;
+ font-weight: 700;
+ letter-spacing: 1px;
+ width: max-content;
+ white-space: nowrap;
+ background: rgba(139, 26, 43, 0.3);}
+td {
+ font-size: 13.8px;
+ font-weight: 350;
+ letter-spacing: 0.5px;
+ line-height: 20px;}
+tr:hover td {
+ transition: 0.5s;
+ background: rgba(212, 175, 55, 0.06);}
+.lesson-table table {
+ width: max-content;
+ min-width: 100%;
+ margin: 0;}
+.lesson-table td .katex,
+.lesson-table td .katex-html,
+.lesson-table td .katex-display {
+ max-width: 100%;
+ overflow: hidden;}
+ul,
+ol {
+ margin: 10px 18px 10px 18px;
+ padding-left: 0;}
+li {
+ font-weight: 400;
+ letter-spacing: 0.3px;
+ margin-bottom: 2px;
+ font-size: 14.5px;}
+.lesson-note {
+ background: rgba(20, 20, 20, 0.9);
+ border-left: 4px solid #8b1a2b;
+ padding: 16px 16px 12px 16px;
+ margin: 20px 0;
+ border-radius: 4px;
+ box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);}
+.lesson-text,
+li {
+ font-size: 14.5px;
+ font-weight: 350;
+ letter-spacing: 0.5px;
+ line-height: 20px;}
+strong {
+ font-weight: 650;}
+.katex-display .katex {
+ overflow-y: hidden;
+ padding: 2px 0px;
+ font-weight: 300 !important;
+ font-size: 16px !important;}
+.katex {
+ max-width: 100%;
+ overflow: auto;
+ font-size: 14.5px !important;}
+th .katex {
+ font-size: 14px !important;}
+tr td .katex-display .katex {
+ font-size: 13px !important;}
+.lesson-text .katex-display .katex {
+ text-align:left;}
+.xmath {
+ display: block;
+ margin: 8px auto;
+ width: 100%;
+ overflow-x: auto;
+ font-size: 14px;
+ color: #daa520;}
+.tmath .katex {
+ display: block;
+ margin: 0px;
+ width: max-content;
+ max-width: 100%;
+ overflow-x: auto;
+ font-size: 14px;}
+.lesson-link{
+ text-decoration: underline blue;}
+.visual-caption{
+ font-size:13.3px;
+ font-weight:400;
+ color:#a8a8a8;
+ line-height:18px;
+ margin-top:10px;
+ margin-bottom:4px;
+ text-align:center;}

@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+ margin: 0;
+ padding: 0;
+ -webkit-tap-highlight-color: transparent !important;
+ tap-highlight-color: transparent !important;
+ outline: 0 !important;
+ box-sizing: border-box;}
+html {
+ overflow-x: clip;}
+body {
+ font-family: "Atkinson Hyperlegible Next", sans-serif;
+ background: #090909;
+ color: #e1e1e1;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ width: 100%;
+ max-width: 100%;
+ overflow-x: clip;}
+button,
+input,
+a {
+ font-family: inherit;
+ background: transparent;
+ text-decoration: none;
+ color: inherit;
+ border: none;}
+nav {
+ display: flex;
+ justify-content: space-between;
+ gap: 15px;
+ width: 100%;
+ height: 55px;
+ margin: 0px auto;
+ border-bottom: 0.5px solid #eee;}
+.brand {
+ display: block;
+ margin: auto 0px auto 5%;
+ font-family: "Audiowide", sans-serif;
+ font-size: 17px;
+ font-weight: 600;
+ color: #22d3ee;}
+.box-nav {
+ display: flex;
+ justify-content: flex-start;
+ gap: 8px;
+ width: max-content;
+ height: max-content;
+ margin: auto 3% auto 0px;}
+.btn-back {
+ display: block;
+ padding: 5px;
+ margin: 0px;
+ background: #161616;
+ border-radius: 4px;
+ border: 0.5px solid #444;
+ height: max-content;}
+.icon-nav {
+ display: block;
+ font-size: 20px;
+ color: #22d3ee;
+ height: 22px;
+ width: 22px;}
