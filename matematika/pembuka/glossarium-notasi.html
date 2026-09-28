@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Glosarium Notasi &amp; Simbol Matematika</title>
+ <script src="/head.js"></script>
+ <style>
+  .gloss-search-wrap {
+    position: sticky;
+    top: 8px;
+    z-index: 10;
+    margin: 16px 0 20px;
+    padding: 8px 0;
+    background: inherit;
+  }
+  .gloss-search-box {
+    position: relative;
+  }
+  .gloss-search-input {
+    width: 100%;
+    padding: 12px 40px 12px 42px;
+    border: 1.5px solid #2a3040;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: transparent;
+    color: inherit;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .gloss-search-input:focus {
+    border-color: #daa520;
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.15);
+  }
+  .gloss-search-box::before {
+    content: "⌕";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 19px;
+    color: #888;
+    pointer-events: none;
+  }
+  .gloss-clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: none;
+    font-family: inherit;
+  }
+  .gloss-clear:hover { color: #daa520; }
+  .gloss-search-input:not(:placeholder-shown) ~ .gloss-clear { display: block; }
+
+  .gloss-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .gloss-cat-btn {
+    padding: 6px 14px;
+    border: 1.5px solid #2a3040;
+    border-radius: 20px;
+    background: transparent;
+    color: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+    opacity: 0.75;
+  }
+  .gloss-cat-btn:hover {
+    border-color: #daa520;
+    opacity: 1;
+  }
+  .gloss-cat-btn.active {
+    background: #daa520;
+    border-color: #daa520;
+    color: #1a1a1a;
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  .gloss-info {
+    font-size: 13px;
+    opacity: 0.65;
+    margin-bottom: 14px;
+  }
+
+  .gloss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .gloss-card {
+    border: 1.5px solid #2a3040;
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .gloss-card:hover {
+    border-color: #daa520;
+    transform: translateY(-1px);
+  }
+  .gloss-sym {
+    font-size: 28px;
+    font-family: Georgia, Cambria, serif;
+    color: #daa520;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    display: block;
+    word-break: break-word;
+  }
+  .gloss-card[data-cat="Logika"] .gloss-sym { color: #a78bfa; }
+  .gloss-card[data-cat="Himpunan"] .gloss-sym { color: #5dade2; }
+  .gloss-card[data-cat="Aritmetika"] .gloss-sym { color: #22d3ee; }
+  .gloss-card[data-cat="Aljabar"] .gloss-sym { color: #f0c75e; }
+  .gloss-card[data-cat="Kalkulus"] .gloss-sym { color: #e74c3c; }
+  .gloss-card[data-cat="Geometri"] .gloss-sym { color: #5dade2; }
+  .gloss-card[data-cat="Trigonometri"] .gloss-sym { color: #22d3ee; }
+  .gloss-card[data-cat="Aljabar Linear"] .gloss-sym { color: #daa520; }
+  .gloss-card[data-cat="Statistika"] .gloss-sym { color: #4ade80; }
+
+  .gloss-name {
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .gloss-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+  .gloss-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+    margin-top: 10px;
+    padding: 2px 8px;
+    border: 1px solid #2a3040;
+    border-radius: 4px;
+  }
+  .gloss-no-result {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.6;
+    font-style: italic;
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 640px) {
+    .gloss-grid { grid-template-columns: 1fr; gap: 10px; }
+  }
+ </style>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+ <h2 class="lesson-title">Glosarium Notasi &amp; Simbol Matematika</h2>
+ <div class="lesson-section">
+  <p class="lesson-text">Rujukan cepat untuk simbol-simbol yang muncul di seluruh materi. Gunakan kotak pencarian atau filter kategori untuk menemukan simbol yang Anda cari.</p>
+  <div class="lesson-note">
+   <p class="lesson-text"><strong>Catatan:</strong> halaman ini <em>bukan</em> untuk dihafal&mdash;gunakan sebagai rujukan saat Anda menemukan simbol yang belum dikenal di tengah materi.</p>
+  </div>
+
+  <div class="gloss-search-wrap">
+   <div class="gloss-search-box">
+    <input type="text" id="glossInput" class="gloss-search-input" placeholder="Cari simbol, nama, atau deskripsi...">
+    <button type="button" id="glossClear" class="gloss-clear" aria-label="Bersihkan">✕</button>
+   </div>
+  </div>
+  <div class="gloss-cats" id="glossCats"></div>
+  <div class="gloss-info" id="glossInfo"></div>
+  <div class="gloss-grid" id="glossGrid"></div>
+ </div>
+
+</div>
+
+<script>
+ const GLOSS = [
+  // ---- UMUM ----
+  { sym: "=", name: "Sama dengan", desc: "Dua ekspresi bernilai sama. Contoh: 2 + 3 = 5.", cat: "Umum" },
+  { sym: "≠", name: "Tidak sama dengan", desc: "Contoh: 3 ≠ 5.", cat: "Umum" },
+  { sym: "<", name: "Kurang dari", desc: "Bilangan di kiri lebih kecil. Contoh: 3 < 7.", cat: "Umum" },
+  { sym: ">", name: "Lebih dari", desc: "Bilangan di kiri lebih besar. Contoh: 7 > 3.", cat: "Umum" },
+  { sym: "≤", name: "Kurang dari atau sama dengan", desc: "Contoh: x ≤ 5 berarti x bisa 5 atau lebih kecil.", cat: "Umum" },
+  { sym: "≥", name: "Lebih dari atau sama dengan", desc: "Contoh: x ≥ 5 berarti x bisa 5 atau lebih besar.", cat: "Umum" },
+  { sym: "≈", name: "Kira-kira / mendekati", desc: "Nilai pendekatan. Contoh: π ≈ 3,14159.", cat: "Umum" },
+  { sym: "≃", name: "Asimtotik sama dengan", desc: "Dua nilai mendekati sama di limit. Contoh: sin x ≃ x saat x → 0.", cat: "Umum" },
+  { sym: "∝", name: "Berbanding lurus", desc: "Sebanding dengan faktor konstan. Contoh: F ∝ a.", cat: "Umum" },
+  { sym: "≡", name: "Kongruen / identik", desc: "Sama bentuk dan ukuran, atau kongruensi modulo. Contoh: 5 ≡ 2 (mod 3).", cat: "Umum" },
+  { sym: "±", name: "Plus-minus", desc: "Menunjukkan dua nilai. Contoh: x = ±3 berarti x = 3 atau x = −3.", cat: "Umum" },
+  { sym: "∓", name: "Minus-plus", desc: "Kebalikan urutan dari ±.", cat: "Umum" },
+  { sym: "∴", name: "Maka / oleh karena itu", desc: "Kesimpulan dari pernyataan sebelumnya.", cat: "Umum" },
+  { sym: "∵", name: "Karena", desc: "Alasan untuk pernyataan berikutnya.", cat: "Umum" },
+  { sym: "□", name: "Terbukti (QED)", desc: "Tanda akhir pembuktian.", cat: "Umum" },
+  { sym: "∎", name: "Terbukti (QED)", desc: "Varian tanda akhir pembuktian.", cat: "Umum" },
+
+  // ---- LOGIKA ----
+  { sym: "∀", name: "Untuk semua / setiap", desc: "Kuantor universal. Contoh: ∀x ∈ ℝ, x² ≥ 0.", cat: "Logika" },
+  { sym: "∃", name: "Ada / terdapat", desc: "Kuantor eksistensial. Contoh: ∃x ∈ ℝ sehingga x² = 4.", cat: "Logika" },
+  { sym: "∄", name: "Tidak ada", desc: "Negasi dari ∃.", cat: "Logika" },
+  { sym: "∃!", name: "Ada tepat satu", desc: "Terdapat tepat satu objek yang memenuhi.", cat: "Logika" },
+  { sym: "¬", name: "Negasi / bukan", desc: "Membalikkan nilai kebenaran. ¬p benar jika p salah.", cat: "Logika" },
+  { sym: "∧", name: "Konjungsi (dan)", desc: "p ∧ q benar hanya jika keduanya benar.", cat: "Logika" },
+  { sym: "∨", name: "Disjungsi (atau)", desc: "p ∨ q benar jika salah satu atau keduanya benar.", cat: "Logika" },
+  { sym: "⊕", name: "XOR (atau eksklusif)", desc: "Benar jika tepat satu benar, bukan keduanya.", cat: "Logika" },
+  { sym: "⇒", name: "Implikasi (jika...maka)", desc: "p ⇒ q berarti jika p benar, maka q benar.", cat: "Logika" },
+  { sym: "⇔", name: "Bikondisional (jika dan hanya jika)", desc: "p ⇔ q berarti p dan q selalu bernilai sama.", cat: "Logika" },
+  { sym: "⊢", name: "Dapat dibuktikan", desc: "Rumus di kanan dapat diturunkan dari himpunan di kiri.", cat: "Logika" },
+  { sym: "⊨", name: "Model / memenuhi", desc: "Interpretasi di kiri memenuhi rumus di kanan.", cat: "Logika" },
+  { sym: "⊤", name: "Benar / tautologi", desc: "Pernyataan yang selalu benar.", cat: "Logika" },
+  { sym: "⊥", name: "Salah / kontradiksi", desc: "Pernyataan yang selalu salah, atau tanda tegak lurus.", cat: "Logika" },
+
+  // ---- HIMPUNAN ----
+  { sym: "∈", name: "Anggota dari", desc: "x ∈ A berarti x adalah anggota himpunan A.", cat: "Himpunan" },
+  { sym: "∉", name: "Bukan anggota dari", desc: "x ∉ A berarti x bukan anggota himpunan A.", cat: "Himpunan" },
+  { sym: "⊂", name: "Himpunan bagian (subset)", desc: "A ⊂ B berarti semua anggota A juga anggota B.", cat: "Himpunan" },
+  { sym: "⊄", name: "Bukan himpunan bagian", desc: "Negasi dari ⊂.", cat: "Himpunan" },
+  { sym: "⊆", name: "Himpunan bagian atau sama", desc: "Termasuk kemungkinan A = B.", cat: "Himpunan" },
+  { sym: "⊇", name: "Superset (kebalikan ⊆)", desc: "A ⊇ B berarti B ⊆ A.", cat: "Himpunan" },
+  { sym: "∪", name: "Gabungan (union)", desc: "A ∪ B = semua anggota A atau B.", cat: "Himpunan" },
+  { sym: "∩", name: "Irisan (intersection)", desc: "A ∩ B = anggota yang ada di A dan B.", cat: "Himpunan" },
+  { sym: "\\", name: "Selisih himpunan", desc: "A \\ B = anggota A yang bukan anggota B.", cat: "Himpunan" },
+  { sym: "△", name: "Selisih simetris", desc: "A △ B = anggota yang hanya di A atau hanya di B.", cat: "Himpunan" },
+  { sym: "∅", name: "Himpunan kosong", desc: "Himpunan tanpa anggota.", cat: "Himpunan" },
+  { sym: "𝒫", name: "Himpunan kuasa (power set)", desc: "𝒫(A) = himpunan semua subset A.", cat: "Himpunan" },
+  { sym: "|A|", name: "Kardinalitas", desc: "Banyaknya anggota himpunan A.", cat: "Himpunan" },
+  { sym: "A′", name: "Komplemen", desc: "Semua anggota semesta yang bukan anggota A.", cat: "Himpunan" },
+  { sym: "×", name: "Produk Kartesius", desc: "A × B = himpunan pasangan (a, b) dengan a ∈ A, b ∈ B.", cat: "Himpunan" },
+
+  // ---- BILANGAN ----
+  { sym: "ℕ", name: "Bilangan asli", desc: "Bilangan bulat positif: 1, 2, 3, ...", cat: "Bilangan" },
+  { sym: "ℤ", name: "Bilangan bulat", desc: "..., −2, −1, 0, 1, 2, ...", cat: "Bilangan" },
+  { sym: "ℚ", name: "Bilangan rasional", desc: "Bilangan yang dapat dinyatakan a/b dengan a, b bulat, b ≠ 0.", cat: "Bilangan" },
+  { sym: "𝕀", name: "Bilangan irasional", desc: "Bilangan real yang bukan rasional. Contoh: √2, π.", cat: "Bilangan" },
+  { sym: "ℝ", name: "Bilangan real", desc: "Gabungan bilangan rasional dan irasional.", cat: "Bilangan" },
+  { sym: "ℂ", name: "Bilangan kompleks", desc: "Bilangan berbentuk a + bi dengan i² = −1.", cat: "Bilangan" },
+  { sym: "ℙ", name: "Bilangan prima", desc: "Bilangan asli > 1 yang hanya habis dibagi 1 dan dirinya sendiri.", cat: "Bilangan" },
+  { sym: "ℝⁿ", name: "Ruang berdimensi n", desc: "Kumpulan n-tupel bilangan real. ℝ² = bidang, ℝ³ = ruang 3D.", cat: "Bilangan" },
+  { sym: "ℤ⁺", name: "Bilangan bulat positif", desc: "Bilangan bulat > 0.", cat: "Bilangan" },
+  { sym: "ℤ⁻", name: "Bilangan bulat negatif", desc: "Bilangan bulat < 0.", cat: "Bilangan" },
+
+  // ---- ARITMETIKA ----
+  { sym: "+", name: "Penjumlahan", desc: "Operasi penjumlahan dua bilangan.", cat: "Aritmetika" },
+  { sym: "−", name: "Pengurangan", desc: "Operasi pengurangan dua bilangan.", cat: "Aritmetika" },
+  { sym: "×", name: "Perkalian", desc: "Operasi perkalian dua bilangan.", cat: "Aritmetika" },
+  { sym: "÷", name: "Pembagian", desc: "Operasi pembagian.", cat: "Aritmetika" },
+  { sym: "·", name: "Perkalian (alternatif)", desc: "Tanda perkalian, sering dipakai di aljabar.", cat: "Aritmetika" },
+  { sym: "√", name: "Akar kuadrat", desc: "√a = bilangan yang jika dikuadratkan menghasilkan a.", cat: "Aritmetika" },
+  { sym: "∛", name: "Akar kubik", desc: "∛a = bilangan yang jika dipangkatkan 3 menghasilkan a.", cat: "Aritmetika" },
+  { sym: "|x|", name: "Nilai mutlak", desc: "Jarak x dari 0. |−3| = 3.", cat: "Aritmetika" },
+  { sym: "⌊x⌋", name: "Fungsi lantai (floor)", desc: "Bilangan bulat terbesar ≤ x. ⌊3,7⌋ = 3.", cat: "Aritmetika" },
+  { sym: "⌈x⌉", name: "Fungsi langit-langit (ceiling)", desc: "Bilangan bulat terkecil ≥ x. ⌈3,1⌉ = 4.", cat: "Aritmetika" },
+  { sym: "n!", name: "Faktorial", desc: "n! = n · (n−1) · ... · 2 · 1. Contoh: 4! = 24.", cat: "Aritmetika" },
+  { sym: "%", name: "Persen", desc: "Per seratus. 25% = 0,25 = 25/100.", cat: "Aritmetika" },
+  { sym: "gcd", name: "Faktor persekutuan terbesar (FPB)", desc: "Bilangan bulat terbesar yang membagi dua bilangan.", cat: "Aritmetika" },
+  { sym: "lcm", name: "Kelipatan persekutuan terkecil (KPK)", desc: "Bilangan terkecil yang merupakan kelipatan keduanya.", cat: "Aritmetika" },
+  { sym: "mod", name: "Modulo", desc: "Sisa pembagian. Contoh: 17 mod 5 = 2.", cat: "Aritmetika" },
+  { sym: "a | b", name: "a membagi b", desc: "b habis dibagi a tanpa sisa. Contoh: 3 | 12.", cat: "Aritmetika" },
+
+  // ---- ALJABAR ----
+  { sym: "∑", name: "Sigma (jumlah)", desc: "Penjumlahan beruntun. ∑ᵢ₌₁ⁿ aᵢ = a₁ + a₂ + ... + aₙ.", cat: "Aljabar" },
+  { sym: "∏", name: "Pi (produk)", desc: "Perkalian beruntun. ∏ᵢ₌₁ⁿ aᵢ = a₁ · a₂ · ... · aₙ.", cat: "Aljabar" },
+  { sym: "x̄", name: "x-bar (rata-rata)", desc: "Rata-rata nilai x.", cat: "Aljabar" },
+  { sym: "xᵏ", name: "Pangkat", desc: "x dipangkatkan k.", cat: "Aljabar" },
+  { sym: "a⁻¹", name: "Invers perkalian", desc: "Kebalikan dari a. a · a⁻¹ = 1.", cat: "Aljabar" },
+  { sym: "f(x)", name: "Fungsi f", desc: "Nilai f pada x.", cat: "Aljabar" },
+  { sym: "f⁻¹", name: "Invers fungsi", desc: "Fungsi yang membalikkan f.", cat: "Aljabar" },
+  { sym: "∘", name: "Komposisi fungsi", desc: "(f ∘ g)(x) = f(g(x)).", cat: "Aljabar" },
+
+  // ---- KALKULUS ----
+  { sym: "lim", name: "Limit", desc: "Nilai yang didekati fungsi saat variabel mendekati suatu titik.", cat: "Kalkulus" },
+  { sym: "→∞", name: "Menuju tak hingga", desc: "Variabel bertambah tanpa batas.", cat: "Kalkulus" },
+  { sym: "→", name: "Menuju / memetakan ke", desc: "x → a berarti x mendekati a.", cat: "Kalkulus" },
+  { sym: "∞", name: "Tak hingga", desc: "Bukan bilangan, melainkan konsep tanpa batas.", cat: "Kalkulus" },
+  { sym: "d/dx", name: "Turunan", desc: "Laju perubahan terhadap x.", cat: "Kalkulus" },
+  { sym: "∂", name: "Turunan parsial", desc: "Turunan terhadap satu variabel, variabel lain tetap.", cat: "Kalkulus" },
+  { sym: "∫", name: "Integral", desc: "Operasi antiturunan atau luas di bawah kurva.", cat: "Kalkulus" },
+  { sym: "∬", name: "Integral ganda", desc: "Integral atas dua variabel.", cat: "Kalkulus" },
+  { sym: "∭", name: "Integral lipat tiga", desc: "Integral atas tiga variabel.", cat: "Kalkulus" },
+  { sym: "∮", name: "Integral kontur / tertutup", desc: "Integral atas lintasan tertutup.", cat: "Kalkulus" },
+  { sym: "Δ", name: "Delta (perubahan)", desc: "Δx = perubahan kecil x. Juga: diskriminan pada persamaan kuadrat.", cat: "Kalkulus" },
+  { sym: "δ", name: "Delta kecil", desc: "Bilangan kecil positif, dipakai di definisi limit ε-δ.", cat: "Kalkulus" },
+  { sym: "ε", name: "Epsilon", desc: "Bilangan kecil positif, dipakai di definisi limit ε-δ.", cat: "Kalkulus" },
+
+  // ---- GEOMETRI ----
+  { sym: "∠", name: "Sudut", desc: "∠ABC = sudut di titik B dengan kaki BA dan BC.", cat: "Geometri" },
+  { sym: "⊥", name: "Tegak lurus", desc: "Dua garis berpotongan dengan sudut 90°.", cat: "Geometri" },
+  { sym: "∥", name: "Sejajar", desc: "Dua garis yang tidak pernah berpotongan.", cat: "Geometri" },
+  { sym: "△", name: "Segitiga", desc: "Contoh: △ABC adalah segitiga dengan titik sudut A, B, C.", cat: "Geometri" },
+  { sym: "⊙", name: "Lingkaran", desc: "Lingkaran dengan pusat O.", cat: "Geometri" },
+  { sym: "π", name: "Pi", desc: "Konstanta ≈ 3,14159; rasio keliling terhadap diameter lingkaran.", cat: "Geometri" },
+  { sym: "°", name: "Derajat", desc: "Satuan sudut. 1 putaran = 360°.", cat: "Geometri" },
+  { sym: "≅", name: "Kongruen", desc: "Sama bentuk dan ukuran.", cat: "Geometri" },
+  { sym: "∼", name: "Sebangun", desc: "Sama bentuk, ukuran boleh berbeda.", cat: "Geometri" },
+  { sym: "r", name: "Jari-jari", desc: "Jarak dari pusat lingkaran ke tepinya.", cat: "Geometri" },
+  { sym: "d", name: "Diameter", desc: "Garis lurus melalui pusat lingkaran; d = 2r.", cat: "Geometri" },
+
+  // ---- TRIGONOMETRI ----
+  { sym: "sin", name: "Sinus", desc: "Perbandingan sisi depan dengan hipotenusa.", cat: "Trigonometri" },
+  { sym: "cos", name: "Kosinus", desc: "Perbandingan sisi samping dengan hipotenusa.", cat: "Trigonometri" },
+  { sym: "tan", name: "Tangen", desc: "Perbandingan sisi depan dengan sisi samping.", cat: "Trigonometri" },
+  { sym: "csc", name: "Kosekan", desc: "Kebalikan sinus: 1/sin θ.", cat: "Trigonometri" },
+  { sym: "sec", name: "Sekan", desc: "Kebalikan kosinus: 1/cos θ.", cat: "Trigonometri" },
+  { sym: "cot", name: "Kotangen", desc: "Kebalikan tangen: 1/tan θ.", cat: "Trigonometri" },
+  { sym: "arcsin", name: "Arka sinus", desc: "Invers fungsi sinus.", cat: "Trigonometri" },
+  { sym: "arccos", name: "Arka kosinus", desc: "Invers fungsi kosinus.", cat: "Trigonometri" },
+  { sym: "arctan", name: "Arka tangen", desc: "Invers fungsi tangen.", cat: "Trigonometri" },
+  { sym: "θ", name: "Theta", desc: "Simbol umum untuk besar sudut.", cat: "Trigonometri" },
+  { sym: "α", name: "Alpha", desc: "Simbol Yunani, sering untuk sudut atau parameter.", cat: "Trigonometri" },
+  { sym: "β", name: "Beta", desc: "Simbol Yunani, sering untuk sudut atau parameter.", cat: "Trigonometri" },
+  { sym: "γ", name: "Gamma", desc: "Simbol Yunani, sering untuk sudut atau parameter.", cat: "Trigonometri" },
+
+  // ---- ALJABAR LINEAR ----
+  { sym: "𝐯", name: "Vektor", desc: "Besaran dengan magnitudo dan arah. Ditulis huruf tebal atau dengan panah.", cat: "Aljabar Linear" },
+  { sym: "‖𝐯‖", name: "Norma vektor", desc: "Panjang vektor 𝐯.", cat: "Aljabar Linear" },
+  { sym: "𝐯̂", name: "Vektor satuan", desc: "Vektor dengan panjang 1, searah dengan 𝐯.", cat: "Aljabar Linear" },
+  { sym: "·", name: "Dot product", desc: "𝐮 · 𝐯 = jumlah hasil kali komponen. Hasilnya skalar.", cat: "Aljabar Linear" },
+  { sym: "×", name: "Cross product", desc: "Hasilnya vektor yang tegak lurus keduanya. Hanya di ℝ³.", cat: "Aljabar Linear" },
+  { sym: "⟨𝐮,𝐯⟩", name: "Inner product", desc: "Generalisasi dot product pada ruang vektor umum.", cat: "Aljabar Linear" },
+  { sym: "𝐢, 𝐣, 𝐤", name: "Vektor basis standar", desc: "𝐢 = (1,0,0), 𝐣 = (0,1,0), 𝐤 = (0,0,1).", cat: "Aljabar Linear" },
+  { sym: "Aᵀ", name: "Transpose matriks", desc: "Matriks yang baris dan kolomnya ditukar.", cat: "Aljabar Linear" },
+  { sym: "A⁻¹", name: "Invers matriks", desc: "Matriks dengan A · A⁻¹ = I.", cat: "Aljabar Linear" },
+  { sym: "det", name: "Determinan", desc: "Bilangan yang mengukur skala transformasi matriks.", cat: "Aljabar Linear" },
+  { sym: "I", name: "Matriks identitas", desc: "Matriks dengan 1 di diagonal, 0 di tempat lain.", cat: "Aljabar Linear" },
+  { sym: "λ", name: "Lambda", desc: "Nilai eigen—skalar yang mengukur peregangan vektor eigen.", cat: "Aljabar Linear" },
+  { sym: "span", name: "Rentang", desc: "Himpunan semua kombinasi linear dari vektor-vektor tertentu.", cat: "Aljabar Linear" },
+  { sym: "ker", name: "Kernel", desc: "Himpunan vektor yang dipetakan ke nol oleh transformasi linear.", cat: "Aljabar Linear" },
+
+  // ---- STATISTIKA ----
+  { sym: "μ", name: "Mu", desc: "Rata-rata populasi.", cat: "Statistika" },
+  { sym: "σ", name: "Sigma", desc: "Simpangan baku populasi.", cat: "Statistika" },
+  { sym: "σ²", name: "Sigma kuadrat", desc: "Variansi populasi.", cat: "Statistika" },
+  { sym: "x̄", name: "x-bar", desc: "Rata-rata sampel.", cat: "Statistika" },
+  { sym: "s", name: "s", desc: "Simpangan baku sampel.", cat: "Statistika" },
+  { sym: "P(A)", name: "Peluang kejadian A", desc: "Probabilitas bahwa kejadian A terjadi.", cat: "Statistika" },
+  { sym: "E[X]", name: "Ekspektasi", desc: "Nilai harapan variabel acak X.", cat: "Statistika" },
+  { sym: "Var(X)", name: "Variansi", desc: "Ukuran sebaran variabel acak X.", cat: "Statistika" },
+  { sym: "ρ", name: "Rho", desc: "Koefisien korelasi.", cat: "Statistika" }
+ ];
+
+ const inputEl  = document.getElementById('glossInput');
+ const clearEl  = document.getElementById('glossClear');
+ const catsEl   = document.getElementById('glossCats');
+ const infoEl   = document.getElementById('glossInfo');
+ const gridEl   = document.getElementById('glossGrid');
+
+ let activeCat = 'Semua';
+ let query = '';
+
+ const CATS = ['Semua', ...Array.from(new Set(GLOSS.map(s => s.cat)))];
+
+ function renderCats() {
+  catsEl.innerHTML = '';
+  CATS.forEach(cat => {
+   const btn = document.createElement('button');
+   btn.className = 'gloss-cat-btn' + (cat === activeCat ? ' active' : '');
+   btn.textContent = cat;
+   btn.onclick = () => {
+    activeCat = cat;
+    renderCats();
+    renderGrid();
+   };
+   catsEl.appendChild(btn);
+  });
+ }
+
+ function renderGrid() {
+  const q = query.trim().toLowerCase();
+  const filtered = GLOSS.filter(s => {
+   const matchCat = activeCat === 'Semua' || s.cat === activeCat;
+   const matchQ = !q
+    || s.sym.toLowerCase().includes(q)
+    || s.name.toLowerCase().includes(q)
+    || s.desc.toLowerCase().includes(q)
+    || s.cat.toLowerCase().includes(q);
+   return matchCat && matchQ;
+  });
+
+  gridEl.innerHTML = '';
+
+  if (filtered.length === 0) {
+   gridEl.innerHTML = '<div class="gloss-no-result">Tidak ada simbol yang cocok dengan pencarian Anda.</div>';
+   infoEl.textContent = '';
+   return;
+  }
+
+  infoEl.textContent = (q || activeCat !== 'Semua')
+   ? `Menampilkan ${filtered.length} dari ${GLOSS.length} simbol.`
+   : `Menampilkan seluruh ${GLOSS.length} simbol.`;
+
+  const frag = document.createDocumentFragment();
+  filtered.forEach(s => {
+   const card = document.createElement('div');
+   card.className = 'gloss-card';
+   card.dataset.cat = s.cat;
+   card.innerHTML = `
+    <span class="gloss-sym">${s.sym}</span>
+    <div class="gloss-name">${s.name}</div>
+    <div class="gloss-desc">${s.desc}</div>
+    <span class="gloss-tag">${s.cat}</span>
+   `;
+   frag.appendChild(card);
+  });
+  gridEl.appendChild(frag);
+ }
+
+ inputEl.addEventListener('input', (e) => {
+  query = e.target.value;
+  renderGrid();
+ });
+ clearEl.addEventListener('click', () => {
+  query = '';
+  inputEl.value = '';
+  inputEl.focus();
+  renderGrid();
+ });
+
+ renderCats();
+ renderGrid();
+</script>
+
+</body>
+</html>
