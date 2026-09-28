@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>ISORA</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+ <style>
+*,
+*::before,
+*::after {
+ margin: 0;
+ padding: 0;
+ -webkit-tap-highlight-color:transparent !important;
+ tap-highlight-color:transparent !important;
+ outline:0 !important;
+ box-sizing: border-box;}
+body {
+ font-family: "Atkinson Hyperlegible Next", sans-serif;
+ background: #090909;
+ color: #d7d7d7;
+ line-height:1.5;
+ -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ position: relative;}
+button,input,a{
+ font-family:inherit;
+ background:transparent;
+ text-decoration:none;
+ color:inherit;
+ border:none;}
+#content{
+ height:100vh;
+ width:100%;
+ padding:0px 5%;
+ background:inherit;}
+nav{
+ display:flex;;
+ justify-content:space-between;
+ padding:0px;
+ margin:0px;
+ height:55px;}
+.btn-nav{
+ display:block;
+ padding: 6px 4px;
+ margin:auto 0px;
+ height:max-content;
+ width:max-content;}
+.bar1{
+ display:block;
+ width:26px;
+ height:0.5px;
+ position:relative;
+ left:0.5px;
+ background:#aaa;}
+.bar2{
+ display:block;
+ width:27px;
+ height:0.5px;
+ background:#eee;
+ margin:6px 0px;
+ position:relative;
+ left:0px;}
+.bar3{
+ display:block;
+ width:26px;
+ height:0.5px;
+ position:relative;
+ left:0.5px;
+ background:#aaa;}
+.brand{
+ display:block;
+ padding:0px;
+ margin:auto 0px;
+ font-family:"Audiowide",sans-serif;
+ font-size:17px;
+ font-weight:600;
+ letter-spacing:0.5px;
+ color:#22d3ee;}
+.tab-content{
+ display:block;
+ padding:0px;
+ position:fixed;
+ top:0px;
+ background:#090909;
+ width:100%;
+ z-index:99;
+ height:100vh;}
+#tab-menu {
+ right:-220px;
+ width:220px;
+ border-left:0.5px solid #aaa;}
+.content-tab{
+ display:block;
+ padding:12px;}
+.box-close-menu{
+ display:block;
+ margin-bottom:12px;
+ text-align:right;}
+#close-menu{
+ height:30px;
+ width:max-content;
+ padding: 4px 2px;}
+.bar4{
+ display:block;
+ width:26px;
+ height:0.5px;
+ background:#aaa;
+ rotate:-45deg;}
+.bar5{
+ display:block;
+ width:26px;
+ height:0.5px;
+ background:#eee;
+ rotate:45deg;}
+.btn-menu {
+ display: flex;
+ justify-content:flex-end;
+ border-bottom:0.5px solid #aaa;
+ font-family: "Bricolage Grotesque", sans-serif;
+ gap:8px;
+ text-align:right;
+ text-transform:uppercase;
+ font-weight:400;
+ padding:9px 6px 9px 0px;
+ transition:0.3s;}
+.btn-menu:hover{
+ background: #eee;
+ padding:9px 10px 9px 0px;
+ color:#060606;
+ font-weight:550;
+ transition:0.3s;}
+.title-menu {
+ font-size: 12px;
+ letter-spacing:0.5px;
+ margin: auto 0px;}
+.icon-menu {
+ margin: auto 0px;
+ height: auto;
+ width: 24px;} 
+h2{
+ display:block;
+ color:#e7e7e7;
+ font-size:22px;
+ font-weight:800;}
+h3{
+ font-size:14.2px;
+ font-weight:300;
+ letter-spacing:0.5px;
+ margin:2px 0px 6px 0px;}
+.content-materi{
+ margin:25px 0px 0px 0px;
+ display:block;}
+.btn-materi {
+ background:#0c0c0c;
+ display:flex;
+ justify-content:flex-start;
+ gap:6px;
+ width:max-content;
+ height:40px;
+ border-radius:8px;
+ align-content:center;
+ padding:8px 12px;
+ margin:0px 0px 8px 0px;
+ border:0.5px solid #aaa;
+ letter-spacing:0.5px;
+ transition:0.3s;}
+.btn-materi:hover{
+ border-color:#eee;
+ background: #262626;
+ transition:0.3s;}
+.title-materi{
+ color:#ddd;
+ font-weight:500;
+ font-size: 12.9px;
+ text-align:center;
+ display:block;
+ margin: auto 0px;
+ width:100%;}
+.icon-materi{
+ margin: 0px auto;
+ height:auto;
+ width: 34px;
+ color:#22d3ee;
+ display:block;}
+#content,
+#tab-menu {transition: opacity 0.4s ease, right 0.4s ease;}
+.note {
+ position: absolute;
+ left: 0px;
+ bottom: 20px;
+ width: 100%;
+ text-align: center;
+ font-size: 13px;
+ font-weight: 400;
+ font-style: italic;
+ color: #777;}
+.box-menu-bottom{
+ display:block;
+ position:absolute;
+ bottom:8px;
+ width:90%;
+ box-sizing:border-box;}
+.btn-menu-bottom{
+ display:block;
+ font-size:12.8px;
+ font-weight:300;
+ font-style:italic;
+ color:#aaa;
+ width:max-content;
+ margin:0px 0px 0px auto;}
+ </style>
+</head>
+<body>
+
+<div id="content">
+ 
+<nav>
+ <h1 class="brand">ISORA</h1>
+ <button class="btn-nav" id="btn-open-menu">
+  <span class="bar1"></span>
+  <span class="bar2"></span>
+  <span class="bar3"></span>
+ </button>
+</nav>
+
+<h2>Hi, Dunia</h2>
+<h3>Pelajari berbagai ilmu pengetahuan dari angka, bahasa, hingga alam</h3>
+
+<div class="content-materi">
+ <a class="btn-materi" href="/bahasa-inggris" style="display:none;">
+  <svg width="48" height="48" fill="currentColor" class="icon-materi">
+   <use href="asset/icon/icon-materi.svg#eng" /></svg>
+  <span class="title-materi">Bahasa Inggris</span></a>
+ <a class="btn-materi" href="/matematika">
+  <svg width="48" height="48" fill="currentColor" class="icon-materi">
+   <use href="asset/icon/icon-materi.svg#pi"/></svg>
+  <span class="title-materi">Matematika</span></a>
+ <a class="btn-materi" href="#" style="display:none;">
+  <svg width="48" height="48" fill="currentColor" class="icon-materi">
+   <use href="asset/icon/icon-materi.svg#scale" /></svg>
+  <span class="title-materi">Fisika</span></a>
+</div>
+<p class="note">Belajar karena ingin bukan terpaksa :/</p>
+</div>
+
+<div class="tab-content" id="tab-menu">
+ <div class="content-tab">
+  <div class="box-close-menu">
+   <button id="close-menu">
+   <span class="bar4"></span>
+   <span class="bar5"></span>
+   </button>
+  </div>
+  <a class="btn-menu" href="/tentang">
+   <span class="title-menu">Tentang</span>
+   <img class="icon-menu" src="asset/icon/about.svg"></a>
+  <a class="btn-menu" href="/dukungan-dan-donasi">
+   <span class="title-menu">Dukungan & Donasi</span>
+   <img class="icon-menu" src="asset/icon/donate.svg"></a>
+  <a class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">
+   <span class="title-menu">Instagram</span>
+   <img class="icon-menu" src="asset/icon/instagram.svg"></a>
+  <a class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">
+   <span class="title-menu">Youtube</span>
+   <img class="icon-menu" src="asset/icon/youtube.svg"></a>
+  <a class="btn-menu" href="#" target="_blank" rel="noopener noreferrer">
+   <span class="title-menu">Tiktok</span>
+   <img class="icon-menu" src="asset/icon/tiktok.svg"></a>
+  <a class="btn-menu" href="mailto:email@isora.id">
+   <span class="title-menu">Gmail</span>
+   <img class="icon-menu" src="asset/icon/gmail.svg"></a>
+   <div class="box-menu-bottom">
+    <a class="btn-menu-bottom" href="/kebijakan-privasi">Kebijakan privasi</a>
+    <a class="btn-menu-bottom" href="/syarat-dan-ketentuan">Syarat dan ketentuan</a>
+   </div>
+  </div>
+</div>
+
+<script>
+const content = document.getElementById("content")
+const btnOpenMenu = document.getElementById("btn-open-menu")
+const tabMenu = document.getElementById("tab-menu")
+const closeMenu = document.getElementById("close-menu")
+btnOpenMenu.addEventListener("click", function() {
+ content.style.opacity = "0.7";
+ tabMenu.style.right = "0px";});
+content.addEventListener('click', function(event) {
+ if (event.target.closest('#btn-open-menu')) {
+  return;}
+ content.style.opacity= '1';
+ tabMenu.style.right = '-220px';});
+closeMenu.addEventListener("click", function() {
+ content.style.opacity = "1";
+ tabMenu.style.right = "-220px";});
+</script>
+</body>
+</html>
