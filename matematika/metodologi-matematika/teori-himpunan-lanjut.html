@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Teori Himpunan Lanjut (Relasi Ekuivalensi, Partisi, dan Aksioma Pilihan)</title>
+ <meta name="description" content="Teori himpunan lanjut: relasi ekuivalensi dan kelas ekuivalensi, partisi, himpunan kuosien, Aksioma Pilihan, Lemma Zorn, dan Teorema Terurut-Baik.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Teori Himpunan Lanjut (Relasi Ekuivalensi, Partisi, dan Aksioma Pilihan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Himpunan</strong> — terutama operasi gabungan, irisan, himpunan bagian, dan himpunan kuasa, karena seluruh pembahasan relasi ekuivalensi dan partisi bertumpu pada operasi-operasi himpunan ini.</li>
+   <li><strong>Relasi</strong> — terutama pengertian relasi sebagai himpunan pasangan terurut dan sifat-sifat relasi, karena relasi ekuivalensi adalah jenis relasi khusus dengan tiga sifat tambahan.</li>
+   <li><strong>Pembuktian Matematis</strong> — terutama pembuktian langsung dan kontradiksi, karena hampir setiap sifat dalam materi ini (seperti kelas ekuivalensi yang saling lepas) memerlukan bukti formal.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Teori himpunan adalah fondasi dari hampir seluruh cabang matematika modern. Pada tingkat lanjut, teori himpunan tidak hanya membahas operasi dasar seperti gabungan dan irisan, tetapi juga menyelidiki <strong>struktur yang lebih dalam</strong> yang muncul dari hubungan antar elemen himpunan. Dua konsep sentral yang akan dibahas adalah <strong>relasi ekuivalensi</strong> dan <strong>partisi</strong>—yang keduanya saling terkait secara fundamental.</p>
+ <p class="lesson-text">Relasi ekuivalensi memungkinkan kita untuk "mengelompokkan" objek-objek yang dianggap setara menurut kriteria tertentu. Konsep ini sangat berguna dalam aljabar (kongruensi modulo), topologi (homotopi), dan ilmu komputer (ekuivalensi state pada automata). Yang menarik, relasi ekuivalensi dan partisi adalah dua sisi dari mata uang yang sama—setiap relasi ekuivalensi menghasilkan partisi, dan sebaliknya, setiap partisi mendefinisikan suatu relasi ekuivalensi. Selain itu, materi ini juga membahas <strong>Aksioma Pilihan</strong> (<em>Axiom of Choice</em>)—pernyataan yang tampak sederhana namun memiliki konsekuensi yang sangat dalam dan tidak jarang mengejutkan; ia memungkinkan kita untuk memilih satu elemen dari setiap himpunan dalam kumpulan himpunan tak hingga, bahkan ketika tidak ada aturan eksplisit untuk melakukan pemilihan tersebut.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>definisi dan sifat relasi ekuivalensi</strong>, <strong>kelas ekuivalensi dan sifat-sifatnya</strong>, <strong>partisi dan teorema korespondensi</strong>, <strong>himpunan kuosien</strong>, <strong>Aksioma Pilihan</strong> beserta formulasi ekuivalennya, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap sifat akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan definisinya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Relasi Ekuivalensi</h3>
+ <p class="lesson-text">Kita mulai dari konsep inti—relasi yang "mengelompokkan" elemen-elemen yang dianggap setara menurut kriteria tertentu.</p>
+
+ <p class="lesson-subheading">A. Definisi Formal</p>
+ <p class="lesson-text">Sebuah relasi $R$ pada himpunan $A$ disebut <strong>relasi ekuivalensi</strong> jika dan hanya jika memenuhi tiga sifat berikut secara bersamaan:</p>
+ <ol>
+  <li><strong>Refleksif</strong>: untuk setiap $a \in A$, berlaku $a \, R \, a$.</li>
+  <li><strong>Simetris</strong>: untuk setiap $a, b \in A$, jika $a \, R \, b$, maka $b \, R \, a$.</li>
+  <li><strong>Transitif</strong>: untuk setiap $a, b, c \in A$, jika $a \, R \, b$ dan $b \, R \, c$, maka $a \, R \, c$.</li>
+ </ol>
+ <p class="lesson-text">Ketiga sifat ini harus dipenuhi sekaligus. Jika salah satu tidak terpenuhi, maka relasi tersebut bukan relasi ekuivalensi.</p>
+
+ <p class="lesson-subheading">B. Notasi</p>
+ <p class="lesson-text">Relasi ekuivalensi sering dinotasikan dengan simbol $\sim$ (tilde) atau $\equiv$ (ekivalen). Kita menulis $a \sim b$ untuk menyatakan bahwa $a$ berelasi dengan $b$.</p>
+
+ <p class="lesson-subheading">C. Contoh Relasi Ekuivalensi</p>
+ <p class="lesson-subheading-alt">Contoh 1 (kesamaan):</p>
+ <p class="lesson-text">Relasi "sama dengan" ($=$) pada himpunan bilangan real $\mathbb{R}$ adalah relasi ekuivalensi—refleksif ($a = a$), simetris (jika $a = b$ maka $b = a$), dan transitif (jika $a = b$ dan $b = c$ maka $a = c$).</p>
+
+ <p class="lesson-subheading-alt">Contoh 2 (kongruensi modulo):</p>
+ <p class="lesson-text">Relasi "kongruen modulo $n$" pada himpunan bilangan bulat $\mathbb{Z}$:</p>
+ <p class="lesson-text">$$a \equiv b \pmod{n} \leftrightarrow a - b \text{ habis dibagi } n$$</p>
+ <p class="lesson-text">Relasi ini adalah relasi ekuivalensi:</p>
+ <ul>
+  <li><strong>Refleksif</strong>: $a - a = 0$ habis dibagi $n$.</li>
+  <li><strong>Simetris</strong>: jika $a - b$ habis dibagi $n$, maka $b - a = -(a-b)$ juga habis dibagi $n$.</li>
+  <li><strong>Transitif</strong>: jika $a - b$ dan $b - c$ habis dibagi $n$, maka $(a-b) + (b-c) = a - c$ juga habis dibagi $n$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 3 (kesebangunan segitiga):</p>
+ <p class="lesson-text">Relasi "sebangun" pada himpunan semua segitiga adalah relasi ekuivalensi.</p>
+
+ <p class="lesson-subheading-alt">Contoh 4 (bukan relasi ekuivalensi):</p>
+ <p class="lesson-text">Relasi "lebih kecil dari" ($<$) pada $\mathbb{R}$ bukan relasi ekuivalensi karena tidak refleksif ($a < a$ salah) dan tidak simetris (jika $a < b$, belum tentu $b < a$).</p>
+
+ <p class="lesson-subheading">D. Kelas Ekuivalensi</p>
+ <p class="lesson-text">Diberikan relasi ekuivalensi $\sim$ pada himpunan $A$. Untuk setiap $a \in A$, <strong>kelas ekuivalensi</strong> dari $a$—dinotasikan $[a]$—didefinisikan sebagai himpunan semua elemen di $A$ yang berelasi dengan $a$:</p>
+ <p class="lesson-text">$$[a] = \{x \in A \mid x \sim a\}$$</p>
+ <p class="lesson-text">Elemen $a$ disebut <strong>representatif</strong> dari kelas ekuivalensi $[a]$.</p>
+ <p class="lesson-subheading-alt">Contoh 5 (kelas ekuivalensi modulo 3):</p>
+ <p class="lesson-text">Pada $\mathbb{Z}$ dengan relasi kongruensi modulo 3:</p>
+ <ul>
+  <li>$[0] = \{\dots, -6, -3, 0, 3, 6, 9, \dots\}$</li>
+  <li>$[1] = \{\dots, -5, -2, 1, 4, 7, 10, \dots\}$</li>
+  <li>$[2] = \{\dots, -4, -1, 2, 5, 8, 11, \dots\}$</li>
+ </ul>
+
+ <p class="lesson-subheading">E. Sifat-Sifat Kelas Ekuivalensi</p>
+ <ol>
+  <li><strong>Tidak kosong</strong>: setiap kelas $[a]$ selalu memuat paling sedikit $a$ sendiri (karena refleksif). Jadi $[a] \neq \varnothing$.</li>
+  <li><strong>Saling lepas atau identik</strong>: untuk setiap $a, b \in A$, berlaku salah satu dari dua kemungkinan—$[a] = [b]$ jika $a \sim b$, atau $[a] \cap [b] = \varnothing$ jika $a \not\sim b$. Artinya, dua kelas ekuivalensi tidak mungkin beririsan sebagian—mereka pasti sama persis atau sama sekali tidak beririsan.</li>
+  <li><strong>Kesamaan kelas</strong>: $[a] = [b] \leftrightarrow a \sim b$.</li>
+  <li><strong>Gabungan semua kelas</strong>: $\bigcup_{a \in A}[a] = A$.</li>
+  <li><strong>Representasi berganda</strong>: setiap elemen dalam kelas ekuivalensi dapat digunakan sebagai representatif—jika $b \in [a]$, maka $[b] = [a]$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Mengapa sifat 2 berlaku?</p>
+ <p class="lesson-text">Andaikan $[a] \cap [b] \neq \varnothing$. Maka terdapat $c \in [a] \cap [b]$, sehingga $c \sim a$ dan $c \sim b$. Karena simetris, $a \sim c$. Karena $a \sim c$ dan $c \sim b$, maka dengan transitif $a \sim b$. Akibatnya, untuk setiap $x \in [a]$, berlaku $x \sim a$. Karena $a \sim b$, maka $x \sim b$, sehingga $x \in [b]$—jadi $[a] \subseteq [b]$. Dengan argumen yang sama, $[b] \subseteq [a]$. Maka $[a] = [b]$. Inilah mengapa kelas ekuivalensi tidak dapat beririsan sebagian.</p>
+
+ <p class="lesson-text">Sifat "saling lepas atau identik" inilah yang membuat kelas-kelas ekuivalensi secara alami membentuk sebuah <strong>partisi</strong>—sebuah konsep yang akan kita bahas berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Partisi Himpunan</h3>
+ <p class="lesson-text">Setelah memahami kelas ekuivalensi, kita masuk ke konsep yang secara fundamental setara dengannya: <strong>partisi</strong>.</p>
+
+ <p class="lesson-subheading">A. Definisi Partisi</p>
+ <p class="lesson-text">Sebuah <strong>partisi</strong> dari himpunan tak-kosong $A$ adalah kumpulan himpunan bagian tak-kosong $\{A_1, A_2, A_3, \dots\}$ dari $A$ yang memenuhi tiga syarat:</p>
+ <ol>
+  <li><strong>Menutupi $A$</strong>: gabungan semua himpunan bagian sama dengan $A$—yaitu $\bigcup_{i} A_i = A$.</li>
+  <li><strong>Saling lepas</strong>: untuk setiap $i \neq j$, berlaku $A_i \cap A_j = \varnothing$.</li>
+  <li><strong>Tak kosong</strong>: setiap $A_i \neq \varnothing$.</li>
+ </ol>
+ <p class="lesson-text">Dengan kata lain, partisi adalah cara memecah himpunan $A$ menjadi "potongan-potongan" yang tidak saling tumpang tindih dan tidak ada yang kosong.</p>
+
+ <p class="lesson-subheading-alt">Contoh 6:</p>
+ <p class="lesson-text">Himpunan $A = \{1, 2, 3, 4, 5\}$ dapat dipartisi menjadi:</p>
+ <ul>
+  <li>$\{\{1, 2\}, \{3, 4\}, \{5\}\}$</li>
+  <li>$\{\{1\}, \{2\}, \{3\}, \{4\}, \{5\}\}$</li>
+  <li>$\{\{1, 3, 5\}, \{2, 4\}\}$</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh 7:</p>
+ <p class="lesson-text">Himpunan bilangan bulat $\mathbb{Z}$ dapat dipartisi menjadi himpunan bilangan genap dan himpunan bilangan ganjil: $\{\text{Genap}, \text{Ganjil}\}$.</p>
+
+ <p class="lesson-subheading">B. Teorema Fundamental: Korespondensi Ekuivalensi–Partisi</p>
+ <p class="lesson-text">Terdapat hubungan yang sangat erat antara relasi ekuivalensi dan partisi:</p>
+ <ul>
+  <li><strong>Teorema 1</strong>: setiap relasi ekuivalensi pada himpunan $A$ menghasilkan partisi dari $A$—yaitu himpunan semua kelas ekuivalensinya.</li>
+  <li><strong>Teorema 2</strong>: setiap partisi dari himpunan $A$ mendefinisikan suatu relasi ekuivalensi pada $A$—yaitu dengan mendefinisikan $a \sim b$ jika dan hanya jika $a$ dan $b$ berada dalam bagian (blok) yang sama dari partisi tersebut.</li>
+ </ul>
+ <p class="lesson-text">Dengan demikian, terdapat <strong>korespondensi satu-satu</strong> antara relasi ekuivalensi pada $A$ dan partisi dari $A$. Setiap relasi ekuivalensi "setara" dengan cara mempartisi himpunan, dan sebaliknya.</p>
+
+ <p class="lesson-subheading-alt">Bukti Teorema 1:</p>
+ <p class="lesson-text">Diberikan relasi ekuivalensi $\sim$ pada $A$. Definisikan kumpulan $\mathcal{P} = \{[a] \mid a \in A\}$. Setiap $[a] \neq \varnothing$ karena $a \in [a]$. Gabungan semua $[a]$ adalah $A$ karena setiap $a$ berada dalam kelasnya sendiri. Dua kelas berbeda saling lepas (berdasarkan sifat 2 kelas ekuivalensi). Maka $\mathcal{P}$ adalah partisi dari $A$.</p>
+
+ <p class="lesson-subheading-alt">Bukti Teorema 2:</p>
+ <p class="lesson-text">Diberikan partisi $\{A_i\}$ dari $A$. Definisikan relasi $\sim$ dengan $a \sim b \leftrightarrow$ terdapat $i$ sehingga $a, b \in A_i$. Refleksif: $a$ berada di suatu $A_i$ (karena partisi menutupi $A$), maka $a \sim a$. Simetris: jika $a, b \in A_i$, maka $b, a \in A_i$, sehingga $b \sim a$. Transitif: jika $a, b \in A_i$ dan $b, c \in A_j$, maka $b \in A_i \cap A_j$. Karena partisi saling lepas, maka $i = j$, sehingga $a, c \in A_i$—maka $a \sim c$. Jadi $\sim$ adalah relasi ekuivalensi.</p>
+
+ <p class="lesson-subheading">C. Himpunan Kuosien</p>
+ <p class="lesson-text">Himpunan semua kelas ekuivalensi dari relasi ekuivalensi $\sim$ pada $A$ disebut <strong>himpunan kuosien</strong>, dinotasikan $A/\sim$:</p>
+ <p class="lesson-text">$$A/\sim \;=\; \{[a] \mid a \in A\}$$</p>
+ <p class="lesson-text">Himpunan kuosien adalah "himpunan dari himpunan"—elemen-elemennya adalah kelas-kelas ekuivalensi. Setiap elemen dari $A/\sim$ adalah sebuah himpunan bagian dari $A$.</p>
+ <p class="lesson-subheading-alt">Contoh 8:</p>
+ <p class="lesson-text">Untuk relasi kongruensi modulo 3 pada $\mathbb{Z}$, himpunan kuosiennya adalah:</p>
+ <p class="lesson-text">$$\mathbb{Z}/3\mathbb{Z} = \{[0], [1], [2]\}$$</p>
+ <p class="lesson-text">Himpunan ini memiliki tepat 3 elemen—masing-masing adalah himpunan tak hingga.</p>
+ <p class="lesson-subheading-alt">Contoh 9:</p>
+ <p class="lesson-text">Pada himpunan bilangan real $\mathbb{R}$, definisikan relasi $x \sim y \leftrightarrow x - y \in \mathbb{Z}$. Himpunan kuosiennya adalah $\mathbb{R}/\mathbb{Z}$, yang secara geometris dapat dibayangkan sebagai lingkaran satuan.</p>
+
+ <p class="lesson-text">Relasi ekuivalensi, partisi, dan himpunan kuosien membentuk satu paket konsep yang saling terkait. Namun, ada satu pertanyaan yang sering muncul ketika berhadapan dengan kumpulan himpunan yang jumlahnya tak hingga: bagaimana cara memilih satu elemen dari setiap himpunan? Pertanyaan inilah yang membawa kita ke Aksioma Pilihan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Aksioma Pilihan</h3>
+ <p class="lesson-text">Setelah membahas relasi ekuivalensi dan partisi, kita masuk ke konsep yang paling kontroversial dalam teori himpunan: <strong>Aksioma Pilihan</strong>.</p>
+
+ <p class="lesson-subheading">A. Motivasi</p>
+ <p class="lesson-text">Bayangkan kita memiliki kumpulan himpunan tak-kosong yang tak hingga banyaknya, misalnya $\{A_1, A_2, A_3, \dots\}$. Kita ingin "memilih" satu elemen dari setiap himpunan $A_i$. Jika jumlah himpunannya berhingga, kita bisa melakukannya secara manual satu per satu. Namun, jika jumlahnya tak hingga, bagaimana caranya? Apakah selalu mungkin untuk melakukan pemilihan seperti itu?</p>
+ <p class="lesson-text">Intuisi kita mengatakan "tentu saja bisa"—tetapi secara formal, tanpa aksioma tambahan, kita tidak dapat menjamin keberadaan suatu aturan atau fungsi yang melakukan pemilihan tersebut secara simultan.</p>
+
+ <p class="lesson-subheading">B. Pernyataan Aksioma Pilihan</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Untuk setiap kumpulan himpunan tak-kosong $\{A_i\}_{i \in I}$ (dengan $I$ adalah himpunan indeks), terdapat sebuah <strong>fungsi pilihan</strong> $f$ yang memetakan setiap indeks $i \in I$ ke suatu elemen $f(i) \in A_i$.</p>
+ </div>
+ <p class="lesson-text">Dengan kata lain, terdapat cara untuk memilih tepat satu elemen dari setiap himpunan dalam kumpulan tersebut—bahkan ketika kumpulan himpunan itu tak hingga dan tidak ada aturan eksplisit untuk pemilihan tersebut.</p>
+
+ <p class="lesson-subheading">C. Sifat Non-Konstruktif</p>
+ <p class="lesson-text">Aksioma Pilihan bersifat <strong>non-konstruktif</strong>. Artinya, aksioma ini hanya <strong>menjamin keberadaan</strong> fungsi pilihan, tetapi <strong>tidak memberikan cara</strong> untuk membangun atau menghitungnya. Ini berbeda dengan kebanyakan aksioma matematika lainnya—yang biasanya memberikan metode konstruksi.</p>
+ <p class="lesson-text">Sebagai contoh, jika kita memiliki kumpulan himpunan bagian dari $\mathbb{R}$, Aksioma Pilihan mengatakan ada fungsi yang memilih satu elemen dari setiap himpunan—tetapi kita mungkin tidak dapat mendeskripsikan fungsi tersebut secara eksplisit.</p>
+
+ <p class="lesson-subheading">D. Formulasi Ekuivalen</p>
+ <p class="lesson-text">Aksioma Pilihan memiliki beberapa formulasi yang secara logis ekuivalen—artinya, jika salah satu benar, yang lain juga benar, dan sebaliknya. Dua yang paling terkenal:</p>
+ <p class="lesson-subheading-alt">1. Lemma Zorn:</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Jika $P$ adalah himpunan terurut parsial <strong>non-kosong</strong> dan setiap rantai (<em>chain</em>) dalam $P$ memiliki batas atas di $P$, maka $P$ memiliki elemen maksimal.</p>
+ </div>
+ <p class="lesson-text">Syarat "non-kosong" penting—tanpa itu, himpunan kosong menjadi contoh penyangkal: ia tidak memiliki rantai untuk diperiksa (sehingga syarat terpenuhi secara vakum), tetapi juga tidak memiliki elemen maksimal.</p>
+ <p class="lesson-text">Rantai adalah himpunan bagian yang setiap dua elemennya dapat dibandingkan. Lemma Zorn digunakan secara luas dalam aljabar abstrak—misalnya untuk membuktikan keberadaan basis pada ruang vektor tak hingga dimensi.</p>
+
+ <p class="lesson-subheading-alt">2. Teorema Terurut-Baik:</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Setiap himpunan tak-kosong dapat diurutkan sedemikian rupa sehingga setiap himpunan bagian tak-kosongnya memiliki elemen terkecil.</p>
+ </div>
+ <p class="lesson-text">Contoh: himpunan bilangan asli $\mathbb{N}$ dengan urutan biasa adalah terurut-baik (setiap himpunan bagian tak-kosong memiliki elemen terkecil). Namun, himpunan bilangan real $\mathbb{R}$ dengan urutan biasa <strong>tidak</strong> terurut-baik. Teorema Terurut-Baik mengatakan bahwa $\mathbb{R}$ <strong>dapat</strong> diurutkan dengan cara lain (yang aneh dan tidak intuitif) sehingga menjadi terurut-baik.</p>
+
+ <p class="lesson-subheading">E. Konsekuensi dan Kontroversi</p>
+ <p class="lesson-text">Aksioma Pilihan memiliki beberapa konsekuensi yang mengejutkan—dan bahkan tampak paradoks.</p>
+ <p class="lesson-subheading-alt">1. Paradoks Banach-Tarski:</p>
+ <p class="lesson-text">Dengan Aksioma Pilihan, sebuah bola pejal dapat "dipotong" menjadi sejumlah berhingga bagian, lalu bagian-bagian tersebut disusun ulang—hanya dengan rotasi dan translasi—menjadi <strong>dua bola pejal</strong> yang identik dengan bola asli. Ini tampak mustahil secara fisika, tetapi secara matematis valid jika Aksioma Pilihan diterima. Paradoks ini muncul karena bagian-bagian tersebut merupakan himpunan yang sangat "aneh"—yaitu tidak terukur.</p>
+
+ <p class="lesson-subheading-alt">2. Himpunan tak terukur:</p>
+ <p class="lesson-text">Aksioma Pilihan menjamin keberadaan himpunan bagian dari $\mathbb{R}$ yang tidak memiliki ukuran (tidak terukur Lebesgue). Tanpa AC, belum tentu semua himpunan bagian $\mathbb{R}$ memiliki ukuran yang terdefinisi dengan baik.</p>
+
+ <p class="lesson-subheading-alt">3. Kontroversi:</p>
+ <p class="lesson-text">Beberapa matematikawan—terutama aliran konstruktivis dan intuisionis—menolak Aksioma Pilihan karena sifatnya yang non-konstruktif. Mereka berpendapat bahwa matematika seharusnya hanya membahas objek-objek yang dapat dibangun secara eksplisit. Namun, mayoritas matematikawan menerima AC—karena tanpa aksioma ini, banyak teorema penting dalam analisis dan aljabar tidak dapat dibuktikan.</p>
+
+ <p class="lesson-subheading">F. Contoh Penggunaan</p>
+ <p class="lesson-subheading-alt">Contoh 10 (basis ruang vektor):</p>
+ <p class="lesson-text">Setiap ruang vektor memiliki basis. Untuk ruang vektor berdimensi hingga, ini dapat dibuktikan tanpa AC. Namun, untuk ruang vektor berdimensi tak hingga, diperlukan Lemma Zorn—yang ekuivalen dengan AC—untuk membuktikan keberadaan basis.</p>
+
+ <p class="lesson-subheading-alt">Contoh 11 (fungsi pilihan pada kelas ekuivalensi):</p>
+<p class="lesson-text">Pada $\mathbb{R}$, definisikan relasi $x \sim y \leftrightarrow x - y \in \mathbb{Q}$. Setiap kelas ekuivalensi berbentuk $x + \mathbb{Q}$—yaitu himpunan yang <em>padat</em> di $\mathbb{R}$ (di antara dua anggota kelas selalu ada anggota kelas lain). Tidak ada cara kanonik untuk memilih satu representatif dari setiap kelas—kita tidak dapat mendefinisikan aturan eksplisit seperti "pilih yang terkecil" karena setiap kelas tidak memiliki elemen terkecil (kelas padat).</p>
+<p class="lesson-text">Di sinilah Aksioma Pilihan menjadi esensial: ia menjamin keberadaan fungsi yang memilih satu representatif dari setiap kelas ekuivalensi—meskipun kita tidak dapat membangun fungsi tersebut secara eksplisit. Tanpa AC, keberadaan fungsi semacam itu tidak dapat dijamin.</p>
+<p class="lesson-text">Contoh ini juga terkait erat dengan <strong>himpunan Vitali</strong>—konstruksi klasik yang menggunakan AC untuk menunjukkan keberadaan himpunan bagian $\mathbb{R}$ yang tidak terukur Lebesgue.</p>
+
+ <p class="lesson-text">Aksioma Pilihan adalah topik yang sangat abstrak dan filosofis—tetapi konsep-konsep yang kita bahas sebelumnya (relasi ekuivalensi, partisi, himpunan kuosien) memiliki penerapan yang jauh lebih konkret. Mari kita terapkan seluruh konsep ini—dari verifikasi relasi ekuivalensi hingga konstruksi himpunan kuosien—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan verifikasi relasi ekuivalensi, penentuan kelas ekuivalensi, konstruksi partisi, himpunan kuosien, dan ilustrasi Aksioma Pilihan. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Memverifikasi Relasi Ekuivalensi</p>
+ <p class="lesson-text">Pada himpunan bilangan bulat $\mathbb{Z}$, definisikan relasi $a \sim b \leftrightarrow a + b$ adalah bilangan genap. Periksa apakah $\sim$ adalah relasi ekuivalensi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Refleksif</strong>: untuk setiap $a$, $a + a = 2a$ adalah bilangan genap. Jadi $a \sim a$ ✓</li>
+  <li><strong>Simetris</strong>: jika $a \sim b$, maka $a + b$ genap. Karena penjumlahan komutatif, $b + a = a + b$ juga genap. Jadi $b \sim a$ ✓</li>
+  <li><strong>Transitif</strong>: jika $a \sim b$ dan $b \sim c$, maka $a + b$ dan $b + c$ keduanya genap. Maka $(a + b) + (b + c) = a + c + 2b$ genap. Karena $2b$ genap, maka $a + c = (a + c + 2b) - 2b$ juga genap. Jadi $a \sim c$ ✓</li>
+ </ol>
+ <p class="lesson-text">Ketiga sifat terpenuhi—maka $\sim$ adalah relasi ekuivalensi. Perhatikan bahwa relasi ini sebenarnya membagi $\mathbb{Z}$ menjadi dua kelas: bilangan genap dan bilangan ganjil.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Menentukan Kelas Ekuivalensi</p>
+ <p class="lesson-text">Pada $\mathbb{Z}$, definisikan relasi $a \sim b \leftrightarrow a \equiv b \pmod{4}$. Tentukan semua kelas ekuivalensi dan tuliskan himpunan kuosiennya.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kelas ekuivalensi ditentukan oleh sisa pembagian dengan 4. Ada 4 kemungkinan sisa: 0, 1, 2, 3.</li>
+  <li>Kelas-kelasnya:
+   <ul>
+    <li>$[0] = \{\dots, -8, -4, 0, 4, 8, 12, \dots\}$</li>
+    <li>$[1] = \{\dots, -7, -3, 1, 5, 9, 13, \dots\}$</li>
+    <li>$[2] = \{\dots, -6, -2, 2, 6, 10, 14, \dots\}$</li>
+    <li>$[3] = \{\dots, -5, -1, 3, 7, 11, 15, \dots\}$</li>
+   </ul>
+  </li>
+  <li>Himpunan kuosiennya:<br>$\mathbb{Z}/4\mathbb{Z} = \{[0], [1], [2], [3]\}$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: keempat kelas saling lepas (tidak ada bilangan bulat yang muncul di dua kelas sekaligus) dan gabungannya adalah seluruh $\mathbb{Z}$. Ini adalah partisi dari $\mathbb{Z}$.</p>
+ 
+ <p class="lesson-subheading">Soal 3: Membangun Partisi dari Relasi Ekuivalensi</p>
+ <p class="lesson-text">Pada himpunan $A = \{1, 2, 3, 4, 5, 6\}$, definisikan relasi $a \sim b \leftrightarrow a \equiv b \pmod{3}$. Tentukan partisi yang dihasilkan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tentukan kelas ekuivalensi dari setiap elemen:
+   <ul>
+    <li>$[1] = \{1, 4\}$ (karena $1 \equiv 4 \pmod{3}$)</li>
+    <li>$[2] = \{2, 5\}$</li>
+    <li>$[3] = \{3, 6\}$</li>
+   </ul>
+  </li>
+  <li>Partisinya adalah: $\{\{1, 4\}, \{2, 5\}, \{3, 6\}\}$.</li>
+  <li>Periksa syarat partisi:
+   <ul>
+    <li>Menutupi $A$: $\{1, 4\} \cup \{2, 5\} \cup \{3, 6\} = \{1, 2, 3, 4, 5, 6\} = A$ ✓</li>
+    <li>Saling lepas: tidak ada elemen yang muncul di dua blok ✓</li>
+    <li>Tak kosong: setiap blok memiliki anggota ✓</li>
+   </ul>
+  </li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Membangun Relasi Ekuivalensi dari Partisi</p>
+ <p class="lesson-text">Diberikan partisi dari $A = \{a, b, c, d, e, f\}$ sebagai $\{\{a, c\}, \{b, d, f\}, \{e\}\}$. Definisikan relasi ekuivalensi yang sesuai dan daftarkan semua pasangan yang berelasi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Definisikan $x \sim y \leftrightarrow x$ dan $y$ berada dalam blok yang sama.</li>
+  <li>Pasangan yang berelasi (termasuk pasangan refleksif):
+   <ul>
+    <li>Dari blok $\{a, c\}$: $(a,a), (a,c), (c,a), (c,c)$</li>
+    <li>Dari blok $\{b, d, f\}$: $(b,b), (b,d), (b,f), (d,b), (d,d), (d,f), (f,b), (f,d), (f,f)$</li>
+    <li>Dari blok $\{e\}$: $(e,e)$</li>
+   </ul>
+  </li>
+  <li>Total: $4 + 9 + 1 = 14$ pasangan berelasi—yaitu kuadrat dari ukuran masing-masing blok, dijumlahkan.</li>
+ </ol>
+ <p class="lesson-text">Perhatikan pola: setiap blok berukuran $k$ menghasilkan $k^2$ pasangan berelasi. Ini konsisten dengan korespondensi partisi–ekuivalensi: relasi ekuivalensi tidak lain adalah "penyatuan" dari relasi kesamaan pada setiap blok.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Himpunan Kuosien dan Kardinalitasnya</p>
+ <p class="lesson-text">Pada $\mathbb{R}$, definisikan relasi $x \sim y \leftrightarrow x - y \in \mathbb{Z}$. Tentukan himpunan kuosien $\mathbb{R}/\mathbb{Z}$ dan jelaskan mengapa himpunan ini dapat dipandang sebagai lingkaran satuan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Setiap kelas ekuivalensi berbentuk $x + \mathbb{Z} = \{\dots, x - 2, x - 1, x, x + 1, x + 2, \dots\}$—yaitu salinan dari $\mathbb{Z}$ yang digeser oleh $x$.</li>
+  <li>Setiap bilangan real dapat "direduksi" ke bagian desimalnya (pecahan dari $x$):<br>$x \bmod 1 \in [0, 1)$</li>
+  <li>Himpunan kuosiennya adalah:<br>$\mathbb{R}/\mathbb{Z} = \{[x] \mid x \in [0, 1)\}$</li>
+  <li>Himpunan ini dapat divisualisasikan sebagai interval $[0, 1)$ dengan ujung-ujungnya "disatukan"—$0$ dan $1$ dianggap sama. Inilah <strong>lingkaran satuan</strong> $S^1$.</li>
+ </ol>
+ <p class="lesson-text">Visualisasi geometrisnya: setiap kali sebuah bilangan real "berjalan" dari 0 ke 1, ia kembali ke titik awal—seperti mengelilingi lingkaran.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Ilustrasi Lemma Zorn</p>
+ <p class="lesson-text">Diberikan himpunan terurut parsial $P$ yang terdiri dari semua himpunan bagian dari $\{1, 2, 3\}$, diurutkan berdasarkan inklusi $\subseteq$. Periksa apakah Lemma Zorn berlaku—dan identifikasi elemen maksimalnya.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>$P = \mathcal{P}(\{1, 2, 3\})$ adalah himpunan terurut parsial non-kosong, dengan urutan $\subseteq$.</li>
+  <li><strong>Setiap rantai memiliki batas atas</strong>: rantai adalah kumpulan himpunan di mana setiap dua anggotanya dapat dibandingkan. Misalnya $\{\{1\}, \{1, 2\}, \{1, 2, 3\}\}$ adalah rantai, dan batas atasnya adalah $\{1, 2, 3\} \in P$.</li>
+  <li>Karena semua rantai berakhir di bawah $\{1, 2, 3\}$ (himpunan terbesar di $P$), maka setiap rantai memiliki batas atas di $P$.</li>
+  <li>Menurut Lemma Zorn, $P$ harus memiliki elemen maksimal. Elemen maksimalnya adalah $\{1, 2, 3\}$—satu-satunya himpunan di $P$ yang tidak termuat dalam himpunan lain di $P$.</li>
+ </ol>
+ <p class="lesson-text">Contoh ini memperlihatkan Lemma Zorn dalam kasus berhingga—di mana keberadaan elemen maksimal dapat dilihat secara langsung. Kekuatan sesungguhnya dari Lemma Zorn muncul pada himpunan tak hingga, di mana pengecekan langsung tidak mungkin dilakukan.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Aksioma Pilihan dan Kelas Ekuivalensi</p>
+ <p class="lesson-text">Pada $\mathbb{R}$, definisikan relasi $x \sim y \leftrightarrow x - y \in \mathbb{Q}$. Jelaskan mengapa Aksioma Pilihan diperlukan untuk membentuk himpunan yang berisi satu representatif dari setiap kelas ekuivalensi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Setiap kelas ekuivalensi berbentuk $x + \mathbb{Q}$—yaitu himpunan yang padat di $\mathbb{R}$.</li>
+  <li>Kelas-kelas ini sangat "tersebar"—setiap interval terbuka di $\mathbb{R}$ memuat tak hingga banyak elemen dari setiap kelas.</li>
+  <li>Tidak ada cara kanonik untuk memilih satu representatif dari setiap kelas:
+   <ul>
+    <li>Kita tidak bisa memilih "yang terkecil", karena setiap kelas padat dan tidak memiliki elemen terkecil.</li>
+    <li>Kita tidak bisa memilih dengan rumus sederhana, karena kelas-kelas saling menumpuk secara rumit.</li>
+    <li>Kita tidak bisa memilih berdasarkan urutan biasa, karena setiap interval memuat anggota dari semua kelas.</li>
+   </ul>
+  </li>
+  <li>Di sinilah Aksioma Pilihan berperan: ia menjamin keberadaan himpunan yang berisi tepat satu representatif dari setiap kelas. Himpunan seperti ini disebut <strong>himpunan Vitali</strong>—dan terbukti <em>tidak terukur</em> Lebesgue.</li>
+ </ol>
+ <p class="lesson-text">Contoh ini memperlihatkan mengapa Aksioma Pilihan sangat penting: ia memungkinkan konstruksi objek-objek matematika yang keberadaannya <em>tidak dapat dibuktikan maupun dibangun</em> dari aksioma ZF saja. Inilah alasan mengapa AC begitu kuat—dan sekaligus begitu kontroversial.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap relasi yang refleksif dan simetris otomatis transitif.</strong> Ketiga sifat harus diperiksa secara terpisah. Contoh: relasi "bertetangga dengan" adalah refleksif (jika kita definisikan diri sendiri sebagai tetangga) dan simetris, tetapi tidak transitif—tetangga dari tetangga belum tentu tetangga kita.</li>
+  <li><strong>Menganggap kelas ekuivalensi selalu beririsan sebagian.</strong> Kelas ekuivalensi hanya bisa <em>sama persis</em> atau <em>saling lepas</em>—tidak ada irisan sebagian. Jika ada satu elemen yang sama, maka kedua kelas identik.</li>
+  <li><strong>Menyamakan partisi dengan sekadar himpunan bagian.</strong> Partisi harus menutupi seluruh himpunan asli, semua bloknya saling lepas, dan tidak ada yang kosong. Himpunan bagian biasa tidak memenuhi syarat ini.</li>
+  <li><strong>Menganggap himpunan kuosien $A/\sim$ sama dengan himpunan asli $A$.</strong> Ini keliru besar—himpunan kuosien berisi <em>himpunan</em> (kelas-kelas ekuivalensi), bukan elemen tunggal. Contoh: $\mathbb{Z}/3\mathbb{Z} = \{[0], [1], [2]\}$ memiliki 3 elemen—masing-masing adalah himpunan tak hingga—sedangkan $\mathbb{Z}$ memiliki tak hingga banyak elemen tunggal. Kardinalitas keduanya sangat berbeda (untuk $n \ge 1$, $\mathbb{Z}/n\mathbb{Z}$ selalu berhingga dengan tepat $n$ elemen).</li>
+  <li><strong>Menganggap keberadaan fungsi pilihan trivial untuk kumpulan tak hingga.</strong> Untuk kumpulan berhingga, pemilihan dapat dilakukan satu per satu tanpa memerlukan AC. Namun untuk kumpulan tak hingga—terutama ketika tidak ada aturan pemilihan yang eksplisit—keberadaan fungsi pilihan <em>tidak</em> dapat dijamin tanpa Aksioma Pilihan. Inilah alasan mengapa AC menjadi aksioma tersendiri, bukan teorema.</li>
+  <li><strong>Menganggap Aksioma Pilihan dapat dibuktikan dari aksioma ZF.</strong> Aksioma Pilihan bersifat <em>independen</em> dari aksioma Zermelo-Fraenkel (ZF). Artinya, ada model matematika di mana AC benar, dan ada model di mana AC salah—AC tidak dapat dibuktikan maupun disangkal dari aksioma ZF.</li>
+  <li><strong>Menganggap semua himpunan dapat diurutkan dengan baik tanpa AC.</strong> Teorema Terurut-Baik hanya berlaku jika Aksioma Pilihan diterima. Tanpa AC, tidak ada jaminan bahwa setiap himpunan dapat diurutkan dengan baik.</li>
+  <li><strong>Menganggap Aksioma Pilihan hanya berlaku untuk himpunan berhingga.</strong> Justru sebaliknya—AC menjadi relevan <em>khusus</em> ketika kumpulan himpunannya tak hingga. Untuk kumpulan berhingga, pemilihan dapat dilakukan satu per satu tanpa memerlukan AC.</li>
+  <li><strong>Menganggap semua himpunan memiliki ukuran (terukur).</strong> Aksioma Pilihan menjamin keberadaan himpunan yang <em>tidak</em> terukur—seperti yang muncul dalam Paradoks Banach-Tarski. Ini salah satu alasan mengapa analisis real modern sering membatasi perhatian pada himpunan terukur.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti teori himpunan lanjut yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Relasi ekuivalensi</strong> adalah relasi yang memenuhi tiga sifat: refleksif, simetris, dan transitif.</li>
+  <li><strong>Kelas ekuivalensi</strong> $[a]$ adalah himpunan semua elemen yang berelasi dengan $a$. Dua kelas ekuivalensi selalu sama persis atau saling lepas.</li>
+  <li><strong>Partisi</strong> adalah pemecahan himpunan menjadi blok-blok tak kosong yang saling lepas dan menutupi seluruh himpunan.</li>
+  <li><strong>Korespondensi fundamental</strong>: setiap relasi ekuivalensi menghasilkan partisi, dan sebaliknya, setiap partisi mendefinisikan relasi ekuivalensi—korespondensi satu-satu.</li>
+  <li><strong>Himpunan kuosien</strong> $A/\sim$ adalah himpunan semua kelas ekuivalensi.</li>
+  <li><strong>Aksioma Pilihan (AC)</strong> menyatakan bahwa untuk setiap kumpulan himpunan tak kosong, terdapat fungsi yang memilih satu elemen dari setiap himpunan.</li>
+  <li>AC bersifat <strong>non-konstruktif</strong>: hanya menjamin keberadaan, bukan cara membangun.</li>
+  <li>AC ekuivalen dengan <strong>Lemma Zorn</strong> dan <strong>Teorema Terurut-Baik</strong>.</li>
+  <li>AC memiliki konsekuensi kontroversial seperti <strong>Paradoks Banach-Tarski</strong> dan keberadaan himpunan tak terukur.</li>
+  <li>AC <strong>independen</strong> dari aksioma ZF—tidak dapat dibuktikan maupun disangkal.</li>
+  <li>Kesalahan umum: menganggap himpunan kuosien sama dengan himpunan asli, menganggap fungsi pilihan trivial untuk kumpulan tak hingga, dan menganggap AC dapat dibuktikan dari ZF.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Relasi ekuivalensi dan partisi adalah dua sisi dari mata uang yang sama. Mereka memberikan cara sistematis untuk mengelompokkan objek-objek matematika berdasarkan kriteria kesetaraan tertentu. Yang membuat konsep ini sangat kuat adalah <strong>kemampuannya menyederhanakan struktur yang kompleks</strong>—dengan mengidentifikasi elemen-elemen yang "setara", kita dapat mengurangi masalah besar menjadi masalah yang lebih kecil pada himpunan kuosien. Sementara itu, Aksioma Pilihan adalah salah satu pernyataan paling menarik dan kontroversial dalam matematika modern: ia memungkinkan banyak teorema penting untuk dibuktikan—tetapi dengan harga berupa konsekuensi non-konstruktif yang menantang intuisi. Perdebatan tentang AC mengungkap pertanyaan filosofis yang lebih dalam: apakah matematika seharusnya hanya membahas objek yang dapat dibangun secara eksplisit—atau boleh membahas objek yang keberadaannya hanya dijamin secara abstrak?</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Aljabar Abstrak</strong> (yang menggunakan relasi ekuivalensi untuk membentuk grup faktor dan ring faktor), <strong>Kongruensi &amp; Modulo</strong> (yang secara langsung menggunakan aritmetika modular $\mathbb{Z}/n\mathbb{Z}$), <strong>Topologi</strong> (yang menggunakan ruang kuosien dan kompaktifikasi), <strong>Analisis Real</strong> (yang memerlukan pemahaman tentang himpunan terukur dan tak terukur), <strong>Aljabar Linear</strong> (yang menggunakan Lemma Zorn untuk membuktikan keberadaan basis pada ruang vektor tak hingga dimensi), dan <strong>Logika Matematika Lanjut</strong> (yang menyelidiki independensi AC dari aksioma ZF).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan pembentukan kelas ekuivalensi, verifikasi sifat-sifatnya, dan konstruksi partisi dari relasi ekuivalensi tertentu. Kebiasaan memeriksa ketiga sifat (refleksif, simetris, transitif) secara eksplisit akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke aljabar abstrak, di mana relasi ekuivalensi muncul di hampir setiap konstruksi struktur aljabar.</p>
+</div>
+
+</div>
+</body>
+</html>
