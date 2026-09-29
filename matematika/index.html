@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Daftar Materi Matematika</title>
+ <meta name="description" content="Daftar lengkap materi matematika: bahasa & logika, himpunan, aritmetika, metodologi, aljabar dasar, aljabar linear, dan geometri & trigonometri.">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Audiowide&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="/asset/style.css">
+ <link rel="stylesheet" href="/asset/materi.css">
+</head>
+<body>
+<script src="/nav.js"></script>
+<div class="content">
+ <h2 class="content-title">Daftar Materi Matematika</h2>
+ <div class="acc-index"></div>
+</div>
+<script src="/asset/acc-index.js"></script>
+<script>
+ var MATERI = [
+  {
+   judul: "Pembuka",
+   path: "pembuka",
+   topik: [
+    { judul: "Glossarium Notasi", url: "glossarium-notasi", desc: "rujukan simbol & variabel matematika" },
+    { judul: "Cara Belajar", url: "cara-belajar", desc: "panduan mengikuti materi & menyikapi istilah baru" }
+   ]
+  },
+  {
+   judul: "Bahasa Matematika & Logika",
+   path: "bahasa-matematika-dan-logika",
+   topik: [
+    { judul: "Notasi & Bahasa Matematika", url: "notasi-dan-bahasa-matematika", desc: "cara baca ∀, ∃, ∈, ⊂, ⇒" },
+    { judul: "Logika Proposisi", url: "logika-proposisi", desc: "pernyataan, nilai kebenaran, operator logika" },
+    { judul: "Logika Predikat", url: "logika-predikat", desc: "kuantor universal, eksistensial" }
+   ]
+  },
+  {
+   judul: "Teori Himpunan & Struktur Dasar",
+   path: "teori-himpunan-dan-struktur-dasar",
+   topik: [
+    { judul: "Himpunan", url: "himpunan", desc: "operasi himpunan, kardinalitas, himpunan kuasa" },
+    { judul: "Relasi", url: "relasi", desc: "urutan, ekuivalensi, relasi khusus" },
+    { judul: "Fungsi", url: "fungsi", desc: "domain, kodomain, injektif, surjektif, bijektif" }
+   ]
+  },
+  {
+   judul: "Aritmetika & Bilangan",
+   path: "aritmetika-dan-bilangan",
+   topik: [
+    { judul: "Operasi Dasar", url: "operasi-dasar", desc: "penjumlahan, pengurangan, perkalian, pembagian" },
+    { judul: "Sifat Bilangan", url: "sifat-bilangan", desc: "komutatif, asosiatif, distributif" },
+    { judul: "Pecahan, Desimal, Persen", url: "pecahan-desimal-persen", desc: "representasi dan operasi" },
+    { judul: "Eksponen & Akar", url: "eksponen-dan-akar", desc: "perpangkatan, akar kuadrat, akar pangkat n" },
+    { judul: "Logaritma", url: "logaritma", desc: "invers eksponen, sifat logaritma" },
+    { judul: "Rasio & Proporsi", url: "rasio-dan-proporsi", desc: "perbandingan, skala, laju" },
+    { judul: "Sistem Bilangan", url: "sistem-bilangan", desc: "asli, bulat, rasional, real, kompleks" },
+    { judul: "Representasi Bilangan", url: "representasi-bilangan", desc: "basis, biner, oktal, heksadesimal, notasi ilmiah" },
+    { judul: "Keterbagian", url: "keterbagian", desc: "pembagi, faktor, kelipatan" },
+    { judul: "Bilangan Prima", url: "bilangan-prima", desc: "sifat, distribusi, uji primalitas" },
+    { judul: "Faktorisasi Prima", url: "faktorisasi-prima", desc: "teorema dasar aritmetika" },
+    { judul: "FPB & KPK", url: "fpb-dan-kpk", desc: "faktor persekutuan terbesar, kelipatan persekutuan terkecil" },
+    { judul: "Kongruensi & Modulo", url: "kongruensi-dan-modulo", desc: "sisa pembagian, aritmetika modular" },
+    { judul: "Pembulatan & Angka Penting", url: "pembulatan-dan-angka-penting", desc: "pembulatan bilangan, aturan angka penting" },
+    { judul: "Notasi Sigma", url: "notasi-sigma", desc: "penjumlahan beruntun, sifat-sifat sigma" },
+    { judul: "Satuan, Dimensi & Analisis Dimensi", url: "satuan-dimensi-dan-analisis-dimensi", desc: "panjang, massa, waktu, cek konsistensi rumus" }
+   ]
+  },
+  {
+   judul: "Metodologi Matematika",
+   path: "metodologi-matematika",
+   topik: [
+    { judul: "Pembuktian Matematis", url: "pembuktian-matematis", desc: "langsung, kontraposisi, kontradiksi, induksi" },
+    { judul: "Strategi Pemecahan Masalah", url: "strategi-pemecahan-masalah", desc: "langkah Polya, heuristik, cara menyederhanakan masalah" },
+    { judul: "Teori Himpunan Lanjut", url: "teori-himpunan-lanjut", desc: "relasi ekivalensi, partisi, aksioma pilihan" }
+   ]
+  },
+  {
+   judul: "Aljabar Dasar",
+   path: "aljabar-dasar",
+   topik: [
+    { judul: "Ekspresi Aljabar", url: "ekspresi-aljabar", desc: "variabel, suku, koefisien, penyederhanaan" },
+    { judul: "Persamaan Linear", url: "persamaan-linear", desc: "satu variabel, dua variabel" },
+    { judul: "Persamaan Kuadrat", url: "persamaan-kuadrat", desc: "rumus kuadrat, diskriminan" },
+    { judul: "Polinomial", url: "polinomial", desc: "derajat, akar, teorema sisa, faktorisasi" },
+    { judul: "Pertidaksamaan", url: "pertidaksamaan", desc: "linear, kuadrat, nilai mutlak" },
+    { judul: "Sistem Persamaan", url: "sistem-persamaan", desc: "linear, nonlinear, eliminasi/substitusi" },
+    { judul: "Persamaan Diophantine", url: "persamaan-diophantine", desc: "solusi bilangan bulat dari persamaan" },
+    { judul: "Bilangan Kompleks Dasar", url: "bilangan-kompleks-dasar", desc: "bentuk a+bi, i²=-1, operasi dasar" },
+    { judul: "Bilangan Kompleks Lanjut", url: "bilangan-kompleks-lanjut", desc: "bentuk polar, Teorema De Moivre" }
+   ]
+  },
+  {
+   judul: "Aljabar Linear",
+   path: "aljabar-linear",
+   topik: [
+    { judul: "Skalar", url: "skalar", desc: "pengertian skalar, operasi skalar" },
+    { judul: "Vector", url: "vector", desc: "penjumlahan, perkalian skalar, dot/cross product, proyeksi" },
+    { judul: "Matriks", url: "matriks", desc: "operasi matriks, invers, transpose" },
+    { judul: "Determinan", url: "determinan", desc: "sifat, aturan Cramer" },
+    { judul: "Ruang Vektor", url: "ruang-vector", desc: "subruang, basis, dimensi" },
+    { judul: "Transformasi Linear", url: "transformasi-linear", desc: "kernel, image, representasi matriks" },
+    { judul: "Nilai Eigen & Vektor Eigen", url: "nilai-eigen-dan-vector-eigen", desc: "diagonalisasi" },
+    { judul: "Dekomposisi Matriks", url: "dekomposisi-matriks", desc: "LU, QR, SVD, pseudoinverse" },
+    { judul: "Tensor Dasar", url: "tensor-dasar", desc: "pengertian, orde, notasi indeks, dan operasi dasar" },
+   ]
+  },
+  {
+   judul: "Geometri & Trigonometri",
+   path: "geometri-dan-trigonometri",
+   topik: [
+    { judul: "Titik, Garis, Sudut", url: "titik-garis-sudut", desc: "definisi dasar, jenis sudut" },
+    { judul: "Segitiga", url: "segitiga", desc: "teorema Pythagoras, kongruensi, kesebangunan" },
+    { judul: "Segiempat & Poligon", url: "segiempat-dan-poligon", desc: "jajar genjang, trapesium, poligon beraturan" },
+    { judul: "Lingkaran", url: "lingkaran", desc: "busur, tali busur, sudut pusat, sudut keliling" },
+    { judul: "Bangun Ruang", url: "bangun-ruang", desc: "kubus, balok, prisma, limas, bola, kerucut" },
+    { judul: "Luas & Volume", url: "luas-dan-volume", desc: "aplikasi gabungan, dekomposisi bangun majemuk" },
+    { judul: "Geometri Analitik", url: "geometri-analitik", desc: "koordinat, jarak, persamaan garis, titik tengah, gradien" },
+    { judul: "Irisan Kerucut", url: "irisan-kerucut", desc: "lingkaran, parabola, elips, hiperbola, fokus, direktris, eksentrisitas, garis singgung pada irisan kerucut" },
+    { judul: "Aturan Sinus dan Kosinus", url: "aturan-sinus-dan-kosinus", desc: "sin, cos, tan, identitas dasar, rumus jumlah/selisih sudut, sudut ganda" },
+    { judul: "Trigonometri Dasar", url: "trigonometri-dasar", desc: "menyelesaikan segitiga sembarang" },
+    { judul: "Transformasi Geometri", url: "transformasi-geometri", desc: "translasi, rotasi, refleksi, dilatasi" },
+    { judul: "Fungsi Trigonometri", url: "fungsi-trigonometri", desc: "grafik, periode, amplitudo" },
+    { judul: "Persamaan Trigonometri", url: "persamaan-trigonometri", desc: "penyelesaian umum" }
+   ]
+  }
+ ];
+AccIndex.init(MATERI);
+</script>
+</body>
+</html>
