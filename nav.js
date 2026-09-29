@@ -1,6 +1,6 @@
 document.write(`
 <nav>
- <h1 class="brand">ISORA</h1>
+ <a class="brand" href="/">ISORA</a>
  <div class="box-nav">
   <a class="btn-back" href="donate" aria-label="Buku">
    <svg class="icon-nav"><use href="/asset/icon/icon-nav.svg#book"></use></svg></a>
