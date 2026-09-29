@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Persamaan Linear (Satu Variabel dan Dua Variabel)</title>
+ <meta name="description" content="Persamaan linear: bentuk umum, PLSV, PLDV, SPLDV, metode substitusi dan eliminasi, interpretasi grafik, serta kesalahan umum dalam penyelesaiannya.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Persamaan Linear (Satu Variabel dan Dua Variabel)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Ekspresi Aljabar</strong> — terutama operasi pada suku sejenis, distribusi, dan penyederhanaan, karena persamaan linear pada dasarnya adalah dua ekspresi aljabar yang disatukan oleh tanda sama dengan.</li>
+   <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif, karena penyelesaian persamaan bertumpu pada penggunaan sifat-sifat ini untuk mengisolasi variabel.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi sebelumnya, <strong>ekspresi aljabar</strong> didefinisikan sebagai kalimat matematika <em>tanpa</em> tanda relasi. Ketika ekspresi tersebut dihubungkan dengan tanda <strong>sama dengan</strong> ($=$), ia berubah menjadi <strong>persamaan</strong>. Secara spesifik, <strong>persamaan linear</strong> adalah persamaan di mana pangkat tertinggi dari seluruh variabelnya adalah satu.</p>
+ <p class="lesson-text">Menyelesaikan persamaan linear berarti mencari nilai variabel yang membuat ruas kiri dan ruas kanan bernilai sama (ekuivalen). Nilai yang memenuhi disebut <strong>solusi</strong> atau <strong>akar</strong> dari persamaan tersebut. Proses mencari solusi ini adalah salah satu aktivitas paling dasar dalam aljabar—dan menjadi pondasi bagi hampir semua cabang matematika terapan. Yang membuat persamaan linear sangat penting adalah <strong>kemampuannya memodelkan hubungan antar besaran</strong>: hampir setiap masalah kuantitatif—dari menghitung usia, menentukan harga, hingga merencanakan anggaran—dapat diterjemahkan ke dalam persamaan linear. Selain itu, persamaan linear juga memiliki <strong>interpretasi geometris</strong> yang elegan—himpunan solusi dari persamaan linear dua variabel membentuk garis lurus pada bidang Kartesius. Jembatan antara representasi aljabar dan geometris inilah yang menjadikan persamaan linear sebagai topik paling fundamental dalam aljabar.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>definisi dan bentuk umum</strong>, <strong>PLSV (satu variabel)</strong> beserta kasus-kasus khusus, <strong>PLDV</strong> dan interpretasi grafiknya, <strong>SPLDV</strong> dengan dua metode utama (substitusi dan eliminasi), <strong>strategi menghadapi bentuk non-baku</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan prosedurnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Bentuk Umum</h3>
+ <p class="lesson-text">Sebelum masuk ke teknik penyelesaian, kita perlu memahami terlebih dahulu apa yang membuat suatu persamaan disebut "linear" dan bagaimana klasifikasinya.</p>
+
+ <p class="lesson-subheading">A. Definisi Persamaan Linear</p>
+ <p class="lesson-text"><strong>Persamaan linear</strong> adalah persamaan aljabar yang setiap sukunya mengandung konstanta atau hasil kali konstanta dengan satu variabel berpangkat satu. Grafik dari persamaan ini, jika digambarkan pada bidang Kartesius, selalu berbentuk <strong>garis lurus</strong>—yang menjadi asal-usul istilah "linear" (dari kata <em>line</em>, garis).</p>
+ <p class="lesson-text">Kata kunci: pangkat tertinggi variabel adalah <strong>satu</strong>. Jika ada variabel berpangkat dua atau lebih, atau jika ada perkalian antar variabel, maka persamaan tersebut <em>bukan</em> linear.</p>
+
+ <p class="lesson-subheading">B. Klasifikasi Berdasarkan Jumlah Variabel</p>
+ <p class="lesson-subheading-alt">1. Persamaan Linear Satu Variabel (PLSV)</p>
+ <p class="lesson-text">Hanya melibatkan satu jenis variabel. Bentuk bakunya adalah:</p>
+ <p class="lesson-text">$$ax + b = 0$$</p>
+ <p class="lesson-text">dengan syarat $a \neq 0$, serta $a$ dan $b$ adalah bilangan real. Jika $a = 0$, persamaan tersebut kehilangan variabelnya dan menjadi pernyataan konstanta ($b = 0$)—sehingga tidak lagi termasuk persamaan linear satu variabel.</p>
+
+ <p class="lesson-subheading-alt">2. Persamaan Linear Dua Variabel (PLDV)</p>
+ <p class="lesson-text">Melibatkan dua jenis variabel, biasanya $x$ dan $y$. Bentuk bakunya adalah:</p>
+ <p class="lesson-text">$$ax + by = c$$</p>
+ <p class="lesson-text">atau dapat ditulis dalam bentuk implisit $ax + by + c = 0$, dengan syarat $a$ dan $b$ <strong>tidak boleh keduanya bernilai nol</strong>—yaitu $a \neq 0$ atau $b \neq 0$. Variabelnya adalah $x$ dan $y$, sedangkan $a, b, c$ adalah konstanta real.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Jika $a = 0$ pada $ax + by = c$, persamaan menjadi $by = c$—yaitu PLSV dalam variabel $y$. Jika $b = 0$, persamaan menjadi $ax = c$—yaitu PLSV dalam variabel $x$. Keduanya tetap "linear" tetapi bukan lagi "dua variabel". Syarat $a \neq 0$ atau $b \neq 0$ memastikan setidaknya ada satu variabel yang benar-benar muncul.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami klasifikasi persamaan linear berdasarkan jumlah variabelnya, kita mulai dari bentuk paling sederhana—yaitu persamaan dengan satu variabel saja.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Persamaan Linear Satu Variabel (PLSV)</h3>
+ <p class="lesson-text">Kita mulai dari bentuk paling sederhana: persamaan linear dengan satu variabel.</p>
+
+ <p class="lesson-subheading">A. Tujuan dan Prinsip Penyelesaian</p>
+ <p class="lesson-text">Tujuan menyelesaikan PLSV adalah mengubah bentuk $ax + b = 0$ menjadi bentuk ekivalen $x = \text{konstanta}$. Untuk mencapai bentuk ini, kita berpegang pada dua prinsip fundamental:</p>
+ <ol>
+  <li><strong>Prinsip keseimbangan (ekuivalensi)</strong>: ruas kiri dan ruas kanan adalah dua sisi yang seimbang. Setiap operasi yang dilakukan pada satu ruas <strong>wajib</strong> dilakukan juga pada ruas lainnya agar kesetaraan tetap terjaga.</li>
+  <li><strong>Operasi invers (kebalikan)</strong>: untuk memindahkan suatu suku dari satu ruas ke ruas lain, kita menggunakan operasi kebalikannya. Invers dari penjumlahan adalah pengurangan; invers dari perkalian adalah pembagian.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Mengapa prinsip ini penting?</p>
+ <p class="lesson-text">Karena persamaan adalah sebuah <em>kesetaraan</em>. Jika kita menambahkan 3 ke ruas kiri tanpa menambahkan 3 ke ruas kanan, kita merusak kesetaraan tersebut—dan nilai solusinya akan berubah. Prinsip keseimbangan menjamin bahwa setiap langkah yang kita lakukan tidak mengubah solusi persamaan.</p>
+
+ <p class="lesson-subheading">B. Prosedur Baku Isolasi Variabel</p>
+ <p class="lesson-text">Untuk menyelesaikan $ax + b = 0$ dengan $a \neq 0$, ikuti alur berikut:</p>
+ <ol>
+  <li><strong>Isolasikan suku yang memuat variabel</strong>: kurangi kedua ruas dengan $b$ (atau tambahkan $-b$ ke kedua ruas). Secara praktis, pindahkan konstanta $+b$ ke ruas kanan menjadi $-b$, sehingga $ax = -b$.</li>
+  <li><strong>Koefisienkan variabel menjadi 1</strong>: karena $x$ dikalikan dengan $a$, bagilah kedua ruas dengan $a$ (dengan $a \neq 0$), sehingga $x = -\dfrac{b}{a}$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 1 (bentuk dasar):</p>
+ <p class="lesson-text">Selesaikan $3x + 7 = 16$.</p>
+ <p class="lesson-text"><em>Langkah 1</em>: kurangi kedua ruas dengan 7 (pindahkan $+7$ ke kanan menjadi $-7$):</p>
+ <p class="lesson-text">$$3x = 16 - 7 = 9$$</p>
+ <p class="lesson-text"><em>Langkah 2</em>: bagi kedua ruas dengan 3:</p>
+ <p class="lesson-text">$$x = \frac{9}{3} = 3$$</p>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah $\{3\}$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2 (variabel di kedua ruas):</p>
+ <p class="lesson-text">Selesaikan $5x - 3 = 2x + 9$.</p>
+ <p class="lesson-text"><em>Langkah 1</em>: kumpulkan semua suku variabel di ruas kiri dan konstanta di ruas kanan. Untuk menghilangkan $2x$ di ruas kanan, kurangi kedua ruas dengan $2x$:</p>
+ <p class="lesson-text">$$5x - 2x - 3 = 9 \quad \rightarrow \quad 3x - 3 = 9$$</p>
+ <p class="lesson-text"><em>Langkah 2</em>: hilangkan konstanta $-3$ dengan menambahkan 3 ke kedua ruas:</p>
+ <p class="lesson-text">$$3x = 12$$</p>
+ <p class="lesson-text"><em>Langkah 3</em>: bagi kedua ruas dengan 3:</p>
+ <p class="lesson-text">$$x = 4$$</p>
+ <p class="lesson-text">Jadi, penyelesaiannya adalah $\{4\}$.</p>
+
+ <p class="lesson-subheading">C. Kasus Khusus: Identitas dan Kontradiksi</p>
+ <p class="lesson-text">Tidak semua persamaan memiliki solusi tunggal. Dua kasus istimewa yang wajib dikenali:</p>
+ <ol>
+  <li><strong>Identitas (solusi tak hingga):</strong> jika proses penyederhanaan menghasilkan pernyataan yang selalu benar—misalnya $0 = 0$ atau $5 = 5$—maka persamaan tersebut berlaku untuk <em>semua</em> nilai variabel. Himpunan penyelesaiannya adalah seluruh bilangan real ($\mathbb{R}$). Contoh: $2(x+1) = 2x + 2 \rightarrow 2x+2 = 2x+2 \rightarrow 0=0$.</li>
+  <li><strong>Kontradiksi (tidak ada solusi):</strong> jika proses penyederhanaan menghasilkan pernyataan yang selalu salah—misalnya $0 = 5$ atau $3 = -2$—maka persamaan tersebut tidak mungkin dipenuhi oleh nilai variabel apa pun. Himpunan penyelesaiannya adalah himpunan kosong ($\varnothing$). Contoh: $2x + 3 = 2x - 1 \rightarrow 3 = -1$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Ringkasan Kasus PLSV:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Hasil Akhir</th>
+     <th>Jenis</th>
+     <th>Himpunan Penyelesaian</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$x = \text{konstanta}$</td><td>Solusi tunggal</td><td>$\{$nilai tertentu$\}$</td></tr>
+    <tr><td>$0 = 0$</td><td>Identitas</td><td>$\mathbb{R}$ (semua bilangan real)</td></tr>
+    <tr><td>$0 = \text{konstanta} \neq 0$</td><td>Kontradiksi</td><td>$\varnothing$ (kosong)</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Ketiga kemungkinan ini—solusi tunggal, identitas, dan kontradiksi—bukan hanya fenomena pada PLSV; pola yang sama akan muncul kembali di SPLDV nanti, hanya dengan interpretasi geometris yang berbeda. Sebelum sampai ke sana, kita perlu memahami dulu bagaimana persamaan linear dengan dua variabel direpresentasikan secara visual.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Persamaan Linear Dua Variabel dan Grafiknya</h3>
+ <p class="lesson-text">Setelah memahami PLSV, kita masuk ke PLDV—yang memperkenalkan dimensi geometris baru.</p>
+
+ <p class="lesson-subheading">A. Interpretasi Geometris</p>
+ <p class="lesson-text">Persamaan $ax + by = c$ memiliki <strong>tak hingga pasangan</strong> $(x, y)$ yang memenuhinya. Jika semua pasangan ini diplot pada bidang koordinat Kartesius, titik-titik tersebut membentuk sebuah <strong>garis lurus</strong>. Dengan kata lain, persamaan linear dua variabel adalah <em>representasi aljabar dari garis</em>—dan garis adalah <em>representasi geometris dari PLDV</em>.</p>
+
+ <p class="lesson-subheading">B. Menentukan Titik Potong Sumbu</p>
+ <p class="lesson-text">Untuk menggambar garis, kita hanya membutuhkan dua titik baku: titik potong dengan sumbu $X$ dan titik potong dengan sumbu $Y$.</p>
+ <ol>
+  <li><strong>Titik potong sumbu X ($y = 0$):</strong> substitusikan $y = 0$ ke dalam persamaan: $ax + b(0) = c \rightarrow ax = c \rightarrow x = \frac{c}{a}$ (dengan $a \neq 0$). Titiknya adalah $\left(\frac{c}{a}, 0\right)$.</li>
+  <li><strong>Titik potong sumbu Y ($x = 0$):</strong> substitusikan $x = 0$: $a(0) + by = c \rightarrow by = c \rightarrow y = \frac{c}{b}$ (dengan $b \neq 0$). Titiknya adalah $\left(0, \frac{c}{b}\right)$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Gambarkan garis dari persamaan $2x + 3y = 6$.</p>
+ <ul>
+  <li>Titik potong sumbu $X$ ($y = 0$): $2x = 6 \rightarrow x = 3$. Titik $(3, 0)$.</li>
+  <li>Titik potong sumbu $Y$ ($x = 0$): $3y = 6 \rightarrow y = 2$. Titik $(0, 2)$.</li>
+ </ul>
+ <p class="lesson-text">Hubungkan kedua titik tersebut untuk mendapatkan garis lurus yang merepresentasikan semua solusi PLDV.</p>
+
+ <p class="lesson-text">Jika satu persamaan linear dua variabel menghasilkan satu garis, apa yang terjadi jika kita memiliki dua persamaan sekaligus? Inilah yang menjadi topik pembahasan berikutnya: sistem persamaan linear dua variabel.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sistem Persamaan Linear Dua Variabel (SPLDV)</h3>
+ <p class="lesson-text">SPLDV adalah gabungan dua persamaan linear dua variabel. <strong>Solusi SPLDV</strong> adalah pasangan $(x, y)$ yang secara bersamaan memenuhi kedua persamaan. Secara geometris, solusi ini adalah <strong>titik potong</strong> antara dua garis.</p>
+
+ <p class="lesson-subheading">A. Analisis Hubungan Dua Garis</p>
+ <p class="lesson-text">Diberikan SPLDV:</p>
+ <p class="lesson-text">$$a_1 x + b_1 y = c_1$$ $$a_2 x + b_2 y = c_2$$</p>
+ <p class="lesson-text">Berdasarkan perbandingan koefisiennya, terdapat tiga kemungkinan:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Kondisi</th>
+     <th>Posisi Garis</th>
+     <th>Jumlah Solusi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$\dfrac{a_1}{a_2} \neq \dfrac{b_1}{b_2}$</td><td>Berpotongan</td><td>Tepat satu solusi</td></tr>
+    <tr><td>$\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} \neq \dfrac{c_1}{c_2}$</td><td>Sejajar</td><td>Tidak ada solusi</td></tr>
+    <tr><td>$\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}$</td><td>Berimpit</td><td>Tak hingga solusi</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">B. Metode Substitusi</p>
+ <p class="lesson-text">Metode ini bekerja dengan <strong>menyatakan satu variabel dalam bentuk variabel lainnya</strong>, lalu memasukkan (substitusi) ke persamaan kedua. Metode ini paling efektif ketika salah satu persamaan mudah diselesaikan untuk salah satu variabel—misalnya ketika koefisiennya 1 atau $-1$.</p>
+ <p class="lesson-subheading-alt">Langkah sistematis:</p>
+ <ol>
+  <li>Pilih salah satu persamaan yang paling sederhana.</li>
+  <li>Nyatakan $x$ sebagai fungsi $y$ (atau sebaliknya): $x = \alpha - \beta y$.</li>
+  <li>Substitusikan bentuk $x$ tersebut ke persamaan lainnya—sehingga diperoleh PLSV dalam $y$.</li>
+  <li>Selesaikan PLSV untuk mendapatkan nilai $y$.</li>
+  <li>Substitusikan nilai $y$ kembali ke langkah 2 untuk mendapatkan nilai $x$.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">Selesaikan SPLDV berikut:</p>
+ <p class="lesson-text">$$x + y = 5 \quad \text{(1)}$$ $$x - y = 1 \quad \text{(2)}$$</p>
+ <p class="lesson-text"><em>Langkah 1</em>: dari persamaan (1), nyatakan $x$ dalam $y$: $x = 5 - y$.</p>
+ <p class="lesson-text"><em>Langkah 2</em>: substitusikan ke persamaan (2):</p>
+ <p class="lesson-text">$$(5 - y) - y = 1 \quad \rightarrow \quad 5 - 2y = 1$$</p>
+ <p class="lesson-text"><em>Langkah 3</em>: selesaikan PLSV:</p>
+ <p class="lesson-text">$$-2y = -4 \quad \rightarrow \quad y = 2$$</p>
+ <p class="lesson-text"><em>Langkah 4</em>: substitusikan $y = 2$ ke $x = 5 - y$:</p>
+ <p class="lesson-text">$$x = 5 - 2 = 3$$</p>
+ <p class="lesson-text">Jadi, solusi SPLDV adalah $(x, y) = (3, 2)$.</p>
+
+ <p class="lesson-subheading">C. Metode Eliminasi</p>
+ <p class="lesson-text">Metode ini bekerja dengan <strong>menghilangkan</strong> salah satu variabel dengan cara menjumlahkan atau mengurangkan kedua persamaan. Syaratnya: koefisien variabel yang akan dihilangkan harus <strong>sama</strong> (untuk dikurangkan) atau <strong>berlawanan</strong> (untuk dijumlahkan). Jika belum sama, kalikan salah satu atau kedua persamaan dengan konstanta yang sesuai.</p>
+ <p class="lesson-subheading-alt">Contoh 5 (melanjutkan Contoh 4):</p>
+ <p class="lesson-text">$$x + y = 5$$ $$x - y = 1$$</p>
+ <p class="lesson-text"><em>Eliminasi $y$</em> (koefisien berlawanan: $+1$ dan $-1$) — jumlahkan kedua persamaan:</p>
+ <p class="lesson-text">$$(x + y) + (x - y) = 5 + 1 \quad \rightarrow \quad 2x = 6 \quad \rightarrow \quad x = 3$$</p>
+ <p class="lesson-text"><em>Eliminasi $x$</em> (koefisien sama: $+1$ dan $+1$) — kurangkan persamaan (2) dari persamaan (1):</p>
+ <p class="lesson-text">$$(x + y) - (x - y) = 5 - 1 \quad \rightarrow \quad 2y = 4 \quad \rightarrow \quad y = 2$$</p>
+ <p class="lesson-text">Hasilnya sama: $(x, y) = (3, 2)$.</p>
+
+ <p class="lesson-subheading">D. Metode Gabungan (Campuran)</p>
+ <p class="lesson-text">Metode paling efisien—dan yang paling sering digunakan dalam praktik. Biasanya kita <strong>eliminasi</strong> terlebih dahulu untuk mendapatkan salah satu nilai variabel (misalnya $x$), kemudian <strong>substitusi</strong> nilai $x$ tersebut ke salah satu persamaan untuk mendapatkan $y$. Ini menghindari perhitungan eliminasi dua kali—sehingga lebih cepat dan mengurangi peluang kesalahan.</p>
+
+ <p class="lesson-text">Dua metode ini—substitusi dan eliminasi—bekerja baik untuk SPLDV dalam bentuk baku. Namun dalam praktiknya, sistem sering disajikan dalam bentuk yang belum baku—mengandung pecahan atau desimal—yang perlu disederhanakan terlebih dahulu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Strategi Menghadapi Bentuk Non-Baku</h3>
+ <p class="lesson-text">Persamaan sering disajikan dalam bentuk yang tidak baku—misalnya mengandung pecahan atau desimal. Langkah pertama yang wajib dilakukan adalah <strong>mengubahnya ke bentuk baku</strong> terlebih dahulu.</p>
+
+ <p class="lesson-subheading">A. Menghilangkan Pecahan dengan KPK</p>
+ <p class="lesson-text">Untuk menghilangkan pecahan, kalikan <em>kedua ruas</em> persamaan dengan <strong>Kelipatan Persekutuan Terkecil (KPK)</strong> dari seluruh penyebutnya.</p>
+ <p class="lesson-subheading-alt">Contoh 6 (SPLDV dengan pecahan):</p>
+ <p class="lesson-text">Selesaikan:</p>
+ <p class="lesson-text">$$\frac{x}{2} + \frac{y}{3} = 1 \quad \text{(1)}$$ $$x - y = 1 \quad \text{(2)}$$</p>
+ <p class="lesson-text"><em>Langkah 1 (hilangkan pecahan)</em>: KPK dari 2 dan 3 adalah 6. Kalikan kedua ruas persamaan (1) dengan 6:</p>
+ <p class="lesson-text">$$6\left(\frac{x}{2} + \frac{y}{3}\right) = 6(1) \quad \rightarrow \quad 3x + 2y = 6$$</p>
+ <p class="lesson-text"><em>Langkah 2</em>: selesaikan SPLDV baru:</p>
+ <p class="lesson-text">$$3x + 2y = 6$$ $$x - y = 1$$</p>
+ <p class="lesson-text">Dari persamaan kedua, $x = 1 + y$. Substitusikan ke persamaan pertama:</p>
+ <p class="lesson-text">$$3(1 + y) + 2y = 6 \quad \rightarrow \quad 3 + 5y = 6 \quad \rightarrow \quad y = \frac{3}{5}$$</p>
+ <p class="lesson-text">Maka $x = 1 + \frac{3}{5} = \frac{8}{5}$.</p>
+ <p class="lesson-text">Solusinya adalah $\left(\frac{8}{5}, \frac{3}{5}\right)$.</p>
+
+ <p class="lesson-subheading">B. Menghilangkan Desimal dengan Perkalian 10</p>
+ <p class="lesson-text">Jika persamaan mengandung desimal, kalikan kedua ruas dengan $10^n$—di mana $n$ adalah jumlah maksimum angka di belakang koma—untuk mengubahnya menjadi bilangan bulat.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$0{,}5x + 0{,}2y = 3$$</p>
+ <p class="lesson-text">Kalikan dengan 10: $5x + 2y = 30$.</p>
+
+ <p class="lesson-text">Dengan menguasai strategi ini, kita dapat menyelesaikan SPLDV apa pun—bahkan yang tampak rumit karena pecahan atau desimal. Selanjutnya, mari kita lihat bagaimana persamaan linear diterapkan untuk memecahkan masalah nyata.</p>
+ </div>
+ 
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan PLSV, PLDV, SPLDV dengan berbagai metode, penanganan pecahan, dan pemodelan masalah nyata. Setiap langkah dituliskan lengkap, dan prinsip yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: PLSV dengan Variabel di Kedua Ruas</p>
+ <p class="lesson-text">Selesaikan: $7x - 5 = 3x + 11$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Kumpulkan suku variabel di ruas kiri</strong> — kurangi kedua ruas dengan $3x$:<br>$7x - 3x - 5 = 11 \quad \rightarrow \quad 4x - 5 = 11$</li>
+  <li><strong>Pindahkan konstanta ke ruas kanan</strong> — tambahkan 5 ke kedua ruas:<br>$4x = 16$</li>
+  <li><strong>Bagi dengan koefisien $x$</strong>:<br>$x = 4$</li>
+  <li><strong>Verifikasi</strong>: $7(4) - 5 = 23$ dan $3(4) + 11 = 23$ ✓</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $\{4\}$.</p>
+ 
+ <p class="lesson-subheading">Soal 2: PLSV dengan Pecahan</p>
+ <p class="lesson-text">Selesaikan: $\dfrac{2x - 1}{3} + \dfrac{x + 2}{4} = 3$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Hilangkan penyebut</strong> — KPK dari 3 dan 4 adalah 12. Kalikan <em>seluruh ruas</em> dengan 12:<br>$12 \cdot \dfrac{2x - 1}{3} + 12 \cdot \dfrac{x + 2}{4} = 12 \cdot 3$<br>$4(2x - 1) + 3(x + 2) = 36$</li>
+  <li><strong>Distribusikan</strong>:<br>$8x - 4 + 3x + 6 = 36$</li>
+  <li><strong>Gabungkan suku sejenis</strong>:<br>$11x + 2 = 36$</li>
+  <li><strong>Isolasi variabel</strong>:<br>$11x = 34 \quad \rightarrow \quad x = \dfrac{34}{11}$</li>
+  <li><strong>Verifikasi</strong>: substitusikan $x = \dfrac{34}{11}$ ke ruas kiri — hasilnya $3$ ✓</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $\left\{\dfrac{34}{11}\right\}$.</p>
+ 
+ <p class="lesson-subheading">Soal 3: PLSV — Identitas atau Kontradiksi</p>
+ <p class="lesson-text">Selidiki jenis solusi dari persamaan $4(x + 2) - 3 = 2(2x + 1) + 3$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Distribusikan kedua ruas</strong>:<br>Kiri: $4x + 8 - 3 = 4x + 5$<br>Kanan: $4x + 2 + 3 = 4x + 5$</li>
+  <li><strong>Bandingkan kedua ruas</strong>: $4x + 5 = 4x + 5$.</li>
+  <li><strong>Kurangi kedua ruas dengan $4x$</strong>:<br>$5 = 5$</li>
+ </ol>
+ <p class="lesson-text">Hasilnya adalah pernyataan yang selalu benar. Ini adalah <strong>identitas</strong>—persamaan berlaku untuk semua nilai $x$. Himpunan penyelesaiannya adalah $\mathbb{R}$ (seluruh bilangan real).</p>
+ <p class="lesson-text">Sebagai pembanding: jika proses serupa menghasilkan $5 = 7$ atau $0 = 3$, maka itu adalah <strong>kontradiksi</strong> dan himpunan penyelesaiannya adalah $\varnothing$.</p>
+ 
+ <p class="lesson-subheading">Soal 4: PLDV — Titik Potong Sumbu</p>
+ <p class="lesson-text">Tentukan titik potong sumbu $X$ dan sumbu $Y$ dari persamaan $3x - 4y = 12$, lalu gambarkan garisnya secara konseptual.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Titik potong sumbu X</strong> — substitusikan $y = 0$:<br>$3x - 4(0) = 12 \quad \rightarrow \quad 3x = 12 \quad \rightarrow \quad x = 4$<br>Titiknya: $(4, 0)$</li>
+  <li><strong>Titik potong sumbu Y</strong> — substitusikan $x = 0$:<br>$3(0) - 4y = 12 \quad \rightarrow \quad -4y = 12 \quad \rightarrow \quad y = -3$<br>Titiknya: $(0, -3)$</li>
+  <li><strong>Gambar garis</strong>: hubungkan titik $(4, 0)$ dan $(0, -3)$ dengan garis lurus.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: titik $(4, 0)$ memenuhi $3(4) - 4(0) = 12$ ✓ dan titik $(0, -3)$ memenuhi $3(0) - 4(-3) = 12$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 5: SPLDV — Metode Substitusi</p>
+ <p class="lesson-text">Selesaikan sistem berikut dengan metode substitusi:</p>
+ <p class="lesson-text">$$2x + y = 7 \quad \text{(1)}$$ $$x - 3y = -7 \quad \text{(2)}$$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Pilih persamaan yang mudah diselesaikan</strong>. Dari (1), nyatakan $y$ dalam $x$:<br>$y = 7 - 2x$</li>
+  <li><strong>Substitusikan ke persamaan (2)</strong>:<br>$x - 3(7 - 2x) = -7$</li>
+  <li><strong>Distribusikan dan sederhanakan</strong>:<br>$x - 21 + 6x = -7 \quad \rightarrow \quad 7x - 21 = -7 \quad \rightarrow \quad 7x = 14 \quad \rightarrow \quad x = 2$</li>
+  <li><strong>Substitusikan nilai $x$ ke langkah 1</strong>:<br>$y = 7 - 2(2) = 3$</li>
+  <li><strong>Verifikasi ke kedua persamaan asli</strong>:<br>(1) $2(2) + 3 = 7$ ✓<br>(2) $2 - 3(3) = -7$ ✓</li>
+ </ol>
+ <p class="lesson-text">Solusinya: $(x, y) = (2, 3)$.</p>
+ 
+ <p class="lesson-subheading">Soal 6: SPLDV — Metode Eliminasi</p>
+ <p class="lesson-text">Selesaikan sistem berikut dengan metode eliminasi:</p>
+ <p class="lesson-text">$$3x + 2y = 16 \quad \text{(1)}$$ $$5x - 3y = 5 \quad \text{(2)}$$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Eliminasi $y$</strong> — koefisien $y$ pada kedua persamaan adalah 2 dan $-3$. Kalikan (1) dengan 3 dan (2) dengan 2 agar koefisien $y$ menjadi $6$ dan $-6$:<br>(1)$\times 3$: $9x + 6y = 48$<br>(2)$\times 2$: $10x - 6y = 10$</li>
+  <li><strong>Jumlahkan kedua persamaan</strong> (koefisien $y$ berlawanan):<br>$19x = 58 \quad \rightarrow \quad x = \dfrac{58}{19}$</li>
+  <li><strong>Substitusikan $x$ ke persamaan (1)</strong> untuk mencari $y$:<br>$3\left(\dfrac{58}{19}\right) + 2y = 16$<br>$\dfrac{174}{19} + 2y = 16$<br>$2y = 16 - \dfrac{174}{19} = \dfrac{304 - 174}{19} = \dfrac{130}{19}$<br>$y = \dfrac{65}{19}$</li>
+  <li><strong>Verifikasi</strong>: substitusikan $\left(\dfrac{58}{19}, \dfrac{65}{19}\right)$ ke persamaan (2) — hasilnya $5$ ✓</li>
+ </ol>
+ <p class="lesson-text">Solusinya: $(x, y) = \left(\dfrac{58}{19}, \dfrac{65}{19}\right)$. Perhatikan bahwa solusi SPLDV tidak selalu berupa bilangan bulat—pecahan juga valid selama memenuhi kedua persamaan.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Sistem Persamaan Linear</p>
+ <p class="lesson-text">Di sebuah toko buah, 3 kg apel dan 2 kg jeruk dijual seharga Rp120.000. Sementara itu, 2 kg apel dan 4 kg jeruk dijual seharga Rp140.000. Tentukan harga per kg apel dan per kg jeruk.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Definisikan variabel</strong>:<br>$x$ = harga per kg apel (dalam rupiah)<br>$y$ = harga per kg jeruk (dalam rupiah)</li>
+  <li><strong>Susun sistem persamaan dari soal</strong>:<br>(1) $3x + 2y = 120.000$<br>(2) $2x + 4y = 140.000$</li>
+  <li><strong>Sederhanakan persamaan (2)</strong> dengan membagi keduanya dengan 2:<br>(2') $x + 2y = 70.000$</li>
+  <li><strong>Eliminasi $y$</strong> — kurangkan (1) dengan (2'):<br>$(3x + 2y) - (x + 2y) = 120.000 - 70.000$<br>$2x = 50.000 \quad \rightarrow \quad x = 25.000$</li>
+  <li><strong>Substitusikan $x = 25.000$ ke (2')</strong>:<br>$25.000 + 2y = 70.000 \quad \rightarrow \quad 2y = 45.000 \quad \rightarrow \quad y = 22.500$</li>
+  <li><strong>Verifikasi ke kedua persamaan asli</strong>:<br>(1) $3(25.000) + 2(22.500) = 75.000 + 45.000 = 120.000$ ✓<br>(2) $2(25.000) + 4(22.500) = 50.000 + 90.000 = 140.000$ ✓</li>
+ </ol>
+ <p class="lesson-text">Jadi, harga per kg apel adalah <strong>Rp25.000</strong> dan harga per kg jeruk adalah <strong>Rp22.500</strong>.</p>
+ <p class="lesson-text">Perhatikan tiga kunci sukses soal cerita: (i) definisikan variabel dengan satuan yang jelas, (ii) terjemahkan setiap kalimat menjadi persamaan, dan (iii) verifikasi solusi ke <em>kedua</em> persamaan asli—bukan hanya ke salah satu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Pindah ruas tanpa mengubah tanda.</strong> Kesalahan: $2x + 3 = 7 \rightarrow 2x = 7 + 3$. Yang benar: $2x = 7 - 3$. Mekanismenya—untuk meniadakan $+3$ di ruas kiri, kita kurangi kedua ruas dengan 3—sehingga $+3$ hilang di kiri dan muncul $-3$ di kanan. Ini adalah kesalahan paling fatal dalam menyelesaikan persamaan linear.</li>
+  <li><strong>Menganggap "pindah ruas" sebagai operasi hafalan tanpa memahami mekanismenya.</strong> Banyak siswa menghafal aturan "pindah ruas ganti tanda" tanpa memahami bahwa ini adalah konsekuensi dari <em>operasi invers pada kedua ruas</em>. Akibatnya, ketika menghadapi kasus yang tidak biasa—misalnya variabel yang dikalikan dengan pecahan, atau ketika operasi yang harus dibalik adalah perkalian/pembagian—aturan hafalan ini menjadi tidak dapat diterapkan. Pahami prinsipnya: <em>setiap operasi yang dikenakan pada satu ruas harus dikenakan pula pada ruas lainnya</em>.</li>
+  <li><strong>Membagi sebelum mengisolasi suku variabel.</strong> Kesalahan: $2x + 3 = 7 \rightarrow x + 3 = 3{,}5$—membagi hanya suku pertama dengan 2, tanpa membagi konstanta. Yang benar: isolasi dulu menjadi $2x = 4$, baru bagi dengan 2 menghasilkan $x = 2$.</li>
+  <li><strong>Salah mengalikan saat menghilangkan penyebut.</strong> Kesalahan: $\dfrac{x}{2} + y = 1$ dikalikan 2 menjadi $x + y = 1$—lupa mengalikan ruas kanan. Yang benar: <em>semua</em> suku di kedua ruas wajib dikalikan: $x + 2y = 2$.</li>
+  <li><strong>Mengalikan KPK hanya pada suku pertama atau hanya pada pembilang.</strong> Saat menghilangkan penyebut dengan KPK, sering muncul kesalahan mengalikan hanya suku pertama dari beberapa suku, atau mengalikan hanya pembilang tanpa seluruh ruas. Contoh keliru: $\dfrac{x}{2} + \dfrac{y}{3} = 1$ dikalikan 6 menjadi $3x + \dfrac{y}{3} = 1$—hanya suku pertama yang dikalikan. Yang benar: <em>seluruh suku di kedua ruas</em> harus dikalikan dengan KPK: $3x + 2y = 6$.</li>
+  <li><strong>Menafsirkan "tidak ada solusi" dengan salah.</strong> Jika setelah eliminasi diperoleh $0 = 5$, jangan menyimpulkan $x = 0$ atau mencari nilai lain. Pahami bahwa ini adalah <em>kontradiksi</em>—sistem tidak memiliki solusi, dan secara geometris kedua garis sejajar.</li>
+  <li><strong>Lupa memeriksa solusi pada SPLDV.</strong> Setelah memperoleh $(x, y)$, selalu substitusikan ke <em>kedua</em> persamaan asli untuk memastikan solusi tersebut memenuhi keduanya. Terkadang kesalahan aritmetika menghasilkan pasangan yang hanya memenuhi salah satu persamaan.</li>
+  <li><strong>Menganggap semua SPLDV selalu punya solusi.</strong> Tidak semua sistem persamaan memiliki solusi—seperti yang sudah dibahas pada kasus garis sejajar. Mengabaikan kemungkinan ini dapat menyebabkan kebingungan saat menemukan kontradiksi.</li>
+  <li><strong>Mengabaikan tanda negatif saat mengalikan persamaan.</strong> Saat mengalikan persamaan dengan konstanta negatif untuk menyamakan koefisien, <em>seluruh</em> suku di kedua ruas harus dikalikan—termasuk konstanta. Kesalahan pada satu suku saja akan merusak seluruh penyelesaian.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti persamaan linear yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Persamaan linear</strong> adalah persamaan dengan variabel berpangkat satu. Bentuk standar satu variabel: $ax + b = 0$; dua variabel: $ax + by = c$.</li>
+  <li><strong>PLSV</strong> diselesaikan dengan mengisolasi variabel menggunakan prinsip keseimbangan dan operasi invers. Hasilnya bisa berupa solusi tunggal, identitas (solusi tak hingga), atau kontradiksi (tidak ada solusi).</li>
+  <li><strong>PLDV</strong> memiliki tak hingga pasangan solusi yang secara visual membentuk garis lurus. Titik potong sumbu dapat ditentukan dengan mensubstitusi $y = 0$ atau $x = 0$.</li>
+  <li><strong>SPLDV</strong> (dua persamaan) diselesaikan untuk mencari titik potong garis. Terdapat tiga kemungkinan: berpotongan (1 solusi), sejajar (0 solusi), atau berimpit (tak hingga solusi).</li>
+  <li><strong>Dua metode utama penyelesaian SPLDV:</strong> substitusi (nyatakan lalu ganti) dan eliminasi (jumlah/kurang untuk menghilangkan variabel). Metode gabungan—eliminasi lalu substitusi—adalah yang paling efisien.</li>
+  <li>Selalu ubah persamaan berpecahan atau berdesimal ke bentuk baku dengan mengalikan KPK penyebut atau pangkat 10 sebelum melakukan eliminasi atau substitusi.</li>
+  <li>Ingat: memindahkan suku berarti mengubah tanda—karena ini adalah penerapan operasi invers untuk menjaga keseimbangan persamaan.</li>
+  <li>Kesalahan umum: pindah ruas tanpa ganti tanda, menghafal aturan tanpa memahami mekanisme, dan mengalikan KPK hanya pada sebagian suku.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Persamaan linear adalah <strong>alat paling fundamental dalam aljabar</strong>. Hampir setiap masalah kuantitatif—dari perhitungan sederhana hingga pemodelan ekonomi yang kompleks—pada akhirnya bermuara pada penyelesaian persamaan linear. Menguasai topik ini bukan hanya tentang bisa menghitung nilai $x$; ini tentang <strong>mengembangkan cara berpikir sistematis</strong> dalam menerjemahkan situasi nyata menjadi model matematika yang dapat diselesaikan. Yang membuat persamaan linear istimewa adalah <strong>jembatan antara aljabar dan geometri</strong> yang ia ciptakan: kemampuan untuk beralih antara representasi aljabar ($ax + by = c$) dan representasi geometris (garis lurus) memberikan intuisi yang kuat dalam menganalisis hubungan antar variabel.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Persamaan Kuadrat</strong> (yang memperluas konsep persamaan ke derajat dua), <strong>Pertidaksamaan</strong> (yang mengganti tanda $=$ dengan $<$, $>$, $\leq$, atau $\geq$), <strong>Sistem Persamaan</strong> (yang memperluas SPLDV ke tiga variabel atau persamaan nonlinear), <strong>Aljabar Linear</strong> (yang menggeneralisasi SPLDV menjadi sistem dengan banyak variabel melalui matriks), <strong>Program Linear</strong> (yang menggunakan sistem pertidaksamaan linear untuk optimisasi), dan <strong>Kalkulus</strong> (yang menggunakan pendekatan linear untuk mempelajari fungsi nonlinear).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan variabel di kedua ruas, distribusi tanda negatif, dan SPLDV dengan berbagai bentuk. Kebiasaan memeriksa ulang solusi dengan substitusi ke persamaan asli, serta berhati-hati dalam menerapkan operasi invers, akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik yang lebih kompleks, di mana manipulasi persamaan linear menjadi langkah awal dari hampir setiap penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

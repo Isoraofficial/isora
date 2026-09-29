@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Persamaan Diophantine (Solusi Bilangan Bulat dari Persamaan)</title>
+ <meta name="description" content="Persamaan Diophantine: definisi, klasifikasi, syarat solusi ax + by = c, Algoritma Euclid Diperluas, Tripel Pythagoras, persamaan Pell, dan penerapannya.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Persamaan Diophantine (Solusi Bilangan Bulat dari Persamaan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Keterbagian</strong> — terutama notasi $a \mid b$ dan konsep pembagi, karena syarat keberadaan solusi Diophantine linear bertumpu langsung pada keterbagian.</li>
+   <li><strong>FPB &amp; KPK</strong> — khususnya Algoritma Euclid, karena algoritma Euclid Diperluas adalah alat utama untuk mencari solusi khusus persamaan linear.</li>
+   <li><strong>Kongruensi &amp; Modulo</strong> — karena teknik reduksi modulo digunakan untuk membuktikan ketiadaan solusi dan menganalisis persamaan nonlinear.</li>
+   <li><strong>Persamaan Linear</strong> — sebagai dasar penyelesaian aljabar dari sistem yang muncul saat mencari solusi umum.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Persamaan Diophantine merupakan salah satu topik paling menarik dan mendalam dalam teori bilangan. Nama "Diophantine" diambil dari matematikawan Yunani kuno <strong>Diophantus dari Alexandria</strong> yang hidup sekitar abad ke-3 Masehi. Dalam karyanya <em>Arithmetica</em>, Diophantus mempelajari persamaan-persamaan yang solusinya dibatasi pada bilangan bulat atau bilangan rasional. Karya ini menjadi inspirasi bagi banyak matematikawan besar—termasuk Pierre de Fermat, yang menulis catatan terkenal di pinggir halaman <em>Arithmetica</em> yang kemudian dikenal sebagai <strong>Teorema Terakhir Fermat</strong>.</p>
+ <p class="lesson-text">Mengapa topik ini penting? Karena dalam banyak situasi nyata, solusi yang dibutuhkan bukanlah bilangan real yang kontinu—melainkan <strong>bilangan bulat yang diskret</strong>. Jumlah orang tidak mungkin $2{,}5$ orang; jumlah koin tidak mungkin $\sqrt{2}$ koin; jumlah hari tidak mungkin $\pi$ hari. Mencari solusi bulat adalah kebutuhan yang muncul secara alami dalam banyak bidang—dari ekonomi dan logistik hingga kimia dan kriptografi.</p>
+ <p class="lesson-text">Yang membuat persamaan Diophantine istimewa adalah <strong>kombinasi kesederhanaan dan kedalaman</strong>: sebuah persamaan seperti $x^2 + y^2 = z^2$ mudah dipahami oleh siswa sekolah dasar, tetapi pertanyaan tentang solusi bulatnya telah menghasilkan beberapa hasil paling mendalam dalam matematika—dari Tripel Pythagoras hingga Teorema Terakhir Fermat yang baru terbukti setelah 358 tahun. Di sisi lain, persamaan linear $ax + by = c$ memiliki teori yang lengkap dan algoritma penyelesaian yang efisien—memberikan pengalaman pertama yang memuaskan dalam menyelesaikan masalah bilangan bulat secara sistematis. Materi ini disusun bertahap: dari <strong>definisi dan klasifikasi</strong>, <strong>persamaan linear dua variabel</strong>, <strong>Algoritma Euclid Diperluas</strong>, <strong>contoh-contoh penyelesaian</strong>, <strong>perluasan ke lebih dari dua variabel</strong>, <strong>bentuk nonlinear khusus</strong>, <strong>teknik-teknik penyelesaian umum</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap teorema akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan pernyataannya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Konsep Dasar</h3>
+ <p class="lesson-text">Kita mulai dari definisi formal dan contoh-contoh dasar untuk memahami apa yang membuat persamaan Diophantine berbeda dari persamaan biasa.</p>
+
+ <p class="lesson-subheading">A. Pengertian Persamaan Diophantine</p>
+ <p class="lesson-text"><strong>Persamaan Diophantine</strong> adalah persamaan polinomial dengan koefisien bilangan bulat yang solusinya dicari dalam himpunan <strong>bilangan bulat</strong> (atau terkadang bilangan rasional). Secara umum, persamaan Diophantine berbentuk:</p>
+ <p class="lesson-text">$$P(x_1, x_2, \dots, x_n) = 0$$</p>
+ <p class="lesson-text">dengan $P$ adalah polinomial berkoefisien bilangan bulat, dan solusi yang dicari adalah $x_1, x_2, \dots, x_n \in \mathbb{Z}$.</p>
+
+ <p class="lesson-subheading">B. Contoh Sederhana</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$$x + y = 7$$</p>
+ <p class="lesson-text">Solusi bilangan bulatnya sangat banyak, misalnya $(0,7), (1,6), (2,5), (3,4), (-1,8), (-10,17), \dots$</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$$x^2 + y^2 = 25$$</p>
+ <p class="lesson-text">Solusi bilangan bulatnya terbatas: $(\pm 5, 0), (0, \pm 5), (\pm 3, \pm 4), (\pm 4, \pm 3)$—total ada 12 solusi.</p>
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">$$x^2 - 2y^2 = 1$$</p>
+ <p class="lesson-text">Solusi bilangan bulatnya: $(3,2), (17,12), (99,70), \dots$—dan ternyata ada tak terhingga banyak solusi.</p>
+
+ <p class="lesson-subheading">C. Perbedaan dengan Persamaan Biasa</p>
+ <p class="lesson-text">Pada persamaan biasa, solusi biasanya dicari dalam himpunan bilangan real atau kompleks. Pada persamaan Diophantine, solusi <strong>dibatasi</strong> hanya pada bilangan bulat. Pembatasan ini membuat persamaan menjadi jauh lebih sulit dan menarik.</p>
+ <p class="lesson-subheading-alt">Contoh perbedaan:</p>
+ <ul>
+  <li>Persamaan $2x = 3$—solusi real: $x = 1{,}5$; solusi bulat: <strong>tidak ada</strong>.</li>
+  <li>Persamaan $x^2 = 2$—solusi real: $x = \pm\sqrt{2}$; solusi bulat: <strong>tidak ada</strong>.</li>
+ </ul>
+ <p class="lesson-text">Jadi, meskipun solusi real ada, belum tentu solusi bulat ada.</p>
+
+ <p class="lesson-subheading">D. Mengapa Solusi Bulat Penting?</p>
+ <p class="lesson-text">Banyak masalah nyata yang secara alami membutuhkan solusi bulat:</p>
+ <ul>
+  <li>Jumlah orang tidak mungkin $2{,}5$ orang.</li>
+  <li>Jumlah koin tidak mungkin $\sqrt{2}$ koin.</li>
+  <li>Jumlah hari tidak mungkin $\pi$ hari.</li>
+  <li>Jumlah barang yang dikirim harus bulat.</li>
+ </ul>
+ <p class="lesson-text">Oleh karena itu, mencari solusi bulat adalah kebutuhan yang muncul secara alamiah dalam banyak bidang—dari ekonomi hingga logistik.</p>
+
+ <p class="lesson-text">Setelah memahami definisi dan mengapa solusi bulat begitu penting, langkah berikutnya adalah mengenali <strong>ragam persamaan Diophantine</strong>—dari yang paling sederhana hingga yang masih menjadi misteri matematika.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Klasifikasi Persamaan Diophantine</h3>
+ <p class="lesson-text">Persamaan Diophantine dapat diklasifikasikan berdasarkan derajat dan bentuknya—dan tingkat kesulitan masing-masing jenis sangat bervariasi.</p>
+
+ <p class="lesson-subheading">A. Persamaan Diophantine Linear</p>
+ <p class="lesson-text">Bentuk umum:</p>
+ <p class="lesson-text">$$a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = c$$</p>
+ <p class="lesson-text">dengan $a_1, a_2, \dots, a_n, c \in \mathbb{Z}$. Contoh: $3x + 5y = 7$ atau $2x + 4y + 6z = 10$. Ini adalah jenis yang paling mudah dianalisis dan memiliki metode penyelesaian yang lengkap.</p>
+
+ <p class="lesson-subheading">B. Persamaan Diophantine Kuadrat</p>
+ <p class="lesson-text">Bentuk umumnya melibatkan suku-suku berderajat dua. Contoh: $x^2 + y^2 = z^2$ (persamaan Pythagoras, solusinya disebut <strong>Tripel Pythagoras</strong>) dan $x^2 - 2y^2 = 1$ (contoh <strong>persamaan Pell</strong>).</p>
+
+ <p class="lesson-subheading">C. Persamaan Diophantine Berderajat Tinggi</p>
+ <p class="lesson-text">Persamaan dengan derajat lebih dari dua. Contoh: $x^3 + y^3 = z^3$ atau $x^4 + y^4 = z^4$. Persamaan $x^n + y^n = z^n$ untuk $n > 2$ adalah objek dari <strong>Teorema Terakhir Fermat</strong>—yang menyatakan tidak ada solusi bulat positif untuk $n > 2$. Teorema ini baru dibuktikan oleh Andrew Wiles pada tahun 1994 setelah 358 tahun menjadi teka-teki.</p>
+
+ <p class="lesson-subheading">D. Persamaan Diophantine Eksponensial</p>
+ <p class="lesson-text">Persamaan yang melibatkan variabel pada pangkat—misalnya $2^x + 3^y = 5^z$ atau $x^y = y^x$. Persamaan jenis ini sering kali jauh lebih sulit daripada persamaan linear.</p>
+
+ <p class="lesson-subheading">E. Persamaan Nonlinear Lainnya</p>
+ <p class="lesson-text">Termasuk persamaan eliptik, persamaan Thue, dan sebagainya. Persamaan-persamaan ini sering menjadi objek penelitian dalam teori bilangan modern—dan banyak di antaranya masih belum terpecahkan.</p>
+
+ <p class="lesson-text">Dari kelima jenis ini, yang paling fundamental dan paling lengkap teorinya adalah <strong>persamaan linear dua variabel</strong>—dan inilah yang akan kita bahas secara mendalam di bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Persamaan Diophantine Linear Dua Variabel</h3>
+ <p class="lesson-text">Bentuk paling fundamental—dan yang paling lengkap teorinya—adalah persamaan linear dua variabel.</p>
+
+ <p class="lesson-subheading">A. Bentuk Umum</p>
+ <p class="lesson-text">$$ax + by = c$$</p>
+ <p class="lesson-text">dengan $a, b, c \in \mathbb{Z}$, dan $a$ dan $b$ tidak keduanya nol.</p>
+
+ <p class="lesson-subheading">B. Syarat Keberadaan Solusi</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Teorema:</strong> Persamaan $ax + by = c$ memiliki solusi bilangan bulat <strong>jika dan hanya jika</strong> $\text{FPB}(a, b)$ membagi $c$.</p>
+ </div>
+ <p class="lesson-subheading-alt">Bukti singkat:</p>
+ <p class="lesson-text">Misalkan $d = \text{FPB}(a, b)$. Maka $a = dA$ dan $b = dB$ untuk suatu bilangan bulat $A$ dan $B$. Akibatnya $ax + by = d(Ax + By)$—selalu kelipatan $d$. Agar persamaan $d(Ax + By) = c$ memiliki solusi bulat, maka $c$ harus kelipatan $d$, yaitu $d \mid c$.</p>
+ <p class="lesson-text">Sebaliknya, jika $d \mid c$, maka $c = dk$ untuk suatu bilangan bulat $k$. Dengan <strong>Algoritma Euclid Diperluas</strong>, kita selalu dapat menuliskan $d = aX + bY$ untuk suatu bilangan bulat $X$ dan $Y$. Mengalikan kedua ruas dengan $k$ menghasilkan $a(Xk) + b(Yk) = dk = c$—jadi $(Xk, Yk)$ adalah solusi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$4x + 6y = 3$ <strong>tidak memiliki solusi bulat</strong>—karena $\text{FPB}(4,6) = 2$ dan $2 \nmid 3$.</li>
+  <li>$4x + 6y = 8$ <strong>memiliki solusi bulat</strong>—karena $2 \mid 8$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Menemukan Solusi Khusus</p>
+ <p class="lesson-text">Jika $d \mid c$, langkah berikutnya adalah mencari <strong>satu solusi khusus</strong> $(x_0, y_0)$. Cara paling sistematis adalah menggunakan <strong>Algoritma Euclid Diperluas</strong>, yang menemukan bilangan bulat $X$ dan $Y$ sehingga $aX + bY = d$. Kemudian kalikan $X$ dan $Y$ dengan $\frac{c}{d}$ untuk mendapatkan solusi khusus.</p>
+
+ <p class="lesson-subheading">D. Solusi Umum</p>
+ <p class="lesson-text">Jika $(x_0, y_0)$ adalah solusi khusus dari $ax + by = c$, maka semua solusi diberikan oleh:</p>
+ <p class="lesson-text">$$x = x_0 + \frac{b}{d}t, \qquad y = y_0 - \frac{a}{d}t$$</p>
+ <p class="lesson-text">dengan $d = \text{FPB}(a,b)$ dan $t \in \mathbb{Z}$ (parameter bebas).</p>
+ <p class="lesson-subheading-alt">Penurunan rumus solusi umum:</p>
+ <p class="lesson-text">Karena $(x_0, y_0)$ adalah solusi, maka $ax_0 + by_0 = c$. Jika $(x, y)$ adalah solusi lain, maka $ax + by = c$. Kurangkan kedua persamaan: $a(x - x_0) + b(y - y_0) = 0$, atau $a(x - x_0) = -b(y - y_0)$.</p>
+ <p class="lesson-text">Bagi kedua ruas dengan $d$: $\dfrac{a}{d}(x - x_0) = -\dfrac{b}{d}(y - y_0)$. Karena $\text{FPB}\left(\dfrac{a}{d}, \dfrac{b}{d}\right) = 1$, maka $\dfrac{a}{d}$ harus membagi $(y - y_0)$. Dengan kata lain, terdapat bilangan bulat $t$ sehingga $y - y_0 = \dfrac{a}{d}t$. Setelah substitusi balik dan penggantian $t \to -t$, diperoleh bentuk solusi umum di atas.</p>
+
+ <p class="lesson-text">Teori ini memberikan landasan lengkap untuk menyelesaikan persamaan linear dua variabel. Namun, untuk menerapkannya, kita memerlukan satu alat komputasi yang memungkinkan kita menemukan solusi khusus secara sistematis: <strong>Algoritma Euclid Diperluas</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Algoritma Euclid Diperluas</h3>
+ <p class="lesson-text">Setelah memahami teori dasar, kita masuk ke alat komputasi utama untuk menemukan solusi khusus.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text"><strong>Algoritma Euclid Diperluas</strong> adalah pengembangan dari Algoritma Euclid yang digunakan untuk mencari FPB. Selain mencari $\text{FPB}(a,b)$, algoritma ini juga menghasilkan bilangan bulat $X$ dan $Y$ sehingga:</p>
+ <p class="lesson-text">$$aX + bY = \text{FPB}(a, b)$$</p>
+ <p class="lesson-text">Kombinasi linear ini—yang disebut <strong>identitas Bézout</strong>—sangat penting dalam menyelesaikan persamaan Diophantine.</p>
+
+ <p class="lesson-subheading">B. Langkah-Langkah</p>
+ <ol>
+  <li>Gunakan Algoritma Euclid untuk mencari $d = \text{FPB}(a,b)$ melalui pembagian berulang.</li>
+  <li>Tuliskan setiap sisa sebagai kombinasi linear dari $a$ dan $b$.</li>
+  <li>Lakukan substitusi balik hingga diperoleh $d$ sebagai kombinasi linear dari $a$ dan $b$.</li>
+ </ol>
+
+ <p class="lesson-subheading">C. Contoh Lengkap</p>
+ <p class="lesson-text">Selesaikan persamaan Diophantine:</p>
+ <p class="lesson-text">$$24x + 14y = 18$$</p>
+ <p class="lesson-subheading-alt">Langkah 1: Hitung $\text{FPB}(24, 14)$</p>
+ <p class="lesson-text">$$24 \div 14 = 1 \text{ sisa } 10$$ $$14 \div 10 = 1 \text{ sisa } 4$$ $$10 \div 4 = 2 \text{ sisa } 2$$ $$4 \div 2 = 2 \text{ sisa } 0$$</p>
+ <p class="lesson-text">Pembagi terakhir yang bukan nol adalah 2, jadi $\text{FPB}(24, 14) = 2$.</p>
+ <p class="lesson-subheading-alt">Langkah 2: Periksa syarat solusi</p>
+ <p class="lesson-text">Karena $2 \mid 18$, persamaan memiliki solusi.</p>
+ <p class="lesson-subheading-alt">Langkah 3: Tuliskan sisa sebagai kombinasi linear</p>
+ <p class="lesson-text">Dari pembagian pertama: $10 = 24 - 1 \times 14$. Dari pembagian kedua: $4 = 14 - 1 \times 10 = 14 - 1 \times (24 - 14) = -1 \times 24 + 2 \times 14$. Dari pembagian ketiga:</p>
+ <p class="lesson-text">$$2 = 10 - 2 \times 4 = (24 - 14) - 2 \times (-24 + 2 \times 14) = 3 \times 24 - 5 \times 14$$</p>
+ <p class="lesson-text">Jadi $24(3) + 14(-5) = 2$, sehingga $X = 3$, $Y = -5$.</p>
+ <p class="lesson-subheading-alt">Langkah 4: Kalikan dengan $\frac{c}{d}$</p>
+ <p class="lesson-text">$\frac{c}{d} = \frac{18}{2} = 9$. Solusi khusus: $x_0 = 3 \times 9 = 27$ dan $y_0 = -5 \times 9 = -45$.</p>
+ <p class="lesson-subheading-alt">Langkah 5: Tuliskan solusi umum</p>
+ <p class="lesson-text">$$x = 27 + \frac{14}{2}t = 27 + 7t$$ $$y = -45 - \frac{24}{2}t = -45 - 12t$$</p>
+ <p class="lesson-text">dengan $t \in \mathbb{Z}$.</p>
+ <p class="lesson-subheading-alt">Verifikasi:</p>
+ <p class="lesson-text">$$24(27 + 7t) + 14(-45 - 12t) = 648 + 168t - 630 - 168t = 18$$</p>
+ <p class="lesson-text">Benar untuk setiap $t$.</p>
+
+ <p class="lesson-text">Algoritma ini adalah alat komputasi utama dalam menyelesaikan persamaan Diophantine linear. Untuk memperkuat pemahaman, mari kita lihat beberapa contoh tambahan—termasuk kasus-kasus khusus yang sering muncul dalam soal.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh-Contoh Penyelesaian</h3>
+ <p class="lesson-text">Setelah memahami metodologi umum, kita berlatih dengan beberapa contoh untuk memperkuat intuisi.</p>
+
+ <p class="lesson-subheading">A. Persamaan dengan FPB 1</p>
+ <p class="lesson-text">Selesaikan $5x + 3y = 11$.</p>
+ <p class="lesson-text">$\text{FPB}(5,3) = 1$, dan $1 \mid 11$. Cari kombinasi linear: $5X + 3Y = 1$. Coba: $5(-1) + 3(2) = -5 + 6 = 1$. Jadi $X = -1, Y = 2$.</p>
+ <p class="lesson-text">Solusi khusus: $x_0 = -1 \times 11 = -11$, $y_0 = 2 \times 11 = 22$. Solusi umum:</p>
+ <p class="lesson-text">$$x = -11 + 3t, \qquad y = 22 - 5t$$</p>
+ <p class="lesson-subheading-alt">Beberapa solusi:</p>
+ <ul>
+  <li>$t = 0$: $x = -11, y = 22$</li>
+  <li>$t = 3$: $x = -2, y = 7$</li>
+  <li>$t = 4$: $x = 1, y = 2$</li>
+  <li>$t = 5$: $x = 4, y = -3$</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Persamaan dengan FPB > 1</p>
+ <p class="lesson-text">Selesaikan $10x + 15y = 35$.</p>
+ <p class="lesson-text">$\text{FPB}(10,15) = 5$, dan $5 \mid 35$. Bagi kedua ruas dengan 5: $2x + 3y = 7$.</p>
+ <p class="lesson-text">Solusi khusus dari $2x + 3y = 7$: coba $x = 2, y = 1$—karena $2(2) + 3(1) = 7$. Solusi umum:</p>
+ <p class="lesson-text">$$x = 2 + 3t, \qquad y = 1 - 2t$$</p>
+
+ <p class="lesson-subheading">C. Mencari Solusi Positif</p>
+ <p class="lesson-text">Tentukan solusi positif dari $4x + 6y = 40$.</p>
+ <p class="lesson-text">$\text{FPB}(4,6) = 2$, dan $2 \mid 40$. Bagi 2: $2x + 3y = 20$.</p>
+ <p class="lesson-text">Solusi khusus: $x = 10, y = 0$. Solusi umum: $x = 10 + 3t$, $y = -2t$.</p>
+ <p class="lesson-text">Syarat positif: $x > 0 \rightarrow t > -\frac{10}{3} \rightarrow t \ge -3$, dan $y > 0 \rightarrow t < 0 \rightarrow t \le -1$. Jadi $t \in \{-3, -2, -1\}$.</p>
+ <ul>
+  <li>$t = -3$: $x = 1, y = 6$</li>
+  <li>$t = -2$: $x = 4, y = 4$</li>
+  <li>$t = -1$: $x = 7, y = 2$</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Persamaan Tanpa Solusi</p>
+ <p class="lesson-text">Periksa apakah $6x + 9y = 10$ memiliki solusi bulat.</p>
+ <p class="lesson-text">$\text{FPB}(6,9) = 3$, tetapi $3 \nmid 10$. Karena 3 tidak membagi 10, persamaan ini <strong>tidak memiliki solusi bulat</strong>. Verifikasi: ruas kiri $6x + 9y$ selalu kelipatan 3, sedangkan ruas kanan 10 bukan kelipatan 3—tidak mungkin keduanya sama.</p>
+
+ <p class="lesson-text">Contoh-contoh di atas terbatas pada dua variabel. Namun, dalam banyak aplikasi—terutama di bidang ekonomi, logistik, dan kimia—kita sering berhadapan dengan persamaan Diophantine yang memiliki lebih dari dua variabel. Mari kita lihat bagaimana teori yang sama dapat diperluas.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Persamaan Linear dengan Lebih dari Dua Variabel</h3>
+ <p class="lesson-text">Teori yang sudah dipelajari dapat diperluas ke persamaan dengan lebih dari dua variabel.</p>
+
+ <p class="lesson-subheading">A. Bentuk Umum</p>
+ <p class="lesson-text">$$a_1 x_1 + a_2 x_2 + \cdots + a_n x_n = c$$</p>
+ <p class="lesson-text">dengan $a_1, a_2, \dots, a_n, c \in \mathbb{Z}$.</p>
+
+ <p class="lesson-subheading">B. Syarat Keberadaan Solusi</p>
+ <p class="lesson-text">Persamaan memiliki solusi bulat jika dan hanya jika $\text{FPB}(a_1, a_2, \dots, a_n) \mid c$. FPB dari lebih dari dua bilangan dihitung secara bertahap: $\text{FPB}(a_1, a_2, a_3) = \text{FPB}(\text{FPB}(a_1, a_2), a_3)$.</p>
+
+ <p class="lesson-subheading">C. Metode Penyelesaian</p>
+ <ol>
+  <li>Pecahkan persamaan menjadi dua variabel terlebih dahulu.</li>
+  <li>Misalkan $d = \text{FPB}(a_1, a_2)$, maka $a_1 x_1 + a_2 x_2 = du$ untuk suatu parameter $u$.</li>
+  <li>Substitusikan ke persamaan awal: $du + a_3 x_3 + \cdots + a_n x_n = c$.</li>
+  <li>Selesaikan persamaan baru yang variabelnya lebih sedikit, lalu gabungkan semua solusi.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Selesaikan $2x + 4y + 6z = 10$.</p>
+ <p class="lesson-text">$\text{FPB}(2,4,6) = 2$, dan $2 \mid 10$. Bagi 2: $x + 2y + 3z = 5$.</p>
+ <p class="lesson-text">Misalkan $w = x + 2y$, maka $w + 3z = 5$. Solusi umum: $w = 2 + 3t$, $z = 1 - t$.</p>
+ <p class="lesson-text">Sekarang $x + 2y = 2 + 3t$. Untuk setiap $t$, selesaikan. Solusi khusus: $x = 2 + 3t, y = 0$. Solusi umum:</p>
+ <p class="lesson-text">$$x = 2 + 3t + 2s, \qquad y = -s, \qquad z = 1 - t$$</p>
+ <p class="lesson-text">dengan $t, s \in \mathbb{Z}$.</p>
+
+ <p class="lesson-text">Hingga titik ini, kita telah membahas persamaan Diophantine <em>linear</em>—yang memiliki teori lengkap dan algoritma penyelesaian yang efisien. Namun, dunia persamaan Diophantine jauh lebih luas dari itu: ada beberapa persamaan nonlinear yang telah memukau matematikawan selama berabad-abad.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Persamaan Diophantine Nonlinear Khusus</h3>
+ <p class="lesson-text">Setelah menguasai bentuk linear, kita melangkah ke beberapa persamaan nonlinear yang paling terkenal dalam sejarah matematika.</p>
+
+ <p class="lesson-subheading">A. Tripel Pythagoras</p>
+ <p class="lesson-text"><strong>Tripel Pythagoras</strong> adalah tiga bilangan bulat positif $(x, y, z)$ yang memenuhi $x^2 + y^2 = z^2$. Contoh: $3^2 + 4^2 = 5^2$, $5^2 + 12^2 = 13^2$, $8^2 + 15^2 = 17^2$.</p>
+ <p class="lesson-subheading-alt">Rumus umum:</p>
+ <p class="lesson-text">Semua Tripel Pythagoras primitif ($\text{FPB}(x,y,z) = 1$) dapat dinyatakan sebagai:</p>
+ <p class="lesson-text">$$x = m^2 - n^2, \qquad y = 2mn, \qquad z = m^2 + n^2$$</p>
+ <p class="lesson-text">dengan $m > n > 0$, $\text{FPB}(m, n) = 1$, dan salah satu dari $m$ atau $n$ genap.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$m = 2, n = 1$: $x = 3, y = 4, z = 5$.</li>
+  <li>$m = 3, n = 2$: $x = 5, y = 12, z = 13$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Teorema Terakhir Fermat</p>
+ <p class="lesson-text">Pernyataan: untuk $n > 2$, persamaan $x^n + y^n = z^n$ tidak memiliki solusi bilangan bulat positif.</p>
+ <p class="lesson-text">Pierre de Fermat menulis catatan ini di pinggir halaman <em>Arithmetica</em> pada tahun 1637 dan mengklaim memiliki bukti yang "terlalu panjang untuk ditulis di pinggir halaman". Namun, bukti lengkap baru ditemukan oleh <strong>Andrew Wiles</strong> pada tahun 1994—setelah 358 tahun menjadi salah satu masalah paling terkenal dalam matematika.</p>
+
+ <p class="lesson-subheading">C. Persamaan Pell</p>
+ <p class="lesson-text">Bentuk umum: $x^2 - Dy^2 = 1$, dengan $D$ bilangan bulat positif yang bukan kuadrat sempurna.</p>
+ <p class="lesson-text">Contoh: $x^2 - 2y^2 = 1$. Solusi terkecil: $(3, 2)$, karena $9 - 8 = 1$. Solusi berikutnya dapat dihasilkan dengan rumus rekursif:</p>
+ <p class="lesson-text">$$x_{k+1} = x_k x_1 + D y_k y_1, \qquad y_{k+1} = x_k y_1 + y_k x_1$$</p>
+ <p class="lesson-text">Untuk $D = 2$ dan solusi dasar $(x_1, y_1) = (3, 2)$: $x_2 = 3 \cdot 3 + 2 \cdot 2 \cdot 2 = 17$, $y_2 = 3 \cdot 2 + 2 \cdot 3 = 12$. Verifikasi: $17^2 - 2 \times 12^2 = 289 - 288 = 1$. Persamaan Pell memiliki <strong>tak terhingga banyak solusi</strong>.</p>
+
+ <p class="lesson-text">Bentuk-bentuk nonlinear khusus ini menunjukkan betapa kayanya dunia persamaan Diophantine—tetapi sekaligus menegaskan bahwa tidak ada satu metode tunggal yang dapat menyelesaikan semuanya. Untuk itu, kita memerlukan beberapa <strong>teknik umum</strong> yang dapat digunakan lintas jenis persamaan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Teknik-Teknik Penyelesaian Umum</h3>
+ <p class="lesson-text">Selain metode sistematis untuk persamaan linear, terdapat beberapa teknik umum untuk menganalisis persamaan Diophantine nonlinear.</p>
+
+ <p class="lesson-subheading">A. Menggunakan Sifat Keterbagian</p>
+ <p class="lesson-text">Memeriksa apakah persamaan memiliki solusi dengan menganalisis keterbagian.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Buktikan bahwa $x^2 + y^2 = 4n + 3$ tidak memiliki solusi bulat.</p>
+ <p class="lesson-text">Kuadrat bilangan bulat modulo 4 selalu 0 atau 1. Jadi $x^2 + y^2$ modulo 4 bisa 0, 1, atau 2—tetapi tidak pernah 3. Karena $4n + 3 \equiv 3 \pmod{4}$, persamaan tidak memiliki solusi.</p>
+
+ <p class="lesson-subheading">B. Menggunakan Modulo</p>
+ <p class="lesson-text">Reduksi modulo sering digunakan untuk membuktikan tidak adanya solusi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Buktikan bahwa $x^2 - 3y^2 = 2$ tidak memiliki solusi bulat.</p>
+ <p class="lesson-text">Modulo 3: $x^2 \equiv 2 \pmod{3}$. Tetapi kuadrat bilangan bulat modulo 3 hanya 0 atau 1. Tidak ada kuadrat yang kongruen 2 modulo 3—jadi tidak ada solusi.</p>
+
+ <p class="lesson-subheading">C. Menggunakan Paritas</p>
+ <p class="lesson-text">Analisis ganjil-genap dapat mempersempit kemungkinan solusi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Selesaikan $x^2 + y^2 = 4$. Karena $x^2, y^2 \ge 0$, kemungkinan $(x^2, y^2)$ adalah $(0,4), (4,0)$—karena $(1,3)$ dan $(2,2)$ tidak valid. Jadi solusinya $(0, \pm 2)$ dan $(\pm 2, 0)$.</p>
+
+ <p class="lesson-subheading">D. Menggunakan Faktorisasi</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Selesaikan $xy = 6$ dalam bilangan bulat. Faktor dari 6: $\pm 1, \pm 2, \pm 3, \pm 6$. Pasangan $(x, y)$: $(1, 6), (2, 3), (3, 2), (6, 1)$ dan semua pasangan negatifnya.</p>
+
+ <p class="lesson-subheading">E. Algoritma Euclid Diperluas</p>
+ <p class="lesson-text">Khusus untuk persamaan linear, algoritma ini adalah metode paling sistematis—seperti yang sudah dibahas pada Bagian IV.</p>
+
+ <p class="lesson-subheading">F. Pecahan Kontinu</p>
+ <p class="lesson-text">Untuk persamaan Pell dan beberapa persamaan nonlinear, pecahan kontinu memberikan metode yang efisien untuk menghasilkan solusi-solusi berikutnya.</p>
+
+ <p class="lesson-text">Dengan menguasai teknik-teknik ini, kita memiliki perangkat yang cukup fleksibel untuk menghadapi berbagai jenis persamaan Diophantine. Mari kita terapkan seluruh konsep ini—Algoritma Euclid Diperluas, analisis syarat solusi, pencarian solusi positif, dan teknik modulo—pada tujuh soal berikut.</p>
+ 
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan Algoritma Euclid Diperluas, pengecekan syarat solusi, pencarian solusi positif, persamaan tiga variabel, Tripel Pythagoras, persamaan Pell, dan pembuktian ketiadaan solusi melalui modulo. Setiap langkah dituliskan lengkap, dan teknik yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+ <p class="lesson-subheading">Soal 1: Algoritma Euclid Diperluas</p>
+ <p class="lesson-text">Selesaikan $21x + 15y = 12$ dalam bilangan bulat.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Cek syarat solusi</strong>: $\text{FPB}(21, 15) = 3$, dan $3 \mid 12$ ✓—persamaan memiliki solusi.</li>
+  <li><strong>Algoritma Euclid</strong>:
+   <ul>
+    <li>$21 = 1 \times 15 + 6$</li>
+    <li>$15 = 2 \times 6 + 3$</li>
+    <li>$6 = 2 \times 3 + 0$</li>
+   </ul>
+   FPB adalah pembagi terakhir yang bukan nol—yaitu $3$.</li>
+  <li><strong>Substitusi balik</strong> untuk menyatakan $3$ sebagai kombinasi linear $21$ dan $15$:
+   <ul>
+    <li>$6 = 21 - 15$</li>
+    <li>$3 = 15 - 2 \times 6 = 15 - 2(21 - 15) = -2 \times 21 + 3 \times 15$</li>
+   </ul>
+   Verifikasi: $-42 + 45 = 3$ ✓
+  </li>
+  <li><strong>Kalikan dengan</strong> $\dfrac{c}{d} = \dfrac{12}{3} = 4$:<br>$x_0 = -2 \times 4 = -8$, $y_0 = 3 \times 4 = 12$<br>Verifikasi: $21(-8) + 15(12) = -168 + 180 = 12$ ✓</li>
+  <li><strong>Solusi umum</strong>:<br>$x = -8 + \dfrac{15}{3}t = -8 + 5t$<br>$y = 12 - \dfrac{21}{3}t = 12 - 7t$<br>dengan $t \in \mathbb{Z}$.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi umum: $21(-8+5t) + 15(12-7t) = -168 + 105t + 180 - 105t = 12$ ✓ berlaku untuk semua $t$.</p>
+
+ <p class="lesson-subheading">Soal 2: Cek Syarat Keberadaan Solusi</p>
+ <p class="lesson-text">Selidiki apakah $8x + 12y = 15$ memiliki solusi bilangan bulat.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung $\text{FPB}(8, 12)$:
+   <ul>
+    <li>$12 = 1 \times 8 + 4$</li>
+    <li>$8 = 2 \times 4 + 0$</li>
+   </ul>
+   $\text{FPB} = 4$.</li>
+  <li>Periksa apakah $4 \mid 15$: tidak, karena $15 = 4 \times 3 + 3$.</li>
+  <li>Karena $\text{FPB}(8,12) \nmid 15$, persamaan ini <strong>tidak memiliki solusi bulat</strong>.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi dengan argumen langsung: ruas kiri $8x + 12y = 4(2x + 3y)$ selalu kelipatan 4, sedangkan ruas kanan 15 bukan kelipatan 4—jadi keduanya tidak mungkin sama.</p>
+
+ <p class="lesson-subheading">Soal 3: Mencari Solusi Positif</p>
+ <p class="lesson-text">Tentukan semua solusi bilangan bulat <strong>positif</strong> dari $7x + 4y = 100$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Cek syarat</strong>: $\text{FPB}(7,4) = 1$, dan $1 \mid 100$ ✓.</li>
+  <li><strong>Solusi khusus</strong>: dari $7 = 1 \times 4 + 3$ dan $4 = 1 \times 3 + 1$, diperoleh $1 = -7 + 2 \times 4$. Maka $7(-1) + 4(2) = 1$—yaitu $X = -1, Y = 2$. Kalikan dengan $100$: $x_0 = -100$, $y_0 = 200$. Verifikasi: $7(-100) + 4(200) = -700 + 800 = 100$ ✓</li>
+  <li><strong>Solusi umum</strong>:<br>$x = -100 + 4t, \quad y = 200 - 7t$</li>
+  <li><strong>Syarat positif</strong>:
+   <ul>
+    <li>$x > 0 \rightarrow -100 + 4t > 0 \rightarrow t > 25 \rightarrow t \geq 26$</li>
+    <li>$y > 0 \rightarrow 200 - 7t > 0 \rightarrow t < 200/7 \approx 28{,}57 \rightarrow t \leq 28$</li>
+   </ul>
+   Jadi $t \in \{26, 27, 28\}$.
+  </li>
+  <li><strong>Hitung setiap solusi</strong>:
+   <ul>
+    <li>$t = 26$: $x = 4$, $y = 18$ — cek: $7(4) + 4(18) = 28 + 72 = 100$ ✓</li>
+    <li>$t = 27$: $x = 8$, $y = 11$ — cek: $7(8) + 4(11) = 56 + 44 = 100$ ✓</li>
+    <li>$t = 28$: $x = 12$, $y = 4$ — cek: $7(12) + 4(4) = 84 + 16 = 100$ ✓</li>
+   </ul>
+  </li>
+ </ol>
+ <p class="lesson-text">Solusinya: $(4, 18)$, $(8, 11)$, dan $(12, 4)$.</p>
+
+ <p class="lesson-subheading">Soal 4: Persamaan Tiga Variabel</p>
+ <p class="lesson-text">Selesaikan $2x + 3y + 5z = 20$ dalam bilangan bulat.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Cek syarat</strong>: $\text{FPB}(2,3,5) = \text{FPB}(\text{FPB}(2,3), 5) = \text{FPB}(1,5) = 1$, dan $1 \mid 20$ ✓.</li>
+  <li><strong>Kelompokkan dua variabel</strong>: misalkan $w = 2x + 3y$, maka $w + 5z = 20$.</li>
+  <li><strong>Solusi umum untuk $w$ dan $z$</strong>: dari $w + 5z = 20$, ambil $z = t$ (parameter bebas), sehingga $w = 20 - 5t$.</li>
+  <li><strong>Selesaikan $2x + 3y = 20 - 5t$</strong> untuk setiap $t$:
+   <ul>
+    <li>Dari contoh sebelumnya, $2(-1) + 3(1) = 1$—jadi solusi khusus untuk ruas kanan $20 - 5t$ adalah $x = -(20-5t) = -20 + 5t$ dan $y = 20 - 5t$.</li>
+    <li>Verifikasi: $2(-20+5t) + 3(20-5t) = -40+10t + 60-15t = 20-5t$ ✓</li>
+   </ul>
+  </li>
+  <li><strong>Solusi umum</strong>: karena $\text{FPB}(2,3) = 1$, solusi umum adalah:<br>$x = -20 + 5t + 3s$<br>$y = 20 - 5t - 2s$<br>$z = t$<br>dengan $t, s \in \mathbb{Z}$.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $2(-20+5t+3s) + 3(20-5t-2s) + 5t = -40+10t+6s + 60-15t-6s + 5t = 20$ ✓ berlaku untuk semua $t$ dan $s$.</p>
+
+ <p class="lesson-subheading">Soal 5: Tripel Pythagoras</p>
+ <p class="lesson-text">Tentukan semua Tripel Pythagoras primitif $(x, y, z)$ dengan sisi miring $z \leq 50$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Gunakan rumus umum $x = m^2 - n^2$, $y = 2mn$, $z = m^2 + n^2$ dengan $m > n > 0$, $\text{FPB}(m,n) = 1$, dan salah satu dari $m$ atau $n$ genap.</li>
+  <li>Syarat $z = m^2 + n^2 \leq 50$ membatasi nilai $m$—karena $m^2 < 50$ berarti $m \leq 7$.</li>
+  <li>Uji setiap pasangan $(m, n)$:
+   <ul>
+    <li>$(m,n) = (2,1)$: $z = 5$. Tripel: $(3, 4, 5)$ ✓</li>
+    <li>$(m,n) = (3,2)$: $z = 13$. Tripel: $(5, 12, 13)$ ✓</li>
+    <li>$(m,n) = (4,1)$: $z = 17$. Tripel: $(15, 8, 17)$ ✓</li>
+    <li>$(m,n) = (4,3)$: $z = 25$. Tripel: $(7, 24, 25)$ ✓</li>
+    <li>$(m,n) = (5,2)$: $z = 29$. Tripel: $(21, 20, 29)$ ✓</li>
+    <li>$(m,n) = (5,4)$: $z = 41$. Tripel: $(9, 40, 41)$ ✓</li>
+    <li>$(m,n) = (6,1)$: $z = 37$. Tripel: $(35, 12, 37)$ ✓</li>
+    <li>$(m,n) = (6,5)$: $z = 61 > 50$ ✗</li>
+    <li>$(m,n) = (7,2)$: $z = 53 > 50$ ✗</li>
+   </ul>
+  </li>
+ </ol>
+ <p class="lesson-text">Terdapat <strong>7 Tripel Pythagoras primitif</strong> dengan sisi miring $\leq 50$: $(3,4,5)$, $(5,12,13)$, $(15,8,17)$, $(7,24,25)$, $(21,20,29)$, $(9,40,41)$, dan $(35,12,37)$.</p>
+
+ <p class="lesson-subheading">Soal 6: Persamaan Pell</p>
+ <p class="lesson-text">Tentukan tiga solusi pertama dari persamaan Pell $x^2 - 3y^2 = 1$ dalam bilangan bulat positif.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Solusi dasar</strong>: coba nilai $y$ kecil.
+   <ul>
+    <li>$y = 1$: $x^2 = 4 \rightarrow x = 2$. Solusi: $(2, 1)$—verifikasi: $4 - 3 = 1$ ✓</li>
+   </ul>
+  </li>
+  <li><strong>Solusi berikutnya</strong> menggunakan rumus rekursif Pell. Jika $(x_1, y_1)$ adalah solusi dasar, maka:
+   $$x_{k+1} = x_k x_1 + D y_k y_1 = 2x_k + 3y_k$$ $$y_{k+1} = x_k y_1 + y_k x_1 = x_k + 2y_k$$
+  </li>
+  <li><strong>Solusi kedua</strong>:<br>$x_2 = 2(2) + 3(1) = 7$<br>$y_2 = 2 + 2(1) = 4$<br>Verifikasi: $49 - 3(16) = 49 - 48 = 1$ ✓</li>
+  <li><strong>Solusi ketiga</strong>:<br>$x_3 = 2(7) + 3(4) = 26$<br>$y_3 = 7 + 2(4) = 15$<br>Verifikasi: $676 - 3(225) = 676 - 675 = 1$ ✓</li>
+ </ol>
+ <p class="lesson-text">Tiga solusi pertama: $(2, 1)$, $(7, 4)$, dan $(26, 15)$. Persamaan Pell ini memiliki tak terhingga banyak solusi—semuanya dapat dihasilkan melalui rumus rekursif di atas.</p>
+
+ <p class="lesson-subheading">Soal 7: Pembuktian Ketiadaan Solusi dengan Modulo</p>
+ <p class="lesson-text">Buktikan bahwa persamaan $x^2 - 5y^2 = 2$ tidak memiliki solusi bilangan bulat.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Persamaan setara dengan $x^2 = 5y^2 + 2$, atau $x^2 \equiv 2 \pmod{5}$.</li>
+  <li>Hitung semua kemungkinan nilai kuadrat modulo 5. Untuk $x \equiv 0, 1, 2, 3, 4 \pmod{5}$:
+   <ul>
+    <li>$0^2 = 0 \equiv 0 \pmod{5}$</li>
+    <li>$1^2 = 1 \equiv 1 \pmod{5}$</li>
+    <li>$2^2 = 4 \equiv 4 \pmod{5}$</li>
+    <li>$3^2 = 9 \equiv 4 \pmod{5}$</li>
+    <li>$4^2 = 16 \equiv 1 \pmod{5}$</li>
+   </ul>
+   Jadi kuadrat modulo 5 hanya dapat bernilai $0$, $1$, atau $4$—<strong>tidak pernah</strong> $2$ atau $3$.
+  </li>
+  <li>Karena $x^2 \equiv 2 \pmod{5}$ tidak mungkin, persamaan tidak memiliki solusi bulat.</li>
+ </ol>
+ <p class="lesson-text">Teknik ini disebut <strong>kontradiksi modulo</strong>—salah satu cara paling ampuh untuk membuktikan ketiadaan solusi pada persamaan Diophantine. Kuncinya: temukan modulus $m$ sehingga persamaan menjadi tidak mungkin dipenuhi modulo $m$, dan selesai.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap semua persamaan Diophantine memiliki solusi.</strong> Tidak semua persamaan memiliki solusi bulat. Contoh: $2x = 3$ tidak memiliki solusi bulat—meskipun memiliki solusi real. Selalu periksa syarat keberadaan solusi terlebih dahulu.</li>
+  <li><strong>Lupa memeriksa syarat $\text{FPB}(a,b) \mid c$.</strong> Untuk $ax + by = c$, solusi ada hanya jika $\text{FPB}(a,b)$ membagi $c$. Ini adalah langkah <em>pertama</em> yang harus diperiksa—sebelum memulai perhitungan apa pun.</li>
+  <li><strong>Salah menentukan solusi umum.</strong> Solusi umum adalah $x = x_0 + \frac{b}{d}t$ dan $y = y_0 - \frac{a}{d}t$—perhatikan bahwa tandanya berbeda: satu tambah, satu kurang. Kesalahan tanda di sini adalah salah satu miskonsepsi paling umum.</li>
+  <li><strong>Mengabaikan solusi negatif.</strong> Persamaan Diophantine mencari <em>semua</em> solusi bulat—termasuk yang negatif. Kecuali soal secara eksplisit membatasi pada bilangan positif, jangan buang solusi negatif.</li>
+  <li><strong>Menganggap solusi khusus harus positif.</strong> Solusi khusus bisa negatif. Yang penting adalah solusi umum mencakup semua kemungkinan—termasuk yang positif. Nilai positif akan muncul melalui pemilihan parameter $t$ yang tepat.</li>
+  <li><strong>Mengira parameter $t$ hanya boleh bernilai positif atau nol.</strong> Parameter $t$ adalah bilangan bulat apa pun—termasuk negatif. Bahkan, dalam banyak soal (misalnya mencari solusi positif), solusi sering muncul dari nilai $t$ yang negatif. Jangan batasi domain $t$ tanpa alasan.</li>
+  <li><strong>Menganggap solusi khusus yang ditemukan harus sudah dalam bentuk paling sederhana.</strong> Solusi khusus boleh saja memiliki angka besar—yang penting adalah ia <em>memenuhi</em> persamaan. Solusi dengan angka kecil dapat diperoleh melalui pemilihan parameter $t$ yang sesuai pada solusi umum. Jangan "memaksa" solusi khusus menjadi kecil dengan cara yang tidak sistematis.</li>
+  <li><strong>Salah dalam perhitungan Algoritma Euclid Diperluas.</strong> Kesalahan kecil dalam substitusi balik akan menghasilkan solusi yang salah. Selalu verifikasi hasil dengan mensubstitusi kembali ke persamaan awal—jika tidak menghasilkan $c$, pasti ada kesalahan.</li>
+  <li><strong>Melupakan bahwa solusi harus bilangan bulat.</strong> Solusi rasional atau real <em>tidak</em> diterima dalam persamaan Diophantine—kecuali secara khusus diminta. Ini adalah pembatas utama yang membedakan Diophantine dari persamaan biasa.</li>
+  <li><strong>Menganggap jika satu variabel bebas, semua variabel bebas.</strong> Pada persamaan linear dua variabel, hanya satu parameter $t$ yang bebas. Nilai variabel lainnya bergantung pada $t$. Pada persamaan dengan tiga variabel, ada dua parameter bebas—dan seterusnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">XI. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti persamaan Diophantine yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Persamaan Diophantine</strong> adalah persamaan polinomial berkoefisien bulat yang solusinya dicari dalam bilangan bulat.</li>
+  <li>Bentuk paling dasar: <strong>persamaan linear dua variabel</strong> $ax + by = c$.</li>
+  <li><strong>Syarat solusi:</strong> $\text{FPB}(a,b) \mid c$.</li>
+  <li><strong>Metode penyelesaian:</strong> gunakan Algoritma Euclid Diperluas untuk mencari solusi khusus, kemudian tuliskan solusi umum $x = x_0 + \frac{b}{d}t$ dan $y = y_0 - \frac{a}{d}t$.</li>
+  <li><strong>Jenis lain:</strong> persamaan kuadrat (Tripel Pythagoras), persamaan Pell, persamaan eksponensial, dan Teorema Terakhir Fermat.</li>
+  <li><strong>Teknik penting:</strong> keterbagian, modulo, paritas, faktorisasi, Algoritma Euclid Diperluas, dan pecahan kontinu.</li>
+  <li><strong>Penerapan:</strong> masalah uang, penyeimbangan reaksi kimia, kriptografi, kombinatorika, dan fisika.</li>
+  <li>Hindari kesalahan umum seperti lupa memeriksa syarat solusi, salah tanda pada solusi umum, menganggap $t$ hanya positif, dan mengabaikan solusi negatif.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Persamaan Diophantine adalah topik yang <strong>kaya dan mendalam</strong> dalam teori bilangan. Meskipun definisinya sederhana—mencari solusi bilangan bulat dari suatu persamaan—tingkat kesulitannya dapat bervariasi dari yang sangat mudah (seperti $x + y = 7$) hingga yang belum terpecahkan selama berabad-abad. Teorema Terakhir Fermat adalah contoh paling terkenal bagaimana pertanyaan sederhana tentang bilangan bulat dapat membutuhkan waktu 358 tahun untuk dijawab. Yang membuat persamaan Diophantine istimewa adalah <strong>kombinasi keterbatasan dan kekayaan</strong>: dengan membatasi solusi pada bilangan bulat, kita mendapatkan masalah yang lebih sulit—tetapi juga lebih bermakna, karena solusi bulat adalah solusi yang dapat dihitung, dibagi, dan diwujudkan dalam dunia nyata.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Bilangan Prima</strong> (yang sering muncul dalam syarat keterbagian pada persamaan Diophantine), <strong>Kongruensi &amp; Modulo</strong> (yang sudah Anda kuasai dan akan terus digunakan untuk menganalisis persamaan nonlinear), <strong>Aljabar Abstrak</strong> (yang menggeneralisasi konsep bilangan bulat menjadi struktur seperti ring dan lapangan), <strong>Kriptografi</strong> (yang bertumpu pada kesulitan menyelesaikan persamaan Diophantine tertentu), dan <strong>Teori Bilangan Analitik</strong> (yang mempelajari distribusi solusi persamaan Diophantine secara statistik).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan Algoritma Euclid Diperluas, pencarian solusi positif, dan pembuktian ketiadaan solusi melalui modulo. Kebiasaan memeriksa syarat $\text{FPB}(a,b) \mid c$ terlebih dahulu, verifikasi hasil dengan substitusi balik, dan konsisten dalam menentukan solusi umum akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik yang lebih kompleks, di mana manipulasi bilangan bulat menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

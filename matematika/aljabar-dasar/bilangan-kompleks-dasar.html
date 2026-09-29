@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Bilangan Kompleks Dasar (Bentuk a + bi, i² = -1, dan Operasi Dasar)</title>
+ <meta name="description" content="Bilangan kompleks: bentuk a + bi, satuan imajiner i² = -1, operasi penjumlahan, pengurangan, perkalian, pembagian, konjugat, dan modulus.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Bilangan Kompleks Dasar (Bentuk a + bi, i² = -1, dan Operasi Dasar)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Persamaan Kuadrat</strong> — terutama diskriminan dan kasus $D < 0$, karena bilangan kompleks lahir sebagai solusi dari persamaan kuadrat yang tidak memiliki akar real.</li>
+   <li><strong>Ekspresi Aljabar</strong> — terutama perkalian binomial dan penyederhanaan suku sejenis, karena operasi pada bilangan kompleks menggunakan aturan distribusi dan pengelompokan yang sama.</li>
+   <li><strong>Eksponen &amp; Akar</strong> — karena pola perpangkatan $i$ mengikuti aturan eksponen, dan modulus melibatkan akar kuadrat $\sqrt{a^2 + b^2}$.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam sistem bilangan real, persamaan $x^2 = -1$ <strong>tidak memiliki solusi</strong>—karena kuadrat dari setiap bilangan real selalu non-negatif. Keterbatasan ini sudah disadari sejak abad ke-16, ketika matematikawan Italia menemukan bahwa beberapa persamaan kubik hanya dapat diselesaikan jika kita "berani" menggunakan akar dari bilangan negatif. Untuk mengatasi keterbatasan ini, diperkenalkanlah suatu bilangan baru yang disebut <strong>bilangan imajiner</strong>, dengan satuan $i$ yang didefinisikan sebagai $i^2 = -1$. Dengan penambahan bilangan imajiner, terbentuklah sistem <strong>bilangan kompleks</strong>—yang jauh lebih kaya dan lengkap daripada bilangan real.</p>
+ <p class="lesson-text">Bilangan kompleks memiliki bentuk umum $z = a + bi$, dengan $a$ dan $b$ adalah bilangan real. Meskipun terasa abstrak pada awalnya, bilangan kompleks memiliki peran yang sangat luas dalam matematika dan fisika. Ia muncul dalam <strong>analisis rangkaian listrik</strong> (arus bolak-balik), <strong>mekanika kuantum</strong> (fungsi gelombang), <strong>pengolahan sinyal</strong>, <strong>transformasi Fourier</strong>, hingga <strong>grafik komputer dan pembuatan fraktal</strong>. Banyak fenomena fisika yang paling mudah dimodelkan menggunakan bilangan kompleks—bukan karena fenomena itu "imajiner", tetapi karena struktur matematisnya lebih sederhana saat dinyatakan dalam bilangan kompleks.</p>
+ <p class="lesson-text">Yang membuat bilangan kompleks istimewa adalah <strong>sifat aljabarnya yang sangat mirip dengan bilangan real</strong>. Operasi penjumlahan, pengurangan, perkalian, dan pembagian mengikuti aturan yang sama—hanya dengan satu tambahan penting: $i^2 = -1$. Akibatnya, semua intuisi yang sudah Anda bangun untuk bilangan real masih dapat digunakan, asalkan Anda konsisten dalam menerapkan substitusi $i^2 = -1$ setiap kali muncul. Materi ini disusun bertahap: dari <strong>definisi dan bentuk umum</strong>, <strong>operasi dasar</strong> (penjumlahan, pengurangan, perkalian, pembagian), <strong>konjugat dan modulus</strong>, <strong>sifat-sifat operasi</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Materi ini adalah pintu masuk ke dunia bilangan kompleks; bentuk polar, Teorema De Moivre, dan aplikasi lanjutan akan dibahas pada materi Bilangan Kompleks Lanjut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Bentuk Umum Bilangan Kompleks</h3>
+ <p class="lesson-text">Kita mulai dari satuan imajiner—fondasi dari seluruh sistem bilangan kompleks.</p>
+
+ <p class="lesson-subheading">A. Satuan Imajiner ($i$)</p>
+ <p class="lesson-text">Satuan imajiner $i$ didefinisikan sebagai bilangan yang memenuhi:</p>
+ <p class="lesson-text">$$i^2 = -1$$</p>
+ <p class="lesson-text">atau secara ekuivalen, $i = \sqrt{-1}$. Dari definisi ini, kita dapat menurunkan pola perpangkatan $i$ yang penting untuk diingat:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Pangkat</th>
+     <th>Nilai</th>
+     <th>Alasan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$i^1$</td><td>$i$</td><td>Definisi</td></tr>
+    <tr><td>$i^2$</td><td>$-1$</td><td>Definisi</td></tr>
+    <tr><td>$i^3$</td><td>$-i$</td><td>$i^2 \cdot i = -1 \cdot i$</td></tr>
+    <tr><td>$i^4$</td><td>$1$</td><td>$(i^2)^2 = (-1)^2$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Pola ini <strong>berulang setiap 4 pangkat</strong>. Secara umum, $i^{4k} = 1$, $i^{4k+1} = i$, $i^{4k+2} = -1$, dan $i^{4k+3} = -i$. Untuk menghitung $i^n$ dengan $n$ besar, cukup hitung sisa pembagian $n$ oleh 4—lalu gunakan pola di atas.</p>
+
+ <p class="lesson-subheading">B. Bentuk Umum $a + bi$</p>
+ <p class="lesson-text"><strong>Bilangan kompleks</strong> adalah bilangan yang dapat ditulis dalam bentuk:</p>
+ <p class="lesson-text">$$z = a + bi$$</p>
+ <p class="lesson-text">dengan $a, b \in \mathbb{R}$ (bilangan real), dan $i$ adalah satuan imajiner ($i^2 = -1$). Komponen-komponennya:</p>
+ <ul>
+  <li><strong>Bagian real</strong> (<em>real part</em>): $a$—dinotasikan $\operatorname{Re}(z) = a$.</li>
+  <li><strong>Bagian imajiner</strong> (<em>imaginary part</em>): $b$—dinotasikan $\operatorname{Im}(z) = b$.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perhatian:</strong> Bagian imajiner adalah <em>koefisien</em> dari $i$—yaitu $b$, bukan $bi$. Untuk $z = 3 + 2i$, bagian realnya adalah 3 dan bagian imajinernya adalah 2 (bukan $2i$). Kesalahan menafsirkan ini sering menyebabkan kebingungan saat menyamakan dua bilangan kompleks.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Bilangan Kompleks Khusus</p>
+ <ol>
+  <li><strong>Bilangan real murni</strong>: jika $b = 0$, maka $z = a$—yaitu bilangan real. Dengan kata lain, himpunan bilangan real $\mathbb{R}$ adalah <em>himpunan bagian</em> dari bilangan kompleks $\mathbb{C}$.</li>
+  <li><strong>Bilangan imajiner murni</strong>: jika $a = 0$ dan $b \neq 0$, maka $z = bi$. Contoh: $2i$, $-5i$, $i\sqrt{3}$.</li>
+  <li><strong>Bilangan nol kompleks</strong>: jika $a = 0$ dan $b = 0$, maka $z = 0$.</li>
+ </ol>
+
+ <p class="lesson-subheading">D. Kesamaan Dua Bilangan Kompleks</p>
+ <p class="lesson-text">Dua bilangan kompleks $z_1 = a + bi$ dan $z_2 = c + di$ dikatakan <strong>sama</strong> jika dan hanya jika:</p>
+ <p class="lesson-text">$$a = c \quad \text{dan} \quad b = d$$</p>
+ <p class="lesson-text">Artinya, bagian real harus sama <em>dan</em> bagian imajiner harus sama secara bersamaan. Satu kondisi saja tidak cukup.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Tentukan $x$ dan $y$ jika $2x + 3i = 4 + yi$.</p>
+ <ul>
+  <li>Bandingkan bagian real: $2x = 4 \rightarrow x = 2$.</li>
+  <li>Bandingkan bagian imajiner: $3 = y \rightarrow y = 3$.</li>
+ </ul>
+ <p class="lesson-text">Jadi $x = 2$ dan $y = 3$.</p>
+
+ <p class="lesson-text">Setelah memahami definisi dan bentuk umum, kita siap mempelajari bagaimana bilangan kompleks dioperasikan. Aturan operasinya sangat mirip dengan bilangan real—hanya dengan satu tambahan penting: $i^2 = -1$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Operasi Dasar Bilangan Kompleks</h3>
+ <p class="lesson-text">Operasi pada bilangan kompleks mengikuti aturan yang sama dengan bilangan real—dengan satu tambahan penting: setiap kemunculan $i^2$ harus diganti dengan $-1$.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Penjumlahan dan pengurangan dilakukan dengan mengoperasikan <strong>bagian real dengan bagian real</strong>, dan <strong>bagian imajiner dengan bagian imajiner</strong>:</p>
+ <p class="lesson-text">$$(a + bi) + (c + di) = (a + c) + (b + d)i$$ $$(a + bi) - (c + di) = (a - c) + (b - d)i$$</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$(3 + 2i) + (1 - 4i) = (3 + 1) + (2 - 4)i = 4 - 2i$.</p>
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">$(5 - 3i) - (2 + i) = (5 - 2) + (-3 - 1)i = 3 - 4i$.</p>
+
+ <p class="lesson-subheading">B. Perkalian</p>
+ <p class="lesson-text">Perkalian dilakukan seperti perkalian binomial biasa—kalikan setiap suku, lalu ganti $i^2$ dengan $-1$:</p>
+ <p class="lesson-text">$$(a + bi)(c + di) = ac + adi + bci + bdi^2 = (ac - bd) + (ad + bc)i$$</p>
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">$(2 + 3i)(1 - 4i) = 2(1) + 2(-4i) + 3i(1) + 3i(-4i) = 2 - 8i + 3i - 12i^2 = 2 - 5i + 12 = 14 - 5i$.</p>
+ <p class="lesson-subheading-alt">Contoh 5 (perpangkatan $i$):</p>
+ <p class="lesson-text">$i^5 = i^4 \cdot i = 1 \cdot i = i$.</p>
+ <p class="lesson-subheading-alt">Contoh 6 (pangkat besar):</p>
+ <p class="lesson-text">$i^{2023} = i^{2020} \cdot i^3 = (i^4)^{505} \cdot (-i) = 1^{505} \cdot (-i) = -i$.</p>
+
+ <p class="lesson-subheading">C. Konjugat Kompleks</p>
+ <p class="lesson-text"><strong>Konjugat</strong> (sekawan) dari $z = a + bi$ adalah bilangan kompleks $\bar{z}$ yang diperoleh dengan mengubah tanda bagian imajinernya:</p>
+ <p class="lesson-text">$$\bar{z} = a - bi$$</p>
+ <p class="lesson-text">Konjugat memiliki peran penting—terutama dalam operasi pembagian dan perhitungan modulus. Sifat-sifat konjugat:</p>
+ <ul>
+  <li>$z + \bar{z} = (a+bi) + (a-bi) = 2a$—hasilnya selalu bilangan real.</li>
+  <li>$z - \bar{z} = (a+bi) - (a-bi) = 2bi$—hasilnya bilangan imajiner murni.</li>
+  <li>$z \cdot \bar{z} = (a+bi)(a-bi) = a^2 + b^2$—hasilnya bilangan real non-negatif.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Modulus (Nilai Mutlak)</p>
+ <p class="lesson-text"><strong>Modulus</strong> dari $z = a + bi$—dinotasikan $|z|$—didefinisikan sebagai:</p>
+ <p class="lesson-text">$$|z| = \sqrt{a^2 + b^2}$$</p>
+ <p class="lesson-text">Modulus selalu bernilai real non-negatif. Secara geometris, $|z|$ adalah <strong>jarak titik $(a, b)$ dari titik asal</strong> pada bidang kompleks (bidang Argand)—sehingga rumusnya persis seperti teorema Pythagoras.</p>
+ <p class="lesson-text">Dari sifat konjugat, kita peroleh hubungan penting yang akan sering digunakan:</p>
+ <p class="lesson-text">$$z \cdot \bar{z} = |z|^2$$</p>
+
+ <p class="lesson-subheading">E. Pembagian</p>
+ <p class="lesson-text">Pembagian dua bilangan kompleks dilakukan dengan mengalikan pembilang dan penyebut dengan <strong>konjugat dari penyebut</strong>. Tujuannya adalah mengubah penyebut menjadi bilangan real—sehingga pembagian dapat dihitung seperti biasa.</p>
+ <p class="lesson-text">$$\frac{a + bi}{c + di} = \frac{(a + bi)(c - di)}{(c + di)(c - di)} = \frac{(a + bi)(c - di)}{c^2 + d^2}$$</p>
+ <p class="lesson-subheading-alt">Mengapa mengalikan dengan konjugat berhasil?</p>
+ <p class="lesson-text">Karena $(c + di)(c - di) = c^2 + d^2$—yang <em>selalu</em> bilangan real non-negatif (kecuali $c = d = 0$). Dengan kata lain, perkalian dengan konjugat "menghilangkan" bagian imajiner dari penyebut—sehingga pembagian dapat dilakukan seperti pembagian bilangan real biasa.</p>
+ <p class="lesson-text">Ekspansi pembilang: $(a + bi)(c - di) = (ac + bd) + (bc - ad)i$. Sehingga:</p>
+ <p class="lesson-text">$$\frac{a + bi}{c + di} = \frac{ac + bd}{c^2 + d^2} + \frac{bc - ad}{c^2 + d^2}i$$</p>
+ <p class="lesson-subheading-alt">Contoh 7:</p>
+ <p class="lesson-text">Hitung $\dfrac{2 + 3i}{1 - 2i}$.</p>
+ <p class="lesson-text">Konjugat penyebut ($1 - 2i$) adalah $1 + 2i$. Kalikan pembilang dan penyebut:</p>
+ <p class="lesson-text">$$\frac{(2 + 3i)(1 + 2i)}{(1 - 2i)(1 + 2i)} = \frac{2 + 4i + 3i + 6i^2}{1^2 + 2^2} = \frac{2 + 7i - 6}{5} = \frac{-4 + 7i}{5} = -\frac{4}{5} + \frac{7}{5}i$$</p>
+ <p class="lesson-subheading-alt">Contoh 8 (penyebut imajiner murni):</p>
+ <p class="lesson-text">Hitung $\dfrac{5}{2i}$.</p>
+ <p class="lesson-text">Konjugat dari $2i$ adalah $-2i$. Maka:</p>
+ <p class="lesson-text">$$\frac{5}{2i} \times \frac{-i}{-i} = \frac{-5i}{-2i^2} = \frac{-5i}{2} = -\frac{5}{2}i$$</p>
+
+ <p class="lesson-subheading">F. Ringkasan Operasi</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Operasi</th>
+     <th>Rumus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Penjumlahan</td><td>$(a + bi) + (c + di) = (a + c) + (b + d)i$</td></tr>
+    <tr><td>Pengurangan</td><td>$(a + bi) - (c + di) = (a - c) + (b - d)i$</td></tr>
+    <tr><td>Perkalian</td><td>$(a + bi)(c + di) = (ac - bd) + (ad + bc)i$</td></tr>
+    <tr><td>Pembagian</td><td>$\dfrac{a + bi}{c + di} = \dfrac{(a + bi)(c - di)}{c^2 + d^2}$</td></tr>
+    <tr><td>Konjugat</td><td>$\bar{z} = a - bi$</td></tr>
+    <tr><td>Modulus</td><td>$|z| = \sqrt{a^2 + b^2}$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Empat operasi dasar di atas—beserta konjugat dan modulus—sudah cukup untuk menangani sebagian besar perhitungan bilangan kompleks. Namun untuk memanipulasi ekspresi yang lebih rumit, kita perlu memahami sifat-sifat aljabar dari operasi-operasi ini—topik yang akan kita bahas berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Operasi Bilangan Kompleks</h3>
+ <p class="lesson-text">Operasi pada bilangan kompleks memiliki sifat-sifat yang mirip dengan bilangan real—sehingga banyak intuisi yang sudah Anda bangun tetap berlaku.</p>
+
+ <p class="lesson-subheading">A. Sifat Aljabar Dasar</p>
+ <ol>
+  <li><strong>Komutatif penjumlahan</strong>: $z_1 + z_2 = z_2 + z_1$.</li>
+  <li><strong>Asosiatif penjumlahan</strong>: $(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3)$.</li>
+  <li><strong>Komutatif perkalian</strong>: $z_1 \cdot z_2 = z_2 \cdot z_1$.</li>
+  <li><strong>Asosiatif perkalian</strong>: $(z_1 \cdot z_2) \cdot z_3 = z_1 \cdot (z_2 \cdot z_3)$.</li>
+  <li><strong>Distributif</strong>: $z_1(z_2 + z_3) = z_1 z_2 + z_1 z_3$.</li>
+  <li><strong>Elemen identitas</strong>: $z + 0 = z$ dan $z \cdot 1 = z$—dengan $0 = 0 + 0i$ dan $1 = 1 + 0i$.</li>
+  <li><strong>Invers penjumlahan</strong>: untuk setiap $z = a + bi$, terdapat $-z = -a - bi$ sehingga $z + (-z) = 0$.</li>
+  <li><strong>Invers perkalian</strong>: untuk setiap $z \neq 0$, terdapat $z^{-1} = \dfrac{1}{z} = \dfrac{\bar{z}}{|z|^2}$ sehingga $z \cdot z^{-1} = 1$.</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Sifat Konjugat</p>
+ <ul>
+  <li>$\overline{z_1 + z_2} = \bar{z_1} + \bar{z_2}$</li>
+  <li>$\overline{z_1 - z_2} = \bar{z_1} - \bar{z_2}$</li>
+  <li>$\overline{z_1 \cdot z_2} = \bar{z_1} \cdot \bar{z_2}$</li>
+  <li>$\overline{\left(\dfrac{z_1}{z_2}\right)} = \dfrac{\bar{z_1}}{\bar{z_2}}$ untuk $z_2 \neq 0$</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Sifat Modulus</p>
+ <ul>
+  <li>$|z_1 \cdot z_2| = |z_1| \cdot |z_2|$</li>
+  <li>$\left|\dfrac{z_1}{z_2}\right| = \dfrac{|z_1|}{|z_2|}$ untuk $z_2 \neq 0$</li>
+  <li>$|z| = |\bar{z}|$</li>
+  <li>$|z|^2 = z \cdot \bar{z}$</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Berbeda dengan bilangan real, bilangan kompleks <strong>tidak memiliki urutan</strong>. Kita tidak dapat membandingkan dua bilangan kompleks dengan tanda $<$ atau $>$. Pernyataan seperti "$2 + 3i < 1 + 5i$" <em>tidak bermakna</em>. Yang dapat dibandingkan hanyalah <em>modulusnya</em>—karena modulus adalah bilangan real non-negatif. Inilah salah satu perbedaan mendasar antara bilangan real dan bilangan kompleks.</p>
+ </div>
+
+ <p class="lesson-text">Dengan menguasai sifat-sifat aljabar ini, kita memiliki perangkat yang cukup untuk memanipulasi ekspresi bilangan kompleks yang rumit. Mari kita terapkan seluruh konsep ini—operasi dasar, konjugat, modulus, dan perpangkatan $i$—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan operasi penjumlahan, perkalian, pembagian dengan konjugat, perhitungan modulus, perpangkatan $i$, dan penerapan pada sistem persamaan kompleks. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Operasi Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Diberikan $z_1 = 3 - 2i$ dan $z_2 = -1 + 4i$. Hitung $z_1 + z_2$ dan $z_1 - z_2$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Penjumlahan</strong> — jumlahkan bagian real dengan real, bagian imajiner dengan imajiner:<br>$z_1 + z_2 = (3 + (-1)) + (-2 + 4)i = 2 + 2i$</li>
+  <li><strong>Pengurangan</strong> — kurangkan komponen secara bersesuaian. Perhatikan tanda negatif di depan $z_2$:<br>$z_1 - z_2 = (3 - (-1)) + (-2 - 4)i = 4 - 6i$</li>
+ </ol>
+ <p class="lesson-text">Periksa kembali: pada pengurangan, tanda kurung dari $z_2$ harus didistribusikan ke <em>seluruh</em> suku—sehingga $-(-1 + 4i) = +1 - 4i$.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Perkalian Dua Bilangan Kompleks</p>
+ <p class="lesson-text">Hitung $(4 - 3i)(2 + 5i)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Ekspansi binomial</strong>:<br>$(4 - 3i)(2 + 5i) = 4(2) + 4(5i) - 3i(2) - 3i(5i)$<br>$= 8 + 20i - 6i - 15i^2$</li>
+  <li><strong>Substitusi $i^2 = -1$</strong>:<br>$= 8 + 20i - 6i - 15(-1) = 8 + 14i + 15$</li>
+  <li><strong>Gabungkan</strong>:<br>$= 23 + 14i$</li>
+ </ol>
+ <p class="lesson-text">Kunci soal ini adalah langkah kedua: $-15i^2$ berubah menjadi $+15$, bukan $-15$. Melupakan substitusi $i^2 = -1$ adalah kesalahan yang paling sering terjadi.</p>
+ 
+ <p class="lesson-subheading">Soal 3: Perpangkatan $i$ Berorde Tinggi</p>
+ <p class="lesson-text">Hitung $i^{101}$ dan $i^{2024}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Gunakan pola perulangan</strong> $i^4 = 1$. Setiap pangkat $i^n$ dapat direduksi dengan menghitung sisa pembagian $n$ oleh 4.</li>
+  <li><strong>$i^{101}$</strong>: karena $101 = 4 \times 25 + 1$, maka<br>$i^{101} = (i^4)^{25} \cdot i^1 = 1^{25} \cdot i = i$</li>
+  <li><strong>$i^{2024}$</strong>: karena $2024 = 4 \times 506 + 0$, maka<br>$i^{2024} = (i^4)^{506} = 1^{506} = 1$</li>
+ </ol>
+ <p class="lesson-text">Jadi $i^{101} = i$ dan $i^{2024} = 1$.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Konjugat dan Modulus</p>
+ <p class="lesson-text">Diberikan $z = -5 + 12i$. Tentukan $\bar{z}$, $|z|$, dan $z \cdot \bar{z}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Konjugat</strong> — ubah tanda bagian imajiner:<br>$\bar{z} = -5 - 12i$</li>
+  <li><strong>Modulus</strong> — gunakan $|z| = \sqrt{a^2 + b^2}$ dengan $a = -5$ dan $b = 12$:<br>$|z| = \sqrt{(-5)^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13$</li>
+  <li><strong>Hasil kali $z \cdot \bar{z}$</strong> — hasilnya selalu sama dengan $|z|^2$:<br>$z \cdot \bar{z} = (-5 + 12i)(-5 - 12i) = (-5)^2 - (12i)^2 = 25 - 144i^2 = 25 + 144 = 169$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan bahwa $z \cdot \bar{z} = 169 = 13^2 = |z|^2$ ✓—konsisten dengan sifat $z\bar{z} = |z|^2$. Hasil kalinya selalu bilangan real non-negatif.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Pembagian dengan Konjugat</p>
+ <p class="lesson-text">Hitung $\dfrac{4 + i}{2 - 3i}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Kalikan dengan konjugat penyebut.</strong> Konjugat dari $2 - 3i$ adalah $2 + 3i$:<br>$\dfrac{4 + i}{2 - 3i} \times \dfrac{2 + 3i}{2 + 3i} = \dfrac{(4 + i)(2 + 3i)}{(2 - 3i)(2 + 3i)}$</li>
+  <li><strong>Hitung pembilang</strong>:<br>$(4 + i)(2 + 3i) = 8 + 12i + 2i + 3i^2 = 8 + 14i - 3 = 5 + 14i$</li>
+  <li><strong>Hitung penyebut</strong>:<br>$(2 - 3i)(2 + 3i) = 2^2 + 3^2 = 4 + 9 = 13$</li>
+  <li><strong>Sederhanakan</strong>:<br>$\dfrac{5 + 14i}{13} = \dfrac{5}{13} + \dfrac{14}{13}i$</li>
+ </ol>
+ <p class="lesson-text">Bentuk akhirnya adalah $a + bi$ dengan $a = \frac{5}{13}$ dan $b = \frac{14}{13}$—keduanya bilangan real.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Kesamaan Dua Bilangan Kompleks</p>
+ <p class="lesson-text">Tentukan $x$ dan $y$ yang memenuhi $(2x - 1) + (y + 3)i = 5 + 7i$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Bandingkan bagian real</strong>:<br>$2x - 1 = 5 \rightarrow 2x = 6 \rightarrow x = 3$</li>
+  <li><strong>Bandingkan bagian imajiner</strong> (koefisien $i$):<br>$y + 3 = 7 \rightarrow y = 4$</li>
+  <li><strong>Verifikasi</strong>: substitusikan $x = 3$ dan $y = 4$:<br>$(2(3) - 1) + (4 + 3)i = 5 + 7i$ ✓</li>
+ </ol>
+ <p class="lesson-text">Jadi $x = 3$ dan $y = 4$. Perhatikan bahwa bagian imajiner disamakan sebagai <em>koefisien</em> $i$—bukan beserta $i$-nya.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Persamaan Kuadrat dengan Akar Kompleks</p>
+ <p class="lesson-text">Tentukan akar-akar persamaan $x^2 - 4x + 13 = 0$ dan nyatakan hasilnya dalam bentuk $a + bi$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Identifikasi koefisien</strong>: $a = 1$, $b = -4$, $c = 13$.</li>
+  <li><strong>Hitung diskriminan</strong>:<br>$D = (-4)^2 - 4(1)(13) = 16 - 52 = -36 < 0$<br>Karena $D < 0$, akar-akarnya bukan bilangan real—melainkan bilangan kompleks.</li>
+  <li><strong>Gunakan rumus ABC dengan $\sqrt{D} = \sqrt{-36} = 6i$</strong>:<br>$x = \dfrac{-(-4) \pm 6i}{2(1)} = \dfrac{4 \pm 6i}{2} = 2 \pm 3i$</li>
+  <li><strong>Akar-akarnya</strong>: $x_1 = 2 + 3i$ dan $x_2 = 2 - 3i$.</li>
+  <li><strong>Verifikasi konjugat</strong>: karena koefisien persamaan semuanya real, akar-akar kompleks harus muncul sebagai pasangan konjugat. Memang $x_2 = \overline{x_1}$ ✓</li>
+ </ol>
+ <p class="lesson-text">Inilah asal mula bilangan kompleks—persamaan kuadrat yang tidak memiliki solusi real ternyata memiliki solusi di dalam sistem bilangan kompleks.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Lupa bahwa $i^2 = -1$ saat mengalikan.</strong> Kesalahan: menghitung $(3i)(2i) = 6i$. Yang benar: $(3i)(2i) = 6i^2 = 6(-1) = -6$—perkalian dua bilangan imajiner menghasilkan bilangan real negatif.</li>
+  <li><strong>Menganggap konjugat hanya mengubah tanda di depan $i$, tetapi lupa mengalikan pembilang juga saat pembagian.</strong> Kesalahan: pada $\dfrac{2}{1-i}$, mengalikan hanya penyebut dengan $1+i$ tanpa mengalikan pembilang. Yang benar: kalikan <em>pembilang dan penyebut</em> dengan konjugat yang sama—supaya nilai pecahan tidak berubah.</li>
+  <li><strong>Menyamakan bagian real dengan bagian imajiner secara tertukar.</strong> Kesalahan: dari $(x+2) + (y-1)i = 3 + 2i$, menulis $x+2 = 2$ dan $y-1 = 3$. Yang benar: bagian real disamakan dengan bagian real ($x+2 = 3$), bagian imajiner disamakan dengan bagian imajiner ($y-1 = 2$). Jangan tertukar posisinya.</li>
+  <li><strong>Menganggap $|z| = a$ (bagian real) atau $|z| = b$ (bagian imajiner).</strong> Kesalahan: untuk $z = 3 + 4i$, menulis $|z| = 3$ atau $|z| = 4$. Yang benar: $|z| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$—modulus dihitung dengan teorema Pythagoras, bukan diambil dari salah satu komponennya.</li>
+  <li><strong>Menganggap $i$ sebagai variabel biasa saat menyederhanakan pangkat tinggi.</strong> Kesalahan: menulis $i^7 = 7i$ atau tidak menyederhanakan sama sekali. Yang benar: gunakan pola perulangan $i^4 = 1$. Untuk $i^7$, bagi 7 dengan 4 menghasilkan sisa 3—maka $i^7 = i^3 = -i$.</li>
+  <li><strong>Menganggap bilangan kompleks dapat diurutkan seperti bilangan real.</strong> Pernyataan seperti $2 + 3i > 1 + i$ <em>tidak bermakna</em>—karena bilangan kompleks tidak memiliki urutan total. Yang dapat dibandingkan hanya modulusnya, yang merupakan bilangan real.</li>
+  <li><strong>Menulis $\sqrt{-1} = \pm i$ secara berlebihan.</strong> Meskipun secara teknis $\sqrt{-1}$ memiliki dua nilai ($i$ dan $-i$), dalam konvensi standar matematika, simbol $\sqrt{-1}$ didefinisikan sebagai $i$—nilai positif utamanya. Menuliskan $\pm$ secara berlebihan dapat menyebabkan kebingungan dan kesalahan tanda.</li>
+  <li><strong>Menganggap $(a + bi)^2 = a^2 + b^2 i^2$.</strong> Ini mengabaikan suku tengah dari ekspansi binomial. Yang benar: $(a + bi)^2 = a^2 + 2abi + b^2 i^2 = a^2 - b^2 + 2abi$. Selalu gunakan ekspansi binomial lengkap—jangan melompat ke hasil akhir.</li>
+  <li><strong>Menganggap $\bar{z} = z$ untuk semua bilangan kompleks.</strong> Kesalahan: menyimpulkan bahwa $z$ selalu sama dengan konjugatnya. Yang benar: $\bar{z} = z$ <em>hanya</em> berlaku ketika $b = 0$—yaitu ketika $z$ adalah bilangan real. Untuk $z = 3 + 4i$, $\bar{z} = 3 - 4i \neq z$. Sifat $\bar{z} = z$ juga dipakai sebagai <em>kriteria</em> untuk mengenali bilangan real: $z$ real $\leftrightarrow \bar{z} = z$.</li>
+  <li><strong>Salah menerapkan sifat modulus pada penjumlahan atau pengurangan.</strong> Kesalahan: menganggap $|z_1 + z_2| = |z_1| + |z_2|$—seperti pada bilangan real. Yang benar: sifat $|z_1 z_2| = |z_1||z_2|$ berlaku untuk <em>perkalian</em>, tetapi untuk penjumlahan hanya berlaku <em>pertidaksamaan segitiga</em>: $|z_1 + z_2| \le |z_1| + |z_2|$ (dengan tanda $\le$, bukan $=$).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti bilangan kompleks dasar yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Bilangan kompleks</strong> berbentuk $z = a + bi$, dengan $a = \operatorname{Re}(z)$ (bagian real) dan $b = \operatorname{Im}(z)$ (bagian imajiner). Satuan imajiner $i$ memenuhi $i^2 = -1$.</li>
+  <li><strong>Penjumlahan</strong>: $(a + bi) + (c + di) = (a + c) + (b + d)i$.</li>
+  <li><strong>Pengurangan</strong>: $(a + bi) - (c + di) = (a - c) + (b - d)i$.</li>
+  <li><strong>Perkalian</strong>: $(a + bi)(c + di) = (ac - bd) + (ad + bc)i$.</li>
+  <li><strong>Konjugat</strong>: $\bar{z} = a - bi$. Berlaku $z\bar{z} = a^2 + b^2 = |z|^2$.</li>
+  <li><strong>Modulus</strong>: $|z| = \sqrt{a^2 + b^2}$.</li>
+  <li><strong>Pembagian</strong>: $\dfrac{a + bi}{c + di} = \dfrac{(a + bi)(c - di)}{c^2 + d^2}$—kalikan dengan konjugat penyebut.</li>
+  <li><strong>Pola perpangkatan $i$</strong>: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$—berulang setiap 4 pangkat.</li>
+  <li>Sifat-sifat operasi bilangan kompleks analog dengan bilangan real (komutatif, asosiatif, distributif)—tetapi bilangan kompleks <strong>tidak dapat diurutkan</strong>.</li>
+  <li>Kesalahan umum: lupa $i^2 = -1$, menganggap $\bar{z} = z$ untuk semua $z$, dan salah menerapkan sifat modulus pada penjumlahan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Bilangan kompleks memperluas sistem bilangan real dengan menambahkan solusi untuk persamaan yang sebelumnya tidak terpecahkan—seperti $x^2 = -1$. Bentuk $a + bi$ memberikan cara yang sederhana dan intuitif untuk merepresentasikan bilangan-bilangan ini, sementara operasi-operasi dasarnya mengikuti aturan aljabar yang sudah kita kenal—dengan satu tambahan penting: $i^2 = -1$. Yang membuat bilangan kompleks istimewa adalah <strong>sifat aljabarnya yang sangat mirip dengan bilangan real</strong>: hampir semua intuisi yang sudah Anda bangun untuk bilangan real masih dapat digunakan—selama Anda konsisten dalam menerapkan substitusi $i^2 = -1$ setiap kali muncul.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Bilangan Kompleks Lanjut</strong> (yang memperkenalkan bentuk polar, Teorema De Moivre, dan operasi geometris), <strong>Polinomial</strong> (yang menggunakan bilangan kompleks untuk menyatakan akar-akar yang tidak real), <strong>Analisis Kompleks</strong> (yang mempelajari fungsi kompleks, integral kontur, dan teorema residu), <strong>Aljabar Linear</strong> (yang menggunakan bilangan kompleks dalam ruang vektor kompleks dan nilai eigen), <strong>Analisis Fourier</strong> (yang menggunakan bilangan kompleks untuk menguraikan sinyal), dan <strong>Teori Kuantum</strong> (yang bertumpu pada fungsi gelombang kompleks).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan perkalian binomial, pembagian dengan konjugat, dan perhitungan modulus. Kebiasaan mengganti $i^2$ dengan $-1$ secara eksplisit pada setiap langkah, serta memeriksa ulang hasil dengan mensubstitusi kembali, akan menyelamatkan Anda dari kesalahan tanda yang tidak perlu—terutama saat berpindah ke topik yang lebih kompleks, di mana manipulasi bilangan kompleks menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

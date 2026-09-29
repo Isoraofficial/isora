@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Polinomial (Derajat, Akar, Teorema Sisa, dan Faktorisasi)</title>
+ <meta name="description" content="Polinomial: derajat, akar dan multiplisitas, Teorema Dasar Aljabar, Teorema Akar Rasional, pembagian sintetis, Teorema Sisa, Teorema Faktor, dan faktorisasi.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Polinomial (Derajat, Akar, Teorema Sisa, dan Faktorisasi)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Persamaan Kuadrat</strong> — terutama rumus ABC dan diskriminan, karena faktorisasi polinomial derajat tinggi sering berakhir pada faktor kuadrat yang perlu diselesaikan dengan rumus kuadrat.</li>
+   <li><strong>Ekspresi Aljabar</strong> — terutama identitas aljabar seperti selisih dua kuadrat dan selisih dua kubus, karena identitas-identitas ini menjadi alat utama dalam memfaktorkan polinomial.</li>
+   <li><strong>Pembuktian Matematis</strong> — terutama pembuktian langsung dan substitusi, karena hampir semua teorema dalam materi ini (Teorema Sisa, Teorema Faktor) dibuktikan melalui substitusi nilai tertentu ke dalam persamaan pembagian.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Setelah mempelajari persamaan linear (derajat 1) dan kuadrat (derajat 2), kita kini memasuki generalisasi dari keduanya: <strong>polinomial</strong>. Polinomial adalah ekspresi aljabar yang memuat variabel dengan pangkat bilangan bulat non-negatif. Polinomial berperan sentral dalam matematika karena mampu memodelkan kurva yang lebih kompleks, mendekati fungsi-fungsi transenden (deret Taylor), dan menjadi objek utama dalam aljabar abstrak.</p>
+ <p class="lesson-text">Yang membuat polinomial istimewa adalah <strong>sifatnya yang "tertutup" terhadap operasi dasar aljabar</strong>—penjumlahan, pengurangan, dan perkalian polinomial selalu menghasilkan polinomial lain. Selain itu, Teorema Dasar Aljabar menjamin bahwa setiap polinomial berderajat $n$ memiliki tepat $n$ akar di lapangan kompleks—sebuah kepastian yang tidak dimiliki oleh fungsi-fungsi lain seperti eksponen atau logaritma. Sifat-sifat inilah yang membuat polinomial menjadi salah satu objek paling "rapi" sekaligus paling kaya dalam matematika.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>definisi formal dan komponennya</strong>, <strong>derajat dan sifat-sifatnya</strong>, <strong>akar dan multiplisitas</strong>, <strong>Teorema Akar Rasional</strong>, <strong>pembagian polinomial (panjang dan sintetis)</strong>, <strong>Teorema Sisa</strong>, <strong>Teorema Faktor</strong>, <strong>prosedur faktorisasi derajat tinggi</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap teorema akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan hasilnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Formal dan Komponen Polinomial</h3>
+ <p class="lesson-text">Sebelum masuk ke teknik-teknik lanjutan, kita perlu memahami terlebih dahulu definisi formal dan komponen-komponen yang menyusun polinomial.</p>
+
+ <p class="lesson-subheading">A. Definisi Polinomial</p>
+ <p class="lesson-text">Polinomial dalam variabel $x$ adalah fungsi atau ekspresi yang dapat dituliskan dalam bentuk penjumlahan berhingga:</p>
+ <p class="lesson-text">$$P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_2 x^2 + a_1 x + a_0$$</p>
+ <p class="lesson-text">dengan ketentuan:</p>
+ <ul>
+  <li>$n$ adalah <strong>bilangan bulat non-negatif</strong> ($n = 0, 1, 2, 3, \dots$).</li>
+  <li>$a_n, a_{n-1}, \dots, a_0$ adalah koefisien (biasanya bilangan real, tetapi dapat juga kompleks).</li>
+  <li><strong>Syarat mutlak</strong>: $a_n \neq 0$ untuk $n > 0$. Jika semua koefisien bernilai nol, maka disebut <strong>polinomial nol</strong>, yang derajatnya tidak terdefinisi (atau didefinisikan sebagai $-\infty$ dalam beberapa literatur).</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Komponen-Komponen Utama</p>
+ <p class="lesson-text">Ambil contoh polinomial:</p>
+ <p class="lesson-text">$$P(x) = 6x^4 - 3x^3 + 0x^2 + 2x - 5$$</p>
+ <ol>
+  <li><strong>Suku (Term)</strong>: $6x^4$, $-3x^3$, $0x^2$, $2x$, dan $-5$.</li>
+  <li><strong>Koefisien</strong>: Angka pengali variabel, yaitu $6, -3, 0, 2$, dan $-5$.</li>
+  <li><strong>Koefisien Utama</strong>: Koefisien dari suku berpangkat tertinggi yang tidak nol. Pada contoh, koefisien utamanya adalah $6$.</li>
+  <li><strong>Suku Utama</strong>: $6x^4$.</li>
+  <li><strong>Konstanta</strong>: Suku tanpa variabel, yaitu $-5$.</li>
+ </ol>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting</strong>: Suku dengan koefisien $0$ (seperti $0x^2$) biasanya tidak ditulis dalam bentuk baku, tetapi harus diingat keberadaannya saat melakukan operasi pembagian atau substitusi untuk menjaga urutan pangkat.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami definisi dan komponennya, langkah berikutnya adalah memahami konsep <strong>derajat</strong>—sebuah karakteristik numerik yang menentukan hampir semua sifat penting dari suatu polinomial.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Derajat Polinomial dan Sifat-Sifatnya</h3>
+ <p class="lesson-text">Derajat adalah "sidik jari" dari suatu polinomial—ia menentukan banyaknya akar, bentuk grafiknya, dan perilakunya saat variabel menjadi sangat besar.</p>
+
+ <p class="lesson-subheading">A. Definisi Derajat</p>
+ <p class="lesson-text">Derajat suatu polinomial non-nol, dinotasikan $\deg(P)$, adalah pangkat tertinggi dari variabel yang memiliki koefisien tidak nol.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$P(x) = 4x^5 - 2x + 1 \rightarrow \deg(P) = 5$.</li>
+  <li>$P(x) = 7 \rightarrow \deg(P) = 0$ (konstanta non-nol).</li>
+  <li>$P(x) = 0 \rightarrow \deg(P)$ tidak terdefinisi (polinomial nol).</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Sifat Derajat pada Operasi</p>
+ <ol>
+  <li><strong>Penjumlahan/Pengurangan</strong>: $\deg(P \pm Q) \leq \max(\deg(P), \deg(Q))$. Derajat bisa turun jika koefisien suku tertinggi saling menghilangkan.<br><em>Contoh</em>: $P(x) = x^3 + 2x$, $Q(x) = -x^3 + x^2$. Hasilnya $x^2 + 2x$ berderajat 2, bukan 3.</li>
+  <li><strong>Perkalian</strong>: $\deg(P \cdot Q) = \deg(P) + \deg(Q)$.<br><em>Contoh</em>: $\deg((x^2 + 1)(x^3 - 1)) = 2 + 3 = 5$.</li>
+  <li><strong>Komposisi</strong>: $\deg(P \circ Q) = \deg(P) \times \deg(Q)$ (dengan syarat derajat keduanya positif).<br><em>Contoh</em>: Jika $P(x) = x^2$ dan $Q(x) = x^3 + 1$, maka $P(Q(x)) = (x^3 + 1)^2$ berderajat $2 \times 3 = 6$.</li>
+ </ol>
+
+ <p class="lesson-text">Derajat memberi tahu kita <em>seberapa tinggi</em> suatu polinomial—tetapi pertanyaan yang lebih mendalam adalah <em>di mana</em> polinomial bernilai nol. Konsep "akar" inilah yang akan kita bahas berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Akar-Akar Polinomial dan Teorema Dasar Aljabar</h3>
+ <p class="lesson-subheading">A. Definisi Akar (Nol Polinomial)</p>
+ <p class="lesson-text">Nilai $x = c$ disebut <strong>akar</strong> (atau <strong>nol</strong>) dari polinomial $P(x)$ jika dan hanya jika:</p>
+ <p class="lesson-text">$$P(c) = 0$$</p>
+ <p class="lesson-text">Secara geometris, akar adalah titik di mana grafik $y = P(x)$ memotong atau menyentuh sumbu $X$.</p>
+
+ <p class="lesson-subheading">B. Teorema Dasar Aljabar (Fundamental Theorem of Algebra)</p>
+ <p class="lesson-text">Setiap polinomial berderajat $n \geq 1$ dengan koefisien kompleks memiliki <strong>paling sedikit satu</strong> akar kompleks. Sebagai konsekuensi, polinomial berderajat $n$ memiliki tepat $n$ <strong>akar</strong> di lapangan kompleks (dihitung dengan multiplisitas).</p>
+
+ <p class="lesson-subheading">C. Multiplisitas Akar</p>
+ <p class="lesson-text">Jika $(x - c)^m$ adalah faktor dari $P(x)$, tetapi $(x - c)^{m+1}$ bukan, maka $c$ disebut akar dengan <strong>multiplisitas</strong> $m$.</p>
+ <ul>
+  <li>Jika $m$ ganjil: Grafik <strong>menembus</strong> sumbu $X$ di $x = c$.</li>
+  <li>Jika $m$ genap: Grafik <strong>menyinggung</strong> (memantul) sumbu $X$ di $x = c$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Contoh</strong>: $P(x) = (x - 1)^2(x + 2)^3$.</p>
+ <ul>
+  <li>$x = 1$ multiplisitas 2 (genap) → grafik menyinggung sumbu $X$.</li>
+  <li>$x = -2$ multiplisitas 3 (ganjil) → grafik menembus sumbu $X$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Teorema Akar Sekawan Kompleks (Conjugate Root Theorem)</p>
+ <p class="lesson-text">Jika polinomial $P(x)$ memiliki <strong>koefisien real</strong>, dan $z = a + bi$ (dengan $b \neq 0$) adalah akarnya, maka <strong>konjugatnya</strong> $\bar{z} = a - bi$ juga merupakan akar. Dengan kata lain, akar kompleks selalu muncul berpasangan.</p>
+ <p class="lesson-text"><strong>Contoh</strong>: Jika $P(x)$ berkoefisien real dan $P(2 + 3i) = 0$, maka $P(2 - 3i) = 0$ pasti benar.</p>
+
+ <p class="lesson-text">Teorema Dasar Aljabar menjamin keberadaan akar—tetapi tidak memberi tahu kita <em>bagaimana menemukannya</em>. Untuk polinomial dengan koefisien bulat, ada cara sistematis untuk membatasi kandidat akar: inilah Teorema Akar Rasional.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Teorema Akar Rasional (Rational Root Theorem)</h3>
+ <p class="lesson-text">Teorema ini memberikan daftar kandidat akar rasional untuk polinomial dengan koefisien bulat.</p>
+ <p class="lesson-text">Misalkan $P(x) = a_n x^n + \dots + a_0$ dengan koefisien bulat ($a_n \neq 0, a_0 \neq 0$). Jika $\frac{p}{q}$ adalah akar rasional dalam bentuk paling sederhana ($p$ dan $q$ saling prima), maka:</p>
+ <ul>
+  <li>$p$ harus membagi $a_0$ (konstanta).</li>
+  <li>$q$ harus membagi $a_n$ (koefisien utama).</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Prosedur Pencarian Akar Rasional:</p>
+ <ol>
+  <li>Tentukan semua faktor positif dan negatif dari $a_0$ (untuk $p$).</li>
+  <li>Tentukan semua faktor positif dan negatif dari $a_n$ (untuk $q$).</li>
+  <li>Bentuk semua kemungkinan pecahan $\frac{p}{q}$.</li>
+  <li>Uji kandidat-kandidat tersebut dengan substitusi langsung atau pembagian sintetis hingga ditemukan akar.</li>
+ </ol>
+ <p class="lesson-text"><strong>Contoh</strong>: $P(x) = 2x^3 - 3x^2 - 11x + 6$.</p>
+ <p class="lesson-text">Faktor $a_0 = 6$: $\pm 1, \pm 2, \pm 3, \pm 6$.</p>
+ <p class="lesson-text">Faktor $a_n = 2$: $\pm 1, \pm 2$.</p>
+ <p class="lesson-text">Kandidat rasional: $\pm 1, \pm 2, \pm 3, \pm 6, \pm \frac{1}{2}, \pm \frac{3}{2}$.</p>
+ <p class="lesson-text">Substitusi $x = 3$: $P(3) = 2(27) - 3(9) - 11(3) + 6 = 54 - 27 - 33 + 6 = 0$. Jadi $x = 3$ adalah akar rasional.</p>
+
+ <p class="lesson-text">Setelah menemukan satu akar, kita perlu <em>membagi</em> polinomial dengan faktornya untuk menurunkan derajat. Proses pembagian inilah yang akan kita bahas berikutnya—dan di sini, teknik pembagian sintetis akan sangat mempermudah pekerjaan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Operasi Pembagian Polinomial</h3>
+ <p class="lesson-subheading">A. Algoritma Pembagian Panjang (Long Division)</p>
+ <p class="lesson-text">Prinsipnya mirip dengan pembagian bilangan bulat. Langkah-langkah:</p>
+ <ol>
+  <li>Bagilah suku pertama pembilang (dividend) dengan suku pertama pembagi (divisor) untuk mendapatkan suku pertama hasil bagi.</li>
+  <li>Kalikan hasil tersebut dengan seluruh pembagi, lalu kurangkan dari pembilang.</li>
+  <li>Turunkan suku berikutnya dari pembilang, dan ulangi proses hingga derajat sisa kurang dari derajat pembagi.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Bentuk Umum:</p>
+ <p class="lesson-text">$$P(x) = D(x) \cdot H(x) + S(x)$$</p>
+ <p class="lesson-text">dengan $\deg(S) < \deg(D)$. Jika $S(x) = 0$, maka $D(x)$ membagi habis $P(x)$.</p>
+
+ <p class="lesson-subheading">B. Pembagian Sintetis (Metode Horner)</p>
+ <p class="lesson-text">Ini adalah <strong>singkatan</strong> dari pembagian panjang yang hanya berlaku jika pembagi berbentuk $(x - k)$.</p>
+ <p class="lesson-text"><strong>Prosedur</strong>:</p>
+ <ol>
+  <li>Tulis koefisien polinomial (dari pangkat tertinggi ke rendah). Isi $0$ untuk suku yang hilang.</li>
+  <li>Tulis $k$ di sisi kiri.</li>
+  <li>Turunkan koefisien pertama.</li>
+  <li>Kalikan angka terakhir di baris bawah dengan $k$, letakkan di kolom berikutnya, lalu jumlahkan.</li>
+  <li>Ulangi langkah 4 hingga selesai.</li>
+  <li>Angka terakhir di baris bawah adalah sisa. Angka-angka sebelumnya adalah koefisien hasil bagi (berderajat satu lebih rendah).</li>
+ </ol>
+ <p class="lesson-text"><strong>Contoh</strong>: Bagi $P(x) = 2x^3 - 5x^2 + 3x - 7$ dengan $(x - 3)$.</p>
+ <p class="lesson-text">Koefisien: $2, -5, 3, -7$.</p>
+ <p class="lesson-text">$$\begin{array}{r|rrrr}
+3 & 2 & -5 & 3 & -7 \\
+& & 6 & 3 & 18 \\
+\hline
+& 2 & 1 & 6 & 11
+\end{array}$$</p>
+ <p class="lesson-text">Hasil bagi: $2x^2 + x + 6$. Sisa: $11$.</p>
+
+ <p class="lesson-text">Pembagian sintetis menghasilkan <em>dua</em> keluaran: hasil bagi dan sisa. Tetapi ternyata, sisa tersebut dapat diperoleh melalui cara yang jauh lebih sederhana—tanpa perlu melakukan pembagian penuh sama sekali. Inilah inti dari Teorema Sisa.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Teorema Sisa (Remainder Theorem)</h3>
+ <p class="lesson-subheading">A. Pernyataan dan Derivasi</p>
+ <p class="lesson-text">Jika polinomial $P(x)$ dibagi oleh $(x - k)$, maka sisa pembagiannya adalah $P(k)$.</p>
+ <p class="lesson-text"><strong>Bukti</strong>: Dari algoritma pembagian, $P(x) = (x - k)H(x) + S$, dengan $S$ adalah konstanta (karena derajat sisa harus kurang dari 1). Substitusi $x = k$:</p>
+ <p class="lesson-text">$$P(k) = (k - k)H(k) + S = 0 \cdot H(k) + S = S$$</p>
+ <p class="lesson-text">Jadi, terbukti $S = P(k)$.</p>
+
+ <p class="lesson-subheading">B. Generalisasi untuk Pembagi $(ax + b)$</p>
+ <p class="lesson-text">Untuk pembagi linear $(ax + b)$, sisa pembagian adalah $P\left(-\frac{b}{a}\right)$, karena $x = -\frac{b}{a}$ adalah akar dari pembagi.</p>
+ <p class="lesson-text"><strong>Contoh</strong>: Tentukan sisa $P(x) = x^{100} - 2x + 1$ dibagi $(x + 1)$.</p>
+ <p class="lesson-text">$$x + 1 = 0 \rightarrow x = -1$$</p>
+ <p class="lesson-text">Sisa $= P(-1) = (-1)^{100} - 2(-1) + 1 = 1 + 2 + 1 = 4$.</p>
+
+ <p class="lesson-text">Teorema Sisa memberi tahu kita nilai sisa pembagian. Namun, ada satu kasus yang sangat penting: ketika sisanya nol. Kasus inilah yang menjadi inti dari Teorema Faktor.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Teorema Faktor (Factor Theorem) dan Faktorisasi</h3>
+ <p class="lesson-subheading">A. Teorema Faktor</p>
+ <p class="lesson-text">$(x - k)$ adalah faktor dari $P(x)$ <strong>jika dan hanya jika</strong> $P(k) = 0$.</p>
+ <p class="lesson-text">Ini adalah konsekuensi langsung dari teorema sisa: jika sisa $= 0$, maka $P(x)$ habis dibagi $(x - k)$.</p>
+ <p class="lesson-text"><strong>Implikasi</strong>: Jika $k$ adalah akar, maka $P(x) = (x - k)H(x)$, di mana $H(x)$ adalah polinomial berderajat $n-1$.</p>
+
+ <p class="lesson-subheading">B. Rumus-Rumus Faktorisasi Khusus</p>
+ <p class="lesson-text">Berikut adalah identitas aljabar yang sangat membantu dalam memfaktorkan polinomial:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Rumus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Selisih Dua Kuadrat</td><td>$a^2 - b^2 = (a - b)(a + b)$</td></tr>
+    <tr><td>Jumlah Dua Kubus</td><td>$a^3 + b^3 = (a + b)(a^2 - ab + b^2)$</td></tr>
+    <tr><td>Selisih Dua Kubus</td><td>$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$</td></tr>
+    <tr><td>Kuadrat Sempurna</td><td>$a^2 \pm 2ab + b^2 = (a \pm b)^2$</td></tr>
+    <tr><td>Pangkat Tiga</td><td>$a^3 \pm 3a^2b + 3ab^2 \pm b^3 = (a \pm b)^3$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">C. Prosedur Faktorisasi Polinomial Berderajat Tinggi</p>
+ <p class="lesson-text">Untuk memfaktorkan polinomial derajat $n > 2$, ikuti langkah-langkah berikut:</p>
+ <ol>
+  <li><strong>Faktor Persekutuan</strong>: Keluarkan faktor persekutuan terbesar (FPB) dari semua koefisien jika ada.</li>
+  <li><strong>Cari Akar Rasional</strong>: Gunakan Teorema Akar Rasional untuk mendapatkan kandidat akar.</li>
+  <li><strong>Uji Akar &amp; Turunkan Derajat</strong>: Gunakan pembagian sintetis untuk membagi polinomial dengan $(x - k)$ jika $P(k) = 0$.</li>
+  <li><strong>Ulangi</strong>: Lakukan proses yang sama pada hasil bagi (polinomial berderajat lebih rendah).</li>
+  <li><strong>Faktor Kuadrat</strong>: Jika hasil bagi berderajat 2, faktorkan menggunakan rumus kuadrat atau metode faktorisasi biasa.</li>
+  <li><strong>Faktor Kompleks (Opsional)</strong>: Jika polinomial memiliki koefisien real, faktor kompleks akan muncul berpasangan.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh Faktorisasi Lengkap:</p>
+ <p class="lesson-text">Faktorkan $P(x) = x^4 - 5x^3 + 2x^2 + 20x - 24$.</p>
+ <ul>
+  <li>Coba $x = 2$: $16 - 40 + 8 + 40 - 24 = 0$. Faktor $(x - 2)$.</li>
+  <li>Pembagian sintetis dengan $2$: koefisien $1, -5, 2, 20, -24$ menghasilkan $1, -3, -4, 12, 0$. Hasil bagi: $x^3 - 3x^2 - 4x + 12$.</li>
+  <li>Coba $x = 3$ pada hasil bagi: $27 - 27 - 12 + 12 = 0$. Faktor $(x - 3)$.</li>
+  <li>Pembagian sintetis $3$ pada $1, -3, -4, 12$ menghasilkan $1, 0, -4, 0$. Hasil bagi: $x^2 - 4$.</li>
+  <li>Faktorkan $x^2 - 4 = (x - 2)(x + 2)$.<br>Jadi, $P(x) = (x - 2)^2 (x - 3)(x + 2)$. Akar-akarnya: $x = 2$ (multiplisitas 2), $x = 3$, dan $x = -2$.</li>
+ </ul>
+
+ <p class="lesson-text">Dengan menggabungkan Teorema Faktor, pembagian sintetis, dan Teorema Akar Rasional, kita memiliki alat yang lengkap untuk memfaktorkan polinomial derajat tinggi. Mari kita terapkan seluruh konsep ini—dari identifikasi derajat hingga faktorisasi lengkap dan penerapan pada soal cerita—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan identifikasi derajat, Teorema Akar Rasional, pembagian sintetis, Teorema Sisa, Teorema Faktor, faktorisasi lengkap, dan penerapan pada soal cerita. Setiap langkah dituliskan lengkap, dan teorema yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+ <p class="lesson-subheading">Soal 1: Identifikasi Derajat, Koefisien, dan Konstanta</p>
+ <p class="lesson-text">Diberikan $P(x) = 4x^6 - 3x^4 + 7x^2 - 2x + 9$. Tentukan: (a) derajat, (b) koefisien utama, (c) konstanta, (d) koefisien dari $x^5$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ul>
+  <li><strong>(a) Derajat</strong>: pangkat tertinggi dari suku yang koefisiennya tidak nol—yaitu $6$.</li>
+  <li><strong>(b) Koefisien utama</strong>: koefisien dari suku berderajat tertinggi, yaitu $4$.</li>
+  <li><strong>(c) Konstanta</strong>: suku tanpa variabel, yaitu $9$.</li>
+  <li><strong>(d) Koefisien $x^5$</strong>: suku $x^5$ tidak muncul dalam polinomial, sehingga koefisiennya adalah $0$.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan poin (d)—suku yang "tidak muncul" tetap memiliki koefisien $0$. Informasi ini penting saat melakukan pembagian sintetis: kolom untuk $x^5$ tidak boleh dilewatkan, melainkan harus diisi dengan angka $0$.</p>
+
+ <p class="lesson-subheading">Soal 2: Sifat Derajat pada Operasi</p>
+ <p class="lesson-text">Diketahui $P(x)$ berderajat 4 dan $Q(x)$ berderajat 3. Tentukan: (a) derajat maksimum $P + Q$, (b) derajat $P \cdot Q$, (c) derajat komposisi $P(Q(x))$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>(a)</strong> Menurut sifat derajat pada penjumlahan, $\deg(P + Q) \leq \max(\deg P, \deg Q) = \max(4, 3) = 4$. Derajatnya <em>paling besar</em> 4—bisa turun jika suku utama saling menghilangkan.</li>
+  <li><strong>(b)</strong> Menurut sifat derajat pada perkalian, $\deg(P \cdot Q) = \deg P + \deg Q = 4 + 3 = 7$.</li>
+  <li><strong>(c)</strong> Menurut sifat derajat pada komposisi, $\deg(P \circ Q) = \deg P \times \deg Q = 4 \times 3 = 12$.</li>
+ </ol>
+
+ <p class="lesson-subheading">Soal 3: Teorema Akar Rasional</p>
+ <p class="lesson-text">Tentukan semua akar dari $P(x) = x^3 - 2x^2 - 5x + 6$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Kandidat akar rasional</strong>: $a_0 = 6$ memiliki faktor $\pm 1, \pm 2, \pm 3, \pm 6$. Karena $a_n = 1$, kandidatnya hanya bilangan bulat ini.</li>
+  <li><strong>Uji $x = 1$</strong>: $1 - 2 - 5 + 6 = 0$ ✓. Faktor $(x - 1)$.</li>
+  <li><strong>Pembagian sintetis dengan $k = 1$</strong> pada koefisien $1, -2, -5, 6$:
+   $$\begin{array}{r|rrrr} 1 & 1 & -2 & -5 & 6 \\ & & 1 & -1 & -6 \\ \hline & 1 & -1 & -6 & 0 \end{array}$$
+   Hasil bagi: $x^2 - x - 6$.</li>
+  <li><strong>Faktorkan hasil bagi</strong>: $x^2 - x - 6 = (x - 3)(x + 2)$.</li>
+  <li><strong>Kesimpulan</strong>: $P(x) = (x - 1)(x - 3)(x + 2)$. Akar-akarnya: $x = 1, 3, -2$.</li>
+  <li><strong>Verifikasi</strong>: substitusikan salah satu akar, misalnya $x = 3$—maka $27 - 18 - 15 + 6 = 0$ ✓.</li>
+ </ol>
+
+ <p class="lesson-subheading">Soal 4: Pembagian Sintetis</p>
+ <p class="lesson-text">Bagi $P(x) = 2x^4 - 3x^3 + 5x - 7$ dengan $(x - 2)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Tulis semua koefisien</strong> dari pangkat tertinggi ke rendah. Perhatikan: suku $x^2$ tidak muncul—harus diisi $0$:<br>$2, -3, 0, 5, -7$</li>
+  <li><strong>Lakukan pembagian sintetis dengan $k = 2$</strong>:
+   $$\begin{array}{r|rrrrr} 2 & 2 & -3 & 0 & 5 & -7 \\ & & 4 & 2 & 4 & 18 \\ \hline & 2 & 1 & 2 & 9 & 11 \end{array}$$</li>
+  <li><strong>Hasil bagi</strong>: $2x^3 + x^2 + 2x + 9$ (berderajat satu lebih rendah).</li>
+  <li><strong>Sisa</strong>: $11$.</li>
+  <li><strong>Verifikasi dengan Teorema Sisa</strong>: $P(2) = 2(16) - 3(8) + 5(2) - 7 = 32 - 24 + 10 - 7 = 11$ ✓—sama dengan sisa yang diperoleh.</li>
+ </ol>
+
+ <p class="lesson-subheading">Soal 5: Teorema Sisa</p>
+ <p class="lesson-text">Tentukan sisa pembagian $P(x) = 3x^5 - 2x^4 + x^3 - 5x^2 + 7x - 4$ oleh $(x + 2)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Menurut Teorema Sisa, sisa pembagian oleh $(x + 2)$ adalah $P(-2)$—karena akar dari $x + 2 = 0$ adalah $x = -2$.</li>
+  <li>Hitung $P(-2)$:
+   <ul>
+    <li>$3(-2)^5 = 3(-32) = -96$</li>
+    <li>$-2(-2)^4 = -2(16) = -32$</li>
+    <li>$(-2)^3 = -8$</li>
+    <li>$-5(-2)^2 = -5(4) = -20$</li>
+    <li>$7(-2) = -14$</li>
+    <li>Konstanta: $-4$</li>
+   </ul>
+  </li>
+  <li>Jumlahkan: $-96 - 32 - 8 - 20 - 14 - 4 = -174$.</li>
+ </ol>
+ <p class="lesson-text">Jadi sisa pembagiannya adalah <strong>$-174$</strong>. Perhatikan efisiensi Teorema Sisa: kita memperoleh hasil ini tanpa perlu melakukan pembagian panjang atau sintetis sama sekali.</p>
+
+ <p class="lesson-subheading">Soal 6: Teorema Faktor dan Faktorisasi</p>
+ <p class="lesson-text">Tunjukkan bahwa $(x + 2)$ adalah faktor dari $P(x) = x^3 - 4x^2 - 3x + 18$, lalu faktorkan $P(x)$ secara lengkap.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Uji dengan Teorema Faktor</strong>: $(x + 2)$ adalah faktor jika dan hanya jika $P(-2) = 0$.<br>$P(-2) = (-2)^3 - 4(-2)^2 - 3(-2) + 18 = -8 - 16 + 6 + 18 = 0$ ✓</li>
+  <li><strong>Pembagian sintetis dengan $k = -2$</strong> pada koefisien $1, -4, -3, 18$:
+   $$\begin{array}{r|rrrr} -2 & 1 & -4 & -3 & 18 \\ & & -2 & 12 & -18 \\ \hline & 1 & -6 & 9 & 0 \end{array}$$
+   Hasil bagi: $x^2 - 6x + 9$.</li>
+  <li><strong>Faktorkan hasil bagi</strong>: $x^2 - 6x + 9 = (x - 3)^2$.</li>
+  <li><strong>Kesimpulan</strong>: $P(x) = (x + 2)(x - 3)^2$.</li>
+ </ol>
+ <p class="lesson-text">Akar-akarnya adalah $x = -2$ (multiplisitas 1) dan $x = 3$ (multiplisitas 2). Secara geometris, grafik menembus sumbu $X$ di $x = -2$ (multiplisitas ganjil), tetapi hanya menyinggung di $x = 3$ (multiplisitas genap).</p>
+
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Volume Balok</p>
+ <p class="lesson-text">Sebuah balok memiliki panjang $(x + 2)$ cm, lebar $(x + 1)$ cm, dan tinggi $x$ cm. Jika volume balok adalah 60 cm³, tentukan nilai $x$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Model matematika</strong>: volume balok = panjang × lebar × tinggi.
+   <p class="lesson-text">$$x(x+1)(x+2) = 60$$</p>
+  </li>
+  <li><strong>Ekspansi</strong>:
+   <p class="lesson-text">$$x(x^2 + 3x + 2) = x^3 + 3x^2 + 2x = 60$$</p>
+   Sehingga $x^3 + 3x^2 + 2x - 60 = 0$.</li>
+  <li><strong>Kandidat akar rasional</strong>: faktor dari $60$—yaitu $\pm 1, \pm 2, \pm 3, \pm 4, \pm 5, \pm 6, \pm 10, \pm 12, \pm 15, \pm 20, \pm 30, \pm 60$.</li>
+  <li><strong>Uji $x = 3$</strong>: $27 + 27 + 6 - 60 = 0$ ✓. Faktor $(x - 3)$.</li>
+  <li><strong>Pembagian sintetis dengan $k = 3$</strong>:
+   $$\begin{array}{r|rrrr} 3 & 1 & 3 & 2 & -60 \\ & & 3 & 18 & 60 \\ \hline & 1 & 6 & 20 & 0 \end{array}$$
+   Hasil bagi: $x^2 + 6x + 20$.</li>
+  <li><strong>Cek diskriminan hasil bagi</strong>: $D = 36 - 80 = -44 < 0$—tidak memiliki akar real. Jadi satu-satunya solusi real adalah $x = 3$.</li>
+  <li><strong>Verifikasi konteks</strong>: $x = 3$ cm → panjang = 5 cm, lebar = 4 cm, tinggi = 3 cm. Volume $= 5 \times 4 \times 3 = 60$ cm³ ✓.</li>
+ </ol>
+ <p class="lesson-text">Jadi nilai $x = 3$. Perhatikan dua hal penting dari soal cerita: (i) hasil akhir harus diperiksa kewajarannya—$x = 3$ memberi dimensi positif untuk semua sisi; (ii) akar kompleks dari hasil bagi kuadrat dibuang karena panjang/lebar/tinggi tidak bisa kompleks.</p>
+
+ <p class="lesson-text">Ketujuh soal di atas memperlihatkan pola penyelesaian yang sistematis: identifikasi kandidat akar, uji dengan substitusi, turunkan derajat dengan pembagian sintetis, dan ulangi hingga semua faktor ditemukan. Namun, ada beberapa jebakan halus yang sering menjebak pembaca—terutama pada tahap akhir faktorisasi. Mari kita bahas kesalahan-kesalahan tersebut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+
+ <p class="lesson-subheading-alt">Kesalahan 1: Menentukan Derajat dari Bentuk Belum Disederhanakan</p>
+ <ul>
+  <li><strong>Kesalahan</strong>: Melihat $P(x) = (x^2 + 1) - x^2$ dan langsung menyimpulkan derajatnya 2.</li>
+  <li><strong>Koreksi</strong>: Sederhanakan terlebih dahulu. $P(x) = 1$ adalah polinomial konstan berderajat 0. Derajat ditentukan setelah bentuk paling sederhana.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 2: Mengabaikan Suku 0 dalam Pembagian Sintetis</p>
+ <ul>
+  <li><strong>Kesalahan</strong>: Untuk $P(x) = x^3 - 1$, menulis koefisien sebagai $1, -1$ (melewatkan $x^2$ dan $x$).</li>
+  <li><strong>Koreksi</strong>: Tulis semua koefisien dari pangkat tertinggi hingga konstanta: $1, 0, 0, -1$. Kolom yang kosong harus diisi $0$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 3: Membalik Tanda pada Faktor</p>
+ <ul>
+  <li><strong>Kesalahan</strong>: Jika $P(3) = 0$, menulis faktornya sebagai $(x + 3)$.</li>
+  <li><strong>Koreksi</strong>: Jika $P(k) = 0$, faktornya adalah $(x - k)$. Karena $P(3) = 0$, faktornya adalah $(x - 3)$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 4: Salah Menentukan Titik Substitusi untuk Pembagi $ax + b$</p>
+<ul>
+ <li><strong>Kesalahan</strong>: Mengira bahwa untuk pembagi $(2x - 4)$ kita harus mensubstitusikan $x = 4$—karena angka 4 muncul di pembagi—atau mengira bahwa substitusi harus menggunakan koefisien konstanta dari $ax + b$.</li>
+ <li><strong>Koreksi</strong>: Sisa pembagian oleh $(ax + b)$ adalah $P\!\left(-\dfrac{b}{a}\right)$—yaitu nilai $P$ pada akar pembagi. Untuk $(2x - 4)$: $2x - 4 = 0 \Rightarrow x = 2$, sehingga sisanya $P(2)$. Karena $(2x - 4) = 2(x - 2)$, hasil baginya berbeda dari pembagian oleh $(x-2)$—tetapi <em>sisanya tetap sama</em>.</li>
+</ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 5: Berhenti Terlalu Cepat dalam Faktorisasi</p>
+ <ul>
+  <li><strong>Kesalahan</strong>: Setelah mendapatkan $P(x) = (x - 1)(x^2 + 1)$, menganggap faktorisasi selesai untuk polinomial real.</li>
+  <li><strong>Koreksi</strong>: Jika bekerja di himpunan real, $x^2 + 1$ <strong>tidak dapat</strong> difaktorkan lebih lanjut (tidak memiliki akar real), jadi berhenti di sini sah. Tetapi jika bekerja di himpunan kompleks, lanjutkan menjadi $(x - i)(x + i)$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 6: Menganggap Semua Akar Harus Bilangan Bulat atau Rasional</p>
+ <ul>
+  <li><strong>Kesalahan</strong>: Setelah mencoba semua kandidat dari Teorema Akar Rasional dan tidak menemukan yang cocok, menyimpulkan bahwa polinomial tersebut tidak memiliki akar sama sekali.</li>
+  <li><strong>Koreksi</strong>: Teorema Akar Rasional hanya memberikan kandidat akar <strong>rasional</strong>—bukan jaminan bahwa akar polinomial harus rasional. Polinomial $x^2 - 2$ tidak memiliki akar rasional, tetapi memiliki akar real $\sqrt{2}$ dan $-\sqrt{2}$—keduanya irasional. Untuk menemukan akar irasional, perlu digunakan rumus kuadrat atau metode numerik.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 7: Menerapkan Pembagian Sintetis pada Pembagi Non-Linear</p>
+ <ul>
+  <li><strong>Kesalahan</strong>: Menggunakan pembagian sintetis untuk membagi $P(x)$ dengan $(x^2 - 1)$ atau $(x^2 + x + 1)$.</li>
+  <li><strong>Koreksi</strong>: Pembagian sintetis <strong>hanya berlaku</strong> untuk pembagi berbentuk $(x - k)$—yaitu polinomial berderajat satu. Untuk pembagi berderajat dua atau lebih, gunakan pembagian panjang. Jika pembagi berbentuk $(ax - b)$ dengan $a \neq 1$, pembagian sintetis dapat dipakai dengan memodifikasi hasil bagi—atau lebih aman menggunakan pembagian panjang.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti polinomial yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Polinomial</strong> adalah ekspresi $P(x) = a_n x^n + \dots + a_0$ dengan $a_n \neq 0$.</li>
+  <li><strong>Derajat ($\deg$)</strong> adalah pangkat tertinggi. Derajat hasil kali = jumlah derajat; derajat hasil jumlah $\leq$ maksimum.</li>
+  <li><strong>Akar (nol)</strong> adalah solusi $P(x) = 0$. Polinomial derajat $n$ memiliki tepat $n$ akar di kompleks (Teorema Dasar Aljabar).</li>
+  <li><strong>Multiplisitas</strong> akar memengaruhi perilaku grafik: ganjil (menembus), genap (menyinggung).</li>
+  <li><strong>Teorema Akar Rasional</strong> memberikan kandidat akar rasional $\frac{p}{q}$, dengan $p \mid a_0$ dan $q \mid a_n$.</li>
+  <li><strong>Pembagian Polinomial</strong> dapat dilakukan dengan pembagian panjang (umum) atau sintetis (khusus $(x - k)$).</li>
+  <li><strong>Teorema Sisa</strong>: Sisa $(x - k)$ adalah $P(k)$. Untuk $(ax+b)$, sisanya $P(-b/a)$.</li>
+  <li><strong>Teorema Faktor</strong>: $(x - k)$ adalah faktor $\leftrightarrow P(k) = 0$.</li>
+  <li><strong>Faktorisasi</strong> adalah proses memecah polinomial menjadi faktor-faktor yang lebih sederhana, bertujuan mencari akar atau menyederhanakan ekspresi rasional.</li>
+  <li>Kesalahan umum: lupa mengisi koefisien 0, membalik tanda faktor, dan menggunakan pembagian sintetis untuk pembagi non-linear.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Polinomial adalah <strong>jembatan antara aljabar dasar dan kalkulus</strong>. Kemampuan untuk memfaktorkan polinomial derajat tinggi sama dengan kemampuan untuk "membongkar" struktur persamaan yang rumit. Yang membuat polinomial istimewa adalah <strong>kepastian yang ia berikan</strong>: Teorema Dasar Aljabar menjamin keberadaan akar, Teorema Akar Rasional memberi kandidat pencarian, dan Teorema Sisa memungkinkan evaluasi cepat—semuanya tanpa memerlukan metode numerik yang tidak pasti.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Pertidaksamaan</strong> (yang menggunakan tanda polinomial untuk menentukan rentang solusi), <strong>Fungsi Rasional</strong> (yang melibatkan pembagian dua polinomial dan analisis asimtot), <strong>Aljabar Linear</strong> (yang menggunakan polinomial karakteristik untuk mencari nilai eigen matriks), <strong>Analisis Kompleks</strong> (yang mempelajari akar-akar polinomial di bidang kompleks), <strong>Deret Taylor</strong> (yang menggunakan polinomial untuk mendekati fungsi transenden), dan <strong>Aljabar Abstrak</strong> (yang menggeneralisasi polinomial menjadi ring polinomial $R[x]$).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan pembagian sintetis, faktorisasi bertingkat, dan penerapan Teorema Akar Rasional. Kebiasaan menuliskan semua koefisien (termasuk yang bernilai 0) secara eksplisit, memeriksa ulang tanda pada faktor $(x - k)$, dan mengenali kapan harus beralih dari pembagian sintetis ke pembagian panjang akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik yang lebih kompleks, di mana manipulasi polinomial menjadi langkah awal dari hampir setiap penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

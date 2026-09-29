@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Pertidaksamaan (Linear, Kuadrat, dan Nilai Mutlak)</title>
+ <meta name="description" content="Pertidaksamaan linear, kuadrat, dan nilai mutlak: aturan pembalikan tanda, metode garis bilangan (uji tanda), sifat nilai mutlak, serta kesalahan umum.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Pertidaksamaan (Linear, Kuadrat, dan Nilai Mutlak)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Persamaan Linear</strong> — karena teknik isolasi variabel pada pertidaksamaan linear identik dengan persamaan linear, hanya dengan tambahan aturan pembalikan tanda.</li>
+   <li><strong>Persamaan Kuadrat</strong> — terutama faktorisasi dan diskriminan, karena akar-akar persamaan kuadrat berfungsi sebagai titik kritis pada metode garis bilangan (uji tanda).</li>
+   <li><strong>Ekspresi Aljabar</strong> — terutama penyederhanaan dan pemfaktoran, karena pertidaksamaan kuadrat maupun nilai mutlak memerlukan manipulasi ekspresi sebelum dianalisis tandanya.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Berbeda dengan persamaan yang menyatakan <strong>kesamaan nilai</strong> antara dua ruas, <strong>pertidaksamaan</strong> menyatakan <strong>relasi urutan</strong> (lebih besar, lebih kecil, lebih besar atau sama dengan, atau lebih kecil atau sama dengan) antara dua ekspresi aljabar. Solusi dari persamaan biasanya berupa satu atau beberapa nilai diskrit, sedangkan solusi dari pertidaksamaan biasanya berupa <strong>interval</strong> (rentang nilai) pada garis bilangan real.</p>
+ <p class="lesson-text">Perbedaan mendasar ini membawa konsekuensi penting. Pada persamaan, kita bebas mengalikan kedua ruas dengan bilangan apa pun (kecuali nol); pada pertidaksamaan, mengalikan dengan bilangan <em>negatif</em> justru <strong>membalik tanda pertidaksamaan</strong>. Inilah aturan paling krusial dalam menyelesaikan pertidaksamaan—dan menjadi sumber kesalahan paling umum. Selain itu, pertidaksamaan juga memerlukan representasi visual berupa <strong>garis bilangan</strong> untuk menentukan interval solusi—sesuatu yang tidak diperlukan dalam menyelesaikan persamaan.</p>
+ <p class="lesson-text">Yang membuat pertidaksamaan sangat penting adalah <strong>perannya sebagai jembatan menuju kalkulus dan analisis</strong>. Domain fungsi, interval naik/turun, optimisasi, dan analisis tanda fungsi—semuanya bertumpu pada kemampuan menyelesaikan pertidaksamaan. Materi ini disusun bertahap: dari <strong>pertidaksamaan linear</strong>, <strong>pertidaksamaan kuadrat</strong> dengan metode garis bilangan, <strong>pertidaksamaan nilai mutlak</strong> beserta variasinya, <strong>kesalahan umum</strong>, hingga <strong>ringkasan</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan prosedurnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pertidaksamaan Linear</h3>
+ <p class="lesson-text">Kita mulai dari bentuk paling sederhana: pertidaksamaan dengan variabel berpangkat satu.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Bentuk Umum</p>
+ <p class="lesson-text">Pertidaksamaan linear adalah pertidaksamaan yang memuat variabel berpangkat satu. Bentuk umumnya adalah:</p>
+ <p class="lesson-text">$$ax + b < 0, \quad ax + b > 0, \quad ax + b \leq 0, \quad ax + b \geq 0$$</p>
+ <p class="lesson-text">dengan $a \neq 0$, serta $a$ dan $b$ adalah konstanta real. Tanda pertidaksamaan dapat berupa salah satu dari $<, >, \leq, \geq$.</p>
+
+ <p class="lesson-subheading">B. Prinsip Dasar Penyelesaian</p>
+ <p class="lesson-text">Prinsip penyelesaian pertidaksamaan linear sama dengan persamaan linear, yaitu mengisolasi variabel pada salah satu ruas. Namun, terdapat satu aturan fundamental yang bersifat <strong>khusus untuk pertidaksamaan</strong>:</p>
+ <p class="lesson-text"><strong>Aturan Pembalikan Tanda</strong>: Jika kedua ruas pertidaksamaan <strong>dikalikan atau dibagi</strong> dengan <strong>bilangan negatif</strong>, maka tanda pertidaksamaan harus <strong>dibalik</strong> ($<$ menjadi $>$, $\leq$ menjadi $\geq$, dan sebaliknya).</p>
+ <p class="lesson-subheading-alt">Mengapa harus dibalik?</p>
+ <p class="lesson-text">Secara intuitif, jika $2 < 5$, dan kedua ruas dikalikan dengan $-1$, maka $-2 > -5$. Hubungan urutan terbalik karena perkalian dengan bilangan negatif membalik urutan pada garis bilangan. Secara aljabar, sifat ini berasal dari sifat monotonisitas fungsi linear dengan kemiringan negatif.</p>
+
+ <p class="lesson-subheading">C. Prosedur Penyelesaian</p>
+ <ol>
+  <li>Sederhanakan kedua ruas (hilangkan kurung, gabungkan suku sejenis).</li>
+  <li>Kumpulkan variabel di satu ruas dan konstanta di ruas lain menggunakan operasi invers (penjumlahan/pengurangan).</li>
+  <li>Bagi kedua ruas dengan koefisien variabel. <strong>Jika koefisiennya negatif, balik tanda pertidaksamaan.</strong></li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 1 (Koefisien Positif):</p>
+ <p class="lesson-text">Selesaikan $3x + 5 > 11$.</p>
+ <p class="lesson-text">Kurangi kedua ruas dengan 5:</p>
+ <p class="lesson-text">$$3x > 6$$</p>
+ <p class="lesson-text">Bagi kedua ruas dengan 3 (positif, tanda tetap):</p>
+ <p class="lesson-text">$$x > 2$$</p>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah interval $(2, \infty)$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2 (Koefisien Negatif — Pembalikan Tanda):</p>
+ <p class="lesson-text">Selesaikan $-2x + 3 \leq 7$.</p>
+ <p class="lesson-text">Kurangi kedua ruas dengan 3:</p>
+ <p class="lesson-text">$$-2x \leq 4$$</p>
+ <p class="lesson-text">Bagi kedua ruas dengan $-2$ (<strong>negatif, tanda harus dibalik</strong>):</p>
+ <p class="lesson-text">$$x \geq -2$$</p>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah interval $[-2, \infty)$.</p>
+
+ <p class="lesson-text">Aturan pembalikan tanda adalah satu-satunya hal baru pada pertidaksamaan linear. Namun, begitu variabel muncul dengan pangkat dua—atau berada di dalam tanda nilai mutlak—aturan mainnya berubah secara signifikan. Kita mulai dengan pertidaksamaan kuadrat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Pertidaksamaan Kuadrat</h3>
+ <p class="lesson-text">Pada pertidaksamaan kuadrat, tanda fungsi tidak lagi konstan—ia berganti tergantung posisi relatif terhadap akar-akarnya. Di sinilah metode garis bilangan menjadi alat utama.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Bentuk Umum</p>
+ <p class="lesson-text">Pertidaksamaan kuadrat adalah pertidaksamaan yang memuat variabel berpangkat dua. Bentuk bakunya adalah:</p>
+ <p class="lesson-text">$$ax^2 + bx + c > 0, \quad ax^2 + bx + c < 0, \quad ax^2 + bx + c \geq 0, \quad ax^2 + bx + c \leq 0$$</p>
+ <p class="lesson-text">dengan $a \neq 0$. Penyelesaiannya bukan lagi satu interval tunggal, melainkan bisa berupa gabungan dua interval atau interval tunggal, tergantung pada posisi parabola terhadap sumbu $X$.</p>
+
+ <p class="lesson-subheading">B. Metode Garis Bilangan (Uji Tanda)</p>
+ <p class="lesson-text">Metode ini didasarkan pada fakta bahwa polinomial kontinu hanya dapat berubah tanda di akar-akarnya (titik potong dengan sumbu $X$). Prosedur penyelesaiannya adalah sebagai berikut:</p>
+ <ol>
+  <li><strong>Nolkan ruas kanan</strong>: Ubah pertidaksamaan ke bentuk $ax^2 + bx + c > 0$ (atau $<0$, $\geq 0$, $\leq 0$) dengan ruas kanan sama dengan nol.</li>
+  <li><strong>Faktorkan atau cari akar</strong>: Tentukan akar-akar dari persamaan kuadrat $ax^2 + bx + c = 0$ (misal $x_1$ dan $x_2$ dengan $x_1 \leq x_2$).</li>
+  <li><strong>Plot pada garis bilangan</strong>: Gambarkan garis bilangan dan tandai akar-akar tersebut. Akar-akar ini membagi garis bilangan menjadi tiga interval: $(-\infty, x_1)$, $(x_1, x_2)$, dan $(x_2, \infty)$.</li>
+  <li><strong>Uji titik sampel</strong>: Pilih satu titik uji dari setiap interval, substitusikan ke $ax^2 + bx + c$, dan catat tanda hasilnya (positif atau negatif).</li>
+  <li><strong>Tentukan interval solusi</strong>:
+   <ul>
+    <li>Jika pertidaksamaan bertanda $> 0$ atau $\geq 0$, ambil interval yang bertanda <strong>positif</strong>.</li>
+    <li>Jika pertidaksamaan bertanda $< 0$ atau $\leq 0$, ambil interval yang bertanda <strong>negatif</strong>.</li>
+    <li>Untuk tanda $\geq$ atau $\leq$, akar-akar <strong>termasuk</strong> solusi (digunakan kurung siku $[$ atau $]$). Untuk tanda $>$ atau $<$, akar-akar <strong>tidak termasuk</strong> (digunakan kurung biasa $($ atau $)$).</li>
+   </ul>
+  </li>
+ </ol>
+
+ <p class="lesson-subheading">C. Kasus-Kasus Khusus (Berdasarkan Diskriminan $D$)</p>
+ <p class="lesson-text">Hasil penyelesaian sangat bergantung pada nilai diskriminan $D = b^2 - 4ac$:</p>
+ <ol>
+  <li>$D > 0$: Parabola memotong sumbu $X$ di dua titik. Terdapat tiga interval dengan tanda bergantian (positif-negatif-positif untuk $a > 0$, atau negatif-positif-negatif untuk $a < 0$).</li>
+  <li>$D = 0$: Parabola menyinggung sumbu $X$ di satu titik. Nilai $ax^2 + bx + c$ selalu $\geq 0$ (jika $a > 0$) atau selalu $\leq 0$ (jika $a < 0$), dan sama dengan nol hanya di titik singgung.</li>
+  <li>$D < 0$: Parabola tidak memotong sumbu $X$. Nilai $ax^2 + bx + c$ selalu <strong>positif</strong> (jika $a > 0$, definit positif) atau selalu <strong>negatif</strong> (jika $a < 0$, definit negatif) untuk semua $x$ real.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 3 ($D > 0$ dengan $a > 0$):</p>
+ <p class="lesson-text">Selesaikan $x^2 - 4x - 5 > 0$.</p>
+ <p class="lesson-text">Faktorkan: $(x - 5)(x + 1) > 0$.</p>
+ <p class="lesson-text">Akar-akar: $x = -1$ dan $x = 5$.</p>
+ <p class="lesson-text">Garis bilangan dan uji titik:</p>
+ <ul>
+  <li>Interval $(-\infty, -1)$: ambil $x = -2 \rightarrow (-7)(-1) = 7 > 0$ (positif).</li>
+  <li>Interval $(-1, 5)$: ambil $x = 0 \rightarrow (-5)(1) = -5 < 0$ (negatif).</li>
+  <li>Interval $(5, \infty)$: ambil $x = 6 \rightarrow (1)(7) = 7 > 0$ (positif).</li>
+ </ul>
+ <p class="lesson-text">Karena yang diminta $> 0$, solusinya adalah interval yang positif: $(-\infty, -1) \cup (5, \infty)$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 4 ($D = 0$):</p>
+ <p class="lesson-text">Selesaikan $x^2 - 6x + 9 \leq 0$.</p>
+ <p class="lesson-text">Faktorkan: $(x - 3)^2 \leq 0$.</p>
+ <p class="lesson-text">Kuadrat suatu bilangan real selalu $\geq 0$. Agar $\leq 0$, satu-satunya kemungkinan adalah $(x - 3)^2 = 0$.</p>
+ <p class="lesson-text">Jadi, solusinya hanya $x = 3$ (interval tertutup tunggal $\{3\}$).</p>
+
+ <p class="lesson-subheading-alt">Contoh 5 ($D < 0$ — Definit Positif):</p>
+ <p class="lesson-text">Selesaikan $x^2 + x + 1 > 0$.</p>
+ <p class="lesson-text">$D = 1 - 4 = -3 < 0$ dan $a = 1 > 0$. Parabola terbuka ke atas dan tidak memotong sumbu $X$, sehingga nilai $x^2 + x + 1$ selalu positif untuk semua $x$ real.</p>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah semua bilangan real: $(-\infty, \infty)$.</p>
+
+ <p class="lesson-text">Metode garis bilangan bekerja sangat baik untuk pertidaksamaan polinomial—dan juga akan bekerja untuk pertidaksamaan rasional (pecahan), dengan satu tambahan penting: titik kritis penyebut harus disertakan. Namun, ada satu jenis pertidaksamaan yang memerlukan penanganan khusus: pertidaksamaan nilai mutlak.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Pertidaksamaan Nilai Mutlak</h3>
+ <p class="lesson-text">Nilai mutlak memperkenalkan konsep "jarak" ke dalam pertidaksamaan—dan dengan itu, sekumpulan aturan baru yang perlu dikuasai.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Konsep Dasar</p>
+ <p class="lesson-text">Nilai mutlak suatu bilangan real $x$, dinotasikan $|x|$, didefinisikan sebagai jarak $x$ dari titik nol pada garis bilangan. Secara formal:</p>
+ <p class="lesson-text">$$|x| = \begin{cases} x & \text{jika } x \geq 0 \\ -x & \text{jika } x < 0 \end{cases}$$</p>
+ <p class="lesson-text">Konsekuensi penting dari definisi ini adalah $|x| \geq 0$ untuk semua $x$, dan $|x| = |y|$ berarti $x = y$ atau $x = -y$.</p>
+
+ <p class="lesson-subheading">B. Sifat-Sifat Dasar Penyelesaian</p>
+ <p class="lesson-text">Untuk suatu konstanta $a > 0$, berlaku dua aturan fundamental:</p>
+ <ol>
+  <li>$|x| < a \leftrightarrow -a < x < a$<br>(Solusi berupa interval terbuka tunggal di antara $-a$ dan $a$).</li>
+  <li>$|x| > a \leftrightarrow x < -a \quad \text{atau} \quad x > a$<br>(Solusi berupa gabungan dua interval terbuka di luar $[-a, a]$).</li>
+ </ol>
+ <p class="lesson-text">Untuk pertidaksamaan $\leq$ dan $\geq$, tanda pada interval mengikuti tanda pertidaksamaan (gunakan kurung siku pada batas).</p>
+
+ <p class="lesson-subheading">C. Generalisasi untuk Fungsi dalam Nilai Mutlak</p>
+ <p class="lesson-text">Jika nilai mutlak memuat fungsi aljabar $f(x)$, maka aturan di atas digeneralisasi sebagai berikut:</p>
+ <ul>
+  <li>$|f(x)| < g(x)$ (dengan $g(x) > 0$): $\leftrightarrow -g(x) < f(x) < g(x)$<br>(Ini menghasilkan sistem dua pertidaksamaan yang harus dipenuhi <strong>bersamaan</strong>).</li>
+  <li>$|f(x)| > g(x)$ (dengan $g(x) \geq 0$): $\leftrightarrow f(x) < -g(x) \quad \text{atau} \quad f(x) > g(x)$<br>(Ini menghasilkan gabungan dua kondisi terpisah).</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Metode Kuadrat (Menghilangkan Nilai Mutlak)</p>
+ <p class="lesson-text">Karena $|f(x)|^2 = (f(x))^2$ untuk semua $x$, maka pertidaksamaan berbentuk:</p>
+ <p class="lesson-text">$$|f(x)| < |g(x)| \leftrightarrow (f(x))^2 < (g(x))^2$$</p>
+ <p class="lesson-text">Metode ini sangat efektif karena menghilangkan tanda nilai mutlak tanpa perlu memecah kasus, tetapi harus digunakan dengan hati-hati (hanya berlaku untuk membandingkan dua nilai mutlak).</p>
+
+ <p class="lesson-subheading-alt">Contoh 6 (Bentuk Dasar $|x| < a$):</p>
+ <p class="lesson-text">Selesaikan $|2x - 3| < 5$.</p>
+ <p class="lesson-text">Gunakan aturan: $-5 < 2x - 3 < 5$.</p>
+ <p class="lesson-text">Tambahkan 3 ke semua ruas:</p>
+ <p class="lesson-text">$$-2 < 2x < 8$$</p>
+ <p class="lesson-text">Bagi dengan 2:</p>
+ <p class="lesson-text">$$-1 < x < 4$$</p>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah $(-1, 4)$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 7 (Bentuk Dasar $|x| > a$):</p>
+ <p class="lesson-text">Selesaikan $|3x + 1| \geq 7$.</p>
+ <p class="lesson-text">Gunakan aturan: $3x + 1 \leq -7$ atau $3x + 1 \geq 7$.</p>
+ <p class="lesson-text">Selesaikan masing-masing:</p>
+ <ul>
+  <li>$3x + 1 \leq -7 \rightarrow 3x \leq -8 \rightarrow x \leq -\frac{8}{3}$.</li>
+  <li>$3x + 1 \geq 7 \rightarrow 3x \geq 6 \rightarrow x \geq 2$.</li>
+ </ul>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah $\left(-\infty, -\frac{8}{3}\right] \cup [2, \infty)$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 8 (Membandingkan Dua Nilai Mutlak):</p>
+ <p class="lesson-text">Selesaikan $|2x - 1| < |x + 2|$.</p>
+ <p class="lesson-text">Kuadratkan kedua ruas:</p>
+ <p class="lesson-text">$$(2x - 1)^2 < (x + 2)^2$$</p>
+ <p class="lesson-text">Ekspansi:</p>
+ <p class="lesson-text">$$4x^2 - 4x + 1 < x^2 + 4x + 4$$</p>
+ <p class="lesson-text">Pindahkan semua ke ruas kiri:</p>
+ <p class="lesson-text">$$3x^2 - 8x - 3 < 0$$</p>
+ <p class="lesson-text">Faktorkan:</p>
+ <p class="lesson-text">$$(3x + 1)(x - 3) < 0$$</p>
+ <p class="lesson-text">Akar-akar: $x = -\frac{1}{3}$ dan $x = 3$. Karena $a > 0$, parabola terbuka ke atas dan negatif di antara akar-akarnya.</p>
+ <p class="lesson-text">Jadi, himpunan penyelesaiannya adalah $\left(-\frac{1}{3}, 3\right)$.</p>
+
+ <p class="lesson-text">Dengan menguasai ketiga jenis pertidaksamaan ini—linear, kuadrat, dan nilai mutlak—kita memiliki perangkat lengkap untuk menganalisis tanda fungsi apa pun. Mari kita terapkan seluruh konsep ini—pembalikan tanda, metode garis bilangan, pertidaksamaan rasional, dan nilai mutlak—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan pertidaksamaan linear, kuadrat, rasional, dan nilai mutlak. Setiap langkah dituliskan lengkap, dan prinsip yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Pertidaksamaan Linear</p>
+ <p class="lesson-text">Selesaikan $-4x + 7 \geq 2x - 5$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Kumpulkan variabel di satu ruas</strong> — kurangi kedua ruas dengan $2x$:<br>$-4x - 2x + 7 \geq -5 \quad \rightarrow \quad -6x + 7 \geq -5$</li>
+  <li><strong>Pindahkan konstanta</strong> — kurangi kedua ruas dengan 7:<br>$-6x \geq -12$</li>
+  <li><strong>Bagi dengan $-6$</strong> (negatif—<strong>tanda harus dibalik</strong>):<br>$x \leq 2$</li>
+  <li><strong>Verifikasi</strong>: uji $x = 0$ — apakah $-4(0) + 7 \geq 2(0) - 5$? Ya, $7 \geq -5$ ✓</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $(-\infty, 2]$.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Pertidaksamaan Kuadrat dengan $D > 0$</p>
+ <p class="lesson-text">Selesaikan $x^2 - x - 6 \leq 0$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Faktorkan</strong>: $(x - 3)(x + 2) \leq 0$.</li>
+  <li><strong>Akar-akar</strong>: $x = -2$ dan $x = 3$.</li>
+  <li><strong>Uji tanda di setiap interval</strong>:
+   <ul>
+    <li>$(-\infty, -2)$: ambil $x = -3 \rightarrow (-6)(-1) = 6 > 0$</li>
+    <li>$(-2, 3)$: ambil $x = 0 \rightarrow (-3)(2) = -6 < 0$</li>
+    <li>$(3, \infty)$: ambil $x = 4 \rightarrow (1)(6) = 6 > 0$</li>
+   </ul>
+  </li>
+  <li><strong>Pilih interval negatif</strong> (karena $\leq 0$), dan sertakan akar karena tanda $\leq$:<br>$[-2, 3]$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Pertidaksamaan Kuadrat dengan $D < 0$</p>
+   <p class="lesson-text">Selesaikan $2x^2 - 4x + 5 > 0$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Hitung diskriminan</strong>: $D = (-4)^2 - 4(2)(5) = 16 - 40 = -24 < 0$.</li>
+    <li>Karena $a = 2 > 0$ dan $D < 0$, parabola terbuka ke atas dan tidak memotong sumbu $X$—sehingga $2x^2 - 4x + 5$ <strong>selalu positif</strong> untuk semua $x$ real.</li>
+    <li>Pertidaksamaan $> 0$ terpenuhi oleh semua bilangan real.</li>
+   </ol>
+   <p class="lesson-text">Himpunan penyelesaiannya: $(-\infty, \infty) = \mathbb{R}$.</p>
+   
+   <p class="lesson-subheading">Soal 4: Pertidaksamaan Rasional</p>
+   <p class="lesson-text">Selesaikan $\dfrac{x + 1}{x - 2} \geq 0$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Identifikasi titik kritis</strong>: pembilang $x + 1 = 0 \rightarrow x = -1$; penyebut $x - 2 = 0 \rightarrow x = 2$.</li>
+    <li><strong>Plot pada garis bilangan</strong>: $x = -1$ dan $x = 2$ membagi garis menjadi tiga interval.</li>
+    <li><strong>Uji tanda</strong>:
+     <ul>
+      <li>$(-\infty, -1)$: $x = -2 \rightarrow \frac{-1}{-4} > 0$</li>
+      <li>$(-1, 2)$: $x = 0 \rightarrow \frac{1}{-2} < 0$</li>
+      <li>$(2, \infty)$: $x = 3 \rightarrow \frac{4}{1} > 0$</li>
+     </ul>
+    </li>
+    <li><strong>Terapkan syarat</strong>: karena $\geq 0$, ambil interval positif. Akar pembilang $x = -1$ <strong>disertakan</strong> (membuat pembilang nol, sehingga hasilnya $0$). Akar penyebut $x = 2$ <strong>tidak disertakan</strong> (membuat penyebut nol, tidak terdefinisi).</li>
+   </ol>
+   <p class="lesson-text">Himpunan penyelesaiannya: $(-\infty, -1] \cup (2, \infty)$.</p>
+   <p class="lesson-text">Perhatikan: tanda kurung <em>tutup</em> pada $-1$ dan tanda kurung <em>buka</em> pada $2$ adalah aturan baku untuk pertidaksamaan rasional—karena penyebut tidak boleh nol.</p>
+   
+   <p class="lesson-subheading">Soal 5: Nilai Mutlak — Bentuk $|f(x)| < a$</p>
+     <p class="lesson-text">Selesaikan $|4x - 1| \leq 9$.</p>
+     <p class="lesson-subheading-alt">Pembahasan:</p>
+     <ol>
+      <li>Gunakan aturan $|f(x)| \leq a \leftrightarrow -a \leq f(x) \leq a$:<br>$-9 \leq 4x - 1 \leq 9$</li>
+      <li>Tambahkan 1 ke semua ruas:<br>$-8 \leq 4x \leq 10$</li>
+      <li>Bagi dengan 4:<br>$-2 \leq x \leq \dfrac{5}{2}$</li>
+     </ol>
+     <p class="lesson-text">Himpunan penyelesaiannya: $\left[-2, \dfrac{5}{2}\right]$.</p>
+     
+     <p class="lesson-subheading">Soal 6: Nilai Mutlak — Bentuk $|f(x)| > a$</p>
+     <p class="lesson-text">Selesaikan $|2x + 5| > 3$.</p>
+     <p class="lesson-subheading-alt">Pembahasan:</p>
+     <ol>
+      <li>Gunakan aturan $|f(x)| > a \leftrightarrow f(x) < -a$ atau $f(x)> a$:<br>$2x + 5 < -3$ atau $2x + 5> 3$</li>
+      <li>Selesaikan masing-masing:
+       <ul>
+        <li>$2x + 5 < -3 \rightarrow 2x < -8 \rightarrow x < -4$</li>
+        <li>$2x + 5 > 3 \rightarrow 2x > -2 \rightarrow x > -1$</li>
+       </ul>
+      </li>
+     </ol>
+     <p class="lesson-text">Himpunan penyelesaiannya: $(-\infty, -4) \cup (-1, \infty)$.</p>
+     
+     <p class="lesson-subheading">Soal 7: Nilai Mutlak — Membandingkan Dua Nilai Mutlak</p>
+     <p class="lesson-text">Selesaikan $|3x - 2| \geq |x + 4|$.</p>
+     <p class="lesson-subheading-alt">Pembahasan:</p>
+     <ol>
+      <li><strong>Kuadratkan kedua ruas</strong> (keduanya nonnegatif, sehingga operasi ini valid):<br>$(3x - 2)^2 \geq (x + 4)^2$</li>
+      <li><strong>Pindahkan ke ruas kiri</strong> dan gunakan identitas $A^2 - B^2 = (A - B)(A + B)$:<br>$(3x - 2)^2 - (x + 4)^2 \geq 0$<br>$[(3x - 2) - (x + 4)] \cdot [(3x - 2) + (x + 4)] \geq 0$<br>$(2x - 6)(4x + 2) \geq 0$</li>
+      <li><strong>Sederhanakan</strong>: faktorkan konstanta di masing-masing faktor:<br>$2(x - 3) \cdot 2(2x + 1) \geq 0 \quad \rightarrow \quad 4(x - 3)(2x + 1) \geq 0$</li>
+      <li><strong>Akar-akar</strong>: $x = 3$ dan $x = -\dfrac{1}{2}$.</li>
+      <li><strong>Uji tanda</strong> (faktor $4$ positif, jadi tanda ditentukan oleh $(x-3)(2x+1)$):
+       <ul>
+        <li>$\left(-\infty, -\frac{1}{2}\right)$: ambil $x = -1 \rightarrow (-4)(-1) = 4 > 0$ ✓</li>
+        <li>$\left(-\frac{1}{2}, 3\right)$: ambil $x = 0 \rightarrow (-3)(1) = -3 < 0$</li>
+        <li>$(3, \infty)$: ambil $x = 4 \rightarrow (1)(9) = 9 > 0$ ✓</li>
+       </ul>
+      </li>
+      <li><strong>Pilih interval positif</strong> (karena $\geq$), sertakan akar:<br>$\left(-\infty, -\dfrac{1}{2}\right] \cup [3, \infty)$</li>
+     </ol>
+   <p class="lesson-text">Verifikasi dengan titik uji: $x = 0$ (di luar solusi) → $|{-2}| \geq |4|$? Tidak, $2 < 4$ ✓ konsisten. $x=4$ (dalam solusi) → $|10| \geq |8|$? Ya ✓.</p>
+   <p class="lesson-text">Ketujuh soal di atas memperlihatkan pola yang konsisten: pindahkan semua ke satu ruas, cari titik kritis, uji tanda, dan pilih interval yang sesuai. Namun dalam praktiknya, masih banyak kesalahan kecil yang sering muncul—terutama pada manipulasi tanda dan pemilihan interval. Mari kita bahas kesalahan-kesalahan tersebut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+
+ <p class="lesson-subheading-alt">Kesalahan 1: Lupa Membalik Tanda Saat Membagi dengan Negatif</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Menyelesaikan $-2x < 6$ menjadi $x < -3$.</li>
+  <li><strong>Koreksi:</strong> Karena dibagi dengan $-2$ (negatif), tanda harus dibalik. Hasil yang benar adalah $x > -3$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 2: Mengalikan Silang pada Pertidaksamaan Pecahan Tanpa Memperhatikan Tanda Penyebut</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Pada $\frac{2}{x-1} > 1$, mengalikan silang menjadi $2 > x-1$ tanpa syarat.</li>
+  <li><strong>Koreksi:</strong> Tanda pertidaksamaan saat mengalikan silang bergantung pada tanda penyebut $(x-1)$. Jika $x-1$ negatif, tanda harus dibalik. Cara amannya: pindahkan semua ke satu ruas, samakan penyebut, lalu gunakan metode garis bilangan.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 3: Menganggap Interval Tertutup untuk Akar pada $>$ atau $<$</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Menyelesaikan $x^2 - 4 > 0$ dan menulis solusi $[-2, 2]$.</li>
+  <li><strong>Koreksi:</strong> Karena tanda $>$, titik $x = \pm 2$ membuat ruas kiri bernilai $0$, yang tidak memenuhi $> 0$. Jawaban yang benar adalah $(-\infty, -2) \cup (2, \infty)$ (kurung biasa).</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 4: Memecah $|f(x)| < a$ Menjadi $f(x) < a$ atau $f(x) > a$</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Menyelesaikan $|x-1| < 3$ menjadi $x-1 < 3$ atau $x-1 > -3$ (menggunakan "atau").</li>
+  <li><strong>Koreksi:</strong> Bentuk $|f(x)| < a$ adalah <strong>irisan</strong> (kedua syarat harus dipenuhi), sehingga harus menggunakan "dan": $-3 < x-1 < 3$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 5: Mengabaikan Syarat $g(x) > 0$ pada $|f(x)| < g(x)$</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Menyelesaikan $|x| < -2$ dan menyatakan solusinya kosong hanya karena ruas kanan negatif.</li>
+  <li><strong>Koreksi:</strong> Nilai mutlak selalu $\geq 0$, sehingga $|x| < -2$ memang tidak mungkin. Tetapi secara prosedur, rumus $-g(x) < f(x) < g(x)$ hanya valid jika $g(x) > 0$. Jika $g(x) \leq 0$, solusi langsung kosong atau perlu pengecekan lebih lanjut.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 6: Mengalikan atau Membagi Pertidaksamaan dengan Variabel Tanpa Memperhatikan Tandanya</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Pada $x^2 < 4x$, membagi kedua ruas dengan $x$ menjadi $x < 4$.</li>
+  <li><strong>Koreksi:</strong> Variabel $x$ bisa bernilai positif atau negatif—kita tidak tahu tandanya. Membagi dengan variabel tanpa mengetahui tandanya adalah <strong>tidak valid</strong>. Yang benar: pindahkan semua ke satu ruas, faktorkan, lalu gunakan garis bilangan. $x^2 - 4x < 0 \rightarrow x(x - 4) < 0$, dengan solusi $0 < x < 4$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kesalahan 7: Lupa Memeriksa Titik Kritis Penyebut pada Pertidaksamaan Rasional</p>
+ <ul>
+  <li><strong>Kesalahan:</strong> Menyelesaikan $\frac{(x-1)(x+2)}{x-3} \leq 0$ hanya dengan memeriksa akar pembilang $x = 1$ dan $x = -2$—tanpa menyertakan $x = 3$ sebagai titik kritis.</li>
+  <li><strong>Koreksi:</strong> Pada pertidaksamaan rasional, titik kritis mencakup akar <strong>pembilang</strong> <em>dan</em> akar <strong>penyebut</strong>. Akar penyebut ($x = 3$) tidak pernah termasuk dalam solusi (karena membuat penyebut nol), tetapi tetap harus diplot pada garis bilangan untuk menentukan interval dengan benar. Solusi benar untuk contoh ini adalah $(-\infty, -2] \cup [1, 3)$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti pertidaksamaan yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Pertidaksamaan linear</strong> diselesaikan dengan mengisolasi variabel. Pembalikan tanda wajib dilakukan jika kedua ruas dikalikan atau dibagi dengan bilangan negatif.</li>
+  <li><strong>Pertidaksamaan kuadrat</strong> diselesaikan dengan metode garis bilangan (uji tanda). Langkah: nolkan ruas kanan, cari akar, plot pada garis bilangan, uji tanda pada setiap interval, lalu pilih interval sesuai tanda pertidaksamaan.</li>
+  <li><strong>Pertidaksamaan nilai mutlak</strong> diselesaikan berdasarkan definisi jarak:
+   <ul>
+    <li>$|f(x)| < g(x) \leftrightarrow -g(x) < f(x) < g(x)$ (irisan).</li>
+    <li>$|f(x)| > g(x) \leftrightarrow f(x) < -g(x)$ atau $f(x) > g(x)$ (gabungan).</li>
+    <li>$|f(x)| < |g(x)|$ dapat diselesaikan dengan mengkuadratkan kedua ruas.</li>
+   </ul>
+  </li>
+  <li>Untuk pertidaksamaan yang melibatkan pecahan atau bentuk rasional, pindahkan semua suku ke satu ruas, samakan penyebut, lalu gunakan metode garis bilangan pada pembilang <strong>dan</strong> penyebut.</li>
+  <li>Perhatikan perbedaan antara tanda $<$ ($>$) yang menghasilkan interval terbuka (kurung biasa) dan tanda $\leq$ ($\geq$) yang menghasilkan interval tertutup (kurung siku).</li>
+  <li>Kesalahan umum: lupa membalik tanda, mengalikan silang tanpa memperhatikan tanda penyebut, dan mengalikan dengan variabel tanpa mengetahui tandanya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Pertidaksamaan memperluas konsep persamaan ke dalam ranah <strong>perbandingan dan urutan</strong>. Perbedaan-perbedaan halus dari persamaan—pembalikan tanda, penggunaan garis bilangan, dan pemilihan interval—bukan sekadar detail teknis, melainkan inti dari topik ini. Menguasai ketiganya berarti memiliki alat untuk menganalisis <em>rentang</em> nilai, bukan hanya nilai tunggal—suatu keterampilan yang sangat penting dalam hampir semua cabang matematika terapan.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Fungsi Kuadrat</strong> (yang menggunakan tanda diskriminan dan titik puncak untuk menentukan interval naik/turun), <strong>Sistem Persamaan</strong> (yang dapat diperluas menjadi sistem pertidaksamaan), <strong>Program Linear</strong> (yang menggunakan sistem pertidaksamaan linear untuk optimisasi), <strong>Kalkulus</strong> (yang menggunakan pertidaksamaan untuk menentukan domain, interval kemonotonan, kecekungan, dan uji turunan), serta <strong>Analisis Real</strong> (yang menggunakan pertidaksamaan untuk mendefinisikan limit dan kekontinuan).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan koefisien negatif, pertidaksamaan kuadrat dengan berbagai nilai diskriminan, dan pertidaksamaan nilai mutlak bertingkat. Kebiasaan memeriksa tanda dengan cermat, memplot titik kritis pada garis bilangan sebelum menentukan solusi, dan tidak pernah mengalikan/membagi dengan variabel yang tandanya tidak diketahui akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik kalkulus, di mana pertidaksamaan menjadi alat utama untuk menganalisis perilaku fungsi.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Ekspresi Aljabar (Variabel, Suku, Koefisien, dan Penyederhanaan)</title>
+ <meta name="description" content="Ekspresi aljabar: variabel, koefisien, konstanta, suku sejenis, operasi penjumlahan, perkalian, dan pembagian, serta prosedur penyederhanaan dan substitusi.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Ekspresi Aljabar (Variabel, Suku, Koefisien, dan Penyederhanaan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif, karena penyederhanaan ekspresi aljabar bertumpu pada penerapan ketiga sifat ini secara sistematis.</li>
+   <li><strong>Eksponen &amp; Akar</strong> — terutama aturan perkalian dan pembagian pangkat dengan basis sama ($a^m \times a^n = a^{m+n}$ dan $a^m \div a^n = a^{m-n}$), karena operasi pada suku-suku bervariabel melibatkan manipulasi pangkat.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam matematika, kita sering dihadapkan pada situasi di mana suatu besaran belum diketahui nilainya atau dapat berubah. Untuk merepresentasikan besaran tersebut secara simbolis, digunakan huruf-huruf tertentu yang disebut <strong>variabel</strong>. Kalimat matematika yang memuat variabel, konstanta, dan operasi hitung—tanpa disertai tanda relasi seperti $=$, $<$, atau $>$—disebut <strong>ekspresi aljabar</strong>.</p>
+ <p class="lesson-text">Ekspresi aljabar berfungsi sebagai <strong>bahasa untuk memodelkan fenomena kuantitatif</strong> sebelum nilainya ditentukan. Berbeda dengan aritmetika yang hanya beroperasi pada bilangan tetap, aljabar memungkinkan kita menggeneralisasi pola dan hubungan antar besaran. Ketika kita menulis $2x + 3$, kita tidak hanya berbicara tentang satu bilangan tertentu—tetapi tentang <em>aturan</em> yang berlaku untuk setiap nilai $x$. Inilah yang membuat aljabar begitu kuat: satu ekspresi dapat mewakili tak hingga kasus sekaligus.</p>
+ <p class="lesson-text">Yang membuat ekspresi aljabar menjadi fondasi penting adalah <strong>perannya sebagai batu pertama dari seluruh aljabar</strong>. Persamaan, pertidaksamaan, fungsi, dan polinomial—semuanya dibangun di atas kemampuan menyusun dan menyederhanakan ekspresi aljabar. Bahkan dalam kalkulus dan statistika, kita terus-menerus memanipulasi ekspresi aljabar untuk memperoleh bentuk yang lebih mudah dianalisis. Menguasai materi ini berarti membuka pintu ke hampir semua cabang matematika lanjutan.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dimulai dari definisi dan komponen ekspresi, lalu klasifikasi suku (sejenis dan tidak sejenis), operasi dasar (penjumlahan, perkalian, pembagian), prosedur penyederhanaan, bentuk baku, substitusi numerik, contoh soal, dan diakhiri dengan kesalahan umum. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan prosedurnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Komponen Ekspresi Aljabar</h3>
+ <p class="lesson-text">Ekspresi aljabar adalah gabungan dari satu atau lebih suku yang dihubungkan oleh operasi penjumlahan atau pengurangan. Sebagai acuan, tinjau ekspresi berikut:</p>
+ <p class="lesson-text">$$5x^2 - 3xy + 7y - 4$$</p>
+ <p class="lesson-text">Ekspresi ini memiliki empat komponen yang perlu diidentifikasi satu per satu.</p>
+
+ <p class="lesson-subheading">A. Variabel</p>
+ <p class="lesson-text"><strong>Variabel</strong> adalah simbol—biasanya berupa huruf alfabet—yang digunakan untuk mewakili suatu nilai numerik yang belum diketahui atau dapat berubah-ubah.</p>
+ <ul>
+  <li>Variabel berfungsi sebagai "wadah" untuk suatu bilangan.</li>
+  <li>Pada contoh di atas, variabel yang digunakan adalah $x$ dan $y$.</li>
+  <li>Variabel dapat berupa huruf apa pun—seperti $a, b, c, p, q, t$—atau bahkan simbol Yunani seperti $\alpha$ dan $\theta$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Koefisien</p>
+ <p class="lesson-text"><strong>Koefisien</strong> adalah faktor numerik (bilangan real) yang mengalikan variabel dalam suatu suku. Koefisien selalu berada tepat di sebelah kiri variabel dan mencakup tanda positif atau negatif yang menyertainya.</p>
+ <p class="lesson-subheading-alt">Kasus khusus:</p>
+ <ul>
+  <li>Jika suatu variabel tidak dituliskan angka di depannya—misalnya $x$ atau $a$—maka koefisiennya adalah $1$.</li>
+  <li>Jika suatu variabel diawali tanda negatif—misalnya $-x$ atau $-a$—maka koefisiennya adalah $-1$.</li>
+  <li>Jika koefisiennya bernilai $0$, maka suku tersebut bernilai nol dan biasanya tidak dituliskan dalam ekspresi.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Pada contoh di atas:</p>
+ <ul>
+  <li>Koefisien dari $x^2$ adalah $5$.</li>
+  <li>Koefisien dari $xy$ adalah $-3$—tanda negatif menjadi bagian dari koefisien.</li>
+  <li>Koefisien dari $y$ adalah $7$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Konstanta</p>
+ <p class="lesson-text"><strong>Konstanta</strong> adalah suku yang berupa bilangan murni tanpa diikuti oleh variabel apa pun. Nilainya bersifat tetap dan tidak dipengaruhi oleh perubahan nilai variabel. Pada contoh di atas, konstanta adalah $-4$.</p>
+
+ <p class="lesson-subheading">D. Suku dan Derajat Suku</p>
+ <p class="lesson-text"><strong>Suku</strong> (<em>term</em>) adalah komponen terkecil dari ekspresi yang dipisahkan oleh tanda $+$ atau $-$. Secara struktural, sebuah suku terdiri dari koefisien dan faktor variabel—yang bisa lebih dari satu variabel.</p>
+ <p class="lesson-text">Pada contoh di atas terdapat 4 suku:</p>
+ <ol>
+  <li>$5x^2$ (suku ke-1)</li>
+  <li>$-3xy$ (suku ke-2)</li>
+  <li>$7y$ (suku ke-3)</li>
+  <li>$-4$ (suku ke-4)</li>
+ </ol>
+ <p class="lesson-text"><strong>Derajat suatu suku</strong> didefinisikan sebagai jumlah pangkat dari semua variabel yang ada dalam suku tersebut.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Suku</th>
+     <th>Variabel dan Pangkat</th>
+     <th>Derajat</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$5x^2$</td><td>$x^2$</td><td>$2$</td></tr>
+    <tr><td>$-3xy$</td><td>$x^1 y^1$</td><td>$1 + 1 = 2$</td></tr>
+    <tr><td>$7y$</td><td>$y^1$</td><td>$1$</td></tr>
+    <tr><td>$-4$</td><td>(tidak ada variabel)</td><td>$0$</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Klasifikasi Suku: Sejenis dan Tidak Sejenis</h3>
+ <p class="lesson-text">Sebelum melakukan operasi hitung, kita wajib mengklasifikasikan suku-suku berdasarkan kesamaan strukturnya—karena hanya suku sejenis yang dapat dioperasikan secara langsung.</p>
+
+ <p class="lesson-subheading">A. Suku Sejenis (Like Terms)</p>
+ <p class="lesson-text">Dua atau lebih suku disebut <strong>sejenis</strong> jika memenuhi dua kondisi sekaligus:</p>
+ <ol>
+  <li>Memiliki <strong>faktor variabel yang sama persis</strong>—hurufnya sama.</li>
+  <li>Memiliki <strong>pangkat yang sama</strong> untuk setiap variabel yang bersesuaian.</li>
+ </ol>
+ <p class="lesson-text">Koefisien antar suku sejenis boleh berbeda—inilah yang membuat penggabungan bermakna.</p>
+ <p class="lesson-subheading-alt">Contoh suku sejenis:</p>
+ <ul>
+  <li>$3x$ dan $-7x$ (sama-sama $x^1$)</li>
+  <li>$5x^2$ dan $2x^2$ (sama-sama $x^2$)</li>
+  <li>$4xy$ dan $-6xy$ (sama-sama $x^1 y^1$)</li>
+  <li>$2a^2 b$ dan $8a^2 b$ (sama-sama $a^2 b^1$)</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Suku Tidak Sejenis (Unlike Terms)</p>
+ <p class="lesson-text">Suku disebut <strong>tidak sejenis</strong> apabila salah satu dari dua kondisi di atas tidak terpenuhi—variabel berbeda atau pangkat berbeda. Suku-suku ini <strong>tidak dapat</strong> dijumlahkan atau dikurangkan secara langsung.</p>
+ <p class="lesson-subheading-alt">Contoh suku tidak sejenis:</p>
+ <ul>
+  <li>$3x$ dan $3x^2$ (pangkat $x$ berbeda, yaitu 1 vs 2)</li>
+  <li>$5x$ dan $5y$ (variabel berbeda)</li>
+  <li>$2xy$ dan $2x$ (faktor variabel berbeda, $xy \neq x$)</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Alasan mengapa hanya suku sejenis yang dapat digabungkan adalah karena suku sejenis mewakili <em>jenis besaran yang sama</em>. $3x$ dan $5x$ keduanya berbicara tentang "banyaknya $x$"—sehingga wajar jika digabungkan menjadi $8x$. Tetapi $3x$ dan $5y$ mewakili besaran yang berbeda—seperti "3 apel dan 5 jeruk"—yang tidak dapat langsung digabungkan menjadi satu bilangan tunggal.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Operasi Dasar Ekspresi Aljabar</h3>
+ <p class="lesson-text">Operasi pada ekspresi aljabar mengikuti aturan aritmetika biasa, tetapi dengan tambahan aturan untuk variabel dan pangkat.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text"><strong>Prinsip:</strong> operasi penjumlahan dan pengurangan hanya berlaku pada suku-suku sejenis. Prosesnya dilakukan dengan menjumlahkan atau mengurangkan <strong>koefisien</strong> saja, sedangkan bagian variabel beserta pangkatnya tetap tidak berubah.</p>
+ <p class="lesson-subheading-alt">Contoh 1 (penjumlahan dua ekspresi):</p>
+ <p class="lesson-text">$$(3x + 5y) + (2x - 2y) = (3x + 2x) + (5y - 2y) = 5x + 3y$$</p>
+ <p class="lesson-subheading-alt">Contoh 2 (pengurangan dengan tanda kurung):</p>
+ <p class="lesson-text">$$(4a^2 - 3a + 7) - (2a^2 + 5a - 3)$$</p>
+ <p class="lesson-text">Tanda negatif di depan kurung kedua berfungsi sebagai faktor pengali $-1$ terhadap seluruh isi kurung—sehingga semua tanda di dalam kurung berubah:</p>
+ <p class="lesson-text">$$= 4a^2 - 3a + 7 - 2a^2 - 5a + 3$$ $$= (4a^2 - 2a^2) + (-3a - 5a) + (7 + 3)$$ $$= 2a^2 - 8a + 10$$</p>
+
+ <p class="lesson-subheading">B. Perkalian</p>
+ <p class="lesson-text">Perkalian dalam aljabar menggunakan <strong>sifat distributif</strong>. Ada dua aturan utama:</p>
+ <ol>
+  <li><strong>Koefisien dikalikan dengan koefisien</strong>—perkalian bilangan biasa.</li>
+  <li><strong>Variabel dikalikan dengan variabel</strong> menggunakan aturan pangkat: $a^m \times a^n = a^{m+n}$.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 3 (perkalian monomial dengan polinomial):</p>
+ <p class="lesson-text">$$3x(2x + 4y) = (3x \cdot 2x) + (3x \cdot 4y) = (3 \times 2)x^{1+1} + (3 \times 4)x^1 y^1 = 6x^2 + 12xy$$</p>
+ <p class="lesson-subheading-alt">Contoh 4 (perkalian dua polinomial):</p>
+ <p class="lesson-text">$$(x + 3)(x - 2)$$</p>
+ <p class="lesson-text">Kalikan setiap suku pada kurung pertama dengan setiap suku pada kurung kedua:</p>
+ <p class="lesson-text">$$= x(x - 2) + 3(x - 2) = (x^2 - 2x) + (3x - 6) = x^2 + x - 6$$</p>
+
+ <p class="lesson-subheading">C. Pembagian</p>
+ <p class="lesson-text">Pembagian dilakukan dengan membagi <strong>koefisien dengan koefisien</strong>, dan <strong>variabel dengan variabel</strong> menggunakan aturan pangkat: $\dfrac{a^m}{a^n} = a^{m-n}$.</p>
+ <p class="lesson-subheading-alt">Contoh 5:</p>
+ <p class="lesson-text">$$\frac{8x^5}{2x^2} = \frac{8}{2} \cdot \frac{x^5}{x^2} = 4 \cdot x^{5-2} = 4x^3$$</p>
+
+ <p class="lesson-subheading">D. Ringkasan Operasi</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Operasi</th>
+     <th>Aturan</th>
+     <th>Contoh</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Penjumlahan/Pengurangan</td><td>Hanya pada suku sejenis; koefisien dioperasikan</td><td>$3x + 5x = 8x$</td></tr>
+    <tr><td>Perkalian</td><td>Koefisien × koefisien, variabel × variabel ($a^m \cdot a^n = a^{m+n}$)</td><td>$2x \cdot 3x^2 = 6x^3$</td></tr>
+    <tr><td>Pembagian</td><td>Koefisien ÷ koefisien, variabel ÷ variabel ($a^m / a^n = a^{m-n}$)</td><td>$\frac{8x^5}{2x^2} = 4x^3$</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Prosedur Penyederhanaan Ekspresi</h3>
+ <p class="lesson-text">Penyederhanaan adalah proses mengubah ekspresi menjadi bentuk yang paling ringkas dan rapi tanpa mengubah nilai substantifnya. Terdapat empat langkah prosedural yang harus diikuti secara berurutan:</p>
+ <ol>
+  <li><strong>Eliminasi tanda kurung.</strong> Hilangkan kurung dengan mengalikan faktor di depannya. Perhatikan secara khusus tanda negatif yang berfungsi sebagai pembalik tanda.</li>
+  <li><strong>Identifikasi suku sejenis.</strong> Amati seluruh suku dan tandai mana yang memiliki variabel dan pangkat yang sama.</li>
+  <li><strong>Operasikan koefisien.</strong> Jumlahkan atau kurangkan koefisien pada suku-suku sejenis.</li>
+  <li><strong>Tulis dalam bentuk baku.</strong> Susun ulang suku-suku hasil operasi berdasarkan urutan pangkat menurun—dari derajat tertinggi ke derajat terendah, dengan konstanta di paling akhir.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 6 (penyederhanaan dasar):</p>
+ <p class="lesson-text">$$7x + 3y - 2x + y - 4 = (7x - 2x) + (3y + y) - 4 = 5x + 4y - 4$$</p>
+ <p class="lesson-subheading-alt">Contoh 7 (dengan tanda negatif di depan kurung):</p>
+ <p class="lesson-text">$$3x - (2x - 5) = 3x - 2x + 5 = x + 5$$</p>
+ <p class="lesson-subheading-alt">Contoh 8 (ekspresi dengan dua lapis kurung):</p>
+ <p class="lesson-text">Sederhanakan $4x(2x - y) - 3(x^2 - 2y)$.</p>
+ <p class="lesson-text"><em>Langkah 1 (distribusi):</em></p>
+ <p class="lesson-text">$$= (8x^2 - 4xy) - (3x^2 - 6y)$$</p>
+ <p class="lesson-text"><em>Langkah 2 (hilangkan kurung kedua dengan membalik tanda karena negatif):</em></p>
+ <p class="lesson-text">$$= 8x^2 - 4xy - 3x^2 + 6y$$</p>
+ <p class="lesson-text"><em>Langkah 3 (kelompokkan sejenis):</em></p>
+ <p class="lesson-text">$$= 5x^2 - 4xy + 6y$$</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Bentuk Baku Ekspresi</h3>
+ <p class="lesson-text"><strong>Bentuk baku</strong> (standar) ekspresi polinomial mensyaratkan penulisan suku-suku dimulai dari derajat tertinggi menuju derajat terendah, dan diakhiri dengan konstanta.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Jika hasil penyederhanaan adalah $4 - 3x^2 + 2x$, maka bentuk bakunya adalah $-3x^2 + 2x + 4$.</p>
+ <p class="lesson-subheading-alt">Mengapa bentuk baku penting?</p>
+ <p class="lesson-text">Penulisan baku memudahkan identifikasi <em>derajat tertinggi</em> suatu ekspresi—yang akan sangat berguna saat mempelajari polinomial, fungsi, dan operasi aljabar lanjutan. Selain itu, bentuk baku memudahkan perbandingan dua ekspresi secara langsung, karena suku-suku dengan derajat sama selalu berada di posisi yang sejajar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Substitusi Nilai Variabel</h3>
+ <p class="lesson-text"><strong>Substitusi</strong> adalah proses mengganti seluruh variabel dalam ekspresi dengan nilai numerik tertentu untuk mendapatkan nilai ekspresi tersebut. Agar proses ini valid dan akurat, ikuti dua kaidah berikut:</p>
+ <ol>
+  <li><strong>Sederhanakan ekspresi terlebih dahulu</strong>—ini mengurangi jumlah operasi aritmetika dan meminimalkan kesalahan.</li>
+  <li><strong>Gunakan tanda kurung untuk nilai negatif</strong>—saat mengganti variabel dengan angka negatif, selalu bungkus angka tersebut dengan kurung, misalnya $(-2)$, untuk menjaga kejelasan operasi pangkat dan perkalian.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 9 (substitusi nilai negatif):</p>
+ <p class="lesson-text">Jika $x = 2$ dan $y = -1$, tentukan nilai dari $3x^2 - 2xy + y$.</p>
+ <p class="lesson-text">Substitusi setiap variabel:</p>
+ <p class="lesson-text">$$= 3(2)^2 - 2(2)(-1) + (-1)$$</p>
+ <p class="lesson-text">Hitung operasi pangkat terlebih dahulu:</p>
+ <p class="lesson-text">$$= 3(4) - 2(2)(-1) - 1$$</p>
+ <p class="lesson-text">Lakukan perkalian:</p>
+ <p class="lesson-text">$$= 12 - (-4) - 1 = 12 + 4 - 1 = 15$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Urutan operasi dalam substitusi mengikuti aturan standar: (1) operasi dalam kurung, (2) pangkat dan akar, (3) perkalian dan pembagian, (4) penjumlahan dan pengurangan. Mengabaikan urutan ini adalah salah satu penyebab paling umum kesalahan perhitungan pada substitusi.</p>
+ </div>
+ <p class="lesson-text">Dengan menguasai seluruh komponen ekspresi aljabar—dari membaca suku hingga melakukan substitusi—kita kini memiliki perangkat lengkap untuk memanipulasi ekspresi apa pun. Mari kita terapkan seluruh konsep ini pada tujuh soal yang menggabungkan penyederhanaan, operasi, dan substitusi.</p>
+ </div>
+ 
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan identifikasi komponen, penyederhanaan bertingkat, operasi perkalian dan pembagian, substitusi nilai negatif, dan pemodelan masalah nyata. Setiap langkah dituliskan lengkap, dan aturan yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Identifikasi Komponen Ekspresi</p>
+ <p class="lesson-text">Diberikan ekspresi $4a^2b - 7ab + 2a - 5$. Tentukan: (a) variabel yang digunakan, (b) koefisien dari setiap suku, (c) konstanta, (d) derajat dari setiap suku.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Variabel</strong>: $a$ dan $b$.</li>
+  <li><strong>Koefisien setiap suku</strong>:
+   <ul>
+    <li>$4a^2b$ — koefisien $4$</li>
+    <li>$-7ab$ — koefisien $-7$</li>
+    <li>$2a$ — koefisien $2$</li>
+    <li>$-5$ — koefisien $-5$ (konstanta)</li>
+   </ul>
+  </li>
+  <li><strong>Konstanta</strong>: $-5$.</li>
+  <li><strong>Derajat setiap suku</strong>:
+   <ul>
+    <li>$4a^2b$ — $2 + 1 = 3$</li>
+    <li>$-7ab$ — $1 + 1 = 2$</li>
+    <li>$2a$ — $1$</li>
+    <li>$-5$ — $0$</li>
+   </ul>
+  </li>
+ </ol>
+ <p class="lesson-text">Perhatikan: derajat keseluruhan ekspresi adalah derajat tertinggi dari suku-sukunya, yaitu <strong>3</strong>.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Menggabungkan Suku Sejenis</p>
+ <p class="lesson-text">Sederhanakan: $8x^2 - 3xy + 5x^2 + 7xy - 2x$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Identifikasi suku sejenis:
+   <ul>
+    <li>$x^2$: $8x^2$ dan $5x^2$</li>
+    <li>$xy$: $-3xy$ dan $7xy$</li>
+    <li>$x$: $-2x$ (tidak memiliki pasangan)</li>
+   </ul>
+  </li>
+  <li>Operasikan koefisien:
+   <ul>
+    <li>$8x^2 + 5x^2 = 13x^2$</li>
+    <li>$-3xy + 7xy = 4xy$</li>
+    <li>$-2x$ tetap</li>
+   </ul>
+  </li>
+  <li>Hasil: $13x^2 + 4xy - 2x$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Penyederhanaan dengan Tanda Negatif di Depan Kurung</p>
+ <p class="lesson-text">Sederhanakan: $(6m - 3n) - (4m + 5n - 7)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Distribusikan tanda negatif</strong> pada kurung kedua—semua tanda di dalamnya berubah:
+   <p class="lesson-text">$$(6m - 3n) - (4m + 5n - 7) = 6m - 3n - 4m - 5n + 7$$</p>
+  </li>
+  <li><strong>Kelompokkan suku sejenis</strong>:
+   <p class="lesson-text">$$= (6m - 4m) + (-3n - 5n) + 7 = 2m - 8n + 7$$</p>
+  </li>
+  <li>Hasil: $2m - 8n + 7$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Perkalian Dua Ekspresi</p>
+ <p class="lesson-text">Sederhanakan: $(2x - 3)(x + 4)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Gunakan <strong>sifat distributif</strong>—kalikan setiap suku kurung pertama dengan setiap suku kurung kedua:
+   <p class="lesson-text">$$(2x - 3)(x + 4) = 2x(x + 4) - 3(x + 4)$$</p>
+  </li>
+  <li>Distribusikan lagi:
+   <p class="lesson-text">$$= (2x^2 + 8x) - (3x + 12) = 2x^2 + 8x - 3x - 12$$</p>
+  </li>
+  <li>Gabungkan suku sejenis ($x$ dengan $x$):
+   <p class="lesson-text">$$= 2x^2 + 5x - 12$$</p>
+  </li>
+ </ol>
+ <p class="lesson-text">Hasil: $2x^2 + 5x - 12$. Perhatikan bahwa pangkat $x$ dijumlahkan saat mengalikan: $x^1 \cdot x^1 = x^2$.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Pembagian dengan Pangkat</p>
+ <p class="lesson-text">Sederhanakan: $\dfrac{15a^4b^3}{5a^2b}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Bagi koefisien:
+   <p class="lesson-text">$$\frac{15}{5} = 3$$</p>
+  </li>
+  <li>Bagi variabel $a$:
+   <p class="lesson-text">$$\frac{a^4}{a^2} = a^{4-2} = a^2$$</p>
+  </li>
+  <li>Bagi variabel $b$:
+   <p class="lesson-text">$$\frac{b^3}{b^1} = b^{3-1} = b^2$$</p>
+  </li>
+  <li>Gabungkan: $3a^2b^2$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 6: Substitusi Nilai Negatif</p>
+ <p class="lesson-text">Jika $x = -2$ dan $y = 3$, tentukan nilai dari $4x^2 - 3xy + 2y^2$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Substitusikan setiap variabel—<strong>gunakan tanda kurung untuk nilai negatif</strong>:
+   <p class="lesson-text">$$4(-2)^2 - 3(-2)(3) + 2(3)^2$$</p>
+  </li>
+  <li>Hitung pangkat terlebih dahulu:
+   <p class="lesson-text">$$= 4(4) - 3(-2)(3) + 2(9)$$</p>
+  </li>
+  <li>Lakukan perkalian:
+   <p class="lesson-text">$$= 16 - (-18) + 18$$</p>
+  </li>
+  <li>Selesaikan penjumlahan dan pengurangan:
+   <p class="lesson-text">$$= 16 + 18 + 18 = 52$$</p>
+  </li>
+ </ol>
+ <p class="lesson-text">Perhatikan pada langkah 2: $(-2)^2 = 4$—bukan $-4$—karena pangkat genap menghilangkan tanda negatif. Inilah mengapa tanda kurung wajib dipakai saat mensubstitusi nilai negatif.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Pemodelan Masalah Nyata</p>
+ <p class="lesson-text">Sebuah toko menjual buku dengan harga Rp25.000 per buku dan pulpen dengan harga Rp4.000 per pulpen. Seorang pembeli membeli $x$ buku dan $y$ pulpen. (a) Tuliskan ekspresi aljabar untuk total harga pembelian. (b) Jika ia membeli 3 buku dan 5 pulpen, berapa total yang harus dibayar?</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Model ekspresi</strong>: harga buku × jumlah buku + harga pulpen × jumlah pulpen:
+   <p class="lesson-text">$$\text{Total} = 25.000x + 4.000y$$</p>
+  </li>
+  <li><strong>Substitusi</strong> $x = 3$ dan $y = 5$:
+   <p class="lesson-text">$$= 25.000(3) + 4.000(5) = 75.000 + 20.000 = 95.000$$</p>
+  </li>
+  <li>Total yang harus dibayar: <strong>Rp95.000</strong>.</li>
+ </ol>
+ <p class="lesson-text">Ekspresi $25.000x + 4.000y$ bersifat umum—ia dapat digunakan untuk kombinasi pembelian apa pun, tidak hanya $x = 3$ dan $y = 5$. Inilah kekuatan pemodelan dengan ekspresi aljabar: satu ekspresi mewakili tak hingga kasus sekaligus.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menggabungkan suku tidak sejenis.</strong> Kesalahan: $2x + 3y = 5xy$. Yang benar: $2x + 3y$ <em>tidak dapat</em> disederhanakan, karena $x$ dan $y$ mewakili besaran yang berbeda. Hasilnya tetap $2x + 3y$.</li>
+  <li><strong>Menjumlahkan variabel berpangkat berbeda.</strong> Kesalahan: $x^2 + x = x^3$. Yang benar: $x^2 + x$ tidak dapat digabung karena derajatnya berbeda. Bentuk tersebut tetap sebagai hasil akhir.</li>
+  <li><strong>Kesalahan distribusi tanda negatif.</strong> Kesalahan: $5 - (2x - 3) = 5 - 2x - 3$. Yang benar: $5 - 2x + 3 = 8 - 2x$. Tanda negatif berlaku sebagai faktor $-1$ yang mengalikan seluruh isi kurung—sehingga $-3$ berubah menjadi $+3$.</li>
+  <li><strong>Mengabaikan koefisien 1 dan $-1$.</strong> Kesalahan: pada operasi $x + x$, menganggap hasilnya $x$ (karena menganggap koefisiennya 0). Yang benar: $x + x = 1x + 1x = (1+1)x = 2x$.</li>
+  <li><strong>Kesalahan substitusi akibat kurang kurung.</strong> Kesalahan: jika $x = -3$, menulis $x^2 = -3^2 = -9$—karena pangkat hanya mengenai angka 3, bukan tanda negatifnya. Yang benar: $(-3)^2 = 9$. Pangkat genap menghilangkan tanda negatif.</li>
+  <li><strong>Mengalikan variabel tanpa menjumlahkan pangkat.</strong> Kesalahan: $x^2 \cdot x^3 = x^6$. Yang benar: $x^2 \cdot x^3 = x^{2+3} = x^5$. Aturan $a^m \cdot a^n = a^{m+n}$ adalah <em>penjumlahan</em> pangkat, bukan perkalian—karena $x^2 \cdot x^3 = (x \cdot x) \cdot (x \cdot x \cdot x) = x^5$.</li>
+  <li><strong>Menganggap variabel tanpa koefisien berarti koefisien nol.</strong> Ini kebalikan dari kesalahan sebelumnya—variabel tunggal seperti $x$ <em>selalu</em> memiliki koefisien $1$, bukan 0. Kesalahan ini sering menyebabkan penggabungan suku yang salah.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Ekspresi aljabar</strong> adalah kalimat matematika tanpa relasi, dibentuk oleh variabel, koefisien, konstanta, dan suku.</li>
+  <li><strong>Suku sejenis</strong> didefinisikan oleh kesamaan variabel dan pangkat. Hanya suku sejenis yang dapat dioperasikan (jumlah/kurang).</li>
+  <li><strong>Penjumlahan/pengurangan</strong> hanya mengubah koefisien; variabel tetap.</li>
+  <li><strong>Perkalian</strong> menggunakan sifat distributif dengan aturan pangkat $a^m \times a^n = a^{m+n}$.</li>
+  <li><strong>Pembagian</strong> menggunakan aturan pangkat $\dfrac{a^m}{a^n} = a^{m-n}$.</li>
+  <li><strong>Prosedur penyederhanaan</strong>: (1) hilangkan kurung, (2) kelompokkan sejenis, (3) operasikan koefisien, (4) susun dalam bentuk baku.</li>
+  <li><strong>Substitusi</strong> mensyaratkan penggunaan kurung untuk nilai negatif dan pengerjaan operasi sesuai hierarki (pangkat → perkalian/pembagian → penjumlahan/pengurangan).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Ekspresi aljabar adalah <strong>elemen paling fundamental dalam struktur matematika modern</strong>. Hampir setiap konsep aljabar yang lebih tinggi—persamaan, pertidaksamaan, polinomial, fungsi—dibangun di atas kemampuan membaca, memanipulasi, dan menyederhanakan ekspresi. Menguasai materi ini berarti menguasai bahasa dasar yang akan terus digunakan di seluruh perjalanan matematika Anda.</p>
+ <p class="lesson-text">Yang membuat ekspresi aljabar istimewa adalah <strong>sifatnya sebagai jembatan antara aritmetika dan aljabar</strong>. Aritmetika bekerja dengan bilangan tertentu—$2 + 3 = 5$. Aljabar bekerja dengan pola umum—$a + b$ untuk sembarang $a$ dan $b$. Ekspresi aljabar adalah bentuk paling sederhana dari pola umum ini. Ketika Anda menulis $3x + 5$, Anda tidak hanya berbicara tentang satu bilangan—tetapi tentang aturan yang berlaku untuk <em>semua</em> nilai $x$.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Persamaan Linear</strong> (yang menggunakan ekspresi aljabar sebagai ruas kiri dan kanan), <strong>Persamaan Kuadrat</strong> (yang melibatkan ekspresi berderajat dua), <strong>Polinomial</strong> (yang merupakan generalisasi ekspresi dengan banyak suku), <strong>Pertidaksamaan</strong> (yang membandingkan dua ekspresi aljabar), <strong>Sistem Persamaan</strong> (yang melibatkan beberapa ekspresi sekaligus), <strong>Fungsi</strong> (yang menghubungkan variabel input dan output), serta <strong>Kalkulus</strong> (yang memanipulasi ekspresi untuk mencari turunan dan integral).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan penyederhanaan ekspresi bertingkat, distribusi tanda negatif, dan substitusi nilai negatif. Kebiasaan memeriksa apakah suku-suku yang digabungkan benar-benar sejenis, serta konsisten dalam menerapkan aturan pangkat, akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik persamaan dan polinomial, di mana manipulasi ekspresi menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

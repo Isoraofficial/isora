@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Persamaan Kuadrat (Rumus Kuadrat dan Diskriminan)</title>
+ <meta name="description" content="Persamaan kuadrat: bentuk umum ax² + bx + c = 0, metode faktorisasi, melengkapkan kuadrat, rumus ABC, diskriminan, serta sifat jumlah dan hasil kali akar.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Persamaan Kuadrat (Rumus Kuadrat dan Diskriminan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Persamaan Linear</strong> — karena penyelesaian persamaan kuadrat melalui melengkapkan kuadrat sempurna pada akhirnya bermuara pada persamaan linear sederhana, dan banyak soal kuadrat dapat direduksi menjadi persamaan linear.</li>
+   <li><strong>Ekspresi Aljabar</strong> — terutama pemfaktoran dan operasi suku sejenis, karena metode faktorisasi adalah salah satu cara utama menyelesaikan persamaan kuadrat dan menjadi dasar penurunan rumus ABC.</li>
+   <li><strong>Eksponen &amp; Akar</strong> — terutama akar kuadrat, karena rumus ABC memuat $\sqrt{b^2 - 4ac}$ dan analisis diskriminan bertumpu pada sifat akar kuadrat dari bilangan positif, nol, dan negatif.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Setelah mempelajari persamaan linear (pangkat variabel tertinggi $= 1$), kita naik ke tingkat berikutnya: <strong>persamaan kuadrat</strong>. Persamaan kuadrat adalah persamaan polinomial dengan pangkat tertinggi variabelnya adalah dua. Secara geometris, persamaan ini merepresentasikan <strong>parabola</strong>—kurva yang memiliki berbagai aplikasi, mulai dari gerak proyektil dalam fisika, optimisasi maksimum/minimum dalam ekonomi, hingga desain struktur dalam arsitektur dan teknik sipil.</p>
+ <p class="lesson-text">Berbeda dengan persamaan linear yang solusinya selalu tunggal (atau tak hingga/kosong), persamaan kuadrat dapat memiliki <strong>dua solusi, satu solusi</strong>, atau <strong>tidak memiliki solusi real</strong>—tergantung pada nilai <strong>diskriminan</strong>. Konsep diskriminan inilah yang menjadi salah satu ide paling elegan dalam aljabar: sebuah bilangan tunggal ($D = b^2 - 4ac$) yang mampu "mendiagnosis" sifat seluruh solusi persamaan tanpa perlu menyelesaikannya terlebih dahulu.</p>
+ <p class="lesson-text">Yang membuat persamaan kuadrat sangat penting adalah <strong>perannya sebagai jembatan menuju matematika yang lebih tinggi</strong>. Fungsi kuadrat menjadi fondasi kalkulus (turunan dan integral polinomial), pertidaksamaan kuadrat membutuhkan pemahaman tentang tanda parabola, dan rumus ABC menjadi batu loncatan menuju rumus-rumus penyelesaian untuk derajat yang lebih tinggi. Materi ini disusun bertahap: dari <strong>definisi dan bentuk umum</strong>, <strong>tiga metode penyelesaian</strong> (faktorisasi, melengkapkan kuadrat sempurna, dan rumus ABC), <strong>analisis diskriminan</strong> dan interpretasi grafiknya, <strong>sifat jumlah dan hasil kali akar</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap rumus akan diturunkan atau dijelaskan <em>mengapa</em> ia berlaku—bukan hanya menyebutkan hasilnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Bentuk Umum</h3>
+ <p class="lesson-text">Sebelum masuk ke teknik penyelesaian, kita perlu memahami terlebih dahulu apa yang membuat suatu persamaan disebut "kuadrat".</p>
+
+ <p class="lesson-subheading">A. Definisi Persamaan Kuadrat</p>
+ <p class="lesson-text"><strong>Persamaan kuadrat</strong> adalah persamaan polinomial berderajat dua yang dapat dituliskan dalam <strong>bentuk baku</strong>:</p>
+ <p class="lesson-text">$$ax^2 + bx + c = 0$$</p>
+ <p class="lesson-text">dengan syarat mutlak $a \neq 0$, serta $a, b, c \in \mathbb{R}$ (bilangan real).</p>
+ <p class="lesson-text">Komponen-komponennya:</p>
+ <ul>
+  <li>$a$ adalah <strong>koefisien kuadrat</strong>—koefisien dari $x^2$.</li>
+  <li>$b$ adalah <strong>koefisien linear</strong>—koefisien dari $x$.</li>
+  <li>$c$ adalah <strong>konstanta</strong>—suku tetap.</li>
+ </ul>
+ <p class="lesson-text">Jika $a = 0$, persamaan tersebut berdegradasi menjadi persamaan linear ($bx + c = 0$) dan tidak lagi disebut kuadrat. Inilah mengapa syarat $a \neq 0$ bersifat <em>mutlak</em>—tanpa syarat ini, seluruh teori persamaan kuadrat akan runtuh.</p>
+
+ <p class="lesson-subheading">B. Akar-Akar Persamaan Kuadrat</p>
+ <p class="lesson-text"><strong>Akar</strong> (atau solusi) dari persamaan kuadrat adalah nilai-nilai $x$ yang memenuhi persamaan tersebut—yaitu membuat ruas kiri bernilai $0$. Akar-akar ini sering dinotasikan sebagai $x_1$ dan $x_2$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Persamaan kuadrat selalu memiliki tepat <strong>dua akar</strong> dalam himpunan bilangan kompleks $\mathbb{C}$—sesuai dengan Teorema Dasar Aljabar. Namun, dalam himpunan bilangan real $\mathbb{R}$, jumlah akar bisa dua, satu (kembar), atau nol. Perbedaan ini ditentukan oleh diskriminan—yang akan kita bahas pada Bagian III.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami definisi dan komponennya, kita siap mempelajari berbagai teknik untuk menemukan akar-akar persamaan kuadrat. Ada tiga metode utama yang perlu dikuasai—masing-masing dengan keunggulan pada situasi tertentu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Metode Penyelesaian Persamaan Kuadrat</h3>
+ <p class="lesson-text">Terdapat tiga metode utama untuk mencari akar-akar persamaan kuadrat. Masing-masing memiliki keunggulan pada situasi tertentu—dan memahami ketiganya memberikan fleksibilitas dalam menghadapi berbagai jenis soal.</p>
+
+ <p class="lesson-subheading">A. Metode Faktorisasi</p>
+ <p class="lesson-text">Metode ini hanya berlaku jika akar-akarnya merupakan bilangan rasional. Prinsipnya adalah mengubah bentuk $ax^2 + bx + c = 0$ menjadi bentuk perkalian dua faktor linear:</p>
+ <p class="lesson-text">$$(px + q)(rx + s) = 0$$</p>
+ <p class="lesson-text">Sifat yang digunakan adalah: jika $A \times B = 0$, maka $A = 0$ atau $B = 0$.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Selesaikan $x^2 - 5x + 6 = 0$.</p>
+ <p class="lesson-text">Cari dua bilangan yang jumlahnya $-5$ (koefisien $b$) dan hasil kalinya $6$ (konstanta $c$). Bilangan tersebut adalah $-2$ dan $-3$. Maka:</p>
+ <p class="lesson-text">$$x^2 - 5x + 6 = (x - 2)(x - 3) = 0$$</p>
+ <p class="lesson-text">Sehingga $x - 2 = 0 \rightarrow x = 2$, atau $x - 3 = 0 \rightarrow x = 3$. Himpunan penyelesaian: $\{2, 3\}$.</p>
+
+ <p class="lesson-subheading">B. Metode Melengkapkan Kuadrat Sempurna</p>
+ <p class="lesson-text">Metode ini adalah <strong>fondasi untuk menurunkan rumus kuadrat</strong>. Tujuannya adalah mengubah ruas kiri menjadi bentuk kuadrat sempurna $(x + p)^2$.</p>
+ <p class="lesson-subheading-alt">Prosedur (untuk $a = 1$):</p>
+ <ol>
+  <li>Pindahkan konstanta $c$ ke ruas kanan: $x^2 + bx = -c$.</li>
+  <li>Tambahkan kedua ruas dengan $\left(\dfrac{b}{2}\right)^2$—setengah dari koefisien $x$, dikuadratkan.</li>
+  <li>Sederhanakan menjadi $\left(x + \dfrac{b}{2}\right)^2 = \text{konstanta}$.</li>
+  <li>Akarkan kedua ruas dan selesaikan.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Selesaikan $x^2 + 6x - 7 = 0$.</p>
+ <p class="lesson-text">Pindahkan konstanta: $x^2 + 6x = 7$. Koefisien $x$ adalah $6$—setengahnya $3$, dikuadratkan menjadi $9$. Tambahkan kedua ruas dengan $9$:</p>
+ <p class="lesson-text">$$x^2 + 6x + 9 = 7 + 9 \quad \rightarrow \quad (x + 3)^2 = 16$$</p>
+ <p class="lesson-text">Akarkan kedua ruas: $x + 3 = \pm 4$, sehingga $x = 1$ atau $x = -7$. Himpunan penyelesaian: $\{1, -7\}$.</p>
+
+ <p class="lesson-subheading">C. Metode Rumus Kuadrat (Rumus ABC)</p>
+ <p class="lesson-text">Ini adalah metode <strong>paling universal</strong>—selalu valid, bahkan ketika akar-akarnya irasional atau imajiner. Rumus ini diturunkan dari metode melengkapkan kuadrat sempurna untuk bentuk umum $ax^2 + bx + c = 0$.</p>
+ <p class="lesson-subheading-alt">Derivasi rumus:</p>
+ <p class="lesson-text">Bagi kedua ruas dengan $a$ ($a \neq 0$): $x^2 + \dfrac{b}{a}x + \dfrac{c}{a} = 0$. Pindahkan konstanta: $x^2 + \dfrac{b}{a}x = -\dfrac{c}{a}$. Lengkapi kuadrat sempurna dengan menambahkan $\left(\dfrac{b}{2a}\right)^2$ ke kedua ruas:</p>
+ <p class="lesson-text">$$x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 = \frac{b^2}{4a^2} - \frac{c}{a}$$</p>
+ <p class="lesson-text">Sederhanakan ruas kiri dan samakan penyebut ruas kanan:</p>
+ <p class="lesson-text">$$\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2}$$</p>
+ <p class="lesson-text">Akarkan kedua ruas, lalu pindahkan $\dfrac{b}{2a}$ ke ruas kanan—diperoleh rumus kuadrat:</p>
+ <p class="lesson-text">$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</p>
+ <p class="lesson-text">Dalam notasi akar-akar, sering ditulis:</p>
+ <p class="lesson-text">$$x_{1,2} = \frac{-b \pm \sqrt{D}}{2a}$$</p>
+ <p class="lesson-text">dengan $D = b^2 - 4ac$—yang disebut <strong>diskriminan</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Selesaikan $2x^2 - 4x - 3 = 0$ dengan rumus ABC.</p>
+ <p class="lesson-text">Identifikasi $a = 2$, $b = -4$, $c = -3$. Hitung diskriminan:</p>
+ <p class="lesson-text">$$D = b^2 - 4ac = (-4)^2 - 4(2)(-3) = 16 + 24 = 40$$</p>
+ <p class="lesson-text">Substitusikan ke rumus ABC:</p>
+ <p class="lesson-text">$$x_{1,2} = \frac{-(-4) \pm \sqrt{40}}{2(2)} = \frac{4 \pm 2\sqrt{10}}{4} = \frac{2 \pm \sqrt{10}}{2}$$</p>
+ <p class="lesson-text">Jadi akar-akarnya adalah $\dfrac{2 + \sqrt{10}}{2}$ dan $\dfrac{2 - \sqrt{10}}{2}$.</p>
+
+ <p class="lesson-subheading">D. Perbandingan Tiga Metode</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Metode</th>
+     <th>Cocok Untuk</th>
+     <th>Keterbatasan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Faktorisasi</td><td>Akar rasional, koefisien kecil</td><td>Tidak selalu bisa dilakukan</td></tr>
+    <tr><td>Melengkapkan kuadrat</td><td>Pemahaman konseptual, penurunan rumus</td><td>Panjang, kurang praktis</td></tr>
+    <tr><td>Rumus ABC</td><td>Semua kasus</td><td>Tidak ada</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Dari ketiga metode di atas, rumus ABC adalah yang paling ampuh—tetapi di dalamnya tersembunyi sebuah besaran yang justru sering menjadi kunci analisis: diskriminan. Inilah yang akan kita bahas berikutnya—sebuah bilangan tunggal yang mampu menceritakan sifat seluruh akar tanpa perlu menghitungnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Diskriminan dan Sifat Akar</h3>
+ <p class="lesson-text">Bagian paling kritis dalam persamaan kuadrat adalah <strong>diskriminan</strong>—karena berada di dalam akar kuadrat, nilai diskriminan secara langsung menentukan <strong>jenis akar</strong> persamaan tanpa perlu menghitung akar-akarnya secara eksplisit.</p>
+ <p class="lesson-text">$$D = b^2 - 4ac$$</p>
+
+ <p class="lesson-subheading">A. Tiga Kasus Berdasarkan Nilai $D$</p>
+ <p class="lesson-subheading-alt">Kasus 1: $D > 0$ (Diskriminan Positif)</p>
+ <p class="lesson-text">Persamaan memiliki <strong>dua akar real yang berbeda</strong> ($x_1 \neq x_2$).</p>
+ <ul>
+  <li>Jika $D$ adalah kuadrat sempurna, maka $\sqrt{D}$ bulat dan akar-akarnya <strong>rasional</strong>.</li>
+  <li>Jika $D$ bukan kuadrat sempurna, maka akar-akarnya <strong>irasional</strong>—dan saling konjugat.</li>
+  <li><strong>Interpretasi grafik:</strong> parabola memotong sumbu $X$ di dua titik berbeda.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kasus 2: $D = 0$ (Diskriminan Nol)</p>
+ <p class="lesson-text">Persamaan memiliki <strong>dua akar real yang sama</strong>—disebut akar kembar atau akar ganda.</p>
+ <ul>
+  <li>Secara matematis: $x_1 = x_2 = -\dfrac{b}{2a}$.</li>
+  <li><strong>Interpretasi grafik:</strong> parabola <em>menyinggung</em> sumbu $X$ tepat di satu titik—yaitu titik puncaknya.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Kasus 3: $D < 0$ (Diskriminan Negatif)</p>
+  <p class="lesson-text">Persamaan <strong>tidak memiliki akar real</strong>. Kedua akarnya adalah <strong>bilangan kompleks non-real</strong>—yaitu bilangan yang memiliki bagian imajiner tidak nol. Kedua akar ini selalu merupakan pasangan konjugat kompleks: jika $x_1 = p + qi$ adalah akar, maka $x_2 = p - qi$ juga akar.</p>
+  <p class="lesson-text">Perhatikan: istilah "imajiner" dan "kompleks non-real" tidak identik. Bilangan imajiner murni adalah kasus khusus di mana bagian real bernilai nol (misalnya $3i$). Sedangkan akar-akar persamaan kuadrat dengan $D < 0$ umumnya memiliki bagian real tak nol—seperti pada Contoh 5 nanti.</p>
+ <ul>
+  <li><strong>Interpretasi grafik:</strong> parabola tidak memotong dan tidak menyinggung sumbu $X$.
+   <ul>
+    <li>Jika $a > 0$, parabola seluruhnya berada di <strong>atas</strong> sumbu $X$ (definit positif).</li>
+    <li>Jika $a < 0$, parabola seluruhnya berada di <strong>bawah</strong> sumbu $X$ (definit negatif).</li>
+   </ul>
+  </li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Ringkasan Diskriminan:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nilai $D$</th>
+     <th>Jenis Akar</th>
+     <th>Grafik Parabola</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$D > 0$</td><td>Dua akar real berbeda</td><td>Memotong sumbu $X$ di 2 titik</td></tr>
+    <tr><td>$D = 0$</td><td>Dua akar real kembar</td><td>Menyinggung sumbu $X$ di 1 titik</td></tr>
+    <tr><td>$D < 0$</td><td>Tidak ada akar real</td><td>Tidak menyentuh sumbu $X$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading-alt">Contoh 4 (kasus $D = 0$):</p>
+ <p class="lesson-text">Tentukan jenis akar dari $x^2 - 4x + 4 = 0$.</p>
+ <p class="lesson-text">$$D = (-4)^2 - 4(1)(4) = 16 - 16 = 0$$</p>
+ <p class="lesson-text">Karena $D = 0$, persamaan memiliki dua akar real kembar. Faktorkan: $(x - 2)^2 = 0 \rightarrow x = 2$ (akar ganda).</p>
+
+ <p class="lesson-subheading-alt">Contoh 5 (kasus $D < 0$):</p>
+ <p class="lesson-text">Tentukan jenis akar dari $x^2 + x + 1 = 0$.</p>
+ <p class="lesson-text">$$D = 1^2 - 4(1)(1) = 1 - 4 = -3$$</p>
+ <p class="lesson-text">Karena $D < 0$, persamaan ini tidak memiliki solusi real. Solusinya di bilangan kompleks: $x_{1,2} = \dfrac{-1 \pm i\sqrt{3}}{2}$.</p>
+
+ <p class="lesson-text">Diskriminan memberi kita gambaran <em>kualitatif</em> tentang akar—jenis dan jumlahnya. Namun, ada juga cara untuk memperoleh informasi <em>kuantitatif</em> tentang akar tanpa harus menghitungnya—melalui sifat jumlah dan hasil kali akar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sifat-Sifat Akar</h3>
+ <p class="lesson-text">Jika $x_1$ dan $x_2$ adalah akar-akar dari $ax^2 + bx + c = 0$, kita dapat menurunkan dua formula penting yang sangat berguna—tanpa harus mencari akar-akarnya secara eksplisit.</p>
+
+ <p class="lesson-subheading">A. Jumlah Akar</p>
+ <p class="lesson-text">$$x_1 + x_2 = \frac{-b + \sqrt{D}}{2a} + \frac{-b - \sqrt{D}}{2a} = \frac{-2b}{2a} = -\frac{b}{a}$$</p>
+
+ <p class="lesson-subheading">B. Hasil Kali Akar</p>
+ <p class="lesson-text">$$x_1 \cdot x_2 = \left(\frac{-b + \sqrt{D}}{2a}\right)\left(\frac{-b - \sqrt{D}}{2a}\right) = \frac{(-b)^2 - (\sqrt{D})^2}{4a^2} = \frac{b^2 - (b^2 - 4ac)}{4a^2} = \frac{c}{a}$$</p>
+
+ <p class="lesson-subheading">C. Rumus Inti</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Untuk persamaan kuadrat $ax^2 + bx + c = 0$ dengan akar-akar $x_1$ dan $x_2$:<br>$$x_1 + x_2 = -\frac{b}{a}, \qquad x_1 \cdot x_2 = \frac{c}{a}$$</p>
+ </div>
+
+ <p class="lesson-subheading">D. Selisih Akar</p>
+ <p class="lesson-text">Selisih akar sering digunakan dalam soal geometri dan kombinatorik:</p>
+ <p class="lesson-text">$$|x_1 - x_2| = \frac{\sqrt{D}}{|a|}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 6 (aplikasi sifat akar):</p>
+ <p class="lesson-text">Jika $x_1$ dan $x_2$ adalah akar dari $2x^2 - 6x + 1 = 0$, tentukan $x_1^2 + x_2^2$.</p>
+ <p class="lesson-text"><em>Identifikasi:</em> $a = 2$, $b = -6$, $c = 1$. Maka:</p>
+ <p class="lesson-text">$$x_1 + x_2 = -\frac{-6}{2} = 3, \qquad x_1 \cdot x_2 = \frac{1}{2}$$</p>
+ <p class="lesson-text">Gunakan identitas aljabar $x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2$:</p>
+ <p class="lesson-text">$$x_1^2 + x_2^2 = 3^2 - 2 \cdot \frac{1}{2} = 9 - 1 = 8$$</p>
+
+ <p class="lesson-text">Sifat jumlah dan hasil kali akar adalah alat yang sangat ampuh—ia memungkinkan kita menganalisis akar tanpa harus menghitungnya. Mari kita terapkan seluruh metode dan sifat ini—faktorisasi, rumus ABC, diskriminan, dan sifat akar—pada tujuh soal yang menggabungkan berbagai aspek persamaan kuadrat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan tiga metode penyelesaian, analisis diskriminan, sifat jumlah dan hasil kali akar, serta pemodelan masalah nyata. Setiap langkah dituliskan lengkap, dan prinsip yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Faktorisasi Sederhana</p>
+ <p class="lesson-text">Selesaikan $x^2 - 7x + 12 = 0$ dengan metode faktorisasi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Cari dua bilangan yang jumlahnya $-7$ (koefisien $b$) dan hasil kalinya $12$ (konstanta $c$). Bilangan tersebut adalah $-3$ dan $-4$—karena $(-3) + (-4) = -7$ dan $(-3) \times (-4) = 12$.</li>
+  <li>Faktorkan:<br>$x^2 - 7x + 12 = (x - 3)(x - 4) = 0$</li>
+  <li>Terapkan sifat "jika $AB = 0$, maka $A = 0$ atau $B = 0$":<br>$x - 3 = 0 \rightarrow x = 3$<br>$x - 4 = 0 \rightarrow x = 4$</li>
+  <li>Verifikasi: $3^2 - 7(3) + 12 = 9 - 21 + 12 = 0$ ✓<br>dan $4^2 - 7(4) + 12 = 16 - 28 + 12 = 0$ ✓</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $\{3, 4\}$.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Melengkapkan Kuadrat Sempurna</p>
+ <p class="lesson-text">Selesaikan $x^2 + 8x + 5 = 0$ dengan metode melengkapkan kuadrat sempurna.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Pindahkan konstanta ke ruas kanan:<br>$x^2 + 8x = -5$</li>
+  <li>Koefisien $x$ adalah $8$—setengahnya $4$, dikuadratkan menjadi $16$. Tambahkan $16$ ke kedua ruas:<br>$x^2 + 8x + 16 = -5 + 16$<br>$(x + 4)^2 = 11$</li>
+  <li>Akarkan kedua ruas:<br>$x + 4 = \pm\sqrt{11}$<br>$x = -4 \pm \sqrt{11}$</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $\{-4 + \sqrt{11}, -4 - \sqrt{11}\}$. Perhatikan bahwa akarnya irasional—sehingga faktorisasi dengan bilangan bulat tidak mungkin.</p>
+ 
+ <p class="lesson-subheading">Soal 3: Rumus ABC</p>
+ <p class="lesson-text">Selesaikan $3x^2 - 5x - 2 = 0$ dengan rumus ABC.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Identifikasi koefisien</strong>: $a = 3$, $b = -5$, $c = -2$.</li>
+  <li><strong>Hitung diskriminan</strong>:<br>$D = b^2 - 4ac = (-5)^2 - 4(3)(-2) = 25 + 24 = 49$</li>
+  <li><strong>Substitusikan ke rumus ABC</strong>:<br>$x_{1,2} = \dfrac{-(-5) \pm \sqrt{49}}{2(3)} = \dfrac{5 \pm 7}{6}$</li>
+  <li><strong>Hitung kedua akar</strong>:<br>$x_1 = \dfrac{5 + 7}{6} = \dfrac{12}{6} = 2$<br>$x_2 = \dfrac{5 - 7}{6} = \dfrac{-2}{6} = -\dfrac{1}{3}$</li>
+  <li><strong>Verifikasi</strong>: substitusikan $x = 2$ ke $3(2)^2 - 5(2) - 2 = 12 - 10 - 2 = 0$ ✓</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $\left\{2, -\dfrac{1}{3}\right\}$.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Analisis Diskriminan</p>
+ <p class="lesson-text">Tentukan nilai $k$ sedemikian sehingga persamaan $x^2 + (k + 1)x + 4 = 0$ memiliki dua akar real kembar.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Syarat akar kembar adalah $D = 0$. Identifikasi $a = 1$, $b = k + 1$, $c = 4$.</li>
+  <li>Hitung diskriminan:<br>$D = (k + 1)^2 - 4(1)(4) = (k+1)^2 - 16$</li>
+  <li>Set $D = 0$:<br>$(k + 1)^2 - 16 = 0 \rightarrow (k+1)^2 = 16$</li>
+  <li>Selesaikan:<br>$k + 1 = \pm 4 \rightarrow k = 3$ atau $k = -5$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: jika $k = 3$, persamaan menjadi $x^2 + 4x + 4 = (x+2)^2 = 0$ → akar kembar $x = -2$ ✓. Jika $k = -5$, persamaan menjadi $x^2 - 4x + 4 = (x-2)^2 = 0$ → akar kembar $x = 2$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Akar Kompleks</p>
+ <p class="lesson-text">Selesaikan $x^2 - 2x + 5 = 0$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Identifikasi $a = 1$, $b = -2$, $c = 5$.</li>
+  <li>Hitung diskriminan:<br>$D = (-2)^2 - 4(1)(5) = 4 - 20 = -16$</li>
+  <li>Karena $D < 0$, akar-akarnya kompleks non-real. Hitung:<br>$\sqrt{D} = \sqrt{-16} = 4i$ (karena $i^2 = -1$)</li>
+  <li>Substitusikan ke rumus ABC:<br>$x = \dfrac{-(-2) \pm 4i}{2(1)} = \dfrac{2 \pm 4i}{2} = 1 \pm 2i$</li>
+ </ol>
+ <p class="lesson-text">Himpunan penyelesaiannya: $\{1 + 2i, 1 - 2i\}$. Perhatikan pola konjugat: kedua akar memiliki bagian real yang sama ($1$) dan bagian imajiner yang berlawanan tanda ($\pm 2i$). Perhatikan juga: akar ini <em>bukan</em> imajiner murni—karena bagian realnya tidak nol.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Sifat Jumlah dan Hasil Kali Akar</p>
+ <p class="lesson-text">Jika $x_1$ dan $x_2$ adalah akar-akar dari $3x^2 - 6x + 2 = 0$, tentukan nilai $\dfrac{1}{x_1} + \dfrac{1}{x_2}$ tanpa menghitung akarnya terlebih dahulu.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Identifikasi $a = 3$, $b = -6$, $c = 2$. Gunakan sifat akar:<br>$x_1 + x_2 = -\dfrac{-6}{3} = 2$<br>$x_1 \cdot x_2 = \dfrac{2}{3}$</li>
+  <li>Sederhanakan ekspresi yang ditanya menggunakan identitas:<br>$\dfrac{1}{x_1} + \dfrac{1}{x_2} = \dfrac{x_1 + x_2}{x_1 x_2}$</li>
+  <li>Substitusikan nilai yang diperoleh:<br>$\dfrac{x_1 + x_2}{x_1 x_2} = \dfrac{2}{2/3} = 2 \cdot \dfrac{3}{2} = 3$</li>
+ </ol>
+ <p class="lesson-text">Jadi, $\dfrac{1}{x_1} + \dfrac{1}{x_2} = 3$. Soal ini memperlihatkan kekuatan sifat akar: kita dapat menghitung ekspresi simetris akar—tanpa pernah mencari nilai $x_1$ dan $x_2$ secara eksplisit.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Gerak Proyektil</p>
+ <p class="lesson-text">Sebuah bola dilempar ke atas dengan kecepatan awal 20 m/s dari ketinggian 5 m. Ketinggian bola setiap saat dirumuskan $h(t) = -5t^2 + 20t + 5$ (dengan $h$ dalam meter dan $t$ dalam sekon). Tentukan kapan bola menyentuh tanah.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Bola menyentuh tanah ketika $h(t) = 0$:<br>$-5t^2 + 20t + 5 = 0$</li>
+  <li>Bagi kedua ruas dengan $-5$ untuk menyederhanakan:<br>$t^2 - 4t - 1 = 0$</li>
+  <li>Identifikasi $a = 1$, $b = -4$, $c = -1$. Karena akar kemungkinan irasional, gunakan rumus ABC:<br>$D = (-4)^2 - 4(1)(-1) = 16 + 4 = 20$<br>$t_{1,2} = \dfrac{4 \pm \sqrt{20}}{2} = \dfrac{4 \pm 2\sqrt{5}}{2} = 2 \pm \sqrt{5}$</li>
+  <li>Hitung nilai pendekatan:<br>$t_1 = 2 + \sqrt{5} \approx 2 + 2{,}236 \approx 4{,}236$ sekon<br>$t_2 = 2 - \sqrt{5} \approx 2 - 2{,}236 \approx -0{,}236$ sekon</li>
+  <li><strong>Interpretasi konteks</strong>: $t_2$ negatif—tidak bermakna karena waktu tidak bisa negatif. Jadi solusi yang valid adalah $t_1 \approx 4{,}236$ sekon.</li>
+ </ol>
+ <p class="lesson-text">Jadi, bola menyentuh tanah sekitar <strong>4,24 sekon</strong> setelah dilempar.</p>
+ <p class="lesson-text">Dua hal penting dari soal ini: (i) tidak semua akar matematis bermakna secara fisik—akar negatif harus dibuang ketika konteksnya waktu atau panjang; dan (ii) hasil akhir harus diberi satuan yang tepat—dalam hal ini sekon.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Mengabaikan syarat $a \neq 0$.</strong> Pada persamaan $mx^2 + 2x + 1 = 0$, banyak yang langsung menghitung diskriminan tanpa mempertimbangkan kasus $m = 0$. Jika $m = 0$, persamaan menjadi linear—dan memiliki solusi tunggal. Selalu periksa koefisien $x^2$ lebih dulu, terutama jika mengandung parameter.</li>
+  <li><strong>Kesalahan tanda pada rumus ABC.</strong> Persamaan $2x^2 - 4x + 1 = 0$ dihitung dengan $b = 4$ (lupa tanda negatif), atau lupa mengalikan $2a$ pada penyebut. Kebiasaan menulis identifikasi $a, b, c$ secara eksplisit sebelum substitusi akan menyelamatkan dari kesalahan ini.</li>
+  <li><strong>Salah menafsirkan $D < 0$.</strong> Menyimpulkan "persamaan tidak memiliki solusi" padahal yang benar adalah "tidak memiliki solusi <em>real</em>". Dalam ranah bilangan kompleks, ia tetap memiliki dua solusi. Gunakan terminologi yang tepat.</li>
+  <li><strong>Membagi persamaan dengan variabel.</strong> Pada $x^2 = 4x$, membagi kedua ruas dengan $x$ menghasilkan $x = 4$—tetapi menghilangkan akar $x = 0$. Jangan pernah membagi dengan variabel yang bisa bernilai nol. Pindahkan semua ke satu ruas dan faktorkan: $x^2 - 4x = 0 \rightarrow x(x - 4) = 0 \rightarrow x = 0$ atau $x = 4$.</li>
+  <li><strong>Terburu-buru dalam menghitung diskriminan.</strong> $D = b^2 - 4ac$ sering salah dihitung menjadi $b^2 - 4a$ (lupa mengalikan $c$) atau $b^2 - 4ac^2$ (salah pangkat). Tulis dalam satu langkah eksplisit: $b^2$ dikurangi empat kali $a$ kali $c$.</li>
+  <li><strong>Lupa bahwa faktorisasi memerlukan akar rasional.</strong> Tidak semua persamaan kuadrat dapat difaktorkan dengan bilangan bulat. Ketika metode faktorisasi tidak berhasil dalam waktu singkat, segera beralih ke rumus ABC—jangan memaksakan faktorisasi yang tidak mungkin.</li>
+  <li><strong>Menganggap "akar kembar" berarti hanya ada satu akar.</strong> Persamaan dengan $D = 0$ tetap memiliki <em>dua</em> akar—hanya saja keduanya bernilai sama. Dalam konteks tertentu (misalnya jumlah akar), ini penting dibedakan.</li>
+  <li><strong>Salah mengidentifikasi nilai $a, b, c$ ketika persamaan belum dalam bentuk baku.</strong> Persamaan seperti $3x + 2x^2 = 5$ atau $x(x - 4) = 1$ sering langsung dianggap berbentuk baku, sehingga nilai $a, b, c$ yang dipakai keliru. Selalu ubah dulu ke bentuk baku: $2x^2 + 3x - 5 = 0$ atau $x^2 - 4x - 1 = 0$, baru identifikasi koefisiennya.</li>
+  <li><strong>Mengabaikan satuan pada jawaban soal cerita.</strong> Dalam soal fisika seperti $h(t) = -5t^2 + 20t$, jawaban untuk $t$ adalah waktu dengan satuan sekon. Mengabaikan satuan—atau menjawab dengan satuan yang salah—membuat jawaban tidak bermakna. Selain itu, waktu tidak bisa bernilai negatif—jika muncul akar negatif, itu bukan solusi valid untuk konteks soal.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti persamaan kuadrat yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Bentuk umum:</strong> $ax^2 + bx + c = 0$ dengan syarat $a \neq 0$.</li>
+  <li><strong>Tiga metode penyelesaian:</strong> faktorisasi (terbatas pada akar rasional), melengkapkan kuadrat sempurna (konseptual), dan rumus ABC (universal).</li>
+  <li><strong>Rumus kuadrat (ABC):</strong> $x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.</li>
+  <li><strong>Diskriminan</strong> $D = b^2 - 4ac$ adalah penentu kualitatif akar:
+   <ul>
+    <li>$D > 0$: dua akar real berbeda.</li>
+    <li>$D = 0$: dua akar real kembar.</li>
+    <li>$D < 0$: tidak memiliki akar real (akar kompleks).</li>
+   </ul>
+  </li>
+  <li><strong>Jumlah dan hasil kali akar:</strong> $x_1 + x_2 = -\dfrac{b}{a}$ dan $x_1 \cdot x_2 = \dfrac{c}{a}$—berlaku untuk semua jenis akar.</li>
+  <li><strong>Selisih akar:</strong> $|x_1 - x_2| = \dfrac{\sqrt{D}}{|a|}$.</li>
+  <li>Diskriminan juga menentukan posisi grafik parabola terhadap sumbu $X$—memotong, menyinggung, atau tidak menyentuh sama sekali.</li>
+  <li>Kesalahan umum: lupa syarat $a \neq 0$, salah tanda pada rumus ABC, membagi persamaan dengan variabel, dan tidak mengubah ke bentuk baku sebelum identifikasi koefisien.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Persamaan kuadrat adalah <strong>jembatan antara aljabar elementer dan kalkulus</strong>. Di satu sisi, ia masih dapat diselesaikan dengan teknik-teknik dasar—faktorisasi, melengkapkan kuadrat, dan rumus ABC. Di sisi lain, ia sudah memperkenalkan konsep-konsep yang akan terus muncul di matematika tingkat lanjut: parabola, titik ekstrem, sifat akar, dan hubungan antara koefisien dan solusi. Yang membuat persamaan kuadrat istimewa adalah <strong>kekayaan interpretasinya</strong>: satu persamaan yang sama dapat dilihat dari tiga sudut pandang—aljabar (mencari nilai $x$), geometris (mencari titik potong parabola dengan sumbu $X$), dan analitis (menganalisis sifat solusi melalui diskriminan). Kemampuan berpindah antar representasi ini adalah salah satu keterampilan paling berharga dalam matematika.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Polinomial</strong> (yang memperluas konsep akar ke derajat yang lebih tinggi), <strong>Pertidaksamaan</strong> (yang menggunakan tanda parabola untuk menentukan rentang solusi), <strong>Sistem Persamaan</strong> (yang sering melibatkan persamaan kuadrat dan linear secara bersamaan), <strong>Fungsi Kuadrat</strong> (yang menganalisis parabola secara lebih mendalam—termasuk titik puncak, sumbu simetri, dan nilai maksimum/minimum), <strong>Bilangan Kompleks</strong> (yang menjadi rumah bagi akar-akar persamaan dengan $D < 0$), dan <strong>Kalkulus</strong> (yang menggunakan turunan untuk mencari titik ekstrem dan integral untuk menghitung luas daerah di bawah parabola).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan diskriminan, sifat jumlah dan hasil kali akar, serta soal cerita yang memerlukan penerjemahan ke model kuadrat. Kebiasaan menulis identifikasi $a, b, c$ secara eksplisit sebelum substitusi, memeriksa tanda negatif dengan cermat, dan tidak pernah membagi dengan variabel akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik yang lebih kompleks, di mana manipulasi persamaan kuadrat menjadi langkah awal dari hampir setiap penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

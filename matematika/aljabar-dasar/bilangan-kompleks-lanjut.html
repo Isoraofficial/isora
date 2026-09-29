@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Bilangan Kompleks Lanjut (Bentuk Polar dan Teorema De Moivre)</title>
+ <meta name="description" content="Bilangan kompleks lanjut: modulus, argumen, bentuk polar, perkalian dan pembagian, Teorema De Moivre, serta penarikan akar ke-n dan akar kesatuan.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Bilangan Kompleks Lanjut (Bentuk Polar dan Teorema De Moivre)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Bilangan Kompleks Dasar</strong> — terutama bentuk $a + bi$, operasi aritmetika, konjugat, dan modulus, karena bentuk polar dibangun langsung di atas konsep-konsep dasar ini.</li>
+   <li><strong>Trigonometri Dasar</strong> — terutama nilai $\sin$ dan $\cos$ pada sudut istimewa, identitas jumlah sudut, serta konversi antara derajat dan radian. Seluruh rumus bentuk polar dan Teorema De Moivre bertumpu pada fungsi trigonometri.</li>
+   <li><strong>Eksponen &amp; Akar</strong> — terutama aturan pangkat rasional, karena modulus akar melibatkan bentuk $r^{1/n}$ dan Teorema De Moivre menggunakan $r^n$.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi Bilangan Kompleks Dasar, kita mengenal representasi $z = a + bi$—dengan $a$ sebagai bagian real dan $b$ sebagai bagian imajiner. Bentuk ini sangat nyaman untuk operasi penjumlahan dan pengurangan, karena kita cukup menggabungkan bagian real dengan real dan imajiner dengan imajiner. Namun, ketika berhadapan dengan operasi <strong>perkalian, pembagian, perpangkatan</strong>, dan <strong>penarikan akar</strong>, bentuk $a + bi$ menjadi sangat tidak praktis. Bayangkan harus menghitung $(1+i)^8$ dengan mengalikan $(1+i)$ sebanyak delapan kali secara manual—tentu melelahkan dan rawan kesalahan.</p>
+ <p class="lesson-text">Untuk mengatasi keterbatasan ini, bilangan kompleks dapat dinyatakan dalam <strong>bentuk polar</strong>—merepresentasikan bilangan kompleks sebagai kombinasi dari <strong>jarak</strong> (modulus) dan <strong>arah</strong> (argumen). Dalam bentuk polar, perkalian menjadi penjumlahan sudut dan perkalian modulus, sedangkan perpangkatan menjadi perkalian sudut dengan pangkat. Semua ini dirangkum secara elegan dalam <strong>Teorema De Moivre</strong>—alat utama untuk menghitung pangkat dan akar bilangan kompleks.</p>
+ <p class="lesson-text">Yang membuat bentuk polar sangat penting adalah <strong>kemampuannya menyederhanakan operasi yang rumit</strong>. Dalam bentuk kartesius, $(1+i)^8$ memerlukan sekitar 20 perkalian dan penjumlahan bilangan kompleks; dalam bentuk polar, perhitungan yang sama hanya memerlukan satu langkah substitusi ke Teorema De Moivre. Materi ini disusun bertahap: dari <strong>modulus dan argumen</strong>, <strong>bentuk polar</strong>, <strong>perkalian dan pembagian</strong>, <strong>Teorema De Moivre</strong>, <strong>penarikan akar ke-$n$ dan akar kesatuan</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap rumus akan diturunkan atau dijelaskan <em>mengapa</em> ia berlaku—bukan hanya menyebutkan hasilnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Modulus dan Argumen Bilangan Kompleks</h3>
+ <p class="lesson-text">Sebelum masuk ke bentuk polar, kita perlu memahami dua komponen dasar yang membentuknya: modulus dan argumen.</p>
+
+ <p class="lesson-subheading">A. Modulus (Jarak dari Titik Asal)</p>
+ <p class="lesson-text">Diberikan bilangan kompleks $z = a + bi$. <strong>Modulus</strong> dari $z$—dinotasikan $|z|$ atau $r$—didefinisikan sebagai jarak titik $(a, b)$ dari titik asal $(0, 0)$ pada bidang kompleks. Dengan teorema Pythagoras:</p>
+ <p class="lesson-text">$$r = |z| = \sqrt{a^2 + b^2}$$</p>
+ <p class="lesson-text">Modulus selalu bernilai <strong>real non-negatif</strong> ($r \ge 0$), dan bernilai nol hanya jika $z = 0$.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Tentukan modulus dari $z = 3 + 4i$. Maka $r = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5$.</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Tentukan modulus dari $z = -1 + i\sqrt{3}$. Maka $r = \sqrt{(-1)^2 + (\sqrt{3})^2} = \sqrt{1 + 3} = 2$.</p>
+
+ <p class="lesson-subheading">B. Argumen (Sudut terhadap Sumbu Real Positif)</p>
+ <p class="lesson-text"><strong>Argumen</strong> dari $z$—dinotasikan $\theta = \arg(z)$—adalah sudut yang dibentuk oleh vektor $z$ dengan sumbu real positif. Sudut diukur berlawanan arah jarum jam dan dinyatakan dalam <strong>radian</strong>. Hubungan dasarnya:</p>
+ <p class="lesson-text">$$\tan \theta = \frac{b}{a}$$</p>
+ <p class="lesson-text">Namun, nilai $\tan \theta$ saja <strong>tidak cukup</strong> untuk menentukan $\theta$ secara unik—karena fungsi tangen periodik dan memiliki nilai yang sama untuk sudut yang berbeda $180°$. Kita harus memperhatikan <strong>kuadran</strong> tempat titik $(a, b)$ berada.</p>
+
+ <p class="lesson-subheading-alt">Aturan penentuan argumen berdasarkan kuadran:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Kuadran</th>
+     <th>Tanda $a, b$</th>
+     <th>Rumus Argumen</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>I</td><td>$a > 0, b > 0$</td><td>$\theta = \arctan\left(\dfrac{b}{a}\right)$</td></tr>
+    <tr><td>II</td><td>$a < 0, b > 0$</td><td>$\theta = \pi - \arctan\left(\dfrac{|b|}{|a|}\right)$</td></tr>
+    <tr><td>III</td><td>$a < 0, b < 0$</td><td>$\theta = -\pi + \arctan\left(\dfrac{|b|}{|a|}\right)$</td></tr>
+    <tr><td>IV</td><td>$a > 0, b < 0$</td><td>$\theta = \arctan\left(\dfrac{b}{a}\right)$ (negatif)</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading-alt">Kasus khusus pada sumbu:</p>
+ <ul>
+  <li>$a > 0, b = 0$: $\theta = 0$.</li>
+  <li>$a < 0, b = 0$: $\theta = \pi$.</li>
+  <li>$a = 0, b > 0$: $\theta = \dfrac{\pi}{2}$.</li>
+  <li>$a = 0, b < 0$: $\theta = -\dfrac{\pi}{2}$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Argumen utama</strong> dipilih dalam interval $-\pi < \theta \le \pi$. Nilai-nilai argumen yang berbeda sebesar $2\pi$ dianggap sama secara geometris—karena sudut tersebut kembali ke posisi awal.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3 (Kuadran I):</p>
+ <p class="lesson-text">Tentukan argumen dari $z = 1 + i$. Karena $a > 0, b > 0$ (Kuadran I), maka $\theta = \arctan(1/1) = \dfrac{\pi}{4}$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 4 (Kuadran II):</p>
+ <p class="lesson-text">Tentukan argumen dari $z = -1 + i\sqrt{3}$. Karena $a < 0, b > 0$ (Kuadran II), maka:</p>
+ <p class="lesson-text">$$\theta = \pi - \arctan\!\left(\frac{\sqrt{3}}{1}\right) = \pi - \frac{\pi}{3} = \frac{2\pi}{3}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 5 (Kuadran III):</p>
+ <p class="lesson-text">Tentukan argumen dari $z = -1 - i$. Karena $a < 0, b < 0$ (Kuadran III), maka:</p>
+ <p class="lesson-text">$$\theta = -\pi + \arctan(1) = -\pi + \frac{\pi}{4} = -\frac{3\pi}{4}$$</p>
+ <p class="lesson-text">Perhatikan bahwa sudut $-\dfrac{3\pi}{4}$ ekuivalen dengan $\dfrac{5\pi}{4}$—keduanya berada di Kuadran III.</p>
+
+ <p class="lesson-text">Dengan menguasai modulus dan argumen, kita memiliki dua komponen yang dibutuhkan untuk menyatakan bilangan kompleks dalam bentuk yang lebih elegan—yaitu bentuk polar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Bentuk Polar Bilangan Kompleks</h3>
+ <p class="lesson-text">Setelah memahami modulus dan argumen, kita siap menuliskan bilangan kompleks dalam bentuk polar.</p>
+
+ <p class="lesson-subheading">A. Penurunan Bentuk Polar</p>
+ <p class="lesson-text">Dari definisi modulus dan argumen, kita memiliki hubungan:</p>
+ <p class="lesson-text">$$a = r \cos \theta, \qquad b = r \sin \theta$$</p>
+ <p class="lesson-text">Substitusikan ke bentuk kartesius $z = a + bi$:</p>
+ <p class="lesson-text">$$z = r \cos \theta + i(r \sin \theta) = r(\cos \theta + i \sin \theta)$$</p>
+ <p class="lesson-text">Inilah <strong>bentuk polar</strong> dari bilangan kompleks—sering disingkat $z = r \operatorname{cis} \theta$. Dengan <strong>rumus Euler</strong> $e^{i\theta} = \cos \theta + i \sin \theta$, diperoleh juga <strong>bentuk eksponensial</strong> $z = r e^{i\theta}$.</p>
+
+ <p class="lesson-subheading">B. Konversi dari Kartesius ke Polar</p>
+ <p class="lesson-text">Langkah-langkah sistematis:</p>
+ <ol>
+  <li>Hitung modulus $r = \sqrt{a^2 + b^2}$.</li>
+  <li>Tentukan kuadran berdasarkan tanda $a$ dan $b$.</li>
+  <li>Hitung argumen $\theta$ sesuai aturan kuadran.</li>
+  <li>Tulis $z = r(\cos \theta + i \sin \theta)$.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 6 (Kuadran I):</p>
+ <p class="lesson-text">Ubah $z = \sqrt{3} + i$ ke bentuk polar. Karena $r = \sqrt{3 + 1} = 2$ dan $\theta = \arctan(1/\sqrt{3}) = \dfrac{\pi}{6}$ (Kuadran I):</p>
+ <p class="lesson-text">$$z = 2\left(\cos \frac{\pi}{6} + i \sin \frac{\pi}{6}\right)$$</p>
+ <p class="lesson-subheading-alt">Contoh 7 (Kuadran II):</p>
+ <p class="lesson-text">Ubah $z = -3 + 3i$ ke bentuk polar. Karena $r = \sqrt{9 + 9} = 3\sqrt{2}$ dan $\theta = \pi - \dfrac{\pi}{4} = \dfrac{3\pi}{4}$:</p>
+ <p class="lesson-text">$$z = 3\sqrt{2}\left(\cos \frac{3\pi}{4} + i \sin \frac{3\pi}{4}\right)$$</p>
+ <p class="lesson-subheading-alt">Contoh 8 (Kuadran III):</p>
+ <p class="lesson-text">Ubah $z = -2 - 2i\sqrt{3}$ ke bentuk polar. Karena $r = \sqrt{4 + 12} = 4$ dan $\theta = -\pi + \dfrac{\pi}{3} = -\dfrac{2\pi}{3}$:</p>
+ <p class="lesson-text">$$z = 4\left(\cos\left(-\frac{2\pi}{3}\right) + i \sin\left(-\frac{2\pi}{3}\right)\right)$$</p>
+
+ <p class="lesson-subheading">C. Konversi dari Polar ke Kartesius</p>
+ <p class="lesson-text">Diberikan $z = r(\cos \theta + i \sin \theta)$, hitung $a = r \cos \theta$ dan $b = r \sin \theta$.</p>
+ <p class="lesson-subheading-alt">Contoh 9:</p>
+ <p class="lesson-text">Ubah $z = 4\left(\cos \dfrac{5\pi}{6} + i \sin \dfrac{5\pi}{6}\right)$ ke bentuk kartesius.</p>
+ <p class="lesson-text">$$a = 4 \cos \frac{5\pi}{6} = 4\left(-\frac{\sqrt{3}}{2}\right) = -2\sqrt{3}$$ $$b = 4 \sin \frac{5\pi}{6} = 4\left(\frac{1}{2}\right) = 2$$</p>
+ <p class="lesson-text">Jadi $z = -2\sqrt{3} + 2i$.</p>
+
+ <p class="lesson-text">Kemampuan mengonversi antara kedua bentuk ini sangat penting. Namun, keunggulan sesungguhnya dari bentuk polar baru terlihat ketika kita melakukan operasi perkalian dan pembagian.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Operasi Perkalian dan Pembagian dalam Bentuk Polar</h3>
+ <p class="lesson-text">Keunggulan utama bentuk polar terletak pada kesederhanaan operasi perkalian dan pembagian.</p>
+
+ <p class="lesson-subheading">A. Perkalian</p>
+ <p class="lesson-text">Untuk $z_1 = r_1(\cos \theta_1 + i \sin \theta_1)$ dan $z_2 = r_2(\cos \theta_2 + i \sin \theta_2)$:</p>
+ <p class="lesson-text">$$z_1 z_2 = r_1 r_2 [\cos(\theta_1 + \theta_2) + i \sin(\theta_1 + \theta_2)]$$</p>
+
+ <p class="lesson-subheading-alt">Penurunan:</p>
+ <p class="lesson-text">Ekspansi $z_1 z_2 = r_1 r_2 (\cos \theta_1 + i \sin \theta_1)(\cos \theta_2 + i \sin \theta_2)$ menghasilkan:</p>
+ <p class="lesson-text">$$= r_1 r_2 [\cos \theta_1 \cos \theta_2 - \sin \theta_1 \sin \theta_2 + i(\sin \theta_1 \cos \theta_2 + \cos \theta_1 \sin \theta_2)]$$</p>
+ <p class="lesson-text">Dengan identitas trigonometri $\cos(A+B) = \cos A \cos B - \sin A \sin B$ dan $\sin(A+B) = \sin A \cos B + \cos A \sin B$, diperoleh rumus di atas.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Aturan ringkas perkalian:</strong> modulus <em>dikalikan</em>, argumen <em>dijumlahkan</em>.<br>$|z_1 z_2| = r_1 \cdot r_2$ dan $\arg(z_1 z_2) = \theta_1 + \theta_2$.</p>
+ </div>
+
+ <p class="lesson-subheading-alt">Contoh 10:</p>
+ <p class="lesson-text">Hitung $z_1 z_2$ untuk $z_1 = 2\left(\cos \dfrac{\pi}{3} + i \sin \dfrac{\pi}{3}\right)$ dan $z_2 = 3\left(\cos \dfrac{\pi}{6} + i \sin \dfrac{\pi}{6}\right)$.</p>
+ <p class="lesson-text">$$z_1 z_2 = 6\left[\cos\left(\frac{\pi}{3} + \frac{\pi}{6}\right) + i \sin\left(\frac{\pi}{3} + \frac{\pi}{6}\right)\right] = 6\left(\cos \frac{\pi}{2} + i \sin \frac{\pi}{2}\right) = 6i$$</p>
+
+ <p class="lesson-subheading">B. Pembagian</p>
+ <p class="lesson-text">$$\frac{z_1}{z_2} = \frac{r_1}{r_2}[\cos(\theta_1 - \theta_2) + i \sin(\theta_1 - \theta_2)]$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Aturan ringkas pembagian:</strong> modulus <em>dibagi</em>, argumen <em>dikurangkan</em>.<br>$|z_1 / z_2| = r_1 / r_2$ dan $\arg(z_1 / z_2) = \theta_1 - \theta_2$.</p>
+ </div>
+
+ <p class="lesson-subheading-alt">Contoh 11:</p>
+ <p class="lesson-text">Hitung $\dfrac{z_1}{z_2}$ untuk $z_1 = 6\left(\cos \dfrac{2\pi}{3} + i \sin \dfrac{2\pi}{3}\right)$ dan $z_2 = 2\left(\cos \dfrac{\pi}{3} + i \sin \dfrac{\pi}{3}\right)$.</p>
+ <p class="lesson-text">$$\frac{z_1}{z_2} = \frac{6}{2}\left[\cos\left(\frac{2\pi}{3} - \frac{\pi}{3}\right) + i \sin\left(\frac{2\pi}{3} - \frac{\pi}{3}\right)\right] = 3\left(\cos \frac{\pi}{3} + i \sin \frac{\pi}{3}\right) = \frac{3}{2} + \frac{3\sqrt{3}}{2}i$$</p>
+
+ <p class="lesson-text">Pola "modulus dikali/dibagi, argumen dijumlah/dikurang" ini sangat konsisten—dan menjadi dasar untuk memperluas operasi ke perpangkatan, yaitu dengan mengulang perkalian yang sama berkali-kali.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Teorema De Moivre</h3>
+ <p class="lesson-text">Setelah memahami perkalian dalam bentuk polar, kita dapat menurunkan salah satu teorema paling elegan dalam analisis kompleks.</p>
+
+ <p class="lesson-subheading">A. Pernyataan Teorema</p>
+ <p class="lesson-text">Untuk setiap bilangan real $\theta$ dan setiap bilangan bulat $n$, berlaku:</p>
+ <p class="lesson-text">$$(\cos \theta + i \sin \theta)^n = \cos(n\theta) + i \sin(n\theta)$$</p>
+ <p class="lesson-text">Secara lebih umum, untuk $z = r(\cos \theta + i \sin \theta)$:</p>
+ <p class="lesson-text">$$z^n = r^n [\cos(n\theta) + i \sin(n\theta)]$$</p>
+ <p class="lesson-text">Teorema ini berlaku untuk <strong>semua bilangan bulat</strong> $n$—baik positif, nol, maupun negatif.</p>
+
+ <p class="lesson-subheading">B. Bukti dengan Induksi Matematika</p>
+ <p class="lesson-text"><strong>Basis</strong> ($n = 1$): $(\cos \theta + i \sin \theta)^1 = \cos \theta + i \sin \theta$—benar.</p>
+ <p class="lesson-text"><strong>Hipotesis induksi:</strong> andaikan benar untuk $n = k$: $(\cos \theta + i \sin \theta)^k = \cos(k\theta) + i \sin(k\theta)$.</p>
+ <p class="lesson-text"><strong>Langkah induksi:</strong> tunjukkan benar untuk $n = k+1$:</p>
+ <p class="lesson-text">$$(\cos \theta + i \sin \theta)^{k+1} = [\cos(k\theta) + i \sin(k\theta)] \cdot [\cos \theta + i \sin \theta]$$</p>
+ <p class="lesson-text">Gunakan aturan perkalian bentuk polar (jumlah sudut):</p>
+ <p class="lesson-text">$$= \cos((k+1)\theta) + i \sin((k+1)\theta)$$</p>
+ <p class="lesson-text">Terbukti benar untuk $n = k+1$. Dengan induksi, teorema berlaku untuk semua bilangan bulat positif $n$.</p>
+ <p class="lesson-text"><strong>Untuk $n$ negatif:</strong> gunakan $z^{-n} = 1/z^n$ dan sifat pembagian (selisih sudut)—rumus tetap berlaku. <strong>Untuk $n = 0$:</strong> $z^0 = 1 = \cos 0 + i \sin 0$—benar.</p>
+
+ <p class="lesson-subheading">C. Aplikasi: Perpangkatan Bilangan Kompleks</p>
+ <p class="lesson-subheading-alt">Contoh 12:</p>
+ <p class="lesson-text">Hitung $(1+i)^8$.</p>
+ <p class="lesson-text">Ubah ke polar: $1 + i = \sqrt{2}\left(\cos \dfrac{\pi}{4} + i \sin \dfrac{\pi}{4}\right)$. Terapkan De Moivre:</p>
+ <p class="lesson-text">$$(1+i)^8 = (\sqrt{2})^8 \left[\cos\left(8 \cdot \frac{\pi}{4}\right) + i \sin\left(8 \cdot \frac{\pi}{4}\right)\right] = 2^4[\cos(2\pi) + i \sin(2\pi)] = 16$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 13:</p>
+ <p class="lesson-text">Hitung $(\sqrt{3} - i)^6$.</p>
+ <p class="lesson-text">Modulus: $r = \sqrt{3+1} = 2$. Kuadran IV: $\theta = -\dfrac{\pi}{6}$. Maka:</p>
+ <p class="lesson-text">$$(\sqrt{3}-i)^6 = 2^6\left[\cos\left(-\pi\right) + i \sin\left(-\pi\right)\right] = 64(-1 + 0i) = -64$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 14:</p>
+ <p class="lesson-text">Hitung $\left(\cos \dfrac{\pi}{5} + i \sin \dfrac{\pi}{5}\right)^{10}$:</p>
+ <p class="lesson-text">$$= \cos(2\pi) + i \sin(2\pi) = 1$$</p>
+
+ <p class="lesson-text">Dari perpangkatan, kita dapat melangkah lebih jauh ke operasi kebalikannya—yaitu penarikan akar. Di sinilah justru keindahan bilangan kompleks paling terlihat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Akar ke-$n$ Bilangan Kompleks</h3>
+ <p class="lesson-text">Setelah perpangkatan, kita masuk ke operasi kebalikannya: penarikan akar—di mana justru keindahan bilangan kompleks paling terlihat.</p>
+
+ <p class="lesson-subheading">A. Rumus Umum</p>
+ <p class="lesson-text">Untuk mencari semua akar ke-$n$ dari $z = r(\cos \theta + i \sin \theta)$:</p>
+ <p class="lesson-text">$$w_k = r^{1/n}\left[\cos\left(\frac{\theta + 2\pi k}{n}\right) + i \sin\left(\frac{\theta + 2\pi k}{n}\right)\right]$$</p>
+ <p class="lesson-text">dengan $k = 0, 1, 2, \dots, n-1$.</p>
+ <p class="lesson-subheading-alt">Mengapa ada $n$ akar berbeda?</p>
+ <p class="lesson-text">Karena penambahan $2\pi k$ pada argumen menghasilkan sudut yang berbeda secara geometris—tetapi tetap menghasilkan bilangan kompleks yang jika dipangkatkan $n$ akan kembali ke $z$. Untuk $k = n$, nilai sudut kembali ke $k = 0$ (karena $\dfrac{2\pi n}{n} = 2\pi$—ekuivalen dengan $0$).</p>
+ <p class="lesson-text"><strong>Sifat penting:</strong> semua akar ke-$n$ memiliki <strong>modulus yang sama</strong> $r^{1/n}$, dan tersebar merata pada lingkaran berjari-jari $r^{1/n}$ dengan jarak sudut $\dfrac{2\pi}{n}$ antar akar.</p>
+
+ <p class="lesson-subheading">B. Contoh Penerapan</p>
+ <p class="lesson-subheading-alt">Contoh 15: akar pangkat tiga dari 8.</p>
+ <p class="lesson-text">Bentuk polar: $8 = 8(\cos 0 + i \sin 0)$. Maka $r = 8$, $\theta = 0$, $n = 3$, dan $r^{1/3} = 2$. Untuk $k = 0, 1, 2$:</p>
+ <ul>
+  <li>$k = 0$: $w_0 = 2(\cos 0 + i \sin 0) = 2$.</li>
+  <li>$k = 1$: $w_1 = 2\left(\cos \dfrac{2\pi}{3} + i \sin \dfrac{2\pi}{3}\right) = -1 + i\sqrt{3}$.</li>
+  <li>$k = 2$: $w_2 = 2\left(\cos \dfrac{4\pi}{3} + i \sin \dfrac{4\pi}{3}\right) = -1 - i\sqrt{3}$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 16: akar pangkat empat dari $-16$.</p>
+ <p class="lesson-text">Bentuk polar: $-16 = 16(\cos \pi + i \sin \pi)$. Maka $r = 16$, $\theta = \pi$, $n = 4$, dan $r^{1/4} = 2$. Untuk $k = 0, 1, 2, 3$:</p>
+ <ul>
+  <li>$k = 0$: $w_0 = 2\left(\cos \dfrac{\pi}{4} + i \sin \dfrac{\pi}{4}\right) = \sqrt{2} + i\sqrt{2}$.</li>
+  <li>$k = 1$: $w_1 = 2\left(\cos \dfrac{3\pi}{4} + i \sin \dfrac{3\pi}{4}\right) = -\sqrt{2} + i\sqrt{2}$.</li>
+  <li>$k = 2$: $w_2 = 2\left(\cos \dfrac{5\pi}{4} + i \sin \dfrac{5\pi}{4}\right) = -\sqrt{2} - i\sqrt{2}$.</li>
+  <li>$k = 3$: $w_3 = 2\left(\cos \dfrac{7\pi}{4} + i \sin \dfrac{7\pi}{4}\right) = \sqrt{2} - i\sqrt{2}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Akar Kesatuan</p>
+ <p class="lesson-text"><strong>Akar kesatuan</strong> (<em>roots of unity</em>) adalah solusi dari persamaan $z^n = 1$. Karena $1 = 1(\cos 0 + i \sin 0)$, akar-akarnya adalah:</p>
+ <p class="lesson-text">$$\omega_k = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right), \quad k = 0, 1, \dots, n-1$$</p>
+
+ <p class="lesson-subheading-alt">Sifat-sifat akar kesatuan:</p>
+ <ol>
+  <li>Modulus setiap akar kesatuan adalah $1$—semua terletak pada lingkaran satuan.</li>
+  <li>Jumlah semua akar kesatuan untuk $n > 1$ adalah $0$.</li>
+  <li>Hasil kali semua akar kesatuan adalah $(-1)^{n-1}$.</li>
+  <li>Akar-akar kesatuan membentuk <strong>poligon beraturan</strong> dengan $n$ sisi pada lingkaran satuan.</li>
+  <li>Jika $\omega$ adalah akar kesatuan primitif (bukan akar dari pangkat yang lebih rendah), maka semua akar kesatuan dapat dinyatakan sebagai pangkat dari $\omega$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 17 (akar kesatuan untuk $n = 4$):</p>
+ <p class="lesson-text">Solusi dari $z^4 = 1$:</p>
+ <ul>
+  <li>$\omega_0 = 1$</li>
+  <li>$\omega_1 = i$</li>
+  <li>$\omega_2 = -1$</li>
+  <li>$\omega_3 = -i$</li>
+ </ul>
+ <p class="lesson-text">Keempat akar ini membentuk persegi pada lingkaran satuan.</p>
+
+ <p class="lesson-subheading-alt">Contoh 18 (akar kesatuan untuk $n = 6$):</p>
+ <p class="lesson-text">Solusi dari $z^6 = 1$: akar-akarnya adalah $1, \dfrac{1}{2} + i\dfrac{\sqrt{3}}{2}, -\dfrac{1}{2} + i\dfrac{\sqrt{3}}{2}, -1, -\dfrac{1}{2} - i\dfrac{\sqrt{3}}{2}, \dfrac{1}{2} - i\dfrac{\sqrt{3}}{2}$—membentuk segi enam beraturan pada lingkaran satuan.</p>
+
+ <p class="lesson-text">Akar kesatuan adalah contoh paling elegan dari bagaimana konsep bilangan kompleks menyatukan aljabar dan geometri. Mari kita terapkan seluruh konsep ini—konversi kartesius-polar, perkalian dan pembagian, Teorema De Moivre, serta penarikan akar—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan konversi kartesius-polar, perkalian dan pembagian bentuk polar, Teorema De Moivre, penarikan akar ke-$n$, dan akar kesatuan. Setiap langkah dituliskan lengkap, dan teorema yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Konversi Kartesius ke Polar</p>
+ <p class="lesson-text">Ubah $z = -1 - i\sqrt{3}$ ke bentuk polar.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Hitung modulus</strong>:<br>$r = \sqrt{(-1)^2 + (-\sqrt{3})^2} = \sqrt{1 + 3} = 2$</li>
+  <li><strong>Tentukan kuadran</strong>: $a = -1 < 0$ dan $b=-\sqrt{3} < 0$, sehingga titik berada di <strong>Kuadran III</strong>.</li>
+  <li><strong>Hitung argumen</strong> menggunakan rumus Kuadran III:<br>$\theta = -\pi + \arctan\left(\dfrac{|b|}{|a|}\right) = -\pi + \arctan(\sqrt{3}) = -\pi + \dfrac{\pi}{3} = -\dfrac{2\pi}{3}$</li>
+  <li><strong>Bentuk polar</strong>:<br>$z = 2\left(\cos\left(-\dfrac{2\pi}{3}\right) + i \sin\left(-\dfrac{2\pi}{3}\right)\right)$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan: nilai $\theta = -\dfrac{2\pi}{3}$ ekuivalen dengan $\dfrac{4\pi}{3}$—keduanya berada di Kuadran III. Pemilihan bergantung pada konvensi rentang argumen utama ($-\pi < \theta \le \pi$).</p>
+   
+   <p class="lesson-subheading">Soal 2: Konversi Polar ke Kartesius</p>
+   <p class="lesson-text">Ubah $z = 6\left(\cos\dfrac{7\pi}{6} + i \sin\dfrac{7\pi}{6}\right)$ ke bentuk kartesius.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Hitung bagian real</strong>:<br>$a = 6 \cos\dfrac{7\pi}{6} = 6 \cdot \left(-\dfrac{\sqrt{3}}{2}\right) = -3\sqrt{3}$</li>
+    <li><strong>Hitung bagian imajiner</strong>:<br>$b = 6 \sin\dfrac{7\pi}{6} = 6 \cdot \left(-\dfrac{1}{2}\right) = -3$</li>
+    <li><strong>Bentuk kartesius</strong>:<br>$z = -3\sqrt{3} - 3i$</li>
+   </ol>
+   <p class="lesson-text">Verifikasi: $|z| = \sqrt{(3\sqrt{3})^2 + 3^2} = \sqrt{27 + 9} = \sqrt{36} = 6$ ✓—konsisten dengan modulus awal.</p>
+   
+   <p class="lesson-subheading">Soal 3: Perkalian Bentuk Polar</p>
+   <p class="lesson-text">Hitung hasil kali $z_1 = 4\left(\cos\dfrac{\pi}{4} + i\sin\dfrac{\pi}{4}\right)$ dan $z_2 = 2\left(\cos\dfrac{\pi}{3} + i\sin\dfrac{\pi}{3}\right)$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Aturan perkalian polar</strong>: modulus dikalikan, argumen dijumlahkan.</li>
+    <li><strong>Hitung modulus</strong>:<br>$r_1 \cdot r_2 = 4 \cdot 2 = 8$</li>
+    <li><strong>Hitung argumen</strong>:<br>$\theta_1 + \theta_2 = \dfrac{\pi}{4} + \dfrac{\pi}{3} = \dfrac{3\pi}{12} + \dfrac{4\pi}{12} = \dfrac{7\pi}{12}$</li>
+    <li><strong>Bentuk polar hasil</strong>:<br>$z_1 z_2 = 8\left(\cos\dfrac{7\pi}{12} + i\sin\dfrac{7\pi}{12}\right)$</li>
+   </ol>
+   <p class="lesson-text">Perhatikan bahwa perkalian yang di bentuk kartesius memerlukan ekspansi binomial, di bentuk polar hanya memerlukan satu penjumlahan sudut. Inilah keunggulan utama bentuk polar.</p>
+   
+   <p class="lesson-subheading">Soal 4: Pembagian Bentuk Polar</p>
+   <p class="lesson-text">Hitung $\dfrac{z_1}{z_2}$ untuk $z_1 = 8\left(\cos\dfrac{5\pi}{6} + i\sin\dfrac{5\pi}{6}\right)$ dan $z_2 = 4\left(\cos\dfrac{\pi}{6} + i\sin\dfrac{\pi}{6}\right)$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Aturan pembagian polar</strong>: modulus dibagi, argumen dikurangkan.</li>
+    <li><strong>Modulus</strong>:<br>$\dfrac{r_1}{r_2} = \dfrac{8}{4} = 2$</li>
+    <li><strong>Argumen</strong>:<br>$\theta_1 - \theta_2 = \dfrac{5\pi}{6} - \dfrac{\pi}{6} = \dfrac{4\pi}{6} = \dfrac{2\pi}{3}$</li>
+    <li><strong>Hasil</strong>:<br>$\dfrac{z_1}{z_2} = 2\left(\cos\dfrac{2\pi}{3} + i\sin\dfrac{2\pi}{3}\right) = 2\left(-\dfrac{1}{2} + i\dfrac{\sqrt{3}}{2}\right) = -1 + i\sqrt{3}$</li>
+   </ol>
+   
+   <p class="lesson-subheading">Soal 5: Perpangkatan dengan Teorema De Moivre</p>
+   <p class="lesson-text">Hitung $\left(\sqrt{3} + i\right)^6$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Ubah ke bentuk polar</strong>:
+     <ul>
+      <li>Modulus: $r = \sqrt{3 + 1} = 2$</li>
+      <li>Argumen: $a > 0, b > 0$ (Kuadran I), maka $\theta = \arctan\left(\dfrac{1}{\sqrt{3}}\right) = \dfrac{\pi}{6}$</li>
+      <li>Bentuk polar: $z = 2\left(\cos\dfrac{\pi}{6} + i\sin\dfrac{\pi}{6}\right)$</li>
+     </ul>
+    </li>
+    <li><strong>Terapkan Teorema De Moivre</strong>:<br>$z^6 = 2^6\left(\cos\left(6 \cdot \dfrac{\pi}{6}\right) + i\sin\left(6 \cdot \dfrac{\pi}{6}\right)\right) = 64\left(\cos\pi + i\sin\pi\right)$</li>
+    <li><strong>Evaluasi</strong>:<br>$= 64(-1 + 0i) = -64$</li>
+   </ol>
+   <p class="lesson-text">Verifikasi cepat dengan ekspansi bertahap: $(\sqrt{3}+i)^2 = 2+2i\sqrt{3}$, lalu dikuadratkan menjadi $-8+8i\sqrt{3}$, lalu dikalikan $(2+2i\sqrt{3})$ menghasilkan $-64$ ✓</p>
+   
+   <p class="lesson-subheading">Soal 6: Akar Pangkat Tiga dari Bilangan Kompleks</p>
+   <p class="lesson-text">Tentukan semua akar pangkat tiga dari $z = -8$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Ubah ke bentuk polar</strong>: $-8 = 8(\cos\pi + i\sin\pi)$, sehingga $r = 8$ dan $\theta = \pi$.</li>
+    <li><strong>Gunakan rumus akar ke-$n$</strong> dengan $n = 3$ dan $r^{1/3} = 2$:<br>$w_k = 2\left[\cos\left(\dfrac{\pi + 2\pi k}{3}\right) + i\sin\left(\dfrac{\pi + 2\pi k}{3}\right)\right]$ untuk $k = 0, 1, 2$.</li>
+    <li><strong>Hitung setiap akar</strong>:
+     <ul>
+      <li>$k = 0$: $w_0 = 2\left(\cos\dfrac{\pi}{3} + i\sin\dfrac{\pi}{3}\right) = 2\left(\dfrac{1}{2} + i\dfrac{\sqrt{3}}{2}\right) = 1 + i\sqrt{3}$</li>
+      <li>$k = 1$: $w_1 = 2\left(\cos\pi + i\sin\pi\right) = 2(-1 + 0i) = -2$</li>
+      <li>$k = 2$: $w_2 = 2\left(\cos\dfrac{5\pi}{3} + i\sin\dfrac{5\pi}{3}\right) = 2\left(\dfrac{1}{2} - i\dfrac{\sqrt{3}}{2}\right) = 1 - i\sqrt{3}$</li>
+     </ul>
+    </li>
+    <li><strong>Verifikasi</strong>: hitung $w_1^3 = (-2)^3 = -8$ ✓—dan akar lainnya dapat diverifikasi dengan cara serupa.</li>
+   </ol>
+   <p class="lesson-text">Ketiga akar terletak pada lingkaran berjari-jari 2 dan membentuk <strong>segitiga sama sisi</strong> pada bidang kompleks—jarak sudut antar akar adalah $\dfrac{2\pi}{3} = 120°$.</p>
+   
+   <p class="lesson-subheading">Soal 7: Akar Kesatuan dan Sifatnya</p>
+   <p class="lesson-text">Tentukan semua akar dari $z^5 = 1$ (akar kesatuan tingkat 5), lalu verifikasi bahwa jumlah semua akar sama dengan nol.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Gunakan rumus akar kesatuan</strong>:<br>$\omega_k = \cos\left(\dfrac{2\pi k}{5}\right) + i\sin\left(\dfrac{2\pi k}{5}\right)$ untuk $k = 0, 1, 2, 3, 4$.</li>
+    <li><strong>Tuliskan setiap akar</strong>:
+     <ul>
+      <li>$k = 0$: $\omega_0 = \cos 0 + i\sin 0 = 1$</li>
+      <li>$k = 1$: $\omega_1 = \cos\dfrac{2\pi}{5} + i\sin\dfrac{2\pi}{5}$</li>
+      <li>$k = 2$: $\omega_2 = \cos\dfrac{4\pi}{5} + i\sin\dfrac{4\pi}{5}$</li>
+      <li>$k = 3$: $\omega_3 = \cos\dfrac{6\pi}{5} + i\sin\dfrac{6\pi}{5}$</li>
+      <li>$k = 4$: $\omega_4 = \cos\dfrac{8\pi}{5} + i\sin\dfrac{8\pi}{5}$</li>
+     </ul>
+    </li>
+    <li><strong>Verifikasi jumlah = 0</strong>. Akar-akar dari $z^5 - 1 = 0$ merupakan akar-akar dari polinomial $z^5 - 1$. Menurut rumus Vieta, jumlah semua akar = $-\dfrac{\text{koefisien } z^4}{\text{koefisien } z^5} = -\dfrac{0}{1} = 0$.</li>
+    <li><strong>Alternatif geometris</strong>: kelima akar terletak pada lingkaran satuan dan membentuk <strong>segilima beraturan</strong>. Karena simetri, vektor-vektor dari titik asal ke tiap akar saling menyeimbangkan—jumlah vektornya nol.</li>
+   </ol>
+   <p class="lesson-text">Akar kesatuan tingkat 5 memiliki beragam aplikasi—dari polinomial siklotomik hingga transformasi Fourier diskret, di mana akar kesatuan berperan sebagai "basis" dari sinyal periodik.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menentukan argumen hanya dengan $\arctan(b/a)$ tanpa menyesuaikan kuadran.</strong> Argumen harus disesuaikan berdasarkan tanda $a$ dan $b$. Contoh: $z = -1 + i$ memiliki $\arctan(1/-1) = -\pi/4$, tetapi argumen yang benar adalah $3\pi/4$ (Kuadran II). Selalu periksa kuadran terlebih dahulu.</li>
+  <li><strong>Lupa bahwa akar ke-$n$ menghasilkan $n$ solusi berbeda.</strong> Rumus akar harus dihitung untuk $k = 0, 1, \dots, n-1$. Jangan hanya mengambil satu nilai $k$—kecuali jika soal secara eksplisit hanya meminta satu akar tertentu.</li>
+  <li><strong>Menganggap modulus akar sama dengan modulus bilangan asli.</strong> Modulus akar adalah $r^{1/n}$, bukan $r$. Contoh: akar kuadrat dari $16$ memiliki modulus $4$, bukan $16$.</li>
+  <li><strong>Menerapkan De Moivre tanpa menyesuaikan tanda untuk pangkat negatif.</strong> Teorema berlaku untuk semua bilangan bulat $n$, tetapi pastikan tanda argumen dan modulus dihitung dengan benar. Untuk $n$ negatif, $r^n$ menjadi $1/r^{|n|}$.</li>
+  <li><strong>Mencampur satuan derajat dan radian.</strong> Dalam analisis kompleks, argumen <em>selalu</em> dinyatakan dalam radian. Pastikan kalkulator berada dalam mode radian saat menghitung $\cos$ dan $\sin$—kesalahan ini adalah salah satu yang paling sering terjadi.</li>
+  <li><strong>Mengabaikan penambahan $2\pi k$ pada argumen saat mencari akar.</strong> Karena fungsi trigonometri periodik dengan periode $2\pi$, setiap penambahan $2\pi k$ menghasilkan akar yang berbeda. Untuk $k \ge n$, nilai sudut akan berulang—jadi cukup hitung hingga $k = n-1$.</li>
+  <li><strong>Salah menentukan kuadran pada bilangan kompleks dengan $a = 0$ atau $b = 0$.</strong> Kasus khusus ini harus ditangani secara terpisah. Misalnya, $z = -3$ (pada sumbu real negatif) memiliki $\theta = \pi$, bukan $\theta = 0$ atau nilai $\arctan(0/-3)$ yang tidak terdefinisi dengan baik.</li>
+  <li><strong>Menjumlahkan modulus saat mengalikan bilangan kompleks.</strong> Kesalahan: $|z_1 z_2| = r_1 + r_2$. Yang benar: $|z_1 z_2| = r_1 \cdot r_2$—modulus <em>dikalikan</em>. Kebalikannya juga berlaku untuk pembagian: modulus dibagi, bukan dikurangi.</li>
+  <li><strong>Mengira bilangan kompleks hanya punya satu akar ke-$n$ karena kalkulator mengembalikan satu nilai.</strong> Kalkulator biasanya hanya mengembalikan akar utama (principal root) untuk fungsi $\sqrt[n]{\cdot}$—sedangkan secara matematis ada $n$ akar berbeda. Untuk mencari semua akar, harus digunakan rumus akar dalam bentuk polar—bukan sekadar menekan tombol akar pada kalkulator.</li>
+  <li><strong>Salah menerapkan De Moivre untuk $n = 0$ atau $n = 1$ karena mengira keduanya kasus khusus.</strong> Meskipun hasilnya trivial, De Moivre tetap berlaku: $z^0 = r^0[\cos(0) + i\sin(0)] = 1$ dan $z^1 = r[\cos\theta + i\sin\theta] = z$. Tidak perlu rumus khusus—cukup substitusi langsung. Kesalahan yang sering muncul adalah menambahkan $2\pi k$ pada kasus $n = 0$ atau $n = 1$, padahal $k$ hanya relevan untuk penarikan akar (bukan perpangkatan).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti bilangan kompleks lanjut yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Modulus</strong>: $r = |z| = \sqrt{a^2 + b^2}$—jarak dari titik asal.</li>
+  <li><strong>Argumen</strong>: $\theta = \arg(z)$—sudut terhadap sumbu real positif, ditentukan dengan memperhatikan kuadran.</li>
+  <li><strong>Bentuk polar</strong>: $z = r(\cos \theta + i \sin \theta) = r \operatorname{cis} \theta = r e^{i\theta}$.</li>
+  <li><strong>Konversi Kartesius → Polar</strong>: $r = \sqrt{a^2 + b^2}$ dan $\theta$ sesuai kuadran.</li>
+  <li><strong>Konversi Polar → Kartesius</strong>: $a = r \cos \theta$ dan $b = r \sin \theta$.</li>
+  <li><strong>Perkalian</strong>: modulus dikali, argumen dijumlahkan—$z_1 z_2 = r_1 r_2 [\cos(\theta_1 + \theta_2) + i \sin(\theta_1 + \theta_2)]$.</li>
+  <li><strong>Pembagian</strong>: modulus dibagi, argumen dikurangkan—$\dfrac{z_1}{z_2} = \dfrac{r_1}{r_2}[\cos(\theta_1 - \theta_2) + i \sin(\theta_1 - \theta_2)]$.</li>
+  <li><strong>Teorema De Moivre</strong>: $z^n = r^n[\cos(n\theta) + i \sin(n\theta)]$ untuk semua bilangan bulat $n$.</li>
+  <li><strong>Akar ke-$n$</strong>: $w_k = r^{1/n}[\cos((\theta + 2\pi k)/n) + i \sin((\theta + 2\pi k)/n)]$ dengan $k = 0, 1, \dots, n-1$.</li>
+  <li><strong>Akar kesatuan</strong>: solusi dari $z^n = 1$—yaitu $\omega_k = \cos(2\pi k/n) + i \sin(2\pi k/n)$, membentuk poligon beraturan pada lingkaran satuan.</li>
+  <li>Kesalahan umum: salah menentukan kuadran argumen, lupa $n$ akar yang berbeda, mencampur derajat dan radian, dan mengira kalkulator memberikan semua akar.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Bentuk polar dan Teorema De Moivre adalah <strong>jembatan antara aljabar dan geometri</strong> bilangan kompleks. Dengan bentuk polar, operasi perkalian dan pembagian menjadi sangat sederhana—hanya melibatkan modulus dan sudut. Teorema De Moivre memberikan cara cepat untuk menghitung pangkat dan akar yang jika dilakukan dalam bentuk kartesius akan sangat melelahkan. Yang membuat materi ini istimewa adalah <strong>kemampuan menyatukan beberapa cabang matematika sekaligus</strong>: dalam satu kerangka, kita melihat bagaimana aljabar (bentuk kartesius), trigonometri (fungsi $\sin$ dan $\cos$), geometri (bidang kompleks dan poligon akar kesatuan), dan analisis (rumus Euler) bertemu secara koheren.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Analisis Fourier</strong> (yang menggunakan bentuk polar untuk menguraikan sinyal menjadi komponen frekuensi), <strong>Analisis Kompleks</strong> (yang mempelajari fungsi kompleks, integral kontur, dan teorema residu—di mana representasi polar sangat penting), <strong>Aljabar Linear</strong> (yang menggunakan nilai eigen kompleks dan diagonalisasi—di mana akar kesatuan berperan dalam transformasi Fourier diskret), <strong>Teori Bilangan Analitik</strong> (yang menggunakan akar kesatuan untuk membuktikan sifat-sifat distribusi bilangan prima), <strong>Persamaan Diferensial Parsial</strong> (yang menggunakan deret Fourier kompleks untuk menyelesaikan persamaan panas dan gelombang), dan <strong>Teori Informasi</strong> (yang menggunakan bilangan kompleks untuk memodelkan kanal komunikasi).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan konversi antara bentuk kartesius dan polar, perhitungan pangkat melalui De Moivre, dan pencarian semua akar ke-$n$. Kebiasaan memeriksa kuadran argumen dengan cermat, konsisten menggunakan radian, dan tidak melupakan $n$ akar yang berbeda akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik analisis kompleks dan pengolahan sinyal, di mana representasi polar menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

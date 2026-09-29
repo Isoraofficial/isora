@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Sistem Persamaan (Linear, Nonlinear, dan Analisis Interseksi Kurva)</title>
+ <meta name="description" content="Sistem persamaan: klasifikasi linear dan nonlinear, metode eliminasi dan substitusi, analisis diskriminan, serta fenomena solusi asing pada sistem nonlinear.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Sistem Persamaan (Linear, Nonlinear, dan Analisis Interseksi Kurva)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Persamaan Linear</strong> — terutama SPLDV dan metode eliminasi/substitusi, karena sistem linear adalah bentuk paling dasar dari sistem persamaan yang akan diperluas ke bentuk nonlinear.</li>
+   <li><strong>Persamaan Kuadrat</strong> — terutama diskriminan dan faktorisasi, karena jumlah solusi sistem linear-kuadrat ditentukan oleh diskriminan persamaan kuadrat hasil substitusi.</li>
+   <li><strong>Pertidaksamaan</strong> — meskipun tidak langsung dipakai, pemahaman garis bilangan dan analisis tanda akan sangat membantu memahami mengapa sistem nonlinear dapat memiliki jumlah solusi yang bervariasi.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi sebelumnya, kita fokus pada menyelesaikan <strong>satu</strong> persamaan (linear atau kuadrat) untuk mencari akar-akarnya pada sumbu $X$. Sekarang, kita akan mempelajari <strong>Sistem Persamaan</strong>, yaitu kumpulan dua atau lebih persamaan yang harus dipenuhi <strong>secara bersamaan</strong> oleh nilai variabel yang sama.</p>
+ <p class="lesson-text">Secara fundamental, menyelesaikan sistem persamaan sama dengan mencari <strong>koordinat titik potong</strong> antara grafik-grafik persamaan tersebut. Jika grafiknya adalah garis lurus, sistem disebut <strong>Linear</strong>. Jika ada grafik yang melengkung (parabola, lingkaran), sistem disebut <strong>Nonlinear</strong>. Perbedaan ini bukan sekadar soal bentuk kurva—ia mengubah strategi penyelesaian secara fundamental: sistem linear paling efisien diselesaikan dengan <em>eliminasi</em>, sedangkan sistem nonlinear hampir selalu memerlukan <em>substitusi</em>.</p>
+ <p class="lesson-text">Yang membuat sistem persamaan sangat penting adalah <strong>perannya sebagai jembatan antara aljabar dan geometri</strong>. Ketika kita menyelesaikan sistem persamaan, kita sesungguhnya sedang mencari titik-titik di mana dua kurva bertemu—suatu keterampilan yang akan terus digunakan dalam kalkulus multivariabel, optimisasi nonlinear, dan pemodelan fenomena fisik. Materi ini disusun bertahap: dari <strong>klasifikasi sistem berdasarkan grafik</strong>, <strong>sistem linear-linear (SPLDV)</strong>, <strong>sistem linear-kuadrat</strong>, <strong>sistem kuadrat-kuadrat</strong>, <strong>fenomena solusi asing</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap strategi akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan prosedurnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Klasifikasi Sistem Persamaan Berdasarkan Grafik</h3>
+ <p class="lesson-text">Sebelum masuk ke teknik penyelesaian, kita perlu memahami terlebih dahulu bagaimana sistem persamaan diklasifikasikan berdasarkan bentuk grafiknya—karena klasifikasi inilah yang menentukan strategi penyelesaian yang tepat.</p>
+ <p class="lesson-text">Untuk memudahkan analisis, klasifikasikan sistem ke dalam tiga tipe berikut:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Tipe Sistem</th>
+     <th>Bentuk Grafik</th>
+     <th>Jumlah Potensi Solusi (Titik Potong)</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Linear-Linear</strong></td>
+     <td>Garis lurus &amp; Garis lurus</td>
+     <td>1 (berpotongan), 0 (sejajar), atau ∞ (berimpit)</td>
+    </tr>
+    <tr>
+     <td><strong>Linear-Kuadrat</strong></td>
+     <td>Garis lurus &amp; Parabola/Lingkaran</td>
+     <td>2, 1 (menyinggung), atau 0</td>
+    </tr>
+    <tr>
+     <td><strong>Kuadrat-Kuadrat</strong></td>
+     <td>Parabola &amp; Parabola / Lingkaran &amp; Lingkaran</td>
+     <td>Maksimal 4 titik potong</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Tiga tipe sistem ini tidak hanya berbeda dalam bentuk grafik, tetapi juga dalam tingkat kesulitan dan strategi penyelesaian. Kita mulai dari yang paling sederhana: sistem linear-linear.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Sistem Linear-Linear (SPLDV)</h3>
+ <p class="lesson-text">Sistem linear-linear adalah bentuk paling dasar dari sistem persamaan—dan merupakan perluasan langsung dari SPLDV yang sudah Anda pelajari di materi sebelumnya.</p>
+
+ <p class="lesson-subheading">A. Bentuk dan Analisis Solusi</p>
+ <p class="lesson-text">Bentuk umum sistem ini adalah:</p>
+ <p class="lesson-text">$$a_1x + b_1y = c_1$$ $$a_2x + b_2y = c_2$$</p>
+ <p class="lesson-text">Secara aljabar, jenis solusi ditentukan oleh perbandingan koefisien:</p>
+ <ul>
+  <li><strong>Solusi Tunggal</strong> (Berpotongan) jika $\dfrac{a_1}{a_2} \neq \dfrac{b_1}{b_2}$.</li>
+  <li><strong>Tak Hingga Solusi</strong> (Berimpit) jika $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}$.</li>
+  <li><strong>Tidak Ada Solusi</strong> (Sejajar) jika $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} \neq \dfrac{c_1}{c_2}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Metode Eliminasi (Penghilangan Variabel)</p>
+ <p class="lesson-text">Metode ini paling efisien untuk sistem linear. Prinsipnya: <strong>samakan koefisien</strong> salah satu variabel, lalu <strong>jumlahkan atau kurangkan</strong> kedua persamaan.</p>
+ <p class="lesson-subheading-alt">Contoh 1 (Eliminasi):</p>
+ <p class="lesson-text">Selesaikan $2x + 3y = 8$ dan $3x - 2y = -1$.</p>
+ <ul>
+  <li>Eliminasi $y$: KPK dari 3 dan 2 adalah 6. Kalikan persamaan 1 dengan 2 ($4x+6y=16$) dan persamaan 2 dengan 3 ($9x-6y=-3$).</li>
+  <li>Jumlahkan: $13x = 13 \rightarrow x = 1$.</li>
+  <li>Substitusi $x=1$ ke persamaan 1: $2(1) + 3y = 8 \rightarrow 3y = 6 \rightarrow y = 2$.</li>
+  <li>Solusi: $(1, 2)$.</li>
+ </ul>
+
+ <p class="lesson-text">Sistem linear-linear adalah satu-satunya tipe sistem yang dapat diselesaikan dengan eliminasi murni. Begitu salah satu persamaan mengandung suku berpangkat dua, eliminasi murni menjadi tidak efektif—dan kita harus beralih ke substitusi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sistem Linear-Kuadrat (Garis &amp; Parabola)</h3>
+ <p class="lesson-text">Ini adalah tipe sistem nonlinear yang paling sering muncul. Satu persamaan linear (garis) dan satu persamaan kuadrat (parabola).</p>
+
+ <p class="lesson-subheading">A. Strategi Substitusi (WAJIB!)</p>
+ <p class="lesson-text">Metode eliminasi <strong>tidak efektif</strong> di sini karena ada suku $x^2$ atau $y^2$. Satu-satunya metode baku adalah <strong>substitusi</strong>:</p>
+ <ol>
+  <li>Dari persamaan <strong>linear</strong>, nyatakan $y$ dalam bentuk $x$ (misal $y = mx + c$).</li>
+  <li>Masukkan (substitusikan) nilai $y$ ini ke persamaan <strong>kuadrat</strong>.</li>
+  <li>Hasilnya adalah <strong>Persamaan Kuadrat dalam</strong> $x$ ($ax^2 + bx + c = 0$).</li>
+  <li>Jumlah solusi sistem ditentukan oleh <strong>Diskriminan</strong> ($D$) dari persamaan kuadrat ini:
+   <ul>
+    <li>$D > 0$ → Garis memotong parabola di <strong>2 titik</strong>.</li>
+    <li>$D = 0$ → Garis <strong>menyinggung</strong> parabola di <strong>1 titik</strong>.</li>
+    <li>$D < 0$ → Garis <strong>tidak memotong</strong> parabola (0 titik).</li>
+   </ul>
+  </li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 2 (Dua Titik Potong):</p>
+ <p class="lesson-text">Selesaikan $y = x + 1$ (garis) dan $y = x^2 - 3x + 4$ (parabola).</p>
+ <ul>
+  <li>Substitusi garis ke parabola: $x + 1 = x^2 - 3x + 4$.</li>
+  <li>Pindahkan semua ke kanan: $0 = x^2 - 4x + 3$.</li>
+  <li>Faktorkan: $(x - 1)(x - 3) = 0$. Maka $x = 1$ atau $x = 3$.</li>
+  <li>Cari $y$: Untuk $x=1 \rightarrow y=2$; untuk $x=3 \rightarrow y=4$.</li>
+  <li>Solusi: $(1, 2)$ dan $(3, 4)$.</li>
+ </ul>
+
+ <p class="lesson-text">Sistem linear-kuadrat selalu diselesaikan dengan substitusi, dan analisis diskriminan memberi tahu kita berapa banyak solusi yang ada. Namun, ada kalanya kita menghadapi sistem di mana <em>kedua</em> persamaan mengandung suku kuadrat—situasi yang memerlukan strategi berbeda lagi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sistem Kuadrat-Kuadrat</h3>
+ <p class="lesson-text">Sistem ini melibatkan dua persamaan kuadrat, misalnya dua lingkaran, atau lingkaran dan hiperbola. Strategi utamanya adalah <strong>eliminasi variabel berpangkat dua</strong>.</p>
+
+ <p class="lesson-subheading">A. Strategi Eliminasi Kuadrat</p>
+ <p class="lesson-text">Jika kedua persamaan memiliki bentuk $x^2$ dan $y^2$ dengan koefisien yang sama, kita bisa <strong>jumlahkan atau kurangkan</strong> kedua persamaan untuk menghilangkan $x^2$ atau $y^2$, sehingga menghasilkan <strong>persamaan linear</strong>. Setelah itu, selesaikan dengan metode substitusi biasa.</p>
+ <p class="lesson-subheading-alt">Contoh 3 (Lingkaran &amp; Lingkaran):</p>
+ <p class="lesson-text">Selesaikan $x^2 + y^2 = 25$ dan $x^2 - y^2 = 7$.</p>
+ <ul>
+  <li>Jumlahkan kedua persamaan: $2x^2 = 32 \rightarrow x^2 = 16 \rightarrow x = \pm 4$.</li>
+  <li>Substitusi $x^2 = 16$ ke persamaan pertama: $16 + y^2 = 25 \rightarrow y^2 = 9 \rightarrow y = \pm 3$.</li>
+  <li>Solusi: Semua kombinasi pasangan, yaitu $(4,3), (4,-3), (-4,3), (-4,-3)$.</li>
+ </ul>
+
+ <p class="lesson-text">Strategi eliminasi suku kuadrat bekerja baik ketika koefisien $x^2$ (atau $y^2$) pada kedua persamaan sama besar. Jika tidak sama, kita perlu mengalikan salah satu persamaan dengan konstanta terlebih dahulu—sama seperti pada eliminasi sistem linear.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Fenomena Kritis: Solusi Asing (Ekstraneous)</h3>
+ <p class="lesson-text">Ini adalah <strong>perbedaan terbesar</strong> antara sistem linear dan nonlinear. Ketika proses penyelesaian melibatkan <strong>pengkuadratan</strong> kedua ruas (untuk menghilangkan akar) atau <strong>perkalian silang</strong> (untuk menghilangkan pecahan), bisa muncul nilai $x$ yang memenuhi persamaan hasil substitusi, tetapi <strong>tidak memenuhi</strong> persamaan asli. Nilai ini wajib dibuang.</p>
+ <p class="lesson-text"><strong>Prosedur Wajib</strong>: Setelah mendapatkan kandidat solusi, <strong>VERIFIKASI</strong> dengan mensubstitusikannya ke <strong>persamaan asli</strong> (bukan persamaan hasil substitusi).</p>
+ <p class="lesson-subheading-alt">Contoh 4 (Solusi Asing):</p>
+ <p class="lesson-text">Selesaikan $\sqrt{x+1} = y$ dan $x + y = 5$.</p>
+ <ul>
+  <li>Dari linear: $y = 5 - x$.</li>
+  <li>Substitusi: $\sqrt{x+1} = 5 - x$.</li>
+  <li>Kuadratkan kedua ruas: $x + 1 = (5 - x)^2 \rightarrow x + 1 = x^2 - 10x + 25$.</li>
+  <li>Sederhanakan: $0 = x^2 - 11x + 24 \rightarrow (x-3)(x-8) = 0$. Kandidat: $x=3$ atau $x=8$.</li>
+  <li><strong>Verifikasi (Cek ke persamaan asli!)</strong>:
+   <ul>
+    <li>Untuk $x=3$: $y=5-3=2$. Cek $\sqrt{3+1} = \sqrt{4} = 2$ (<strong>BENAR</strong>).</li>
+    <li>Untuk $x=8$: $y=5-8=-3$. Cek $\sqrt{8+1} = \sqrt{9} = 3 \neq -3$ (<strong>SALAH</strong>).</li>
+   </ul>
+  </li>
+  <li><strong>Kesimpulan</strong>: $x=8$ adalah solusi asing. Himpunan penyelesaiannya adalah $\{(3, 2)\}$.</li>
+ </ul>
+
+ <p class="lesson-text">Fenomena solusi asing inilah yang membuat sistem nonlinear jauh lebih halus daripada sistem linear—dan sering menjadi sumber kesalahan yang sulit dilacak. Mari kita terapkan seluruh strategi ini—eliminasi untuk sistem linear, substitusi untuk nonlinear, analisis diskriminan, dan verifikasi solusi asing—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan sistem linear, linear-kuadrat, kuadrat-kuadrat, serta fenomena solusi asing. Setiap langkah dituliskan lengkap, dan strategi yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Sistem Linear-Linear (Eliminasi)</p>
+ <p class="lesson-text">Selesaikan $2x + 3y = 13$ dan $4x - y = 5$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Pilih metode</strong>: kedua persamaan linear—eliminasi atau substitusi keduanya bisa. Di sini kita gunakan substitusi karena persamaan kedua mudah diselesaikan untuk $y$.</li>
+  <li>Dari $4x - y = 5$, nyatakan $y$: $y = 4x - 5$.</li>
+  <li>Substitusikan ke persamaan pertama: $2x + 3(4x - 5) = 13 \rightarrow 2x + 12x - 15 = 13 \rightarrow 14x = 28 \rightarrow x = 2$.</li>
+  <li>Cari $y$: $y = 4(2) - 5 = 3$.</li>
+  <li><strong>Verifikasi</strong>: $2(2) + 3(3) = 4 + 9 = 13$ ✓ dan $4(2) - 3 = 5$ ✓</li>
+ </ol>
+ <p class="lesson-text">Solusinya: $(2, 3)$.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Sistem Linear-Linear dengan Tak Hingga Solusi</p>
+ <p class="lesson-text">Tentukan jenis solusi dari $2x - y = 4$ dan $4x - 2y = 8$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Bandingkan koefisien</strong>: perhatikan bahwa persamaan kedua adalah kelipatan 2 dari persamaan pertama:<br>$4x - 2y = 2(2x - y)$ dan $8 = 2(4)$.</li>
+  <li>Rasio koefisien: $\dfrac{a_1}{a_2} = \dfrac{2}{4} = \dfrac{1}{2}$, $\dfrac{b_1}{b_2} = \dfrac{-1}{-2} = \dfrac{1}{2}$, $\dfrac{c_1}{c_2} = \dfrac{4}{8} = \dfrac{1}{2}$.</li>
+  <li>Karena ketiga rasio sama, kedua persamaan <strong>berimpit</strong>—artinya setiap solusi dari persamaan pertama juga memenuhi persamaan kedua.</li>
+ </ol>
+ <p class="lesson-text">Sistem ini memiliki <strong>tak hingga solusi</strong>: semua pasangan $(x, y)$ yang memenuhi $2x - y = 4$, misalnya $(2, 0)$, $(3, 2)$, $(0, -4)$, dan seterusnya.</p>
+ 
+ <p class="lesson-subheading">Soal 3: Sistem Linear-Kuadrat dengan $D > 0$</p>
+ <p class="lesson-text">Selesaikan $y = x^2 + x - 2$ dan $y = 3x - 2$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Substitusi</strong> (sistem linear-kuadrat wajib menggunakan substitusi):<br>$x^2 + x - 2 = 3x - 2$</li>
+  <li>Sederhanakan:<br>$x^2 - 2x = 0$</li>
+  <li>Faktorkan:<br>$x(x - 2) = 0 \rightarrow x = 0$ atau $x = 2$</li>
+  <li>Cari $y$ untuk masing-masing $x$:
+   <ul>
+    <li>$x = 0 \rightarrow y = 3(0) - 2 = -2$</li>
+    <li>$x = 2 \rightarrow y = 3(2) - 2 = 4$</li>
+   </ul>
+  </li>
+  <li><strong>Verifikasi</strong>: cek $x = 2$ pada persamaan kuadrat: $y = 4 + 2 - 2 = 4$ ✓</li>
+ </ol>
+ <p class="lesson-text">Solusinya: $(0, -2)$ dan $(2, 4)$. Perhatikan bahwa diskriminan persamaan $x^2 - 2x = 0$ adalah $D = 4 > 0$—sesuai dengan dua titik potong.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Sistem Linear-Kuadrat dengan $D = 0$ (Menyinggung)</p>
+ <p class="lesson-text">Selesaikan $y = x^2 - 4x + 5$ dan $y = 2x - 4$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Substitusi</strong>:<br>$x^2 - 4x + 5 = 2x - 4$</li>
+  <li>Sederhanakan:<br>$x^2 - 6x + 9 = 0$</li>
+  <li>Faktorkan:<br>$(x - 3)^2 = 0 \rightarrow x = 3$ (akar kembar)</li>
+  <li>Cari $y$: $y = 2(3) - 4 = 2$.</li>
+ </ol>
+ <p class="lesson-text">Solusinya: $(3, 2)$—satu titik. Ini terjadi karena $D = 0$: garis <strong>menyinggung</strong> parabola di titik puncaknya.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Sistem Linear-Kuadrat dengan $D < 0$ (Tidak Berpotongan)</p>
+   <p class="lesson-text">Tentukan apakah sistem $y = x^2 + 2x + 5$ dan $y = x - 1$ memiliki solusi real.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Substitusi</strong>:<br>$x^2 + 2x + 5 = x - 1$</li>
+    <li>Sederhanakan:<br>$x^2 + x + 6 = 0$</li>
+    <li>Hitung diskriminan:<br>$D = 1^2 - 4(1)(6) = 1 - 24 = -23 < 0$</li>
+    <li>Karena $D < 0$, persamaan kuadrat tidak memiliki akar real—sehingga sistem juga tidak memiliki solusi real.</li>
+   </ol>
+   <p class="lesson-text">Secara geometris, garis $y = x - 1$ sama sekali tidak memotong parabola $y = x^2 + 2x + 5$. Himpunan penyelesaiannya: $\varnothing$.</p>
+   
+   <p class="lesson-subheading">Soal 6: Sistem Kuadrat-Kuadrat</p>
+   <p class="lesson-text">Selesaikan $x^2 + y^2 = 13$ dan $x^2 - y^2 = 5$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Eliminasi suku kuadrat</strong>—jumlahkan kedua persamaan:<br>$(x^2 + y^2) + (x^2 - y^2) = 13 + 5$<br>$2x^2 = 18 \rightarrow x^2 = 9$</li>
+    <li>Karena $x^2 = 9$, ada <strong>dua nilai</strong> $x$: $x = 3$ atau $x = -3$. Jangan lupa akar negatifnya.</li>
+    <li>Substitusikan $x^2 = 9$ ke persamaan pertama:<br>$9 + y^2 = 13 \rightarrow y^2 = 4 \rightarrow y = 2$ atau $y = -2$</li>
+    <li>Kombinasikan semua pasangan: $(3, 2)$, $(3, -2)$, $(-3, 2)$, $(-3, -2)$.</li>
+    <li><strong>Verifikasi</strong> salah satu: $(3, 2) \rightarrow 9 + 4 = 13$ ✓ dan $9 - 4 = 5$ ✓</li>
+   </ol>
+   <p class="lesson-text">Solusinya: empat pasangan di atas—sesuai dengan fakta bahwa dua lingkaran (atau lingkaran dengan hiperbola) dapat berpotongan hingga empat titik.</p>
+   
+   <p class="lesson-subheading">Soal 7: Sistem dengan Solusi Asing</p>
+   <p class="lesson-text">Selesaikan $y = \sqrt{x + 5}$ dan $y = x - 1$.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li><strong>Substitusi</strong>:<br>$x - 1 = \sqrt{x + 5}$</li>
+    <li><strong>Kuadratkan kedua ruas</strong> (operasi ini berpotensi memunculkan solusi asing):<br>$(x - 1)^2 = x + 5$<br>$x^2 - 2x + 1 = x + 5$<br>$x^2 - 3x - 4 = 0$</li>
+    <li>Faktorkan:<br>$(x - 4)(x + 1) = 0 \rightarrow x = 4$ atau $x = -1$</li>
+    <li><strong>Verifikasi ke persamaan asli</strong>—langkah wajib untuk sistem dengan pengkuadratan:
+     <ul>
+      <li>$x = 4$: cek $y = \sqrt{4 + 5} = \sqrt{9} = 3$ dan $y = 4 - 1 = 3$. Keduanya cocok ✓</li>
+      <li>$x = -1$: cek $y = \sqrt{-1 + 5} = \sqrt{4} = 2$ dan $y = -1 - 1 = -2$. $2 \neq -2$ ✗</li>
+     </ul>
+    </li>
+    <li>Jadi $x = -1$ adalah <strong>solusi asing</strong>—harus dibuang.</li>
+   </ol>
+   <p class="lesson-text">Solusi yang valid: $(4, 3)$. Perhatikan bagaimana langkah verifikasi menjadi penentu: tanpa memeriksa ke persamaan asli, kita akan salah melaporkan dua solusi padahal hanya satu yang sahih.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat jebakan-jebakan paling fatal dalam mengerjakan sistem persamaan:</p>
+ <ol>
+  <li><strong>Lupa Mencari Pasangan Variabel Kedua ($y$)</strong>
+   <ul>
+    <li><em>Kesalahan:</em> Setelah mendapat $x=2$, langsung menyimpulkan selesai.</li>
+    <li><em>Koreksi:</em> Solusi sistem adalah <strong>pasangan</strong> $(x, y)$. Substitusikan nilai $x$ ke persamaan termudah untuk mencari $y$.</li>
+   </ul>
+  </li>
+  <li><strong>Membagi Persamaan dengan Variabel (Menghilangkan Solusi)</strong>
+ <ul>
+  <li><em>Kesalahan:</em> Pada sistem $x^2 = 4x$ dan $x + y = 7$, mengubah $x^2 = 4x$ menjadi $x = 4$ dengan membagi kedua ruas dengan $x$—padahal $x = 0$ juga memenuhi $x^2 = 4x$.</li>
+  <li><em>Koreksi:</em> Jangan pernah membagi dengan variabel yang bisa bernilai nol. Pindahkan semua ke satu ruas dan faktorkan: $x^2 - 4x = 0 \rightarrow x(x - 4) = 0$, sehingga $x = 0$ atau $x = 4$. Kedua nilai ini kemudian disubstitusikan ke persamaan kedua untuk mencari $y$ pasangannya.</li>
+ </ul>
+</li>
+  <li><strong>Tidak Memeriksa Solusi Asing pada Sistem Nonlinear</strong>
+   <ul>
+    <li><em>Kesalahan:</em> Menerima semua nilai $x$ hasil pengkuadratan tanpa verifikasi.</li>
+    <li><em>Koreksi:</em> Selalu substitusikan kandidat solusi ke <strong>persamaan asli</strong> untuk memastikan validitasnya.</li>
+   </ul>
+  </li>
+  <li><strong>Menerapkan Eliminasi pada Sistem Linear-Kuadrat</strong>
+   <ul>
+    <li><em>Kesalahan:</em> Mencoba menjumlahkan atau mengurangkan persamaan linear dan persamaan kuadrat secara langsung—misalnya $(x + y) + (x^2 + y^2) = 5 + 25$—untuk menghilangkan salah satu variabel.</li>
+    <li><em>Koreksi:</em> Eliminasi hanya bekerja jika kedua persamaan memiliki suku dengan variabel yang <strong>sama dan berpangkat sama</strong>. Sistem linear-kuadrat memiliki suku yang berbeda jenis (linear vs kuadrat), sehingga <strong>wajib</strong> diselesaikan dengan substitusi. Menerapkan eliminasi langsung akan menghasilkan persamaan yang tidak dapat diselesaikan untuk variabel tunggal.</li>
+   </ul>
+  </li>
+  <li><strong>Salah Mengidentifikasi Variabel Bebas Setelah Eliminasi Suku Kuadrat</strong>
+   <ul>
+    <li><em>Kesalahan:</em> Setelah menjumlahkan $x^2 + y^2 = 25$ dengan $x^2 - y^2 = 7$ menjadi $2x^2 = 32$, langsung menyimpulkan solusi $x = 4$ saja—tanpa mempertimbangkan $x = -4$.</li>
+    <li><em>Koreksi:</em> Persamaan $x^2 = 16$ memiliki <strong>dua</strong> solusi real: $x = 4$ dan $x = -4$. Selalu tuliskan kedua akar, lalu cari pasangan $y$-nya masing-masing. Lupa salah satu akar adalah penyebab umum solusi tidak lengkap pada sistem kuadrat-kuadrat.</li>
+   </ul>
+  </li>
+ </ol>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti sistem persamaan yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Sistem Persamaan</strong> adalah kumpulan persamaan yang solusinya adalah titik potong antar grafik.</li>
+  <li><strong>Sistem Linear (SPL)</strong>: Diselesaikan dengan <strong>Eliminasi</strong>. Solusi ditentukan oleh perbandingan koefisien (berpotongan, sejajar, atau berimpit).</li>
+  <li><strong>Sistem Nonlinear (SPNL)</strong>:
+   <ul>
+    <li><strong>Linear-Kuadrat</strong>: WAJIB menggunakan <strong>Substitusi</strong>. Jumlah solusi ditentukan oleh <strong>Diskriminan</strong> ($D$).</li>
+    <li><strong>Kuadrat-Kuadrat</strong>: Gunakan <strong>Eliminasi</strong> untuk menghilangkan suku kuadrat, lalu substitusi.</li>
+   </ul>
+  </li>
+  <li><strong>Verifikasi Solusi</strong> adalah langkah wajib pada SPNL untuk membuang <strong>solusi asing</strong> yang muncul akibat pengkuadratan atau perkalian silang.</li>
+  <li>Kesalahan umum: lupa mencari pasangan variabel kedua, membagi persamaan dengan variabel, menerapkan eliminasi pada sistem linear-kuadrat, dan lupa menuliskan kedua akar setelah eliminasi suku kuadrat.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Sistem persamaan adalah <strong>puncak dari pemahaman tentang garis dan parabola</strong>. Materi ini mengajarkan bahwa aljabar dan geometri adalah dua sisi mata uang yang sama: himpunan solusi adalah titik potong visual pada bidang koordinat. Yang membuat sistem nonlinear istimewa adalah <strong>kekayaan fenomena yang ia hadirkan</strong>—solusi asing, jumlah solusi yang bergantung pada diskriminan, dan kemungkinan tidak adanya solusi real—semuanya memperkaya pemahaman kita tentang bagaimana aljabar merepresentasikan hubungan antar kurva.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Aljabar Linear</strong> (yang menggeneralisasi sistem persamaan linear menjadi sistem dengan banyak variabel melalui matriks dan determinan), <strong>Program Linear</strong> (yang menggabungkan sistem persamaan dengan pertidaksamaan untuk optimisasi), <strong>Kalkulus Multivariabel</strong> (yang menggunakan sistem persamaan untuk mencari titik kritis fungsi dua variabel), <strong>Optimisasi Nonlinear</strong> (yang mencari nilai ekstrem fungsi nonlinear dengan kendala), dan <strong>Geometri Analitik Lanjut</strong> (yang menganalisis irisan antara berbagai jenis kurva).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan sistem linear-kuadrat dan kuadrat-kuadrat, serta soal yang memerlukan verifikasi solusi asing. Kebiasaan memeriksa setiap kandidat solusi dengan substitusi ke persamaan asli, memilih metode yang tepat sesuai jenis sistem (eliminasi untuk linear, substitusi untuk nonlinear), dan konsisten dalam menuliskan pasangan $(x, y)$ akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke aljabar linear, di mana sistem persamaan menjadi fondasi dari seluruh teori matriks dan ruang vektor.</p>
+</div>
+
+</div>
+</body>
+</html>
