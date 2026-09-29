@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Operasi Dasar (Penjumlahan, Pengurangan, Perkalian, Pembagian)</title>
+ <meta name="description" content="Materi lengkap operasi hitung dasar: penjumlahan, pengurangan, perkalian, pembagian, urutan operasi, serta sifat komutatif, asosiatif, distributif, dan elemen identitas.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h2 class="lesson-title">Operasi Dasar (Penjumlahan, Pengurangan, Perkalian, Pembagian)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <p class="lesson-text">Materi ini adalah <strong>fondasi paling dasar</strong> dalam matematika. Tidak ada prasyarat khusus—cukup kemampuan berhitung dengan bilangan yang sudah dipelajari di sekolah dasar. Materi ini akan menjadi prasyarat bagi hampir semua topik berikutnya, termasuk sifat bilangan, pecahan, aljabar, hingga kalkulus.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text"><strong>Operasi dasar</strong> adalah empat operasi hitung yang menjadi fondasi seluruh matematika: <strong>penjumlahan</strong>, <strong>pengurangan</strong>, <strong>perkalian</strong>, dan <strong>pembagian</strong>. Hampir semua perhitungan matematika—dari yang paling sederhana hingga yang paling rumit—pada akhirnya dibangun dari keempat operasi ini.</p>
+ <p class="lesson-text">Namun, menguasai operasi dasar bukan hanya soal bisa menghitung. Ada <strong>sifat-sifat matematis</strong> di balik keempat operasi tersebut—sifat komutatif, asosiatif, distributif, dan elemen identitas—yang memungkinkan kita menghitung lebih cepat, menyederhanakan ekspresi, dan memahami mengapa aturan-aturan tertentu berlaku. Sifat-sifat inilah yang nanti akan dipakai secara diam-diam di level yang lebih tinggi: saat memanipulasi variabel di aljabar, saat menghitung limit di kalkulus, bahkan saat mengenkripsi data di kriptografi.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari pengertian keempat operasi, <strong>aturan urutan operasi</strong>, <strong>sifat-sifat aljabarnya</strong>, <strong>elemen identitas dan invers</strong>, hingga <strong>contoh soal</strong> dan <strong>kesalahan umum</strong>. Setiap konsep akan dijelaskan dengan alasan mengapa ia penting dan bagaimana ia digunakan—bukan hanya menyebutkan aturannya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Empat Operasi Dasar</h3>
+ <p class="lesson-text">Ada empat operasi hitung yang menjadi dasar seluruh matematika. Masing-masing memiliki peran yang berbeda, tetapi semuanya saling terkait.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan (+)</p>
+ <p class="lesson-text"><strong>Penjumlahan</strong> adalah operasi yang <strong>menggabungkan</strong> dua bilangan atau lebih menjadi satu bilangan baru yang disebut <strong>jumlah</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$5 + 3 = 8$$</p>
+ <p class="lesson-text">Artinya, jika kita memiliki 5 apel dan menambahkan 3 apel lagi, totalnya menjadi 8 apel. Dalam bahasa sehari-hari, penjumlahan diungkapkan dengan kata "ditambah" atau "total dari".</p>
+ <p class="lesson-text">Penjumlahan adalah operasi yang paling dasar—semua operasi lainnya pada akhirnya dapat dipandang sebagai bentuk penjumlahan yang lebih rumit.</p>
+
+ <p class="lesson-subheading">B. Pengurangan (−)</p>
+ <p class="lesson-text"><strong>Pengurangan</strong> adalah operasi yang <strong>mengambil sebagian</strong> dari suatu bilangan. Hasilnya disebut <strong>selisih</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$9 - 4 = 5$$</p>
+ <p class="lesson-text">Artinya, jika kita memiliki 9 apel dan mengambil 4 apel, sisanya 5 apel.</p>
+ <p class="lesson-text">Pengurangan dapat dipandang sebagai <strong>kebalikan dari penjumlahan</strong>. Faktanya, $a - b$ sama saja dengan $a + (-b)$, di mana $-b$ adalah lawan (negatif) dari $b$. Karena itu, pengurangan sebenarnya adalah penjumlahan dengan bilangan negatif.</p>
+
+ <p class="lesson-subheading">C. Perkalian (× atau ·)</p>
+ <p class="lesson-text"><strong>Perkalian</strong> adalah operasi yang <strong>menggabungkan kelompok-kelompok berukuran sama</strong>. Hasilnya disebut <strong>produk</strong>.</p>
+ <p class="lesson-text">Untuk bilangan bulat positif, perkalian dapat dipandang sebagai <strong>penjumlahan berulang</strong>:</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$4 \times 3 = 4 + 4 + 4 = 12$$</p>
+ <p class="lesson-text">Artinya, $4 \times 3$ sama dengan menjumlahkan angka 4 sebanyak 3 kali. Cara pandang ini berguna sebagai pengantar—dan juga menjelaskan mengapa sifat-sifat perkalian (komutatif, asosiatif, distributif) berlaku.</p>
+ <p class="lesson-text">Perkalian diperkenalkan sebagai cara singkat untuk menulis penjumlahan yang berulang. Tanpa perkalian, menulis $4 + 4 + 4 + \dots$ (sebanyak 100 kali) akan sangat melelahkan.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Cara pandang "penjumlahan berulang" hanya berlaku jika salah satu faktornya bilangan <strong>bulat positif</strong>. Ketika kita berhadapan dengan pecahan atau desimal—misalnya $0{,}5 \times 0{,}5$—kita tidak bisa menuliskan "0,5 dijumlahkan 0,5 kali", karena ungkapan "sebanyak 0,5 kali" tidak punya arti dalam penjumlahan.</p>
+  <p class="lesson-text">Untuk kasus yang lebih umum, perkalian perlu dipahami dengan cara yang lebih luas: sebagai <strong>penskalaan</strong> (pembesaran atau pengecilan). Misalnya, $0{,}5 \times 0{,}5$ berarti "setengah dari $0{,}5$"—yaitu $0{,}25$. Cara pandang ini juga menjelaskan mengapa hasil perkalian dua bilangan yang keduanya kurang dari 1 justru <strong>lebih kecil</strong> dari faktor-faktornya (lihat Bagian VII).</p>
+  <p class="lesson-text">Jadi, "penjumlahan berulang" adalah <em>jembatan pengantar</em>, bukan definisi tunggal perkalian. Pemahaman yang lengkap akan diperdalam di materi <strong>Pecahan, Desimal, Persen</strong> dan <strong>Aljabar Dasar</strong>.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Pembagian (÷ atau /)</p>
+ <p class="lesson-text"><strong>Pembagian</strong> adalah operasi yang <strong>membagi</strong> suatu bilangan menjadi beberapa bagian yang sama besar. Hasilnya disebut <strong>hasil bagi</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$12 \div 3 = 4$$</p>
+ <p class="lesson-text">Artinya, jika 12 dibagi menjadi 3 bagian yang sama, setiap bagian berisi 4.</p>
+ <p class="lesson-text">Pembagian dapat dipandang sebagai <strong>kebalikan dari perkalian</strong>. Faktanya, $a \div b$ sama saja dengan $a \times \frac{1}{b}$, di mana $\frac{1}{b}$ adalah kebalikan (resiprokal) dari $b$.</p>
+ <div class="lesson-note">
+ <p class="lesson-text"><strong>Catatan penting:</strong> Pembagian dengan nol <strong>tidak terdefinisi</strong>. Alasannya berbeda untuk dua kasus:</p>
+ <ul>
+  <li><strong>Jika $a \neq 0$</strong>: kita mencari bilangan $b$ sedemikian sehingga $b \times 0 = a$. Tidak ada bilangan seperti itu—karena berapa pun $b$, hasilnya selalu $0$, bukan $a$. Jadi $a \div 0$ <strong>tidak memiliki solusi</strong>.</li>
+  <li><strong>Jika $a = 0$</strong>: kita mencari $b$ sedemikian sehingga $b \times 0 = 0$. Kali ini solusinya <strong>terlalu banyak</strong>—setiap bilangan $b$ memenuhi. Karena hasilnya tidak tunggal, $0 \div 0$ juga <strong>tidak terdefinisi</strong>.</li>
+ </ul>
+ <p class="lesson-text">Dua kasus, dua alasan berbeda: yang pertama gagal karena tidak ada solusi, yang kedua gagal karena solusinya tidak unik. Namun keduanya menghasilkan kesimpulan yang sama: <strong>pembagian dengan nol tidak bermakna dalam matematika</strong>.</p>
+</div>
+
+ <p class="lesson-text">Keempat operasi ini jarang muncul sendirian dalam soal. Sering kali sebuah ekspresi memuat dua atau lebih operasi sekaligus—dan di sinilah <strong>aturan urutan operasi</strong> diperlukan, yang akan kita bahas di bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Urutan Operasi Hitung</h3>
+ <p class="lesson-text">Ketika sebuah ekspresi memuat lebih dari satu jenis operasi—misalnya $2 + 3 \times 4$—hasilnya bisa berbeda tergantung bagaimana kita mengerjakannya. Untuk menghindari ambiguitas, matematika menetapkan <strong>aturan urutan operasi</strong> yang baku.</p>
+ <p class="lesson-text">Di Indonesia, aturan ini sering disingkat dengan <strong>Kabataku</strong> (Kali, Bagi, Tambah, Kurang). Namun ada satu hal penting yang perlu diperhatikan: <strong>kurung dan pangkat dikerjakan lebih dulu</strong> dari Kabataku. Urutan lengkapnya sebagai berikut.</p>
+
+ <p class="lesson-subheading">A. Urutan Lengkap</p>
+ <ol>
+  <li><strong>Kurung (parentheses).</strong> Kerjakan dulu apa pun yang berada di dalam tanda kurung. Kurung berfungsi untuk "memaksa" bagian tertentu dikerjakan terlebih dahulu.</li>
+  <li><strong>Pangkat (eksponen).</strong> Setelah kurung selesai, kerjakan operasi pangkat. Contoh: $3^2$ berarti $3 \times 3 = 9$.</li>
+  <li><strong>Perkalian dan pembagian.</strong> Kedua operasi ini <strong>setara</strong>—kerjakan dari kiri ke kanan, sesuai urutan kemunculan.</li>
+  <li><strong>Penjumlahan dan pengurangan.</strong> Kedua operasi ini juga <strong>setara</strong>—kerjakan dari kiri ke kanan.</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Mengapa Perkalian/Pembagian Didahulukan?</p>
+ <p class="lesson-text">Untuk bilangan bulat positif, perkalian adalah penjumlahan berulang. Jika kita menulis $4 \times 3$, kita sesungguhnya menyingkat penjumlahan $4 + 4 + 4$. Karena itu, makna aslinya adalah "tiga kelompok berisi empat" yang harus dihitung sebagai satu kesatuan sebelum digabungkan dengan penjumlahan lain.</p>
+ <p class="lesson-text">Selain itu, secara historis, aturan ini muncul agar notasi matematika lebih praktis—terutama di aljabar, di mana istilah seperti $3x$ berarti $3 \times x$ dan tidak memerlukan tanda kurung.</p>
+
+ <p class="lesson-subheading">C. Contoh Penerapan</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$$15 + 8 - 5 \times 2$$</p>
+ <p class="lesson-text">Perkalian dikerjakan dulu: $5 \times 2 = 10$. Lalu penjumlahan dan pengurangan dari kiri ke kanan: $15 + 8 - 10 = 13$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$$20 \div 5 \times 2$$</p>
+ <p class="lesson-text">Perkalian dan pembagian setara, jadi dikerjakan dari kiri ke kanan: $20 \div 5 = 4$, lalu $4 \times 2 = 8$.</p>
+ <p class="lesson-text">Perhatikan: hasilnya <strong>bukan</strong> $20 \div (5 \times 2) = 2$, karena tidak ada tanda kurung yang menuntut perkalian dikerjakan dulu.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">$$10 - 3 + 2$$</p>
+ <p class="lesson-text">Penjumlahan dan pengurangan setara, dikerjakan dari kiri ke kanan: $10 - 3 = 7$, lalu $7 + 2 = 9$.</p>
+ <p class="lesson-text">Perhatikan: hasilnya <strong>bukan</strong> $10 - 5 = 5$, karena tidak ada tanda kurung yang menuntut penjumlahan dikerjakan dulu.</p>
+
+ <p class="lesson-subheading-alt">Contoh 4 (dengan kurung):</p>
+ <p class="lesson-text">$$(15 + 8 - 5) \times 2$$</p>
+ <p class="lesson-text">Kurung dikerjakan dulu: $15 + 8 - 5 = 18$. Lalu $18 \times 2 = 36$.</p>
+ <p class="lesson-text">Hasilnya berbeda jauh dengan Contoh 1 ($13$ vs $36$). Inilah mengapa tanda kurung sangat penting.</p>
+
+ <p class="lesson-subheading">D. Kabataku vs PEMDAS</p>
+ <p class="lesson-text">Di buku atau sumber berbahasa Inggris, Anda mungkin menemukan singkatan <strong>PEMDAS</strong>—<em>Parentheses, Exponents, Multiplication/Division, Addition/Subtraction</em>. Atau variannya <strong>BODMAS</strong> (<em>Brackets, Orders, Division/Multiplication, Addition/Subtraction</em>) yang dipakai di Inggris dan Australia.</p>
+ <p class="lesson-text">Meskipun singkatannya berbeda, <strong>aturannya sama persis</strong> dengan Kabataku:</p>
+ <ul>
+  <li>Kabataku: <em>Kali-Bagi</em> setara, lalu <em>Tambah-Kurang</em> setara—dengan kurung dan pangkat di atasnya.</li>
+  <li>PEMDAS: <em>Multiplication-Division</em> setara, lalu <em>Addition-Subtraction</em> setara—dengan kurung dan eksponen di atasnya.</li>
+ </ul>
+ <p class="lesson-text">Satu hal yang perlu diwaspadai: huruf "M" dan "D" pada PEMDAS tidak berarti perkalian selalu didahulukan dari pembagian, melainkan keduanya <strong>setara</strong> dan dikerjakan dari kiri ke kanan. Demikian pula "A" dan "S". Ini sama seperti Kabataku: "Ka" dan "Ba" setara, "Ta" dan "Ku" setara.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Jika kita ingin mengubah urutan operasi, kita <strong>harus</strong> menggunakan tanda kurung. Tanpa tanda kurung, urutan baku di atas selalu berlaku—tanpa pengecualian.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat Komutatif (Boleh Tukar Tempat)</h3>
+ <p class="lesson-text"><strong>Sifat komutatif</strong> adalah sifat yang menyatakan bahwa <strong>urutan operand tidak mempengaruhi hasil operasi</strong>. Dengan kata lain, kita boleh menukar posisi kedua bilangan yang dioperasikan.</p>
+
+ <p class="lesson-subheading">A. Komutatif pada Penjumlahan</p>
+ <p class="lesson-text">$$a + b = b + a$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$3 + 7 = 7 + 3 = 10$$</p>
+ <p class="lesson-text">Artinya, 3 apel ditambah 7 apel sama banyaknya dengan 7 apel ditambah 3 apel—totalnya tetap 10 apel. Urutan tidak penting.</p>
+
+ <p class="lesson-subheading">B. Komutatif pada Perkalian</p>
+ <p class="lesson-text">$$a \times b = b \times a$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$4 \times 6 = 6 \times 4 = 24$$</p>
+ <p class="lesson-text">Secara intuitif, $4 \times 6$ berarti "4 kelompok berisi 6" dan $6 \times 4$ berarti "6 kelompok berisi 4"—keduanya menghasilkan total yang sama jika disusun dalam bentuk persegi panjang.</p>
+
+ <p class="lesson-subheading">C. Operasi yang Tidak Komutatif</p>
+ <p class="lesson-text">Pengurangan dan pembagian <strong>tidak</strong> komutatif. Mengubah urutan operand mengubah hasilnya.</p>
+ <p class="lesson-subheading-alt">Contoh pengurangan:</p>
+ <p class="lesson-text">$$7 - 3 = 4, \quad \text{tetapi } 3 - 7 = -4$$</p>
+ <p class="lesson-subheading-alt">Contoh pembagian:</p>
+ <p class="lesson-text">$$10 \div 2 = 5, \quad \text{tetapi } 2 \div 10 = 0{,}2$$</p>
+ <p class="lesson-text">Jadi, meskipun penjumlahan dan perkalian komutatif, kita tidak boleh menganggap pengurangan dan pembagian juga komutatif.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sifat Asosiatif (Boleh Ubah Pengelompokan)</h3>
+ <p class="lesson-text"><strong>Sifat asosiatif</strong> adalah sifat yang menyatakan bahwa <strong>cara mengelompokkan bilangan tidak mempengaruhi hasil operasi</strong>. Sifat ini berlaku ketika ada tiga bilangan atau lebih yang dioperasikan dengan jenis operasi yang sama.</p>
+
+ <p class="lesson-subheading">A. Asosiatif pada Penjumlahan</p>
+ <p class="lesson-text">$$(a + b) + c = a + (b + c)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$(2 + 3) + 4 = 5 + 4 = 9$$ $$2 + (3 + 4) = 2 + 7 = 9$$</p>
+ <p class="lesson-text">Kedua cara menghasilkan jawaban yang sama, yaitu 9.</p>
+
+ <p class="lesson-subheading">B. Asosiatif pada Perkalian</p>
+ <p class="lesson-text">$$(a \times b) \times c = a \times (b \times c)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$(2 \times 3) \times 4 = 6 \times 4 = 24$$ $$2 \times (3 \times 4) = 2 \times 12 = 24$$</p>
+
+ <p class="lesson-subheading">C. Operasi yang Tidak Asosiatif</p>
+ <p class="lesson-text">Pengurangan dan pembagian <strong>tidak</strong> asosiatif. Mengubah pengelompokan mengubah hasilnya.</p>
+ <p class="lesson-subheading-alt">Contoh pengurangan:</p>
+ <p class="lesson-text">$$(10 - 5) - 2 = 5 - 2 = 3$$ $$10 - (5 - 2) = 10 - 3 = 7$$</p>
+ <p class="lesson-subheading-alt">Contoh pembagian:</p>
+ <p class="lesson-text">$$(12 \div 3) \div 2 = 4 \div 2 = 2$$ $$12 \div (3 \div 2) = 12 \div 1{,}5 = 8$$</p>
+
+ <p class="lesson-subheading">D. Kegunaan Sifat Asosiatif</p>
+ <p class="lesson-text">Sifat asosiatif memungkinkan kita mengelompokkan ulang bilangan untuk mempermudah perhitungan. Contohnya, ketika menghitung $25 \times 13 \times 4$, kita bisa mengelompokkan $25 \times 4$ terlebih dahulu (karena hasilnya $100$) sebelum dikalikan dengan $13$:</p>
+ <p class="lesson-text">$$25 \times 13 \times 4 = (25 \times 4) \times 13 = 100 \times 13 = 1300$$</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Sifat Distributif (Menyebar)</h3>
+ <p class="lesson-text"><strong>Sifat distributif</strong> adalah sifat yang <strong>menghubungkan perkalian dengan penjumlahan atau pengurangan</strong>. Sifat ini memungkinkan kita "menyebarkan" perkalian ke setiap suku di dalam tanda kurung.</p>
+
+ <p class="lesson-subheading">A. Distributif terhadap Penjumlahan</p>
+ <p class="lesson-text">$$a \times (b + c) = (a \times b) + (a \times c)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$3 \times (4 + 5) = 3 \times 4 + 3 \times 5 = 12 + 15 = 27$$</p>
+ <p class="lesson-text">Verifikasi: sisi kiri $3 \times 9 = 27$, dan sisi kanan $12 + 15 = 27$. Keduanya sama.</p>
+
+ <p class="lesson-subheading">B. Distributif terhadap Pengurangan</p>
+ <p class="lesson-text">$$a \times (b - c) = (a \times b) - (a \times c)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$5 \times (8 - 3) = 5 \times 8 - 5 \times 3 = 40 - 15 = 25$$</p>
+ <p class="lesson-text">Verifikasi: sisi kiri $5 \times 5 = 25$, dan sisi kanan $40 - 15 = 25$. Keduanya sama.</p>
+
+ <p class="lesson-subheading">C. Menggunakan Sifat Distributif dari Kanan ke Kiri</p>
+ <p class="lesson-text">Sifat distributif tidak hanya dapat dipakai dari kiri ke kanan (menguraikan), tetapi juga dari kanan ke kiri (menggabungkan). Cara ini sangat berguna untuk menyederhanakan ekspresi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$6 \times 4 + 6 \times 7 = 6 \times (4 + 7) = 6 \times 11 = 66$$</p>
+ <p class="lesson-text">Daripada menghitung dua perkalian terpisah, kita cukup mengeluarkan faktor bersama $6$ dan menjumlahkan sisanya. Cara ini jauh lebih efisien—dan inilah dasar dari <strong>pemfaktoran</strong> yang akan dipelajari di aljabar.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting tentang pembagian:</strong> Sifat distributif <strong>tidak berlaku sama</strong> untuk pembagian seperti untuk perkalian. Posisi pembagian sangat menentukan. Ada dua kasus yang harus dibedakan:</p>
+  <p class="lesson-text"><strong>(i) Pembagian <em>pada sisi kanan</em>—boleh didistribusikan.</strong></p>
+  <p class="lesson-text">$$(a + b) \div c = (a \div c) + (b \div c)$$</p>
+  <p class="lesson-text">Ini berlaku karena $(a + b) \div c = (a + b) \times \frac{1}{c} = a \times \frac{1}{c} + b \times \frac{1}{c} = (a \div c) + (b \div c)$.</p>
+  <p class="lesson-text">Contoh: $(2 + 4) \div 2 = 6 \div 2 = 3$, dan $2 \div 2 + 4 \div 2 = 1 + 2 = 3$. Keduanya sama.</p>
+  <p class="lesson-text"><strong>(ii) Pembagian <em>pada sisi kiri</em>—tidak boleh didistribusikan.</strong></p>
+  <p class="lesson-text">$$a \div (b + c) \neq (a \div b) + (a \div c)$$</p>
+  <p class="lesson-text">Contoh penyangkal: $12 \div (2 + 4) = 12 \div 6 = 2$, sedangkan $12 \div 2 + 12 \div 4 = 6 + 3 = 9$. Hasilnya berbeda—jadi keduanya <strong>tidak</strong> ekuivalen.</p>
+  <p class="lesson-text">Singkatnya: pembagian hanya distributif ketika ia berada di <strong>kanan</strong> (membagi seluruh isi kurung). Ketika pembagian berada di <strong>kiri</strong> (membagi sebagian—yaitu angka di luar kurung yang dibagi dengan isi kurung), distribusi tidak berlaku.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Elemen Identitas dan Invers</h3>
+ <p class="lesson-text">Setelah memahami sifat-sifat operasi, kita berkenalan dengan dua konsep yang berkaitan erat: <strong>elemen identitas</strong> (bilangan yang tidak mengubah nilai) dan <strong>invers</strong> (bilangan yang "meniadakan" efek suatu operasi).</p>
+
+ <p class="lesson-subheading">A. Identitas Penjumlahan: 0</p>
+ <p class="lesson-text">$$a + 0 = a$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$9 + 0 = 9$$ $$-5 + 0 = -5$$</p>
+ <p class="lesson-text">Menambahkan nol pada bilangan apa pun tidak mengubah nilainya. Itulah mengapa $0$ disebut identitas penjumlahan.</p>
+
+ <p class="lesson-subheading">B. Identitas Perkalian: 1</p>
+ <p class="lesson-text">$$a \times 1 = a$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$13 \times 1 = 13$$ $$-7 \times 1 = -7$$</p>
+ <p class="lesson-text">Mengalikan bilangan apa pun dengan satu tidak mengubah nilainya. Itulah mengapa $1$ disebut identitas perkalian.</p>
+
+ <p class="lesson-subheading">C. Invers Penjumlahan (Lawan)</p>
+ <p class="lesson-text">Untuk setiap bilangan $a$, ada bilangan $-a$ yang disebut <strong>lawan</strong> (atau <strong>invers penjumlahan</strong>), sedemikian sehingga:</p>
+ <p class="lesson-text">$$a + (-a) = 0$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Lawan dari $5$ adalah $-5$, karena $5 + (-5) = 0$. Lawan dari $-3$ adalah $3$, karena $-3 + 3 = 0$.</p>
+ <p class="lesson-text">Perhatikan bahwa hasil penjumlahan bilangan dengan lawannya selalu $0$—yaitu identitas penjumlahan. Inilah alasan "$-a$" disebut <em>invers</em>: ia "mengembalikan" nilai ke identitas.</p>
+
+ <p class="lesson-subheading">D. Invers Perkalian (Kebalikan)</p>
+ <p class="lesson-text">Untuk setiap bilangan $a \neq 0$, ada bilangan $\frac{1}{a}$ yang disebut <strong>kebalikan</strong> (atau <strong>invers perkalian</strong>), sedemikian sehingga:</p>
+ <p class="lesson-text">$$a \times \frac{1}{a} = 1$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Kebalikan dari $4$ adalah $\frac{1}{4}$, karena $4 \times \frac{1}{4} = 1$. Kebalikan dari $\frac{2}{3}$ adalah $\frac{3}{2}$, karena $\frac{2}{3} \times \frac{3}{2} = 1$.</p>
+ <p class="lesson-text">Perhatikan bahwa $a = 0$ tidak memiliki kebalikan, karena $\frac{1}{0}$ tidak terdefinisi. Inilah alasan lain mengapa pembagian dengan nol dilarang.</p>
+
+ <p class="lesson-text">Kedua konsep ini akan sangat berguna ketika mempelajari bilangan negatif, pecahan, dan aljabar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap pengurangan dan pembagian bersifat komutatif.</strong> $8 - 3 = 5$, tetapi $3 - 8 = -5$. Demikian pula $10 \div 2 = 5$, tetapi $2 \div 10 = 0{,}2$. Urutan operand sangat penting pada kedua operasi ini.</li>
+  <li><strong>Menganggap pengurangan dan pembagian bersifat asosiatif.</strong> $(10 - 5) - 2 = 3$, tetapi $10 - (5 - 2) = 7$. Demikian pula $(12 \div 3) \div 2 = 2$, tetapi $12 \div (3 \div 2) = 8$.</li>
+  <li><strong>Lupa bahwa perkalian dan pembagian setara, dan dikerjakan dari kiri ke kanan.</strong> Contoh: $24 \div 6 \times 2 = 4 \times 2 = 8$, bukan $24 \div (6 \times 2) = 2$. Kesalahan ini sering muncul karena menganggap perkalian selalu didahulukan—padahal tidak.</li>
+  <li><strong>Menganggap penjumlahan dan pengurangan tidak setara.</strong> Sama seperti perkalian/pembagian, penjumlahan dan pengurangan setara, dan dikerjakan dari kiri ke kanan. Contoh: $10 - 3 + 2 = 9$, bukan $10 - 5 = 5$.</li>
+  <li><strong>Salah menerapkan sifat distributif pada pembagian.</strong> $12 \div (2 + 4) \neq 12 \div 2 + 12 \div 4$. Yang benar: $12 \div 6 = 2$. Pembagian <strong>tidak</strong> distributif terhadap penjumlahan/pengurangan ketika pembagian berada di sisi kiri (lihat Bagian V).</li>
+  <li><strong>Mengabaikan tanda kurung.</strong> $3 + 4 \times 2 = 3 + 8 = 11$, bukan $(3 + 4) \times 2 = 14$. Tanda kurung mengubah urutan operasi secara fundamental.</li>
+  <li><strong>Menukar tanda negatif dan pangkat.</strong> $-2^2 = -(2^2) = -4$, sedangkan $(-2)^2 = 4$. Tanpa tanda kurung, pangkat dikerjakan lebih dulu dari tanda negatif—karena tanda negatif di sini adalah "negatif uner" yang prioritasnya lebih rendah dari pangkat.</li>
+  <li><strong>Menganggap hasil perkalian selalu lebih besar dari faktor-faktornya.</strong> Ini hanya benar jika kedua faktor lebih besar dari 1. Contoh: $0{,}5 \times 0{,}5 = 0{,}25$, yang justru lebih kecil. Sebabnya: perkalian dengan bilangan kurang dari 1 adalah <strong>penskalaan ke bawah</strong>, bukan penggabungan kelompok (lihat catatan di Bagian I.C).</li>
+  <li><strong>Menganggap pembagian dengan nol menghasilkan nol atau tak hingga.</strong> Pembagian dengan nol <strong>tidak terdefinisi</strong>. Hasilnya bukan nol, bukan tak hingga—melainkan tidak ada dalam sistem bilangan real.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menggabungkan semua konsep di atas dalam lima contoh soal bertingkat, dari yang paling sederhana hingga yang memanfaatkan beberapa sifat sekaligus.</p>
+
+ <p class="lesson-subheading">Contoh 1: Urutan Operasi</p>
+ <p class="lesson-text">Hitung: $15 + 8 - 5 \times 2$</p>
+ <p class="lesson-text"><strong>Pembahasan:</strong> Perkalian dikerjakan dulu: $5 \times 2 = 10$. Lalu penjumlahan dan pengurangan dari kiri ke kanan: $15 + 8 - 10 = 13$.</p>
+
+ <p class="lesson-subheading">Contoh 2: Urutan Operasi dengan Kurung dan Pangkat</p>
+ <p class="lesson-text">Hitung: $20 - (6 + 2) \times 2 + 3^2$</p>
+ <p class="lesson-text"><strong>Pembahasan:</strong></p>
+ <ol>
+  <li>Kurung: $6 + 2 = 8$.</li>
+  <li>Pangkat: $3^2 = 9$.</li>
+  <li>Ekspresi menjadi $20 - 8 \times 2 + 9$.</li>
+  <li>Perkalian: $8 \times 2 = 16$.</li>
+  <li>Penjumlahan dan pengurangan dari kiri ke kanan: $20 - 16 + 9 = 13$.</li>
+ </ol>
+
+ <p class="lesson-subheading">Contoh 3: Sifat Distributif</p>
+ <p class="lesson-text">Buktikan bahwa $7 \times (6 + 4) = 7 \times 6 + 7 \times 4$.</p>
+ <p class="lesson-text"><strong>Pembahasan:</strong></p>
+ <ul>
+  <li>Sisi kiri: $7 \times (6 + 4) = 7 \times 10 = 70$.</li>
+  <li>Sisi kanan: $7 \times 6 + 7 \times 4 = 42 + 28 = 70$.</li>
+ </ul>
+ <p class="lesson-text">Kedua sisi sama, sehingga sifat distributif terbukti.</p>
+
+ <p class="lesson-subheading">Contoh 4: Memanfaatkan Sifat Komutatif dan Asosiatif</p>
+ <p class="lesson-text">Hitung dengan cara cepat: $25 \times 13 \times 4$.</p>
+ <p class="lesson-text"><strong>Pembahasan:</strong> Susun ulang menggunakan sifat komutatif dan asosiatif:</p>
+ <p class="lesson-text">$$25 \times 13 \times 4 = (25 \times 4) \times 13 = 100 \times 13 = 1300$$</p>
+ <p class="lesson-text">Dengan mengelompokkan $25 \times 4$ terlebih dahulu, kita mendapatkan angka bulat $100$ yang jauh lebih mudah dikalikan.</p>
+
+ <p class="lesson-subheading">Contoh 5: Memanfaatkan Sifat Distributif dari Kanan ke Kiri</p>
+ <p class="lesson-text">Hitung dengan cara cepat: $8 \times 25 + 8 \times 75$.</p>
+ <p class="lesson-text"><strong>Pembahasan:</strong> Keluarkan faktor bersama $8$:</p>
+ <p class="lesson-text">$$8 \times 25 + 8 \times 75 = 8 \times (25 + 75) = 8 \times 100 = 800$$</p>
+ <p class="lesson-text">Jauh lebih cepat daripada menghitung $200 + 600$ secara langsung.</p>
+
+ <p class="lesson-subheading">Contoh 6: Perkalian dengan Bilangan Kurang dari 1</p>
+ <p class="lesson-text">Hitung: $0{,}5 \times 0{,}5$.</p>
+ <p class="lesson-text"><strong>Pembahasan:</strong> Perhatikan bahwa cara pandang "penjumlahan berulang" tidak berlaku di sini—kita tidak bisa menjumlahkan $0{,}5$ sebanyak $0{,}5$ kali. Gunakan cara pandang <strong>penskalaan</strong>: $0{,}5 \times 0{,}5$ berarti "setengah dari $0{,}5$", yaitu $0{,}25$.</p>
+ <p class="lesson-text">Hasilnya ($0{,}25$) justru lebih kecil dari kedua faktornya ($0{,}5$). Ini wajar: mengalikan dengan bilangan kurang dari 1 berarti <strong>memperkecil</strong>, bukan memperbesar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Empat operasi dasar</strong>: penjumlahan (menggabungkan), pengurangan (mengambil sebagian), perkalian (menggabungkan kelompok berukuran sama; untuk bilangan bulat positif = penjumlahan berulang), pembagian (membagi menjadi bagian sama besar).</li>
+  <li><strong>Urutan operasi</strong>: kurung → pangkat → perkalian/pembagian (dari kiri ke kanan) → penjumlahan/pengurangan (dari kiri ke kanan). Sama dengan aturan PEMDAS/BODMAS internasional.</li>
+  <li><strong>Sifat komutatif</strong>: urutan operand boleh ditukar. Berlaku untuk penjumlahan ($a + b = b + a$) dan perkalian ($a \times b = b \times a$), tetapi tidak untuk pengurangan dan pembagian.</li>
+  <li><strong>Sifat asosiatif</strong>: pengelompokan operand boleh diubah. Berlaku untuk penjumlahan dan perkalian, tetapi tidak untuk pengurangan dan pembagian.</li>
+  <li><strong>Sifat distributif</strong>: perkalian menyebar terhadap penjumlahan dan pengurangan: $a \times (b \pm c) = a \times b \pm a \times c$. Pembagian hanya distributif jika berada di sisi kanan: $(a \pm b) \div c = a \div c \pm b \div c$; tetapi <strong>tidak</strong> berlaku jika pembagian di sisi kiri: $a \div (b \pm c) \neq a \div b \pm a \div c$.</li>
+  <li><strong>Elemen identitas</strong>: $0$ untuk penjumlahan ($a + 0 = a$), $1$ untuk perkalian ($a \times 1 = a$).</li>
+  <li><strong>Invers penjumlahan (lawan)</strong>: $a + (-a) = 0$.</li>
+  <li><strong>Invers perkalian (kebalikan)</strong>: $a \times \frac{1}{a} = 1$ untuk $a \neq 0$.</li>
+  <li>Pembagian dengan nol <strong>tidak terdefinisi</strong>.</li>
+  <li><strong>Perkalian sebagai penskalaan</strong>: untuk bilangan kurang dari 1 atau pecahan, cara pandang "penjumlahan berulang" tidak memadai—perkalian berarti memperbesar atau memperkecil.</li>
+  <li>Sifat-sifat ini menjadi fondasi untuk aljabar, kalkulus, dan hampir semua cabang matematika berikutnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Operasi dasar adalah fondasi paling dasar dari seluruh matematika. Meskipun tampak sederhana, keempat operasi ini menyimpan sifat-sifat aljabar yang sangat penting—sifat komutatif, asosiatif, distributif, serta elemen identitas dan invers—yang akan terus Anda jumpai di level yang lebih tinggi.</p>
+ <p class="lesson-text">Pemahaman yang kuat tentang operasi dasar bukan hanya membuat Anda bisa menghitung dengan cepat, tetapi juga membuat Anda mampu memahami <em>mengapa</em> aturan-aturan tertentu berlaku. Misalnya, mengapa perkalian dikerjakan sebelum penjumlahan? Mengapa pembagian tidak komutatif? Mengapa nol tidak bisa menjadi pembagi? Semua pertanyaan ini memiliki jawaban yang berakar pada sifat-sifat dasar operasi.</p>
+ <p class="lesson-text">Materi ini akan menjadi bekal untuk semua topik berikutnya: <strong>Sifat Bilangan</strong> (yang akan memperdalam sifat-sifat aljabar), <strong>Pecahan, Desimal, Persen</strong> (yang membutuhkan operasi dasar), <strong>Eksponen &amp; Akar</strong> (yang merupakan perluasan perkalian), <strong>Aljabar Dasar</strong> (di mana variabel menggantikan angka, tetapi sifat-sifat operasinya tetap sama), hingga <strong>Kalkulus</strong> (di mana operasi dasar menjadi fondasi untuk limit, turunan, dan integral).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal, terutama yang melibatkan urutan operasi dan sifat distributif. Semakin Anda terbiasa, semakin cepat Anda mengenali pola dan menghindari kesalahan umum.</p>
+</div>
+
+</main>
+</body>
+</html>

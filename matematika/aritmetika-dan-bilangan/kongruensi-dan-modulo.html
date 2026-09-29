@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Kongruensi &amp; Modulo (Sisa Pembagian, Aritmetika Modular)</title>
+ <meta name="description" content="Kongruensi dan modulo: sisa pembagian, notasi a ≡ b (mod m), sifat-sifat, operasi aritmetika modular, invers modulo, dan penerapannya dalam kriptografi.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Kongruensi &amp; Modulo (Sisa Pembagian, Aritmetika Modular)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Keterbagian</strong> — terutama notasi $m \mid (a - b)$ dan konsep "habis dibagi", karena kongruensi didefinisikan melalui keterbagian selisih dua bilangan.</li>
+   <li><strong>FPB &amp; KPK</strong> — terutama konsep FPB dan algoritma Euclid, karena syarat keberadaan invers modulo serta cara mencarinya bertumpu pada FPB dan algoritma Euclid yang diperluas.</li>
+   <li><strong>Bilangan Prima</strong> — membantu memahami mengapa modulus berupa bilangan prima membuat aritmetika modular jauh lebih "rapi"—banyak sifat invers dan pembagian hanya berlaku sempurna saat modulus prima.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam kehidupan sehari-hari, kita sering berurusan dengan <strong>sisa pembagian</strong>. Misalnya, jika sekarang hari Senin, hari apakah 100 hari kemudian? Kita tidak perlu menghitung satu per satu—cukup mencari sisa pembagian 100 oleh 7. Karena $100 \bmod 7 = 2$, maka 100 hari setelah Senin adalah Rabu. Konsep sisa pembagian inilah yang menjadi dasar dari <strong>modulo</strong> dan <strong>kongruensi</strong>—suatu cabang matematika yang membandingkan bilangan bulat berdasarkan sisa pembagiannya oleh suatu bilangan tertentu, yang disebut <em>modulus</em>.</p>
+ <p class="lesson-text">Yang membuat aritmetika modular sangat kuat adalah kemampuannya <strong>menyederhanakan masalah yang rumit</strong>. Menghitung $7^{100} \bmod 5$ tidak memerlukan perhitungan raksasa—cukup dengan mereduksi basisnya dan menggunakan pola siklus. Kemampuan inilah yang membuat aritmetika modular menjadi fondasi teknologi modern: <em>kriptografi RSA</em>, <em>fungsi hash</em>, <em>pemeriksaan digit pada ISBN dan kartu kredit</em>, hingga <em>penjadwalan dan sistem kalender</em>—semuanya bertumpu pada konsep yang sama.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>konsep sisa pembagian dan notasi modulo</strong>, <strong>definisi kongruensi</strong>, <strong>sifat-sifat dasarnya</strong>, <strong>operasi aritmetika modular</strong>, <strong>sistem residu</strong>, <strong>invers modulo</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan rumusnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Konsep Sisa Pembagian dan Modulo</h3>
+ <p class="lesson-text">Kita mulai dari konsep paling dasar—yang sudah dikenal sejak sekolah dasar, tetapi memiliki kedalaman yang luar biasa.</p>
+
+ <p class="lesson-subheading">A. Pembagian Bersisa</p>
+ <p class="lesson-text">Jika suatu bilangan bulat $a$ dibagi oleh bilangan bulat positif $m$, maka akan diperoleh hasil bagi $q$ dan sisa $r$. Secara formal:</p>
+ <p class="lesson-text">$$a = m \times q + r$$</p>
+ <p class="lesson-text">dengan $q \in \mathbb{Z}$ dan $0 \le r < m$. Bilangan $r$ disebut <strong>sisa pembagian</strong> atau <strong>residu</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$17 = 5 \times 3 + 2$$</p>
+ <p class="lesson-text">Jadi, jika 17 dibagi 5, hasilnya 3 dan sisanya 2.</p>
+
+ <p class="lesson-subheading">B. Notasi Modulo</p>
+ <p class="lesson-text">Operasi untuk mencari sisa pembagian disebut <strong>modulo</strong>, ditulis dengan simbol $\bmod$:</p>
+ <p class="lesson-text">$$a \bmod m = r$$</p>
+ <p class="lesson-text">artinya $r$ adalah sisa pembagian $a$ oleh $m$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$17 \bmod 5 = 2$$ $$10 \bmod 3 = 1$$ $$20 \bmod 4 = 0$$</p>
+
+ <p class="lesson-subheading">C. Sisa Selalu Nonnegatif</p>
+ <p class="lesson-text">Sisa pembagian selalu berada dalam rentang:</p>
+ <p class="lesson-text">$$0 \le r < m$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Karena jika sisa bernilai negatif atau $\ge m$, kita masih bisa menambahkan atau mengurangi kelipatan $m$ untuk memperoleh sisa yang lebih kecil. Definisi ini memilih <em>representasi kanonik</em> dari setiap kelas residu—sehingga setiap bilangan memiliki tepat satu sisa dalam rentang ini.</p>
+ <p class="lesson-subheading-alt">Konsekuensi untuk bilangan negatif:</p>
+ <p class="lesson-text">Sisa tetap dipilih yang nonnegatif. Contoh: $-7 \bmod 3 = 2$, karena $-7 = 3 \times (-3) + 2$, dan $0 \le 2 < 3$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Dalam beberapa bahasa pemrograman (seperti C, Java, dan JavaScript), operator <code>%</code> untuk bilangan negatif mengembalikan sisa yang bertanda—misalnya <code>-7 % 3 = -1</code>. Ini berbeda dengan konvensi matematika, yang selalu mengembalikan sisa nonnegatif. Selalu periksa konvensi yang digunakan dalam konteks Anda.</p>
+ </div>
+
+ <p class="lesson-text">Dengan memahami modulo sebagai operasi, kita siap mempelajari konsep yang lebih umum—<strong>kongruensi</strong>—yang membandingkan dua bilangan berdasarkan sisa pembagiannya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Definisi Kongruensi</h3>
+ <p class="lesson-text">Setelah memahami modulo, kita masuk ke konsep yang lebih umum—<strong>kongruensi</strong>—yang memungkinkan kita membandingkan dua bilangan berdasarkan sisanya.</p>
+
+ <p class="lesson-subheading">A. Pengertian Kongruensi</p>
+ <p class="lesson-text">Dua bilangan bulat $a$ dan $b$ dikatakan <strong>kongruen modulo</strong> $m$ jika keduanya memiliki sisa yang sama ketika dibagi oleh $m$. Notasi:</p>
+ <p class="lesson-text">$$a \equiv b \pmod{m}$$</p>
+ <p class="lesson-text">dibaca "$a$ kongruen dengan $b$ modulo $m$".</p>
+
+ <p class="lesson-subheading">B. Syarat Ekuivalen</p>
+ <p class="lesson-text">Pernyataan $a \equiv b \pmod{m}$ <strong>setara</strong> dengan tiga pernyataan berikut—ketiganya dapat digunakan bergantian sesuai kebutuhan:</p>
+ <ul>
+  <li>$m \mid (a - b)$—selisih $a$ dan $b$ habis dibagi $m$.</li>
+  <li>$a \bmod m = b \bmod m$—sisanya sama.</li>
+  <li>Terdapat bilangan bulat $k$ sehingga $a = b + km$.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Mengapa ketiganya setara?</p>
+ <p class="lesson-text">Jika $a \bmod m = b \bmod m = r$, maka $a = mq_1 + r$ dan $b = mq_2 + r$. Selisihnya $a - b = m(q_1 - q_2)$, sehingga $m \mid (a - b)$. Sebaliknya, jika $m \mid (a - b)$, maka $a - b = km$ untuk suatu $k$, sehingga keduanya memiliki sisa yang sama. Ketiga pernyataan tersebut hanyalah cara berbeda untuk menyatakan fakta yang sama.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$17 \equiv 5 \pmod{4}$$</p>
+ <p class="lesson-text">karena $17 - 5 = 12$ habis dibagi 4, atau karena $17 \bmod 4 = 1$ dan $5 \bmod 4 = 1$.</p>
+
+ <p class="lesson-subheading">C. Bukan Kongruensi</p>
+ <p class="lesson-text">Jika sisa pembagiannya berbeda, maka tidak kongruen.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$7 \not\equiv 5 \pmod{3}$$</p>
+ <p class="lesson-text">karena $7 \bmod 3 = 1$ sedangkan $5 \bmod 3 = 2$—sisanya berbeda.</p>
+
+ <p class="lesson-text">Definisi ini memperkenalkan kongruensi sebagai sebuah relasi. Seperti halnya relasi-relasi matematika lainnya, kongruensi memiliki sifat-sifat dasar yang perlu kita pahami sebelum mengoperasikannya lebih jauh.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Dasar Kongruensi</h3>
+ <p class="lesson-text">Kongruensi memiliki sifat-sifat yang mirip dengan kesamaan biasa—tetapi dengan beberapa perbedaan penting yang harus diperhatikan.</p>
+
+ <p class="lesson-subheading">A. Sifat Refleksif</p>
+ <p class="lesson-text">Setiap bilangan kongruen dengan dirinya sendiri:</p>
+ <p class="lesson-text">$$a \equiv a \pmod{m}$$</p>
+
+ <p class="lesson-subheading">B. Sifat Simetris</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$, maka $b \equiv a \pmod{m}$.</p>
+
+ <p class="lesson-subheading">C. Sifat Transitif</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$ dan $b \equiv c \pmod{m}$, maka $a \equiv c \pmod{m}$.</p>
+ <p class="lesson-text">Ketiga sifat ini—refleksif, simetris, dan transitif—menunjukkan bahwa kongruensi adalah <strong>relasi ekuivalensi</strong>. Inilah yang membuat kongruensi dapat digunakan untuk mengelompokkan bilangan ke dalam kelas-kelas yang setara.</p>
+
+ <p class="lesson-subheading">D. Kongruensi dengan Sisa</p>
+ <p class="lesson-text">Setiap bilangan kongruen dengan sisa pembagiannya:</p>
+ <p class="lesson-text">$$a \equiv (a \bmod m) \pmod{m}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$17 \equiv 2 \pmod{5}$$</p>
+ <p class="lesson-text">karena $17 \bmod 5 = 2$. Sifat ini memungkinkan kita mengganti bilangan besar dengan sisanya yang lebih kecil dalam perhitungan—kunci efisiensi aritmetika modular.</p>
+
+ <p class="lesson-subheading">E. Kelas Ekuivalensi</p>
+ <p class="lesson-text">Semua bilangan yang kongruen modulo $m$ membentuk satu <strong>kelas residu</strong>. Modulo $m$, terdapat tepat $m$ kelas residu yang berbeda—dinyatakan oleh sisa $0, 1, 2, \dots, m-1$.</p>
+ <p class="lesson-subheading-alt">Contoh: kelas residu 2 modulo 5.</p>
+ <p class="lesson-text">$$\{\dots, -8, -3, 2, 7, 12, 17, \dots\}$$</p>
+ <p class="lesson-text">Setiap anggota kelas ini kongruen satu sama lain modulo 5.</p>
+
+ <p class="lesson-text">Dengan sifat-sifat dasar ini, kita dapat melakukan operasi aritmetika pada kongruensi—sesuatu yang akan sangat berguna untuk menyederhanakan perhitungan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Operasi Aritmetika Modular</h3>
+ <p class="lesson-text">Aritmetika modular memiliki sifat yang sangat berguna: operasi penjumlahan, pengurangan, perkalian, dan perpangkatan dapat dilakukan pada <strong>kedua ruas kongruensi secara terpisah</strong>—tanpa mengubah kesimpulan.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$ dan $c \equiv d \pmod{m}$, maka:</p>
+ <p class="lesson-text">$$a + c \equiv b + d \pmod{m}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$10 \equiv 3 \pmod{7} \quad \text{dan} \quad 12 \equiv 5 \pmod{7}$$ $$10 + 12 = 22 \equiv 3 + 5 = 8 \pmod{7}$$</p>
+ <p class="lesson-text">Keduanya kongruen 1 modulo 7.</p>
+
+ <p class="lesson-subheading">B. Pengurangan</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$ dan $c \equiv d \pmod{m}$, maka:</p>
+ <p class="lesson-text">$$a - c \equiv b - d \pmod{m}$$</p>
+
+ <p class="lesson-subheading">C. Perkalian</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$ dan $c \equiv d \pmod{m}$, maka:</p>
+ <p class="lesson-text">$$a \times c \equiv b \times d \pmod{m}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$8 \equiv 2 \pmod{6} \quad \text{dan} \quad 7 \equiv 1 \pmod{6}$$ $$8 \times 7 = 56 \equiv 2 \times 1 = 2 \pmod{6}$$</p>
+ <p class="lesson-text">Karena $56 \bmod 6 = 2$.</p>
+
+ <p class="lesson-subheading">D. Perpangkatan</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$, maka untuk setiap bilangan bulat positif $n$:</p>
+ <p class="lesson-text">$$a^n \equiv b^n \pmod{m}$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Karena $a^n = a \times a \times \cdots \times a$ (sebanyak $n$ faktor). Dengan menerapkan sifat perkalian berulang kali, kita dapat mengganti setiap faktor $a$ dengan $b$—sehingga $a^n \equiv b^n \pmod{m}$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$3 \equiv 10 \pmod{7}$$ $$3^2 = 9 \equiv 2 \pmod{7}, \quad 10^2 = 100 \equiv 2 \pmod{7}$$</p>
+ <p class="lesson-text">Keduanya kongruen 2 modulo 7.</p>
+
+ <p class="lesson-subheading">E. Perkalian dengan Konstanta</p>
+ <p class="lesson-text">Jika $a \equiv b \pmod{m}$, maka untuk setiap bilangan bulat $k$:</p>
+ <p class="lesson-text">$$k \times a \equiv k \times b \pmod{m}$$</p>
+
+ <p class="lesson-subheading">F. Peringatan untuk Pembagian</p>
+ <p class="lesson-text">Pembagian dalam aritmetika modular <strong>tidak selalu berlaku langsung</strong>. Jika $ka \equiv kb \pmod{m}$, belum tentu $a \equiv b \pmod{m}$—kecuali $\text{FPB}(k, m) = 1$.</p>
+ <p class="lesson-subheading-alt">Contoh yang menunjukkan kesalahan:</p>
+ <p class="lesson-text">$$4 \equiv 10 \pmod{6}$$</p>
+ <p class="lesson-text">Jika kita membagi kedua ruas dengan 2, diperoleh $2 \equiv 5 \pmod{6}$—yang <em>salah</em>, karena $2 \bmod 6 = 2$ sedangkan $5 \bmod 6 = 5$.</p>
+ <p class="lesson-subheading-alt">Mengapa gagal?</p>
+ <p class="lesson-text">Karena $\text{FPB}(2, 6) = 2 \neq 1$. Pembagian dalam modulo hanya sah jika pembaginya <em>relatif prima</em> dengan modulus. Jika tidak, kita harus menggunakan <strong>invers modulo</strong> (lihat Bagian VI).</p>
+
+ <p class="lesson-text">Untuk dapat melakukan pembagian dalam aritmetika modular secara sistematis, kita perlu memahami bagaimana bilangan-bilangan dikelompokkan berdasarkan sisa pembagiannya. Inilah yang akan kita bahas berikutnya melalui konsep sistem residu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Residu dan Sistem Residu</h3>
+ <p class="lesson-text">Untuk bekerja secara sistematis dengan kelas-kelas residu, kita perlu memahami konsep <strong>sistem residu</strong>—yaitu cara memilih perwakilan dari setiap kelas.</p>
+
+ <p class="lesson-subheading">A. Residu Terkecil</p>
+ <p class="lesson-text">Residu terkecil dari $a$ modulo $m$ adalah sisa pembagian $a$ oleh $m$—yaitu bilangan $r$ dengan $0 \le r < m$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Residu terkecil dari 27 modulo 5 adalah 2, karena $27 = 5 \times 5 + 2$.</p>
+
+ <p class="lesson-subheading">B. Sistem Residu Lengkap</p>
+ <p class="lesson-text">Sistem residu lengkap modulo $m$ adalah himpunan $m$ bilangan bulat yang masing-masing mewakili kelas residu yang berbeda. Biasanya digunakan:</p>
+ <p class="lesson-text">$$\{0, 1, 2, \dots, m-1\}$$</p>
+ <p class="lesson-subheading-alt">Contoh untuk modulo 5:</p>
+ <p class="lesson-text">$$\{0, 1, 2, 3, 4\}$$</p>
+ <p class="lesson-text">Setiap bilangan bulat apa pun kongruen dengan tepat satu anggota himpunan ini modulo 5.</p>
+
+ <p class="lesson-subheading">C. Sistem Residu Tereduksi</p>
+ <p class="lesson-text">Sistem residu tereduksi modulo $m$ adalah himpunan bilangan yang <strong>relatif prima</strong> dengan $m$ dan mewakili semua kelas yang relatif prima dengan $m$. Banyaknya anggota sistem ini adalah $\varphi(m)$—yaitu <strong>fungsi Euler</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh untuk modulo 8:</p>
+ <p class="lesson-text">Bilangan yang relatif prima dengan 8 adalah yang $\text{FPB}$ dengan $8 = 1$, yaitu $1, 3, 5, 7$. Jadi sistem residu tereduksi:</p>
+ <p class="lesson-text">$$\{1, 3, 5, 7\}$$</p>
+ <p class="lesson-text">Perhatikan bahwa $\varphi(8) = 4$, sesuai dengan banyaknya anggota. Fungsi Euler akan dibahas lebih mendalam pada materi lanjutan.</p>
+
+ <p class="lesson-text">Sistem residu tereduksi inilah yang nantinya memainkan peran penting dalam keberadaan <strong>invers modulo</strong>—karena invers hanya ada untuk bilangan yang relatif prima dengan modulus.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Invers Modulo</h3>
+ <p class="lesson-text">Invers modulo adalah konsep yang memungkinkan kita melakukan "pembagian" dalam aritmetika modular.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text">Invers modulo dari $a$ modulo $m$ adalah bilangan bulat $x$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$a \times x \equiv 1 \pmod{m}$$</p>
+ <p class="lesson-text">Invers ini ada jika dan hanya jika $\text{FPB}(a, m) = 1$.</p>
+ <p class="lesson-subheading-alt">Mengapa harus relatif prima?</p>
+ <p class="lesson-text">Jika $\text{FPB}(a, m) = d > 1$, maka $a \times x$ selalu merupakan kelipatan $d$—sehingga tidak mungkin kongruen 1 modulo $m$ (karena $m$ juga kelipatan $d$, dan $m \nmid (a \times x - 1)$). Jadi syarat $\text{FPB}(a, m) = 1$ bersifat <em>perlu dan cukup</em>.</p>
+
+ <p class="lesson-subheading">B. Notasi</p>
+ <p class="lesson-text">Invers dari $a$ modulo $m$ sering ditulis $a^{-1} \pmod{m}$.</p>
+
+ <p class="lesson-subheading">C. Cara Mencari Invers</p>
+ <p class="lesson-text">Untuk bilangan kecil, kita dapat mencoba nilai $x = 1, 2, \dots, m-1$ satu per satu. Untuk bilangan besar, digunakan <strong>algoritma Euclid diperluas</strong>—yang merupakan perluasan dari algoritma Euclid untuk mencari FPB.</p>
+ <p class="lesson-subheading-alt">Contoh: invers dari 3 modulo 7.</p>
+ <p class="lesson-text">Kita perlu $3x \equiv 1 \pmod{7}$. Coba $x = 1, 2, 3, 4, 5, 6$:</p>
+ <p class="lesson-text">$$3 \times 5 = 15 \equiv 1 \pmod{7}$$</p>
+ <p class="lesson-text">Jadi invers 3 modulo 7 adalah 5.</p>
+
+ <p class="lesson-subheading">D. Penggunaan Invers untuk Pembagian</p>
+ <p class="lesson-text">Untuk "membagi" dalam modulo, kalikan dengan inversnya:</p>
+ <p class="lesson-text">$$\frac{a}{b} \pmod{m} \;=\; a \times b^{-1} \pmod{m}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Hitung $4 \div 3 \pmod{7}$.</p>
+ <p class="lesson-text">Invers 3 modulo 7 adalah 5, maka:</p>
+ <p class="lesson-text">$$4 \times 5 = 20 \equiv 6 \pmod{7}$$</p>
+ <p class="lesson-text">Jadi hasilnya 6.</p>
+
+ <p class="lesson-text">Dengan memahami invers modulo, kita kini memiliki perangkat lengkap untuk melakukan semua operasi aritmetika dalam modulo—termasuk pembagian. Mari kita terapkan seluruh konsep ini—definisi kongruensi, sifat-sifatnya, operasi aritmetika, sistem residu, dan invers modulo—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan konsep sisa, kongruensi, operasi modular, sistem residu, dan invers modulo. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Menghitung Sisa Bilangan Negatif</p>
+ <p class="lesson-text">Hitung: $-23 \bmod 7$ dan $-15 \bmod 4$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Untuk $-23 \bmod 7$: cari bilangan $q$ sehingga $-23 = 7q + r$ dengan $0 \le r < 7$.<br>Pilih $q = -4$: $-23 = 7(-4) + r = -28 + r \Rightarrow r = 5$.<br>Jadi $-23 \bmod 7 = 5$.</li>
+  <li>Untuk $-15 \bmod 4$: cari $q$ sehingga $-15 = 4q + r$ dengan $0 \le r < 4$.<br>Pilih $q = -4$: $-15 = 4(-4) + r = -16 + r \Rightarrow r = 1$.<br>Jadi $-15 \bmod 4 = 1$.</li>
+ </ol>
+ <p class="lesson-text">Perhatikan bahwa sisa selalu nonnegatif—sesuai konvensi matematika. Kalau dihitung dengan operator <code>%</code> di C atau Java, hasilnya bisa berbeda (bertanda negatif).</p>
+ 
+ <p class="lesson-subheading">Soal 2: Memeriksa Kongruensi</p>
+ <p class="lesson-text">Tentukan apakah pernyataan berikut benar: (a) $38 \equiv 2 \pmod{6}$; (b) $-7 \equiv 5 \pmod{12}$; (c) $100 \equiv 1 \pmod{9}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>(a)</strong> Periksa $6 \mid (38 - 2) = 36$. Karena $36 = 6 \times 6$, habis dibagi. <strong>Benar.</strong></li>
+  <li><strong>(b)</strong> Periksa $12 \mid (-7 - 5) = -12$. Karena $-12 = 12 \times (-1)$, habis dibagi. <strong>Benar.</strong> Perhatikan bahwa $-7 \bmod 12 = 5$ juga membuktikan hal yang sama.</li>
+  <li><strong>(c)</strong> Periksa $9 \mid (100 - 1) = 99$. Karena $99 = 9 \times 11$, habis dibagi. <strong>Benar.</strong></li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Operasi Aritmetika Modular</p>
+ <p class="lesson-text">Hitung $(37 + 46) \times 12 \bmod 7$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Sederhanakan setiap bilangan modulo 7 terlebih dahulu (gunakan sifat bahwa $a \equiv a \bmod m$):
+   <ul>
+    <li>$37 \bmod 7 = 2$ (karena $37 = 7 \times 5 + 2$)</li>
+    <li>$46 \bmod 7 = 4$ (karena $46 = 7 \times 6 + 4$)</li>
+    <li>$12 \bmod 7 = 5$ (karena $12 = 7 \times 1 + 5$)</li>
+   </ul>
+  </li>
+  <li>Gunakan <strong>sifat penjumlahan</strong>: $37 + 46 \equiv 2 + 4 = 6 \pmod{7}$.</li>
+  <li>Gunakan <strong>sifat perkalian</strong>: $6 \times 12 \equiv 6 \times 5 = 30 \pmod{7}$.</li>
+  <li>Sederhanakan: $30 \bmod 7 = 2$ (karena $30 = 7 \times 4 + 2$).</li>
+ </ol>
+ <p class="lesson-text">Jadi $(37 + 46) \times 12 \bmod 7 = 2$. Perhatikan bahwa kita menghindari perkalian besar $83 \times 12 = 996$—cukup dengan bekerja pada sisa kecil.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Perpangkatan Modular</p>
+ <p class="lesson-text">Hitung $7^{100} \bmod 5$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Sederhanakan basis modulo 5: $7 \equiv 2 \pmod{5}$. Jadi $7^{100} \equiv 2^{100} \pmod{5}$.</li>
+  <li>Cari <strong>siklus</strong> dari perpangkatan 2 modulo 5:
+   <ul>
+    <li>$2^1 = 2 \equiv 2$</li>
+    <li>$2^2 = 4 \equiv 4$</li>
+    <li>$2^3 = 8 \equiv 3$</li>
+    <li>$2^4 = 16 \equiv 1$</li>
+    <li>$2^5 = 32 \equiv 2$ — kembali ke awal, siklus panjang 4</li>
+   </ul>
+  </li>
+  <li>Karena $100 = 4 \times 25$, maka $2^{100} = (2^4)^{25} \equiv 1^{25} = 1 \pmod{5}$.</li>
+ </ol>
+ <p class="lesson-text">Jadi $7^{100} \bmod 5 = 1$. Inilah kekuatan aritmetika modular: perhitungan yang tampaknya mustahil ($7^{100}$ memiliki sekitar 85 digit) dapat diselesaikan hanya dengan beberapa langkah kecil.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Menentukan Hari</p>
+ <p class="lesson-text">Jika hari ini adalah Jumat, hari apakah $200$ hari kemudian?</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Karena seminggu ada 7 hari, gunakan modulo 7:<br>$200 \bmod 7 = ?$<br>Karena $7 \times 28 = 196$, sisa $= 4$.</li>
+  <li>Tambahkan 4 hari pada Jumat:
+   <ul>
+    <li>+1 hari: Sabtu</li>
+    <li>+2 hari: Minggu</li>
+    <li>+3 hari: Senin</li>
+    <li>+4 hari: Selasa</li>
+   </ul>
+  </li>
+ </ol>
+ <p class="lesson-text">Jadi 200 hari kemudian adalah hari <strong>Selasa</strong>.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Mencari Invers Modulo</p>
+ <p class="lesson-text">Tentukan invers dari $5$ modulo $12$, lalu gunakan untuk menghitung $7 \div 5 \pmod{12}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Periksa syarat:</strong> $\text{FPB}(5, 12) = 1$—jadi invers ada.</li>
+  <li>Cari $x$ sehingga $5x \equiv 1 \pmod{12}$. Uji $x = 1, \dots, 11$:
+   <ul>
+    <li>$5 \times 5 = 25 \equiv 1 \pmod{12}$ (karena $25 = 12 \times 2 + 1$)</li>
+   </ul>
+  </li>
+  <li>Jadi $5^{-1} \equiv 5 \pmod{12}$.</li>
+  <li>Hitung $7 \div 5 \pmod{12}$ menggunakan invers:<br>$7 \times 5^{-1} = 7 \times 5 = 35 \equiv 11 \pmod{12}$ (karena $35 = 12 \times 2 + 11$).</li>
+  <li>Verifikasi: $5 \times 11 = 55 \equiv 55 - 48 = 7 \pmod{12}$ ✓</li>
+ </ol>
+ <p class="lesson-text">Jadi $7 \div 5 \equiv 11 \pmod{12}$. Perhatikan bahwa dalam aritmetika modular, "hasil bagi" bisa berbeda dari hasil bagi biasa—karena kita bekerja pada kelas residu.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Pembagian yang Gagal</p>
+ <p class="lesson-text">Tunjukkan bahwa $8 \equiv 20 \pmod{6}$, tetapi membagi kedua ruas dengan 4 menghasilkan pernyataan yang <strong>salah</strong>. Jelaskan mengapa pembagian ini tidak sah, lalu tentukan modulus yang benar untuk pembagian tersebut.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Periksa $8 \equiv 20 \pmod{6}$: selisih $20 - 8 = 12$, habis dibagi 6. <strong>Benar.</strong></li>
+  <li>Bagi kedua ruas dengan 4: $8 \div 4 = 2$ dan $20 \div 4 = 5$, sehingga $2 \equiv 5 \pmod{6}$. Periksa: selisih $5 - 2 = 3$, <strong>tidak habis dibagi 6</strong>—jadi pernyataan ini salah.</li>
+  <li><strong>Mengapa gagal?</strong> Karena $\text{FPB}(4, 6) = 2 \neq 1$. Pembagian hanya sah jika pembaginya relatif prima dengan modulus.</li>
+  <li><strong>Modulus yang benar:</strong> jika $ka \equiv kb \pmod{m}$ dan $d = \text{FPB}(k, m)$, maka $a \equiv b \pmod{m/d}$. Di sini $d = 2$, jadi modulus yang benar adalah $6/2 = 3$. Periksa: $2 \equiv 5 \pmod{3}$? Selisih $5 - 2 = 3$, habis dibagi 3. <strong>Benar.</strong></li>
+ </ol>
+ <p class="lesson-text">Contoh ini menunjukkan bahwa pembagian dalam aritmetika modular lebih halus daripada operasi lainnya—kita tidak bisa asal membagi, melainkan harus memeriksa FPB terlebih dahulu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Salah menghitung sisa untuk bilangan negatif.</strong> Dalam konvensi matematika, sisa harus selalu nonnegatif. Contoh: $-7 \bmod 3 = 2$, <em>bukan</em> $-1$.</li>
+  <li><strong>Menganggap kongruensi sebagai persamaan biasa.</strong> Kongruensi bukan berarti "sama dengan", melainkan "memiliki sisa yang sama saat dibagi $m$". Dua bilangan yang kongruen bisa saja nilainya sangat berbeda—misalnya $2$ dan $17$ kongruen modulo 5.</li>
+  <li><strong>Membagi kedua ruas tanpa syarat.</strong> Pembagian hanya sah jika pembaginya relatif prima dengan modulus, yaitu $\text{FPB}(k, m) = 1$. Jika tidak, hasilnya bisa salah—seperti pada contoh $4 \equiv 10 \pmod{6}$ yang tidak boleh langsung dibagi 2.</li>
+  <li><strong>Mengabaikan syarat keberadaan invers modulo.</strong> Invers hanya ada jika $\text{FPB}(a, m) = 1$. Jika $\text{FPB}(a, m) > 1$, inversnya tidak terdefinisi—dan "pembagian" dengan $a$ tidak bermakna.</li>
+  <li><strong>Menganggap notasi $a \equiv b \pmod{m}$ sama dengan $a = b \bmod m$.</strong> Ini dua hal yang berbeda! $a \equiv b \pmod{m}$ adalah <em>relasi</em>—menyatakan bahwa $a$ dan $b$ memiliki sisa yang sama saat dibagi $m$. Sedangkan $a = b \bmod m$ adalah <em>operasi</em>—menyatakan bahwa $a$ adalah nilai sisa dari $b$ dibagi $m$. Contoh: $17 \equiv 2 \pmod{5}$ benar, tetapi $17 = 17 \bmod 5$ salah—karena $17 \bmod 5 = 2 \neq 17$.</li>
+  <li><strong>Menukar posisi bilangan dan modulus.</strong> Dalam notasi $a \bmod m$, $a$ adalah bilangan yang dibagi dan $m$ adalah modulus. Menuliskan $m \bmod a$ akan menghasilkan arti yang berbeda. Contoh: $17 \bmod 5 = 2$, tetapi $5 \bmod 17 = 5$.</li>
+  <li><strong>Menganggap sisa selalu lebih besar dari nol.</strong> Sisa bisa bernilai 0—yaitu ketika $m$ membagi habis $a$. Contoh: $20 \bmod 5 = 0$.</li>
+  <li><strong>Menggunakan modulus 0 atau modulus negatif.</strong> Modulus harus berupa bilangan bulat positif. $a \bmod 0$ tidak terdefinisi, dan modulus negatif jarang digunakan (meskipun secara teknis dapat didefinisikan).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti kongruensi dan modulo yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Sisa pembagian</strong> dinyatakan sebagai $a \bmod m = r$ dengan $0 \le r < m$.</li>
+  <li><strong>Kongruensi</strong> $a \equiv b \pmod{m}$ berarti $a$ dan $b$ memiliki sisa sama saat dibagi $m$—setara dengan $m \mid (a - b)$.</li>
+  <li><strong>Sifat dasar kongruensi</strong>: refleksif, simetris, dan transitif—ketiganya menjadikan kongruensi sebagai relasi ekuivalensi.</li>
+  <li><strong>Operasi aritmetika</strong>: penjumlahan, pengurangan, perkalian, dan perpangkatan dapat dilakukan pada kedua ruas kongruensi.</li>
+  <li><strong>Pembagian</strong> hanya sah jika pembaginya relatif prima dengan modulus—atau dengan mengalikan <strong>invers modulo</strong>.</li>
+  <li><strong>Invers modulo</strong> $a^{-1} \pmod{m}$ ada jika dan hanya jika $\text{FPB}(a, m) = 1$.</li>
+  <li><strong>Sistem residu lengkap</strong> modulo $m$ adalah $\{0, 1, \dots, m-1\}$; sistem residu tereduksi berisi bilangan yang relatif prima dengan $m$.</li>
+  <li>Penerapan meliputi penentuan hari, pengecekan digit, kriptografi, checksum, dan jam.</li>
+  <li>Kesalahan umum: salah menghitung sisa bilangan negatif, membagi tanpa syarat relatif prima, dan menukar notasi relasi ($\equiv$) dengan operasi ($\bmod$).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Kongruensi dan modulo memberikan cara yang elegan untuk menangani sisa pembagian—dan melalui sisa inilah kita dapat mempelajari struktur tersembunyi dari bilangan bulat. Alih-alih bekerja dengan bilangan besar, kita bekerja dengan kelas-kelas residu yang jumlahnya terbatas—tetapi cukup untuk menjawab pertanyaan-pertanyaan sulit seperti "hari apa 100 hari dari sekarang?" atau "berapa sisa $7^{100}$ dibagi 5?". Yang membuat aritmetika modular sangat kuat adalah <strong>sifat-sifat aljabarnya</strong>: operasi penjumlahan, pengurangan, perkalian, dan perpangkatan dapat dilakukan secara terpisah pada setiap ruas—memungkinkan kita menyederhanakan perhitungan yang tampaknya mustahil. Namun, ada satu pengecualian penting: pembagian. Inilah sebabnya konsep <em>invers modulo</em> menjadi sangat penting—dan mengapa modulus berupa bilangan prima membuat aritmetika modular jauh lebih "rapi", karena setiap bilangan tak nol memiliki invers.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Notasi Sigma</strong> (yang sering menggunakan sifat-sifat modular untuk menyederhanakan jumlah), <strong>Persamaan Diophantine</strong> (yang mencari solusi bilangan bulat dan sering diselesaikan melalui kongruensi), <strong>Kriptografi</strong> (yang bertumpu pada aritmetika modular dan invers modulo), <strong>Teori Bilangan Analitik</strong> (yang mempelajari distribusi bilangan prima melalui kongruensi), dan <strong>Aljabar Abstrak</strong> (yang menggeneralisasi aritmetika modular menjadi struktur aljabar seperti grup $\mathbb{Z}/m\mathbb{Z}$ dan lapangan $\mathbb{F}_p$).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan bilangan negatif, perpangkatan besar, dan invers modulo. Kebiasaan memeriksa apakah modulus dan pembagi memenuhi syarat (positif, relatif prima) akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik kriptografi dan teori bilangan lanjutan.</p>
+</div>
+
+</div>
+</body>
+</html>

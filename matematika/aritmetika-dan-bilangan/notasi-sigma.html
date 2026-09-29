@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Notasi Sigma (Penjumlahan Beruntun dan Sifat-Sifatnya)</title>
+ <meta name="description" content="Notasi Sigma: definisi, komponen indeks dan batas, sifat linearitas, rumus jumlah khusus untuk i, i², i³, serta teknik pergeseran indeks dan penerapannya.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Notasi Sigma (Penjumlahan Beruntun dan Sifat-Sifatnya)</h2>
+
+<div class="content-prasyarat">
+ <ul>
+  <li><strong>Operasi Dasar</strong> — terutama penjumlahan beruntun dan substitusi nilai ke ekspresi, karena setiap suku sigma dihitung dengan mengganti indeks $i$ lalu menjumlahkannya.</li>
+  <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif pada penjumlahan dan perkalian, karena sifat-sifat inilah yang menjadi dasar sifat-sifat notasi sigma di Bagian III.</li>
+  <li><strong>Eksponen &amp; Akar</strong> — karena suku umum notasi sigma sering melibatkan $i^2$, $i^3$, atau bentuk berpangkat lainnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam matematika, sering kali kita dihadapkan pada operasi penjumlahan yang melibatkan banyak suku dengan pola tertentu. Misalnya, menjumlahkan bilangan asli pertama hingga ke-100: $1 + 2 + 3 + \dots + 100$, atau menjumlahkan kuadrat bilangan bulat: $1^2 + 2^2 + 3^2 + \dots + n^2$. Menuliskan penjumlahan panjang seperti itu tidak praktis—terutama jika jumlah sukunya sangat banyak atau bahkan tak hingga.</p>
+ <p class="lesson-text">Untuk mengatasi masalah ini, matematikawan memperkenalkan sebuah notasi ringkas dan universal: <strong>Notasi Sigma</strong> ($\Sigma$). Huruf kapital Yunani <em>Sigma</em> digunakan sebagai simbol penjumlahan beruntun. Notasi ini memungkinkan kita menuliskan penjumlahan puluhan, ratusan, atau bahkan tak hingga suku hanya dalam satu baris yang kompak—dan lebih penting lagi, memungkinkan kita <strong>memanipulasi</strong> penjumlahan tersebut dengan aturan-aturan aljabar yang rapi.</p>
+ <p class="lesson-text">Yang membuat notasi sigma sangat penting adalah perannya sebagai <strong>bahasa universal matematika lanjutan</strong>. Rumus rata-rata dan varians dalam statistika, jumlah Riemann dalam kalkulus, deret Taylor dan Maclaurin, hingga penjumlahan tensor dalam fisika—semuanya menggunakan notasi sigma. Menguasai notasi ini berarti membuka pintu ke sebagian besar topik matematika tingkat lanjut. Materi ini disusun bertahap: dari <strong>definisi dan komponen notasi</strong>, <strong>cara membaca dan menjabarkannya</strong>, <strong>sifat-sifat dasar aljabarnya</strong>, <strong>rumus-rumus jumlah khusus</strong>, <strong>teknik pergeseran indeks</strong>, <strong>pengantar deret tak hingga</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan rumusnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Komponen Notasi Sigma</h3>
+ <p class="lesson-text">Kita mulai dari definisi formal dan pengenalan setiap komponen notasi.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Notasi sigma</strong> adalah cara ringkas untuk menuliskan penjumlahan suku-suku yang mengikuti pola tertentu. Secara formal, penjumlahan suku ke-$m$ sampai suku ke-$n$ dari suatu barisan $a_i$ dituliskan sebagai:</p>
+ <p class="lesson-text">$$\sum_{i=m}^{n} a_i = a_m + a_{m+1} + a_{m+2} + \dots + a_n$$</p>
+ <p class="lesson-text">Simbol $\sum$ adalah operator penjumlahan. Ekspresi di atas dibaca sebagai <strong>"jumlah dari $a_i$ untuk $i$ mulai dari $m$ sampai $n$"</strong>.</p>
+
+ <p class="lesson-subheading">B. Komponen-Komponen Notasi Sigma</p>
+ <p class="lesson-text">Perhatikan bentuk umum berikut:</p>
+ <p class="lesson-text">$$\sum_{\text{indeks}=\text{batas bawah}}^{\text{batas atas}} \text{suku umum}$$</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Komponen</th>
+     <th>Simbol pada $\sum_{i=m}^{n} a_i$</th>
+     <th>Peran</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Indeks penjumlahan</td><td>$i$</td><td>Variabel yang "berjalan" secara berurutan</td></tr>
+    <tr><td>Batas bawah</td><td>$m$</td><td>Nilai awal indeks</td></tr>
+    <tr><td>Batas atas</td><td>$n$</td><td>Nilai akhir indeks</td></tr>
+    <tr><td>Suku umum</td><td>$a_i$</td><td>Ekspresi yang menentukan bentuk setiap suku</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Indeks biasanya dilambangkan dengan huruf kecil seperti $i$, $j$, $k$, atau $r$—indeks berfungsi sebagai penghitung yang menunjukkan suku ke-berapa yang sedang dijumlahkan. Batas bawah dan batas atas biasanya berupa bilangan bulat, dengan batas atas $\ge$ batas bawah. Suku umum adalah ekspresi matematika yang melibatkan indeks—saat indeks berubah, nilai suku umum ikut berubah sesuai pola.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Indeks penjumlahan disebut <strong>variabel dummy</strong> (boneka). Artinya, nama indeks bisa diganti dengan huruf lain tanpa mengubah makna notasi. Contoh: $\sum_{i=1}^{5} i^2 = \sum_{j=1}^{5} j^2 = \sum_{k=1}^{5} k^2$—ketiganya sama-sama menjumlahkan $1^2 + 2^2 + 3^2 + 4^2 + 5^2$. Nama indeks tidak memengaruhi hasil akhir.</p>
+ </div>
+
+ <p class="lesson-text">Dengan memahami setiap komponen, kita dapat mulai <em>membaca</em> notasi sigma—yaitu mengubahnya menjadi bentuk penjumlahan panjang yang eksplisit.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Cara Membaca dan Menjabarkan Notasi Sigma</h3>
+ <p class="lesson-text">Sebelum memanipulasi notasi sigma, kita perlu mampu <em>membacanya</em>—yaitu mengubahnya menjadi bentuk penjumlahan panjang.</p>
+
+ <p class="lesson-subheading">A. Membaca Notasi</p>
+ <p class="lesson-text">Notasi $\sum_{i=m}^{n} a_i$ dibaca sebagai:</p>
+ <ul>
+  <li><strong>"Jumlah dari $a_i$ untuk $i$ dari $m$ sampai $n$"</strong>, atau</li>
+  <li><strong>"Sigma $a_i$, $i$ sama dengan $m$ hingga $n$"</strong>.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Menjabarkan Menjadi Bentuk Panjang</p>
+ <p class="lesson-text">Untuk menjabarkan notasi sigma, substitusikan nilai $i = m, m+1, m+2, \dots, n$ ke dalam suku umum $a_i$, lalu hubungkan dengan tanda tambah.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{4} (2i + 1)$$</p>
+ <ul>
+  <li>$i = 1 \rightarrow 2(1) + 1 = 3$</li>
+  <li>$i = 2 \rightarrow 2(2) + 1 = 5$</li>
+  <li>$i = 3 \rightarrow 2(3) + 1 = 7$</li>
+  <li>$i = 4 \rightarrow 2(4) + 1 = 9$</li>
+ </ul>
+ <p class="lesson-text">Penjabaran: $3 + 5 + 7 + 9 = 24$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$$\sum_{j=0}^{3} j^2$$</p>
+ <ul>
+  <li>$j = 0 \rightarrow 0^2 = 0$</li>
+  <li>$j = 1 \rightarrow 1^2 = 1$</li>
+  <li>$j = 2 \rightarrow 2^2 = 4$</li>
+  <li>$j = 3 \rightarrow 3^2 = 9$</li>
+ </ul>
+ <p class="lesson-text">Penjabaran: $0 + 1 + 4 + 9 = 14$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3 (batas bawah bukan 1):</p>
+ <p class="lesson-text">$$\sum_{k=2}^{5} \frac{1}{k}$$</p>
+ <ul>
+  <li>$k = 2 \rightarrow \frac{1}{2}$</li>
+  <li>$k = 3 \rightarrow \frac{1}{3}$</li>
+  <li>$k = 4 \rightarrow \frac{1}{4}$</li>
+  <li>$k = 5 \rightarrow \frac{1}{5}$</li>
+ </ul>
+ <p class="lesson-text">Penjabaran: $\frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5}$.</p>
+
+ <p class="lesson-text">Kemampuan menjabarkan notasi sigma adalah fondasi untuk memahami aturan-aturan aljabarnya—yang akan kita bahas di bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Dasar Notasi Sigma</h3>
+ <p class="lesson-text">Notasi sigma memiliki sifat-sifat aljabar yang sangat berguna untuk menyederhanakan perhitungan. Sifat-sifat ini diturunkan langsung dari sifat operasi penjumlahan biasa.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan Konstanta</p>
+ <p class="lesson-text">Jika $c$ adalah konstanta (tidak bergantung pada indeks $i$), maka:</p>
+ <p class="lesson-text">$$\sum_{i=m}^{n} c = c + c + \dots + c = (n - m + 1) \cdot c$$</p>
+ <p class="lesson-text">Jumlah sukunya sebanyak $(n - m + 1)$ suku—yaitu banyaknya bilangan bulat dari $m$ sampai $n$.</p>
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{5} 3 = 3 + 3 + 3 + 3 + 3 = 5 \times 3 = 15$$</p>
+
+ <p class="lesson-subheading">B. Sifat Linearitas (Faktor Skalar)</p>
+ <p class="lesson-text">Jika $c$ adalah konstanta dan $a_i$ adalah suku umum, maka:</p>
+ <p class="lesson-text">$$\sum_{i=m}^{n} c \cdot a_i = c \cdot \sum_{i=m}^{n} a_i$$</p>
+ <p class="lesson-text">Konstanta dapat dikeluarkan dari notasi sigma—karena perkalian bersifat distributif terhadap penjumlahan.</p>
+ <p class="lesson-subheading-alt">Contoh 5:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{3} 2i^2 = 2 \sum_{i=1}^{3} i^2 = 2(1 + 4 + 9) = 2 \times 14 = 28$$</p>
+
+ <p class="lesson-subheading">C. Sifat Distributif terhadap Penjumlahan/Pengurangan</p>
+ <p class="lesson-text">Jika terdapat dua suku umum $a_i$ dan $b_i$, maka:</p>
+ <p class="lesson-text">$$\sum_{i=m}^{n} (a_i \pm b_i) = \sum_{i=m}^{n} a_i \pm \sum_{i=m}^{n} b_i$$</p>
+ <p class="lesson-text">Sigma dapat dipecah atau digabungkan berdasarkan operasi penjumlahan atau pengurangan di dalam suku umum.</p>
+ <p class="lesson-subheading-alt">Contoh 6:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{4} (i^2 + i) = \sum_{i=1}^{4} i^2 + \sum_{i=1}^{4} i = (1+4+9+16) + (1+2+3+4) = 30 + 10 = 40$$</p>
+
+ <p class="lesson-subheading">D. Penggabungan Sifat-Sifat</p>
+ <p class="lesson-text">Ketiga sifat di atas dapat digabungkan untuk menyederhanakan ekspresi yang kompleks.</p>
+ <p class="lesson-subheading-alt">Contoh 7:</p>
+ <p class="lesson-text">Sederhanakan $\sum_{i=1}^{5} (3i^2 - 2i + 4)$.</p>
+ <p class="lesson-text">$$\sum_{i=1}^{5} 3i^2 - \sum_{i=1}^{5} 2i + \sum_{i=1}^{5} 4 = 3\sum_{i=1}^{5} i^2 - 2\sum_{i=1}^{5} i + (5 \times 4)$$</p>
+ <p class="lesson-text">$$= 3(55) - 2(15) + 20 = 165 - 30 + 20 = 155$$</p>
+
+ <p class="lesson-subheading">E. Ringkasan Sifat Dasar</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama Sifat</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Penjumlahan konstanta</td><td>$\sum_{i=m}^{n} c = (n-m+1)c$</td></tr>
+    <tr><td>Faktor skalar keluar</td><td>$\sum_{i=m}^{n} c \cdot a_i = c \sum_{i=m}^{n} a_i$</td></tr>
+    <tr><td>Distributif penjumlahan/pengurangan</td><td>$\sum_{i=m}^{n}(a_i \pm b_i) = \sum a_i \pm \sum b_i$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Dengan sifat-sifat ini, kita dapat memanipulasi notasi sigma seperti halnya persamaan aljabar biasa. Untuk kasus khusus—seperti penjumlahan $i$, $i^2$, atau $i^3$—terdapat rumus-rumus baku yang jauh lebih efisien daripada menjabarkan suku satu per satu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Rumus Jumlah Khusus</h3>
+ <p class="lesson-text">Untuk menghitung notasi sigma dengan batas atas $n$ yang besar, menjabarkan satu per satu tidak praktis. Berikut tiga rumus jumlah yang paling sering digunakan—masing-masing dapat dibuktikan melalui induksi matematika.</p>
+
+ <p class="lesson-subheading">A. Jumlah $n$ Bilangan Asli Pertama</p>
+ <p class="lesson-text">$$\sum_{i=1}^{n} i = 1 + 2 + 3 + \dots + n = \frac{n(n+1)}{2}$$</p>
+ <p class="lesson-subheading-alt">Mengapa rumusnya seperti ini?</p>
+ <p class="lesson-text">Salah satu bukti klasik (disebut <em>bukti Gauss</em>) adalah dengan menjumlahkan barisan dengan kebalikannya: $(1 + n) + (2 + (n-1)) + \dots$. Setiap pasangan berjumlah $n + 1$, dan ada $n/2$ pasangan, sehingga totalnya $\frac{n(n+1)}{2}$.</p>
+
+ <p class="lesson-subheading">B. Jumlah Kuadrat $n$ Bilangan Asli Pertama</p>
+ <p class="lesson-text">$$\sum_{i=1}^{n} i^2 = 1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$$</p>
+
+ <p class="lesson-subheading">C. Jumlah Kubik $n$ Bilangan Asli Pertama</p>
+ <p class="lesson-text">$$\sum_{i=1}^{n} i^3 = 1^3 + 2^3 + 3^3 + \dots + n^3 = \left(\frac{n(n+1)}{2}\right)^2$$</p>
+ <p class="lesson-text">Perhatikan bahwa rumus jumlah kubik sama dengan <strong>kuadrat</strong> dari rumus jumlah bilangan asli—hubungan yang elegan dan bukan kebetulan.</p>
+
+ <p class="lesson-subheading">D. Contoh Penerapan</p>
+ <p class="lesson-subheading-alt">Contoh 8 (aplikasi rumus):</p>
+ <p class="lesson-text">Hitung $\sum_{i=1}^{10} (i^2 + 3i)$.</p>
+ <p class="lesson-text">$$= \sum_{i=1}^{10} i^2 + 3\sum_{i=1}^{10} i = \frac{10 \times 11 \times 21}{6} + 3 \cdot \frac{10 \times 11}{2} = 385 + 165 = 550$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 9 (batas bawah bukan 1):</p>
+ <p class="lesson-text">Hitung $\sum_{i=4}^{7} i^2$.</p>
+ <p class="lesson-text">Gunakan pengurangan: $\sum_{i=4}^{7} i^2 = \sum_{i=1}^{7} i^2 - \sum_{i=1}^{3} i^2$.</p>
+ <p class="lesson-text">$$= \frac{7 \times 8 \times 15}{6} - \frac{3 \times 4 \times 7}{6} = 140 - 14 = 126$$</p>
+ <p class="lesson-text">Verifikasi langsung: $4^2 + 5^2 + 6^2 + 7^2 = 16 + 25 + 36 + 49 = 126$.</p>
+
+ <p class="lesson-text">Rumus-rumus ini sangat berguna ketika batas bawah adalah 1. Namun, terkadang kita perlu mengubah bentuk notasi sigma—misalnya menyamakan batas agar dua sigma dapat digabungkan. Untuk itulah teknik <strong>pergeseran indeks</strong> diperlukan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Manipulasi Indeks (Pergeseran Indeks)</h3>
+ <p class="lesson-text">Terkadang kita perlu mengubah batas bawah dan batas atas notasi sigma tanpa mengubah nilai jumlahnya. Teknik ini disebut <strong>pergeseran indeks</strong> (<em>index shifting</em>). Tujuannya adalah menyamakan bentuk notasi agar bisa digabungkan atau disederhanakan.</p>
+
+ <p class="lesson-subheading">A. Aturan Pergeseran Indeks</p>
+ <p class="lesson-text">Jika kita mengganti indeks $i$ menjadi $j = i + k$ (dengan $k$ konstanta), maka batas bawah dan batas atas juga ikut bergeser. Secara umum:</p>
+ <p class="lesson-text">$$\sum_{i=m}^{n} a_i = \sum_{j=m+k}^{n+k} a_{j-k}$$</p>
+ <p class="lesson-text">Perhatikan bahwa batas <em>naik</em> sebanyak $k$, tetapi suku umum <em>turun</em> sebanyak $k$—tujuannya adalah agar nilai total tetap sama.</p>
+
+ <p class="lesson-subheading-alt">Contoh 10 (pergeseran ke kanan):</p>
+ <p class="lesson-text">Ubahlah $\sum_{i=1}^{5} i^2$ menjadi notasi dengan indeks $j$ yang berjalan dari 3 sampai 7.</p>
+ <p class="lesson-text">Jika $j = i + 2$, maka $i = j - 2$. Saat $i = 1$, $j = 3$; saat $i = 5$, $j = 7$. Maka:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{5} i^2 = \sum_{j=3}^{7} (j - 2)^2$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 11 (pergeseran ke kiri):</p>
+ <p class="lesson-text">Ubahlah $\sum_{k=2}^{4} \frac{1}{k}$ menjadi notasi dengan indeks $r$ yang berjalan dari 0 sampai 2.</p>
+ <p class="lesson-text">Jika $r = k - 2$, maka $k = r + 2$. Saat $k = 2$, $r = 0$; saat $k = 4$, $r = 2$. Maka:</p>
+ <p class="lesson-text">$$\sum_{k=2}^{4} \frac{1}{k} = \sum_{r=0}^{2} \frac{1}{r + 2}$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Peringatan:</strong> Saat melakukan pergeseran indeks, pastikan <em>semua</em> kemunculan indeks lama di dalam suku umum juga diubah. Melupakan satu kemunculan saja akan membuat hasilnya salah.</p>
+ </div>
+
+ <p class="lesson-text">Pergeseran indeks sangat berguna ketika kita perlu menggabungkan dua notasi sigma yang batasnya berbeda—misalnya dalam pembuktian rumus atau menyederhanakan ekspresi panjang. Teknik ini juga akan sangat membantu saat bekerja dengan deret tak hingga.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Pengantar Notasi Sigma Tak Hingga</h3>
+ <p class="lesson-text">Notasi sigma tidak terbatas pada penjumlahan berhingga. Jika batas atas diganti dengan simbol tak hingga ($\infty$), kita memperoleh <strong>deret tak hingga</strong>:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{\infty} a_i = a_1 + a_2 + a_3 + \dots$$</p>
+ <p class="lesson-text">Secara konsep, ini berarti menjumlahkan suku-suku secara terus-menerus tanpa batas. Jumlahnya bisa berupa bilangan berhingga (<strong>konvergen</strong>) atau tidak berhingga (<strong>divergen</strong>)—tergantung perilaku suku umum $a_i$ saat $i \to \infty$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 12 (deret geometri tak hingga):</p>
+ <p class="lesson-text">$$\sum_{i=0}^{\infty} \frac{1}{2^i} = 1 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots = 2$$</p>
+ <p class="lesson-text">Deret ini konvergen karena suku-sukunya semakin mengecil menuju nol.</p>
+
+ <p class="lesson-subheading-alt">Contoh 13 (deret divergen):</p>
+ <p class="lesson-text">$$\sum_{i=1}^{\infty} i = 1 + 2 + 3 + \dots = \infty$$</p>
+ <p class="lesson-text">Deret ini divergen karena jumlahnya terus membesar tanpa batas.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan:</strong> Perhitungan deret tak hingga akan dibahas secara mendalam pada materi <strong>Deret</strong> di bagian Kalkulus. Di sini, kita hanya mengenalkan notasinya.</p>
+ </div>
+
+ <p class="lesson-text">Dengan menguasai notasi hingga deret tak hingga, kita kini memiliki perangkat lengkap untuk memanipulasi penjumlahan beruntun. Mari kita terapkan seluruh konsep ini—definisi, sifat-sifat, rumus jumlah, dan pergeseran indeks—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan penjabaran, sifat-sifat dasar, rumus jumlah, pergeseran indeks, dan penggabungan sigma. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Menjabarkan dan Menghitung Sigma Sederhana</p>
+ <p class="lesson-text">Hitung $\displaystyle\sum_{i=2}^{6}(3i - 1)$ dengan menjabarkan suku satu per satu.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Substitusikan setiap nilai $i$ dari 2 sampai 6:
+   <ul>
+    <li>$i = 2 \rightarrow 3(2) - 1 = 5$</li>
+    <li>$i = 3 \rightarrow 3(3) - 1 = 8$</li>
+    <li>$i = 4 \rightarrow 3(4) - 1 = 11$</li>
+    <li>$i = 5 \rightarrow 3(5) - 1 = 14$</li>
+    <li>$i = 6 \rightarrow 3(6) - 1 = 17$</li>
+   </ul>
+  </li>
+  <li>Jumlahkan: $5 + 8 + 11 + 14 + 17 = 55$.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi dengan sifat linearitas: $\sum_{i=2}^{6}(3i-1) = 3\sum_{i=2}^{6}i - \sum_{i=2}^{6}1 = 3(2+3+4+5+6) - 5 = 3(20) - 5 = 55$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 2: Menggunakan Sifat Skalar dan Konstanta</p>
+ <p class="lesson-text">Hitung $\displaystyle\sum_{i=1}^{4}(5 \cdot 2^i + 3)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Pecah dengan sifat distributif</strong>:<br>$\sum_{i=1}^{4}(5 \cdot 2^i + 3) = 5\sum_{i=1}^{4}2^i + \sum_{i=1}^{4}3$</li>
+  <li><strong>Faktor skalar keluar</strong> (5 dikeluarkan) dan <strong>jumlah konstanta</strong>:<br>$= 5(2 + 4 + 8 + 16) + (4 \times 3) = 5(30) + 12 = 150 + 12 = 162$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi langsung: $i=1 \to 13$, $i=2 \to 23$, $i=3 \to 43$, $i=4 \to 83$; jumlah $= 13 + 23 + 43 + 83 = 162$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 3: Menggunakan Rumus Jumlah Khusus</p>
+ <p class="lesson-text">Hitung $\displaystyle\sum_{i=1}^{5}(i^3 - 3i^2 + 2i)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Pecah dengan sifat distributif</strong>:<br>$= \sum_{i=1}^{5}i^3 - 3\sum_{i=1}^{5}i^2 + 2\sum_{i=1}^{5}i$</li>
+  <li>Gunakan rumus jumlah khusus dengan $n = 5$:
+   <ul>
+    <li>$\sum_{i=1}^{5}i = \dfrac{5 \cdot 6}{2} = 15$</li>
+    <li>$\sum_{i=1}^{5}i^2 = \dfrac{5 \cdot 6 \cdot 11}{6} = 55$</li>
+    <li>$\sum_{i=1}^{5}i^3 = \left(\dfrac{5 \cdot 6}{2}\right)^2 = 15^2 = 225$</li>
+   </ul>
+  </li>
+  <li>Hitung: $225 - 3(55) + 2(15) = 225 - 165 + 30 = 90$.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi langsung: $i=1 \to 0$, $i=2 \to 0$, $i=3 \to 6$, $i=4 \to 24$, $i=5 \to 60$; jumlah $= 90$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 4: Batas Bawah Bukan 1</p>
+ <p class="lesson-text">Hitung $\displaystyle\sum_{i=3}^{6}i^2$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Rumus jumlah khusus hanya berlaku untuk batas bawah 1. Gunakan <strong>pengurangan</strong>:<br>$\sum_{i=3}^{6}i^2 = \sum_{i=1}^{6}i^2 - \sum_{i=1}^{2}i^2$</li>
+  <li>Hitung masing-masing dengan rumus:
+   <ul>
+    <li>$\sum_{i=1}^{6}i^2 = \dfrac{6 \cdot 7 \cdot 13}{6} = 91$</li>
+    <li>$\sum_{i=1}^{2}i^2 = \dfrac{2 \cdot 3 \cdot 5}{6} = 5$</li>
+   </ul>
+  </li>
+  <li>Kurangkan: $91 - 5 = 86$.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi langsung: $9 + 16 + 25 + 36 = 86$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 5: Pergeseran Indeks</p>
+ <p class="lesson-text">Ubah $\displaystyle\sum_{k=1}^{4}k^3$ menjadi notasi sigma dengan indeks $m$ yang berjalan dari 4 sampai 7.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kita inginkan $m$ berjalan dari 4 sampai 7, sementara $k$ berjalan dari 1 sampai 4. Hubungannya: $m = k + 3$, sehingga $k = m - 3$.</li>
+  <li>Periksa batas: saat $k = 1$, $m = 4$ ✓; saat $k = 4$, $m = 7$ ✓.</li>
+  <li>Ganti <em>semua</em> kemunculan $k$ pada suku umum:<br>$\displaystyle\sum_{k=1}^{4}k^3 = \sum_{m=4}^{7}(m-3)^3$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi nilai: $1 + 8 + 27 + 64 = 100$, dan $(1)^3 + (2)^3 + (3)^3 + (4)^3 = 1 + 8 + 27 + 64 = 100$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 6: Menggabungkan Dua Sigma</p>
+ <p class="lesson-text">Gabungkan menjadi satu notasi sigma: $\displaystyle\sum_{i=1}^{5}(2i+1) + \sum_{i=1}^{5}(3i-2)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kedua sigma memiliki batas yang sama (1 sampai 5). Gunakan sifat distributif <strong>dari kanan ke kiri</strong>:<br>$\sum_{i=1}^{5}(2i+1) + \sum_{i=1}^{5}(3i-2) = \sum_{i=1}^{5}\left[(2i+1)+(3i-2)\right] = \sum_{i=1}^{5}(5i - 1)$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi nilai: sigma pertama $= 3+5+7+9+11 = 35$; sigma kedua $= 1+4+7+10+13 = 35$; total $= 70$. Gabungan: $4+9+14+19+24 = 70$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 7: Menurunkan Rumus Jumlah Bilangan Ganjil</p>
+ <p class="lesson-text">Tunjukkan bahwa $\displaystyle\sum_{i=1}^{n}(2i-1) = n^2$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Gunakan <strong>sifat distributif</strong>:<br>$\sum_{i=1}^{n}(2i-1) = 2\sum_{i=1}^{n}i - \sum_{i=1}^{n}1$</li>
+  <li>Terapkan <strong>rumus jumlah khusus</strong> dan <strong>jumlah konstanta</strong>:<br>$= 2 \cdot \dfrac{n(n+1)}{2} - n = n(n+1) - n$</li>
+  <li>Sederhanakan:<br>$= n^2 + n - n = n^2$</li>
+ </ol>
+ <p class="lesson-text">Terbukti bahwa jumlah $n$ bilangan ganjil pertama sama dengan $n^2$. Verifikasi untuk $n = 5$: $1+3+5+7+9 = 25 = 5^2$ ✓—dan ini konsisten dengan rumus yang baru kita turunkan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Mengabaikan jumlah suku pada penjumlahan konstanta.</strong> Kesalahan: menghitung $\sum_{i=1}^{5} 3$ sebagai $3$ (hanya satu suku). Yang benar: jumlah sukunya $(5 - 1 + 1) = 5$ suku, sehingga hasilnya $5 \times 3 = 15$. Selalu gunakan rumus $\sum_{i=m}^{n} c = (n - m + 1)c$.</li>
+  <li><strong>Mengalikan sigma secara distributif (salah sifat).</strong> Kesalahan: menulis $\sum_{i=1}^{n}(a_i \cdot b_i) = \left(\sum_{i=1}^{n} a_i\right)\left(\sum_{i=1}^{n} b_i\right)$. Ini salah besar—tidak ada sifat distributif untuk perkalian dua suku di dalam sigma. Contoh: $\sum_{i=1}^{2}(i \cdot i) = 1 + 4 = 5$, sedangkan $(\sum i)(\sum i) = 3 \times 3 = 9$. Berbeda.</li>
+  <li><strong>Mengubah indeks hanya pada suku umum, tidak pada batas.</strong> Kesalahan: pada pergeseran indeks $\sum_{i=1}^{3} i^2$ dengan mengganti $i = j + 1$, tetapi batas tetap 1 sampai 3. Yang benar: jika $i = j + 1$, maka saat $i = 1$, $j = 0$; saat $i = 3$, $j = 2$—sehingga batas berubah menjadi $\sum_{j=0}^{2}(j+1)^2$. Batas dan suku umum harus diubah bersamaan.</li>
+  <li><strong>Keliru dengan variabel dummy di luar sigma.</strong> Kesalahan: menulis $\sum_{i=1}^{n} i^2 + i$ yang ambigu—apakah $i$ di luar sigma masih terikat atau tidak. Yang benar: gunakan tanda kurung untuk membedakan, misalnya $\left(\sum_{i=1}^{n} i^2\right) + i$. Indeks sigma hanya berlaku di dalam notasi.</li>
+  <li><strong>Menerapkan rumus jumlah tanpa mengecek batas bawah.</strong> Kesalahan: langsung menggunakan rumus $\sum_{i=1}^{n} i = n(n+1)/2$ untuk kasus yang batas bawahnya bukan 1—misalnya $\sum_{i=5}^{10} i$. Yang benar: kurangi dengan jumlah suku-suku sebelum batas bawah: $\sum_{i=5}^{10} i = \sum_{i=1}^{10} i - \sum_{i=1}^{4} i$.</li>
+  <li><strong>Menganggap notasi sigma sebagai perkalian.</strong> Beberapa pemula keliru membaca $\sum_{i=1}^{n} a_i$ sebagai $a_1 \times a_2 \times \dots$—padahal jelas ini penjumlahan. Perhatikan simbol $\Sigma$ (Sigma kapital) yang selalu berarti jumlah, bukan produk.</li>
+  <li><strong>Menganggap huruf indeks harus selalu $i$.</strong> Indeks dapat menggunakan huruf apa pun—$i$, $j$, $k$, $r$, $n$, atau bahkan huruf Yunani seperti $\alpha$. Yang penting konsisten di dalam satu notasi. Menggunakan $j$ untuk kasus yang berbeda bukanlah kesalahan—bahkan sering dipakai untuk membedakan dua sigma yang berbeda dalam satu persamaan.</li>
+  <li><strong>Lupa bahwa batas bawah dan batas atas harus bilangan bulat.</strong> Notasi sigma $\sum_{i=1{,}5}^{3} a_i$ tidak bermakna—karena indeks harus berjalan pada nilai-nilai bilangan bulat. Gunakan batas bulat: $\sum_{i=1}^{3}$ atau $\sum_{i=2}^{5}$. Dalam konteks lanjutan (seperti statistika atau kalkulus), variabel penjumlahan biasanya tetap dibatasi bilangan bulat.</li>
+  <li><strong>Menukar batas atas dan batas bawah.</strong> Notasi $\sum_{i=5}^{1} a_i$ secara konvensi bernilai 0—bukan hasil penjumlahan terbalik. Batas atas harus $\ge$ batas bawah.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti notasi sigma yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Notasi Sigma</strong> ($\sum$) adalah notasi ringkas untuk penjumlahan beruntun: $\sum_{i=m}^{n} a_i$ dengan $i$ indeks, $m$ batas bawah, $n$ batas atas, dan $a_i$ suku umum.</li>
+  <li><strong>Indeks penjumlahan adalah variabel dummy</strong>—namanya dapat diganti tanpa mengubah nilai sigma.</li>
+  <li><strong>Sifat dasar</strong>: penjumlahan konstanta $\sum_{i=m}^{n} c = (n-m+1)c$; faktor skalar keluar $\sum c \cdot a_i = c \sum a_i$; distributif terhadap penjumlahan/pengurangan.</li>
+  <li><strong>Rumus jumlah khusus</strong>: $\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$; $\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$; $\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2$.</li>
+  <li><strong>Pergeseran indeks</strong> mengubah batas dan suku umum secara bersamaan: $\sum_{i=m}^{n} a_i = \sum_{j=m+k}^{n+k} a_{j-k}$.</li>
+  <li><strong>Deret tak hingga</strong> menggunakan notasi $\sum_{i=1}^{\infty} a_i$—jumlahnya dapat konvergen atau divergen.</li>
+  <li>Notasi sigma digunakan luas dalam statistika, kalkulus, deret Taylor, komputasi numerik, dan fisika.</li>
+  <li>Kesalahan umum: mengabaikan jumlah suku pada konstanta, menganggap sigma perkalian, dan lupa mengubah batas saat pergeseran indeks.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Notasi sigma adalah salah satu alat notasi paling kuat dalam matematika—karena ia mengubah operasi penjumlahan yang panjang dan berulang menjadi ekspresi yang kompak dan mudah dimanipulasi. Dengan menguasai notasi ini, kita tidak lagi terhambat oleh panjangnya penulisan, tetapi dapat langsung fokus pada struktur dan pola dari penjumlahan yang sedang dipelajari. Yang membuat notasi sigma istimewa adalah <strong>sifat-sifat aljabarnya</strong>: seperti halnya pecahan yang dapat disederhanakan atau persamaan yang dapat diatur ulang, notasi sigma juga memiliki aturan-aturan yang memungkinkan kita mengeluarkan konstanta, memecah penjumlahan, dan menggeser indeks—semuanya tanpa mengubah nilai akhir.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Aljabar Linear</strong> (yang menggunakan notasi sigma untuk perkalian matriks dan kombinasi linear), <strong>Limit</strong> dan <strong>Integral</strong> (yang mendefinisikan integral melalui limit jumlah Riemann), <strong>Deret</strong> (yang mempelajari kekonvergenan deret tak hingga), <strong>Analisis Fourier</strong> (yang menguraikan fungsi menjadi jumlah sinus dan kosinus), <strong>Probabilitas &amp; Statistika</strong> (yang menggunakan notasi sigma untuk rata-rata, varians, dan ekspektasi), serta <strong>Tensor</strong> (yang menggunakan konvensi penjumlahan yang merupakan generalisasi dari notasi sigma).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan pergeseran indeks dan penggabungan dua notasi sigma dengan batas yang berbeda. Kebiasaan memeriksa jumlah suku dan konsisten dalam mengubah semua kemunculan indeks akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke kalkulus dan statistika, di mana notasi sigma muncul di hampir setiap rumus.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Bilangan Prima (Sifat, Distribusi, Uji Primalitas)</title>
+ <meta name="description" content="Bilangan prima: definisi, sifat-sifat, Teorema Dasar Aritmetika, distribusi dan celah prima, serta uji primalitas seperti Saringan Eratosthenes dan Miller-Rabin.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Bilangan Prima (Sifat, Distribusi, Uji Primalitas)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Keterbagian</strong> — terutama definisi pembagi, faktor, dan notasi $a \mid b$, karena bilangan prima didefinisikan melalui pembagi—dan tanpa pemahaman keterbagian, definisi prima tidak dapat dipahami.</li>
+   <li><strong>Sistem Bilangan</strong> — khususnya bilangan bulat $\mathbb{Z}$ dan bilangan asli $\mathbb{N}$, karena bilangan prima adalah bilangan asli yang lebih besar dari 1.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bilangan prima merupakan salah satu konsep paling fundamental dalam teori bilangan. Secara sederhana, bilangan prima adalah bilangan yang <em>tidak dapat dipecah</em> menjadi perkalian bilangan bulat yang lebih kecil—kecuali dengan 1 dan dirinya sendiri. Karena sifat ini, bilangan prima dijuluki sebagai "atom" dari bilangan bulat: setiap bilangan bulat positif yang lebih besar dari 1 dapat diuraikan secara unik menjadi perkalian bilangan-bilangan prima.</p>
+ <p class="lesson-text">Sifat tersebut dikenal sebagai <strong>Teorema Dasar Aritmetika</strong>, dan menjadi salah satu fondasi terpenting dalam matematika. Namun, bilangan prima bukan hanya objek teoretis. Ia memiliki peran sangat penting dalam bidang modern seperti <strong>kriptografi</strong> (keamanan data digital), <strong>algoritma komputasi</strong>, dan <strong>pembangkitan bilangan acak</strong>. Setiap kali Anda bertransaksi secara online atau mengirim pesan terenkripsi, di belakang layar ada bilangan prima raksasa yang bekerja. Yang membuat bilangan prima menarik sekaligus membingungkan adalah <strong>distribusinya yang tidak beraturan</strong>: kita dapat membuktikan bahwa bilangan prima tak terhingga banyaknya, tetapi tidak ada rumus sederhana untuk menentukan bilangan prima ke-$n$.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>definisi bilangan prima dan komposit</strong>, <strong>sifat-sifat dasarnya</strong> (termasuk Teorema Dasar Aritmetika dan bukti ketidakterbatasan prima), <strong>distribusinya di antara bilangan bulat</strong>, <strong>metode-metode uji primalitas</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap konsep akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan definisinya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Bilangan Prima</h3>
+ <p class="lesson-text">Kita mulai dari definisi formal—yang menjadi dasar dari seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text">Bilangan prima adalah bilangan bulat positif yang <strong>lebih besar dari 1</strong> dan hanya memiliki <strong>tepat dua pembagi positif</strong>, yaitu 1 dan bilangan itu sendiri.</p>
+ <p class="lesson-text">Secara formal, bilangan $p > 1$ disebut prima jika:</p>
+ <p class="lesson-text">$$p \text{ hanya habis dibagi oleh } 1 \text{ dan } p$$</p>
+ <p class="lesson-text">Dengan kata lain, $p$ tidak memiliki faktor positif selain 1 dan $p$.</p>
+
+ <p class="lesson-subheading">B. Contoh Bilangan Prima</p>
+ <p class="lesson-text">Beberapa bilangan prima yang pertama:</p>
+ <p class="lesson-text">$$2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, \dots$$</p>
+
+ <p class="lesson-subheading">C. Bilangan Komposit</p>
+ <p class="lesson-text">Bilangan bulat positif yang lebih besar dari 1 dan <em>bukan</em> prima disebut <strong>bilangan komposit</strong>. Bilangan komposit memiliki lebih dari dua pembagi positif.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, \dots$$</p>
+
+ <p class="lesson-subheading">D. Catatan Khusus</p>
+ <ul>
+  <li>Bilangan <strong>1 bukan bilangan prima</strong> dan juga bukan bilangan komposit. Bilangan 1 hanya memiliki satu pembagi positif, yaitu 1—sedangkan prima mensyaratkan dua pembagi dan komposit mensyaratkan lebih dari dua.</li>
+  <li>Bilangan <strong>2 adalah satu-satunya bilangan prima genap</strong>. Semua bilangan prima lainnya adalah ganjil.</li>
+ </ul>
+
+ <p class="lesson-subheading">E. Ringkasan Klasifikasi Bilangan</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Kategori</th>
+     <th>Syarat</th>
+     <th>Contoh</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Bilangan 1</td><td>$n = 1$</td><td>1</td></tr>
+    <tr><td>Bilangan Prima</td><td>$n > 1$, tepat 2 pembagi positif</td><td>2, 3, 5, 7, 11, …</td></tr>
+    <tr><td>Bilangan Komposit</td><td>$n > 1$, lebih dari 2 pembagi positif</td><td>4, 6, 8, 9, 10, …</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Setiap bilangan asli lebih besar dari 1 pasti termasuk salah satu dari dua kategori terakhir—prima atau komposit. Tidak ada kategori ketiga. Inilah yang membuat pembagian kategori ini lengkap dan eksklusif—sebuah sifat yang akan sangat berguna ketika kita mempelajari sifat-sifat prima lebih dalam.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Sifat-Sifat Bilangan Prima</h3>
+ <p class="lesson-text">Bilangan prima memiliki beberapa sifat mendasar yang menjadi fondasi teori bilangan.</p>
+
+ <p class="lesson-subheading">A. Teorema Dasar Aritmetika</p>
+ <p class="lesson-text">Setiap bilangan bulat positif yang lebih besar dari 1 dapat dinyatakan sebagai hasil kali bilangan-bilangan prima secara <strong>unik</strong>, kecuali urutannya. Inilah yang membuat bilangan prima disebut sebagai "blok pembangun" bilangan bulat.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$60 = 2 \times 2 \times 3 \times 5 = 2^2 \times 3 \times 5$$</p>
+ <p class="lesson-text">Faktorisasi ini unik. Tidak ada cara lain untuk menyatakan 60 sebagai perkalian bilangan prima selain mengubah urutannya.</p>
+
+ <p class="lesson-subheading">B. Ketidakterbatasan Bilangan Prima</p>
+ <p class="lesson-text">Bilangan prima jumlahnya <strong>tak terhingga</strong>. Pernyataan ini pertama kali dibuktikan oleh Euclid sekitar 300 SM, dan buktinya masih menjadi salah satu bukti matematis paling elegan sepanjang sejarah.</p>
+ <p class="lesson-subheading-alt">Bukti Euclid:</p>
+ <p class="lesson-text">Andaikan bilangan prima terbatas, misalnya $p_1, p_2, \dots, p_n$ adalah semua bilangan prima. Bentuk bilangan:</p>
+ <p class="lesson-text">$$N = p_1 \times p_2 \times \cdots \times p_n + 1$$</p>
+ <p class="lesson-text">Perhatikan bahwa $N > 1$, sehingga $N$ pasti memiliki paling sedikit satu faktor prima (menurut Teorema Dasar Aritmetika). Akan tetapi, $N$ tidak habis dibagi oleh $p_1, p_2, \dots, p_n$ mana pun—karena setiap pembagian selalu bersisa 1. Jadi, faktor prima dari $N$ haruslah bilangan prima yang <em>baru</em>, bukan salah satu dari daftar $p_1, \dots, p_n$. Ini kontradiksi dengan asumsi bahwa semua bilangan prima sudah terdaftar. Karena itu, bilangan prima tak terhingga banyaknya.</p>
+
+ <p class="lesson-subheading">C. Sifat Dasar</p>
+ <ul>
+  <li>Setiap bilangan bulat $n > 1$ memiliki paling sedikit satu faktor prima.</li>
+  <li>Jika $p$ prima dan $p \mid ab$, maka $p \mid a$ atau $p \mid b$.</li>
+  <li>Jika $p$ prima dan $p \mid a_1 a_2 \cdots a_k$, maka $p \mid a_i$ untuk suatu $i$.</li>
+  <li>Jika $p$ prima dan $p \mid a^n$, maka $p \mid a$.</li>
+  <li>Bilangan prima $p$ relatif prima dengan semua bilangan yang bukan kelipatan $p$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Faktor Prima</p>
+ <p class="lesson-text">Faktor prima dari suatu bilangan adalah faktor-faktor yang berupa bilangan prima.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Faktor prima dari 28 adalah 2 dan 7, karena $28 = 2^2 \times 7$. Perhatikan bahwa 4 dan 14 bukan faktor prima—keduanya komposit.</p>
+
+ <p class="lesson-subheading">E. Bilangan Prima Kembar (Twin Primes)</p>
+ <p class="lesson-text">Dua bilangan prima disebut <strong>kembar</strong> jika selisihnya 2.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$3$ dan $5$, $5$ dan $7$, $11$ dan $13$, $17$ dan $19$.</p>
+ <p class="lesson-text">Hingga saat ini belum diketahui apakah pasangan bilangan prima kembar jumlahnya tak terhingga. Masalah ini dikenal sebagai <strong>Konjektur Prima Kembar</strong>—salah satu masalah terbuka yang paling terkenal dalam matematika.</p>
+
+ <p class="lesson-subheading">F. Bilangan Prima Mersenne</p>
+ <p class="lesson-text">Bilangan prima Mersenne adalah bilangan prima berbentuk:</p>
+ <p class="lesson-text">$$M_n = 2^n - 1$$</p>
+ <p class="lesson-text">dengan $n$ bilangan bulat positif. Tidak semua $n$ menghasilkan bilangan prima.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2^2 - 1 = 3 \quad \text{(prima)}$$ $$2^3 - 1 = 7 \quad \text{(prima)}$$ $$2^4 - 1 = 15 \quad \text{(bukan prima, karena } 15 = 3 \times 5)$$</p>
+ <p class="lesson-text">Bilangan prima Mersenne terbesar yang diketahui saat ini terus bertambah seiring perkembangan komputasi.</p>
+
+ <p class="lesson-subheading">G. Bilangan Prima Fermat</p>
+ <p class="lesson-text">Bilangan prima Fermat adalah bilangan prima berbentuk:</p>
+ <p class="lesson-text">$$F_n = 2^{2^n} + 1$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$F_0 = 3, \quad F_1 = 5, \quad F_2 = 17, \quad F_3 = 257, \quad F_4 = 65.537$$</p>
+ <p class="lesson-text">Kelima bilangan di atas adalah prima. Namun $F_5 = 4.294.967.297$ <em>bukan</em> prima—faktanya, $F_5 = 641 \times 6.700.417$. Fermat menduga semua $F_n$ prima, tetapi dugaannya salah untuk $n \geq 5$.</p>
+
+ <p class="lesson-text">Sifat-sifat di atas menunjukkan bahwa bilangan prima bukan sekadar kumpulan angka yang tidak beraturan—mereka memiliki struktur internal yang kaya. Namun, pertanyaan berikutnya yang alami adalah: <em>bagaimana</em> mereka tersebar di antara bilangan bulat lainnya?</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Distribusi Bilangan Prima</h3>
+ <p class="lesson-text">Salah satu aspek paling menarik dari bilangan prima adalah <strong>bagaimana mereka tersebar</strong> di antara bilangan bulat. Distribusinya tidak mengikuti pola sederhana—tetapi secara keseluruhan, ada keteraturan statistik yang menakjubkan.</p>
+
+ <p class="lesson-subheading">A. Kerapatan Bilangan Prima</p>
+ <p class="lesson-text">Fungsi $\pi(x)$ menyatakan banyaknya bilangan prima yang kurang dari atau sama dengan $x$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\pi(10) = 4 \quad (2, 3, 5, 7)$$ $$\pi(100) = 25$$ $$\pi(1.000) = 168$$</p>
+ <p class="lesson-text">Perhatikan bahwa meskipun bilangan prima jumlahnya tak terhingga, kerapatannya menurun seiring bertambahnya bilangan.</p>
+
+ <p class="lesson-subheading">B. Teorema Bilangan Prima (Prime Number Theorem)</p>
+ <p class="lesson-text">Teorema Bilangan Prima menyatakan bahwa untuk $x$ yang sangat besar, $\pi(x)$ mendekati:</p>
+ <p class="lesson-text">$$\pi(x) \sim \frac{x}{\ln x}$$</p>
+ <p class="lesson-text">Artinya, rasio $\dfrac{\pi(x)}{x / \ln x}$ mendekati 1 saat $x \to \infty$.</p>
+ <p class="lesson-text">Teorema ini memberikan gambaran tentang seberapa sering bilangan prima muncul. Semakin besar suatu bilangan, semakin jarang bilangan prima ditemukan—tetapi tetap tak terhingga banyaknya.</p>
+
+ <p class="lesson-subheading">C. Celah Antarbilangan Prima</p>
+ <p class="lesson-text">Jarak antara dua bilangan prima berurutan disebut <strong>celah prima</strong>. Celah ini dapat membesar <em>tanpa batas</em>—artinya, untuk setiap bilangan bulat $n$, selalu ada dua bilangan prima berurutan yang selisihnya lebih besar dari $n$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Antara 113 dan 127 (keduanya prima berurutan), selisihnya 14—tidak ada bilangan prima di antaranya.</p>
+
+ <p class="lesson-subheading">D. Postulat Bertrand</p>
+ <p class="lesson-text">Untuk setiap bilangan bulat $n > 1$, selalu terdapat paling sedikit satu bilangan prima $p$ sehingga:</p>
+ <p class="lesson-text">$$n < p < 2n$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Untuk $n = 10$, terdapat prima $11, 13, 17, 19$ di antara 10 dan 20.</p>
+
+ <p class="lesson-text">Meskipun distribusi bilangan prima tidak mengikuti pola sederhana, kita tetap dapat <em>menguji</em> apakah suatu bilangan prima atau bukan—melalui apa yang disebut <strong>uji primalitas</strong>. Metode-metode ini sangat penting dalam praktik, terutama ketika bekerja dengan bilangan yang sangat besar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Uji Primalitas</h3>
+ <p class="lesson-text">Uji primalitas adalah metode untuk menentukan apakah suatu bilangan merupakan bilangan prima atau komposit. Berikut beberapa metode yang umum digunakan—dari yang paling sederhana hingga yang paling canggih.</p>
+
+ <p class="lesson-subheading">A. Pembagian Percobaan (Trial Division)</p>
+ <p class="lesson-text">Metode paling sederhana. Untuk menguji apakah $n$ prima, bagi $n$ dengan semua bilangan prima dari 2 hingga $\sqrt{n}$. Jika tidak ada yang membagi habis, maka $n$ prima.</p>
+ <p class="lesson-subheading-alt">Mengapa cukup sampai $\sqrt{n}$?</p>
+ <p class="lesson-text">Jika $n$ komposit, maka $n = a \times b$ dengan $a, b > 1$. Salah satu dari $a$ atau $b$ pasti $\le \sqrt{n}$—karena jika keduanya lebih besar dari $\sqrt{n}$, hasil kalinya akan melebihi $n$. Jadi, jika ada faktor, pasti ada faktor yang $\le \sqrt{n}$. Jika tidak ada pembagi sampai $\sqrt{n}$, maka tidak ada pembagi sama sekali.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Uji apakah 97 prima. Karena $\sqrt{97} \approx 9{,}8$, cukup periksa bilangan prima $\le 9{,}8$, yaitu 2, 3, 5, 7. Karena 97 tidak habis dibagi oleh salah satu dari mereka, maka 97 adalah bilangan prima.</p>
+ <p class="lesson-text">Metode ini efisien untuk bilangan kecil, tetapi tidak praktis untuk bilangan yang sangat besar.</p>
+
+ <p class="lesson-subheading">B. Saringan Eratosthenes</p>
+ <p class="lesson-text">Saringan Eratosthenes digunakan untuk menemukan <em>semua</em> bilangan prima hingga suatu batas $n$—bukan hanya menguji satu bilangan.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Tuliskan bilangan 2 sampai $n$.</li>
+  <li>Mulai dari 2, tandai 2 sebagai prima, lalu hapus semua kelipatan 2 (4, 6, 8, …).</li>
+  <li>Lanjutkan ke bilangan berikutnya yang belum dihapus, yaitu 3. Tandai 3 sebagai prima, hapus kelipatan 3.</li>
+  <li>Ulangi hingga tidak ada bilangan yang perlu diproses.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh untuk $n = 30$:</p>
+ <p class="lesson-text">Bilangan yang tersisa: $2, 3, 5, 7, 11, 13, 17, 19, 23, 29$.</p>
+
+ <p class="lesson-subheading">C. Uji Fermat (Fermat Primality Test)</p>
+ <p class="lesson-text">Uji Fermat didasarkan pada Teorema Kecil Fermat: jika $p$ prima dan $a$ tidak habis dibagi $p$, maka:</p>
+ <p class="lesson-text">$$a^{p-1} \equiv 1 \pmod{p}$$</p>
+ <p class="lesson-text">Untuk menguji $n$, pilih beberapa nilai $a$ acak dengan $1 < a < n-1$, lalu periksa apakah $a^{n-1} \equiv 1 \pmod{n}$. Jika <em>tidak</em>, maka $n$ pasti komposit. Jika <em>ya</em>, maka $n$ mungkin prima.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Ada bilangan komposit yang lolos uji Fermat untuk beberapa nilai $a$. Bilangan seperti itu disebut <strong>bilangan Carmichael</strong>. Contohnya: 561, 1.105, dan 1.729. Karena itu, uji Fermat tidak dapat diandalkan sebagai uji deterministik—hanya berguna sebagai uji cepat untuk menyaring kandidat.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Uji Miller-Rabin</p>
+ <p class="lesson-text">Uji Miller-Rabin adalah pengembangan dari uji Fermat dan jauh lebih andal. Metode ini menggunakan faktorisasi $n - 1 = 2^s \times d$ dengan $d$ ganjil, lalu memeriksa barisan:</p>
+ <p class="lesson-text">$$a^d \pmod{n}, \quad a^{2d} \pmod{n}, \quad a^{4d} \pmod{n}, \quad \dots, \quad a^{2^s d} \pmod{n}$$</p>
+ <p class="lesson-text">Uji ini bersifat <strong>probabilistik</strong>: semakin banyak nilai $a$ yang diuji, semakin tinggi keyakinan bahwa $n$ prima. Dengan memilih $k$ basis berbeda, peluang salah mendeteksi bilangan komposit sebagai prima paling besar $4^{-k}$—jadi dengan 10 basis, peluangnya kurang dari satu banding satu juta. Uji Miller-Rabin banyak digunakan dalam praktik karena cepat dan sangat andal.</p>
+
+ <p class="lesson-subheading">E. Uji AKS</p>
+ <p class="lesson-text">Uji AKS (Agrawal-Kayal-Saxena) adalah uji primalitas <strong>deterministik</strong> yang berjalan dalam waktu polinomial. Artinya, uji ini memberikan jawaban pasti tanpa unsur probabilitas. Namun dalam praktik, metode probabilistik seperti Miller-Rabin sering lebih cepat, sehingga AKS lebih bernilai secara teoretis daripada praktis.</p>
+
+ <p class="lesson-subheading">F. Ringkasan Perbandingan Uji Primalitas</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Uji</th>
+     <th>Jenis</th>
+     <th>Keunggulan</th>
+     <th>Kelemahan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Pembagian Percobaan</td><td>Deterministik</td><td>Sederhana, pasti benar</td><td>Lambat untuk bilangan besar</td></tr>
+    <tr><td>Saringan Eratosthenes</td><td>Deterministik</td><td>Efisien untuk semua prima hingga batas $n$</td><td>Tidak efisien untuk menguji satu bilangan besar</td></tr>
+    <tr><td>Uji Fermat</td><td>Probabilistik</td><td>Cepat</td><td>Gagal untuk bilangan Carmichael</td></tr>
+    <tr><td>Miller-Rabin</td><td>Probabilistik</td><td>Sangat cepat dan andal</td><td>Ada peluang kecil salah</td></tr>
+    <tr><td>AKS</td><td>Deterministik</td><td>Pasti benar, waktu polinomial</td><td>Lebih lambat dari Miller-Rabin dalam praktik</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Setiap uji primalitas memiliki kelebihan dan kekurangan—pilihan yang tepat bergantung pada konteks: apakah kita perlu menguji satu bilangan besar, atau mencari semua bilangan prima hingga batas tertentu. Mari kita terapkan seluruh konsep ini—definisi, sifat, distribusi, dan uji primalitas—pada tujuh soal yang menggabungkan berbagai aspek bilangan prima.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan definisi prima, sifat-sifatnya, distribusi, dan uji primalitas. Setiap langkah dituliskan lengkap, dan alasan setiap langkah disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Identifikasi Bilangan Prima</p>
+ <p class="lesson-text">Tentukan apakah setiap bilangan berikut prima, komposit, atau tidak keduanya: $1$; $2$; $9$; $17$; $25$; $51$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ul>
+  <li><strong>$1$</strong>: bukan prima dan bukan komposit. Hanya memiliki satu pembagi positif (yaitu 1), sedangkan prima mensyaratkan tepat dua pembagi dan komposit mensyaratkan lebih dari dua.</li>
+  <li><strong>$2$</strong>: prima. Pembagi positifnya hanya 1 dan 2. Ini satu-satunya bilangan prima genap.</li>
+  <li><strong>$9$</strong>: komposit. $9 = 3 \times 3$, pembagi positifnya 1, 3, 9—lebih dari dua.</li>
+  <li><strong>$17$</strong>: prima. $\sqrt{17} \approx 4{,}1$; tidak habis dibagi 2 (ganjil) maupun 3 ($1+7=8$). Karena tidak ada pembagi sampai $\sqrt{17}$, maka 17 prima.</li>
+  <li><strong>$25$</strong>: komposit. $25 = 5 \times 5$, pembagi positifnya 1, 5, 25.</li>
+  <li><strong>$51$</strong>: komposit. $51 = 3 \times 17$. Terlihat dari jumlah digit $5+1=6$ yang habis dibagi 3.</li>
+ </ul>
+ 
+ <p class="lesson-subheading">Soal 2: Uji Primalitas dengan Pembagian Percobaan</p>
+ <p class="lesson-text">Tentukan apakah 151 bilangan prima menggunakan pembagian percobaan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung $\sqrt{151}$. Karena $12^2 = 144$ dan $13^2 = 169$, maka $\sqrt{151} \approx 12{,}3$. Jadi cukup periksa bilangan prima $\le 12{,}3$: yaitu $2, 3, 5, 7, 11$.</li>
+  <li>Periksa satu per satu:
+   <ul>
+    <li>$2 \nmid 151$ — karena 151 ganjil.</li>
+    <li>$3 \nmid 151$ — karena jumlah digit $1+5+1=7$, tidak habis dibagi 3.</li>
+    <li>$5 \nmid 151$ — karena angka terakhirnya bukan 0 atau 5.</li>
+    <li>$7 \nmid 151$ — karena $7 \times 21 = 147$ dan $7 \times 22 = 154$; 151 tidak termasuk.</li>
+    <li>$11 \nmid 151$ — karena $11 \times 13 = 143$ dan $11 \times 14 = 154$; 151 tidak termasuk.</li>
+   </ul>
+  </li>
+  <li>Tidak ada pembagi prima sampai $\sqrt{151}$. Maka <strong>151 adalah bilangan prima</strong>.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Faktorisasi Prima</p>
+ <p class="lesson-text">Nyatakan 360 sebagai hasil kali bilangan prima, dan sebutkan faktor prima uniknya.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Bagi 360 dengan bilangan prima terkecil secara bertahap:
+   <ul>
+    <li>$360 \div 2 = 180$</li>
+    <li>$180 \div 2 = 90$</li>
+    <li>$90 \div 2 = 45$</li>
+    <li>$45 \div 3 = 15$</li>
+    <li>$15 \div 3 = 5$</li>
+    <li>$5 \div 5 = 1$</li>
+   </ul>
+  </li>
+  <li>Kumpulkan pembagi: $360 = 2 \times 2 \times 2 \times 3 \times 3 \times 5$.</li>
+  <li>Tulis dalam bentuk pangkat: $360 = 2^3 \times 3^2 \times 5$.</li>
+ </ol>
+ <p class="lesson-text">Faktor prima uniknya adalah 2, 3, dan 5—yaitu basis-basis prima yang muncul dalam faktorisasi. Menurut Teorema Dasar Aritmetika, faktorisasi ini unik: tidak ada cara lain untuk menyatakan 360 sebagai hasil kali bilangan prima selain mengubah urutannya.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Saringan Eratosthenes</p>
+ <p class="lesson-text">Gunakan Saringan Eratosthenes untuk menentukan semua bilangan prima $\le 50$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tulis bilangan 2 sampai 50. Mulai dari 2, hapus semua kelipatan 2 (kecuali 2 itu sendiri): 4, 6, 8, 10, 12, …, 50.</li>
+  <li>Bilangan berikutnya yang belum dihapus adalah 3. Hapus kelipatannya: 6, 9, 12, 15, …, 48.</li>
+  <li>Bilangan berikutnya adalah 5. Hapus kelipatannya: 10, 15, 20, …, 50.</li>
+  <li>Bilangan berikutnya adalah 7. Hapus kelipatannya: 14, 21, 28, 35, 42, 49.</li>
+  <li>Berhenti—karena $\sqrt{50} \approx 7{,}07$, dan tidak ada bilangan prima baru yang perlu diproses setelah 7.</li>
+  <li>Bilangan yang tersisa adalah bilangan prima:<br>$2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47$.</li>
+ </ol>
+ <p class="lesson-text">Ada 15 bilangan prima $\le 50$. Perhatikan bahwa ini konsisten dengan prediksi Teorema Bilangan Prima: $\pi(50) \approx 50 / \ln 50 \approx 50 / 3{,}91 \approx 12{,}8$—nilai pendekatan yang cukup dekat dengan hasil sebenarnya.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Bilangan Prima Mersenne</p>
+ <p class="lesson-text">Tentukan apakah $2^{11} - 1$ adalah bilangan prima Mersenne.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung $2^{11} = 2048$, sehingga $2^{11} - 1 = 2047$.</li>
+  <li>Coba faktorisasi: $\sqrt{2047} \approx 45{,}2$. Periksa pembagi prima kecil.
+   <ul>
+    <li>$2047 \div 23 = 89$. Karena $23 \times 89 = 2047$ (periksa: $23 \times 90 = 2070$, dikurangi 23 = 2047 ✓).</li>
+   </ul>
+  </li>
+  <li>Karena 2047 memiliki pembagi selain 1 dan dirinya sendiri, maka <strong>2047 bukan bilangan prima</strong>—walaupun bentuknya $2^n - 1$.</li>
+ </ol>
+ <p class="lesson-text">Contoh ini menegaskan bahwa tidak semua bilangan berbentuk $2^n - 1$ adalah prima. Untuk menjadi prima Mersenne, diperlukan tidak hanya bentuk tersebut, tetapi juga bahwa hasilnya benar-benar prima.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Sifat $p \mid ab \Rightarrow p \mid a$ atau $p \mid b$</p>
+ <p class="lesson-text">Tunjukkan bahwa sifat $p \mid ab \Rightarrow p \mid a$ atau $p \mid b$ <strong>tidak berlaku</strong> jika $p$ bukan bilangan prima. Berikan contoh penyangkal dengan $p = 6$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Ambil $a = 2$ dan $b = 3$. Maka $ab = 6$.</li>
+  <li>Periksa: apakah $6 \mid 6$? Ya—karena $6 = 6 \times 1$.</li>
+  <li>Periksa: apakah $6 \mid 2$? Tidak—karena tidak ada bilangan bulat $k$ sehingga $2 = 6 \times k$.</li>
+  <li>Periksa: apakah $6 \mid 3$? Tidak.</li>
+  <li>Kesimpulan: $6 \mid (2 \times 3)$, tetapi $6 \nmid 2$ dan $6 \nmid 3$. Sifat ini <strong>gagal</strong> untuk $p = 6$ yang komposit.</li>
+ </ol>
+ <p class="lesson-text">Sebaliknya, untuk $p$ prima sifat ini selalu benar. Contoh: $7 \mid (6 \times 7) = 42$, dan memang $7 \mid 7$. Mengapa? Karena jika $p$ prima dan $p \mid ab$, maka menurut sifat keterbagian, $p$ harus membagi salah satu faktornya. Sifat inilah yang membuat bilangan prima menjadi "atom" dalam aritmetika—karena ia tidak dapat "terpecah" di antara faktor-faktor.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Ketidakterbatasan Bilangan Prima</p>
+ <p class="lesson-text">Misalkan $P = \{2, 3, 5, 7, 11, 13\}$ adalah daftar enam bilangan prima pertama. Bentuk $N = 2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1$. Tentukan apakah $N$ prima, dan jelaskan apa yang dapat disimpulkan dari hasilnya.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung hasil kali: $2 \times 3 \times 5 \times 7 \times 11 \times 13 = 30030$.</li>
+  <li>Maka $N = 30030 + 1 = 30031$.</li>
+  <li>Coba faktorisasi $N$. Karena $\sqrt{30031} \approx 173{,}3$, periksa prima kecil. Ternyata $30031 = 59 \times 509$—keduanya bilangan prima.
+   <ul>
+    <li>Periksa 59: $\sqrt{59} \approx 7{,}7$; tidak habis dibagi 2, 3, 5, 7. Prima ✓</li>
+    <li>Periksa 509: $\sqrt{509} \approx 22{,}6$; tidak habis dibagi prima $\le 22$, yaitu 2, 3, 5, 7, 11, 13, 17, 19. Prima ✓</li>
+   </ul>
+  </li>
+  <li>Perhatikan: 59 dan 509 <strong>tidak ada</strong> dalam daftar $P = \{2, 3, 5, 7, 11, 13\}$. Jadi keduanya adalah bilangan prima yang baru—di luar daftar yang diasumsikan lengkap.</li>
+ </ol>
+ <p class="lesson-text">Kesimpulannya, konstruksi $N$ dari daftar terbatas selalu menghasilkan bilangan prima baru. Inilah inti bukti Euclid: tidak ada daftar terbatas bilangan prima yang benar-benar lengkap. Berapa pun banyaknya bilangan prima yang kita daftar, selalu ada bilangan prima lain di luar daftar itu—sehingga bilangan prima tak terhingga banyaknya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap 1 sebagai bilangan prima.</strong> 1 bukan bilangan prima karena hanya memiliki satu pembagi positif. Definisi prima mensyaratkan bilangan lebih besar dari 1 dan memiliki tepat dua pembagi. Ini adalah kesalahan yang paling sering terjadi.</li>
+  <li><strong>Menganggap "bukan prima" sama dengan "komposit".</strong> Bilangan 1 bukan prima, tetapi juga bukan komposit. Kategori "prima" dan "komposit" hanya berlaku untuk bilangan bulat $n > 1$. Untuk bilangan yang lebih kecil atau sama dengan 1, keduanya tidak berlaku.</li>
+  <li><strong>Menganggap semua bilangan ganjil adalah prima.</strong> 9, 15, 21, 25, dan 27 adalah bilangan ganjil tetapi komposit. Kebalikannya juga tidak benar—2 adalah bilangan prima genap.</li>
+  <li><strong>Menganggap semua bilangan prima adalah ganjil.</strong> 2 adalah bilangan prima genap, dan merupakan satu-satunya.</li>
+  <li><strong>Menganggap faktor prima sama dengan pembagi.</strong> Faktor prima hanya faktor yang berupa bilangan prima, sedangkan pembagi mencakup semua bilangan yang membagi habis—termasuk yang komposit. Contoh: pembagi 12 adalah 1, 2, 3, 4, 6, 12; faktor primanya hanya 2 dan 3.</li>
+  <li><strong>Berhenti menguji terlalu dini saat uji pembagian.</strong> Cukup periksa sampai $\sqrt{n}$—bukan sampai $n - 1$. Tetapi juga jangan berhenti <em>sebelum</em> $\sqrt{n}$ hanya karena sudah menemukan beberapa pembagi yang tidak berhasil.</li>
+  <li><strong>Menggunakan Saringan Eratosthenes untuk menguji satu bilangan besar.</strong> Saringan Eratosthenes dirancang untuk menemukan <em>semua</em> bilangan prima hingga suatu batas $n$—bukan untuk menguji apakah satu bilangan besar $n$ prima. Untuk menguji satu bilangan besar, gunakan pembagian percobaan sampai $\sqrt{n}$ atau—untuk bilangan yang sangat besar—gunakan uji probabilistik seperti Miller-Rabin.</li>
+  <li><strong>Menganggap uji Fermat selalu benar.</strong> Uji Fermat dapat memberikan hasil positif palsu untuk bilangan Carmichael. Untuk uji yang lebih andal, gunakan Miller-Rabin.</li>
+  <li><strong>Menganggap bilangan prima Mersenne selalu prima.</strong> $2^n - 1$ tidak selalu prima—hanya untuk beberapa nilai $n$ tertentu. Contoh: $2^4 - 1 = 15$, yang bukan prima.</li>
+  <li><strong>Menganggap Teorema Bilangan Prima bersifat eksak.</strong> $\pi(x) \sim x / \ln x$ adalah pernyataan <em>asimtotik</em>—artinya, nilainya mendekati untuk $x$ yang sangat besar. Untuk $x$ kecil, perbedaan antara $\pi(x)$ dan $x / \ln x$ bisa cukup jauh.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti bilangan prima yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Bilangan prima</strong> adalah bilangan bulat positif $> 1$ yang hanya habis dibagi 1 dan dirinya sendiri.</li>
+  <li><strong>Bilangan komposit</strong> adalah bilangan bulat $> 1$ yang bukan prima; bilangan 1 bukan prima dan bukan komposit.</li>
+  <li><strong>Teorema Dasar Aritmetika</strong> menyatakan setiap bilangan $> 1$ dapat difaktorkan menjadi bilangan prima secara unik (kecuali urutannya).</li>
+  <li><strong>Bilangan prima tak terhingga</strong> banyaknya—dibuktikan oleh Euclid melalui kontradiksi.</li>
+  <li><strong>Distribusi prima</strong> semakin jarang seiring bertambahnya bilangan; dinyatakan oleh Teorema Bilangan Prima: $\pi(x) \sim x / \ln x$.</li>
+  <li><strong>Uji primalitas</strong> meliputi pembagian percobaan, Saringan Eratosthenes, Uji Fermat, Miller-Rabin, dan AKS.</li>
+  <li><strong>Penerapan</strong> bilangan prima sangat penting dalam kriptografi (RSA), pembangkitan kunci publik, fungsi hash, dan teori bilangan.</li>
+  <li>Hindari kesalahan umum seperti menganggap 1 prima, menganggap "bukan prima" sama dengan "komposit", dan menganggap semua ganjil prima.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Bilangan prima adalah salah satu objek paling menarik dalam matematika. Meskipun definisinya sederhana—bilangan yang hanya habis dibagi 1 dan dirinya sendiri—sifat dan distribusinya menyimpan banyak misteri yang telah memikat matematikawan selama ribuan tahun. Yang membuat bilangan prima istimewa adalah perannya sebagai <strong>blok pembangun bilangan bulat</strong>: melalui Teorema Dasar Aritmetika, setiap bilangan dapat diuraikan menjadi perkalian bilangan prima—dan penguraian ini unik. Konsep ini bukan sekadar keindahan teoretis, tetapi menjadi fondasi bagi banyak sifat aritmetika, termasuk FPB, KPK, dan keterbagian lanjutan.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Faktorisasi Prima</strong> (yang menguraikan bilangan menjadi faktor prima dan menggunakan Teorema Dasar Aritmetika secara langsung), <strong>FPB &amp; KPK</strong> (yang menghitung pembagi dan kelipatan bersama melalui faktorisasi prima), <strong>Kongruensi &amp; Modulo</strong> (yang menggunakan sifat-sifat prima dalam aritmetika sisa), <strong>Kriptografi</strong> (yang bertumpu pada kesulitan memfaktorkan bilangan prima besar), dan <strong>Teori Bilangan Analitik</strong> (yang mempelajari distribusi prima secara mendalam melalui fungsi Zeta Riemann).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan penentuan apakah suatu bilangan prima, faktorisasi menjadi prima, dan penerapan sifat-sifat keterbagian pada bilangan prima. Kebiasaan memeriksa apakah definisi benar-benar terpenuhi (dua pembagi positif, $n > 1$) akan menyelamatkan Anda dari kesalahan-kesalahan dasar seperti menganggap 1 prima. Dan jika Anda tertarik pada sisi misterius bilangan prima, jelajahi topik seperti Konjektur Prima Kembar atau Hipotesis Riemann—keduanya adalah masalah terbuka paling terkenal dalam matematika modern.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Sistem Bilangan (Bilangan Asli, Bulat, Rasional, Real, Kompleks)</title>
+ <meta name="description" content="Sistem bilangan: pengertian, definisi formal, sifat ketertutupan, hierarki bilangan asli, bulat, rasional, real, hingga kompleks, contoh soal, dan kesalahan umum.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Sistem Bilangan (Bilangan Asli, Bulat, Rasional, Real, Kompleks)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif, karena sifat-sifat inilah yang menjadi dasar penilaian apakah suatu himpunan bilangan "tertutup" terhadap suatu operasi.</li>
+   <li><strong>Pecahan, Desimal, Persen</strong> — terutama hubungan antara pecahan dan desimal, karena bilangan rasional didefinisikan melalui pecahan dan dikenali melalui bentuk desimalnya (berhenti atau berulang).</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Setiap kali kita menghitung, mengukur, atau menyelesaikan persamaan, kita sebenarnya sedang menggunakan suatu jenis bilangan. Namun, tidak semua bilangan itu sama. Ada bilangan yang hanya digunakan untuk menghitung benda utuh, ada yang bisa menyatakan suhu di bawah nol, ada yang dapat ditulis sebagai pecahan, ada yang memenuhi seluruh garis bilangan, bahkan ada bilangan yang melibatkan akar dari bilangan negatif.</p>
+ <p class="lesson-text">Untuk memahami matematika secara utuh, kita perlu mengenal <strong>sistem bilangan</strong> secara bertingkat. Sistem bilangan disusun dari yang paling sederhana hingga yang paling luas—dan setiap perluasan muncul karena sistem sebelumnya tidak mampu menangani suatu persoalan. Perluasan ini tidak dilakukan sembarangan: setiap kali sebuah himpunan bilangan diperluas, sifat-sifat lama yang sudah terbukti tetap dipertahankan.</p>
+ <p class="lesson-text">Yang membuat sistem bilangan penting bukan hanya sebagai klasifikasi, tetapi karena ia menjelaskan <strong>mengapa matematika bekerja seperti sekarang</strong>. Mengapa $3 - 5$ tidak sah di bilangan asli tapi sah di bilangan bulat? Mengapa $\sqrt{2}$ tidak dapat ditulis sebagai pecahan? Mengapa $x^2 = -1$ tidak punya solusi di bilangan real tapi punya di bilangan kompleks? Materi ini disusun bertahap untuk menjawab pertanyaan-pertanyaan itu: dari <strong>bilangan asli</strong> sebagai fondasi, <strong>diperluas ke bilangan bulat, rasional, real, dan kompleks</strong>. Di setiap tahap, kita akan melihat <em>apa yang ditambahkan</em> dan <em>operasi apa yang akhirnya tertutup</em>—ditutup dengan <strong>hierarki lengkap</strong>, <strong>perbandingan sifat ketertutupan</strong>, <strong>contoh soal</strong>, dan <strong>kesalahan umum</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Bilangan Asli</h3>
+ <p class="lesson-text">Kita mulai dari jenis bilangan yang paling dasar—yang sudah dikenal sejak masa kanak-kanak.</p>
+
+ <p class="lesson-subheading">A. Pengertian Informal</p>
+ <p class="lesson-text">Bilangan asli adalah bilangan yang digunakan untuk <strong>menghitung benda yang utuh</strong> dan <strong>mengurutkan sesuatu</strong>. Ketika kita menghitung kelereng—satu, dua, tiga, empat, dan seterusnya—kita sedang menggunakan bilangan asli.</p>
+
+ <p class="lesson-subheading">B. Definisi Formal</p>
+ <p class="lesson-text">Himpunan bilangan asli dinotasikan dengan $\mathbb{N}$, dan ditulis:</p>
+ <p class="lesson-text">$$\mathbb{N} = \{1, 2, 3, 4, 5, \dots\}$$</p>
+ <p class="lesson-text">Beberapa buku memasukkan 0 sebagai bilangan asli. Jika 0 diikutsertakan, biasanya ditulis:</p>
+ <p class="lesson-text">$$\mathbb{N}_0 = \{0, 1, 2, 3, 4, \dots\}$$</p>
+ <p class="lesson-text">Dalam materi ini, kita menggunakan konvensi bilangan asli <strong>mulai dari 1</strong>.</p>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Penting</p>
+ <ul>
+  <li><strong>Tertutup terhadap penjumlahan</strong>: jumlah dua bilangan asli selalu bilangan asli. Contoh: $3 + 4 = 7$, dan $7$ juga bilangan asli.</li>
+  <li><strong>Tertutup terhadap perkalian</strong>: hasil kali dua bilangan asli selalu bilangan asli. Contoh: $5 \times 6 = 30$, dan $30$ bilangan asli.</li>
+  <li><strong>Tidak tertutup terhadap pengurangan</strong>: tidak semua pengurangan bilangan asli menghasilkan bilangan asli. Contoh: $3 - 5 = -2$, dan $-2$ bukan bilangan asli.</li>
+  <li><strong>Tidak tertutup terhadap pembagian</strong>: tidak semua pembagian bilangan asli menghasilkan bilangan asli. Contoh: $1 \div 2 = 0{,}5$, dan $0{,}5$ bukan bilangan asli.</li>
+  <li><strong>Terurut dengan baik</strong>: setiap himpunan bagian tak kosong dari bilangan asli selalu memiliki anggota terkecil. Contoh: dari himpunan $\{7, 2, 9\}$, anggota terkecilnya adalah 2.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh bilangan asli:</p>
+ <p class="lesson-text">$$1, 8, 25, 100, 2024$$</p>
+ <p class="lesson-subheading-alt">Bukan bilangan asli:</p>
+ <p class="lesson-text">$$0, -3, \frac{1}{2}, \sqrt{5}, \pi$$</p>
+
+ <p class="lesson-subheading">D. Mengapa Bilangan Asli Perlu Diperluas?</p>
+ <p class="lesson-text">Bilangan asli cukup untuk menghitung benda utuh. Tetapi begitu kita perlu menyatakan <strong>tidak ada benda</strong> atau <strong>kekurangan</strong>, bilangan asli tidak mencukupi. Contohnya, hasil $3 - 5$ tidak memiliki jawaban di himpunan bilangan asli. Karena itu, bilangan asli diperluas menjadi bilangan bulat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Bilangan Bulat</h3>
+ <p class="lesson-text">Perluasan pertama dari bilangan asli adalah penambahan nol dan bilangan negatif—sehingga operasi pengurangan menjadi tertutup.</p>
+
+ <p class="lesson-subheading">A. Pengertian Informal</p>
+ <p class="lesson-text">Bilangan bulat digunakan untuk menyatakan hal-hal seperti suhu di bawah nol, utang, atau posisi di bawah permukaan laut. Bilangan bulat mencakup bilangan asli, nol, dan lawan-lawan (negatif) dari bilangan asli.</p>
+
+ <p class="lesson-subheading">B. Definisi Formal</p>
+ <p class="lesson-text">Himpunan bilangan bulat dinotasikan dengan $\mathbb{Z}$ (dari bahasa Jerman <em>Zahlen</em> yang berarti "bilangan"), dan ditulis:</p>
+ <p class="lesson-text">$$\mathbb{Z} = \{\dots, -4, -3, -2, -1, 0, 1, 2, 3, 4, \dots\}$$</p>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Penting</p>
+ <ul>
+  <li><strong>Tertutup terhadap penjumlahan</strong>: contoh $-3 + 5 = 2$, dan $2$ adalah bilangan bulat.</li>
+  <li><strong>Tertutup terhadap pengurangan</strong>: contoh $2 - 7 = -5$, dan $-5$ adalah bilangan bulat.</li>
+  <li><strong>Tertutup terhadap perkalian</strong>: contoh $(-4) \times 3 = -12$, dan $-12$ adalah bilangan bulat.</li>
+  <li><strong>Tidak tertutup terhadap pembagian</strong>: contoh $5 \div 2 = 2{,}5$, dan $2{,}5$ bukan bilangan bulat.</li>
+  <li><strong>Memiliki invers penjumlahan</strong>: setiap bilangan bulat memiliki lawan yang juga bilangan bulat. Contoh: lawan dari 4 adalah $-4$, sehingga $4 + (-4) = 0$.</li>
+  <li><strong>Tidak memiliki anggota terkecil</strong>: karena bilangan negatif terus menurun tanpa batas, tidak ada bilangan bulat yang paling kecil.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh bilangan bulat:</p>
+ <p class="lesson-text">$$-15, -2, 0, 6, 100$$</p>
+ <p class="lesson-subheading-alt">Bukan bilangan bulat:</p>
+ <p class="lesson-text">$$\frac{3}{4}, 1{,}5, \sqrt{2}, \pi$$</p>
+
+ <p class="lesson-subheading">D. Mengapa Bilangan Bulat Perlu Diperluas?</p>
+ <p class="lesson-text">Bilangan bulat dapat menangani kekurangan dan nol, tetapi belum dapat menyatakan <strong>bagian dari keseluruhan</strong> secara presisi. Jika sebuah kue dibagi rata kepada 3 orang, setiap orang mendapat $\frac{1}{3}$ bagian—dan itu bukan bilangan bulat. Karena itu, bilangan bulat diperluas menjadi bilangan rasional.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Bilangan Rasional</h3>
+ <p class="lesson-text">Perluasan kedua memungkinkan kita menyatakan hasil bagi yang tidak bulat—yaitu bagian dari keseluruhan, sehingga operasi pembagian menjadi tertutup.</p>
+
+ <p class="lesson-subheading">A. Pengertian Informal</p>
+ <p class="lesson-text">Bilangan rasional adalah bilangan yang <strong>dapat ditulis sebagai pecahan</strong> $\frac{a}{b}$, dengan $a$ dan $b$ bilangan bulat, dan $b \neq 0$. Kata "rasional" berasal dari kata <em>ratio</em> (perbandingan), karena bilangan ini merupakan hasil perbandingan dua bilangan bulat.</p>
+
+ <p class="lesson-subheading">B. Definisi Formal</p>
+ <p class="lesson-text">$$\mathbb{Q} = \left\{ \frac{a}{b} \;\middle|\; a, b \in \mathbb{Z},\; b \neq 0 \right\}$$</p>
+ <p class="lesson-text">Huruf $\mathbb{Q}$ diambil dari kata <em>quotient</em> yang berarti hasil bagi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\frac{1}{2}, \quad \frac{-3}{4}, \quad \frac{7}{1}, \quad 0, \quad 2{,}5$$</p>
+ <p class="lesson-text">Semuanya bilangan rasional. Perhatikan bahwa setiap bilangan bulat juga bilangan rasional, karena dapat ditulis sebagai pecahan berpenyebut 1—misalnya $5 = \frac{5}{1}$.</p>
+
+ <p class="lesson-subheading">C. Bentuk Desimal Bilangan Rasional</p>
+ <p class="lesson-text">Ciri khas bilangan rasional adalah bentuk desimalnya <strong>selalu berhenti</strong> atau <strong>berulang</strong>—tidak pernah berkepanjangan tanpa pola.</p>
+ <ul>
+  <li>Desimal berhenti: $\dfrac{1}{4} = 0{,}25$.</li>
+  <li>Desimal berulang: $\dfrac{1}{3} = 0{,}333\ldots = 0{,}\overline{3}$.</li>
+  <li>Desimal berulang dengan pola lebih panjang: $\dfrac{2}{7} = 0{,}\overline{285714}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Sifat-Sifat Penting</p>
+ <ul>
+  <li><strong>Tertutup terhadap penjumlahan, pengurangan, dan perkalian.</strong></li>
+  <li><strong>Tertutup terhadap pembagian</strong>, kecuali pembagian oleh nol.</li>
+  <li><strong>Padat (dense)</strong>: di antara dua bilangan rasional yang berbeda, selalu ada bilangan rasional lain. Contoh: antara $0{,}1$ dan $0{,}2$ ada $0{,}15$; antara $0{,}1$ dan $0{,}15$ ada $0{,}125$; dan seterusnya tanpa henti.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh bilangan rasional:</p>
+ <p class="lesson-text">$$\frac{5}{8}, \quad -\frac{2}{3}, \quad 0{,}75, \quad -4, \quad 1{,}\overline{3}$$</p>
+ <p class="lesson-subheading-alt">Bukan bilangan rasional:</p>
+ <p class="lesson-text">$$\sqrt{2}, \quad \pi, \quad e, \quad \sqrt{3}$$</p>
+ <p class="lesson-text">Bilangan-bilangan itu tidak dapat ditulis sebagai $\frac{a}{b}$ dengan $a, b$ bilangan bulat.</p>
+
+ <p class="lesson-subheading">E. Mengapa Bilangan Rasional Perlu Diperluas?</p>
+ <p class="lesson-text">Bilangan rasional sangat kuat, tetapi ternyata masih ada besaran yang tidak dapat dinyatakan sebagai perbandingan dua bilangan bulat. Contoh paling terkenal adalah panjang diagonal persegi dengan sisi 1, yaitu $\sqrt{2}$—sebuah bilangan yang tidak dapat ditulis sebagai pecahan. Bilangan seperti ini disebut <strong>bilangan irasional</strong>, dan bersama bilangan rasional membentuk bilangan real.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Bilangan Real</h3>
+ <p class="lesson-text">Perluasan ketiga menyatukan bilangan rasional dan irasional menjadi satu himpunan yang memenuhi seluruh garis bilangan tanpa celah.</p>
+
+ <p class="lesson-subheading">A. Pengertian Informal</p>
+ <p class="lesson-text">Bilangan real adalah <strong>semua bilangan yang dapat digambarkan pada garis bilangan</strong>—baik rasional maupun irasional. Jika kita menggambar garis lurus panjang tanpa celah, setiap titik pada garis itu mewakili tepat satu bilangan real.</p>
+
+ <p class="lesson-subheading">B. Definisi Formal</p>
+ <p class="lesson-text">Himpunan bilangan real dinotasikan dengan $\mathbb{R}$, dan merupakan gabungan dari bilangan rasional dan bilangan irasional:</p>
+ <p class="lesson-text">$$\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$$</p>
+ <p class="lesson-text">dengan $\mathbb{I}$ adalah himpunan bilangan irasional.</p>
+
+ <p class="lesson-subheading">C. Bilangan Irasional</p>
+ <p class="lesson-text">Bilangan irasional adalah bilangan real yang <strong>tidak dapat dinyatakan sebagai pecahan</strong> $\frac{a}{b}$. Bentuk desimalnya <strong>tidak berhenti dan tidak berulang</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\sqrt{2} = 1{,}414213562\ldots$$ $$\pi = 3{,}141592653\ldots$$ $$e = 2{,}718281828\ldots$$</p>
+
+ <p class="lesson-subheading">D. Sifat-Sifat Penting</p>
+ <ul>
+  <li><strong>Lengkap</strong>: tidak ada celah pada garis bilangan real. Setiap titik pada garis bilangan berkorespondensi dengan tepat satu bilangan real.</li>
+  <li><strong>Terurut total</strong>: untuk setiap dua bilangan real $a$ dan $b$, pasti berlaku salah satu dari $a < b$, $a = b$, atau $a > b$.</li>
+  <li><strong>Tertutup terhadap penjumlahan, pengurangan, perkalian, dan pembagian</strong>—kecuali pembagian oleh nol.</li>
+  <li><strong>Sifat Archimedean</strong>: sebesar apa pun suatu bilangan real positif, selalu ada bilangan asli yang lebih besar darinya.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh bilangan real:</p>
+ <p class="lesson-text">$$-5, \quad 0, \quad \frac{2}{3}, \quad \sqrt{5}, \quad \pi, \quad 3{,}14$$</p>
+ <p class="lesson-subheading-alt">Bukan bilangan real:</p>
+ <p class="lesson-text">$$\sqrt{-1}, \quad 2 + 3i$$</p>
+ <p class="lesson-text">Bilangan-bilangan tersebut melibatkan akar dari bilangan negatif, yang tidak terdefinisi pada garis bilangan real.</p>
+
+ <p class="lesson-subheading">E. Mengapa Bilangan Real Perlu Diperluas?</p>
+ <p class="lesson-text">Bilangan real sudah sangat lengkap untuk pengukuran fisika dan geometri. Namun, ada persamaan sederhana yang tidak memiliki penyelesaian di himpunan bilangan real:</p>
+ <p class="lesson-text">$$x^2 + 1 = 0$$</p>
+ <p class="lesson-text">Persamaan ini setara dengan $x^2 = -1$. Tidak ada bilangan real yang jika dikuadratkan menghasilkan bilangan negatif. Untuk mengatasi hal ini, diciptakanlah <strong>bilangan kompleks</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Bilangan Kompleks</h3>
+ <p class="lesson-text">Perluasan keempat—dan untuk keperluan dasar, yang terakhir—adalah penambahan satuan imajiner untuk menyelesaikan persamaan yang tidak punya akar real.</p>
+
+ <p class="lesson-subheading">A. Pengertian Informal</p>
+ <p class="lesson-text">Bilangan kompleks adalah bilangan yang memiliki dua bagian: <strong>bagian real</strong> dan <strong>bagian imajiner</strong>. Bentuknya:</p>
+ <p class="lesson-text">$$z = a + bi$$</p>
+ <p class="lesson-text">dengan $a$ dan $b$ bilangan real, serta $i$ adalah satuan imajiner yang memenuhi $i^2 = -1$.</p>
+
+ <p class="lesson-subheading">B. Definisi Formal</p>
+ <p class="lesson-text">Himpunan bilangan kompleks dinotasikan dengan $\mathbb{C}$, dan setiap anggotanya berbentuk:</p>
+ <p class="lesson-text">$$z = a + bi, \quad a, b \in \mathbb{R}$$</p>
+ <ul>
+  <li>$a$ disebut <strong>bagian real</strong>, ditulis $\operatorname{Re}(z)$.</li>
+  <li>$b$ disebut <strong>bagian imajiner</strong>, ditulis $\operatorname{Im}(z)$.</li>
+  <li>$i$ disebut <strong>satuan imajiner</strong>, dengan $i = \sqrt{-1}$ atau $i^2 = -1$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$3 + 2i, \quad -5i, \quad \frac{1}{2} - \frac{3}{4}i, \quad 7$$</p>
+ <p class="lesson-text">Bilangan real $7$ dapat ditulis $7 + 0i$, sehingga setiap bilangan real juga merupakan bilangan kompleks.</p>
+
+ <p class="lesson-subheading">C. Operasi pada Bilangan Kompleks</p>
+ <p class="lesson-text">Misalkan $z_1 = a + bi$ dan $z_2 = c + di$.</p>
+ <ul>
+  <li><strong>Penjumlahan</strong>: $z_1 + z_2 = (a + c) + (b + d)i$. Contoh: $(3 + 2i) + (1 - 5i) = 4 - 3i$.</li>
+  <li><strong>Pengurangan</strong>: $z_1 - z_2 = (a - c) + (b - d)i$. Contoh: $(5 + 4i) - (2 + 3i) = 3 + i$.</li>
+  <li><strong>Perkalian</strong>: gunakan hukum distributif dan ingat bahwa $i^2 = -1$. Secara umum:
+   <p class="lesson-text">$$(a + bi)(c + di) = (ac - bd) + (ad + bc)i$$</p>
+   <p class="lesson-text">Contoh: $(2 + 3i)(1 - i) = 2 - 2i + 3i - 3i^2 = 5 + i$.</p>
+  </li>
+  <li><strong>Pembagian</strong>: kalikan pembilang dan penyebut dengan konjugat penyebut:
+   <p class="lesson-text">$$\frac{a + bi}{c + di} = \frac{(a + bi)(c - di)}{(c + di)(c - di)} = \frac{(a + bi)(c - di)}{c^2 + d^2}$$</p>
+   <p class="lesson-text">Contoh: $\dfrac{3 + 2i}{1 - i} = \dfrac{(3 + 2i)(1 + i)}{1^2 + 1^2} = \dfrac{1 + 5i}{2} = 0{,}5 + 2{,}5i$.</p>
+  </li>
+ </ul>
+
+ <p class="lesson-subheading">D. Konjugat dan Modulus</p>
+ <ul>
+  <li><strong>Konjugat</strong> dari $z = a + bi$ adalah $\bar{z} = a - bi$.</li>
+  <li><strong>Modulus</strong> dari $z = a + bi$ adalah $|z| = \sqrt{a^2 + b^2}$—selalu bilangan real nonnegatif.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Untuk $z = 3 + 4i$:</p>
+ <p class="lesson-text">$$\bar{z} = 3 - 4i, \qquad |z| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$$</p>
+
+ <p class="lesson-subheading">E. Bidang Kompleks</p>
+ <p class="lesson-text">Bilangan kompleks dapat digambarkan pada bidang dua dimensi yang disebut <strong>bidang kompleks</strong> atau <strong>diagram Argand</strong>. Sumbu mendatar menyatakan bagian real, dan sumbu tegak menyatakan bagian imajiner. Dengan cara ini, setiap bilangan kompleks menempati satu titik pada bidang.</p>
+
+ <p class="lesson-subheading">F. Sifat-Sifat Penting</p>
+ <ul>
+  <li><strong>Tertutup</strong> terhadap penjumlahan, pengurangan, perkalian, dan pembagian—kecuali pembagian oleh nol.</li>
+  <li><strong>Tidak terurut</strong>: kita tidak bisa membandingkan dua bilangan kompleks dengan $>$ atau $<$, kecuali jika keduanya bilangan real.</li>
+  <li><strong>Setiap persamaan polinomial memiliki akar kompleks</strong>: menurut Teorema Dasar Aljabar, persamaan berderajat $n$ memiliki tepat $n$ akar kompleks (dengan memperhitungkan multiplisitas).</li>
+  <li>Akar kuadrat dari bilangan negatif terdefinisi dalam bilangan kompleks.</li>
+ </ul>
+
+ <p class="lesson-subheading">G. Mengapa Bilangan Kompleks Penting?</p>
+ <p class="lesson-text">Meskipun terasa abstrak, bilangan kompleks sangat berguna dalam teknik elektro (analisis rangkaian arus bolak-balik), fisika kuantum (fungsi gelombang), pengolahan sinyal, analisis sistem kontrol, dan grafik komputer. Banyak fenomena fisika paling mudah dimodelkan menggunakan bilangan kompleks.</p>
+
+ <p class="lesson-text">Kelima sistem bilangan ini tidak berdiri sendiri—mereka tersusun secara hierarkis, dengan setiap sistem merupakan bagian dari sistem yang lebih luas. Memahami hierarki ini adalah kunci untuk memahami mengapa setiap perluasan dilakukan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Hubungan Antar Sistem Bilangan</h3>
+ <p class="lesson-text">Kelima sistem bilangan tersusun secara hierarkis:</p>
+ <p class="lesson-text">$$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$$</p>
+ <p class="lesson-text">Artinya:</p>
+ <ul>
+  <li>Setiap bilangan asli adalah bilangan bulat.</li>
+  <li>Setiap bilangan bulat adalah bilangan rasional.</li>
+  <li>Setiap bilangan rasional adalah bilangan real.</li>
+  <li>Setiap bilangan real adalah bilangan kompleks.</li>
+ </ul>
+ <p class="lesson-text">Selain itu, bilangan real terdiri dari dua kelompok yang saling lepas:</p>
+ <p class="lesson-text">$$\mathbb{R} = \mathbb{Q} \cup \mathbb{I}$$</p>
+ <p class="lesson-text">dengan $\mathbb{I}$ adalah himpunan bilangan irasional.</p>
+ <p class="lesson-subheading-alt">Contoh untuk memperjelas:</p>
+ <ul>
+  <li>Bilangan $5$ termasuk $\mathbb{N}$, sehingga juga termasuk $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, dan $\mathbb{C}$.</li>
+  <li>Bilangan $-3$ termasuk $\mathbb{Z}$, tetapi bukan $\mathbb{N}$.</li>
+  <li>Bilangan $\frac{2}{3}$ termasuk $\mathbb{Q}$, tetapi bukan $\mathbb{Z}$.</li>
+  <li>Bilangan $\sqrt{2}$ termasuk $\mathbb{R}$, tetapi bukan $\mathbb{Q}$.</li>
+  <li>Bilangan $1 + 2i$ termasuk $\mathbb{C}$, tetapi bukan $\mathbb{R}$.</li>
+ </ul>
+
+ <p class="lesson-text">Hierarki ini memperlihatkan bahwa setiap sistem bilangan merupakan himpunan bagian dari sistem berikutnya. Pertanyaan alami yang muncul: <em>apa yang membuat suatu sistem lebih "luas" dari yang lain</em>? Jawabannya adalah <strong>sifat ketertutupan</strong> terhadap operasi—yang akan kita bandingkan secara sistematis.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Perbandingan Sifat Ketertutupan</h3>
+ <p class="lesson-text">Suatu himpunan bilangan disebut <strong>tertutup</strong> terhadap suatu operasi jika hasil operasi tersebut—untuk sembarang dua anggota himpunan—selalu merupakan anggota himpunan itu juga. Perbedaan utama antarsistem bilangan terletak pada operasi yang membuat sistem itu tertutup. Perluasan sistem bilangan selalu dilakukan untuk menutup kekurangan operasi pada sistem sebelumnya.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sistem</th>
+     <th>Penjumlahan</th>
+     <th>Pengurangan</th>
+     <th>Perkalian</th>
+     <th>Pembagian</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$\mathbb{N}$ (Asli)</td><td>✓</td><td>✗</td><td>✓</td><td>✗</td></tr>
+    <tr><td>$\mathbb{Z}$ (Bulat)</td><td>✓</td><td>✓</td><td>✓</td><td>✗</td></tr>
+    <tr><td>$\mathbb{Q}$ (Rasional)</td><td>✓</td><td>✓</td><td>✓</td><td>✓*</td></tr>
+    <tr><td>$\mathbb{R}$ (Real)</td><td>✓</td><td>✓</td><td>✓</td><td>✓*</td></tr>
+    <tr><td>$\mathbb{C}$ (Kompleks)</td><td>✓</td><td>✓</td><td>✓</td><td>✓*</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">*Kecuali pembagian oleh nol.</p>
+
+ <p class="lesson-text">Setiap operasi ditambahkan untuk memperbaiki kekurangan sistem sebelumnya:</p>
+ <ul>
+  <li>$\mathbb{N} \rightarrow \mathbb{Z}$: menambahkan bilangan negatif agar pengurangan selalu terdefinisi.</li>
+  <li>$\mathbb{Z} \rightarrow \mathbb{Q}$: menambahkan pecahan agar pembagian (selain oleh nol) selalu terdefinisi.</li>
+  <li>$\mathbb{Q} \rightarrow \mathbb{R}$: menambahkan bilangan irasional agar <em>setiap</em> panjang atau besaran geometri dapat diukur.</li>
+  <li>$\mathbb{R} \rightarrow \mathbb{C}$: menambahkan satuan imajiner agar <em>setiap</em> persamaan polinomial memiliki solusi.</li>
+ </ul>
+
+ <p class="lesson-text">Pola ini menunjukkan bahwa matematika berkembang secara alami: setiap kali sebuah operasi tidak tertutup pada suatu sistem, sistem itu diperluas—bukan diubah. Sifat-sifat lama tetap berlaku, dan yang baru ditambahkan hanyalah unsur-unsur yang diperlukan untuk menutup kekurangan itu. Mari kita terapkan seluruh konsep ini pada tujuh soal yang menggabungkan identifikasi jenis bilangan, sifat ketertutupan, dan operasi bilangan kompleks.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan identifikasi jenis bilangan, sifat ketertutupan, desimal berulang, dan operasi bilangan kompleks. Setiap langkah dituliskan lengkap, dan alasan setiap langkah disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Identifikasi Jenis Bilangan</p>
+ <p class="lesson-text">Tentukan jenis bilangan (asli, bulat, rasional, real, kompleks) untuk setiap bilangan berikut: $-7$; $0{,}\overline{6}$; $\sqrt{9}$; $\sqrt{10}$; $2 + 3i$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ul>
+  <li>$-7$: bilangan bulat, rasional (karena $-7 = \frac{-7}{1}$), real, dan kompleks. <strong>Bukan</strong> bilangan asli.</li>
+  <li>$0{,}\overline{6} = \frac{2}{3}$: bilangan rasional, real, dan kompleks. <strong>Bukan</strong> bilangan bulat.</li>
+  <li>$\sqrt{9} = 3$: bilangan asli, bulat, rasional, real, dan kompleks.</li>
+  <li>$\sqrt{10}$: irasional (desimalnya tak berhenti dan tak berulang), sehingga bilangan real dan kompleks. <strong>Bukan</strong> bilangan rasional.</li>
+  <li>$2 + 3i$: bilangan kompleks. <strong>Bukan</strong> bilangan real—karena memiliki bagian imajiner tak nol.</li>
+ </ul>
+ 
+ <p class="lesson-subheading">Soal 2: Sifat Ketertutupan</p>
+ <p class="lesson-text">Tentukan apakah operasi berikut tertutup pada himpunan yang disebutkan. Jika tidak tertutup, berikan contoh penyangkal.</p>
+ <ul>
+  <li>(a) Pengurangan pada $\mathbb{N}$</li>
+  <li>(b) Pembagian pada $\mathbb{Z}$</li>
+  <li>(c) Pengurangan pada $\mathbb{Z}$</li>
+ </ul>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>(a) Tidak tertutup.</strong> Contoh penyangkal: $3 - 5 = -2$, dan $-2 \notin \mathbb{N}$. Karena ada satu pasangan yang hasilnya keluar dari $\mathbb{N}$, himpunan $\mathbb{N}$ tidak tertutup terhadap pengurangan.</li>
+  <li><strong>(b) Tidak tertutup.</strong> Contoh penyangkal: $5 \div 2 = 2{,}5$, dan $2{,}5 \notin \mathbb{Z}$.</li>
+  <li><strong>(c) Tertutup.</strong> Untuk setiap $a, b \in \mathbb{Z}$, hasil $a - b$ juga bilangan bulat. Tidak ada contoh penyangkal—karena definisi bilangan bulat memang dibuat untuk menutup kekurangan ini (lihat Bagian II).</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Desimal Berulang ke Rasional</p>
+ <p class="lesson-text">Buktikan bahwa $0{,}\overline{27}$ adalah bilangan rasional, dan nyatakan dalam bentuk $\frac{a}{b}$ paling sederhana.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tulis $x = 0{,}272727\ldots$</li>
+  <li>Karena ada <strong>dua angka</strong> yang berulang (2 dan 7), kalikan dengan 100:<br>$100x = 27{,}272727\ldots$</li>
+  <li>Kurangkan persamaan dengan yang awal:<br>$100x - x = 27{,}272727\ldots - 0{,}272727\ldots \Rightarrow 99x = 27$</li>
+  <li>Selesaikan dan sederhanakan:<br>$x = \dfrac{27}{99} = \dfrac{3}{11}$ (bagi dengan 9)</li>
+ </ol>
+ <p class="lesson-text">Karena dapat ditulis sebagai $\frac{3}{11}$ dengan pembilang dan penyebut bilangan bulat, maka $0{,}\overline{27}$ adalah bilangan rasional.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Operasi Penjumlahan dan Perkalian Bilangan Kompleks</p>
+ <p class="lesson-text">Diberikan $z_1 = 3 + 2i$ dan $z_2 = 1 - 4i$. Hitung $z_1 + z_2$ dan $z_1 \cdot z_2$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Penjumlahan</strong> — jumlahkan bagian real dengan real, imajiner dengan imajiner:<br>$z_1 + z_2 = (3 + 1) + (2 + (-4))i = 4 - 2i$</li>
+  <li><strong>Perkalian</strong> — gunakan distributif dan ingat $i^2 = -1$:<br>$(3 + 2i)(1 - 4i) = 3 - 12i + 2i - 8i^2$<br>$= 3 - 10i - 8(-1) = 3 - 10i + 8 = 11 - 10i$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Pembagian Bilangan Kompleks</p>
+ <p class="lesson-text">Hitung: $\dfrac{4 + 3i}{2 - i}$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kalikan pembilang dan penyebut dengan <strong>konjugat penyebut</strong>. Konjugat dari $2 - i$ adalah $2 + i$:<br>$\dfrac{4 + 3i}{2 - i} \times \dfrac{2 + i}{2 + i}$</li>
+  <li>Hitung pembilang:<br>$(4 + 3i)(2 + i) = 8 + 4i + 6i + 3i^2 = 8 + 10i - 3 = 5 + 10i$</li>
+  <li>Hitung penyebut:<br>$(2 - i)(2 + i) = 2^2 - i^2 = 4 - (-1) = 5$</li>
+  <li>Sederhanakan:<br>$\dfrac{5 + 10i}{5} = 1 + 2i$</li>
+ </ol>
+ <p class="lesson-text">Hasilnya adalah bilangan kompleks dengan penyebut real—bentuk standar yang diinginkan.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Konjugat dan Modulus</p>
+ <p class="lesson-text">Diberikan $z = -6 + 8i$. Tentukan $\bar{z}$, $|z|$, dan hasil kali $z \cdot \bar{z}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Konjugat</strong> — ubah tanda bagian imajiner:<br>$\bar{z} = -6 - 8i$</li>
+  <li><strong>Modulus</strong> — akar dari jumlah kuadrat bagian real dan imajiner:<br>$|z| = \sqrt{(-6)^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$</li>
+  <li><strong>Hasil kali $z \cdot \bar{z}$</strong> — hasilnya selalu sama dengan $|z|^2$:<br>$z \cdot \bar{z} = (-6 + 8i)(-6 - 8i) = (-6)^2 - (8i)^2 = 36 - 64i^2 = 36 + 64 = 100 = |z|^2$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan: $z \cdot \bar{z}$ selalu berupa bilangan real nonnegatif—sifat penting dalam banyak penerapan bilangan kompleks.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Perluasan Sistem Bilangan</p>
+ <p class="lesson-text">Jelaskan mengapa persamaan $x^2 + 4 = 0$ tidak memiliki solusi di $\mathbb{R}$, dan tentukan solusinya di $\mathbb{C}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Persamaan setara dengan $x^2 = -4$.</li>
+  <li>Di $\mathbb{R}$: tidak ada bilangan real yang jika dikuadratkan menghasilkan bilangan negatif, karena kuadrat setiap bilangan real selalu $\geq 0$. Karena itu, persamaan tidak punya solusi real.</li>
+  <li>Di $\mathbb{C}$: gunakan satuan imajiner $i$ dengan $i^2 = -1$:<br>$x^2 = -4 = 4i^2 \Rightarrow x = \pm\sqrt{4i^2} = \pm 2i$</li>
+  <li>Verifikasi: $(2i)^2 = 4i^2 = -4$ ✓ dan $(-2i)^2 = 4i^2 = -4$ ✓</li>
+ </ol>
+ <p class="lesson-text">Contoh ini menunjukkan alasan historis mengapa bilangan kompleks diperkenalkan: untuk menutup persamaan yang tidak punya solusi di $\mathbb{R}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap 0 selalu bilangan asli.</strong> Sebagian buku memasukkan 0 sebagai bilangan asli, sebagian tidak. Selalu periksa konvensi yang digunakan dalam konteks yang sedang dipelajari.</li>
+  <li><strong>Menganggap semua desimal adalah bilangan rasional.</strong> Hanya desimal yang <em>berhenti</em> atau <em>berulang</em> yang merupakan bilangan rasional. Desimal tak berulang seperti $\pi$ dan $\sqrt{2}$ adalah bilangan irasional.</li>
+  <li><strong>Menganggap bilangan real sudah mencakup semua bilangan.</strong> Bilangan real tidak dapat menyelesaikan persamaan seperti $x^2 = -1$. Untuk itu diperlukan bilangan kompleks.</li>
+  <li><strong>Menganggap $i$ sebagai variabel biasa.</strong> $i$ bukan variabel, melainkan satuan imajiner yang memenuhi $i^2 = -1$. Karena itu, $i$ tidak dapat digantikan dengan nilai numerik tertentu.</li>
+  <li><strong>Salah menghitung $i^2$.</strong> Yang benar: $i^2 = -1$—bukan $1$, dan bukan pula $\sqrt{-1}$. Ingat, $i$ sendiri yang <em>didefinisikan</em> sebagai $\sqrt{-1}$; kuadratnya adalah $-1$.</li>
+  <li><strong>Menganggap bilangan kompleks dapat diurutkan seperti bilangan real.</strong> Bilangan kompleks tidak memiliki urutan total. Kita tidak bisa mengatakan $2 + i > 1 + 3i$—pernyataan itu tidak bermakna.</li>
+  <li><strong>Lupa mengalikan dengan konjugat saat membagi bilangan kompleks.</strong> Pembagian bilangan kompleks harus mengalikan pembilang dan penyebut dengan konjugat penyebut untuk menghilangkan bagian imajiner di penyebut.</li>
+  <li><strong>Menganggap irasional berarti "tidak logis".</strong> Istilah "irasional" tidak berarti "tidak masuk akal"—ia hanya berarti "bukan rasio (perbandingan) dua bilangan bulat". Bilangan seperti $\pi$ dan $\sqrt{2}$ sangat bermakna dan sering muncul di geometri.</li>
+  <li><strong>Menganggap notasi himpunan bilangan selalu sama antar buku.</strong> Konvensi notasi dapat berbeda: $\mathbb{N}$ kadang termasuk 0 dan kadang tidak; $\mathbb{N}_0$ dipakai untuk menegaskan inklusi 0. Untuk himpunan bilangan positif, sebagian buku memakai $\mathbb{Z}^+$ dan sebagian lain memakai $\mathbb{Z}_{>0}$—keduanya sama. Selalu baca definisi di awal buku atau materi yang sedang digunakan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti sistem bilangan yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Bilangan asli</strong> ($\mathbb{N}$) adalah bilangan untuk menghitung: $1, 2, 3, \dots$</li>
+  <li><strong>Bilangan bulat</strong> ($\mathbb{Z}$) mencakup bilangan asli, nol, dan bilangan negatif.</li>
+  <li><strong>Bilangan rasional</strong> ($\mathbb{Q}$) adalah bilangan yang dapat ditulis sebagai $\frac{a}{b}$ dengan $a, b \in \mathbb{Z}$, $b \neq 0$. Desimalnya berhenti atau berulang.</li>
+  <li><strong>Bilangan real</strong> ($\mathbb{R}$) mencakup bilangan rasional dan irasional; mengisi seluruh garis bilangan tanpa celah.</li>
+  <li><strong>Bilangan kompleks</strong> ($\mathbb{C}$) berbentuk $a + bi$ dengan $i^2 = -1$; mencakup semua bilangan real dan menyelesaikan semua persamaan polinomial.</li>
+  <li>Hierarki sistem bilangan: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$.</li>
+  <li>Setiap perluasan sistem bilangan dilakukan untuk <strong>menutup kekurangan operasi</strong> pada sistem sebelumnya—bukan sekadar menambah jenis bilangan baru.</li>
+  <li>Bilangan kompleks <strong>tidak terurut</strong>, tetapi <strong>tertutup</strong> terhadap semua operasi dasar termasuk akar bilangan negatif.</li>
+  <li>Kesalahan umum: menganggap 0 selalu bilangan asli, menganggap semua desimal rasional, dan salah memahami perbedaan antar sistem.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Perjalanan dari bilangan asli menuju bilangan kompleks memperlihatkan bagaimana matematika terus berkembang untuk menjawab persoalan yang semakin luas. Setiap sistem bilangan memiliki peran, kelebihan, dan keterbatasannya masing-masing—dan setiap perluasan selalu muncul karena kebutuhan, bukan sekadar keinginan. Pola yang berulang di sepanjang materi ini adalah <strong>ketertutupan operasi</strong>: bilangan asli tidak tertutup terhadap pengurangan—maka lahirlah bilangan bulat; bilangan bulat tidak tertutup terhadap pembagian—maka lahirlah bilangan rasional; bilangan rasional tidak cukup untuk mengukur semua panjang—maka lahirlah bilangan real; dan bilangan real tidak dapat menyelesaikan $x^2 = -1$—maka lahirlah bilangan kompleks.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi penting untuk banyak topik lanjutan: <strong>Aljabar Dasar</strong> (yang bekerja di dalam bilangan real dan kompleks), <strong>Bilangan Kompleks Lanjut</strong> (yang memperluas bilangan kompleks ke bentuk polar dan Teorema De Moivre), <strong>Keterbagian dan Bilangan Prima</strong> (yang bekerja secara khusus di bilangan bulat), <strong>Analisis Real</strong> (yang mempelajari sifat kelengkapan $\mathbb{R}$ secara mendalam), <strong>Aljabar Abstrak</strong> (yang menggeneralisasi struktur bilangan menjadi grup, ring, dan lapangan), dan <strong>Teori Bilangan Analitik</strong> (yang mempelajari distribusi bilangan prima di dalam $\mathbb{N}$).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan identifikasi jenis bilangan, penentuan ketertutupan, dan operasi pada bilangan kompleks. Kebiasaan memeriksa <em>di sistem mana</em> sebuah operasi dilakukan akan menyelamatkan Anda dari kesalahan konseptual yang sering terjadi bahkan di tingkat matematika yang lebih tinggi.</p>
+</div>
+
+</div>
+</body>
+</html>

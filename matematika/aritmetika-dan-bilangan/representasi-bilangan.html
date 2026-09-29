@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Representasi Bilangan (Basis, Biner, Oktal, Heksadesimal, Notasi Ilmiah)</title>
+ <meta name="description" content="Representasi bilangan: konsep basis, sistem biner, oktal, heksadesimal, konversi antarbasis, notasi ilmiah, contoh soal, dan kesalahan umum.">
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Representasi Bilangan (Basis, Biner, Oktal, Heksadesimal, Notasi Ilmiah)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Eksponen &amp; Akar</strong> — karena seluruh sistem basis bekerja dengan perpangkatan ($b^n$), dan konversi notasi ilmiah menggunakan bentuk $a \times 10^n$ dengan $n$ sebagai eksponen.</li>
+   <li><strong>Sistem Bilangan</strong> — membantu memahami bahwa biner, oktal, dan heksadesimal adalah <em>cara berbeda untuk menyatakan bilangan</em>, bukan jenis bilangan baru.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bilangan yang biasa kita gunakan sehari-hari ditulis dalam sistem desimal—sistem berbasis sepuluh dengan angka 0 sampai 9. Namun, sistem desimal bukanlah satu-satunya cara untuk menyatakan bilangan. Komputer, misalnya, hanya mengenali dua keadaan: hidup dan mati, yang direpresentasikan sebagai 1 dan 0. Karena itu, komputer bekerja dengan <strong>sistem biner</strong>. Sistem oktal dan heksadesimal juga digunakan secara luas dalam dunia komputasi karena keduanya memberikan cara yang lebih ringkas untuk menulis bilangan biner.</p>
+ <p class="lesson-text">Selain sistem basis, terdapat pula cara penulisan bilangan yang sangat besar atau sangat kecil secara ringkas, yang disebut <strong>notasi ilmiah</strong>. Notasi ini memungkinkan kita menuliskan massa elektron ($\approx 9{,}11 \times 10^{-31}$ kg) atau massa bumi ($\approx 5{,}97 \times 10^{24}$ kg) tanpa harus menulis puluhan angka nol—yang rawan salah.</p>
+ <p class="lesson-text">Yang membuat materi ini penting bukan hanya karena aplikasinya di komputer, tetapi karena ia mengajarkan satu ide mendasar: <strong>nilai sebuah bilangan tidak bergantung pada cara penulisannya</strong>. Bilangan yang sama dapat dinyatakan sebagai $13_{10}$, $1101_2$, $15_8$, atau $D_{16}$—semuanya memiliki nilai yang identik. Materi ini disusun bertahap: dari <strong>konsep basis</strong>, <strong>sistem desimal, biner, oktal, heksadesimal</strong>, <strong>konversi antarbasis</strong>, <strong>notasi ilmiah</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan rumusnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Konsep Basis Bilangan</h3>
+ <p class="lesson-text">Sebelum masuk ke masing-masing sistem, kita perlu memahami terlebih dahulu apa yang dimaksud dengan <strong>basis</strong> dan bagaimana nilai sebuah bilangan dihitung dari digit-digitnya.</p>
+
+ <p class="lesson-subheading">A. Pengertian Basis</p>
+ <p class="lesson-text"><strong>Basis</strong> (atau radiks) adalah jumlah digit atau simbol yang digunakan dalam suatu sistem bilangan. Setiap posisi angka dalam suatu bilangan memiliki <strong>nilai tempat</strong> yang merupakan perpangkatan dari basis tersebut.</p>
+ <p class="lesson-text">Secara umum, suatu bilangan $N$ dalam basis $b$ dapat dinyatakan sebagai:</p>
+ <p class="lesson-text">$$N = (d_n d_{n-1} \dots d_1 d_0)_b$$</p>
+ <p class="lesson-text">dengan $d_k$ adalah digit pada posisi ke-$k$, dan setiap digit memenuhi $0 \le d_k < b$. Nilai desimal dari bilangan tersebut adalah:</p>
+ <p class="lesson-text">$$N = d_n \cdot b^n + d_{n-1} \cdot b^{n-1} + \dots + d_1 \cdot b^1 + d_0 \cdot b^0$$</p>
+ <p class="lesson-text">Rumus ini bekerja untuk basis apa pun. Perbedaannya hanya pada nilai $b$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Digit yang boleh muncul dalam basis $b$ hanya 0 sampai $b - 1$. Karena itu, bilangan seperti $28_8$ tidak valid (digit 8 tidak ada dalam oktal), dan $G_{16}$ juga tidak valid (huruf yang digunakan hanya sampai F). Memeriksa validitas digit adalah langkah pertama sebelum melakukan konversi.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Sistem Basis yang Umum</p>
+ <p class="lesson-text">Beberapa basis yang paling sering digunakan:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Basis</th>
+     <th>Nama</th>
+     <th>Digit yang Digunakan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>2</td><td>Biner</td><td>0, 1</td></tr>
+    <tr><td>8</td><td>Oktal</td><td>0–7</td></tr>
+    <tr><td>10</td><td>Desimal</td><td>0–9</td></tr>
+    <tr><td>16</td><td>Heksadesimal</td><td>0–9, A–F</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">C. Penulisan Basis</p>
+ <p class="lesson-text">Untuk menghindari kebingungan, basis biasanya ditulis sebagai subskrip di akhir bilangan.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$1011_2 \quad \text{(bilangan 1011 dalam basis 2)}$$ $$17_8 \quad \text{(bilangan 17 dalam basis 8)}$$ $$2F_{16} \quad \text{(bilangan 2F dalam basis 16)}$$</p>
+ <p class="lesson-text">Tanpa subskrip, bilangan dianggap berbasis 10. Jadi menuliskan $1011$ sama dengan $1011_{10}$.</p>
+
+ <p class="lesson-text">Dengan memahami konsep basis secara umum, kita siap melihat bagaimana prinsip ini diterapkan pada sistem yang paling kita kenal terlebih dahulu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Sistem Bilangan Desimal (Basis 10)</h3>
+ <p class="lesson-text">Kita mulai dari sistem yang paling akrab—bukan karena ia istimewa secara matematis, tetapi karena kita sudah terbiasa dengannya.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text">Sistem desimal adalah sistem bilangan yang paling umum digunakan manusia. Sistem ini menggunakan <strong>10 digit</strong>:</p>
+ <p class="lesson-text">$$0, 1, 2, 3, 4, 5, 6, 7, 8, 9$$</p>
+
+ <p class="lesson-subheading">B. Nilai Tempat pada Desimal</p>
+ <p class="lesson-text">Setiap posisi angka pada bilangan desimal mewakili perpangkatan 10.</p>
+ <p class="lesson-subheading-alt">Contoh bilangan $5473_{10}$:</p>
+ <p class="lesson-text">$$5473 = 5 \times 10^3 + 4 \times 10^2 + 7 \times 10^1 + 3 \times 10^0$$ $$= 5000 + 400 + 70 + 3 = 5473$$</p>
+ <p class="lesson-text">Perhatikan bahwa nilai tempat menurun dengan faktor 10 setiap kali kita bergerak satu posisi ke kanan.</p>
+
+ <p class="lesson-subheading">C. Kelebihan Sistem Desimal</p>
+ <p class="lesson-text">Sistem desimal nyaman digunakan manusia karena kita memiliki sepuluh jari—sehingga secara alami kita menghitung dalam kelompok sepuluh. Namun, sistem ini kurang efisien bagi komputer, yang lebih mudah merepresentasikan dua keadaan saja. Karena itu, untuk keperluan komputasi, dikembangkan sistem yang lebih sederhana: biner.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sistem Bilangan Biner (Basis 2)</h3>
+ <p class="lesson-text">Biner adalah bahasa asli komputer—sistem paling sederhana yang mungkin, tetapi juga paling fundamental dalam dunia komputasi.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text">Sistem biner hanya menggunakan <strong>dua digit</strong>:</p>
+ <p class="lesson-text">$$0 \quad \text{dan} \quad 1$$</p>
+ <p class="lesson-text">Setiap digit dalam bilangan biner disebut <strong>bit</strong> (<em>binary digit</em>).</p>
+
+ <p class="lesson-subheading">B. Nilai Tempat pada Biner</p>
+ <p class="lesson-text">Setiap posisi bit mewakili perpangkatan 2.</p>
+ <p class="lesson-subheading-alt">Contoh bilangan $1101_2$:</p>
+ <p class="lesson-text">$$1101_2 = 1 \times 2^3 + 1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0$$ $$= 8 + 4 + 0 + 1 = 13_{10}$$</p>
+ <p class="lesson-text">Jadi, $1101_2 = 13_{10}$.</p>
+
+ <p class="lesson-subheading">C. Contoh Bilangan Biner</p>
+ <p class="lesson-text">Beberapa bilangan biner dan padanannya dalam desimal:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Biner</th>
+     <th>Desimal</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$0_2$</td><td>$0_{10}$</td></tr>
+    <tr><td>$1_2$</td><td>$1_{10}$</td></tr>
+    <tr><td>$10_2$</td><td>$2_{10}$</td></tr>
+    <tr><td>$11_2$</td><td>$3_{10}$</td></tr>
+    <tr><td>$100_2$</td><td>$4_{10}$</td></tr>
+    <tr><td>$101_2$</td><td>$5_{10}$</td></tr>
+    <tr><td>$111_2$</td><td>$7_{10}$</td></tr>
+    <tr><td>$1000_2$</td><td>$8_{10}$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perhatikan pola: setiap kali jumlah bit bertambah satu, rentang nilai yang dapat dinyatakan berlipat dua—karena setiap bit baru menambahkan satu perpangkatan 2.</p>
+
+ <p class="lesson-subheading">D. Penggunaan Biner</p>
+ <p class="lesson-text">Sistem biner adalah bahasa asli komputer. Semua data, instruksi, dan perhitungan di dalam komputer pada akhirnya direpresentasikan dalam bentuk biner. Angka 0 dan 1 mewakili dua keadaan fisik seperti tegangan rendah dan tinggi, saklar mati dan hidup, atau magnet utara dan selatan.</p>
+
+ <p class="lesson-subheading">E. Kelemahan Biner</p>
+ <p class="lesson-text">Bilangan biner cenderung sangat panjang. Misalnya, bilangan desimal $255$ ditulis dalam biner sebagai $11111111_2$—delapan digit untuk satu bilangan. Untuk bilangan yang lebih besar, panjangnya bisa membingungkan. Karena itu, digunakan sistem oktal dan heksadesimal sebagai bentuk ringkas dari biner.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sistem Bilangan Oktal (Basis 8)</h3>
+ <p class="lesson-text">Oktal adalah bentuk ringkas biner—setiap digit oktal mewakili tepat tiga bit biner.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text">Sistem oktal menggunakan <strong>8 digit</strong>:</p>
+ <p class="lesson-text">$$0, 1, 2, 3, 4, 5, 6, 7$$</p>
+ <p class="lesson-text">Tidak ada digit 8 atau 9 dalam sistem oktal.</p>
+
+ <p class="lesson-subheading">B. Nilai Tempat pada Oktal</p>
+ <p class="lesson-text">Setiap posisi angka mewakili perpangkatan 8.</p>
+ <p class="lesson-subheading-alt">Contoh bilangan $527_8$:</p>
+ <p class="lesson-text">$$527_8 = 5 \times 8^2 + 2 \times 8^1 + 7 \times 8^0$$ $$= 5 \times 64 + 2 \times 8 + 7 \times 1$$ $$= 320 + 16 + 7 = 343_{10}$$</p>
+
+ <p class="lesson-subheading">C. Hubungan dengan Biner</p>
+ <p class="lesson-text">Setiap <strong>tiga bit biner</strong> dapat diwakili oleh <strong>satu digit oktal</strong>. Inilah alasan konversi antara biner dan oktal sangat mudah—cukup mengelompokkan bit menjadi tiga-tiga.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Biner (3 bit)</th>
+     <th>Oktal</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$000_2$</td><td>$0_8$</td></tr>
+    <tr><td>$001_2$</td><td>$1_8$</td></tr>
+    <tr><td>$010_2$</td><td>$2_8$</td></tr>
+    <tr><td>$011_2$</td><td>$3_8$</td></tr>
+    <tr><td>$100_2$</td><td>$4_8$</td></tr>
+    <tr><td>$101_2$</td><td>$5_8$</td></tr>
+    <tr><td>$110_2$</td><td>$6_8$</td></tr>
+    <tr><td>$111_2$</td><td>$7_8$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$110101_2 = 110_2 \, 101_2 = 6_8 5_8 = 65_8$$</p>
+
+ <p class="lesson-subheading">D. Penggunaan Oktal</p>
+ <p class="lesson-text">Sistem oktal dahulu banyak digunakan dalam komputer generasi awal, terutama pada sistem yang menggunakan ukuran kata 6-bit atau 12-bit. Saat ini penggunaannya lebih jarang dibandingkan heksadesimal, tetapi masih muncul dalam beberapa konteks—seperti izin file pada sistem operasi Unix (misalnya mode $755_8$).</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Sistem Bilangan Heksadesimal (Basis 16)</h3>
+ <p class="lesson-text">Heksadesimal adalah bentuk ringkas biner yang paling banyak digunakan saat ini—setiap digit mewakili tepat empat bit biner.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text">Sistem heksadesimal menggunakan <strong>16 digit</strong>, yaitu angka 0–9 dan huruf A–F. Huruf A sampai F mewakili nilai 10 sampai 15.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Heksadesimal</th>
+     <th>Desimal</th>
+     <th>Heksadesimal</th>
+     <th>Desimal</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>0</td><td>0</td><td>8</td><td>8</td></tr>
+    <tr><td>1</td><td>1</td><td>9</td><td>9</td></tr>
+    <tr><td>2</td><td>2</td><td>A</td><td>10</td></tr>
+    <tr><td>3</td><td>3</td><td>B</td><td>11</td></tr>
+    <tr><td>4</td><td>4</td><td>C</td><td>12</td></tr>
+    <tr><td>5</td><td>5</td><td>D</td><td>13</td></tr>
+    <tr><td>6</td><td>6</td><td>E</td><td>14</td></tr>
+    <tr><td>7</td><td>7</td><td>F</td><td>15</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">B. Nilai Tempat pada Heksadesimal</p>
+ <p class="lesson-text">Setiap posisi angka mewakili perpangkatan 16.</p>
+ <p class="lesson-subheading-alt">Contoh $2F_{16}$:</p>
+ <p class="lesson-text">$$2F_{16} = 2 \times 16^1 + 15 \times 16^0 = 32 + 15 = 47_{10}$$</p>
+ <p class="lesson-subheading-alt">Contoh $A3_{16}$:</p>
+ <p class="lesson-text">$$A3_{16} = 10 \times 16^1 + 3 \times 16^0 = 160 + 3 = 163_{10}$$</p>
+
+ <p class="lesson-subheading">C. Hubungan dengan Biner</p>
+ <p class="lesson-text">Setiap <strong>empat bit biner</strong> dapat diwakili oleh <strong>satu digit heksadesimal</strong>.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Biner (4 bit)</th>
+     <th>Heks</th>
+     <th>Biner (4 bit)</th>
+     <th>Heks</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$0000_2$</td><td>$0_{16}$</td><td>$1000_2$</td><td>$8_{16}$</td></tr>
+    <tr><td>$0001_2$</td><td>$1_{16}$</td><td>$1001_2$</td><td>$9_{16}$</td></tr>
+    <tr><td>$0010_2$</td><td>$2_{16}$</td><td>$1010_2$</td><td>$A_{16}$</td></tr>
+    <tr><td>$0011_2$</td><td>$3_{16}$</td><td>$1011_2$</td><td>$B_{16}$</td></tr>
+    <tr><td>$0100_2$</td><td>$4_{16}$</td><td>$1100_2$</td><td>$C_{16}$</td></tr>
+    <tr><td>$0101_2$</td><td>$5_{16}$</td><td>$1101_2$</td><td>$D_{16}$</td></tr>
+    <tr><td>$0110_2$</td><td>$6_{16}$</td><td>$1110_2$</td><td>$E_{16}$</td></tr>
+    <tr><td>$0111_2$</td><td>$7_{16}$</td><td>$1111_2$</td><td>$F_{16}$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$10101111_2 = 1010_2 \, 1111_2 = A_{16} F_{16} = AF_{16}$$</p>
+
+ <p class="lesson-subheading">D. Penggunaan Heksadesimal</p>
+ <p class="lesson-text">Heksadesimal banyak digunakan dalam pemrograman dan elektronika digital untuk menyingkat bilangan biner yang panjang. Misalnya, alamat memori komputer, kode warna pada desain web, dan nilai hash sering ditulis dalam heksadesimal.</p>
+ <p class="lesson-subheading-alt">Contoh kode warna:</p>
+ <p class="lesson-text">$$\text{putih} = \#FFFFFF, \quad \text{hitam} = \#000000, \quad \text{merah} = \#FF0000$$</p>
+
+ <p class="lesson-text">Dengan lima sistem basis—desimal, biner, oktal, heksadesimal, dan basis umum—kita sudah mengenal berbagai cara menyatakan bilangan. Langkah berikutnya adalah mempelajari cara berpindah dari satu basis ke basis lain.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Konversi Antarbasis</h3>
+ <p class="lesson-text">Kemampuan mengonversi bilangan dari satu basis ke basis lain adalah keterampilan inti dalam materi ini. Ada dua pendekatan utama: melalui desimal sebagai perantara, atau melalui pengelompokan bit (khusus untuk biner, oktal, dan heksadesimal).</p>
+
+ <p class="lesson-subheading">A. Konversi dari Basis Lain ke Desimal</p>
+ <p class="lesson-text">Gunakan rumus umum nilai tempat: jumlahkan setiap digit dikali basis pangkat posisinya.</p>
+ <p class="lesson-subheading-alt">Biner ke desimal:</p>
+ <p class="lesson-text">$$10110_2 = 1 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0$$ $$= 16 + 0 + 4 + 2 + 0 = 22_{10}$$</p>
+ <p class="lesson-subheading-alt">Oktal ke desimal:</p>
+ <p class="lesson-text">$$345_8 = 3 \cdot 8^2 + 4 \cdot 8^1 + 5 \cdot 8^0 = 192 + 32 + 5 = 229_{10}$$</p>
+ <p class="lesson-subheading-alt">Heksadesimal ke desimal:</p>
+ <p class="lesson-text">$$C5_{16} = 12 \cdot 16^1 + 5 \cdot 16^0 = 192 + 5 = 197_{10}$$</p>
+
+ <p class="lesson-subheading">B. Konversi dari Desimal ke Basis Lain</p>
+ <p class="lesson-text">Gunakan <strong>pembagian berulang</strong> dengan basis tujuan, lalu catat sisa pembagiannya. Sisa pembagian dibaca dari <em>bawah ke atas</em>.</p>
+ <p class="lesson-subheading-alt">Desimal ke biner:</p>
+ <p class="lesson-text">Ubahlah $25_{10}$ ke biner:</p>
+ <p class="lesson-text">$$25 \div 2 = 12 \text{ sisa } 1$$ $$12 \div 2 = 6 \text{ sisa } 0$$ $$6 \div 2 = 3 \text{ sisa } 0$$ $$3 \div 2 = 1 \text{ sisa } 1$$ $$1 \div 2 = 0 \text{ sisa } 1$$</p>
+ <p class="lesson-text">Baca sisa dari bawah ke atas: $25_{10} = 11001_2$.</p>
+ <p class="lesson-subheading-alt">Desimal ke oktal:</p>
+ <p class="lesson-text">Ubahlah $100_{10}$ ke oktal:</p>
+ <p class="lesson-text">$$100 \div 8 = 12 \text{ sisa } 4$$ $$12 \div 8 = 1 \text{ sisa } 4$$ $$1 \div 8 = 0 \text{ sisa } 1$$</p>
+ <p class="lesson-text">Baca dari bawah ke atas: $100_{10} = 144_8$.</p>
+ <p class="lesson-subheading-alt">Desimal ke heksadesimal:</p>
+ <p class="lesson-text">Ubahlah $254_{10}$ ke heksadesimal:</p>
+ <p class="lesson-text">$$254 \div 16 = 15 \text{ sisa } 14 = E$$ $$15 \div 16 = 0 \text{ sisa } 15 = F$$</p>
+ <p class="lesson-text">Baca dari bawah ke atas: $254_{10} = FE_{16}$.</p>
+
+ <p class="lesson-subheading">C. Konversi antara Biner, Oktal, dan Heksadesimal</p>
+ <p class="lesson-text">Konversi antar ketiganya dilakukan melalui <strong>pengelompokan bit</strong>—tanpa perantara desimal. Prinsipnya: tiga bit = satu digit oktal, empat bit = satu digit heksadesimal.</p>
+
+ <p class="lesson-subheading-alt">Biner ke oktal:</p>
+ <p class="lesson-text">Kelompokkan bit menjadi tiga-tiga <em>dari kanan</em>, lalu ubah tiap kelompok ke digit oktal.</p>
+ <p class="lesson-text">$$1011101_2 = 1 \, 011 \, 101_2 = 1_8 3_8 5_8 = 135_8$$</p>
+ <p class="lesson-text">Kelompok paling kiri boleh kurang dari tiga bit—tidak perlu ditambah nol.</p>
+
+ <p class="lesson-subheading-alt">Biner ke heksadesimal:</p>
+ <p class="lesson-text">Kelompokkan bit menjadi empat-empat <em>dari kanan</em>.</p>
+ <p class="lesson-text">$$1011101_2 = 101 \, 1101_2$$</p>
+ <p class="lesson-text">Kelompok kiri hanya 3 bit, tambahkan 0 di depan menjadi $0101$:</p>
+ <p class="lesson-text">$$0101_2 = 5_{16}, \quad 1101_2 = D_{16}$$</p>
+ <p class="lesson-text">Maka $1011101_2 = 5D_{16}$.</p>
+
+ <p class="lesson-subheading-alt">Oktal ke biner:</p>
+ <p class="lesson-text">Ubah setiap digit oktal menjadi tiga bit biner.</p>
+ <p class="lesson-text">$$276_8 = 2_8 7_8 6_8 = 010_2 111_2 110_2 = 010111110_2$$</p>
+ <p class="lesson-text">Nol di depan dapat dihilangkan: $276_8 = 10111110_2$.</p>
+
+ <p class="lesson-subheading-alt">Heksadesimal ke biner:</p>
+ <p class="lesson-text">Ubah setiap digit heksadesimal menjadi empat bit biner.</p>
+ <p class="lesson-text">$$A3_{16} = A_{16} 3_{16} = 1010_2 0011_2 = 10100011_2$$</p>
+
+ <p class="lesson-subheading">D. Konversi Oktal ke Heksadesimal dan Sebaliknya</p>
+ <p class="lesson-text">Cara paling mudah adalah melalui <strong>perantara biner</strong>.</p>
+ <p class="lesson-subheading-alt">Oktal ke heksadesimal:</p>
+ <p class="lesson-text">$$176_8 = 001 \, 111 \, 110_2 = 001111110_2$$</p>
+ <p class="lesson-text">Kelompokkan empat dari kanan:</p>
+ <p class="lesson-text">$$0111_2 1110_2 = 7_{16} E_{16} = 7E_{16}$$</p>
+ <p class="lesson-text">Jadi $176_8 = 7E_{16}$.</p>
+ <p class="lesson-subheading-alt">Heksadesimal ke oktal:</p>
+ <p class="lesson-text">$$2B_{16} = 0010_2 1011_2 = 00101011_2$$</p>
+ <p class="lesson-text">Kelompokkan tiga dari kanan:</p>
+ <p class="lesson-text">$$000_2 101_2 011_2 = 0_8 5_8 3_8 = 53_8$$</p>
+
+ <p class="lesson-subheading">E. Ringkasan Konversi</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Dari</th>
+     <th>Ke</th>
+     <th>Cara</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Basis apa pun</td><td>Desimal</td><td>Jumlahkan digit × basis pangkat posisi</td></tr>
+    <tr><td>Desimal</td><td>Basis apa pun</td><td>Pembagian berulang, baca sisa dari bawah ke atas</td></tr>
+    <tr><td>Biner</td><td>Oktal</td><td>Kelompokkan 3 bit dari kanan</td></tr>
+    <tr><td>Biner</td><td>Heksadesimal</td><td>Kelompokkan 4 bit dari kanan</td></tr>
+    <tr><td>Oktal</td><td>Biner</td><td>Setiap digit → 3 bit</td></tr>
+    <tr><td>Heksadesimal</td><td>Biner</td><td>Setiap digit → 4 bit</td></tr>
+    <tr><td>Oktal ↔ Heksadesimal</td><td>—</td><td>Lewat perantara biner</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Setelah menguasai konversi antarbasis, kita dapat memanfaatkannya untuk berbagai keperluan—salah satunya adalah menyingkat bilangan yang sangat besar atau sangat kecil dengan cara yang berbeda: <em>notasi ilmiah</em>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Notasi Ilmiah</h3>
+ <p class="lesson-text">Setelah membahas cara menyatakan bilangan dalam berbagai basis, kita beralih ke cara menyatakan bilangan yang sangat besar atau sangat kecil secara ringkas—tanpa harus mengubah basisnya.</p>
+
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text"><strong>Notasi ilmiah</strong> adalah cara penulisan bilangan dalam bentuk:</p>
+ <p class="lesson-text">$$a \times 10^n$$</p>
+ <p class="lesson-text">dengan $a$ adalah bilangan real yang memenuhi $1 \le |a| < 10$, dan $n$ adalah bilangan bulat.</p>
+
+ <p class="lesson-subheading">B. Tujuan</p>
+ <p class="lesson-text">Notasi ilmiah menyederhanakan penulisan dan perhitungan bilangan ekstrem, serta memperjelas tingkat ketelitian (jumlah angka penting) suatu pengukuran.</p>
+
+ <p class="lesson-subheading">C. Menulis Bilangan dalam Notasi Ilmiah</p>
+ <p class="lesson-text">Langkah-langkahnya:</p>
+ <ol>
+  <li>Tentukan $a$ dengan menggeser koma desimal sehingga tersisa satu angka bukan nol di depan koma.</li>
+  <li>Tentukan $n$ berdasarkan banyaknya pergeseran. Geser ke kiri berarti $n$ positif; geser ke kanan berarti $n$ negatif.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh bilangan besar:</p>
+ <p class="lesson-text">$$450.000 = 4{,}5 \times 10^5$$</p>
+ <p class="lesson-text">Koma digeser 5 tempat ke kiri.</p>
+ <p class="lesson-subheading-alt">Contoh bilangan kecil:</p>
+ <p class="lesson-text">$$0{,}00032 = 3{,}2 \times 10^{-4}$$</p>
+ <p class="lesson-text">Koma digeser 4 tempat ke kanan.</p>
+
+ <p class="lesson-subheading">D. Operasi dengan Notasi Ilmiah</p>
+ <p class="lesson-subheading-alt">Perkalian:</p>
+ <p class="lesson-text">$$(a \times 10^m) \times (b \times 10^n) = (a \times b) \times 10^{m+n}$$</p>
+ <p class="lesson-text">Contoh: $(2 \times 10^3) \times (3 \times 10^4) = 6 \times 10^7$.</p>
+ <p class="lesson-subheading-alt">Pembagian:</p>
+ <p class="lesson-text">$$\frac{a \times 10^m}{b \times 10^n} = \frac{a}{b} \times 10^{m-n}$$</p>
+ <p class="lesson-text">Contoh: $\dfrac{8 \times 10^5}{2 \times 10^2} = 4 \times 10^3$.</p>
+ <p class="lesson-subheading-alt">Penjumlahan dan pengurangan:</p>
+ <p class="lesson-text">Samakan pangkat terlebih dahulu, kemudian jumlahkan atau kurangkan koefisiennya.</p>
+ <p class="lesson-text">Contoh: $3 \times 10^4 + 2 \times 10^4 = 5 \times 10^4$.</p>
+ <p class="lesson-text">Jika pangkat berbeda: $3 \times 10^5 + 2 \times 10^4 = 3 \times 10^5 + 0{,}2 \times 10^5 = 3{,}2 \times 10^5$.</p>
+
+ <p class="lesson-subheading">E. Contoh Penerapan</p>
+ <p class="lesson-text">Massa bumi sekitar 5.970.000.000.000.000.000.000.000 kg, ditulis:</p>
+ <p class="lesson-text">$$5{,}97 \times 10^{24} \text{ kg}$$</p>
+ <p class="lesson-text">Massa elektron sekitar 0,000000000000000000000000000000911 kg, ditulis:</p>
+ <p class="lesson-text">$$9{,}11 \times 10^{-31} \text{ kg}$$</p>
+
+ <p class="lesson-text">Semua konsep yang telah kita pelajari—basis, konversi, dan notasi ilmiah—akan lebih bermakna bila diterapkan pada soal. Mari kita bahas tujuh soal yang menggabungkan konversi antarbasis, pengelompokan bit, dan operasi notasi ilmiah.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan konversi antarbasis, pengelompokan bit, dan notasi ilmiah. Setiap langkah dituliskan lengkap, dan alasan setiap langkah disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Konversi Basis Lain ke Desimal</p>
+ <p class="lesson-text">Ubah $110110_2$, $247_8$, dan $3E_{16}$ ke desimal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Biner ke desimal</strong> — jumlahkan digit dikali perpangkatan 2:<br>$110110_2 = 1 \cdot 2^5 + 1 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0$<br>$= 32 + 16 + 0 + 4 + 2 + 0 = 54_{10}$</li>
+  <li><strong>Oktal ke desimal</strong> — jumlahkan digit dikali perpangkatan 8:<br>$247_8 = 2 \cdot 8^2 + 4 \cdot 8^1 + 7 \cdot 8^0 = 128 + 32 + 7 = 167_{10}$</li>
+  <li><strong>Heksadesimal ke desimal</strong> — ingat $E = 14$:<br>$3E_{16} = 3 \cdot 16^1 + 14 \cdot 16^0 = 48 + 14 = 62_{10}$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Konversi Desimal ke Basis Lain</p>
+ <p class="lesson-text">Ubah $156_{10}$ ke biner, oktal, dan heksadesimal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Desimal ke biner</strong> — pembagian berulang dengan 2, sisa dibaca dari bawah ke atas:<br>$156 \div 2 = 78$ sisa $0$<br>$78 \div 2 = 39$ sisa $0$<br>$39 \div 2 = 19$ sisa $1$<br>$19 \div 2 = 9$ sisa $1$<br>$9 \div 2 = 4$ sisa $1$<br>$4 \div 2 = 2$ sisa $0$<br>$2 \div 2 = 1$ sisa $0$<br>$1 \div 2 = 0$ sisa $1$<br>Hasil: $156_{10} = 10011100_2$</li>
+  <li><strong>Desimal ke oktal</strong> — pembagian berulang dengan 8:<br>$156 \div 8 = 19$ sisa $4$<br>$19 \div 8 = 2$ sisa $3$<br>$2 \div 8 = 0$ sisa $2$<br>Hasil: $156_{10} = 234_8$</li>
+  <li><strong>Desimal ke heksadesimal</strong> — pembagian berulang dengan 16:<br>$156 \div 16 = 9$ sisa $12 = C$<br>$9 \div 16 = 0$ sisa $9$<br>Hasil: $156_{10} = 9C_{16}$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi cepat: $234_8 = 2 \cdot 64 + 3 \cdot 8 + 4 = 156$ ✓ dan $9C_{16} = 9 \cdot 16 + 12 = 156$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 3: Biner ke Oktal</p>
+ <p class="lesson-text">Ubah $11010110_2$ ke oktal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kelompokkan bit menjadi <strong>tiga-tiga dari kanan</strong>:<br>$11 \, 010 \, 110_2$</li>
+  <li>Kelompok paling kiri hanya 2 bit ($11$). Untuk konversi biner → oktal, kita <strong>tidak perlu</strong> menambah nol di depan—kita cukup membaca nilainya:<br>$11_2 = 3$</li>
+  <li>Ubah setiap kelompok:<br>$11_2 = 3$, $\quad 010_2 = 2$, $\quad 110_2 = 6$</li>
+  <li>Gabungkan:<br>$11010110_2 = 326_8$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Biner ke Heksadesimal</p>
+ <p class="lesson-text">Ubah $11010110_2$ ke heksadesimal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kelompokkan bit menjadi <strong>empat-empat dari kanan</strong>:<br>$1101 \, 0110_2$</li>
+  <li>Ubah setiap kelompok:<br>$1101_2 = 13 = D$, $\quad 0110_2 = 6$</li>
+  <li>Gabungkan:<br>$11010110_2 = D6_{16}$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan: biner yang sama ($11010110_2$) memberi hasil oktal $326_8$ dan heksadesimal $D6_{16}$—keduanya setara dengan $214_{10}$. Cara pengelompokan yang berbeda menghasilkan notasi yang berbeda, tetapi nilai bilangannya sama.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Oktal ↔ Heksadesimal via Biner</p>
+ <p class="lesson-text">Ubah $527_8$ ke heksadesimal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Oktal ke biner</strong> — setiap digit oktal menjadi 3 bit:<br>$5_8 2_8 7_8 = 101_2 \, 010_2 \, 111_2 = 101010111_2$</li>
+  <li><strong>Biner ke heksadesimal</strong> — kelompokkan 4 bit dari kanan:<br>$1 \, 0101 \, 0111_2$</li>
+  <li>Kelompok paling kiri hanya 1 bit, tambahkan nol di depan menjadi 4 bit:<br>$0001_2 = 1$, $\quad 0101_2 = 5$, $\quad 0111_2 = 7$</li>
+  <li>Gabungkan:<br>$527_8 = 157_{16}$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $527_8 = 5 \cdot 64 + 2 \cdot 8 + 7 = 343$, dan $157_{16} = 1 \cdot 256 + 5 \cdot 16 + 7 = 343$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 6: Operasi Notasi Ilmiah</p>
+ <p class="lesson-text">Hitung: $(4 \times 10^{5}) \times (3 \times 10^{-2})$ dan $\dfrac{9 \times 10^{7}}{3 \times 10^{3}}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Perkalian</strong> — kalikan koefisien, jumlahkan eksponen:<br>$(4 \times 10^{5}) \times (3 \times 10^{-2}) = (4 \times 3) \times 10^{5 + (-2)} = 12 \times 10^{3}$<br>Ubah ke bentuk baku (koefisien $1 \le |a| < 10$): $12 \times 10^3=1{,}2 \times 10^4$</li>
+  <li><strong>Pembagian</strong> — bagi koefisien, kurangkan eksponen:<br>$\dfrac{9 \times 10^{7}}{3 \times 10^{3}} = \dfrac{9}{3} \times 10^{7-3} = 3 \times 10^{4}$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan langkah pertama: hasil antara boleh berbentuk $12 \times 10^3$, tetapi <strong>bentuk baku</strong> notasi ilmiah menuntut koefisien antara 1 dan 10. Karena itu hasilnya ditulis $1{,}2 \times 10^4$—meskipun secara nilai keduanya sama.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Notasi Ilmiah — Bilangan Sangat Kecil</p>
+ <p class="lesson-text">Diameter sebuah atom sekitar $0{,}0000000002$ meter. Nyatakan dalam notasi ilmiah, lalu tentukan berapa banyak atom yang dapat berbaris sepanjang 1 meter.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Ubah ke notasi ilmiah — geser koma 10 tempat ke kanan:<br>$0{,}0000000002 \text{ m} = 2 \times 10^{-10} \text{ m}$</li>
+  <li>Banyak atom yang berbaris sepanjang 1 m:<br>$\dfrac{1}{2 \times 10^{-10}} = \dfrac{1}{2} \times 10^{10} = 5 \times 10^{9}$</li>
+ </ol>
+ <p class="lesson-text">Jadi, sekitar $5 \times 10^{9}$ (5 miliar) atom dapat berbaris sepanjang 1 meter—angka yang mustahil ditulis dengan nyaman tanpa notasi ilmiah.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menulis digit yang tidak valid untuk basis tertentu.</strong> Bilangan $28_8$ tidak valid karena digit 8 tidak ada dalam sistem oktal. Demikian pula $19_8$ dan $G_{16}$ tidak valid. Selalu periksa apakah setiap digit berada dalam rentang yang diizinkan.</li>
+  <li><strong>Membaca sisa pembagian dari atas ke bawah.</strong> Pada konversi desimal ke basis lain, sisa pembagian harus dibaca dari <em>bawah ke atas</em>—yaitu dari sisa terakhir (paling bawah) hingga sisa pertama. Membaca dari atas ke bawah akan membalik urutan digit dan menghasilkan bilangan yang salah.</li>
+  <li><strong>Salah mengelompokkan bit saat konversi biner ke oktal/heksadesimal.</strong> Pengelompokan harus dimulai <em>dari kanan</em>, bukan dari kiri. Jika dimulai dari kiri, kelompok digit bisa salah dan hasilnya keliru.</li>
+  <li><strong>Lupa menambahkan nol di depan kelompok terdepan.</strong> Jika kelompok paling kiri kurang dari tiga atau empat bit, tambahkan nol di depannya agar panjangnya cukup. Contoh: $1011101_2$ untuk heksadesimal menjadi $0101 \, 1101_2$, bukan $1011 \, 101_2$.</li>
+  <li><strong>Salah menentukan tanda pangkat pada notasi ilmiah.</strong> Menggeser koma ke <em>kiri</em> menghasilkan pangkat <em>positif</em>; menggeser ke <em>kanan</em> menghasilkan pangkat <em>negatif</em>. Kebalikannya adalah kesalahan yang sangat sering terjadi.</li>
+  <li><strong>Menulis koefisien di luar rentang $1 \le |a| < 10$.</strong> $45 \times 10^3$ bukan notasi ilmiah yang sah. Harus diubah menjadi $4{,}5 \times 10^4$.</li>
+  <li><strong>Menukar nilai huruf heksadesimal.</strong> Huruf A–F mewakili nilai 10–15 sesuai urutan alfabet. Kesalahan umum adalah menganggap F bernilai 5, atau salah mengingat D sebagai 12 padahal seharusnya 13. Hafalkan tabel konversi A–F ke desimal, atau ingat polanya: A = 10, B = 11, C = 12, D = 13, E = 14, F = 15.</li>
+  <li><strong>Menganggap "10" memiliki nilai yang sama di semua basis.</strong> $10_{10} = 10$, tetapi $10_2 = 2$, $10_8 = 8$, dan $10_{16} = 16$. Notasi "10" hanya bermakna "sepuluh" dalam desimal—di basis lain, ia menyatakan nilai basis itu sendiri.</li>
+  <li><strong>Menganggap huruf heksadesimal tidak peka huruf besar/kecil.</strong> Secara konvensi, $A_{16}$ dan $a_{16}$ keduanya bernilai 10, tetapi penulisan sebaiknya konsisten—pilih satu gaya (umumnya huruf besar) untuk menghindari kebingungan, terutama saat membaca kode.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti representasi bilangan yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Basis</strong> adalah jumlah digit yang digunakan dalam suatu sistem bilangan; nilai tempat dihitung dengan perpangkatan basis.</li>
+  <li><strong>Sistem desimal</strong> menggunakan 10 digit (0–9).</li>
+  <li><strong>Sistem biner</strong> menggunakan 2 digit (0 dan 1); setiap digit disebut bit.</li>
+  <li><strong>Sistem oktal</strong> menggunakan 8 digit (0–7); satu digit oktal mewakili tiga bit biner.</li>
+  <li><strong>Sistem heksadesimal</strong> menggunakan 16 digit (0–9 dan A–F); satu digit heksadesimal mewakili empat bit biner.</li>
+  <li><strong>Konversi ke desimal</strong>: jumlahkan digit × basis pangkat posisi.</li>
+  <li><strong>Konversi dari desimal</strong>: pembagian berulang, baca sisa dari bawah ke atas.</li>
+  <li><strong>Konversi antar biner/oktal/heksadesimal</strong>: melalui pengelompokan bit (3 bit untuk oktal, 4 bit untuk heksadesimal).</li>
+  <li><strong>Notasi ilmiah</strong> ditulis $a \times 10^n$ dengan $1 \le |a| < 10$, digunakan untuk menyatakan bilangan sangat besar atau sangat kecil secara ringkas.</li>
+  <li>Kesalahan umum: menulis digit tidak valid, membaca sisa pembagian dari arah salah, salah menentukan tanda pangkat, dan menukar nilai huruf heksadesimal.</li>
+  <li>Penguasaan representasi bilangan sangat penting dalam komputasi, elektronika digital, dan sains.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Representasi bilangan memperlihatkan bahwa cara kita menulis bilangan tidaklah tunggal. Nilai sebuah bilangan bersifat <strong>mutlak</strong>, tetapi representasinya <strong>bergantung pada konteks</strong>—desimal untuk manusia, biner untuk mesin, oktal dan heksadesimal sebagai bentuk ringkas biner, dan notasi ilmiah untuk bilangan ekstrem. Yang menyatukan semua sistem ini adalah satu ide dasar: <strong>nilai tempat</strong>. Setiap sistem basis menggunakan prinsip yang sama—digit dikali basis pangkat posisinya—hanya dengan nilai basis yang berbeda. Memahami prinsip ini jauh lebih berharga daripada menghafal tabel konversi, karena satu prinsip dapat digunakan untuk basis apa pun.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik lanjutan: <strong>Keterbagian dan Bilangan Prima</strong> (yang bekerja secara khusus pada bilangan bulat), <strong>Kongruensi &amp; Modulo</strong> (yang erat terkait dengan representasi sisa pembagian), <strong>Satuan, Dimensi &amp; Analisis Dimensi</strong> (yang sering menggunakan notasi ilmiah), <strong>Algoritma &amp; Kompleksitas</strong> (yang bekerja dengan representasi biner), dan <strong>Kriptografi</strong> (yang bertumpu pada aritmetika modular dan representasi bilangan).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal konversi—terutama dari dan ke biner, karena inilah dasar dari seluruh sistem digital. Kebiasaan memeriksa validitas digit dan konsisten dalam mengelompokkan bit akan menyelamatkan Anda dari kesalahan yang tidak perlu.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Faktorisasi Prima (Teorema Dasar Aritmetika)</title>
+ <meta name="description" content="Faktorisasi prima: pengertian, Teorema Dasar Aritmetika, metode pohon faktor dan pembagian berulang, bentuk kanonik, serta penerapannya dalam FPB, KPK, dan akar.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Faktorisasi Prima (Teorema Dasar Aritmetika)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Bilangan Prima</strong> — terutama definisi bilangan prima dan komposit, karena faktorisasi prima hanya bermakna jika kita sudah tahu apa itu bilangan prima—tanpa ini, faktorisasi tidak dapat dimulai.</li>
+   <li><strong>Keterbagian</strong> — terutama konsep pembagi, faktor, dan notasi $a \mid b$, karena proses faktorisasi bekerja dengan mencari pembagi-pembagi dari suatu bilangan.</li>
+   <li><strong>Eksponen &amp; Akar</strong> — karena bentuk kanonik menggunakan notasi pangkat ($2^3 \times 3^2$), dan faktorisasi prima juga digunakan untuk menghitung akar kuadrat dan akar pangkat tiga.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Setiap bilangan bulat positif yang lebih besar dari 1 dapat diuraikan menjadi perkalian bilangan-bilangan prima. Proses penguraian inilah yang disebut <strong>faktorisasi prima</strong>. Keistimewaan dari faktorisasi prima adalah hasilnya selalu <strong>unik</strong>: untuk setiap bilangan, hanya ada satu cara untuk menuliskannya sebagai perkalian bilangan prima—kecuali urutan penulisannya.</p>
+ <p class="lesson-text">Keunikan ini bukan sekadar kebetulan, melainkan dijamin oleh sebuah teorema penting yang disebut <strong>Teorema Dasar Aritmetika</strong>. Teorema ini menjadi fondasi bagi banyak konsep dalam teori bilangan—termasuk penentuan FPB dan KPK, penyederhanaan pecahan, pencarian akar, hingga algoritma kriptografi modern. Bahkan bukti klasik bahwa $\sqrt{2}$ irasional bertumpu pada teorema ini. Yang membuat faktorisasi prima sangat berguna adalah kemampuannya <strong>mengungkap struktur tersembunyi dari bilangan</strong>: ketika kita menulis $360 = 2^3 \times 3^2 \times 5$, kita tidak sekadar menguraikan bilangan—kita melihat "sidik jari" unik yang memberi tahu kita semua pembagi, semua kelipatan, dan sifat-sifat aljabarnya.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>pengertian faktorisasi prima</strong>, <strong>pernyataan formal Teorema Dasar Aritmetika</strong>, <strong>metode-metode melakukan faktorisasi</strong>, <strong>bentuk kanonik</strong>, <strong>cara menghitung banyaknya faktor</strong>, <strong>penerapan pada FPB dan KPK</strong>, <strong>bukti klasik irasionalitas $\sqrt{2}$</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap konsep akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan langkah-langkahnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Faktorisasi Prima</h3>
+ <p class="lesson-text">Kita mulai dari definisi dasar—yang menjadi fondasi dari seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Faktorisasi prima</strong> adalah proses menguraikan suatu bilangan bulat positif menjadi perkalian faktor-faktor prima:</p>
+ <p class="lesson-text">$$n = p_1 \times p_2 \times \cdots \times p_k$$</p>
+ <p class="lesson-text">dengan $p_1, p_2, \dots, p_k$ adalah bilangan-bilangan prima.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$12 = 2 \times 2 \times 3$$ $$30 = 2 \times 3 \times 5$$ $$100 = 2 \times 2 \times 5 \times 5$$</p>
+
+ <p class="lesson-subheading">B. Mengapa Menggunakan Bilangan Prima?</p>
+ <p class="lesson-text">Bilangan prima adalah <strong>blok pembangun</strong> dari semua bilangan bulat. Sama seperti setiap bangunan tersusun dari batu bata, setiap bilangan bulat tersusun dari bilangan prima. Karena bilangan prima tidak dapat dipecah lagi menjadi faktor yang lebih kecil selain 1 dan dirinya sendiri, maka bilangan prima adalah komponen paling dasar dalam perkalian bilangan bulat.</p>
+ <p class="lesson-text">Jika kita menggunakan bilangan komposit sebagai faktor, prosesnya belum selesai—karena bilangan komposit masih dapat dipecah lagi. Contoh: $12 = 4 \times 3$ belum merupakan faktorisasi prima, karena 4 masih dapat diuraikan menjadi $2 \times 2$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Bilangan 1 <em>tidak</em> boleh muncul dalam faktorisasi prima—karena 1 bukan bilangan prima. Bilangan prima seperti 2, 3, 5, 7, dan seterusnya adalah satu-satunya faktor yang sah. Selain itu, bilangan prima seperti 13 adalah faktorisasi prima dari dirinya sendiri—tidak perlu diuraikan lebih lanjut.</p>
+ </div>
+
+ <p class="lesson-text">Definisi ini terlihat sederhana, tetapi memunculkan pertanyaan mendasar: apakah setiap bilangan selalu <em>dapat</em> difaktorkan, dan apakah hasilnya selalu <em>unik</em>? Pertanyaan inilah yang dijawab oleh Teorema Dasar Aritmetika.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Teorema Dasar Aritmetika</h3>
+ <p class="lesson-text">Teorema ini adalah alasan mengapa faktorisasi prima selalu bisa dilakukan—dan mengapa hasilnya selalu unik.</p>
+
+ <p class="lesson-subheading">A. Pernyataan Teorema</p>
+ <p class="lesson-text"><strong>Teorema Dasar Aritmetika</strong> menyatakan:</p>
+ <p class="lesson-text">Setiap bilangan bulat positif yang lebih besar dari 1 dapat dinyatakan sebagai hasil kali bilangan-bilangan prima secara <strong>unik</strong>, kecuali urutan perkaliannya.</p>
+ <p class="lesson-text">"Unik" berarti tidak ada dua faktorisasi prima yang berbeda untuk bilangan yang sama.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$60 = 2 \times 2 \times 3 \times 5$$</p>
+ <p class="lesson-text">Tidak ada cara lain untuk menuliskan 60 sebagai perkalian bilangan prima selain mengubah urutannya, misalnya $60 = 3 \times 2 \times 5 \times 2$. Kedua penulisan tersebut dianggap sama karena hanya urutannya yang berbeda.</p>
+
+ <p class="lesson-subheading">B. Makna Penting Teorema</p>
+ <p class="lesson-text">Teorema Dasar Aritmetika menjamin bahwa setiap bilangan memiliki "sidik jari" prima yang unik. Dari faktorisasi prima inilah kita dapat:</p>
+ <ul>
+  <li>Menentukan FPB dan KPK secara sistematis,</li>
+  <li>Menyederhanakan pecahan,</li>
+  <li>Menentukan banyaknya faktor dari suatu bilangan,</li>
+  <li>Membuktikan berbagai sifat dalam teori bilangan.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Catatan untuk Bilangan 1</p>
+ <p class="lesson-text">Bilangan 1 tidak termasuk dalam teorema ini. Bilangan 1 tidak memiliki faktorisasi prima—karena 1 bukan prima dan bukan komposit. Dalam konteks perkalian, 1 disebut <strong>produk kosong</strong> (<em>empty product</em>)—hasil kali dari nol buah bilangan prima, yang secara konvensi didefinisikan bernilai 1.</p>
+
+ <p class="lesson-text">Dengan teorema ini, kita tahu bahwa faktorisasi prima selalu bisa dilakukan—dan hasilnya selalu unik. Pertanyaan berikutnya adalah <em>bagaimana</em> cara melakukannya secara efisien.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Metode Faktorisasi Prima</h3>
+ <p class="lesson-text">Ada dua metode utama untuk melakukan faktorisasi prima—keduanya menghasilkan hasil yang sama.</p>
+
+ <p class="lesson-subheading">A. Metode Pohon Faktor</p>
+ <p class="lesson-text">Pohon faktor adalah cara visual untuk memecah suatu bilangan menjadi faktor-faktornya secara bertahap hingga semua faktornya prima.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Tuliskan bilangan yang akan difaktorkan.</li>
+  <li>Bagi bilangan tersebut menjadi dua faktor (tidak harus prima).</li>
+  <li>Lanjutkan memecah setiap faktor yang masih komposit menjadi dua faktor lagi.</li>
+  <li>Hentikan ketika semua ujung cabang pohon berupa bilangan prima.</li>
+  <li>Kumpulkan semua bilangan prima dari ujung-ujung cabang.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh: faktorkan 72.</p>
+ <p class="lesson-text">$$72 = 8 \times 9$$ $$8 = 2 \times 4, \quad 9 = 3 \times 3$$ $$4 = 2 \times 2$$</p>
+ <p class="lesson-text">Ujung-ujung yang prima: 2, 2, 2, 3, 3. Jadi:</p>
+ <p class="lesson-text">$$72 = 2 \times 2 \times 2 \times 3 \times 3 = 2^3 \times 3^2$$</p>
+ <p class="lesson-subheading-alt">Contoh lain: faktorkan 84.</p>
+ <p class="lesson-text">$$84 = 2 \times 42, \quad 42 = 2 \times 21, \quad 21 = 3 \times 7$$</p>
+ <p class="lesson-text">Maka $84 = 2 \times 2 \times 3 \times 7 = 2^2 \times 3 \times 7$.</p>
+
+ <p class="lesson-subheading">B. Metode Pembagian Berulang</p>
+ <p class="lesson-text">Metode ini dilakukan dengan membagi bilangan oleh bilangan prima mulai dari yang terkecil hingga hasilnya 1.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Mulai dari bilangan prima terkecil, yaitu 2.</li>
+  <li>Bagi bilangan dengan 2 selama masih habis dibagi 2.</li>
+  <li>Lanjutkan ke bilangan prima berikutnya (3, 5, 7, 11, ...) dan ulangi proses.</li>
+  <li>Hentikan ketika hasil pembagian mencapai 1.</li>
+  <li>Tuliskan bilangan asal sebagai perkalian semua pembagi prima yang digunakan.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh: faktorkan 120.</p>
+ <p class="lesson-text">$$120 \div 2 = 60$$ $$60 \div 2 = 30$$ $$30 \div 2 = 15$$ $$15 \div 3 = 5$$ $$5 \div 5 = 1$$</p>
+ <p class="lesson-text">Pembagi yang digunakan: 2, 2, 2, 3, 5. Jadi:</p>
+ <p class="lesson-text">$$120 = 2^3 \times 3 \times 5$$</p>
+ <p class="lesson-subheading-alt">Contoh lain: faktorkan 315.</p>
+ <p class="lesson-text">$$315 \div 3 = 105, \quad 105 \div 3 = 35, \quad 35 \div 5 = 7, \quad 7 \div 7 = 1$$</p>
+ <p class="lesson-text">Maka $315 = 3^2 \times 5 \times 7$.</p>
+
+ <p class="lesson-subheading">C. Kapan Menggunakan Metode Tertentu?</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Metode</th>
+     <th>Cocok Untuk</th>
+     <th>Keunggulan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Pohon Faktor</td><td>Pembelajaran awal, bilangan kecil</td><td>Visual dan intuitif</td></tr>
+    <tr><td>Pembagian Berulang</td><td>Bilangan sedang hingga besar</td><td>Sistematis dan mudah diotomatisasi</td></tr>
+    <tr><td>Algoritma Khusus</td><td>Bilangan sangat besar</td><td>Efisien secara komputasi</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Untuk bilangan yang sangat besar, digunakan algoritma khusus yang lebih kompleks—seperti metode Pollard Rho, Quadratic Sieve, dan General Number Field Sieve. Algoritma-algoritma ini menjadi tulang punggung kriptografi modern.</p>
+
+ <p class="lesson-text">Apapun metode yang dipilih, hasil faktorisasi sebaiknya dituliskan dalam bentuk yang konsisten—terutama ketika kita perlu membandingkan dua faktorisasi untuk keperluan FPB atau KPK. Bentuk standar inilah yang disebut <strong>bentuk kanonik</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Bentuk Kanonik Faktorisasi Prima</h3>
+ <p class="lesson-text">Bentuk kanonik adalah cara standar menuliskan faktorisasi prima—dengan pangkat dan urutan yang konsisten.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Bentuk kanonik</strong> adalah penulisan faktorisasi prima dengan mengelompokkan faktor-faktor yang sama dan menuliskannya dalam bentuk pangkat, dengan urutan bilangan prima dari terkecil ke terbesar. Secara umum:</p>
+ <p class="lesson-text">$$n = p_1^{e_1} \times p_2^{e_2} \times \cdots \times p_k^{e_k}$$</p>
+ <p class="lesson-text">dengan $p_1 < p_2 < \cdots < p_k$ adalah bilangan prima berbeda, dan $e_1, e_2, \dots, e_k$ adalah bilangan bulat positif.</p>
+ <p class="lesson-subheading-alt">Mengapa urutan penting?</p>
+ <p class="lesson-text">Urutan yang konsisten memudahkan perbandingan antara dua faktorisasi—misalnya saat mencari FPB dan KPK. Tanpa urutan standar, dua faktorisasi yang nilainya sama bisa terlihat berbeda.</p>
+
+ <p class="lesson-subheading">B. Contoh Bentuk Kanonik</p>
+ <p class="lesson-text">$$72 = 2^3 \times 3^2$$ $$120 = 2^3 \times 3 \times 5$$ $$1.000 = 2^3 \times 5^3$$ $$252 = 2^2 \times 3^2 \times 7$$</p>
+
+ <p class="lesson-subheading">C. Manfaat Bentuk Kanonik</p>
+ <p class="lesson-text">Bentuk kanonik mempermudah:</p>
+ <ul>
+  <li>Menghitung banyaknya faktor,</li>
+  <li>Menentukan FPB dan KPK,</li>
+  <li>Menyederhanakan akar,</li>
+  <li>Menganalisis struktur bilangan secara cepat.</li>
+ </ul>
+
+ <p class="lesson-text">Salah satu manfaat paling langsung dari bentuk kanonik adalah kemampuan untuk menghitung banyaknya faktor suatu bilangan <em>tanpa harus mendaftar satu per satu</em>—sesuatu yang sangat berguna ketika bilangan menjadi besar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Menghitung Banyaknya Faktor</h3>
+ <p class="lesson-text">Salah satu keuntungan terbesar dari bentuk kanonik adalah kita dapat menghitung banyaknya faktor positif suatu bilangan <strong>tanpa harus mendaftar satu per satu</strong>.</p>
+
+ <p class="lesson-subheading">A. Rumus</p>
+ <p class="lesson-text">Jika $n = p_1^{e_1} \times p_2^{e_2} \times \cdots \times p_k^{e_k}$, maka banyaknya faktor positif dari $n$ adalah:</p>
+ <p class="lesson-text">$$(e_1 + 1)(e_2 + 1)\cdots(e_k + 1)$$</p>
+
+ <p class="lesson-subheading-alt">Mengapa rumus ini berlaku?</p>
+ <p class="lesson-text">Setiap faktor dari $n$ berbentuk $p_1^{f_1} \times p_2^{f_2} \times \cdots \times p_k^{f_k}$, dengan setiap $f_i$ berkisar dari 0 sampai $e_i$. Jadi ada $e_1 + 1$ pilihan untuk eksponen $p_1$, $e_2 + 1$ pilihan untuk $p_2$, dan seterusnya. Dengan aturan perkalian, totalnya adalah hasil kali dari semua pilihan tersebut.</p>
+
+ <p class="lesson-subheading">B. Contoh</p>
+ <p class="lesson-subheading-alt">Contoh 1: banyaknya faktor dari 72.</p>
+ <p class="lesson-text">$$72 = 2^3 \times 3^2 \quad \rightarrow \quad (3+1)(2+1) = 4 \times 3 = 12$$</p>
+ <p class="lesson-text">Verifikasi dengan mendaftar: $1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72$—totalnya memang 12 faktor.</p>
+ <p class="lesson-subheading-alt">Contoh 2: banyaknya faktor dari 120.</p>
+ <p class="lesson-text">$$120 = 2^3 \times 3^1 \times 5^1 \quad \rightarrow \quad (3+1)(1+1)(1+1) = 4 \times 2 \times 2 = 16$$</p>
+
+ <p class="lesson-text">Setelah kita dapat menghitung banyaknya faktor dan menuliskannya dalam bentuk kanonik, kita siap menerapkan faktorisasi prima pada dua konsep penting dalam aritmetika: FPB dan KPK.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. FPB dan KPK Menggunakan Faktorisasi Prima</h3>
+ <p class="lesson-text">Faktorisasi prima memberikan cara sistematis untuk menentukan FPB dan KPK—jauh lebih cepat daripada mendaftar faktor satu per satu, terutama untuk bilangan besar.</p>
+
+ <p class="lesson-subheading">A. Menentukan FPB</p>
+ <p class="lesson-text">Untuk mencari FPB dari dua bilangan atau lebih:</p>
+ <ol>
+  <li>Uraikan setiap bilangan ke dalam faktorisasi prima.</li>
+  <li>Ambil faktor prima yang <strong>muncul di semua bilangan</strong>.</li>
+  <li>Kalikan faktor-faktor tersebut dengan <strong>pangkat terkecil</strong> yang muncul.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh: FPB dari 48 dan 72.</p>
+ <p class="lesson-text">$$48 = 2^4 \times 3$$ $$72 = 2^3 \times 3^2$$</p>
+ <p class="lesson-text">Faktor yang bersekutu: 2 dan 3. Pangkat terkecil: $2^3$ dan $3^1$. Jadi:</p>
+ <p class="lesson-text">$$\text{FPB} = 2^3 \times 3 = 24$$</p>
+
+ <p class="lesson-subheading">B. Menentukan KPK</p>
+ <p class="lesson-text">Untuk mencari KPK dari dua bilangan atau lebih:</p>
+ <ol>
+  <li>Uraikan setiap bilangan ke dalam faktorisasi prima.</li>
+  <li>Ambil semua faktor prima yang muncul dari bilangan mana pun.</li>
+  <li>Kalikan faktor-faktor tersebut dengan <strong>pangkat terbesar</strong> yang muncul.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh: KPK dari 18 dan 60.</p>
+ <p class="lesson-text">$$18 = 2 \times 3^2$$ $$60 = 2^2 \times 3 \times 5$$</p>
+ <p class="lesson-text">Semua faktor: 2, 3, 5. Pangkat terbesar: $2^2, 3^2, 5^1$. Jadi:</p>
+ <p class="lesson-text">$$\text{KPK} = 2^2 \times 3^2 \times 5 = 180$$</p>
+
+ <p class="lesson-subheading">C. Ringkasan FPB vs KPK</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>FPB</th>
+     <th>KPK</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Faktor yang diambil</td><td>Hanya yang bersekutu</td><td>Semua yang muncul</td></tr>
+    <tr><td>Pangkat yang dipilih</td><td>Terkecil</td><td>Terbesar</td></tr>
+    <tr><td>Tujuan</td><td>Pembagi bersama terbesar</td><td>Kelipatan bersama terkecil</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Faktorisasi prima bukan hanya berguna untuk menghitung FPB dan KPK. Ia juga menjadi alat pembuktian yang sangat kuat dalam teori bilangan—salah satu contohnya adalah bukti klasik tentang irasionalitas $\sqrt{2}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Bukti Klasik: $\sqrt{2}$ Irasional</h3>
+ <p class="lesson-text">Salah satu penerapan klasik Teorema Dasar Aritmetika adalah membuktikan bahwa $\sqrt{2}$ adalah bilangan irasional—yaitu tidak dapat dinyatakan sebagai $\frac{a}{b}$ dengan $a, b$ bilangan bulat.</p>
+
+ <p class="lesson-subheading">Bukti (dengan kontradiksi)</p>
+ <p class="lesson-text">Andaikan $\sqrt{2}$ rasional. Maka dapat ditulis $\sqrt{2} = \dfrac{a}{b}$ dengan $a, b \in \mathbb{Z}$, $b \neq 0$, dan $\text{FPB}(a, b) = 1$ (pecahan sudah dalam bentuk paling sederhana).</p>
+ <p class="lesson-text">Kuadratkan kedua ruas:</p>
+ <p class="lesson-text">$$2 = \frac{a^2}{b^2} \quad \rightarrow \quad a^2 = 2b^2$$</p>
+ <p class="lesson-text">Karena $a^2$ memiliki faktor 2, maka $a$ juga memiliki faktor 2 (karena jika 2 membagi $a^2$, maka 2 membagi $a$). Tulis $a = 2k$.</p>
+ <p class="lesson-text">Substitusi:</p>
+ <p class="lesson-text">$$(2k)^2 = 2b^2 \quad \rightarrow \quad 4k^2 = 2b^2 \quad \rightarrow \quad b^2 = 2k^2$$</p>
+ <p class="lesson-text">Dengan alasan yang sama, $b$ juga memiliki faktor 2. Tetapi ini bertentangan dengan asumsi bahwa $\text{FPB}(a, b) = 1$. Jadi pengandaian salah, dan $\sqrt{2}$ <strong>tidak rasional</strong>—artinya, irasional.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Bukti ini menggunakan sifat bahwa jika 2 membagi $a^2$, maka 2 juga membagi $a$. Sifat ini berlaku secara umum untuk setiap bilangan prima $p$: jika $p \mid a^2$, maka $p \mid a$. Sifat ini merupakan konsekuensi langsung dari Teorema Dasar Aritmetika—inilah salah satu alasan mengapa teorema tersebut begitu penting.</p>
+ </div>
+
+ <p class="lesson-text">Bukti ini adalah contoh sempurna betapa kuatnya Teorema Dasar Aritmetika—sebuah pernyataan tentang keunikan faktorisasi yang ternyata dapat menyelesaikan masalah yang tampaknya tidak berhubungan, seperti irasionalitas suatu bilangan. Mari kita terapkan seluruh konsep faktorisasi prima—dari penguraian, bentuk kanonik, banyaknya faktor, hingga FPB dan KPK—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan faktorisasi prima, bentuk kanonik, banyaknya faktor, FPB, KPK, dan penerapan pada penyederhanaan pecahan serta akar. Setiap langkah dituliskan lengkap, dan konsep yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Faktorisasi Prima dengan Pembagian Berulang</p>
+ <p class="lesson-text">Nyatakan $1.260$ dalam bentuk kanonik.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Bagi secara bertahap dengan bilangan prima mulai dari yang terkecil:
+   <ul>
+    <li>$1.260 \div 2 = 630$</li>
+    <li>$630 \div 2 = 315$</li>
+    <li>$315 \div 3 = 105$</li>
+    <li>$105 \div 3 = 35$</li>
+    <li>$35 \div 5 = 7$</li>
+    <li>$7 \div 7 = 1$</li>
+   </ul>
+  </li>
+  <li>Pembagi yang digunakan: $2, 2, 3, 3, 5, 7$.</li>
+  <li>Kelompokkan berdasarkan faktor yang sama, urutkan dari prima terkecil:<br>$1.260 = 2^2 \times 3^2 \times 5 \times 7$</li>
+ </ol>
+ <p class="lesson-text">Periksa: $2^2 \times 3^2 \times 5 \times 7 = 4 \times 9 \times 5 \times 7 = 36 \times 35 = 1.260$ ✓</p>
+ 
+ <p class="lesson-subheading">Soal 2: Bentuk Kanonik dan Banyaknya Faktor</p>
+ <p class="lesson-text">Tentukan banyaknya faktor positif dari $540$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Faktorkan $540$:
+   <ul>
+    <li>$540 \div 2 = 270$</li>
+    <li>$270 \div 2 = 135$</li>
+    <li>$135 \div 3 = 45$</li>
+    <li>$45 \div 3 = 15$</li>
+    <li>$15 \div 3 = 5$</li>
+    <li>$5 \div 5 = 1$</li>
+   </ul>
+  </li>
+  <li>Bentuk kanonik:<br>$540 = 2^2 \times 3^3 \times 5$</li>
+  <li>Banyaknya faktor positif:<br>$(2+1)(3+1)(1+1) = 3 \times 4 \times 2 = 24$</li>
+ </ol>
+ <p class="lesson-text">Jadi, 540 memiliki 24 faktor positif. Perhatikan: rumus ini hanya berlaku setelah bilangan dituliskan dalam bentuk kanonik—artinya sudah diuraikan sepenuhnya menjadi perkalian bilangan prima berpangkat.</p>
+ 
+ <p class="lesson-subheading">Soal 3: FPB Menggunakan Faktorisasi Prima</p>
+ <p class="lesson-text">Tentukan FPB dari $84$, $126$, dan $210$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Faktorkan setiap bilangan:
+   <ul>
+    <li>$84 = 2^2 \times 3 \times 7$</li>
+    <li>$126 = 2 \times 3^2 \times 7$</li>
+    <li>$210 = 2 \times 3 \times 5 \times 7$</li>
+   </ul>
+  </li>
+  <li><strong>FPB</strong> — ambil faktor prima yang <strong>muncul di semua bilangan</strong>, lalu pakai pangkat terkecil:
+   <ul>
+    <li>Faktor 2 muncul di ketiganya: pangkat terkecil adalah $2^1$</li>
+    <li>Faktor 3 muncul di ketiganya: pangkat terkecil adalah $3^1$</li>
+    <li>Faktor 7 muncul di ketiganya: pangkat terkecil adalah $7^1$</li>
+    <li>Faktor 5 hanya muncul di 210—tidak diambil</li>
+   </ul>
+  </li>
+  <li>Hitung:<br>$\text{FPB} = 2 \times 3 \times 7 = 42$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $84 \div 42 = 2$ ✓, $126 \div 42 = 3$ ✓, $210 \div 42 = 5$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 4: KPK Menggunakan Faktorisasi Prima</p>
+ <p class="lesson-text">Tentukan KPK dari $24$, $36$, dan $90$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Faktorkan setiap bilangan:
+   <ul>
+    <li>$24 = 2^3 \times 3$</li>
+    <li>$36 = 2^2 \times 3^2$</li>
+    <li>$90 = 2 \times 3^2 \times 5$</li>
+   </ul>
+  </li>
+  <li><strong>KPK</strong> — ambil semua faktor prima yang muncul (dari bilangan mana pun), lalu pakai pangkat terbesar:
+   <ul>
+    <li>Faktor 2: pangkat terbesar adalah $2^3$ (dari 24)</li>
+    <li>Faktor 3: pangkat terbesar adalah $3^2$ (dari 36 atau 90)</li>
+    <li>Faktor 5: hanya muncul di 90, pangkat $5^1$</li>
+   </ul>
+  </li>
+  <li>Hitung:<br>$\text{KPK} = 2^3 \times 3^2 \times 5 = 8 \times 9 \times 5 = 360$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $360 \div 24 = 15$ ✓, $360 \div 36 = 10$ ✓, $360 \div 90 = 4$ ✓. Ketiganya habis dibagi tanpa sisa.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Penyederhanaan Pecahan</p>
+ <p class="lesson-text">Sederhanakan $\dfrac{1.050}{1.260}$ ke bentuk paling sederhana menggunakan faktorisasi prima.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Faktorkan kedua bilangan:
+   <ul>
+    <li>$1.050 = 2 \times 3 \times 5^2 \times 7$</li>
+    <li>$1.260 = 2^2 \times 3^2 \times 5 \times 7$</li>
+   </ul>
+  </li>
+  <li>Tuliskan sebagai pecahan dan batalkan faktor yang sama:
+   <p class="lesson-text">$$\frac{1.050}{1.260} = \frac{2 \times 3 \times 5^2 \times 7}{2^2 \times 3^2 \times 5 \times 7}$$</p>
+  </li>
+  <li>Setiap faktor yang muncul di pembilang dan penyebut dapat dicoret dengan pangkat terkecilnya:
+   <ul>
+    <li>Faktor 2: batalkan $2^1$, sisa $2^1$ di penyebut</li>
+    <li>Faktor 3: batalkan $3^1$, sisa $3^1$ di penyebut</li>
+    <li>Faktor 5: batalkan $5^1$, sisa $5^1$ di pembilang</li>
+    <li>Faktor 7: batalkan $7^1$ sepenuhnya</li>
+   </ul>
+  </li>
+  <li>Hasilnya:<br>$\dfrac{5}{2 \times 3} = \dfrac{5}{6}$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $1.050 \div 210 = 5$ dan $1.260 \div 210 = 6$. Jadi $\frac{1.050}{1.260} = \frac{5}{6}$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Menyederhanakan Bentuk Akar</p>
+ <p class="lesson-text">Sederhanakan $\sqrt{720}$ dan $\sqrt[3]{432}$ menggunakan faktorisasi prima.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Faktorkan 720</strong>:<br>$720 = 2^4 \times 3^2 \times 5$</li>
+  <li><strong>Sederhanakan $\sqrt{720}$</strong> — untuk akar kuadrat, keluarkan faktor yang pangkatnya genap. Setiap pangkat genap $p^{2k}$ menghasilkan faktor $p^k$ di luar akar:<br>$\sqrt{720} = \sqrt{2^4 \times 3^2 \times 5} = 2^2 \times 3 \times \sqrt{5} = 12\sqrt{5}$</li>
+  <li><strong>Faktorkan 432</strong>:<br>$432 = 2^4 \times 3^3$</li>
+  <li><strong>Sederhanakan $\sqrt[3]{432}$</strong> — untuk akar pangkat tiga, keluarkan faktor yang pangkatnya kelipatan 3:<br>$\sqrt[3]{432} = \sqrt[3]{2^4 \times 3^3} = \sqrt[3]{2^3 \times 2 \times 3^3} = 2 \times 3 \times \sqrt[3]{2} = 6\sqrt[3]{2}$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $(12\sqrt{5})^2 = 144 \times 5 = 720$ ✓, dan $(6\sqrt[3]{2})^3 = 216 \times 2 = 432$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Penalaran dengan Teorema Dasar Aritmetika</p>
+ <p class="lesson-text">Tunjukkan bahwa jika $n$ adalah bilangan kuadrat sempurna (yaitu $n = k^2$ untuk suatu bilangan bulat $k$), maka setiap eksponen dalam faktorisasi prima $n$ adalah bilangan <strong>genap</strong>.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Misalkan $k$ memiliki faktorisasi prima $k = p_1^{a_1} \times p_2^{a_2} \times \cdots \times p_r^{a_r}$.</li>
+  <li>Maka $n = k^2$ memiliki faktorisasi:<br>$n = (p_1^{a_1} \times p_2^{a_2} \times \cdots \times p_r^{a_r})^2 = p_1^{2a_1} \times p_2^{2a_2} \times \cdots \times p_r^{2a_r}$</li>
+  <li>Setiap eksponen pada bentuk kanonik $n$ berbentuk $2a_i$—yaitu bilangan genap.</li>
+  <li>Menurut <strong>Teorema Dasar Aritmetika</strong>, faktorisasi prima $n$ adalah unik. Jadi tidak mungkin ada faktorisasi lain untuk $n$ yang eksponennya ganjil.</li>
+  <li>Kesimpulan: setiap eksponen dalam faktorisasi prima bilangan kuadrat sempurna pasti <strong>genap</strong>.</li>
+ </ol>
+ <p class="lesson-text">Sebagai contoh konkret: $144 = 2^4 \times 3^2$—eksponennya 4 dan 2, keduanya genap. Sebaliknya, $72 = 2^3 \times 3^2$ memiliki eksponen ganjil (yaitu 3 pada faktor 2), sehingga 72 <em>bukan</em> bilangan kuadrat sempurna.</p>
+ <p class="lesson-text">Sifat ini adalah kunci untuk mengenali bilangan kuadrat sempurna dari faktorisasi primanya—dan juga dasar dari bukti klasik bahwa $\sqrt{2}$ irasional, sebagaimana telah kita bahas di Bagian VII.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap 1 sebagai bilangan prima dalam faktorisasi.</strong> 1 bukan bilangan prima, sehingga tidak boleh muncul sebagai faktor dalam faktorisasi prima. Contoh: $12 = 1 \times 2 \times 2 \times 3$ <em>salah</em>—cukup tuliskan $12 = 2^2 \times 3$.</li>
+  <li><strong>Berhenti sebelum semua faktor prima.</strong> Contoh kesalahan: $72 = 8 \times 9$ dianggap selesai, padahal 8 dan 9 masih komposit—keduanya harus diuraikan lagi menjadi $2^3$ dan $3^2$.</li>
+  <li><strong>Salah menuliskan pangkat.</strong> $72 = 2 \times 2 \times 2 \times 3 \times 3$ kadang ditulis $2^2 \times 3^3$—yang <em>salah</em>. Yang benar adalah $2^3 \times 3^2$, karena faktor 2 muncul 3 kali dan faktor 3 muncul 2 kali.</li>
+  <li><strong>Menganggap urutan faktor sebagai faktorisasi berbeda.</strong> $2 \times 3 \times 5$ dan $5 \times 3 \times 2$ adalah faktorisasi yang sama—hanya urutannya berbeda. Untuk konsistensi, gunakan bentuk kanonik dengan urutan naik.</li>
+  <li><strong>Menggunakan faktor bukan prima dalam bentuk kanonik.</strong> Bentuk kanonik harus hanya memuat bilangan prima. Contoh: $24 = 2^2 \times 6$ <em>salah</em>—harus $24 = 2^3 \times 3$.</li>
+  <li><strong>Lupa bahwa bilangan prima adalah faktorisasi dari dirinya sendiri.</strong> Faktorisasi prima dari 13 adalah 13 itu sendiri—tidak perlu diuraikan lebih lanjut. Demikian pula 17, 19, dan seterusnya.</li>
+  <li><strong>Menganggap rumus banyaknya faktor berlaku untuk sembarang bentuk.</strong> Rumus $(e_1+1)(e_2+1)\cdots(e_k+1)$ hanya berlaku jika bilangan sudah dalam bentuk kanonik—yaitu sudah diuraikan sepenuhnya menjadi perkalian bilangan prima berpangkat.</li>
+  <li><strong>Menganggap faktorisasi prima adalah satu-satunya cara menghitung akar kuadrat.</strong> Untuk bilangan kuadrat sempurna, faktorisasi prima memang efektif. Namun untuk bilangan yang bukan kuadrat sempurna—misalnya $\sqrt{2}$ atau $\sqrt{50}$—hasilnya bukan bilangan bulat. Faktorisasi tetap berguna untuk menyederhanakan bentuk akar (misalnya $\sqrt{50} = 5\sqrt{2}$), tetapi jangan berharap hasilnya berupa bilangan bulat. Untuk bilangan besar, metode numerik atau kalkulator lebih praktis.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti faktorisasi prima yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Faktorisasi prima</strong> adalah penguraian bilangan menjadi perkalian bilangan-bilangan prima.</li>
+  <li><strong>Teorema Dasar Aritmetika</strong> menjamin keunikan faktorisasi prima untuk setiap bilangan bulat $> 1$.</li>
+  <li>Metode faktorisasi meliputi <strong>pohon faktor</strong> (visual) dan <strong>pembagian berulang</strong> (sistematis).</li>
+  <li><strong>Bentuk kanonik</strong> menuliskan faktorisasi dengan pangkat dan urutan prima naik: $n = p_1^{e_1} \times p_2^{e_2} \times \cdots \times p_k^{e_k}$.</li>
+  <li>Banyaknya faktor positif dari $n$ adalah $(e_1+1)(e_2+1)\cdots(e_k+1)$.</li>
+  <li><strong>FPB</strong> ditentukan dengan mengambil faktor bersekutu pangkat terkecil; <strong>KPK</strong> dengan mengambil semua faktor pangkat terbesar.</li>
+  <li>Faktorisasi prima digunakan dalam penyederhanaan pecahan, penentuan akar, pembuktian irasionalitas, dan kriptografi.</li>
+  <li>Kesalahan umum meliputi berhenti sebelum semua faktor prima, salah pangkat, memasukkan 1 sebagai faktor prima, dan menganggap faktorisasi sebagai satu-satunya cara menghitung akar.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Faktorisasi prima adalah keterampilan dasar yang sangat penting dalam matematika. Dengan memahami Teorema Dasar Aritmetika, kita menyadari bahwa setiap bilangan bulat positif memiliki struktur yang teratur dan unik—sebuah "sidik jari" prima yang tidak dimiliki bilangan lain. Keunikan inilah yang membuat faktorisasi menjadi alat yang begitu kuat.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>FPB &amp; KPK</strong> (yang menggunakan faktorisasi prima sebagai metode utama), <strong>Kongruensi &amp; Modulo</strong> (yang bekerja dengan sisa pembagian dan sering memanfaatkan faktorisasi), <strong>Persamaan Diophantine</strong> (yang mencari solusi bilangan bulat dan sering melibatkan faktorisasi), <strong>Kriptografi</strong> (yang bertumpu pada kesulitan memfaktorkan bilangan besar), dan <strong>Teori Bilangan Analitik</strong> (yang mempelajari distribusi faktor prima secara mendalam).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan bilangan besar atau yang memerlukan bentuk kanonik. Kebiasaan memeriksa apakah semua faktor sudah prima dan menuliskan hasil dalam bentuk kanonik akan menyelamatkan Anda dari kesalahan yang tidak perlu, terutama saat menghitung banyaknya faktor atau menentukan FPB dan KPK.</p>
+</div>
+
+</div>
+</body>
+</html>

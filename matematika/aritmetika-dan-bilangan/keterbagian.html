@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Keterbagian (Pembagi, Faktor, Kelipatan)</title>
+ <meta name="description" content="Keterbagian: definisi pembagi, faktor, dan kelipatan, notasi a | b, sifat-sifat keterbagian, serta aturan praktis habis dibagi 2, 3, 4, 5, 6, 8, 9, dan 10.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Keterbagian (Pembagi, Faktor, Kelipatan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Operasi Dasar</strong> — terutama pembagian dan konsep "sisa pembagian", karena seluruh pembahasan keterbagian bertumpu pada apakah hasil pembagian menghasilkan sisa nol atau tidak.</li>
+   <li><strong>Sistem Bilangan</strong> — terutama pemahaman tentang himpunan bilangan bulat $\mathbb{Z}$, karena keterbagian didefinisikan khusus pada bilangan bulat.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam aritmetika, salah satu pertanyaan paling mendasar adalah apakah suatu bilangan dapat dibagi habis oleh bilangan lain. Konsep ini disebut <strong>keterbagian</strong>. Ketika kita mengatakan "12 habis dibagi 3" atau "7 tidak habis dibagi 2", kita sedang berbicara tentang keterbagian—sebuah konsep yang tampak sederhana, tetapi menjadi fondasi bagi banyak topik lanjutan seperti faktorisasi prima, FPB dan KPK, kongruensi, serta teori bilangan secara umum.</p>
+ <p class="lesson-text">Materi ini membahas tiga istilah yang saling berkaitan erat: <strong>pembagi</strong>, <strong>faktor</strong>, dan <strong>kelipatan</strong>. Meskipun ketiganya sering digunakan secara bergantian, masing-masing memiliki sudut pandang yang berbeda terhadap hubungan keterbagian yang sama. Memahami perbedaan ini penting untuk menghindari kebingungan saat mempelajari topik lanjutan—sebagaimana ketiganya akan terus muncul dengan istilah yang berbeda-beda di setiap buku.</p>
+ <p class="lesson-text">Yang membuat keterbagian menjadi konsep penting bukan hanya penerapannya di aritmetika sehari-hari, tetapi juga karena ia mengungkap <strong>struktur tersembunyi dari bilangan bulat</strong>. Konsep seperti bilangan prima, FPB, dan KPK—yang akan Anda pelajari setelah ini—semuanya bertumpu pada pemahaman yang kuat tentang keterbagian. Sifat-sifat keterbagian juga menjadi alat utama dalam pembuktian matematis, terutama pada teori bilangan. Materi ini disusun bertahap: dari <strong>definisi dan notasi keterbagian</strong>, <strong>pembahasan masing-masing istilah</strong> (pembagi, faktor, kelipatan), <strong>hubungan ketiganya</strong>, <strong>sifat-sifat keterbagian</strong>, <strong>aturan keterbagian praktis</strong>, <strong>penerapan</strong>, hingga <strong>kesalahan umum</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan rumusnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Konsep Keterbagian</h3>
+ <p class="lesson-text">Kita mulai dari definisi formal—yang menjadi dasar dari seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Keterbagian</p>
+ <p class="lesson-text">Suatu bilangan bulat $a$ dikatakan <strong>membagi</strong> bilangan bulat $b$ jika terdapat bilangan bulat $k$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$b = a \times k$$</p>
+ <p class="lesson-text">Dalam hal ini, dikatakan bahwa:</p>
+ <ul>
+  <li>$a$ adalah <strong>pembagi</strong> dari $b$,</li>
+  <li>$b$ adalah <strong>kelipatan</strong> dari $a$,</li>
+  <li>$b$ <strong>habis dibagi</strong> oleh $a$,</li>
+  <li>$a$ <strong>membagi habis</strong> $b$.</li>
+ </ul>
+ <p class="lesson-text">Notasi yang digunakan adalah:</p>
+ <p class="lesson-text">$$a \mid b$$</p>
+ <p class="lesson-text">dibaca "$a$ membagi $b$". Jika $a$ tidak membagi $b$, ditulis:</p>
+ <p class="lesson-text">$$a \nmid b$$</p>
+
+ <p class="lesson-subheading">B. Syarat Keterbagian</p>
+ <p class="lesson-text">Dalam definisi di atas, $a$ tidak boleh sama dengan nol, karena pembagian oleh nol tidak terdefinisi. Jadi, selalu diasumsikan $a \neq 0$.</p>
+ <p class="lesson-text">Perhatikan bahwa <em>tidak ada batasan</em> untuk $b$. Bilangan $b$ boleh positif, negatif, atau nol. Bahkan $b = 0$ selalu habis dibagi oleh bilangan tak nol apa pun, karena $0 = a \times 0$.</p>
+
+ <p class="lesson-subheading">C. Contoh dan Bukan Contoh</p>
+ <p class="lesson-subheading-alt">Contoh keterbagian:</p>
+ <ul>
+  <li>$3 \mid 12$, karena $12 = 3 \times 4$.</li>
+  <li>$5 \mid 35$, karena $35 = 5 \times 7$.</li>
+  <li>$7 \mid 0$, karena $0 = 7 \times 0$.</li>
+  <li>$(-4) \mid 20$, karena $20 = (-4) \times (-5)$.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Bukan contoh keterbagian:</p>
+ <ul>
+  <li>$2 \nmid 7$, karena tidak ada bilangan bulat $k$ sehingga $7 = 2 \times k$.</li>
+  <li>$0 \nmid 5$, karena pembagian oleh nol tidak terdefinisi.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Arah notasi keterbagian sangat penting. $3 \mid 12$ benar, tetapi $12 \mid 3$ salah. Bilangan kecil membagi bilangan besar, bukan sebaliknya. Kebiasaan memeriksa arah ini akan menyelamatkan Anda dari kesalahan yang tidak perlu, terutama saat membaca bukti matematis.</p>
+ </div>
+
+ <p class="lesson-text">Definisi ini memperkenalkan tiga istilah sekaligus—<em>pembagi</em>, <em>faktor</em>, dan <em>kelipatan</em>—yang akan kita bahas satu per satu. Kita mulai dari sudut pandang bilangan yang membagi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Pembagi</h3>
+ <p class="lesson-text">Istilah pertama yang perlu dipahami adalah <strong>pembagi</strong>—sudut pandang dari bilangan yang membagi.</p>
+
+ <p class="lesson-subheading">A. Definisi Pembagi</p>
+ <p class="lesson-text">Jika $a \mid b$, maka $a$ disebut <strong>pembagi</strong> dari $b$. Dengan kata lain, pembagi adalah bilangan yang membagi habis bilangan lain tanpa sisa.</p>
+
+ <p class="lesson-subheading">B. Contoh Pembagi</p>
+ <p class="lesson-text">Pembagi dari 12 adalah semua bilangan bulat positif dan negatif yang membagi habis 12:</p>
+ <p class="lesson-text">$$\pm 1, \; \pm 2, \; \pm 3, \; \pm 4, \; \pm 6, \; \pm 12$$</p>
+ <p class="lesson-text">Biasanya, ketika menyebut "pembagi" tanpa keterangan, yang dimaksud adalah pembagi positif.</p>
+
+ <p class="lesson-subheading">C. Sifat Dasar Pembagi</p>
+ <ul>
+  <li>Setiap bilangan bulat tak nol membagi dirinya sendiri: $a \mid a$.</li>
+  <li>Bilangan 1 membagi setiap bilangan bulat: $1 \mid b$ untuk semua $b \in \mathbb{Z}$.</li>
+  <li>Setiap bilangan bulat tak nol membagi 0: $a \mid 0$ untuk semua $a \neq 0$.</li>
+  <li>Jika $a \mid b$, maka $(-a) \mid b$, $a \mid (-b)$, dan $(-a) \mid (-b)$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Pembagi Positif dan Negatif</p>
+ <p class="lesson-text">Secara umum, jika $a$ adalah pembagi dari $b$, maka $-a$ juga pembagi dari $b$. Akibatnya, pembagi selalu muncul berpasangan (positif dan negatif). Namun dalam banyak konteks—terutama di aritmetika dasar dan teori bilangan—yang diperhatikan adalah pembagi positif.</p>
+
+ <p class="lesson-text">Pembagi menekankan pada <em>operasi membagi</em>. Namun, ada sudut pandang lain yang menekankan pada <em>operasi mengalikan</em>—dan di sinilah istilah <strong>faktor</strong> muncul.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Faktor</h3>
+ <p class="lesson-text">Istilah kedua adalah <strong>faktor</strong>—sudut pandang dari bilangan yang dikalikan.</p>
+
+ <p class="lesson-subheading">A. Definisi Faktor</p>
+ <p class="lesson-text">Istilah faktor pada dasarnya sama dengan pembagi. Jika $b = a \times k$, maka $a$ dan $k$ adalah faktor-faktor dari $b$. Faktor lebih menekankan pada <em>hasil kali</em> yang membentuk suatu bilangan.</p>
+
+ <p class="lesson-subheading">B. Faktor Sebagai Pasangan</p>
+ <p class="lesson-text">Setiap faktor dari suatu bilangan memiliki pasangan yang jika dikalikan menghasilkan bilangan tersebut.</p>
+ <p class="lesson-subheading-alt">Contoh faktor dari 18:</p>
+ <p class="lesson-text">$$1 \times 18, \quad 2 \times 9, \quad 3 \times 6$$</p>
+ <p class="lesson-text">Jadi faktor-faktor positif dari 18 adalah $1, 2, 3, 6, 9, 18$.</p>
+
+ <p class="lesson-subheading">C. Cara Menemukan Faktor</p>
+ <p class="lesson-text">Untuk menemukan semua faktor positif dari suatu bilangan $n$, lakukan langkah berikut:</p>
+ <ol>
+  <li>Mulai dari 1 dan periksa setiap bilangan bulat sampai $\sqrt{n}$.</li>
+  <li>Jika bilangan tersebut membagi habis $n$, maka bilangan itu dan hasil baginya adalah pasangan faktor.</li>
+ </ol>
+ <p class="lesson-text"><strong>Mengapa hanya sampai $\sqrt{n}$?</strong> Karena setiap faktor $d \leq \sqrt{n}$ memiliki pasangan $n/d \geq \sqrt{n}$. Jika kita memeriksa hingga $\sqrt{n}$, semua pasangan faktor sudah pasti ditemukan—memeriksa lebih jauh hanya akan mengulang pasangan yang sama.</p>
+ <p class="lesson-subheading-alt">Contoh untuk $n = 36$:</p>
+ <p class="lesson-text">$\sqrt{36} = 6$, jadi cukup periksa 1 sampai 6:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Pembagi yang Dicoba</th>
+     <th>Hasil</th>
+     <th>Pasangan Faktor</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>1</td><td>Membagi</td><td>$1$ dan $36$</td></tr>
+    <tr><td>2</td><td>Membagi</td><td>$2$ dan $18$</td></tr>
+    <tr><td>3</td><td>Membagi</td><td>$3$ dan $12$</td></tr>
+    <tr><td>4</td><td>Membagi</td><td>$4$ dan $9$</td></tr>
+    <tr><td>5</td><td>Tidak membagi</td><td>—</td></tr>
+    <tr><td>6</td><td>Membagi</td><td>$6$ dan $6$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Jadi faktor positif dari 36 adalah $1, 2, 3, 4, 6, 9, 12, 18, 36$.</p>
+
+ <p class="lesson-subheading">D. Banyaknya Faktor</p>
+ <p class="lesson-text">Banyaknya faktor positif suatu bilangan dapat dihitung setelah bilangan tersebut dinyatakan dalam faktorisasi prima. Namun pembahasan lengkap tentang hal ini akan diberikan pada materi Faktorisasi Prima.</p>
+
+ <p class="lesson-text">Pembagi dan faktor melihat hubungan keterbagian dari arah <em>bilangan yang membagi</em>. Namun, hubungan yang sama juga dapat dilihat dari arah sebaliknya—yaitu dari bilangan yang menjadi hasil kali. Sudut pandang inilah yang disebut <strong>kelipatan</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Kelipatan</h3>
+ <p class="lesson-text">Istilah ketiga adalah <strong>kelipatan</strong>—sudut pandang dari hasil perkalian.</p>
+
+ <p class="lesson-subheading">A. Definisi Kelipatan</p>
+ <p class="lesson-text">Jika $a \mid b$, maka $b$ disebut <strong>kelipatan</strong> dari $a$. Dengan kata lain, kelipatan dari $a$ adalah hasil kali $a$ dengan bilangan bulat apa pun. Himpunan kelipatan dari $a$ adalah:</p>
+ <p class="lesson-text">$$\{a \times k \mid k \in \mathbb{Z}\}$$</p>
+
+ <p class="lesson-subheading">B. Contoh Kelipatan</p>
+ <p class="lesson-text">Kelipatan dari 3 adalah:</p>
+ <p class="lesson-text">$$\dots, -12, -9, -6, -3, 0, 3, 6, 9, 12, \dots$$</p>
+ <p class="lesson-text">Kelipatan positif dari 4 adalah $4, 8, 12, 16, 20, 24, \dots$</p>
+ <p class="lesson-text">Perhatikan bahwa kelipatan mencakup bilangan negatif dan nol—bukan hanya bilangan positif.</p>
+
+ <p class="lesson-subheading">C. Sifat Kelipatan</p>
+ <ul>
+  <li>Setiap bilangan adalah kelipatan dari dirinya sendiri.</li>
+  <li>0 adalah kelipatan dari setiap bilangan bulat tak nol, karena $0 = a \times 0$.</li>
+  <li>Jika $a$ adalah kelipatan dari $b$, maka semua kelipatan dari $a$ juga kelipatan dari $b$ (sifat transitif).</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Kelipatan Persekutuan</p>
+ <p class="lesson-text">Kelipatan persekutuan dari dua bilangan atau lebih adalah bilangan yang merupakan kelipatan dari <em>semua</em> bilangan tersebut. Konsep ini akan dibahas lebih lanjut pada materi KPK.</p>
+
+ <p class="lesson-text">Sekarang kita sudah mengenal ketiga istilah—pembagi, faktor, dan kelipatan. Agar tidak tertukar, ada baiknya kita melihat ketiganya secara berdampingan dan memahami hubungannya secara eksplisit.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Hubungan Pembagi, Faktor, dan Kelipatan</h3>
+ <p class="lesson-text">Ketiga istilah ini menggambarkan <strong>hubungan yang sama</strong> dari sudut pandang berbeda. Memahami hubungan ini penting—karena banyak kebingungan muncul dari ketidakmampuan membedakan ketiganya.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Istilah</th>
+     <th>Sudut Pandang</th>
+     <th>Contoh pada $4 \mid 20$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Pembagi</td><td>Bilangan yang membagi</td><td>4 adalah pembagi dari 20</td></tr>
+    <tr><td>Faktor</td><td>Bilangan yang dikalikan</td><td>4 adalah faktor dari 20</td></tr>
+    <tr><td>Kelipatan</td><td>Hasil kali</td><td>20 adalah kelipatan dari 4</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Dengan demikian, pernyataan-pernyataan berikut semuanya <strong>setara</strong>:</p>
+ <p class="lesson-text">$$a \mid b$$ $$a \text{ membagi } b$$ $$b \text{ habis dibagi } a$$ $$b \text{ adalah kelipatan dari } a$$ $$a \text{ adalah pembagi dari } b$$ $$a \text{ adalah faktor dari } b$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$4 \mid 20$ artinya:</p>
+ <ul>
+  <li>4 membagi 20,</li>
+  <li>4 adalah pembagi dari 20,</li>
+  <li>4 adalah faktor dari 20,</li>
+  <li>20 adalah kelipatan dari 4,</li>
+  <li>20 habis dibagi 4.</li>
+ </ul>
+
+ <p class="lesson-text">Setelah memahami hubungan antar ketiga istilah, kita dapat mempelajari sifat-sifat aljabar dari keterbagian—yang akan sangat berguna untuk pembuktian matematis di topik-topik lanjutan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Sifat-Sifat Keterbagian</h3>
+ <p class="lesson-text">Berikut adalah sifat-sifat dasar keterbagian yang sering digunakan—baik dalam perhitungan maupun dalam pembuktian matematis.</p>
+
+ <p class="lesson-subheading">A. Sifat Refleksif</p>
+ <p class="lesson-text">Setiap bilangan bulat tak nol membagi dirinya sendiri:</p>
+ <p class="lesson-text">$$a \mid a$$</p>
+
+ <p class="lesson-subheading">B. Sifat Transitif</p>
+ <p class="lesson-text">Jika $a \mid b$ dan $b \mid c$, maka $a \mid c$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$3 \mid 6 \quad \text{dan} \quad 6 \mid 18 \quad \rightarrow \quad 3 \mid 18$$</p>
+
+ <p class="lesson-subheading">C. Keterbagian pada Penjumlahan</p>
+ <p class="lesson-text">Jika $a \mid b$ dan $a \mid c$, maka $a \mid (b + c)$.</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Karena $b = a \cdot m$ dan $c = a \cdot n$ untuk suatu bilangan bulat $m, n$. Maka $b + c = a(m + n)$, yang juga merupakan kelipatan $a$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$4 \mid 8 \quad \text{dan} \quad 4 \mid 12 \quad \rightarrow \quad 4 \mid (8 + 12) = 20$$</p>
+
+ <p class="lesson-subheading">D. Keterbagian pada Pengurangan</p>
+ <p class="lesson-text">Jika $a \mid b$ dan $a \mid c$, maka $a \mid (b - c)$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$5 \mid 15 \quad \text{dan} \quad 5 \mid 25 \quad \rightarrow \quad 5 \mid (25 - 15) = 10$$</p>
+
+ <p class="lesson-subheading">E. Keterbagian pada Perkalian</p>
+ <p class="lesson-text">Jika $a \mid b$, maka $a \mid (b \times c)$ untuk sembarang bilangan bulat $c$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$6 \mid 12 \quad \rightarrow \quad 6 \mid (12 \times 5) = 60$$</p>
+
+ <p class="lesson-subheading">F. Keterbagian Kombinasi Linear</p>
+ <p class="lesson-text">Jika $a \mid b$ dan $a \mid c$, maka $a \mid (mb + nc)$ untuk sembarang bilangan bulat $m$ dan $n$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2 \mid 4 \quad \text{dan} \quad 2 \mid 6 \quad \rightarrow \quad 2 \mid (3 \times 4 + 5 \times 6) = 42$$</p>
+ <p class="lesson-text">Sifat ini sangat penting dalam teori bilangan—karena memungkinkan kita menyusun kombinasi bilangan yang tetap habis dibagi oleh pembagi yang sama.</p>
+
+ <p class="lesson-subheading">G. Keterbagian oleh Hasil Kali</p>
+ <p class="lesson-text">Jika $a \mid b$ dan $c \mid d$, maka $ac \mid bd$, asalkan $ac \neq 0$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2 \mid 6 \quad \text{dan} \quad 3 \mid 9 \quad \rightarrow \quad (2 \times 3) \mid (6 \times 9) \quad \rightarrow \quad 6 \mid 54$$</p>
+
+ <p class="lesson-subheading">H. Keterbagian oleh Bilangan Negatif</p>
+ <p class="lesson-text">Jika $a \mid b$, maka $(-a) \mid b$ dan $a \mid (-b)$. Karena itu, keterbagian biasanya dibahas cukup pada bilangan positif saja.</p>
+
+ <p class="lesson-text">Sifat-sifat di atas bersifat <em>umum</em>—berlaku untuk semua bilangan bulat. Namun untuk keperluan praktis sehari-hari, ada cara yang lebih cepat untuk memeriksa keterbagian tanpa harus melakukan pembagian panjang, terutama untuk pembagi-pembagi kecil.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Aturan Keterbagian Sederhana</h3>
+ <p class="lesson-text">Untuk memeriksa keterbagian suatu bilangan oleh bilangan kecil, dapat digunakan aturan praktis berikut—tanpa perlu melakukan pembagian panjang.</p>
+
+ <p class="lesson-subheading">A. Keterbagian oleh 2</p>
+ <p class="lesson-text">Habis dibagi 2 jika angka terakhirnya genap (0, 2, 4, 6, 8).</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">358 habis dibagi 2 karena angka terakhirnya 8.</p>
+
+ <p class="lesson-subheading">B. Keterbagian oleh 3</p>
+ <p class="lesson-text">Habis dibagi 3 jika jumlah digit-digitnya habis dibagi 3.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">123 $\rightarrow$ $1 + 2 + 3 = 6$ habis dibagi 3, maka 123 habis dibagi 3.</p>
+
+ <p class="lesson-subheading">C. Keterbagian oleh 4</p>
+ <p class="lesson-text">Habis dibagi 4 jika dua angka terakhirnya membentuk bilangan yang habis dibagi 4.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">312 $\rightarrow$ dua angka terakhirnya adalah 12, dan 12 habis dibagi 4, maka 312 habis dibagi 4.</p>
+
+ <p class="lesson-subheading">D. Keterbagian oleh 5</p>
+ <p class="lesson-text">Habis dibagi 5 jika angka terakhirnya 0 atau 5.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">245 habis dibagi 5, 370 habis dibagi 5.</p>
+
+ <p class="lesson-subheading">E. Keterbagian oleh 6</p>
+ <p class="lesson-text">Habis dibagi 6 jika bilangan itu habis dibagi 2 <em>dan</em> 3 sekaligus.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">72 genap dan $7 + 2 = 9$ habis dibagi 3, maka 72 habis dibagi 6.</p>
+
+ <p class="lesson-subheading">F. Keterbagian oleh 8</p>
+ <p class="lesson-text">Habis dibagi 8 jika tiga angka terakhirnya membentuk bilangan yang habis dibagi 8.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">1.536 $\rightarrow$ tiga angka terakhirnya adalah 536, dan $536 \div 8 = 67$, maka 1.536 habis dibagi 8.</p>
+
+ <p class="lesson-subheading">G. Keterbagian oleh 9</p>
+ <p class="lesson-text">Habis dibagi 9 jika jumlah digit-digitnya habis dibagi 9.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">1.827 $\rightarrow$ $1 + 8 + 2 + 7 = 18$ habis dibagi 9, maka 1.827 habis dibagi 9.</p>
+
+ <p class="lesson-subheading">H. Keterbagian oleh 10</p>
+ <p class="lesson-text">Habis dibagi 10 jika angka terakhirnya 0.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">450 habis dibagi 10.</p>
+
+ <p class="lesson-subheading">I. Ringkasan Aturan Keterbagian</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Pembagi</th>
+     <th>Aturan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>2</td><td>Angka terakhir genap</td></tr>
+    <tr><td>3</td><td>Jumlah digit habis dibagi 3</td></tr>
+    <tr><td>4</td><td>Dua angka terakhir habis dibagi 4</td></tr>
+    <tr><td>5</td><td>Angka terakhir 0 atau 5</td></tr>
+    <tr><td>6</td><td>Habis dibagi 2 dan 3 sekaligus</td></tr>
+    <tr><td>8</td><td>Tiga angka terakhir habis dibagi 8</td></tr>
+    <tr><td>9</td><td>Jumlah digit habis dibagi 9</td></tr>
+    <tr><td>10</td><td>Angka terakhir 0</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Aturan-aturan ini memberi cara cepat untuk memeriksa keterbagian tanpa pembagian panjang. Mari kita terapkan seluruh konsep keterbagian—notasi, sifat, aturan praktis, dan penemuan faktor—pada tujuh soal yang menggabungkan berbagai aspeknya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan definisi keterbagian, sifat-sifatnya, aturan praktis, dan penemuan faktor. Setiap langkah dituliskan lengkap, dan sifat atau aturan yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri alasan setiap langkah, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Membaca dan Menulis Notasi Keterbagian</p>
+ <p class="lesson-text">Tentukan benar atau salah setiap pernyataan berikut, dan jelaskan alasannya: (a) $7 \mid 42$; (b) $42 \mid 7$; (c) $5 \mid 0$; (d) $0 \mid 5$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>(a) Benar.</strong> Karena $42 = 7 \times 6$, dan $6$ adalah bilangan bulat. Jadi 7 membagi 42.</li>
+  <li><strong>(b) Salah.</strong> Tidak ada bilangan bulat $k$ sehingga $7 = 42 \times k$. Notasi keterbagian tidak boleh dibalik.</li>
+  <li><strong>(c) Benar.</strong> Karena $0 = 5 \times 0$, dan $0$ adalah bilangan bulat. Setiap bilangan tak nol membagi 0.</li>
+  <li><strong>(d) Salah.</strong> Pembagian oleh nol tidak terdefinisi. Notasi $0 \mid 5$ tidak bermakna.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Menemukan Semua Faktor Positif</p>
+ <p class="lesson-text">Tentukan semua faktor positif dari 60.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Karena $\sqrt{60} \approx 7{,}75$, cukup periksa pembagi dari 1 sampai 7. Setiap pembagi yang ditemukan akan memberikan pasangannya.</li>
+  <li>Periksa satu per satu:
+   <ul>
+    <li>$1 \mid 60$ — pasangan $(1, 60)$</li>
+    <li>$2 \mid 60$ — pasangan $(2, 30)$</li>
+    <li>$3 \mid 60$ — pasangan $(3, 20)$</li>
+    <li>$4 \mid 60$ — pasangan $(4, 15)$</li>
+    <li>$5 \mid 60$ — pasangan $(5, 12)$</li>
+    <li>$6 \mid 60$ — pasangan $(6, 10)$</li>
+    <li>$7 \nmid 60$ — tidak membagi</li>
+   </ul>
+  </li>
+  <li>Gabungkan semua pasangan dan susun dari kecil ke besar:<br>Faktor positif dari 60 adalah $1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Aturan Keterbagian Dasar</p>
+ <p class="lesson-text">Tanpa melakukan pembagian panjang, tentukan apakah 4.716 habis dibagi oleh 2, 3, 4, 6, dan 9.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Habis dibagi 2?</strong> Angka terakhir adalah 6 (genap) → <strong>Ya</strong>.</li>
+  <li><strong>Habis dibagi 3?</strong> Jumlah digit $= 4 + 7 + 1 + 6 = 18$, dan 18 habis dibagi 3 → <strong>Ya</strong>.</li>
+  <li><strong>Habis dibagi 4?</strong> Dua angka terakhir adalah 16, dan 16 habis dibagi 4 → <strong>Ya</strong>.</li>
+  <li><strong>Habis dibagi 6?</strong> Harus habis dibagi 2 <em>dan</em> 3. Dari (1) dan (2), keduanya terpenuhi → <strong>Ya</strong>.</li>
+  <li><strong>Habis dibagi 9?</strong> Jumlah digit $= 18$, dan 18 habis dibagi 9 → <strong>Ya</strong>.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $4.716 \div 9 = 524$, sehingga $4.716 = 9 \times 524$. Karena habis dibagi 9, ia otomatis habis dibagi 3—dan karena genap, juga habis dibagi 6.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Sifat Keterbagian pada Kombinasi Linear</p>
+ <p class="lesson-text">Diketahui $7 \mid 21$ dan $7 \mid 35$. Tanpa menghitung hasil akhirnya secara langsung, buktikan bahwa $7 \mid (4 \times 21 + 3 \times 35)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Dari $7 \mid 21$, ada bilangan bulat $m$ sehingga $21 = 7m$. Nyatanya $m = 3$.</li>
+  <li>Dari $7 \mid 35$, ada bilangan bulat $n$ sehingga $35 = 7n$. Nyatanya $n = 5$.</li>
+  <li>Bentuk kombinasi linear:<br>$4 \times 21 + 3 \times 35 = 4 \cdot (7m) + 3 \cdot (7n) = 7(4m + 3n)$</li>
+  <li>Karena $4m + 3n$ adalah bilangan bulat, hasilnya merupakan kelipatan 7. Maka $7 \mid (4 \times 21 + 3 \times 35)$.</li>
+  <li>Verifikasi: $4 \times 21 + 3 \times 35 = 84 + 105 = 189$, dan $189 \div 7 = 27$. Terbukti.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Membedakan Pembagi, Faktor, dan Kelipatan</p>
+ <p class="lesson-text">Diberikan hubungan $9 \mid 72$. Tuliskan lima pernyataan berbeda yang semuanya setara dengan hubungan ini, dengan menggunakan istilah pembagi, faktor, dan kelipatan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>9 membagi 72.</li>
+  <li>9 adalah pembagi dari 72.</li>
+  <li>9 adalah faktor dari 72.</li>
+  <li>72 adalah kelipatan dari 9.</li>
+  <li>72 habis dibagi 9.</li>
+ </ol>
+ <p class="lesson-text">Kelima pernyataan ini menggunakan istilah yang berbeda tetapi menyatakan hubungan keterbagian yang sama. Perhatikan bahwa istilah <em>pembagi</em> dan <em>faktor</em> merujuk pada bilangan yang sama (9), sedangkan <em>kelipatan</em> merujuk pada bilangan yang berbeda (72).</p>
+ 
+ <p class="lesson-subheading">Soal 6: Aturan Keterbagian Gabungan</p>
+ <p class="lesson-text">Tentukan angka terkecil yang harus ditambahkan pada 3.245 agar hasilnya habis dibagi 8 dan 9 sekaligus.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kita mencari bilangan $k$ terkecil sehingga $3.245 + k$ habis dibagi oleh 8 dan 9 sekaligus. Karena $\gcd(8, 9) = 1$, kondisi ini setara dengan habis dibagi oleh $8 \times 9 = 72$.</li>
+  <li>Bagi 3.245 dengan 72:<br>$3.245 = 72 \times 45 + 5$</li>
+  <li>Sisa pembagian adalah 5. Untuk mencapai kelipatan 72 berikutnya, kita perlu menambahkan:<br>$72 - 5 = 67$</li>
+  <li>Verifikasi: $3.245 + 67 = 3.312$. Periksa:
+   <ul>
+    <li>Habis dibagi 8: tiga angka terakhir 312, dan $312 \div 8 = 39$ ✓</li>
+    <li>Habis dibagi 9: jumlah digit $3 + 3 + 1 + 2 = 9$, habis dibagi 9 ✓</li>
+   </ul>
+  </li>
+ </ol>
+ <p class="lesson-text">Jadi angka terkecil yang harus ditambahkan adalah $67$.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Pembagian Rata</p>
+ <p class="lesson-text">Bu Ani memiliki 96 kue dan 72 botol air mineral. Ia ingin membagi semuanya secara rata ke dalam beberapa kantong—setiap kantong berisi jumlah kue yang sama dan jumlah botol yang sama, tanpa sisa. Berapa jumlah kantong <em>terbanyak</em> yang dapat dibuat?</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Setiap kantong harus memuat jumlah kue dan botol yang sama. Artinya, jumlah kantong harus membagi habis 96 dan 72 sekaligus.</li>
+  <li>Jumlah kantong terbanyak adalah <strong>pembagi persekutuan terbesar</strong> dari 96 dan 72.</li>
+  <li>Faktorkan kedua bilangan:
+   <ul>
+    <li>$96 = 2^5 \times 3$</li>
+    <li>$72 = 2^3 \times 3^2$</li>
+   </ul>
+  </li>
+  <li>Ambil pangkat terkecil untuk setiap faktor prima yang sama:<br>$\gcd(96, 72) = 2^3 \times 3^1 = 8 \times 3 = 24$</li>
+  <li>Jadi jumlah kantong terbanyak adalah 24. Setiap kantong berisi:<br>Kue: $96 \div 24 = 4$, Botol: $72 \div 24 = 3$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $24 \times 4 = 96$ ✓ dan $24 \times 3 = 72$ ✓—tanpa sisa. Metode ini akan diperdalam di materi FPB & KPK.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap setiap bilangan membagi setiap bilangan.</strong> Tidak semua pasangan bilangan memiliki hubungan keterbagian. Contoh: $2 \nmid 5$, karena $5 \div 2$ menghasilkan sisa 1.</li>
+  <li><strong>Menganggap nol dapat membagi bilangan lain.</strong> $0 \mid a$ tidak benar karena pembagian oleh nol tidak terdefinisi. Yang benar adalah $a \mid 0$ untuk $a \neq 0$.</li>
+  <li><strong>Mengabaikan tanda negatif.</strong> Pembagi bisa bernilai negatif. Misalnya, $-3$ juga merupakan pembagi dari 12, karena $12 = (-3) \times (-4)$.</li>
+  <li><strong>Menganggap kelipatan harus positif.</strong> Kelipatan mencakup bilangan negatif dan nol. Kelipatan dari 5 misalnya adalah $\dots, -15, -10, -5, 0, 5, 10, 15, \dots$</li>
+  <li><strong>Keliru antara pembagi dan kelipatan.</strong> Pada $4 \mid 20$, 4 adalah pembagi dan 20 adalah kelipatan. Keduanya sering tertukar jika tidak memperhatikan arah keterbagian.</li>
+  <li><strong>Lupa menyertakan 1 dan bilangan itu sendiri saat mendaftar faktor.</strong> Setiap bilangan bulat positif $n$ selalu memiliki setidaknya dua faktor positif: 1 dan $n$. Saat mendaftar semua faktor dari $n$—misalnya untuk keperluan FPB atau mencari akar persamaan—keduanya harus disertakan. Contoh: faktor dari 7 adalah $\{1, 7\}$, bukan himpunan kosong.</li>
+  <li><strong>Menganggap jika $a \mid (b \times c)$, maka $a \mid b$ atau $a \mid c$.</strong> Ini tidak selalu benar. Contoh: $6 \mid (2 \times 3) = 6$, tetapi $6 \nmid 2$ dan $6 \nmid 3$. Faktor-faktor dari hasil kali tidak harus masing-masing habis dibagi $a$.</li>
+  <li><strong>Menganggap aturan keterbagian berlaku surut.</strong> Aturan untuk 6 adalah "habis dibagi 2 dan 3", bukan "habis dibagi 2 dan 4". Bilangan yang habis dibagi 2 dan 4 belum tentu habis dibagi 6—misalnya 4 sendiri (habis dibagi 2 dan 4, tetapi tidak habis dibagi 6).</li>
+  <li><strong>Menganggap semua aturan keterbagian hanya berlaku pada bilangan positif.</strong> Aturan-aturan ini juga berlaku pada bilangan negatif. Misalnya, $-12$ habis dibagi 3 karena $|-12| = 12$ habis dibagi 3.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti keterbagian yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Keterbagian</strong> dinyatakan sebagai $a \mid b$, artinya terdapat bilangan bulat $k$ sehingga $b = a \times k$.</li>
+  <li><strong>Pembagi dan faktor</strong> adalah istilah untuk $a$ dalam hubungan $a \mid b$—pembagi dari sudut pandang membagi, faktor dari sudut pandang perkalian. <strong>Kelipatan</strong> adalah istilah untuk $b$.</li>
+  <li>Setiap bilangan bulat tak nol membagi dirinya sendiri, 1 membagi semua bilangan, dan setiap bilangan tak nol membagi 0.</li>
+  <li><strong>Sifat keterbagian</strong> meliputi sifat refleksif, transitif, serta keterbagian pada penjumlahan, pengurangan, perkalian, dan kombinasi linear.</li>
+  <li><strong>Aturan keterbagian sederhana</strong> untuk 2, 3, 4, 5, 6, 8, 9, dan 10 membantu memeriksa keterbagian tanpa pembagian panjang.</li>
+  <li>Kesalahan umum: menganggap 0 sebagai pembagi, mengabaikan arah notasi, lupa menyertakan 1 dan bilangan itu sendiri sebagai faktor, dan menganggap kelipatan harus positif.</li>
+  <li>Memahami keterbagian menjadi dasar untuk mempelajari FPB, KPK, bilangan prima, faktorisasi prima, dan kongruensi.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Keterbagian merupakan konsep sederhana namun sangat fundamental. Dengan memahami hubungan antara pembagi, faktor, dan kelipatan, kita dapat menganalisis struktur bilangan secara lebih mendalam—melihat bukan hanya <em>berapa nilai</em> suatu bilangan, tetapi juga <em>bagaimana ia dapat diuraikan</em> menjadi komponen-komponen yang lebih kecil.</p>
+ <p class="lesson-text">Yang membuat keterbagian istimewa adalah sifat-sifatnya yang <strong>dapat dibuktikan secara formal</strong>. Sifat transitif, sifat kombinasi linear, dan sifat-sifat lainnya bukan sekadar pengamatan—melainkan teorema yang berlaku umum untuk semua bilangan bulat. Memahami hal ini penting karena keterbagian menjadi salah satu pintu masuk pertama ke dalam pembuktian matematis yang sesungguhnya.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Bilangan Prima</strong> (yang mempelajari bilangan yang hanya memiliki dua pembagi positif), <strong>Faktorisasi Prima</strong> (yang menguraikan bilangan menjadi faktor prima), <strong>FPB &amp; KPK</strong> (yang menggunakan keterbagian untuk mencari pembagi dan kelipatan bersama), <strong>Kongruensi &amp; Modulo</strong> (yang memperluas keterbagian menjadi aritmetika sisa), <strong>Persamaan Diophantine</strong> (yang mencari solusi bilangan bulat dari persamaan), dan <strong>Kriptografi</strong> (yang bertumpu pada sifat-sifat keterbagian dan bilangan prima). Latihlah diri Anda dengan banyak soal—terutama yang melibatkan pemeriksaan keterbagian menggunakan aturan praktis, serta soal yang menuntut Anda menemukan semua faktor positif dari suatu bilangan. Kebiasaan memeriksa arah notasi ($a \mid b$ vs $b \mid a$) dan memperhatikan tanda negatif akan menyelamatkan Anda dari kesalahan yang tidak perlu.</p>
+</div>
+
+</div>
+</body>
+</html>

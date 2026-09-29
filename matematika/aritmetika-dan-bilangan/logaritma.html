@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Logaritma (Invers Eksponen dan Sifat Logaritma)</title>
+ <meta name="description" content="Logaritma sebagai invers eksponen: definisi, syarat, bentuk umum, sifat-sifat dasar, operasi, perubahan basis, penyelesaian persamaan, dan penerapannya dalam sains.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Logaritma (Invers Eksponen dan Sifat Logaritma)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Eksponen &amp; Akar</strong> — terutama definisi perpangkatan, sifat-sifat eksponen ($a^m \times a^n = a^{m+n}$, $(a^m)^n = a^{mn}$), eksponen nol, negatif, dan pecahan. Seluruh sifat logaritma diturunkan langsung dari sifat-sifat eksponen ini.</li>
+   <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif, yang akan dipakai saat memanipulasi ekspresi logaritma.</li>
+   <li><strong>Persamaan Linear &amp; Kuadrat</strong> — karena penyelesaian persamaan logaritma sering kali berujung pada persamaan linear atau kuadrat sederhana.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text"><strong>Logaritma</strong> adalah operasi matematika yang lahir dari kebutuhan untuk <strong>membalik</strong> proses perpangkatan. Jika eksponen menjawab pertanyaan "berapa hasil dari $a$ dipangkatkan $n$?", maka logaritma menjawab pertanyaan sebaliknya: "pangkat berapa yang harus diberikan pada $a$ agar menghasilkan bilangan tertentu?" Dengan kata lain, logaritma adalah <strong>invers dari eksponen</strong>—sebagaimana akar adalah invers dari kuadrat.</p>
+ <p class="lesson-text">Konsep ini memiliki peran yang sangat luas. Logaritma muncul dalam <strong>skala Richter</strong> untuk mengukur kekuatan gempa, <strong>desibel</strong> untuk intensitas bunyi, <strong>pH</strong> untuk tingkat keasaman, <strong>bunga majemuk</strong> untuk menghitung waktu investasi, dan <strong>peluruhan radioaktif</strong> untuk menghitung waktu paruh zat. Di semua kasus ini, logaritma mengubah skala yang tumbuh secara eksponensial menjadi skala yang lebih mudah dipahami secara linear. Yang membuatnya sangat kuat adalah kemampuannya <strong>mengubah operasi yang sulit menjadi lebih sederhana</strong>: perkalian menjadi penjumlahan, pembagian menjadi pengurangan, dan perpangkatan menjadi perkalian—sifat yang diturunkan langsung dari sifat-sifat eksponen yang sudah Anda pelajari.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>definisi logaritma dan syaratnya</strong>, <strong>bentuk-bentuk umum</strong>, <strong>sifat-sifat dasar</strong>, <strong>sifat-sifat operasi</strong>, <strong>perubahan basis</strong>, <strong>penyelesaian persamaan</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap sifat akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan rumusnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Logaritma sebagai Invers Eksponen</h3>
+ <p class="lesson-text">Sebelum masuk ke sifat-sifat yang lebih rumit, kita perlu memahami terlebih dahulu apa itu logaritma, bagaimana ia didefinisikan, dan mengapa syarat-syarat tertentu harus dipenuhi.</p>
+
+ <p class="lesson-subheading">A. Pengertian Dasar</p>
+ <p class="lesson-text">Jika terdapat hubungan eksponensial:</p>
+ <p class="lesson-text">$$a^b = c$$</p>
+ <p class="lesson-text">maka logaritma dari $c$ dengan basis $a$ adalah $b$, ditulis:</p>
+ <p class="lesson-text">$$\log_a c = b \quad \leftrightarrow \quad a^b = c$$</p>
+ <p class="lesson-text">Dalam bentuk ini:</p>
+ <ul>
+  <li>$a$ disebut <strong>basis</strong> (bilangan pokok)—yaitu bilangan yang dipangkatkan.</li>
+  <li>$c$ disebut <strong>numerus</strong>—yaitu bilangan yang dilogaritmakan (hasil perpangkatan).</li>
+  <li>$b$ disebut <strong>hasil logaritma</strong>—yaitu pangkat yang dicari.</li>
+ </ul>
+ <p class="lesson-text">Definisi ini persis kebalikan dari definisi eksponen. Jika pada eksponen kita diberi <em>basis dan pangkat</em> lalu mencari <em>hasil</em>, maka pada logaritma kita diberi <em>basis dan hasil</em> lalu mencari <em>pangkat</em>.</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2^3 = 8 \quad \leftrightarrow \quad \log_2 8 = 3$$ $$10^2 = 100 \quad \leftrightarrow \quad \log_{10} 100 = 2$$ $$5^{-1} = \frac{1}{5} \quad \leftrightarrow \quad \log_5 \frac{1}{5} = -1$$</p>
+ <p class="lesson-text">Perhatikan contoh ketiga: logaritma juga dapat bernilai negatif. Ini terjadi ketika numerus lebih kecil dari 1—karena pangkat negatif menghasilkan kebalikan dari basis.</p>
+
+ <p class="lesson-subheading">B. Syarat Logaritma</p>
+ <p class="lesson-text">Agar logaritma terdefinisi dalam himpunan bilangan real, harus dipenuhi dua syarat:</p>
+ <ul>
+  <li><strong>Basis</strong> $a > 0$ dan $a \neq 1$.</li>
+  <li><strong>Numerus</strong> $c > 0$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Mengapa basis tidak boleh 1?</p>
+ <p class="lesson-text">Karena $1^b = 1$ untuk setiap nilai $b$. Jika basisnya 1, maka $\log_1 c$ hanya akan terdefinisi untuk $c = 1$, dan bahkan dalam kasus itu jawabannya tidak unik—semua bilangan $b$ memenuhi $1^b = 1$. Akibatnya, logaritma dengan basis 1 tidak bermakna.</p>
+
+ <p class="lesson-subheading-alt">Mengapa basis harus positif?</p>
+ <p class="lesson-text">Karena bilangan negatif yang dipangkatkan dengan eksponen pecahan (misalnya pangkat $\frac{1}{2}$, yang sama dengan akar kuadrat) tidak selalu terdefinisi di bilangan real. Misalnya, $(-2)^{\frac{1}{2}} = \sqrt{-2}$ tidak terdefinisi. Agar logaritma selalu bekerja untuk semua nilai pangkat real, basis harus positif.</p>
+
+ <p class="lesson-subheading-alt">Mengapa numerus harus positif?</p>
+ <p class="lesson-text">Karena hasil perpangkatan bilangan positif tidak pernah nol atau negatif. Jika $a > 0$, maka $a^b > 0$ untuk setiap pangkat real $b$. Karena itu, hanya $c > 0$ yang dapat menjadi numerus logaritma.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Ketiga syarat ini—basis positif, basis tidak sama dengan 1, dan numerus positif—bukan sekadar formalitas. Banyak kesalahan dalam menyelesaikan persamaan logaritma muncul karena syarat ini diabaikan. Setiap kali Anda bertemu logaritma, biasakan untuk memeriksa syaratnya terlebih dahulu.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami definisi dan syaratnya, langkah berikutnya adalah mengenali <strong>bentuk-bentuk logaritma yang paling sering muncul</strong>—termasuk dua basis khusus yang memiliki notasi tersendiri.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Bentuk-Bentuk Logaritma yang Umum</h3>
+ <p class="lesson-text">Meskipun basis logaritma dapat berupa bilangan positif apa pun selain 1, ada dua basis yang sangat sering digunakan sehingga memiliki notasi khusus.</p>
+
+ <p class="lesson-subheading">A. Logaritma Biasa (Basis 10)</p>
+ <p class="lesson-text">Logaritma dengan basis 10 sering ditulis <strong>tanpa mencantumkan basisnya</strong>:</p>
+ <p class="lesson-text">$$\log_{10} x = \log x$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$\log 1000 = 3$, karena $10^3 = 1000$.</li>
+  <li>$\log 100 = 2$, karena $10^2 = 100$.</li>
+  <li>$\log 1 = 0$, karena $10^0 = 1$.</li>
+ </ul>
+ <p class="lesson-text">Logaritma basis 10 banyak digunakan dalam sains dan teknik—terutama karena kita menggunakan sistem bilangan basis 10 dalam kehidupan sehari-hari.</p>
+
+ <p class="lesson-subheading">B. Logaritma Natural (Basis $e$)</p>
+ <p class="lesson-text">Logaritma dengan basis $e$ (bilangan Euler, $e \approx 2{,}71828\ldots$) disebut <strong>logaritma natural</strong> dan ditulis:</p>
+ <p class="lesson-text">$$\log_e x = \ln x$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$\ln e = 1$, karena $e^1 = e$.</li>
+  <li>$\ln e^2 = 2$, karena $e^2 = e^2$.</li>
+  <li>$\ln 1 = 0$, karena $e^0 = 1$.</li>
+ </ul>
+ <p class="lesson-text">Logaritma natural sangat penting dalam kalkulus—karena turunan dan integral yang melibatkan $\ln x$ memiliki bentuk yang paling sederhana dibandingkan logaritma basis lain.</p>
+
+ <p class="lesson-subheading">C. Logaritma dengan Basis Lain</p>
+ <p class="lesson-text">Basis logaritma dapat berupa bilangan positif apa pun selain 1. Beberapa contoh:</p>
+ <p class="lesson-text">$$\log_2 16 = 4, \quad \log_3 81 = 4, \quad \log_7 7 = 1, \quad \log_5 \frac{1}{25} = -2$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting tentang notasi:</strong> Dalam beberapa buku pelajaran (terutama di Indonesia), penulisan seperti $^2\log 8$ berarti logaritma basis 2 dari 8—sama dengan $\log_2 8 = 3$. Notasi ini mudah tertukar dengan $2 \log 8$, yang berarti $2 \times \log 8$ (yaitu 2 kali logaritma basis 10 dari 8). Untuk menghindari ambiguitas, dalam materi ini kita selalu menggunakan notasi $\log_a x$ yang eksplisit.</p>
+ </div>
+
+ <p class="lesson-text">Kedua basis khusus ini—basis 10 dan basis $e$—memiliki notasi tersendiri karena keseringan penggunaannya, mirip dengan bagaimana bilangan $\pi$ dan $e$ memiliki simbol khusus. Namun terlepas dari basisnya, semua logaritma memiliki sifat-sifat dasar yang sama. Sifat-sifat inilah yang akan kita bahas berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Dasar Logaritma</h3>
+ <p class="lesson-text">Sebelum masuk ke sifat-sifat operasi yang lebih rumit, kita mulai dari sifat-sifat dasar yang mengikuti langsung dari definisi. Sifat-sifat ini adalah konsekuensi langsung dari fakta bahwa logaritma adalah invers eksponen.</p>
+
+ <p class="lesson-subheading">A. Sifat Identitas Dasar</p>
+ <p class="lesson-text">Untuk setiap basis $a > 0$, $a \neq 1$, berlaku:</p>
+ <p class="lesson-text">$$\log_a 1 = 0$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena $a^0 = 1$ (sifat eksponen nol). Jika $a^0 = 1$, maka menurut definisi logaritma, $\log_a 1 = 0$.</p>
+ <p class="lesson-text">$$\log_a a = 1$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena $a^1 = a$. Jika $a^1 = a$, maka menurut definisi logaritma, $\log_a a = 1$.</p>
+ <p class="lesson-text">$$\log_a a^n = n$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena $a^n = a^n$—basis dan hasil sudah dalam bentuk yang sama, sehingga eksponennya langsung dapat dibaca sebagai hasil logaritma.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_5 1 = 0, \quad \log_5 5 = 1, \quad \log_5 25 = \log_5 5^2 = 2, \quad \log_5 125 = \log_5 5^3 = 3$$</p>
+
+ <p class="lesson-subheading">B. Sifat Invers</p>
+ <p class="lesson-text">Karena logaritma dan eksponen saling membalik, keduanya dapat saling meniadakan:</p>
+ <p class="lesson-text">$$a^{\log_a x} = x$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Misalkan $\log_a x = m$. Maka menurut definisi, $a^m = x$. Dengan mengganti kembali $m = \log_a x$, kita peroleh $a^{\log_a x} = x$.</p>
+ <p class="lesson-text">$$\log_a a^x = x$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena $a^x = a^x$, maka eksponennya langsung terbaca sebagai hasil logaritma, yaitu $\log_a a^x = x$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2^{\log_2 8} = 8, \quad 5^{\log_5 25} = 25, \quad \log_3 3^5 = 5, \quad \ln e^{2{,}5} = 2{,}5$$</p>
+
+ <p class="lesson-subheading">C. Ringkasan Sifat Dasar</p>
+ <p class="lesson-text">Tabel berikut merangkum sifat-sifat dasar logaritma:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama Sifat</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Logaritma dari 1</td><td>$\log_a 1 = 0$</td></tr>
+    <tr><td>Logaritma dari basis</td><td>$\log_a a = 1$</td></tr>
+    <tr><td>Logaritma dari pangkat basis</td><td>$\log_a a^n = n$</td></tr>
+    <tr><td>Invers (eksponen dari logaritma)</td><td>$a^{\log_a x} = x$</td></tr>
+    <tr><td>Invers (logaritma dari eksponen)</td><td>$\log_a a^x = x$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Sifat-sifat dasar ini terasa sederhana—hampir sepele. Namun mereka adalah <strong>batu bata</strong> untuk membangun sifat-sifat operasi yang jauh lebih kuat, yang memungkinkan kita memanipulasi ekspresi logaritma dengan leluasa.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sifat-Sifat Operasi Logaritma</h3>
+ <p class="lesson-text">Bagian ini adalah inti dari logaritma: sifat-sifat yang memungkinkan kita memanipulasi ekspresi logaritma dengan mengubah operasi yang sulit menjadi lebih sederhana. Semua sifat ini dapat <em>diturunkan</em> dari sifat-sifat eksponen—bukan sekadar hafalan.</p>
+
+ <p class="lesson-subheading">A. Logaritma dari Perkalian</p>
+ <p class="lesson-text">$$\log_a (x \cdot y) = \log_a x + \log_a y$$</p>
+ <p class="lesson-text">Logaritma mengubah <strong>perkalian</strong> menjadi <strong>penjumlahan</strong>.</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Misalkan $\log_a x = m$ dan $\log_a y = n$. Maka $a^m = x$ dan $a^n = y$. Dengan sifat perkalian basis sama pada eksponen:</p>
+ <p class="lesson-text">$$x \cdot y = a^m \cdot a^n = a^{m+n}$$</p>
+ <p class="lesson-text">Menurut definisi logaritma, $\log_a (x \cdot y) = m + n = \log_a x + \log_a y$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_2 (4 \times 8) = \log_2 4 + \log_2 8 = 2 + 3 = 5$$</p>
+ <p class="lesson-text">Verifikasi: $4 \times 8 = 32$, dan $\log_2 32 = 5$. Hasilnya sama.</p>
+
+ <p class="lesson-subheading">B. Logaritma dari Pembagian</p>
+ <p class="lesson-text">$$\log_a \left(\frac{x}{y}\right) = \log_a x - \log_a y$$</p>
+ <p class="lesson-text">Logaritma mengubah <strong>pembagian</strong> menjadi <strong>pengurangan</strong>.</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Dengan notasi yang sama ($\log_a x = m$, $\log_a y = n$), kita punya:</p>
+ <p class="lesson-text">$$\frac{x}{y} = \frac{a^m}{a^n} = a^{m-n}$$</p>
+ <p class="lesson-text">Menurut definisi, $\log_a (x/y) = m - n = \log_a x - \log_a y$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_3 \left(\frac{81}{9}\right) = \log_3 81 - \log_3 9 = 4 - 2 = 2$$</p>
+ <p class="lesson-text">Verifikasi: $\frac{81}{9} = 9$, dan $\log_3 9 = 2$. Hasilnya sama.</p>
+
+ <p class="lesson-subheading">C. Logaritma dari Perpangkatan</p>
+ <p class="lesson-text">$$\log_a (x^n) = n \cdot \log_a x$$</p>
+ <p class="lesson-text">Pangkat pada numerus dapat <strong>dipindahkan</strong> menjadi pengali di depan logaritma.</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Misalkan $\log_a x = m$, maka $x = a^m$. Sehingga:</p>
+ <p class="lesson-text">$$x^n = (a^m)^n = a^{mn}$$</p>
+ <p class="lesson-text">Menurut definisi, $\log_a (x^n) = mn = n \cdot \log_a x$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_2 (8^3) = 3 \cdot \log_2 8 = 3 \cdot 3 = 9$$</p>
+ <p class="lesson-text">Verifikasi: $8^3 = 512$, dan $\log_2 512 = 9$. Hasilnya sama.</p>
+ <p class="lesson-text">Sifat ini sangat berguna—terutama untuk menyelesaikan persamaan eksponensial di mana variabel muncul sebagai pangkat.</p>
+ <div class="lesson-note">
+ <p class="lesson-text"><strong>Catatan penting tentang syarat:</strong> Ketiga sifat di atas—perkalian, pembagian, dan perpangkatan—memiliki syarat tersembunyi yang sering dilupakan.</p>
+ <ul>
+  <li><strong>Perkalian dan pembagian</strong>: $\log_a(xy) = \log_a x + \log_a y$ dan $\log_a(x/y) = \log_a x - \log_a y$ hanya berlaku jika <strong>$x > 0$ dan $y > 0$</strong>. Jika salah satu bernilai negatif atau nol, sisi kanan tidak terdefinisi—meskipun sisi kiri mungkin terdefinisi (misalnya $\log((-2)(-3)) = \log 6$ terdefinisi, tetapi $\log(-2) + \log(-3)$ tidak).</li>
+  <li><strong>Perpangkatan</strong>: $\log_a(x^n) = n\log_a x$ hanya berlaku untuk semua $x$ jika $x > 0$. Jika $x$ bisa negatif, rumus ini tidak berlaku umum. Contoh: $\log((-3)^2) = \log 9$ terdefinisi, tetapi $2\log(-3)$ tidak terdefinisi di bilangan real. Jadi $\log_a(x^n) \neq n\log_a x$ ketika $x < 0$ dan $n$ genap.</li>
+ </ul>
+ <p class="lesson-text">Karena itu, sebelum menerapkan sifat-sifat logaritma, selalu pastikan numerusnya positif. Jika tidak, periksa apakah bentuk aslinya masih bermakna—karena sifat-sifat ini hanya menjamin kesetaraan dalam domain tempat kedua sisi terdefinisi.</p>
+</div>
+ <p class="lesson-subheading">D. Logaritma dari Akar</p>
+ <p class="lesson-text">Karena akar dapat ditulis sebagai pangkat pecahan, sifat ini adalah kasus khusus dari sifat perpangkatan:</p>
+ <p class="lesson-text">$$\log_a \sqrt[n]{x} = \log_a x^{\frac{1}{n}} = \frac{1}{n} \log_a x$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_3 \sqrt{81} = \frac{1}{2} \log_3 81 = \frac{1}{2} \cdot 4 = 2$$</p>
+ <p class="lesson-text">Verifikasi: $\sqrt{81} = 9$, dan $\log_3 9 = 2$. Hasilnya sama.</p>
+
+ <p class="lesson-subheading">E. Perubahan Basis</p>
+ <p class="lesson-text">Untuk mengubah logaritma dari basis $a$ ke basis $c$ (dengan $c > 0$, $c \neq 1$):</p>
+ <p class="lesson-text">$$\log_a b = \frac{\log_c b}{\log_c a}$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Misalkan $\log_a b = x$, maka $a^x = b$. Ambil logaritma basis $c$ pada kedua ruas:</p>
+ <p class="lesson-text">$$\log_c (a^x) = \log_c b \quad \rightarrow \quad x \cdot \log_c a = \log_c b \quad \rightarrow \quad x = \frac{\log_c b}{\log_c a}$$</p>
+ <p class="lesson-text">Karena $x = \log_a b$, terbuktilah rumus perubahan basis.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_2 32 = \frac{\log 32}{\log 2} = \frac{5}{1} = 5$$</p>
+ <p class="lesson-text">atau dengan logaritma natural:</p>
+ <p class="lesson-text">$$\log_2 32 = \frac{\ln 32}{\ln 2} = \frac{5 \ln 2}{\ln 2} = 5$$</p>
+ <p class="lesson-text">Basis baru $c$ dapat dipilih bebas. Dalam praktik, kita sering memilih basis 10 atau $e$ karena kalkulator menyediakan $\log$ dan $\ln$ secara langsung.</p>
+
+ <p class="lesson-subheading">F. Hubungan Timbal Balik</p>
+ <p class="lesson-text">Sebagai kasus khusus dari perubahan basis, jika basis dan numerus ditukar, berlaku:</p>
+ <p class="lesson-text">$$\log_a b = \frac{1}{\log_b a}$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Dengan rumus perubahan basis, ambil basis $c = b$:</p>
+ <p class="lesson-text">$$\log_a b = \frac{\log_b b}{\log_b a} = \frac{1}{\log_b a}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\log_8 2 = \frac{1}{\log_2 8} = \frac{1}{3}$$</p>
+ <p class="lesson-text">Verifikasi: $8^{1/3} = 2$. Benar.</p>
+
+ <p class="lesson-subheading">G. Ringkasan Sifat Operasi</p>
+ <p class="lesson-text">Tabel berikut merangkum seluruh sifat operasi logaritma:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama Sifat</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Logaritma dari perkalian</td><td>$\log_a (xy) = \log_a x + \log_a y$</td></tr>
+    <tr><td>Logaritma dari pembagian</td><td>$\log_a \left(\dfrac{x}{y}\right) = \log_a x - \log_a y$</td></tr>
+    <tr><td>Logaritma dari perpangkatan</td><td>$\log_a (x^n) = n \cdot \log_a x$</td></tr>
+    <tr><td>Logaritma dari akar</td><td>$\log_a \sqrt[n]{x} = \dfrac{1}{n} \log_a x$</td></tr>
+    <tr><td>Perubahan basis</td><td>$\log_a b = \dfrac{\log_c b}{\log_c a}$</td></tr>
+    <tr><td>Hubungan timbal balik</td><td>$\log_a b = \dfrac{1}{\log_b a}$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Keenam sifat di atas adalah <strong>perkakas utama</strong> untuk memanipulasi logaritma. Dengan menguasainya, kita dapat menyederhanakan ekspresi yang tampaknya rumit menjadi bentuk yang jauh lebih sederhana—dan menyelesaikan persamaan yang melibatkan logaritma atau eksponen.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Menyederhanakan Ekspresi dan Menyelesaikan Persamaan</h3>
+ <p class="lesson-text">Setelah memahami sifat-sifatnya, kita dapat menggunakannya untuk dua hal utama: <strong>menyederhanakan ekspresi</strong> yang melibatkan beberapa logaritma, dan <strong>menyelesaikan persamaan</strong> yang melibatkan logaritma atau eksponen.</p>
+
+ <p class="lesson-subheading">A. Menyederhanakan Ekspresi Logaritma</p>
+ <p class="lesson-text">Prinsipnya: gunakan sifat operasi untuk menggabungkan atau memisahkan logaritma hingga diperoleh bentuk paling sederhana.</p>
+
+ <p class="lesson-subheading-alt">Contoh 1: Menggabungkan logaritma</p>
+ <p class="lesson-text">Sederhanakan $\log_2 6 + \log_2 4 - \log_2 3$.</p>
+ <p class="lesson-text">Gunakan sifat perkalian dan pembagian:</p>
+ <p class="lesson-text">$$\log_2 6 + \log_2 4 - \log_2 3 = \log_2 (6 \times 4) - \log_2 3 = \log_2 24 - \log_2 3 = \log_2 \left(\frac{24}{3}\right) = \log_2 8 = 3$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 2: Memisahkan logaritma</p>
+ <p class="lesson-text">Nyatakan $3\log x + \log y - 2\log z$ sebagai satu logaritma.</p>
+ <p class="lesson-text">Gunakan sifat perpangkatan untuk memindahkan koefisien menjadi pangkat:</p>
+ <p class="lesson-text">$$3\log x + \log y - 2\log z = \log x^3 + \log y - \log z^2$$</p>
+ <p class="lesson-text">Lalu gabungkan dengan sifat perkalian dan pembagian:</p>
+ <p class="lesson-text">$$= \log \left(\frac{x^3 \cdot y}{z^2}\right)$$</p>
+
+ <p class="lesson-subheading">B. Menyelesaikan Persamaan Eksponensial</p>
+ <p class="lesson-text">Logaritma digunakan untuk mencari pangkat yang tidak diketahui—yaitu ketika variabel muncul di posisi eksponen.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Selesaikan $2^x = 10$.</p>
+ <p class="lesson-text">Ambil logaritma (basis 10) pada kedua ruas:</p>
+ <p class="lesson-text">$$\log 2^x = \log 10$$</p>
+ <p class="lesson-text">Gunakan sifat perpangkatan pada ruas kiri, dan fakta bahwa $\log 10 = 1$:</p>
+ <p class="lesson-text">$$x \log 2 = 1 \quad \rightarrow \quad x = \frac{1}{\log 2} \approx \frac{1}{0{,}3010} \approx 3{,}3219$$</p>
+ <p class="lesson-text">Perhatikan bahwa kita dapat menggunakan basis logaritma apa pun—basis 10 maupun basis $e$—dan hasilnya tetap sama. Mengapa? Karena untuk basis apa pun $c$, berlaku $x = \frac{\log_c 10}{\log_c 2}$, yang menurut rumus perubahan basis sama saja dengan $\log_2 10$—suatu nilai yang tetap.</p>
+
+ <p class="lesson-subheading">C. Menyelesaikan Persamaan Logaritma</p>
+ <p class="lesson-text">Untuk menyelesaikan persamaan logaritma, ubah ke bentuk eksponensial atau gunakan sifat kesamaan logaritma.</p>
+ <p class="lesson-subheading-alt">Contoh 1: Ubah ke bentuk eksponensial</p>
+ <p class="lesson-text">Selesaikan $\log_3 (x + 1) = 2$.</p>
+ <p class="lesson-text">Ubah ke bentuk eksponensial menggunakan definisi:</p>
+ <p class="lesson-text">$$3^2 = x + 1 \quad \rightarrow \quad 9 = x + 1 \quad \rightarrow \quad x = 8$$</p>
+ <p class="lesson-text">Periksa syarat: numerus harus positif, yaitu $x + 1 > 0 \Rightarrow x > -1$. Karena $x = 8 > -1$, solusi ini valid.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2: Menggunakan sifat kesamaan</p>
+ <p class="lesson-text">Selesaikan $\log_2 (x + 3) = \log_2 (2x - 1)$.</p>
+ <p class="lesson-text">Karena basisnya sama, kita dapat menyamakan numerusnya:</p>
+ <p class="lesson-text">$$x + 3 = 2x - 1 \quad \rightarrow \quad x = 4$$</p>
+ <p class="lesson-text">Periksa syarat: $x + 3 > 0$ dan $2x - 1 > 0$. Untuk $x = 4$, keduanya positif. Solusi valid.</p>
+
+ <p class="lesson-text">Dua langkah kunci dalam menyelesaikan persamaan logaritma adalah: <strong>(i) menyederhanakan dengan sifat-sifat logaritma</strong>, lalu <strong>(ii) mengubah ke bentuk eksponensial atau menyamakan numerus</strong>. Jangan lupa <em>selalu memeriksa syarat numerus</em> setelah memperoleh solusi. Mari kita terapkan seluruh sifat dan langkah ini pada tujuh soal yang menggabungkan berbagai aspek logaritma.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan definisi, sifat-sifat dasar, sifat operasi, perubahan basis, dan penyelesaian persamaan logaritma. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri alasan setiap langkah, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Konversi Eksponen ↔ Logaritma</p>
+ <p class="lesson-text">Ubah $3^4 = 81$ ke bentuk logaritma, dan $\log_5 125 = 3$ ke bentuk eksponensial.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Dari $3^4 = 81$: menurut definisi $\log_a c = b \leftrightarrow a^b = c$, diperoleh:<br>$\log_3 81 = 4$</li>
+  <li>Dari $\log_5 125 = 3$: menurut definisi yang sama, diperoleh:<br>$5^3 = 125$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $5^3 = 125$ memang benar, sehingga bentuk logaritma dan eksponensial di atas konsisten.</p>
+ 
+ <p class="lesson-subheading">Soal 2: Sifat Identitas Dasar</p>
+ <p class="lesson-text">Hitung: $\log_4 1 + \log_4 4 + \log_4 64$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Logaritma dari 1</strong>:<br>$\log_4 1 = 0$</li>
+  <li><strong>Logaritma dari basis</strong>:<br>$\log_4 4 = 1$</li>
+  <li><strong>Logaritma dari pangkat basis</strong> — tulis 64 sebagai $4^3$:<br>$\log_4 64 = \log_4 4^3 = 3$</li>
+  <li>Jumlahkan:<br>$0 + 1 + 3 = 4$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Sifat Perkalian dan Pembagian</p>
+ <p class="lesson-text">Sederhanakan: $\log_3 6 + \log_3 18 - \log_3 4$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Sifat perkalian</strong> — gabungkan dua logaritma pertama:<br>$\log_3 6 + \log_3 18 = \log_3 (6 \times 18) = \log_3 108$</li>
+  <li><strong>Sifat pembagian</strong> — kurangkan dengan logaritma ketiga:<br>$\log_3 108 - \log_3 4 = \log_3 \left(\dfrac{108}{4}\right) = \log_3 27$</li>
+  <li>Sederhanakan — tulis 27 sebagai $3^3$:<br>$\log_3 27 = \log_3 3^3 = 3$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Sifat Perpangkatan</p>
+ <p class="lesson-text">Sederhanakan: $2 \log_3 6 - \log_3 4$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Sifat perpangkatan dari kanan ke kiri</strong> — ubah koefisien 2 menjadi pangkat:<br>$2 \log_3 6 = \log_3 6^2 = \log_3 36$</li>
+  <li><strong>Sifat pembagian</strong> — kurangkan dengan logaritma berikutnya:<br>$\log_3 36 - \log_3 4 = \log_3 \left(\dfrac{36}{4}\right) = \log_3 9$</li>
+  <li>Sederhanakan — tulis 9 sebagai $3^2$:<br>$\log_3 9 = 2$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Sifat Akar</p>
+ <p class="lesson-text">Sederhanakan: $\log_2 8 + \dfrac{1}{2} \log_2 16 - \log_2 4$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Logaritma dari pangkat basis</strong>:<br>$\log_2 8 = \log_2 2^3 = 3$</li>
+  <li><strong>Sifat akar</strong> — koefisien $\frac{1}{2}$ setara dengan akar kuadrat:<br>$\dfrac{1}{2} \log_2 16 = \log_2 16^{\frac{1}{2}} = \log_2 4 = 2$</li>
+  <li><strong>Logaritma dari pangkat basis</strong>:<br>$\log_2 4 = \log_2 2^2 = 2$</li>
+  <li>Hitung:<br>$3 + 2 - 2 = 3$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 6: Perubahan Basis</p>
+ <p class="lesson-text">Hitung: $\log_4 32$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Basis 4 dan numerus 32 sama-sama dapat dinyatakan sebagai pangkat 2. Gunakan <strong>perubahan basis</strong> ke basis 2:<br>$\log_4 32 = \dfrac{\log_2 32}{\log_2 4}$</li>
+  <li>Hitung masing-masing:<br>$\log_2 32 = 5$ (karena $2^5 = 32$) dan $\log_2 4 = 2$ (karena $2^2 = 4$)</li>
+  <li>Selesaikan:<br>$\log_4 32 = \dfrac{5}{2} = 2{,}5$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $4^{2{,}5} = 4^2 \times 4^{0{,}5} = 16 \times 2 = 32$. Benar.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Persamaan Logaritma</p>
+ <p class="lesson-text">Selesaikan: $\log_3 (2x - 1) = 2$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Ubah ke bentuk eksponensial menggunakan definisi $\log_a c = b \leftrightarrow a^b = c$:<br>$3^2 = 2x - 1 \Rightarrow 9 = 2x - 1$</li>
+  <li>Selesaikan persamaan linear:<br>$2x = 10 \Rightarrow x = 5$</li>
+  <li><strong>Periksa syarat numerus</strong> — harus $2x - 1 > 0$, yaitu $x > \frac{1}{2}$. Karena $x = 5 > \frac{1}{2}$, solusi ini valid.</li>
+ </ol>
+ <p class="lesson-text">Perhatikan langkah ketiga: memeriksa syarat numerus bukan formalitas. Kalau solusi aljabar yang diperoleh menghasilkan numerus negatif atau nol, solusi itu <em>harus dibuang</em>—meskipun tampak memenuhi persamaan awal.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap logaritma dari penjumlahan dapat dipisah.</strong> $\log_a (x + y) \neq \log_a x + \log_a y$. Sifat penjumlahan hanya berlaku untuk logaritma dari <em>perkalian</em>, bukan penjumlahan di dalam numerus.</li>
+  <li><strong>Menganggap logaritma dari pembagian dapat dipisah sebagai pembagian.</strong> $\log_a \left(\dfrac{x}{y}\right) \neq \dfrac{\log_a x}{\log_a y}$. Yang benar: $\log_a (x/y) = \log_a x - \log_a y$.</li>
+  <li><strong>Menganggap logaritma dari perkalian sebagai perkalian logaritma.</strong> $\log_a (xy) \neq \log_a x \cdot \log_a y$. Perkalian terjadi di dalam <em>numerus</em>, bukan di antara dua logaritma.</li>
+  <li><strong>Menganggap logaritma dari akar sebagai akar logaritma.</strong> $\log_a \sqrt{x} \neq \sqrt{\log_a x}$. Yang benar: $\log_a \sqrt{x} = \frac{1}{2} \log_a x$. Sifat akar mengubah akar menjadi <em>pengali</em>—bukan sebaliknya.</li>
+  <li><strong>Salah menafsirkan logaritma dari pangkat.</strong> $\log_a (x^n) \neq (\log_a x)^n$. Yang benar: $\log_a (x^n) = n \cdot \log_a x$. Eksponen dipindahkan sebagai <em>faktor pengali</em>, bukan diterapkan pada hasil logaritma.</li>
+  <li><strong>Melupakan syarat basis dan numerus.</strong> $\log_a 0$ dan $\log_a (-5)$ tidak terdefinisi untuk $a > 0$. Demikian pula $\log_1 x$ dan $\log_{-2} x$ tidak terdefinisi. Selalu periksa syarat $a > 0$, $a \neq 1$, dan numerus $> 0$.</li>
+  <li><strong>Menganggap $\log_a 1 = a$ atau $\log_a 1 = 1$.</strong> Yang benar: $\log_a 1 = 0$, karena $a^0 = 1$ untuk setiap $a \neq 0$.</li>
+  <li><strong>Tertukar antara basis dan numerus pada rumus perubahan basis.</strong> Rumus yang benar: $\log_a b = \dfrac{\log_c b}{\log_c a}$—basis <em>lama</em> ($a$) menjadi <em>penyebut</em>. Kesalahan umum adalah menuliskan $\log_a b = \dfrac{\log_c a}{\log_c b}$.</li>
+  <li><strong>Mengabaikan pemeriksaan solusi pada persamaan logaritma.</strong> Setelah memperoleh nilai $x$, selalu periksa apakah $x$ memenuhi syarat numerus $> 0$. Ada kalanya solusi aljabar yang diperoleh <em>tidak valid</em> karena melanggar syarat ini.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti logaritma yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Definisi logaritma</strong>: $\log_a c = b \leftrightarrow a^b = c$, dengan $a > 0$, $a \neq 1$, dan $c > 0$.</li>
+  <li><strong>Logaritma adalah invers eksponen</strong>: $a^{\log_a x} = x$ dan $\log_a a^x = x$.</li>
+  <li><strong>Sifat dasar</strong>: $\log_a 1 = 0$, $\log_a a = 1$, dan $\log_a a^n = n$.</li>
+  <li><strong>Sifat perkalian</strong>: $\log_a (xy) = \log_a x + \log_a y$—perkalian menjadi penjumlahan.</li>
+  <li><strong>Sifat pembagian</strong>: $\log_a (x/y) = \log_a x - \log_a y$—pembagian menjadi pengurangan.</li>
+  <li><strong>Sifat perpangkatan</strong>: $\log_a (x^n) = n \cdot \log_a x$—pangkat menjadi pengali.</li>
+  <li><strong>Sifat akar</strong>: $\log_a \sqrt[n]{x} = \frac{1}{n} \log_a x$.</li>
+  <li><strong>Perubahan basis</strong>: $\log_a b = \dfrac{\log_c b}{\log_c a}$, dengan $c$ dapat dipilih bebas.</li>
+  <li><strong>Hubungan timbal balik</strong>: $\log_a b = \dfrac{1}{\log_b a}$.</li>
+  <li><strong>Bentuk khusus</strong>: $\log_{10} x = \log x$ (logaritma biasa) dan $\log_e x = \ln x$ (logaritma natural).</li>
+  <li><strong>Persamaan logaritma</strong>: selesaikan dengan menyederhanakan, mengubah ke bentuk eksponensial, atau menyamakan numerus; <em>selalu</em> periksa syarat numerus setelah memperoleh solusi.</li>
+  <li>Logaritma digunakan untuk menyederhanakan ekspresi, menyelesaikan persamaan eksponensial, dan memodelkan fenomena berskala besar seperti gempa, bunyi, pH, dan peluruhan radioaktif.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Logaritma adalah alat yang sangat kuat karena kemampuannya <strong>mengubah operasi yang sulit menjadi lebih sederhana</strong>: perkalian menjadi penjumlahan, pembagian menjadi pengurangan, dan perpangkatan menjadi perkalian. Kemampuan ini bukan sekadar trik komputasi—ia memungkinkan kita memodelkan dan menganalisis fenomena yang tumbuh atau menyusut secara eksponensial, dari gempa bumi hingga peluruhan radioaktif.</p>
+ <p class="lesson-text">Yang membuat logaritma mudah dipahami adalah bahwa ia bukan konsep yang berdiri sendiri. Ia adalah <strong>invers dari eksponen</strong>—sehingga seluruh sifat logaritma dapat diturunkan dari sifat-sifat eksponen yang sudah Anda kuasai. Jika Anda merasa ada bagian yang membingungkan dalam materi ini, kemungkinan besar akarnya adalah pemahaman eksponen yang belum kuat. Kembali ke materi eksponen akan sangat membantu.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk banyak topik lanjutan: <strong>Fungsi Eksponensial dan Logaritmik</strong> (yang menyatukan eksponen dan logaritma dalam satu kerangka fungsi), <strong>Deret</strong> (uji konvergensi sering menggunakan logaritma), <strong>Kalkulus</strong> (turunan dan integral $\ln x$ sangat fundamental), <strong>Analisis Kompleks</strong> (logaritma kompleks memerlukan pemahaman mendalam tentang fungsi ini), <strong>Statistika</strong> (transformasi logaritmik untuk data eksponensial), <strong>Matematika Keuangan</strong> (bunga majemuk dan waktu investasi), dan <strong>Teori Informasi</strong> (entropi didefinisikan dengan logaritma). Latihlah diri Anda dengan banyak soal—terutama yang melibatkan penyederhanaan ekspresi, perubahan basis, dan penyelesaian persamaan. Kebiasaan memeriksa syarat akan menyelamatkan Anda dari kesalahan yang sering terjadi—bahkan pada tingkat matematika yang lebih tinggi.</p>
+</div>
+
+</div>
+</body>
+</html>

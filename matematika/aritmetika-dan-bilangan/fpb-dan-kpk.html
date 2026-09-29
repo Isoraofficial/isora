@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>FPB &amp; KPK (Faktor Persekutuan Terbesar dan Kelipatan Persekutuan Terkecil)</title>
+ <meta name="description" content="FPB dan KPK: definisi, cara menentukan dengan daftar faktor, faktorisasi prima, dan algoritma Euclid, hubungan FPB × KPK, serta penerapannya.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">FPB &amp; KPK (Faktor Persekutuan Terbesar dan Kelipatan Persekutuan Terkecil)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Keterbagian</strong> — terutama definisi pembagi, faktor, kelipatan, dan notasi $a \mid b$, karena FPB bekerja dengan konsep pembagi bersama dan KPK dengan konsep kelipatan bersama.</li>
+   <li><strong>Faktorisasi Prima</strong> — karena metode paling efisien untuk menentukan FPB dan KPK adalah melalui faktorisasi prima—tanpa ini, kita akan kesulitan menangani bilangan besar.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam berbagai persoalan matematika, kita sering dihadapkan pada dua bilangan atau lebih yang perlu dibandingkan berdasarkan faktor atau kelipatannya. Dua konsep yang sangat penting dalam hal ini adalah <strong>Faktor Persekutuan Terbesar (FPB)</strong> dan <strong>Kelipatan Persekutuan Terkecil (KPK)</strong>. Keduanya bertumpu pada konsep keterbagian—tetapi dari dua sudut pandang yang berlawanan.</p>
+ <p class="lesson-text">FPB digunakan untuk mencari bilangan <em>terbesar</em> yang dapat membagi habis dua bilangan atau lebih, sedangkan KPK digunakan untuk mencari bilangan <em>terkecil</em> yang merupakan kelipatan bersama. Jika FPB bekerja dengan "memperkecil" dua bilangan menjadi pembagi bersamanya, KPK bekerja dengan "memperbesar" mereka menjadi kelipatan bersamanya. Yang membuat keduanya penting adalah penerapannya yang sangat luas: FPB digunakan untuk menyederhanakan pecahan, membagi kelompok dengan ukuran sama, dan mendistribusikan sumber daya secara merata; KPK digunakan untuk menyamakan penyebut pecahan, menentukan jadwal pertemuan berkala, dan memprediksi kapan dua peristiwa berulang akan terjadi bersamaan.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>definisi FPB dan cara menentukannya</strong> (tiga metode—daftar faktor, faktorisasi prima, dan algoritma Euclid), <strong>KPK dengan dua metode</strong>, <strong>hubungan penting antara keduanya</strong>, <strong>perluasan ke tiga bilangan atau lebih</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap metode akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya langkah-langkahnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Faktor Persekutuan Terbesar (FPB)</h3>
+ <p class="lesson-text">Kita mulai dari FPB—konsep "pembagi bersama terbesar" dari dua bilangan atau lebih.</p>
+
+ <p class="lesson-subheading">A. Definisi FPB</p>
+ <p class="lesson-text"><strong>Faktor persekutuan</strong> dari dua bilangan atau lebih adalah bilangan yang menjadi faktor (pembagi) dari semua bilangan tersebut. <strong>Faktor Persekutuan Terbesar (FPB)</strong> adalah faktor persekutuan yang nilainya paling besar.</p>
+ <p class="lesson-text">Secara formal, FPB dari bilangan $a$ dan $b$ dinotasikan sebagai:</p>
+ <p class="lesson-text">$$\text{FPB}(a, b) \quad \text{atau} \quad \gcd(a, b)$$</p>
+ <p class="lesson-text">(dari <em>greatest common divisor</em>).</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Faktor dari 12: $1, 2, 3, 4, 6, 12$.</p>
+ <p class="lesson-text">Faktor dari 18: $1, 2, 3, 6, 9, 18$.</p>
+ <p class="lesson-text">Faktor persekutuan: $1, 2, 3, 6$.</p>
+ <p class="lesson-text">Maka FPB dari 12 dan 18 adalah <strong>6</strong>.</p>
+
+ <p class="lesson-subheading">B. Metode 1: Daftar Faktor</p>
+ <p class="lesson-text">Metode paling langsung—tetapi hanya efisien untuk bilangan kecil.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Tuliskan semua faktor dari masing-masing bilangan.</li>
+  <li>Tandai faktor-faktor yang sama (faktor persekutuan).</li>
+  <li>Pilih faktor persekutuan yang terbesar.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh: FPB dari 24 dan 36.</p>
+ <p class="lesson-text">Faktor dari 24: $1, 2, 3, 4, 6, 8, 12, 24$.</p>
+ <p class="lesson-text">Faktor dari 36: $1, 2, 3, 4, 6, 9, 12, 18, 36$.</p>
+ <p class="lesson-text">Faktor persekutuan: $1, 2, 3, 4, 6, 12$.</p>
+ <p class="lesson-text">FPB $= 12$.</p>
+
+ <p class="lesson-subheading">C. Metode 2: Faktorisasi Prima</p>
+ <p class="lesson-text">Metode paling sistematis—dan paling sering digunakan untuk bilangan besar.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Uraikan setiap bilangan menjadi perkalian faktor-faktor prima.</li>
+  <li>Ambil faktor prima yang <strong>bersekutu</strong> (muncul di semua bilangan).</li>
+  <li>Kalikan faktor-faktor tersebut dengan <strong>pangkat terkecil</strong> yang muncul.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Mengapa pangkat terkecil?</p>
+ <p class="lesson-text">Karena FPB harus membagi <em>semua</em> bilangan. Jika salah satu bilangan hanya memiliki $2^3$ sementara yang lain memiliki $2^4$, maka FPB hanya dapat memuat $2^3$—supaya tetap membagi bilangan yang lebih kecil pangkatnya.</p>
+ <p class="lesson-subheading-alt">Contoh: FPB dari 48 dan 72.</p>
+ <p class="lesson-text">$$48 = 2^4 \times 3$$ $$72 = 2^3 \times 3^2$$</p>
+ <p class="lesson-text">Faktor prima yang bersekutu: 2 dan 3. Pangkat terkecil: $2^3$ dan $3^1$. Jadi:</p>
+ <p class="lesson-text">$$\text{FPB} = 2^3 \times 3 = 8 \times 3 = 24$$</p>
+
+ <p class="lesson-subheading">D. Metode 3: Algoritma Euclid</p>
+ <p class="lesson-text">Algoritma Euclid adalah cara paling efisien untuk mencari FPB dua bilangan—terutama ketika bilangannya sangat besar. Metode ini menggunakan <strong>pembagian berulang</strong>.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Bagi bilangan yang lebih besar dengan bilangan yang lebih kecil—catat sisanya.</li>
+  <li>Ganti bilangan yang lebih besar dengan bilangan yang lebih kecil, dan bilangan yang lebih kecil dengan sisa pembagian.</li>
+  <li>Ulangi sampai sisa pembagian menjadi 0.</li>
+  <li>Pembagi terakhir yang bukan nol adalah FPB.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Mengapa algoritma ini bekerja?</p>
+ <p class="lesson-text">Algoritma ini bertumpu pada satu sifat kunci: jika $a = bq + r$, maka $\gcd(a, b) = \gcd(b, r)$. Artinya, setiap kali kita mengganti pasangan bilangan dengan pasangan (pembagi, sisa), FPB-nya tidak berubah. Karena sisa terus mengecil hingga akhirnya 0, kita memperoleh FPB pada langkah terakhir.</p>
+ <p class="lesson-subheading-alt">Contoh: FPB dari 48 dan 36.</p>
+ <p class="lesson-text">$$48 \div 36 = 1 \text{ sisa } 12$$ $$36 \div 12 = 3 \text{ sisa } 0$$</p>
+ <p class="lesson-text">Sisa 0 diperoleh, maka pembagi terakhir—yaitu 12—adalah FPB.</p>
+ <p class="lesson-text">Jadi $\text{FPB}(48, 36) = 12$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Algoritma Euclid jauh lebih cepat daripada daftar faktor maupun faktorisasi prima—terutama untuk bilangan dengan ratusan digit. Inilah algoritma yang digunakan oleh kalkulator dan komputer saat menghitung FPB. Faktorisasi prima sendiri tidak efisien untuk bilangan besar—justru kesulitan inilah yang menjadi dasar keamanan kriptografi RSA.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami FPB sebagai "pembagi bersama terbesar", kita beralih ke konsep kembarannya—yaitu "kelipatan bersama terkecil" dari dua bilangan atau lebih.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Kelipatan Persekutuan Terkecil (KPK)</h3>
+ <p class="lesson-text">Setelah memahami FPB, kita beralih ke KPK—konsep "kelipatan bersama terkecil" dari dua bilangan atau lebih.</p>
+
+ <p class="lesson-subheading">A. Definisi KPK</p>
+ <p class="lesson-text"><strong>Kelipatan persekutuan</strong> dari dua bilangan atau lebih adalah bilangan yang merupakan kelipatan dari semua bilangan tersebut. <strong>Kelipatan Persekutuan Terkecil (KPK)</strong> adalah kelipatan persekutuan yang nilainya paling kecil dan positif.</p>
+ <p class="lesson-text">Secara formal, KPK dari bilangan $a$ dan $b$ dinotasikan sebagai:</p>
+ <p class="lesson-text">$$\text{KPK}(a, b) \quad \text{atau} \quad \text{lcm}(a, b)$$</p>
+ <p class="lesson-text">(dari <em>least common multiple</em>).</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Kelipatan dari 4: $4, 8, 12, 16, 20, 24, \dots$</p>
+ <p class="lesson-text">Kelipatan dari 6: $6, 12, 18, 24, 30, 36, \dots$</p>
+ <p class="lesson-text">Kelipatan persekutuan: $12, 24, 36, \dots$</p>
+ <p class="lesson-text">KPK dari 4 dan 6 adalah $12$.</p>
+
+ <p class="lesson-subheading">B. Metode 1: Daftar Kelipatan</p>
+ <p class="lesson-text">Metode paling langsung—cocok untuk bilangan kecil.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Tuliskan kelipatan dari masing-masing bilangan.</li>
+  <li>Tandai kelipatan yang sama (kelipatan persekutuan).</li>
+  <li>Pilih kelipatan persekutuan yang terkecil.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh: KPK dari 8 dan 12.</p>
+ <p class="lesson-text">Kelipatan 8: $8, 16, 24, 32, 40, 48, \dots$</p>
+ <p class="lesson-text">Kelipatan 12: $12, 24, 36, 48, \dots$</p>
+ <p class="lesson-text">Kelipatan persekutuan: $24, 48, \dots$</p>
+ <p class="lesson-text">KPK $= 24$.</p>
+
+ <p class="lesson-subheading">C. Metode 2: Faktorisasi Prima</p>
+ <p class="lesson-text">Metode paling sistematis—dan paling banyak digunakan.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Uraikan setiap bilangan menjadi perkalian faktor-faktor prima.</li>
+  <li>Ambil <strong>semua</strong> faktor prima yang muncul (dari bilangan mana pun).</li>
+  <li>Kalikan faktor-faktor tersebut dengan <strong>pangkat terbesar</strong> yang muncul.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Mengapa pangkat terbesar?</p>
+ <p class="lesson-text">Karena KPK harus merupakan kelipatan dari <em>semua</em> bilangan. Jika salah satu bilangan memiliki $2^3$ sementara yang lain hanya memiliki $2^2$, maka KPK harus memuat $2^3$—supaya dapat dibagi oleh bilangan yang memuat pangkat $2^3$.</p>
+ <p class="lesson-subheading-alt">Contoh: KPK dari 18 dan 60.</p>
+ <p class="lesson-text">$$18 = 2 \times 3^2$$ $$60 = 2^2 \times 3 \times 5$$</p>
+ <p class="lesson-text">Faktor prima yang muncul: 2, 3, 5. Pangkat terbesar: $2^2, 3^2, 5^1$. Jadi:</p>
+ <p class="lesson-text">$$\text{KPK} = 2^2 \times 3^2 \times 5 = 4 \times 9 \times 5 = 180$$</p>
+
+ <p class="lesson-subheading">D. Perbandingan Metode FPB vs KPK</p>
+ <p class="lesson-text">Tabel berikut merangkum perbedaan utama antara FPB dan KPK:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>FPB</th>
+     <th>KPK</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Faktor yang diambil</td><td>Hanya yang bersekutu</td><td>Semua yang muncul</td></tr>
+    <tr><td>Pangkat yang dipilih</td><td>Terkecil</td><td>Terbesar</td></tr>
+    <tr><td>Kata kunci</td><td>"Pembagi bersama"</td><td>"Kelipatan bersama"</td></tr>
+    <tr><td>Ukuran hasil</td><td>$\leq$ bilangan terkecil</td><td>$\geq$ bilangan terbesar</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">FPB dan KPK bukan dua konsep yang berdiri sendiri—mereka memiliki hubungan matematis yang sangat erat, dan hubungan inilah yang akan kita bahas berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Hubungan FPB dan KPK</h3>
+ <p class="lesson-text">Antara FPB dan KPK dari dua bilangan $a$ dan $b$ terdapat hubungan penting yang memungkinkan kita menghitung salah satunya jika yang lain sudah diketahui:</p>
+ <p class="lesson-text">$$\text{FPB}(a, b) \times \text{KPK}(a, b) = a \times b$$</p>
+
+ <p class="lesson-subheading-alt">Mengapa hubungan ini berlaku?</p>
+ <p class="lesson-text">Jika $a = p_1^{e_1} \times p_2^{e_2} \times \cdots$ dan $b = p_1^{f_1} \times p_2^{f_2} \times \cdots$, maka:</p>
+ <ul>
+  <li>FPB memuat setiap prima dengan pangkat $\min(e_i, f_i)$.</li>
+  <li>KPK memuat setiap prima dengan pangkat $\max(e_i, f_i)$.</li>
+ </ul>
+ <p class="lesson-text">Karena $\min(e_i, f_i) + \max(e_i, f_i) = e_i + f_i$, maka hasil kali FPB dan KPK akan memuat setiap prima dengan pangkat $e_i + f_i$—yang persis sama dengan hasil kali $a \times b$.</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Diketahui $\text{FPB}(12, 18) = 6$. Tentukan $\text{KPK}(12, 18)$.</p>
+ <p class="lesson-text">Gunakan hubungan di atas:</p>
+ <p class="lesson-text">$$6 \times \text{KPK} = 12 \times 18$$ $$6 \times \text{KPK} = 216$$ $$\text{KPK} = 36$$</p>
+ <p class="lesson-text">Jadi $\text{KPK}(12, 18) = 36$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Hubungan $\text{FPB}(a, b) \times \text{KPK}(a, b) = a \times b$ hanya berlaku untuk <em>dua bilangan</em>. Untuk tiga bilangan atau lebih, hubungan serupa <em>tidak berlaku</em>. Misalnya, untuk $a = 2$, $b = 4$, $c = 8$: $\text{FPB} = 2$ dan $\text{KPK} = 8$, sehingga $\text{FPB} \times \text{KPK} = 16$, sedangkan $a \times b \times c = 64$. Keduanya berbeda.</p>
+ </div>
+
+ <p class="lesson-text">Sekarang kita sudah memahami FPB, KPK, dan hubungan keduanya. Namun hingga saat ini, kita baru membahas kasus dua bilangan. Bagaimana jika ada tiga bilangan atau lebih?</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. FPB dan KPK untuk Tiga Bilangan atau Lebih</h3>
+ <p class="lesson-text">Untuk menentukan FPB dan KPK dari tiga bilangan atau lebih, prinsipnya sama—hanya jumlah bilangan yang diperiksa bertambah.</p>
+
+ <p class="lesson-subheading">A. Contoh FPB dari Tiga Bilangan</p>
+ <p class="lesson-text">Tentukan FPB dari 24, 36, dan 60.</p>
+ <p class="lesson-text">$$24 = 2^3 \times 3$$ $$36 = 2^2 \times 3^2$$ $$60 = 2^2 \times 3 \times 5$$</p>
+ <p class="lesson-text">Faktor prima yang bersekutu di <em>ketiganya</em>: 2 dan 3. Pangkat terkecil: $2^2$ dan $3^1$. Jadi:</p>
+ <p class="lesson-text">$$\text{FPB} = 2^2 \times 3 = 12$$</p>
+
+ <p class="lesson-subheading">B. Contoh KPK dari Tiga Bilangan</p>
+ <p class="lesson-text">Tentukan KPK dari 8, 12, dan 20.</p>
+ <p class="lesson-text">$$8 = 2^3$$ $$12 = 2^2 \times 3$$ $$20 = 2^2 \times 5$$</p>
+ <p class="lesson-text">Semua faktor prima yang muncul: 2, 3, 5. Pangkat terbesar: $2^3, 3^1, 5^1$. Jadi:</p>
+ <p class="lesson-text">$$\text{KPK} = 2^3 \times 3 \times 5 = 120$$</p>
+
+ <p class="lesson-text">Dengan memahami perluasan ini, kita dapat menerapkan FPB dan KPK pada berbagai situasi—termasuk yang melibatkan lebih dari dua bilangan sekaligus. Mari kita terapkan seluruh konsep ini—FPB, KPK, algoritma Euclid, hubungan keduanya, dan perluasan ke tiga bilangan—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan FPB, KPK, algoritma Euclid, dan hubungan keduanya. Setiap langkah dituliskan lengkap, dan metode yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: FPB dengan Faktorisasi Prima</p>
+ <p class="lesson-text">Tentukan $\text{FPB}(168, 252)$ menggunakan faktorisasi prima.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Faktorkan setiap bilangan:
+   <ul>
+    <li>$168 = 2^3 \times 3 \times 7$</li>
+    <li>$252 = 2^2 \times 3^2 \times 7$</li>
+   </ul>
+  </li>
+  <li><strong>FPB</strong> — ambil faktor prima yang <strong>bersekutu</strong> dengan <strong>pangkat terkecil</strong>:
+   <ul>
+    <li>Faktor 2: pangkat terkecil adalah $2^2$</li>
+    <li>Faktor 3: pangkat terkecil adalah $3^1$</li>
+    <li>Faktor 7: pangkat terkecil adalah $7^1$</li>
+   </ul>
+  </li>
+  <li>Hitung:<br>$\text{FPB} = 2^2 \times 3 \times 7 = 4 \times 21 = 84$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $168 \div 84 = 2$ ✓ dan $252 \div 84 = 3$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 2: FPB dengan Algoritma Euclid</p>
+ <p class="lesson-text">Tentukan $\text{FPB}(1.078, 462)$ menggunakan algoritma Euclid.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Bagi bilangan yang lebih besar dengan yang lebih kecil, catat sisanya:<br>$1.078 \div 462 = 2$ sisa $154$ (periksa: $462 \times 2 = 924$, $1.078 - 924 = 154$)</li>
+  <li>Ganti pasangan: bagi 462 dengan 154:<br>$462 \div 154 = 3$ sisa $0$</li>
+  <li>Sisa sudah 0. FPB adalah pembagi terakhir yang bukan nol, yaitu 154.</li>
+ </ol>
+ <p class="lesson-text">Jadi $\text{FPB}(1.078, 462) = 154$. Verifikasi: $1.078 \div 154 = 7$ ✓ dan $462 \div 154 = 3$ ✓.</p>
+ <p class="lesson-text">Perhatikan: algoritma Euclid hanya memerlukan 2 langkah, sedangkan faktorisasi prima untuk bilangan seperti $1.078 = 2 \times 7^2 \times 11$ dan $462 = 2 \times 3 \times 7 \times 11$ akan memerlukan lebih banyak usaha. Untuk bilangan besar, algoritma Euclid jauh lebih efisien.</p>
+ 
+ <p class="lesson-subheading">Soal 3: KPK dengan Faktorisasi Prima</p>
+ <p class="lesson-text">Tentukan $\text{KPK}(90, 168, 210)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Faktorkan setiap bilangan:
+   <ul>
+    <li>$90 = 2 \times 3^2 \times 5$</li>
+    <li>$168 = 2^3 \times 3 \times 7$</li>
+    <li>$210 = 2 \times 3 \times 5 \times 7$</li>
+   </ul>
+  </li>
+  <li><strong>KPK</strong> — ambil <strong>semua</strong> faktor prima yang muncul dengan <strong>pangkat terbesar</strong>:
+   <ul>
+    <li>Faktor 2: pangkat terbesar $2^3$</li>
+    <li>Faktor 3: pangkat terbesar $3^2$</li>
+    <li>Faktor 5: pangkat terbesar $5^1$</li>
+    <li>Faktor 7: pangkat terbesar $7^1$</li>
+   </ul>
+  </li>
+  <li>Hitung:<br>$\text{KPK} = 2^3 \times 3^2 \times 5 \times 7 = 8 \times 9 \times 35 = 2.520$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $2.520 \div 90 = 28$ ✓, $2.520 \div 168 = 15$ ✓, $2.520 \div 210 = 12$ ✓.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Hubungan FPB × KPK</p>
+ <p class="lesson-text">Diketahui $\text{KPK}(a, b) = 1.260$ dan $a \times b = 37.800$. Tentukan $\text{FPB}(a, b)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Gunakan hubungan $\text{FPB}(a, b) \times \text{KPK}(a, b) = a \times b$:
+   <p class="lesson-text">$$\text{FPB} \times 1.260 = 37.800$$</p>
+  </li>
+  <li>Selesaikan:<br>$\text{FPB} = \dfrac{37.800}{1.260} = 30$</li>
+ </ol>
+ <p class="lesson-text">Jadi $\text{FPB}(a, b) = 30$. Perhatikan: hubungan ini <em>hanya berlaku untuk dua bilangan</em>—untuk tiga bilangan atau lebih, kita harus menghitung FPB dan KPK secara terpisah.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Soal Cerita — FPB</p>
+ <p class="lesson-text">Bu Sari memiliki 84 kue lapis dan 120 kue donat. Ia ingin memasukkan semuanya ke dalam kotak-kotak—setiap kotak berisi jumlah kue lapis yang sama dan jumlah kue donat yang sama, tanpa sisa. Berapa jumlah kotak <em>terbanyak</em> yang dapat dibuat, dan berapa isi setiap kotak?</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Jumlah kotak harus membagi habis 84 dan 120. Kotak terbanyak = <strong>FPB</strong> dari 84 dan 120.</li>
+  <li>Faktorkan:
+   <ul>
+    <li>$84 = 2^2 \times 3 \times 7$</li>
+    <li>$120 = 2^3 \times 3 \times 5$</li>
+   </ul>
+  </li>
+  <li>Faktor bersekutu pangkat terkecil:<br>$\text{FPB} = 2^2 \times 3 = 12$</li>
+  <li>Jadi jumlah kotak terbanyak adalah 12. Isi setiap kotak:<br>Kue lapis: $84 \div 12 = 7$, Donat: $120 \div 12 = 10$</li>
+ </ol>
+ <p class="lesson-text">Verifikasi: $12 \times 7 = 84$ ✓ dan $12 \times 10 = 120$ ✓. Kata kunci soal ini adalah "kotak terbanyak" dan "sama banyak"—ciri khas soal FPB.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Soal Cerita — KPK</p>
+ <p class="lesson-text">Lampu A berkedip setiap 12 detik, lampu B setiap 18 detik, dan lampu C setiap 30 detik. Jika ketiganya berkedip bersamaan pada pukul 08:00:00, kapan ketiganya akan berkedip bersamaan lagi?</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Waktu bersamaan berikutnya = <strong>KPK</strong> dari 12, 18, dan 30.</li>
+  <li>Faktorkan:
+   <ul>
+    <li>$12 = 2^2 \times 3$</li>
+    <li>$18 = 2 \times 3^2$</li>
+    <li>$30 = 2 \times 3 \times 5$</li>
+   </ul>
+  </li>
+  <li>Semua faktor pangkat terbesar:<br>$\text{KPK} = 2^2 \times 3^2 \times 5 = 4 \times 9 \times 5 = 180$</li>
+  <li>Jadi ketiganya berkedip bersamaan setiap 180 detik = 3 menit.</li>
+  <li>Waktu berikutnya: 08:00:00 + 3 menit = <strong>08:03:00</strong>.</li>
+ </ol>
+ <p class="lesson-text">Kata kunci soal ini adalah "bersamaan" dan "berulang"—ciri khas soal KPK.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Menggabungkan FPB dan KPK</p>
+ <p class="lesson-text">Dua bilangan memiliki $\text{FPB} = 8$ dan $\text{KPK} = 240$. Jika salah satu bilangannya adalah 48, tentukan bilangan yang lain.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Misalkan bilangan yang lain adalah $b$. Gunakan hubungan $\text{FPB} \times \text{KPK} = a \times b$:
+   <p class="lesson-text">$$8 \times 240 = 48 \times b$$</p>
+  </li>
+  <li>Hitung ruas kiri:<br>$1.920 = 48b$</li>
+  <li>Selesaikan:<br>$b = \dfrac{1.920}{48} = 40$</li>
+  <li>Verifikasi dengan faktorisasi prima:
+   <ul>
+    <li>$48 = 2^4 \times 3$</li>
+    <li>$40 = 2^3 \times 5$</li>
+    <li>$\text{FPB}(48, 40) = 2^3 = 8$ ✓</li>
+    <li>$\text{KPK}(48, 40) = 2^4 \times 3 \times 5 = 16 \times 15 = 240$ ✓</li>
+   </ul>
+  </li>
+ </ol>
+ <p class="lesson-text">Jadi bilangan yang lain adalah 40. Verifikasi menunjukkan bahwa hasilnya konsisten dengan FPB dan KPK yang diberikan—bukan sekadar memenuhi hubungan perkalian.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Tertukar antara FPB dan KPK.</strong> FPB adalah <em>pembagi</em> terbesar, sedangkan KPK adalah <em>kelipatan</em> terkecil. Perhatikan kata kunci "pembagi" dan "kelipatan"—kesalahan ini paling sering terjadi saat menjawab soal cerita.</li>
+  <li><strong>Salah mengambil pangkat pada faktorisasi prima.</strong> Untuk FPB, ambil pangkat <em>terkecil</em> dari faktor yang bersekutu. Untuk KPK, ambil pangkat <em>terbesar</em> dari semua faktor yang muncul. Tertukar keduanya akan menghasilkan jawaban yang salah.</li>
+  <li><strong>Menggunakan rumus $\text{FPB} \times \text{KPK} = a \times b$ untuk tiga bilangan atau lebih.</strong> Rumus tersebut hanya berlaku untuk dua bilangan. Untuk tiga bilangan, kita harus menghitung FPB dan KPK secara terpisah.</li>
+  <li><strong>Lupa memeriksa rentang hasil.</strong> FPB selalu $\leq$ bilangan terkecil, sedangkan KPK selalu $\geq$ bilangan terbesar. Jika hasil yang diperoleh di luar rentang itu, pasti ada kesalahan.</li>
+  <li><strong>Menganggap FPB selalu lebih kecil dari kedua bilangan.</strong> Ini tidak selalu benar. Jika salah satu bilangan membagi habis bilangan lainnya, maka FPB-nya adalah bilangan yang lebih kecil itu sendiri. Contoh: $\text{FPB}(3, 12) = 3$—bukan bilangan yang lebih kecil dari 3.</li>
+  <li><strong>Menggunakan daftar faktor/kelipatan untuk bilangan besar.</strong> Metode daftar faktor atau daftar kelipatan hanya praktis untuk bilangan kecil. Untuk bilangan besar, gunakan faktorisasi prima atau—untuk FPB—algoritma Euclid. Memaksakan metode daftar untuk bilangan besar hanya akan menghabiskan waktu dan rawan kesalahan.</li>
+  <li><strong>Menganggap FPB atau KPK hanya berlaku untuk bilangan positif.</strong> Konsep dapat diperluas ke bilangan bulat, tetapi dalam praktik—dan dalam soal-soal standar—FPB dan KPK biasanya dibahas pada bilangan bulat positif.</li>
+  <li><strong>Salah menuliskan faktorisasi prima.</strong> Kesalahan dalam menguraikan bilangan menjadi faktor prima akan berakibat pada FPB dan KPK yang salah. Selalu periksa ulang bahwa setiap faktor dalam faktorisasi benar-benar prima.</li>
+  <li><strong>Menganggap FPB dan KPK selalu bilangan yang berbeda dari $a$ dan $b$.</strong> Jika $a \mid b$, maka $\text{FPB}(a, b) = a$ dan $\text{KPK}(a, b) = b$. Contoh: $\text{FPB}(3, 12) = 3$ dan $\text{KPK}(3, 12) = 12$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti FPB dan KPK yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>FPB</strong> (Faktor Persekutuan Terbesar) adalah bilangan terbesar yang dapat membagi habis dua bilangan atau lebih. Notasi: $\text{FPB}(a, b)$ atau $\gcd(a, b)$.</li>
+  <li><strong>KPK</strong> (Kelipatan Persekutuan Terkecil) adalah bilangan terkecil yang merupakan kelipatan bersama dari dua bilangan atau lebih. Notasi: $\text{KPK}(a, b)$ atau $\text{lcm}(a, b)$.</li>
+  <li>Cara menentukan FPB: daftar faktor persekutuan, faktorisasi prima (pangkat terkecil dari faktor bersekutu), atau algoritma Euclid.</li>
+  <li>Cara menentukan KPK: daftar kelipatan persekutuan, atau faktorisasi prima (pangkat terbesar dari semua faktor yang muncul).</li>
+  <li><strong>Hubungan penting:</strong> $\text{FPB}(a, b) \times \text{KPK}(a, b) = a \times b$—hanya berlaku untuk dua bilangan.</li>
+  <li>FPB berguna untuk menyederhanakan pecahan dan membagi kelompok; KPK berguna untuk menyamakan penyebut dan penjadwalan.</li>
+  <li>Kesalahan umum: tertukar antara FPB dan KPK, salah mengambil pangkat, memakai rumus dua-bilangan untuk tiga bilangan, dan menggunakan daftar faktor untuk bilangan besar.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">FPB dan KPK adalah dua konsep dasar dalam aritmetika yang saling melengkapi. Keduanya berakar pada konsep keterbagian dan faktorisasi prima—tetapi dengan fokus yang berlawanan: FPB mencari <em>pembagi bersama terbesar</em>, sedangkan KPK mencari <em>kelipatan bersama terkecil</em>. Memahami perbedaan ini penting, karena banyak kesalahan dalam soal cerita justru berasal dari tertukarnya kedua konsep. Yang membuat FPB dan KPK istimewa adalah <strong>hubungannya yang elegan</strong>: $\text{FPB} \times \text{KPK} = a \times b$—sebuah hubungan yang menunjukkan bahwa kedua konsep ini bukan hanya alat komputasi, tetapi saling terkait melalui struktur faktorisasi prima dari kedua bilangan.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Kongruensi &amp; Modulo</strong> (yang menggunakan algoritma Euclid untuk mencari invers modular), <strong>Persamaan Diophantine</strong> (yang mencari solusi bilangan bulat dan melibatkan FPB), <strong>Aljabar Abstrak</strong> (yang menggeneralisasi konsep FPB ke struktur aljabar seperti ring dan lapangan), <strong>Kriptografi</strong> (yang bertumpu pada algoritma Euclid untuk pembangkitan kunci RSA), dan <strong>Aljabar Linear</strong> (yang menggunakan FPB dalam operasi baris elementer untuk menyederhanakan matriks).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama soal cerita, karena dari sanalah paling sering muncul kebingungan antara FPB dan KPK. Kebiasaan membaca soal dengan cermat dan menanyakan "apakah ini soal pembagian atau kelipatan?" akan menyelamatkan Anda dari kesalahan yang tidak perlu. Dan jangan lupa memeriksa rentang hasil: FPB selalu $\leq$ bilangan terkecil, dan KPK selalu $\geq$ bilangan terbesar.</p>
+</div>
+
+</div>
+</body>
+</html>

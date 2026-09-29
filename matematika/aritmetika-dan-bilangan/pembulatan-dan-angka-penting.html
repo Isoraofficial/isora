@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Pembulatan &amp; Angka Penting (Pembulatan Bilangan dan Aturan Angka Penting)</title>
+ <meta name="description" content="Pembulatan dan angka penting: aturan pembulatan ke satuan dan desimal, penentuan angka penting, notasi ilmiah, serta aturan operasi angka penting dalam perhitungan.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Pembulatan &amp; Angka Penting (Pembulatan Bilangan dan Aturan Angka Penting)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Pecahan, Desimal, Persen</strong> — terutama operasi pada desimal dan nilai tempatnya, karena pembulatan bekerja dengan memeriksa digit pada posisi tertentu—dan konsep nilai tempat inilah fondasi utamanya.</li>
+   <li><strong>Representasi Bilangan</strong> — khususnya notasi ilmiah ($a \times 10^n$), karena notasi ilmiah digunakan untuk menghilangkan ambiguitas jumlah angka penting pada bilangan besar atau kecil.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam kehidupan sehari-hari dan dunia ilmiah, kita sering berhadapan dengan bilangan yang memiliki banyak angka di belakang koma atau nilai yang sangat besar. Menuliskan semua angka tersebut secara lengkap seringkali tidak praktis—dan bahkan tidak diperlukan, karena tingkat ketelitian yang kita butuhkan terbatas. Di sinilah konsep <strong>pembulatan</strong> dan <strong>angka penting</strong> berperan penting.</p>
+ <p class="lesson-text"><strong>Pembulatan</strong> adalah proses mengurangi jumlah digit suatu bilangan dengan mendekatkannya ke nilai terdekat sesuai aturan tertentu. Tujuannya adalah menyederhanakan bilangan tanpa menghilangkan makna atau nilai dasarnya secara signifikan. Sementara itu, <strong>angka penting</strong> (atau angka bermakna) adalah semua digit dalam suatu bilangan yang diketahui dengan kepastian—ditambah satu digit terakhir yang merupakan hasil taksiran. Angka penting mencerminkan <em>tingkat ketelitian</em> suatu pengukuran.</p>
+ <p class="lesson-text">Yang membuat kedua konsep ini sangat penting adalah <strong>perannya dalam komunikasi ilmiah</strong>. Ketika seorang ilmuwan melaporkan bahwa panjang suatu benda adalah $2{,}50$ cm, angka "0" di belakang bukanlah hiasan—ia menyatakan bahwa pengukuran dilakukan hingga ketelitian dua desimal; jika ditulis $2{,}5$ cm, artinya tingkat ketelitiannya berbeda. Mengabaikan perbedaan ini dapat menyebabkan kesalahan yang merambat ke seluruh perhitungan. Materi ini disusun bertahap: dari <strong>konsep dasar pembulatan</strong>, <strong>aturan angka penting</strong>, <strong>peran notasi ilmiah dalam menghilangkan ambiguitas</strong>, <strong>operasi angka penting</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap aturan akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan langkah-langkahnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Konsep Dasar Pembulatan Bilangan</h3>
+ <p class="lesson-text">Kita mulai dari konsep paling dasar—pembulatan—yang sudah dikenal sejak sekolah dasar, tetapi memiliki aturan yang perlu dipahami secara cermat.</p>
+
+ <p class="lesson-subheading">A. Pengertian Pembulatan</p>
+ <p class="lesson-text"><strong>Pembulatan</strong> adalah proses mengganti suatu bilangan dengan bilangan lain yang nilainya lebih sederhana tetapi masih mendekati nilai aslinya. Tujuan pembulatan adalah:</p>
+ <ol>
+  <li>Menyederhanakan penulisan bilangan yang sangat panjang.</li>
+  <li>Menyesuaikan dengan tingkat ketelitian yang dibutuhkan.</li>
+  <li>Memudahkan perhitungan mental dan estimasi cepat.</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Aturan Dasar Pembulatan</p>
+ <p class="lesson-text">Aturan dasar pembulatan bergantung pada digit yang berada tepat di sebelah kanan posisi yang ingin kita bulatkan—yang disebut <strong>digit uji</strong>:</p>
+ <ul>
+  <li><strong>Jika digit uji kurang dari 5</strong> (yaitu 0, 1, 2, 3, atau 4): digit pada posisi yang dibulatkan <strong>tetap</strong>, dan semua digit di sebelah kanannya dihilangkan (untuk desimal) atau diganti dengan nol (untuk bilangan bulat).</li>
+  <li><strong>Jika digit uji lebih dari atau sama dengan 5</strong> (yaitu 5, 6, 7, 8, atau 9): digit pada posisi yang dibulatkan <strong>ditambah 1</strong>, dan semua digit di sebelah kanannya dihilangkan atau diganti dengan nol.</li>
+ </ul>
+ <p class="lesson-text">Aturan ini sering disebut <strong>aturan "5 ke atas, 4 ke bawah"</strong>—atau dalam istilah internasional, <em>round half up</em>.</p>
+
+ <p class="lesson-subheading">C. Pembulatan ke Satuan, Puluhan, Ratusan, Ribuan</p>
+ <p class="lesson-text">Untuk pembulatan ke suatu tempat nilai tertentu (puluhan, ratusan, dan seterusnya), periksa digit di sebelah kanan tempat tersebut.</p>
+ <p class="lesson-subheading-alt">Contoh 1 (ke puluhan terdekat):</p>
+ <p class="lesson-text">Bulatkan 73 ke puluhan terdekat. Digit uji adalah 3 (posisi satuan). Karena $3 < 5$, digit puluhan (7) tetap. Hasil: $73 \approx 70$.</p>
+ <p class="lesson-subheading-alt">Contoh 2 (ke ratusan terdekat):</p>
+ <p class="lesson-text">Bulatkan 856 ke ratusan terdekat. Digit uji adalah 5 (posisi puluhan). Karena $5 \ge 5$, digit ratusan (8) naik menjadi 9. Hasil: $856 \approx 900$.</p>
+ <p class="lesson-subheading-alt">Contoh 3 (ke ribuan terdekat):</p>
+ <p class="lesson-text">Bulatkan 3.247 ke ribuan terdekat. Digit uji adalah 2 (posisi ratusan). Karena $2 < 5$, digit ribuan (3) tetap. Hasil: $3.247 \approx 3.000$.</p>
+
+ <p class="lesson-subheading">D. Pembulatan ke Tempat Desimal Tertentu</p>
+ <p class="lesson-text">Untuk pembulatan ke sejumlah tempat desimal tertentu (1 desimal, 2 desimal, dan seterusnya), periksa digit tepat setelah tempat desimal yang dituju.</p>
+ <p class="lesson-subheading-alt">Contoh 4 (1 tempat desimal):</p>
+ <p class="lesson-text">Bulatkan $4{,}73$ ke satu tempat desimal. Digit uji adalah 3 (posisi kedua desimal). Karena $3 < 5$, digit pertama desimal (7) tetap. Hasil: $4{,}73 \approx 4{,}7$.</p>
+ <p class="lesson-subheading-alt">Contoh 5 (2 tempat desimal):</p>
+ <p class="lesson-text">Bulatkan $8{,}145$ ke dua tempat desimal. Digit uji adalah 5 (posisi ketiga desimal). Karena $5 \ge 5$, digit kedua desimal (4) naik menjadi 5. Hasil: $8{,}145 \approx 8{,}15$.</p>
+ <p class="lesson-subheading-alt">Contoh 6 (digit uji tepat 5):</p>
+ <p class="lesson-text">Bulatkan $2{,}35$ ke satu tempat desimal. Digit uji adalah 5. Karena $5 \ge 5$, digit pertama desimal (3) naik menjadi 4. Hasil: $2{,}35 \approx 2{,}4$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Ketika digit uji tepat 5 dan diikuti oleh angka nol atau tidak ada angka lagi, dalam beberapa konteks ilmiah dan statistika digunakan aturan <strong>pembulatan ke angka genap terdekat</strong> (<em>round half to even</em>). Contoh: $2{,}25$ dibulatkan menjadi $2{,}2$ (karena 2 genap), sedangkan $2{,}35$ menjadi $2{,}4$ (karena 4 genap). Aturan ini menghindari bias statistik pada data besar. Namun, dalam pendidikan dasar dan menengah, aturan "5 ke atas" adalah yang paling umum digunakan.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami cara membulatkan bilangan, langkah berikutnya adalah memahami <em>berapa banyak digit</em> yang layak dilaporkan dalam suatu hasil pengukuran—sebuah konsep yang disebut <strong>angka penting</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Angka Penting (Significant Figures)</h3>
+ <p class="lesson-text">Setelah memahami cara membulatkan, kita masuk ke konsep yang lebih dalam: <strong>angka penting</strong>—yang menentukan berapa banyak digit yang layak dilaporkan dalam suatu hasil pengukuran atau perhitungan.</p>
+
+ <p class="lesson-subheading">A. Pengertian Angka Penting</p>
+ <p class="lesson-text"><strong>Angka penting</strong> (disebut juga angka bermakna atau digit signifikan) adalah semua digit dalam suatu bilangan yang diketahui dengan kepastian, ditambah satu digit terakhir yang merupakan hasil taksiran (perkiraan). Angka penting mencerminkan <strong>ketelitian</strong> dari suatu pengukuran—semakin banyak angka penting, semakin teliti pengukurannya.</p>
+
+ <p class="lesson-subheading">B. Aturan Penentuan Angka Penting</p>
+ <p class="lesson-text">Terdapat enam aturan baku untuk menentukan mana digit yang termasuk angka penting dan mana yang bukan:</p>
+
+ <p class="lesson-subheading-alt">Aturan 1: Semua digit bukan nol adalah angka penting.</p>
+ <p class="lesson-text">Setiap angka 1 sampai 9 selalu dihitung sebagai angka penting. Contoh: $123{,}45$ memiliki 5 angka penting.</p>
+
+ <p class="lesson-subheading-alt">Aturan 2: Angka nol di antara digit bukan nol adalah angka penting.</p>
+ <p class="lesson-text">Nol yang terletak di antara dua digit bukan nol selalu dihitung sebagai angka penting. Contoh: $1.003$ memiliki 4 angka penting; $2{,}05$ memiliki 3 angka penting.</p>
+
+ <p class="lesson-subheading-alt">Aturan 3: Angka nol di depan digit bukan nol (<em>leading zeros</em>) BUKAN angka penting.</p>
+ <p class="lesson-text">Nol yang terletak di sebelah kiri digit bukan nol pertama hanya berfungsi sebagai penanda posisi desimal. Contoh: $0{,}0025$ memiliki 2 angka penting (hanya 2 dan 5); $0{,}0304$ memiliki 3 angka penting (3, 0, dan 4).</p>
+
+ <p class="lesson-subheading-alt">Aturan 4: Angka nol di belakang digit bukan nol setelah tanda desimal (<em>trailing zeros after decimal</em>) adalah angka penting.</p>
+ <p class="lesson-text">Nol yang terletak di sebelah kanan digit bukan nol dan berada setelah tanda desimal menunjukkan ketelitian pengukuran. Contoh: $2{,}500$ memiliki 4 angka penting; $0{,}0500$ memiliki 3 angka penting (5, 0, dan 0—nol di depan tidak dihitung).</p>
+
+ <p class="lesson-subheading-alt">Aturan 5: Angka nol di belakang digit bukan nol tanpa tanda desimal BERSIFAT AMBIGU.</p>
+ <p class="lesson-text">Nol di akhir bilangan bulat tanpa tanda desimal bisa dianggap angka penting atau bukan, tergantung konteks. Contoh: $2000$ bisa memiliki 1, 2, 3, atau 4 angka penting—tidak jelas. Untuk menghilangkan ambiguitas, gunakan notasi ilmiah (lihat Bagian III).</p>
+
+ <p class="lesson-subheading-alt">Aturan 6: Bilangan eksak memiliki angka penting tak terhingga.</p>
+ <p class="lesson-text">Angka yang diperoleh dari definisi atau perhitungan murni—misalnya $1$ meter $= 100$ cm, atau angka 2 dalam rumus keliling lingkaran $2\pi r$—dianggap memiliki angka penting tak terhingga, sehingga tidak membatasi ketelitian hasil akhir.</p>
+
+ <p class="lesson-subheading">C. Ringkasan Aturan Angka Penting</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Posisi Nol</th>
+     <th>Contoh</th>
+     <th>Angka Penting?</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Nol di antara digit bukan nol</td><td>$1.003$</td><td>Ya</td></tr>
+    <tr><td>Nol di depan (<em>leading</em>)</td><td>$0{,}0025$</td><td>Tidak</td></tr>
+    <tr><td>Nol di belakang desimal</td><td>$2{,}500$</td><td>Ya</td></tr>
+    <tr><td>Nol di belakang bilangan bulat</td><td>$2000$</td><td>Ambigu</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Aturan ke-5 inilah yang menjadi alasan mengapa kita memerlukan <strong>notasi ilmiah</strong>—sebuah topik yang akan kita bahas berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Notasi Ilmiah dan Angka Penting</h3>
+ <p class="lesson-text">Notasi ilmiah adalah alat utama untuk menghilangkan ambiguitas jumlah angka penting pada bilangan besar atau kecil.</p>
+
+ <p class="lesson-subheading">A. Pengertian Notasi Ilmiah</p>
+ <p class="lesson-text"><strong>Notasi ilmiah</strong> adalah cara penulisan bilangan dalam bentuk:</p>
+ <p class="lesson-text">$$a \times 10^n$$</p>
+ <p class="lesson-text">dengan $1 \le |a| < 10$ dan $n$ adalah bilangan bulat.</p>
+
+ <p class="lesson-subheading">B. Keunggulan Notasi Ilmiah untuk Angka Penting</p>
+ <p class="lesson-text">Dalam notasi ilmiah, semua digit dalam koefisien $a$ adalah angka penting—sehingga ambiguitas aturan ke-5 hilang sepenuhnya.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Bilangan $2000$ dapat ditulis dalam tiga cara berbeda untuk menyatakan jumlah angka penting yang berbeda:</p>
+ <ul>
+  <li>$2 \times 10^3$ $\to$ 1 angka penting.</li>
+  <li>$2{,}0 \times 10^3$ $\to$ 2 angka penting.</li>
+  <li>$2{,}00 \times 10^3$ $\to$ 3 angka penting.</li>
+  <li>$2{,}000 \times 10^3$ $\to$ 4 angka penting.</li>
+ </ul>
+ <p class="lesson-text">Dengan demikian, notasi ilmiah <strong>menyatakan tingkat ketelitian secara eksplisit</strong>—sesuatu yang tidak dapat dilakukan oleh penulisan desimal biasa.</p>
+ <p class="lesson-subheading-alt">Contoh lain:</p>
+ <ul>
+  <li>$3.200.000 = 3{,}2 \times 10^6$ (2 angka penting).</li>
+  <li>$3.200.000 = 3{,}20 \times 10^6$ (3 angka penting).</li>
+  <li>$0{,}00045 = 4{,}5 \times 10^{-4}$ (2 angka penting).</li>
+  <li>$0{,}00045 = 4{,}50 \times 10^{-4}$ (3 angka penting).</li>
+ </ul>
+
+ <p class="lesson-text">Dengan notasi ilmiah, ambiguitas angka penting telah teratasi. Namun pertanyaan berikutnya adalah: bagaimana perlakuan angka penting ketika kita melakukan <em>operasi hitung</em> pada bilangan-bilangan tersebut?</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Operasi dengan Angka Penting</h3>
+ <p class="lesson-text">Aturan angka penting dalam operasi hitung <strong>berbeda</strong> untuk penjumlahan/pengurangan dan perkalian/pembagian. Kesalahan menerapkan aturan yang salah adalah salah satu miskonsepsi paling umum.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Hasil penjumlahan atau pengurangan harus memiliki <strong>jumlah tempat desimal yang sama</strong> dengan bilangan yang memiliki tempat desimal paling sedikit.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Lakukan operasi penjumlahan atau pengurangan seperti biasa.</li>
+  <li>Bulatkan hasil akhir ke jumlah tempat desimal yang sama dengan bilangan yang memiliki tempat desimal paling sedikit.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Hitung $12{,}3 + 4{,}56 + 0{,}789$.</p>
+ <ul>
+  <li>$12{,}3$ memiliki 1 tempat desimal (paling sedikit).</li>
+  <li>$4{,}56$ memiliki 2 tempat desimal.</li>
+  <li>$0{,}789$ memiliki 3 tempat desimal.</li>
+ </ul>
+ <p class="lesson-text">Jumlah: $12{,}3 + 4{,}56 + 0{,}789 = 17{,}649$. Karena tempat desimal paling sedikit adalah 1, bulatkan hasil ke 1 desimal: $17{,}6$.</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Hitung $5{,}72 - 3{,}1$.</p>
+ <p class="lesson-text">$5{,}72$ memiliki 2 tempat desimal; $3{,}1$ memiliki 1 tempat desimal (paling sedikit). Selisih: $5{,}72 - 3{,}1 = 2{,}62$. Bulatkan ke 1 desimal: $2{,}6$.</p>
+
+ <p class="lesson-subheading">B. Perkalian dan Pembagian</p>
+ <p class="lesson-text">Hasil perkalian atau pembagian harus memiliki <strong>jumlah angka penting yang sama</strong> dengan bilangan yang memiliki angka penting paling sedikit.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Lakukan operasi perkalian atau pembagian seperti biasa.</li>
+  <li>Bulatkan hasil akhir ke jumlah angka penting yang sama dengan bilangan yang memiliki angka penting paling sedikit.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Hitung $3{,}25 \times 2{,}0$.</p>
+ <p class="lesson-text">$3{,}25$ memiliki 3 angka penting; $2{,}0$ memiliki 2 angka penting (paling sedikit). Hasil: $3{,}25 \times 2{,}0 = 6{,}50$. Bulatkan ke 2 angka penting: $6{,}5$.</p>
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">Hitung $8{,}4 \div 2{,}13$.</p>
+ <p class="lesson-text">$8{,}4$ memiliki 2 angka penting (paling sedikit); $2{,}13$ memiliki 3 angka penting. Hasil: $8{,}4 \div 2{,}13 = 3{,}94366\ldots$. Bulatkan ke 2 angka penting: $3{,}9$.</p>
+
+ <p class="lesson-subheading">C. Operasi Campuran</p>
+ <p class="lesson-text">Untuk operasi campuran (melibatkan penjumlahan dan perkalian, misalnya), lakukan operasi sesuai urutan operasi matematika standar—<strong>perkalian dan pembagian sebelum penjumlahan dan pengurangan</strong>.</p>
+ <p class="lesson-text">Pembulatan akhir dilakukan <strong>sekali pada hasil akhir</strong>, bukan setiap langkah. Simpan semua angka sementara dalam perhitungan penuh, dan bulatkan hanya di akhir—untuk menghindari akumulasi kesalahan (<em>error accumulation</em>).</p>
+ <p class="lesson-text"><strong>Aturan pembulatan untuk operasi campuran:</strong> setelah semua perhitungan selesai dengan angka penuh, tentukan aturan pembulatan berdasarkan <em>operasi terakhir</em> yang dilakukan. Jika operasi terakhir adalah penjumlahan atau pengurangan, gunakan aturan <strong>tempat desimal</strong>. Jika operasi terakhir adalah perkalian atau pembagian, gunakan aturan <strong>angka penting</strong>.</p>
+<p class="lesson-subheading-alt">Contoh:</p>
+<p class="lesson-text">Hitung $3{,}5 \times 4{,}2 + 6{,}7$.</p>
+<ol>
+ <li>Hitung penuh: $3{,}5 \times 4{,}2 = 14{,}7$, lalu $14{,}7 + 6{,}7 = 21{,}4$.</li>
+ <li>Operasi terakhir adalah penjumlahan → gunakan aturan tempat desimal.</li>
+ <li>Tempat desimal paling sedikit: 1 (dari $6{,}7$).</li>
+ <li>Bulatkan ke 1 desimal: hasilnya <strong>$21{,}4$</strong>.</li>
+</ol>
+<p class="lesson-text">Perhatikan bahwa hasilnya <em>bukan</em> $21$—meskipun $3{,}5 \times 4{,}2$ sebagai operasi perkalian menghasilkan angka penting yang lebih sedikit. Aturan mengikuti operasi <em>terakhir</em>, bukan aturan yang paling ketat di antara semua sub-operasi. Mari kita terapkan seluruh aturan ini—pembulatan, angka penting, notasi ilmiah, dan operasi campuran—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan pembulatan, penentuan angka penting, notasi ilmiah, dan operasi dengan angka penting. Setiap langkah dituliskan lengkap, dan aturan yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Pembulatan ke Tempat Tertentu</p>
+ <p class="lesson-text">Bulatkan 47.853 ke ratusan terdekat, dan 6,2847 ke dua tempat desimal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>47.853 ke ratusan terdekat</strong> — digit uji adalah 5 (posisi puluhan). Karena $5 \ge 5$, digit ratusan (8) naik menjadi 9:<br>$47.853 \approx 47.900$</li>
+  <li><strong>6,2847 ke dua tempat desimal</strong> — digit uji adalah 4 (posisi ketiga desimal). Karena $4 < 5$, digit kedua desimal (8) tetap:<br>$6,2847 \approx 6,28$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Menentukan Jumlah Angka Penting</p>
+ <p class="lesson-text">Tentukan jumlah angka penting pada setiap bilangan: (a) $0{,}00450$; (b) $1{,}020$; (c) $700$; (d) $8{,}00 \times 10^4$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>(a) $0{,}00450$</strong> — nol di depan (<em>leading zeros</em>) bukan angka penting. Digit 4, 5, dan nol di belakang setelah desimal adalah angka penting. Jadi <strong>3 angka penting</strong>.</li>
+  <li><strong>(b) $1{,}020$</strong> — nol di antara digit bukan nol (antara 1 dan 2) adalah angka penting. Nol di belakang setelah desimal juga angka penting. Jadi <strong>4 angka penting</strong>.</li>
+  <li><strong>(c) $700$</strong> — nol di belakang tanpa tanda desimal <strong>ambigu</strong>. Bisa 1, 2, atau 3 angka penting—tergantung konteks. Untuk menghilangkan ambiguitas, gunakan notasi ilmiah.</li>
+  <li><strong>(d) $8{,}00 \times 10^4$</strong> — dalam notasi ilmiah, semua digit dalam koefisien adalah angka penting. Jadi <strong>3 angka penting</strong>.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Notasi Ilmiah untuk Menyatakan Angka Penting</p>
+ <p class="lesson-text">Nyatakan bilangan 32.000 dalam notasi ilmiah dengan 2, 3, dan 4 angka penting.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>2 angka penting</strong>: $3{,}2 \times 10^4$</li>
+  <li><strong>3 angka penting</strong>: $3{,}20 \times 10^4$</li>
+  <li><strong>4 angka penting</strong>: $3{,}200 \times 10^4$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan bahwa nilai ketiganya identik (32.000), tetapi tingkat ketelitian yang dinyatakan berbeda. Inilah cara notasi ilmiah menghilangkan ambiguitas nol di belakang bilangan bulat.</p>
+ 
+ <p class="lesson-subheading">Soal 4: Penjumlahan dengan Angka Penting</p>
+ <p class="lesson-text">Hitung $24{,}56 + 3{,}2 + 0{,}459$ dan bulatkan sesuai aturan angka penting.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung penuh: $24{,}56 + 3{,}2 + 0{,}459 = 28{,}219$.</li>
+  <li>Operasi adalah penjumlahan → gunakan aturan <strong>tempat desimal</strong>.</li>
+  <li>Tempat desimal paling sedikit: 1 (dari $3{,}2$).</li>
+  <li>Bulatkan ke 1 desimal: hasilnya <strong>$28{,}2$</strong>.</li>
+ </ol>
+ <p class="lesson-text">Perhatikan bahwa digit "5" pada 24,56 dan "9" pada 0,459 tidak dihitung secara berlebihan—karena ketelitian hasil dibatasi oleh bilangan yang paling tidak teliti, yaitu 3,2.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Perkalian dengan Angka Penting</p>
+ <p class="lesson-text">Hitung $6{,}25 \times 3{,}4$ dan bulatkan sesuai aturan angka penting.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung penuh: $6{,}25 \times 3{,}4 = 21{,}25$.</li>
+  <li>Operasi adalah perkalian → gunakan aturan <strong>angka penting</strong>.</li>
+  <li>Angka penting: $6{,}25$ memiliki 3, sedangkan $3{,}4$ memiliki 2 (paling sedikit).</li>
+  <li>Bulatkan ke 2 angka penting: <strong>$21$</strong>.</li>
+ </ol>
+ <p class="lesson-text">Verifikasi digit uji: dari $21{,}25$, angka penting kedua adalah 1 (dari "21"). Digit uji adalah 2 (digit ketiga). Karena $2 < 5$, digit terakhir tetap. Hasilnya $21$.</p>
+   
+   <p class="lesson-subheading">Soal 6: Operasi Campuran</p>
+   <p class="lesson-text">Hitung $\dfrac{12{,}4 + 3{,}56}{2{,}1}$ dan bulatkan sesuai aturan angka penting.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+  <ol>
+ <li><strong>Hitung penuh tanpa pembulatan</strong>: $12{,}4 + 3{,}56 = 15{,}96$, lalu $15{,}96 \div 2{,}1 = 7{,}6$.</li>
+ <li><strong>Tentukan aturan pembulatan</strong>: operasi terakhir adalah pembagian → gunakan aturan <strong>angka penting</strong>.</li>
+ <li><strong>Tentukan angka penting efektif setiap operand</strong>:
+  <ul>
+   <li>$15{,}96$ adalah hasil dari $12{,}4 + 3{,}56$. Karena tempat desimal terkecil dari kedua suku adalah 1 (dari $12{,}4$), hasil efektif penjumlahan ini setara dengan $16{,}0$—yaitu <strong>3 angka penting</strong>.</li>
+   <li>$2{,}1$ memiliki <strong>2 angka penting</strong>.</li>
+  </ul>
+ </li>
+ <li><strong>Ambil batasan terkecil</strong>: min$(3, 2) = 2$ angka penting.</li>
+ <li><strong>Bulatkan hasil</strong> $7{,}6$ ke 2 angka penting. Hasilnya tetap <strong>$7{,}6$</strong>—sudah memenuhi 2 angka penting.</li>
+</ol>
+  <p class="lesson-text">Perhatikan urutan logikanya: kita <em>tidak</em> membulatkan $15{,}96$ menjadi $16{,}0$ saat perhitungan—kita hanya menggunakannya untuk menentukan <em>berapa banyak angka penting yang boleh muncul di hasil akhir</em>. Nilai numerik yang dipakai dalam pembagian tetap $15{,}96$.</p>
+   <p class="lesson-text">Catatan: hasilnya kebetulan sama dengan nilai penuh karena $7{,}6$ sudah hanya memiliki 2 angka penting.</p>
+   
+   <p class="lesson-subheading">Soal 7: Memeriksa Konsistensi Angka Penting</p>
+   <p class="lesson-text">Seorang siswa melaporkan hasil pengukuran: panjang $= 2{,}5$ cm, lebar $= 1{,}25$ cm. Ia kemudian melaporkan luas persegi panjang sebagai $3{,}125$ cm². Apakah laporan luas ini konsisten dengan aturan angka penting? Jika tidak, tentukan luas yang seharusnya dilaporkan.</p>
+   <p class="lesson-subheading-alt">Pembahasan:</p>
+   <ol>
+    <li>Periksa operasi: luas $=$ panjang $\times$ lebar → gunakan aturan <strong>angka penting</strong>.</li>
+    <li>Angka penting: panjang $2{,}5$ cm memiliki 2 angka penting; lebar $1{,}25$ cm memiliki 3 angka penting.</li>
+    <li>Hasil harus dibulatkan ke jumlah angka penting paling sedikit, yaitu <strong>2 angka penting</strong>.</li>
+    <li>Hitung penuh: $2{,}5 \times 1{,}25 = 3{,}125$.</li>
+    <li>Bulatkan ke 2 angka penting: digit uji adalah 1 (digit ketiga), yang kurang dari 5, sehingga hasilnya tetap <strong>$3{,}1 \text{ cm}^2$</strong>.</li>
+   </ol>
+   <p class="lesson-text">Laporan siswa ($3{,}125 \text{ cm}^2$) <strong>tidak konsisten</strong>—ia mengklaim 4 angka penting, padahal pengukuran lebar hanya teliti hingga 3 angka penting dan panjang hanya 2. Luas yang benar adalah $3{,}1 \text{ cm}^2$. Contoh ini menegaskan pentingnya konsistensi angka penting dalam pelaporan ilmiah.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Membulatkan setiap langkah perhitungan secara terpisah.</strong> Ini menyebabkan akumulasi kesalahan. Contoh: untuk $3{,}5 \times 4{,}2 + 6{,}7$, jika membulatkan $3{,}5 \times 4{,}2 = 14{,}7$ menjadi $15$ lebih dulu, lalu menambahkan $6{,}7$, hasilnya $21{,}7$—padahal hasil yang benar adalah $14{,}7 + 6{,}7 = 21{,}4$. Perbedaan $0{,}3$ muncul dari pembulatan prematur. Simpan semua angka sementara dan bulatkan hanya di akhir.</li>
+  <li><strong>Salah mengidentifikasi angka penting pada nol di belakang desimal.</strong> Banyak yang menganggap $2{,}50$ memiliki 2 angka penting—padahal nol di belakang desimal setelah digit bukan nol <em>adalah</em> angka penting. Jadi $2{,}50$ memiliki 3 angka penting, dan nol itu menunjukkan bahwa pengukuran dilakukan hingga ketelitian dua desimal.</li>
+  <li><strong>Menerapkan aturan perkalian/pembagian pada penjumlahan/pengurangan.</strong> Ini kesalahan konseptual yang paling fatal. Untuk perkalian, yang diperhatikan adalah <em>jumlah angka penting</em>. Untuk penjumlahan, yang diperhatikan adalah <em>jumlah tempat desimal</em>. Contoh: $3{,}56 \times 2{,}1 = 7{,}476 \to 7{,}5$ (2 angka penting); sedangkan $3{,}56 + 2{,}1 = 5{,}66 \to 5{,}7$ (1 tempat desimal). Aturannya berbeda.</li>
+  <li><strong>Menganggap $3{,}20 \times 10^4$ sama dengan $3{,}2 \times 10^4$.</strong> Keduanya berbeda tingkat ketelitian. $3{,}20 \times 10^4$ memiliki 3 angka penting, sedangkan $3{,}2 \times 10^4$ hanya 2 angka penting. Dalam notasi ilmiah, setiap digit dalam koefisien adalah angka penting.</li>
+  <li><strong>Menganggap aturan "5 ke atas" adalah satu-satunya aturan pembulatan.</strong> Dalam praktik ilmiah dan statistika, ada aturan lain—terutama <strong>pembulatan ke angka genap terdekat</strong> (<em>round half to even</em>) yang digunakan untuk menghindari bias statistik. Selain itu, ada juga <em>truncation</em> (pemotongan langsung tanpa pembulatan), yang dipakai dalam beberapa konteks komputasi untuk alasan efisiensi. Selalu periksa konvensi yang berlaku dalam konteks Anda.</li>
+  <li><strong>Menganggap notasi ilmiah mengubah nilai bilangan.</strong> Notasi ilmiah hanyalah <em>cara penulisan</em>—nilai bilangannya tetap sama. $3500$ dan $3{,}5 \times 10^3$ memiliki nilai yang identik; yang berbeda hanya jumlah angka penting yang dinyatakan secara eksplisit. Jangan sampai menganggap bentuk ilmiah "lebih akurat" atau "lebih besar" dari bentuk desimal biasa.</li>
+  <li><strong>Menganggap semua angka hasil kalkulator adalah benar.</strong> Kalkulator tidak mengetahui aturan angka penting—ia hanya melakukan perhitungan matematis murni. Pengguna harus membulatkan hasil akhir sesuai aturan. Contoh: kalkulator menampilkan $2{,}38461538$ untuk $12{,}4 \div 5{,}2$. Karena $12{,}4$ memiliki 3 angka penting dan $5{,}2$ memiliki 2 angka penting, hasil harus dibulatkan menjadi $2{,}4$ (2 angka penting).</li>
+  <li><strong>Lupa bahwa bilangan eksak memiliki angka penting tak terhingga.</strong> Konstanta seperti $\pi$, angka 2 dalam $2\pi r$, dan faktor konversi seperti $1$ km $= 1000$ m <em>tidak</em> membatasi ketelitian hasil akhir. Kesalahan sering terjadi saat siswa menganggap angka-angka ini sebagai bilangan dengan angka penting terbatas.</li>
+  <li><strong>Menganggap bilangan yang sudah dibulatkan masih memiliki digit tersembunyi.</strong> Setelah $12{,}3$ dibulatkan dari $12{,}34$, angka "4" sudah tidak lagi ada—tidak boleh diikutkan dalam perhitungan selanjutnya. Konsisten dengan jumlah digit yang dilaporkan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti pembulatan dan angka penting yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Pembulatan</strong> adalah proses mengurangi digit bilangan dengan aturan: digit uji $< 5$ tetap, $\ge 5$ naik.</li>
+  <li><strong>Angka penting</strong> adalah digit yang mencerminkan ketelitian pengukuran: semua digit bukan nol; nol di antara bukan nol; nol di belakang desimal—semuanya angka penting. Nol di depan bukan angka penting. Nol di akhir bilangan bulat bersifat ambigu.</li>
+  <li><strong>Notasi ilmiah</strong> ($a \times 10^n$) menghilangkan ambiguitas dan menunjukkan jumlah angka penting secara eksplisit.</li>
+  <li><strong>Aturan operasi angka penting</strong>:
+   <ul>
+    <li>Penjumlahan/pengurangan: hasil dibulatkan ke jumlah <em>tempat desimal</em> paling sedikit.</li>
+    <li>Perkalian/pembagian: hasil dibulatkan ke jumlah <em>angka penting</em> paling sedikit.</li>
+   </ul>
+  </li>
+  <li><strong>Pembulatan dilakukan sekali di akhir</strong> perhitungan, bukan setiap langkah.</li>
+  <li>Bilangan eksak (definisi, konstanta, hasil hitung pasti) memiliki angka penting tak terhingga.</li>
+  <li>Kesalahan umum: membulatkan setiap langkah, menerapkan aturan perkalian pada penjumlahan, dan menganggap notasi ilmiah mengubah nilai.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Pembulatan dan angka penting adalah <strong>alat komunikasi ilmiah</strong> yang sangat penting. Mereka memungkinkan kita menyampaikan hasil pengukuran dan perhitungan dengan cara yang jujur dan tidak menyesatkan—mengakui keterbatasan alat ukur dan tidak mengklaim ketelitian yang sebenarnya tidak kita miliki. Yang membuat kedua konsep ini istimewa adalah <strong>perannya sebagai jembatan antara matematika murni dan dunia nyata</strong>: dalam matematika murni, $1 \div 3 = 0{,}333\ldots$ tanpa akhir; dalam fisika atau teknik, kita hanya melaporkan sejumlah digit yang bermakna—dan berapa banyak digit itu ditentukan oleh aturan angka penting.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Notasi Sigma</strong> (yang sering melibatkan penjumlahan beruntun dengan nilai yang dibulatkan), <strong>Satuan, Dimensi &amp; Analisis Dimensi</strong> (yang menggunakan angka penting saat mengonversi satuan), <strong>Statistika Deskriptif</strong> (yang menyajikan data dengan angka penting yang konsisten), dan <strong>Matematika Numerik</strong> (yang mempelajari galat pembulatan dan akumulasi kesalahan secara mendalam).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang memerlukan kombinasi pembulatan dan angka penting, serta operasi campuran. Kebiasaan memperhatikan jumlah angka penting dari setiap bilangan yang terlibat—dan membulatkan hanya di akhir—akan menyelamatkan Anda dari kesalahan yang merambat, terutama saat berpindah ke topik sains terapan seperti fisika dan kimia.</p>
+</div>
+
+</div>
+</body>
+</html>

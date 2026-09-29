@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Pecahan, Desimal, dan Persen (Representasi dan Operasi)</title>
+ <meta name="description" content="Pecahan, desimal, dan persen: definisi, jenis-jenis, cara konversi antarbentuk, operasi hitung, sifat-sifat, dan penerapannya dalam kehidupan sehari-hari.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Pecahan, Desimal, dan Persen (Representasi dan Operasi)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif, yang akan terus dipakai saat memanipulasi pecahan, desimal, dan persen.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bilangan bulat tidak cukup untuk menyatakan segala hal. Ketika kita berbicara tentang setengah potong kue, potongan harga 25%, atau hasil pengukuran panjang 3,75 cm, kita memerlukan bentuk bilangan yang dapat menyatakan <strong>bagian dari keseluruhan</strong> atau <strong>hasil pembagian</strong>. Ada tiga bentuk representasi yang umum digunakan:</p>
+ <ul>
+  <li><strong>Pecahan</strong> — ditulis sebagai $\frac{a}{b}$, misalnya $\frac{3}{4}$ atau $\frac{2}{5}$.</li>
+  <li><strong>Desimal</strong> — ditulis dengan tanda koma, misalnya $0{,}75$ atau $2{,}5$.</li>
+  <li><strong>Persen</strong> — ditulis dengan simbol $\%$, misalnya $25\%$ atau $150\%$.</li>
+ </ul>
+ <p class="lesson-text">Ketiganya menyatakan konsep yang sama—hanya dengan cara pandang yang berbeda. Setengah kue dapat dinyatakan sebagai pecahan $\frac{1}{2}$, desimal $0{,}5$, atau persen $50\%$. Ketiganya setara. Memahami kapan menggunakan bentuk yang mana, dan bagaimana mengonversi satu bentuk ke bentuk lain, adalah keterampilan penting yang akan terus digunakan di aljabar, statistika, dan matematika keuangan.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari pengertian setiap bentuk representasi, <strong>cara konversi antarbentuk</strong>, <strong>operasi hitung</strong> pada masing-masing bentuk, <strong>sifat-sifatnya</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap konsep akan dijelaskan dengan alasan mengapa aturan tertentu berlaku—bukan hanya menyebutkan aturannya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pecahan</h3>
+ <p class="lesson-text">Bentuk representasi pertama adalah <strong>pecahan</strong>—cara paling langsung untuk menyatakan bagian dari keseluruhan.</p>
+
+ <p class="lesson-subheading">A. Definisi Pecahan</p>
+ <p class="lesson-text"><strong>Pecahan</strong> adalah bilangan yang menyatakan hasil bagi dua bilangan bulat. Secara umum dituliskan sebagai:</p>
+ <p class="lesson-text">$$\frac{a}{b}$$</p>
+ <p class="lesson-text">dengan:</p>
+ <ul>
+  <li>$a$ disebut <strong>pembilang</strong> (numerator)—menyatakan "berapa bagian yang diambil".</li>
+  <li>$b$ disebut <strong>penyebut</strong> (denominator)—menyatakan "berapa bagian keseluruhan dibagi".</li>
+  <li>Syarat $b \neq 0$, karena pembagian dengan nol tidak terdefinisi.</li>
+ </ul>
+ <p class="lesson-text">Contoh: $\frac{3}{4}$ berarti "3 bagian dari keseluruhan yang dibagi menjadi 4 bagian".</p>
+
+ <p class="lesson-subheading">B. Jenis-Jenis Pecahan</p>
+ <p class="lesson-text">Pecahan dapat diklasifikasikan menjadi beberapa jenis berdasarkan hubungan antara pembilang dan penyebutnya.</p>
+ <ul>
+  <li><strong>Pecahan murni</strong>: pembilang lebih kecil dari penyebut. Nilainya kurang dari 1. Contoh: $\frac{2}{3}$, $\frac{5}{8}$, $\frac{1}{4}$.</li>
+  <li><strong>Pecahan tidak murni</strong>: pembilang lebih besar atau sama dengan penyebut. Nilainya $\geq 1$. Contoh: $\frac{7}{4}$, $\frac{5}{5}$, $\frac{9}{2}$.</li>
+  <li><strong>Pecahan campuran</strong>: gabungan bilangan bulat dengan pecahan murni. Contoh: $2\frac{1}{3}$ (berarti $2 + \frac{1}{3}$). Pecahan campuran dapat diubah menjadi pecahan tidak murni: $2\frac{1}{3} = \frac{7}{3}$.</li>
+  <li><strong>Pecahan senilai</strong>: pecahan yang memiliki nilai sama meskipun penulisannya berbeda. Contoh: $\frac{1}{2} = \frac{2}{4} = \frac{3}{6} = \frac{50}{100}$. Semua mewakili setengah dari keseluruhan.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Menyederhanakan Pecahan</p>
+ <p class="lesson-text">Suatu pecahan disebut dalam <strong>bentuk paling sederhana</strong> jika pembilang dan penyebutnya tidak memiliki faktor persekutuan selain 1. Artinya, tidak ada bilangan bulat lain (selain 1) yang dapat membagi habis keduanya sekaligus.</p>
+ <p class="lesson-text">Misalnya, pecahan $\frac{12}{18}$ <strong>belum</strong> dalam bentuk paling sederhana—karena baik 12 maupun 18 sama-sama dapat dibagi oleh 2, 3, dan 6. Sedangkan pecahan $\frac{2}{3}$ <strong>sudah</strong> dalam bentuk paling sederhana—karena tidak ada bilangan bulat lain selain 1 yang dapat membagi habis 2 dan 3 sekaligus.</p>
+ <p class="lesson-text">Untuk menyederhanakan pecahan, kita <strong>membagi pembilang dan penyebut dengan faktor persekutuan yang sama</strong>. Proses ini dapat dilakukan dalam satu langkah besar, atau secara bertahap dengan faktor-faktor yang lebih kecil.</p>
+
+ <p class="lesson-subheading-alt">Cara 1: Membagi dengan faktor persekutuan terbesar (satu langkah)</p>
+ <p class="lesson-text">Jika kita sudah mengetahui bilangan terbesar yang dapat membagi habis kedua bilangan—yaitu 6 untuk kasus ini—maka penyederhanaan dapat dilakukan dalam satu langkah:</p>
+ <p class="lesson-text">$$\frac{12}{18} = \frac{12 \div 6}{18 \div 6} = \frac{2}{3}$$</p>
+
+ <p class="lesson-subheading-alt">Cara 2: Membagi secara bertahap (faktor kecil)</p>
+ <p class="lesson-text">Jika kita belum mengetahui bilangan terbesarnya, kita dapat menyederhanakan secara bertahap menggunakan faktor-faktor kecil yang kita kenali. Misalnya, kita tahu bahwa baik 12 maupun 18 sama-sama bilangan genap, jadi keduanya bisa dibagi 2:</p>
+ <p class="lesson-text">$$\frac{12}{18} = \frac{12 \div 2}{18 \div 2} = \frac{6}{9}$$</p>
+ <p class="lesson-text">Sekarang kita peroleh $\frac{6}{9}$. Keduanya masih dapat dibagi 3:</p>
+ <p class="lesson-text">$$\frac{6}{9} = \frac{6 \div 3}{9 \div 3} = \frac{2}{3}$$</p>
+ <p class="lesson-text">Hasil akhirnya sama, yaitu $\frac{2}{3}$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Apa pun cara yang dipilih, hasil akhirnya akan selalu sama—yaitu bentuk paling sederhana dari pecahan tersebut. Cara bertahap memang memerlukan lebih banyak langkah, tetapi tidak memerlukan pencarian bilangan terbesar terlebih dahulu. Pilihlah cara yang paling nyaman bagi Anda.</p>
+ </div>
+
+ <p class="lesson-text">Pecahan adalah bentuk yang paling langsung menyatakan "bagian dari keseluruhan". Namun, ketika bekerja dengan sistem basis sepuluh—seperti pada kalkulator atau komputer—desimal lebih praktis digunakan. Mari kita bahas bentuk kedua ini.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Desimal</h3>
+ <p class="lesson-text">Bentuk representasi kedua adalah <strong>desimal</strong>—cara lain untuk menyatakan bagian dari keseluruhan menggunakan sistem basis sepuluh.</p>
+
+ <p class="lesson-subheading">A. Definisi Desimal</p>
+ <p class="lesson-text"><strong>Desimal</strong> adalah cara penulisan bilangan yang menggunakan basis sepuluh, dengan tanda koma (di Indonesia) atau titik (di Inggris/Amerika) sebagai pemisah antara bagian bulat dan bagian pecahan.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$3{,}75 = 3 + \frac{7}{10} + \frac{5}{100}$$</p>
+ <p class="lesson-text">Perhatikan bahwa angka setelah koma menyatakan pecahan dengan penyebut perpangkatan 10: persepuluhan (10), perseratusan (100), perseribuan (1000), dan seterusnya.</p>
+
+ <p class="lesson-subheading">B. Nilai Tempat Desimal</p>
+ <p class="lesson-text">Setiap angka pada desimal memiliki nilai tempat yang jelas. Semakin ke kanan, nilainya semakin kecil—dibagi 10 setiap kali berpindah satu posisi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2{,}345$$</p>
+ <ul>
+  <li>Angka $2$ di posisi satuan: nilai $2$.</li>
+  <li>Angka $3$ di posisi persepuluhan: nilai $\frac{3}{10} = 0{,}3$.</li>
+  <li>Angka $4$ di posisi perseratusan: nilai $\frac{4}{100} = 0{,}04$.</li>
+  <li>Angka $5$ di posisi perseribuan: nilai $\frac{5}{1000} = 0{,}005$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Jenis-Jenis Desimal</p>
+ <p class="lesson-text">Berdasarkan pola angka setelah koma, desimal dapat dibedakan menjadi tiga jenis.</p>
+ <ul>
+  <li><strong>Desimal berhingga</strong>: memiliki jumlah angka desimal yang terbatas. Contoh: $0{,}5$; $1{,}25$; $3{,}75$. Setelah beberapa angka, desimal berhenti.</li>
+  <li><strong>Desimal berulang</strong>: memiliki pola angka yang berulang tanpa henti. Contoh: $0{,}333\ldots = 0{,}\overline{3}$; $0{,}142857142857\ldots = 0{,}\overline{142857}$. Garis di atas angka menandakan bagian yang berulang.</li>
+  <li><strong>Desimal tak berulang dan tak berhingga</strong>: tidak memiliki pola berulang, dan jumlah angkanya tak hingga. Ini adalah <strong>bilangan irasional</strong>. Contoh: $\pi = 3{,}141592\ldots$; $e = 2{,}718281\ldots$; $\sqrt{2} = 1{,}414213\ldots$.</li>
+ </ul>
+ <p class="lesson-text">Perbedaan ini penting karena desimal berhingga dan berulang selalu dapat dinyatakan sebagai pecahan (bilangan rasional), sedangkan desimal tak berulang tidak dapat.</p>
+
+ <p class="lesson-text">Desimal dan pecahan sesungguhnya menyatakan hal yang sama—hanya dengan cara penulisan yang berbeda. Persen, bentuk ketiga, melangkah lebih jauh dengan <em>menyeragamkan</em> penyebut menjadi 100, sehingga perbandingan apapun dapat dibandingkan langsung.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Persen</h3>
+ <p class="lesson-text">Bentuk representasi ketiga adalah <strong>persen</strong>—cara menyatakan perbandingan terhadap 100.</p>
+
+ <p class="lesson-subheading">A. Definisi Persen</p>
+ <p class="lesson-text"><strong>Persen</strong> adalah bentuk pecahan dengan penyebut 100. Simbolnya adalah $\%$. Secara formal:</p>
+ <p class="lesson-text">$$p\% = \frac{p}{100}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$25\% = \frac{25}{100} = \frac{1}{4}$.</li>
+  <li>$50\% = \frac{50}{100} = \frac{1}{2}$.</li>
+  <li>$100\% = \frac{100}{100} = 1$.</li>
+  <li>$150\% = \frac{150}{100} = \frac{3}{2} = 1{,}5$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Makna Persen</p>
+ <p class="lesson-text">Persen digunakan untuk menyatakan perbandingan terhadap 100 bagian. Misalnya, ketika kita mengatakan "$40\%$ dari 200", kita berarti:</p>
+ <p class="lesson-text">$$\frac{40}{100} \times 200 = 80$$</p>
+ <p class="lesson-text">Persen sangat berguna karena <strong>menyeragamkan perbandingan</strong>. Dengan persen, kita dapat membandingkan dua perbandingan yang berbeda penyebutnya. Contoh: mana yang lebih besar, $\frac{3}{5}$ atau $\frac{7}{12}$? Dengan mengubah keduanya ke persen:</p>
+ <ul>
+  <li>$\frac{3}{5} = 60\%$.</li>
+  <li>$\frac{7}{12} \approx 58{,}33\%$.</li>
+ </ul>
+ <p class="lesson-text">Jadi $\frac{3}{5} > \frac{7}{12}$—perbandingan yang tadinya sulit dilihat, menjadi jelas.</p>
+
+ <p class="lesson-text">Ketiga bentuk representasi ini—pecahan, desimal, persen—saling terkait satu sama lain. Menguasai cara berpindah dari satu bentuk ke bentuk lain adalah kunci untuk memanfaatkan kelebihan masing-masing dalam konteks yang tepat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Konversi Antarbentuk</h3>
+ <p class="lesson-text">Karena ketiga bentuk ini menyatakan konsep yang sama, kita dapat mengonversi satu ke yang lain. Kemampuan mengonversi adalah keterampilan dasar yang sangat sering digunakan—baik di soal matematika maupun dalam kehidupan sehari-hari.</p>
+
+ <p class="lesson-subheading">A. Pecahan ke Desimal</p>
+ <p class="lesson-text">Caranya sederhana: <strong>bagi pembilang dengan penyebut</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\frac{3}{4} = 3 \div 4 = 0{,}75$$ $$\frac{1}{3} = 1 \div 3 = 0{,}333\ldots = 0{,}\overline{3}$$ $$\frac{7}{8} = 7 \div 8 = 0{,}875$$</p>
+ <p class="lesson-text">Jika hasilnya berupa desimal berulang, kita dapat menandainya dengan garis di atas angka yang berulang.</p>
+
+ <p class="lesson-subheading">B. Desimal ke Pecahan</p>
+ <p class="lesson-text">Untuk desimal berhingga, tuliskan sebagai pecahan dengan penyebut perpangkatan 10, lalu sederhanakan.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$0{,}75 = \frac{75}{100} = \frac{3}{4}$$ $$0{,}2 = \frac{2}{10} = \frac{1}{5}$$ $$1{,}5 = \frac{15}{10} = \frac{3}{2}$$</p>
+
+ <p class="lesson-text">Untuk desimal berulang, gunakan metode aljabar. Misalnya, untuk mengubah $x = 0{,}\overline{6}$ menjadi pecahan:</p>
+ <ol>
+  <li>Tulis $x = 0{,}666\ldots$</li>
+  <li>Kalikan kedua sisi dengan 10: $10x = 6{,}666\ldots$</li>
+  <li>Kurangkan: $10x - x = 6{,}666\ldots - 0{,}666\ldots \Rightarrow 9x = 6$</li>
+  <li>Selesaikan: $x = \frac{6}{9} = \frac{2}{3}$</li>
+ </ol>
+ <p class="lesson-text">Metode ini bekerja karena mengalikan dengan 10 "menggeser" satu digit desimal, sehingga bagian yang berulang dapat saling menghilangkan saat dikurangkan.</p>
+
+ <p class="lesson-subheading">C. Pecahan ke Persen</p>
+ <p class="lesson-text">Kalikan pecahan dengan $100\%$:</p>
+ <p class="lesson-text">$$\frac{3}{5} = \frac{3}{5} \times 100\% = 60\%$$ $$\frac{1}{4} = \frac{1}{4} \times 100\% = 25\%$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena persen adalah pecahan dengan penyebut 100. Mengalikan dengan 100 berarti mengubah penyebut menjadi 100—yang persis definisi persen.</p>
+
+ <p class="lesson-subheading">D. Desimal ke Persen</p>
+ <p class="lesson-text">Kalikan desimal dengan $100\%$, atau geser koma dua tempat ke kanan:</p>
+ <p class="lesson-text">$$0{,}85 = 0{,}85 \times 100\% = 85\%$$ $$0{,}5 = 50\%$$ $$1{,}25 = 125\%$$</p>
+
+ <p class="lesson-subheading">E. Persen ke Pecahan</p>
+ <p class="lesson-text">Bagi dengan 100 (tuliskan sebagai penyebut) lalu sederhanakan:</p>
+ <p class="lesson-text">$$45\% = \frac{45}{100} = \frac{9}{20}$$ $$75\% = \frac{75}{100} = \frac{3}{4}$$</p>
+
+ <p class="lesson-subheading">F. Persen ke Desimal</p>
+ <p class="lesson-text">Bagi dengan 100, atau geser koma dua tempat ke kiri:</p>
+ <p class="lesson-text">$$32\% = 0{,}32$$ $$7\% = 0{,}07$$ $$150\% = 1{,}5$$</p>
+
+ <p class="lesson-subheading">G. Ringkasan Konversi</p>
+ <p class="lesson-text">Tabel berikut merangkum semua konversi di atas:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Dari</th>
+     <th>Ke</th>
+     <th>Cara</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Pecahan</td>
+     <td>Desimal</td>
+     <td>Bagi pembilang dengan penyebut</td>
+    </tr>
+    <tr>
+     <td>Desimal</td>
+     <td>Pecahan</td>
+     <td>Tulis dengan penyebut 10, 100, 1000, dst., lalu sederhanakan</td>
+    </tr>
+    <tr>
+     <td>Pecahan</td>
+     <td>Persen</td>
+     <td>Kalikan dengan $100\%$</td>
+    </tr>
+    <tr>
+     <td>Desimal</td>
+     <td>Persen</td>
+     <td>Kalikan dengan $100\%$ (geser koma 2 tempat ke kanan)</td>
+    </tr>
+    <tr>
+     <td>Persen</td>
+     <td>Pecahan</td>
+     <td>Bagi dengan 100, lalu sederhanakan</td>
+    </tr>
+    <tr>
+     <td>Persen</td>
+     <td>Desimal</td>
+     <td>Bagi dengan 100 (geser koma 2 tempat ke kiri)</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Dengan menguasai konversi, kita bisa memilih bentuk representasi yang paling nyaman untuk setiap keperluan—tetapi apapun bentuknya, aturan operasi hitungnya perlu kita kuasai juga. Mari kita bahas operasi pada masing-masing bentuk, dimulai dari pecahan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Operasi pada Pecahan</h3>
+ <p class="lesson-text">Pecahan memiliki aturan operasi tersendiri. Yang paling penting untuk diperhatikan adalah operasi penjumlahan dan pengurangan—keduanya memerlukan <strong>penyebut yang sama</strong>.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Untuk menjumlahkan atau mengurangkan pecahan, penyebut harus disamakan terlebih dahulu. Setelah penyebut sama, jumlahkan atau kurangkan pembilangnya saja.</p>
+ <p class="lesson-text">$$\frac{a}{b} + \frac{c}{d} = \frac{ad + cb}{bd}$$ $$\frac{a}{b} - \frac{c}{d} = \frac{ad - cb}{bd}$$</p>
+ <p class="lesson-text">Rumus umum ini berasal dari menyamakan penyebut menjadi $bd$ (hasil kali kedua penyebut). Namun, jika kedua penyebut memiliki faktor persekutuan, kita bisa menggunakan penyebut bersama yang lebih kecil—yaitu bilangan terkecil yang dapat dibagi habis oleh kedua penyebut.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}$$</p>
+ <p class="lesson-text">Kita menggunakan 6 sebagai penyebut bersama, karena 6 adalah bilangan terkecil yang dapat dibagi habis oleh 2 dan 3.</p>
+ <p class="lesson-subheading-alt">Contoh dengan pengurangan:</p>
+ <p class="lesson-text">$$\frac{5}{6} - \frac{1}{4} = \frac{10}{12} - \frac{3}{12} = \frac{7}{12}$$</p>
+ <p class="lesson-text">Jika penyebut sudah sama sejak awal, cukup jumlahkan/kurangkan pembilangnya:</p>
+ <p class="lesson-text">$$\frac{2}{7} + \frac{3}{7} = \frac{5}{7}$$</p>
+
+ <p class="lesson-subheading">B. Perkalian</p>
+ <p class="lesson-text">Perkalian jauh lebih sederhana—cukup kalikan pembilang dengan pembilang, penyebut dengan penyebut:</p>
+ <p class="lesson-text">$$\frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\frac{2}{3} \times \frac{4}{5} = \frac{8}{15}$$</p>
+ <p class="lesson-text">Hasilnya bisa langsung disederhanakan jika memungkinkan, tetapi pada contoh di atas sudah dalam bentuk paling sederhana.</p>
+
+ <p class="lesson-subheading">C. Pembagian</p>
+ <p class="lesson-text">Membagi dengan pecahan sama dengan <strong>mengalikan dengan kebalikan</strong> pecahan pembaginya:</p>
+ <p class="lesson-text">$$\frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{a \times d}{b \times c}$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena membagi dengan $\frac{c}{d}$ sama dengan mengalikan dengan $\frac{d}{c}$—sebagaimana membagi dengan 2 sama dengan mengalikan dengan $\frac{1}{2}$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\frac{3}{4} \div \frac{2}{5} = \frac{3}{4} \times \frac{5}{2} = \frac{15}{8}$$</p>
+
+ <p class="lesson-subheading">D. Operasi pada Pecahan Campuran</p>
+ <p class="lesson-text">Pecahan campuran harus diubah menjadi pecahan tidak murni terlebih dahulu sebelum dioperasikan.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2\frac{1}{3} + 1\frac{1}{2}$$</p>
+ <p class="lesson-text">Ubah ke pecahan biasa: $2\frac{1}{3} = \frac{7}{3}$ dan $1\frac{1}{2} = \frac{3}{2}$. Lalu:</p>
+ <p class="lesson-text">$$\frac{7}{3} + \frac{3}{2} = \frac{14}{6} + \frac{9}{6} = \frac{23}{6} = 3\frac{5}{6}$$</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Operasi pada Desimal</h3>
+ <p class="lesson-text">Operasi pada desimal mirip dengan operasi pada bilangan bulat, tetapi ada satu hal penting yang harus diperhatikan: <strong>posisi koma</strong>.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Luruskan tanda koma, lalu jumlahkan atau kurangkan seperti bilangan bulat. Hasilnya akan memiliki koma pada posisi yang sama.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$2{,}35 + 1{,}8 = 4{,}15$$</p>
+ <p class="lesson-text">Perhatikan bagaimana tanda koma disejajarkan: $2{,}35$ dengan $1{,}80$ (ditulis $1{,}80$ agar sejajar).</p>
+ <p class="lesson-text">$$5{,}6 - 2{,}47 = 3{,}13$$</p>
+ <p class="lesson-text">Kembali, koma disejajarkan: $5{,}60$ dikurangi $2{,}47$.</p>
+
+ <p class="lesson-subheading">B. Perkalian</p>
+ <p class="lesson-text">Kalikan seperti bilangan bulat, lalu hitung <strong>jumlah total angka desimal</strong> dari kedua faktor untuk menentukan letak koma pada hasil.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$$1{,}2 \times 0{,}3$$</p>
+ <p class="lesson-text">Kalikan sebagai bilangan bulat: $12 \times 3 = 36$. Karena $1{,}2$ punya 1 angka desimal, dan $0{,}3$ punya 1 angka desimal, total 2 angka desimal. Jadi hasilnya $0{,}36$.</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$$2{,}5 \times 1{,}5$$</p>
+ <p class="lesson-text">Kalikan sebagai bilangan bulat: $25 \times 15 = 375$. Total angka desimal: $1 + 1 = 2$. Jadi hasilnya $3{,}75$.</p>
+
+ <<p class="lesson-subheading">C. Pembagian</p>
+<p class="lesson-text">Pembagian desimal lebih rumit daripada perkalian, karena kita tidak bisa langsung "menghitung angka desimal" seperti pada perkalian. Cara termudah: <strong>ubah pembagi menjadi bilangan bulat</strong> dengan mengalikan kedua bilangan dengan perpangkatan 10 yang sesuai.</p>
+<p class="lesson-text">Aturannya: berapa pun angka desimal pada <strong>pembagi</strong>, kalikan kedua bilangan dengan $10$, $100$, atau $1000$—sesuai kebutuhan—sampai pembaginya menjadi bilangan bulat. Pembilangnya boleh ikut menjadi bilangan bulat, boleh juga masih desimal; yang penting <strong>pembaginya sudah bulat</strong>. Setelah itu, lakukan pembagian biasa.</p>
+<p class="lesson-subheading-alt">Contoh 1:</p>
+<p class="lesson-text">$$4{,}8 \div 0{,}6$$</p>
+<p class="lesson-text">Pembagi $0{,}6$ punya 1 angka desimal, jadi kalikan keduanya dengan 10:</p>
+<p class="lesson-text">$$48 \div 6 = 8$$</p>
+<p class="lesson-subheading-alt">Contoh 2 (pembilang tetap desimal):</p>
+<p class="lesson-text">$$3{,}75 \div 0{,}5$$</p>
+<p class="lesson-text">Pembagi $0{,}5$ punya 1 angka desimal, jadi kalikan keduanya dengan 10:</p>
+<p class="lesson-text">$$37{,}5 \div 5 = 7{,}5$$</p>
+<p class="lesson-text">Perhatikan: pembilangnya ($37{,}5$) <strong>masih desimal</strong>. Ini tidak masalah—yang penting pembaginya ($5$) sudah bulat. Pembagian $37{,}5 \div 5$ bisa dikerjakan dengan cara biasa.</p>
+<p class="lesson-subheading-alt">Contoh 3 (pembagi dengan 2 angka desimal):</p>
+<p class="lesson-text">$$12 \div 0{,}25$$</p>
+<p class="lesson-text">Pembagi $0{,}25$ punya 2 angka desimal, jadi kalikan keduanya dengan 100:</p>
+<p class="lesson-text">$$1200 \div 25 = 48$$</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Operasi pada Persen</h3>
+ <p class="lesson-text">Operasi pada persen pada dasarnya sama dengan operasi pada pecahan atau desimal—tetapi dengan satu aturan penting: <strong>persen harus diubah menjadi bentuk pecahan atau desimal terlebih dahulu</strong> jika operasinya melibatkan pencarian nilai.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Persen dapat dijumlahkan atau dikurangkan langsung <strong>jika merujuk pada keseluruhan yang sama</strong>:</p>
+ <p class="lesson-text">$$25\% + 15\% = 40\%$$ $$80\% - 30\% = 50\%$$</p>
+ <p class="lesson-text">Namun jika persennya merujuk pada bilangan yang berbeda, kita harus menghitung nilainya terlebih dahulu.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$20\% \text{ dari } 50 + 30\% \text{ dari } 200 = 10 + 60 = 70$$</p>
+ <p class="lesson-text">Hasilnya $70$, <strong>bukan</strong> $50\%$ dari $250$. Ini kesalahan yang sering terjadi.</p>
+
+ <p class="lesson-subheading">B. Perkalian</p>
+ <p class="lesson-text">Mengalikan persen dengan bilangan berarti mencari bagian dari bilangan tersebut:</p>
+ <p class="lesson-text">$$30\% \times 150 = \frac{30}{100} \times 150 = 45$$</p>
+ <p class="lesson-text">Perkalian dua persen menghasilkan persen yang lebih kecil—karena mengalikan dua nilai yang keduanya kurang dari 1:</p>
+ <p class="lesson-text">$$20\% \times 30\% = 0{,}2 \times 0{,}3 = 0{,}06 = 6\%$$</p>
+
+ <p class="lesson-subheading">C. Pembagian</p>
+ <p class="lesson-text">Membagi persen dengan bilangan atau persen lain sama seperti operasi pecahan/desimal:</p>
+ <p class="lesson-text">$$60\% \div 3 = 20\%$$ $$50\% \div 20\% = 2{,}5$$</p>
+
+ <p class="lesson-text">Setelah menguasai operasi pada masing-masing bentuk, muncul pertanyaan penting: apakah sifat-sifat operasi—komutatif, asosiatif, distributif—yang kita pelajari di materi Sifat Bilangan masih berlaku untuk pecahan, desimal, dan persen?</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Sifat-Sifat Operasi</h3>
+ <p class="lesson-text">Kabar baiknya: operasi pada pecahan, desimal, dan persen <strong>mewarisi semua sifat</strong> yang sudah kita pelajari di materi Sifat Bilangan. Sifat komutatif, asosiatif, dan distributif tetap berlaku—asalkan operasinya penjumlahan atau perkalian.</p>
+
+ <ul>
+  <li><strong>Komutatif</strong>: $a + b = b + a$ dan $a \times b = b \times a$ berlaku untuk pecahan, desimal, dan persen.</li>
+  <li><strong>Asosiatif</strong>: $(a + b) + c = a + (b + c)$ dan $(a \times b) \times c = a \times (b \times c)$ juga berlaku.</li>
+  <li><strong>Distributif</strong>: $a \times (b + c) = a \times b + a \times c$ berlaku pada semua bentuk representasi.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh pada pecahan:</p>
+ <p class="lesson-text">$$\frac{1}{2} \times \left(\frac{2}{3} + \frac{1}{6}\right) = \frac{1}{2} \times \frac{2}{3} + \frac{1}{2} \times \frac{1}{6}$$</p>
+ <p class="lesson-text">Verifikasi: sisi kiri $\frac{1}{2} \times \frac{5}{6} = \frac{5}{12}$. Sisi kanan $\frac{1}{3} + \frac{1}{12} = \frac{4}{12} + \frac{1}{12} = \frac{5}{12}$. Keduanya sama.</p>
+
+ <p class="lesson-subheading-alt">Contoh pada desimal:</p>
+ <p class="lesson-text">$$0{,}5 \times (0{,}2 + 0{,}3) = 0{,}5 \times 0{,}2 + 0{,}5 \times 0{,}3$$</p>
+ <p class="lesson-text">Verifikasi: sisi kiri $0{,}5 \times 0{,}5 = 0{,}25$. Sisi kanan $0{,}1 + 0{,}15 = 0{,}25$. Keduanya sama.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting tentang pembagian:</strong> Seperti pada bilangan bulat, sifat distributif untuk pembagian bergantung pada posisinya.</p>
+  <p class="lesson-text"><strong>(i) Pembagian <em>pada sisi kanan</em> — boleh didistribusikan.</strong></p>
+  <p class="lesson-text">$$(a + b) \div c = (a \div c) + (b \div c)$$</p>
+  <p class="lesson-text">Contoh: $\left(\frac{1}{2} + \frac{1}{4}\right) \div \frac{1}{4} = \frac{3}{4} \div \frac{1}{4} = 3$, dan $\frac{1}{2} \div \frac{1}{4} + \frac{1}{4} \div \frac{1}{4} = 2 + 1 = 3$. Keduanya sama.</p>
+  <p class="lesson-text"><strong>(ii) Pembagian <em>pada sisi kiri</em> — tidak boleh didistribusikan.</strong></p>
+  <p class="lesson-text">$$a \div (b + c) \neq (a \div b) + (a \div c)$$</p>
+  <p class="lesson-text">Contoh penyangkal: $1 \div \left(\frac{1}{2} + \frac{1}{4}\right) = 1 \div \frac{3}{4} = \frac{4}{3}$, sedangkan $1 \div \frac{1}{2} + 1 \div \frac{1}{4} = 2 + 4 = 6$. Hasilnya berbeda.</p>
+  <p class="lesson-text">Aturan ini berlaku sama untuk pecahan, desimal, dan persen.</p>
+ </div>
+
+ <p class="lesson-text">Dengan sifat-sifat ini tetap berlaku, kita bisa memanipulasi ekspresi yang melibatkan pecahan, desimal, atau persen dengan cara yang sama seperti pada bilangan bulat. Mari kita terapkan semua konsep ini dalam soal-soal perhitungan yang menggabungkan ketiga bentuk representasi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal perhitungan yang menggabungkan ketiga bentuk representasi. Setiap langkah dituliskan lengkap, dan aturan yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri alasan setiap langkah, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Konversi Pecahan ke Desimal dan Persen</p>
+ <p class="lesson-text">Ubah $\frac{5}{8}$ menjadi desimal dan persen.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Pecahan ke desimal — bagi pembilang dengan penyebut:<br>$\frac{5}{8} = 5 \div 8 = 0{,}625$</li>
+  <li>Desimal ke persen — kalikan dengan $100\%$:<br>$0{,}625 \times 100\% = 62{,}5\%$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Konversi Desimal Berulang ke Pecahan</p>
+ <p class="lesson-text">Ubah $0{,}\overline{4}$ menjadi pecahan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tulis $x = 0{,}444\ldots$</li>
+  <li>Kalikan kedua sisi dengan 10 (karena ada 1 angka berulang):<br>$10x = 4{,}444\ldots$</li>
+  <li>Kurangkan persamaan kedua dengan yang pertama:<br>$10x - x = 4{,}444\ldots - 0{,}444\ldots \Rightarrow 9x = 4$</li>
+  <li>Selesaikan:<br>$x = \frac{4}{9}$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Penjumlahan dan Pengurangan Pecahan</p>
+ <p class="lesson-text">Hitung: $\frac{3}{4} + \frac{5}{6} - \frac{1}{3}$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Cari penyebut bersama terkecil dari 4, 6, dan 3. Karena $\text{KPK}(4, 6, 3) = 12$, gunakan 12 sebagai penyebut bersama.</li>
+  <li>Ubah setiap pecahan ke penyebut 12:<br>$\frac{3}{4} = \frac{9}{12}$, $\frac{5}{6} = \frac{10}{12}$, $\frac{1}{3} = \frac{4}{12}$</li>
+  <li>Hitung:<br>$\frac{9}{12} + \frac{10}{12} - \frac{4}{12} = \frac{15}{12}$</li>
+  <li>Sederhanakan (bagi dengan 3):<br>$\frac{15}{12} = \frac{5}{4} = 1\frac{1}{4}$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Perkalian dan Pembagian Pecahan</p>
+ <p class="lesson-text">Hitung: $\frac{2}{3} \times \frac{9}{4} \div \frac{3}{8}$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Kerjakan dari kiri ke kanan (perkalian dan pembagian setara). Mulai dengan perkalian:<br>$\frac{2}{3} \times \frac{9}{4} = \frac{18}{12} = \frac{3}{2}$</li>
+  <li>Lanjutkan dengan pembagian — kalikan dengan kebalikan pembaginya:<br>$\frac{3}{2} \div \frac{3}{8} = \frac{3}{2} \times \frac{8}{3}$</li>
+  <li>Hitung:<br>$\frac{3 \times 8}{2 \times 3} = \frac{24}{6} = 4$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Operasi Campuran pada Desimal</p>
+ <p class="lesson-text">Hitung: $2{,}5 \times 1{,}2 - 0{,}75$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Perkalian dikerjakan dulu (urutan operasi). Kalikan sebagai bilangan bulat: $25 \times 12 = 300$. Total angka desimal: $1 + 1 = 2$. Jadi:<br>$2{,}5 \times 1{,}2 = 3{,}00$</li>
+  <li>Lanjutkan dengan pengurangan — luruskan koma:<br>$3{,}00 - 0{,}75 = 2{,}25$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 6: Operasi Persen pada Keseluruhan Berbeda</p>
+ <p class="lesson-text">Hitung: $40\%$ dari $250$ dikurangi $15\%$ dari $400$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung nilai pertama — ubah persen ke pecahan dulu:<br>$40\% \times 250 = \frac{40}{100} \times 250 = 100$</li>
+  <li>Hitung nilai kedua:<br>$15\% \times 400 = \frac{15}{100} \times 400 = 60$</li>
+  <li>Kurangkan:<br>$100 - 60 = 40$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan: hasilnya $40$, <strong>bukan</strong> $25\%$ dari $650$. Kedua persen merujuk pada keseluruhan yang berbeda, sehingga tidak dapat langsung dijumlahkan atau dikurangkan sebagai persen.</p>
+ 
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Diskon Bertingkat</p>
+ <p class="lesson-text">Sebuah barang seharga Rp500.000 diberi diskon $20\%$, lalu mendapat diskon tambahan $10\%$ dari harga setelah diskon pertama. Berapa harga akhir barang tersebut?</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Hitung diskon pertama:<br>$20\% \times 500.000 = \frac{20}{100} \times 500.000 = 100.000$</li>
+  <li>Hitung harga setelah diskon pertama:<br>$500.000 - 100.000 = 400.000$</li>
+  <li>Hitung diskon kedua (dari harga baru, bukan dari harga awal):<br>$10\% \times 400.000 = \frac{10}{100} \times 400.000 = 40.000$</li>
+  <li>Hitung harga akhir:<br>$400.000 - 40.000 = 360.000$</li>
+ </ol>
+ <p class="lesson-text">Perhatikan: harga akhirnya Rp360.000, <strong>bukan</strong> Rp350.000. Diskon bertingkat $20\%$ lalu $10\%$ <strong>tidak sama</strong> dengan diskon tunggal $30\%$—karena diskon kedua dihitung dari harga yang sudah didiskon, bukan dari harga awal. Kalau digabung sebagai $30\%$: $30\% \times 500.000 = 150.000$, sehingga harga akan salah menjadi $350.000$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menjumlahkan pecahan tanpa menyamakan penyebut.</strong> $\frac{1}{2} + \frac{1}{3} \neq \frac{2}{5}$. Yang benar: $\frac{3}{6} + \frac{2}{6} = \frac{5}{6}$. Penyebut harus disamakan terlebih dahulu.</li>
+  <li><strong>Salah saat pembagian pecahan.</strong> Rumusnya adalah mengalikan dengan kebalikan <em>pecahan kedua</em> (pembagi), bukan pecahan pertama. $\frac{3}{4} \div \frac{2}{5} = \frac{3}{4} \times \frac{5}{2}$, bukan $\frac{4}{3} \times \frac{2}{5}$.</li>
+  <li><strong>Salah meletakkan koma pada perkalian desimal.</strong> $0{,}3 \times 0{,}2 = 0{,}06$, bukan $0{,}6$. Jumlah angka desimal dari kedua faktor menentukan posisi koma: $1 + 1 = 2$ angka desimal.</li>
+  <li><strong>Menganggap persen sebagai bilangan bulat.</strong> $25\% \times 200$ <strong>bukan</strong> $25 \times 200 = 5000$. Yang benar: $\frac{25}{100} \times 200 = 50$. Selalu ubah persen ke pecahan/desimal sebelum mengalikan.</li>
+  <li><strong>Menjumlahkan persen dari keseluruhan yang berbeda.</strong> $20\%$ dari 50 + $30\%$ dari 200 <strong>bukan</strong> $50\%$ dari 250. Kedua persen merujuk pada keseluruhan yang berbeda, sehingga tidak bisa langsung dijumlahkan.</li>
+  <li><strong>Menganggap $0{,}\overline{9}$ tidak sama dengan 1.</strong> Sebenarnya $0{,}\overline{9} = 1$. Ini bukan kesalahan pembulatan—keduanya memang bilangan yang sama, hanya dinyatakan dalam bentuk berbeda.</li>
+  <li><strong>Menganggap semua desimal dapat diubah menjadi pecahan.</strong> Hanya desimal berhingga dan desimal berulang yang dapat diubah menjadi pecahan (keduanya bilangan rasional). Desimal tak berulang seperti $\pi$ tidak dapat dinyatakan sebagai pecahan.</li>
+  <li><strong>Mengabaikan tanda saat memanipulasi pecahan negatif.</strong> $-\frac{2}{3} = \frac{-2}{3} = \frac{2}{-3}$. Tanda negatif boleh ditempatkan di mana saja—tetapi harus konsisten.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">XI. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti pecahan, desimal, dan persen yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Pecahan</strong> $\frac{a}{b}$ menyatakan bagian dari keseluruhan. Ada pecahan murni, tidak murni, campuran, dan senilai. Menyederhanakan pecahan dilakukan dengan membagi pembilang dan penyebut dengan faktor persekutuan, baik secara bertahap maupun dalam satu langkah.</li>
+  <li><strong>Desimal</strong> adalah representasi basis sepuluh dengan tanda koma. Ada desimal berhingga, berulang, dan tak berulang (bilangan irasional).</li>
+  <li><strong>Persen</strong> adalah pecahan dengan penyebut 100. Berguna untuk menyeragamkan perbandingan.</li>
+  <li><strong>Konversi antarbentuk</strong>:
+   <ul>
+    <li>Pecahan ↔ desimal: bagi pembilang dengan penyebut.</li>
+    <li>Desimal ↔ persen: geser koma 2 tempat, atau kalikan/bagi dengan 100.</li>
+    <li>Pecahan ↔ persen: kalikan dengan 100% atau bagi dengan 100.</li>
+   </ul></li>
+  <li><strong>Operasi pada pecahan</strong>: penjumlahan/pengurangan memerlukan penyebut yang sama; perkalian dilakukan langsung; pembagian mengalikan dengan kebalikan.</li>
+  <li><strong>Operasi pada desimal</strong>: penjumlahan/pengurangan meluruskan koma; perkalian menghitung total angka desimal; pembagian mengubah pembagi menjadi bilangan bulat.</li>
+  <li><strong>Operasi pada persen</strong>: ubah ke pecahan/desimal sebelum mengalikan atau membagi. Penjumlahan/pengurangan hanya sah jika merujuk pada keseluruhan yang sama.</li>
+  <li><strong>Sifat komutatif, asosiatif, dan distributif</strong> berlaku pada operasi penjumlahan dan perkalian dalam semua bentuk representasi. Khusus pembagian, bersifat distributif hanya jika berada di sisi kanan: $(a + b) \div c = a \div c + b \div c$; tidak berlaku jika pembagian di sisi kiri: $a \div (b + c) \neq a \div b + a \div c$.</li>
+  <li>Kesalahan umum: menukar arah pembagian pecahan, salah meletakkan koma desimal, menganggap persen sebagai bilangan bulat, dan menjumlahkan persen dari keseluruhan yang berbeda.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Pecahan, desimal, dan persen adalah tiga wajah dari konsep yang sama: <strong>bagian dari keseluruhan</strong>. Kemampuan untuk memahami representasi masing-masing, mengonversi satu ke yang lain, dan melakukan operasi pada ketiganya merupakan keterampilan dasar yang sangat esensial—bukan hanya untuk matematika, tetapi juga untuk kehidupan sehari-hari.</p>
+ <p class="lesson-text">Materi ini akan sangat berguna untuk topik berikutnya: <strong>Rasio &amp; Proporsi</strong> (yang sering menggunakan pecahan dan persen), <strong>Statistika Deskriptif</strong> (yang menyajikan data dalam persen), <strong>Matematika Keuangan</strong> (yang menggunakan bunga dalam persen), dan <strong>Probabilitas</strong> (yang menyatakan peluang sebagai pecahan atau persen).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal, terutama yang melibatkan konversi antarbentuk dan operasi campuran (misalnya mengalikan pecahan dengan persen). Semakin terbiasa, semakin cepat Anda mengenali pola dan menghindari kesalahan umum seperti menukar arah pembagian atau salah meletakkan koma desimal.</p>
+</div>
+
+</div>
+</body>
+</html>

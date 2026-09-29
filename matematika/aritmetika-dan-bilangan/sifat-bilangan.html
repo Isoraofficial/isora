@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Sifat Bilangan: Komutatif, Asosiatif, dan Distributif</title>
+ <meta name="description" content="Sifat komutatif, asosiatif, dan distributif: definisi, contoh pada penjumlahan dan perkalian, pengecualian, serta penerapannya dalam perhitungan dan aljabar.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Sifat Bilangan: Komutatif, Asosiatif, dan Distributif</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Operasi Dasar</strong> — terutama penjumlahan, pengurangan, perkalian, pembagian, serta urutan operasi hitung. Materi ini adalah kelanjutan langsung dari topik tersebut.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi <strong>Operasi Dasar</strong>, kita telah mengenal sifat-sifat komutatif, asosiatif, dan distributif pada tingkat intuitif—cukup untuk mempermudah perhitungan. Materi ini adalah <strong>pendalaman formal</strong> dari ketiga sifat itu: kita akan mendefinisikannya secara umum, memahami mengapa ia berlaku (atau tidak berlaku) pada operasi tertentu, dan melihat bagaimana sifat-sifat ini menjadi fondasi bagi struktur matematika yang lebih abstrak.</p>
+ <p class="lesson-text">Ketiga sifat ini memiliki peran yang berbeda-beda dalam aritmetika:</p>
+ <ul>
+  <li><strong>Sifat komutatif</strong> — mengatur <em>urutan</em> operand (bilangan yang dioperasikan).</li>
+  <li><strong>Sifat asosiatif</strong> — mengatur <em>pengelompokan</em> operand.</li>
+  <li><strong>Sifat distributif</strong> — menghubungkan perkalian dengan penjumlahan atau pengurangan.</li>
+ </ul>
+ <p class="lesson-text">Keempat operasi dasar tidak semuanya memiliki ketiga sifat ini. Memahami dengan tepat sifat mana yang berlaku untuk operasi mana akan menyelamatkan Anda dari kesalahan umum dalam perhitungan—dan menjadi fondasi untuk mempelajari aljabar, kalkulus, hingga aljabar abstrak. Materi ini disusun bertahap: dari <strong>komutatif</strong>, <strong>asosiatif</strong>, <strong>distributif</strong>, <strong>hubungan antarsifat</strong>, <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Sifat Komutatif (Hukum Pertukaran)</h3>
+ <p class="lesson-text">Sifat pertama yang perlu dikuasai adalah <strong>sifat komutatif</strong>. Kata "komutatif" berasal dari bahasa Latin <em>commutare</em> yang berarti "bertukar" atau "berpindah". Sifat ini berkaitan dengan <strong>urutan</strong> operand—apakah boleh ditukar atau tidak.</p>
+
+ <p class="lesson-subheading">A. Definisi Formal</p>
+ <p class="lesson-text">Suatu operasi biner $*$ pada himpunan bilangan dikatakan <strong>komutatif</strong> jika untuk setiap pasangan bilangan $a$ dan $b$ berlaku:</p>
+ <p class="lesson-text">$$a * b = b * a$$</p>
+ <p class="lesson-text">Artinya, urutan operand tidak mempengaruhi hasil akhir operasi.</p>
+ <p class="lesson-text">Simbol $*$ di sini adalah simbol umum untuk operasi biner apa pun—bisa $+$, $-$, $\times$, atau $\div$. Dengan simbol ini, kita dapat menyatakan definisi komutatif tanpa harus menyebut operasi tertentu.</p>
+
+ <p class="lesson-subheading">B. Komutatif pada Penjumlahan</p>
+ <p class="lesson-text">Penjumlahan bilangan real <strong>bersifat komutatif</strong>:</p>
+ <p class="lesson-text">$$a + b = b + a$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$5 + 7 = 7 + 5 = 12$. Urutan tidak penting—totalnya tetap 12.</li>
+  <li>$-3 + 10 = 10 + (-3) = 7$. Bahkan dengan bilangan negatif, sifat komutatif tetap berlaku.</li>
+  <li>$\frac{1}{2} + \frac{1}{3} = \frac{1}{3} + \frac{1}{2} = \frac{5}{6}$. Sifat komutatif juga berlaku pada pecahan.</li>
+ </ul>
+ <p class="lesson-text">Sifat ini berlaku untuk semua bilangan real, rasional, bulat, asli, dan kompleks.</p>
+
+ <p class="lesson-subheading">C. Komutatif pada Perkalian</p>
+ <p class="lesson-text">Perkalian bilangan real juga <strong>bersifat komutatif</strong>:</p>
+ <p class="lesson-text">$$a \times b = b \times a$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$4 \times 6 = 6 \times 4 = 24$.</li>
+  <li>$(-2) \times 9 = 9 \times (-2) = -18$.</li>
+  <li>$\frac{2}{3} \times 6 = 6 \times \frac{2}{3} = 4$.</li>
+ </ul>
+ <p class="lesson-text">Secara intuitif, $4 \times 6$ berarti "empat kelompok berisi enam" dan $6 \times 4$ berarti "enam kelompok berisi empat". Jika disusun dalam bentuk persegi panjang, keduanya membentuk susunan yang sama banyaknya—hanya orientasinya yang berbeda. Inilah mengapa perkalian komutatif.</p>
+
+ <p class="lesson-subheading">D. Pengecualian: Pengurangan dan Pembagian</p>
+ <p class="lesson-text">Berbeda dengan penjumlahan dan perkalian, operasi <strong>pengurangan</strong> dan <strong>pembagian</strong> <strong>tidak</strong> komutatif. Mengubah urutan operand akan mengubah hasilnya.</p>
+ <p class="lesson-subheading-alt">Contoh pada pengurangan:</p>
+ <p class="lesson-text">$$8 - 3 = 5, \quad \text{tetapi} \quad 3 - 8 = -5$$</p>
+ <p class="lesson-subheading-alt">Contoh pada pembagian:</p>
+ <p class="lesson-text">$$12 \div 4 = 3, \quad \text{tetapi} \quad 4 \div 12 = \frac{1}{3}$$</p>
+ <p class="lesson-text">Pada kedua contoh, kita melihat bahwa hasilnya berbeda saat urutan ditukar. Karena itu, kita tidak boleh menukar posisi operand pada pengurangan atau pembagian.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Pada operasi matriks (yang akan dipelajari di Aljabar Linear), perkalian matriks <strong>tidak</strong> bersifat komutatif secara umum—yaitu $AB \neq BA$ untuk sebagian besar matriks. Ini menunjukkan bahwa sifat komutatif bukan sifat universal dari perkalian, melainkan sifat khusus yang berlaku pada bilangan.</p>
+ </div>
+
+ <p class="lesson-text">Komutatif hanya mengatur <em>urutan</em> operand. Tetapi bagaimana jika kita ingin mengatur <em>pengelompokan</em> operand ketika ada tiga bilangan atau lebih? Di sinilah sifat asosiatif berperan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Sifat Asosiatif (Hukum Pengelompokan)</h3>
+ <p class="lesson-text">Sifat kedua adalah <strong>sifat asosiatif</strong>. Kata "asosiatif" berasal dari bahasa Latin <em>associare</em> yang berarti "mengelompokkan" atau "menggabungkan". Sifat ini berkaitan dengan <strong>pengelompokan</strong> operand menggunakan tanda kurung.</p>
+ <p class="lesson-text">Jika sifat komutatif berbicara tentang urutan operand, sifat asosiatif berbicara tentang <strong>cara mengelompokkan</strong> operand ketika ada tiga bilangan atau lebih.</p>
+
+ <p class="lesson-subheading">A. Definisi Formal</p>
+ <p class="lesson-text">Suatu operasi biner $*$ dikatakan <strong>asosiatif</strong> jika untuk setiap tiga bilangan $a$, $b$, dan $c$ berlaku:</p>
+ <p class="lesson-text">$$(a * b) * c = a * (b * c)$$</p>
+ <p class="lesson-text">Artinya, pengelompokan operasi dengan tanda kurung tidak mengubah hasil akhir—baik mengerjakan $(a * b)$ dulu atau $(b * c)$ dulu.</p>
+
+ <p class="lesson-subheading">B. Asosiatif pada Penjumlahan</p>
+ <p class="lesson-text">Penjumlahan bilangan real <strong>bersifat asosiatif</strong>:</p>
+ <p class="lesson-text">$$(a + b) + c = a + (b + c)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$(2 + 3) + 4 = 5 + 4 = 9$$ $$2 + (3 + 4) = 2 + 7 = 9$$</p>
+ <p class="lesson-text">Kedua cara menghasilkan jawaban yang sama, yaitu 9.</p>
+
+ <p class="lesson-subheading">C. Asosiatif pada Perkalian</p>
+ <p class="lesson-text">Perkalian bilangan real juga <strong>bersifat asosiatif</strong>:</p>
+ <p class="lesson-text">$$(a \times b) \times c = a \times (b \times c)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$(2 \times 3) \times 4 = 6 \times 4 = 24$$ $$2 \times (3 \times 4) = 2 \times 12 = 24$$</p>
+ <p class="lesson-text">Kedua cara menghasilkan jawaban yang sama, yaitu 24.</p>
+
+ <p class="lesson-subheading">D. Pengecualian: Pengurangan dan Pembagian</p>
+ <p class="lesson-text">Sama seperti komutatif, operasi <strong>pengurangan</strong> dan <strong>pembagian</strong> <strong>tidak</strong> asosiatif.</p>
+ <p class="lesson-subheading-alt">Contoh pada pengurangan:</p>
+ <p class="lesson-text">$$(10 - 5) - 2 = 5 - 2 = 3$$ $$10 - (5 - 2) = 10 - 3 = 7$$</p>
+ <p class="lesson-text">Hasilnya berbeda (3 vs 7), sehingga pengurangan tidak asosiatif.</p>
+ <p class="lesson-subheading-alt">Contoh pada pembagian:</p>
+ <p class="lesson-text">$$(12 \div 3) \div 2 = 4 \div 2 = 2$$ $$12 \div (3 \div 2) = 12 \div 1{,}5 = 8$$</p>
+ <p class="lesson-text">Hasilnya berbeda (2 vs 8), sehingga pembagian tidak asosiatif.</p>
+
+ <p class="lesson-subheading">E. Kegunaan Sifat Asosiatif</p>
+ <p class="lesson-text">Sifat asosiatif memiliki dua kegunaan utama:</p>
+ <ol>
+  <li><strong>Menghilangkan tanda kurung.</strong> Karena hasilnya tidak bergantung pada pengelompokan, kita boleh menuliskan penjumlahan atau perkalian tiga bilangan atau lebih <strong>tanpa tanda kurung</strong>. Contoh: $a + b + c + d$ dan $a \times b \times c \times d$ adalah notasi yang sah dan tidak ambigu.</li>
+  <li><strong>Mengelompokkan ulang untuk mempermudah perhitungan.</strong> Contoh: ketika menghitung $25 \times 13 \times 4$, kita bisa mengelompokkan $(25 \times 4)$ terlebih dahulu karena hasilnya $100$—yang jauh lebih mudah dikalikan dengan $13$ daripada mengerjakan berurutan.</li>
+ </ol>
+ <p class="lesson-text">$$25 \times 13 \times 4 = (25 \times 4) \times 13 = 100 \times 13 = 1300$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Sifat asosiatif <strong>hanya berlaku</strong> jika semua operasi yang terlibat memiliki <em>jenis yang sama</em>—semuanya penjumlahan, atau semuanya perkalian. Jika ekspresi memuat campuran operasi seperti $2 + 3 \times 4$, tanda kurung menjadi wajib dan tidak boleh dihilangkan sembarangan—karena urutan operasi (perkalian sebelum penjumlahan) sudah menentukan pengelompokan.</p>
+ </div>
+
+ <p class="lesson-text">Komutatif dan asosiatif sama-sama berbicara tentang <em>satu jenis operasi</em> saja. Namun, bagaimana jika kita perlu menggabungkan dua jenis operasi—misalnya perkalian dengan penjumlahan? Di sinilah sifat distributif berperan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat Distributif (Hukum Penyebaran)</h3>
+ <p class="lesson-text">Sifat ketiga adalah <strong>sifat distributif</strong>—satu-satunya sifat yang <strong>menghubungkan dua operasi berbeda</strong>. Jika sifat komutatif dan asosiatif berbicara tentang satu operasi saja, sifat distributif menghubungkan perkalian dengan penjumlahan atau pengurangan.</p>
+ <p class="lesson-text">Kata "distributif" berasal dari bahasa Latin <em>distribuere</em> yang berarti "menyebarkan" atau "membagi". Sifat ini memungkinkan kita "menyebarkan" perkalian ke setiap suku di dalam tanda kurung.</p>
+
+ <p class="lesson-subheading">A. Definisi Formal</p>
+ <p class="lesson-text">Perkalian dikatakan <strong>distributif terhadap penjumlahan</strong> jika:</p>
+ <p class="lesson-text">$$a \times (b + c) = (a \times b) + (a \times c)$$</p>
+ <p class="lesson-text">dan <strong>distributif terhadap pengurangan</strong> jika:</p>
+ <p class="lesson-text">$$a \times (b - c) = (a \times b) - (a \times c)$$</p>
+ <p class="lesson-text">Dalam notasi ringkas, kedua rumus di atas sering ditulis sebagai:</p>
+ <p class="lesson-text">$$a(b \pm c) = ab \pm ac$$</p>
+
+ <p class="lesson-subheading">B. Distributif terhadap Penjumlahan</p>
+ <p class="lesson-subheading-alt">Contoh numerik:</p>
+ <p class="lesson-text">$$3 \times (4 + 5) = 3 \times 9 = 27$$ $$3 \times 4 + 3 \times 5 = 12 + 15 = 27$$</p>
+ <p class="lesson-text">Kedua sisi menghasilkan nilai yang sama, sehingga sifat distributif terverifikasi.</p>
+
+ <p class="lesson-subheading">C. Distributif terhadap Pengurangan</p>
+ <p class="lesson-subheading-alt">Contoh numerik:</p>
+ <p class="lesson-text">$$6 \times (10 - 2) = 6 \times 8 = 48$$ $$6 \times 10 - 6 \times 2 = 60 - 12 = 48$$</p>
+
+ <p class="lesson-subheading">D. Ilustrasi Geometris</p>
+ <p class="lesson-text">Sifat distributif dapat dipahami secara visual melalui luas persegi panjang. Bayangkan sebuah persegi panjang dengan panjang $a$ dan lebar $(b + c)$—yaitu lebar yang terdiri dari dua bagian, $b$ dan $c$. Luas total persegi panjang ini adalah $a \times (b + c)$.</p>
+ <p class="lesson-text">Sekarang, jika persegi panjang tersebut dibagi menjadi dua bagian oleh garis vertikal pada jarak $b$ dari sisi kiri, kita memperoleh dua persegi panjang kecil:</p>
+ <ul>
+  <li>Persegi panjang pertama dengan ukuran $a \times b$.</li>
+  <li>Persegi panjang kedua dengan ukuran $a \times c$.</li>
+ </ul>
+ <p class="lesson-text">Luas total dari kedua persegi panjang ini adalah $ab + ac$. Karena keduanya menempati area yang sama dengan persegi panjang besar, maka:</p>
+ <p class="lesson-text">$$a(b + c) = ab + ac$$</p>
+ <p class="lesson-text">Ilustrasi geometris ini menunjukkan mengapa sifat distributif masuk akal—ia tidak lain adalah pernyataan bahwa "luas total sama dengan jumlah luas bagian-bagiannya".</p>
+
+ <p class="lesson-subheading">E. Menggunakan Sifat Distributif dari Kanan ke Kiri</p>
+ <p class="lesson-text">Sifat distributif tidak hanya dapat dipakai dari kiri ke kanan (menguraikan), tetapi juga dari kanan ke kiri (menggabungkan). Cara ini sangat berguna untuk menyederhanakan ekspresi—dan merupakan dasar dari <strong>pemfaktoran</strong> yang akan dipelajari di aljabar.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$6 \times 4 + 6 \times 7 = 6 \times (4 + 7) = 6 \times 11 = 66$$</p>
+ <p class="lesson-text">Daripada menghitung dua perkalian terpisah, kita cukup mengeluarkan faktor bersama $6$ dan menjumlahkan sisanya—jauh lebih efisien.</p>
+
+ <p class="lesson-subheading">F. Penerapan pada Aljabar</p>
+ <p class="lesson-text">Sifat distributif memainkan peran sentral dalam aljabar. Ketika kita mengalikan suku banyak, kita sesungguhnya sedang menggunakan sifat distributif.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$$2x(3x + 4y) = 2x \cdot 3x + 2x \cdot 4y = 6x^2 + 8xy$$</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$$(x + 2)(x + 5) = x(x + 5) + 2(x + 5) = x^2 + 5x + 2x + 10 = x^2 + 7x + 10$$</p>
+ <p class="lesson-text">Perhatikan bagaimana distribusi diterapkan dua kali: pertama mendistribusikan $(x + 2)$ ke dalam $(x + 5)$, lalu mendistribusikan $x$ dan $2$ secara terpisah.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting tentang pembagian:</strong> Sifat distributif <strong>tidak berlaku sama</strong> untuk pembagian seperti untuk perkalian. Posisi pembagian menentukan boleh tidaknya distribusi:</p>
+  <p class="lesson-text"><strong>(i) Pembagian <em>pada sisi kanan</em> — boleh didistribusikan.</strong></p>
+  <p class="lesson-text">$$(a + b) \div c = (a \div c) + (b \div c)$$</p>
+  <p class="lesson-text">Contoh: $(2 + 4) \div 2 = 6 \div 2 = 3$, dan $2 \div 2 + 4 \div 2 = 1 + 2 = 3$. Keduanya sama.</p>
+  <p class="lesson-text"><strong>(ii) Pembagian <em>pada sisi kiri</em> — tidak boleh didistribusikan.</strong></p>
+  <p class="lesson-text">$$a \div (b + c) \neq (a \div b) + (a \div c)$$</p>
+  <p class="lesson-text">Contoh penyangkal: $12 \div (2 + 4) = 12 \div 6 = 2$, sedangkan $12 \div 2 + 12 \div 4 = 6 + 3 = 9$. Hasilnya berbeda—jadi keduanya <strong>tidak</strong> ekuivalen.</p>
+  <p class="lesson-text">Singkatnya: pembagian hanya distributif ketika ia berada di <strong>kanan</strong> (membagi seluruh isi kurung). Ketika pembagian berada di <strong>kiri</strong> (membagi sebagian), distribusi tidak berlaku.</p>
+ </div>
+
+ <p class="lesson-text">Setelah memahami ketiga sifat secara terpisah, kita perlu melihat bagaimana ketiganya bekerja bersama—dan apa perbedaan peran masing-masing dalam membangun sistem bilangan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Hubungan Antarsifat</h3>
+ <p class="lesson-text">Ketiga sifat ini bukan konsep yang terpisah-pisah—mereka saling melengkapi dalam membangun sistem bilangan dan operasinya. Masing-masing mengatur aspek yang berbeda:</p>
+ <ul>
+  <li><strong>Komutatif</strong> mengatur <em>urutan</em> operand.</li>
+  <li><strong>Asosiatif</strong> mengatur <em>pengelompokan</em> operand.</li>
+  <li><strong>Distributif</strong> mengatur <em>interaksi antara dua operasi berbeda</em>.</li>
+ </ul>
+ <p class="lesson-text">Ketiga sifat ini dapat digunakan secara bersamaan untuk menyelesaikan perhitungan yang lebih kompleks.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Hitung $47 + 68 + 53$ dengan cara efisien.</p>
+ <p class="lesson-text">Dengan <strong>sifat komutatif</strong>, kita boleh menukar posisi operand:</p>
+ <p class="lesson-text">$$47 + 68 + 53 = 47 + 53 + 68$$</p>
+ <p class="lesson-text">Dengan <strong>sifat asosiatif</strong>, kita boleh mengelompokkan ulang:</p>
+ <p class="lesson-text">$$(47 + 53) + 68 = 100 + 68 = 168$$</p>
+ <p class="lesson-text">Hasilnya $168$. Jauh lebih mudah daripada menghitung $47 + 68$ terlebih dahulu.</p>
+ <p class="lesson-subheading-alt">Contoh lain:</p>
+ <p class="lesson-text">Hitung $4 \times (25 + 15)$ dengan cara efisien.</p>
+ <p class="lesson-text">Dengan <strong>sifat distributif</strong>, kita bisa menyebarkan perkalian:</p>
+ <p class="lesson-text">$$4 \times (25 + 15) = 4 \times 25 + 4 \times 15 = 100 + 60 = 160$$</p>
+ <p class="lesson-text">Atau, dengan <strong>sifat komutatif</strong> dan <strong>asosiatif</strong>, kita bisa mengelompokkan ulang:</p>
+ <p class="lesson-text">$$4 \times (25 + 15) = 4 \times 40 = 160$$</p>
+ <p class="lesson-text">Kedua cara menghasilkan jawaban yang sama—dan kita bisa memilih yang paling nyaman.</p>
+
+ <p class="lesson-text">Contoh-contoh di atas menunjukkan bahwa ketiga sifat ini bukan hanya teori—mereka memiliki penerapan praktis yang sangat luas, baik dalam perhitungan sehari-hari maupun dalam manipulasi ekspresi aljabar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal perhitungan yang menggabungkan ketiga sifat. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri alasan setiap langkah, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Komutatif dan Asosiatif pada Penjumlahan</p>
+ <p class="lesson-text">Hitung: $38 + 47 + 62 + 53$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Komutatif</strong> — tukar posisi $47$ dan $62$:<br>$38 + 47 + 62 + 53 = 38 + 62 + 47 + 53$</li>
+  <li><strong>Asosiatif</strong> — kelompokkan ulang:<br>$38 + 62 + 47 + 53 = (38 + 62) + (47 + 53)$</li>
+  <li>Hitung:<br>$(38 + 62) + (47 + 53) = 100 + 100 = 200$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Komutatif dan Asosiatif pada Perkalian</p>
+ <p class="lesson-text">Hitung: $25 \times 8 \times 4 \times 5$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Komutatif</strong> — susun ulang agar pasangan mudah dikalikan:<br>$25 \times 8 \times 4 \times 5 = 25 \times 4 \times 8 \times 5$</li>
+  <li><strong>Asosiatif</strong> — kelompokkan:<br>$25 \times 4 \times 8 \times 5 = (25 \times 4) \times (8 \times 5)$</li>
+  <li>Hitung:<br>$(25 \times 4) \times (8 \times 5) = 100 \times 40 = 4000$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Distributif Numerik</p>
+ <p class="lesson-text">Hitung: $7 \times 98$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tulis $98$ sebagai $100 - 2$:<br>$7 \times 98 = 7 \times (100 - 2)$</li>
+  <li><strong>Distributif</strong> terhadap pengurangan:<br>$7 \times (100 - 2) = 7 \times 100 - 7 \times 2$</li>
+  <li>Hitung:<br>$7 \times 100 - 7 \times 2 = 700 - 14 = 686$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Distributif pada Aljabar (Menguraikan)</p>
+ <p class="lesson-text">Sederhanakan: $4x(3x - 5) + 2x$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Distributif</strong> — sebarkan $4x$ ke dalam kurung:<br>$4x(3x - 5) = 4x \cdot 3x - 4x \cdot 5 = 12x^2 - 20x$</li>
+  <li>Kembalikan ke ekspresi semula:<br>$12x^2 - 20x + 2x$</li>
+  <li>Gabung suku sejenis ($-20x$ dan $2x$):<br>$12x^2 - 18x$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Distributif pada Aljabar (Memfaktorkan)</p>
+ <p class="lesson-text">Faktorkan: $6a^2b - 9ab^2$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Cari faktor bersama dari kedua suku. Untuk koefisien: $\gcd(6, 9) = 3$. Untuk variabel: $a^2b$ dan $ab^2$ sama-sama memuat $ab$. Jadi faktor bersamanya adalah $3ab$.</li>
+  <li>Tulis setiap suku sebagai hasil kali faktor bersama:<br>$6a^2b = 3ab \cdot 2a$ dan $9ab^2 = 3ab \cdot 3b$</li>
+  <li><strong>Distributif dari kanan ke kiri</strong> — keluarkan faktor bersama:<br>$6a^2b - 9ab^2 = 3ab(2a - 3b)$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 6: Distributif dengan Tanda Negatif</p>
+ <p class="lesson-text">Sederhanakan: $-3(x - 4) + 5$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Distributif</strong> — sebarkan $-3$ ke dalam kurung. Perhatikan: $-3$ dikalikan dengan $-4$ menghasilkan $+12$.<br>$-3(x - 4) = -3 \cdot x + (-3) \cdot (-4) = -3x + 12$</li>
+  <li>Kembalikan ke ekspresi semula:<br>$-3x + 12 + 5$</li>
+  <li>Gabung konstanta:<br>$-3x + 17$</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 7: Membuktikan Identitas Aljabar</p>
+ <p class="lesson-text">Buktikan: $(a - b)^2 = a^2 - 2ab + b^2$</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tulis sebagai perkalian dua faktor yang sama:<br>$(a - b)^2 = (a - b)(a - b)$</li>
+  <li><strong>Distributif</strong> — kalikan $(a - b)$ dengan $(a - b)$:<br>$(a - b)(a - b) = a(a - b) - b(a - b)$</li>
+  <li><strong>Distributif</strong> sekali lagi untuk masing-masing:<br>$a(a - b) = a^2 - ab$ dan $b(a - b) = ab - b^2$</li>
+  <li>Gabungkan:<br>$a^2 - ab - ab + b^2$</li>
+  <li>Sederhanakan suku sejenis ($-ab - ab = -2ab$):<br>$a^2 - 2ab + b^2$</li>
+ </ol>
+ <p class="lesson-text">Kedua sisi terbukti sama, sehingga identitas berlaku untuk semua bilangan real $a$ dan $b$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap pengurangan komutatif atau asosiatif.</strong> $7 - 2 \neq 2 - 7$, dan $(10 - 5) - 2 \neq 10 - (5 - 2)$. Pengurangan tidak memiliki kedua sifat ini.</li>
+  <li><strong>Menganggap pembagian komutatif atau asosiatif.</strong> $8 \div 4 \neq 4 \div 8$, dan $(12 \div 3) \div 2 \neq 12 \div (3 \div 2)$. Pembagian tidak memiliki kedua sifat ini.</li>
+  <li><strong>Menganggap sifat distributif berlaku untuk perkalian terhadap perkalian.</strong> Sifat distributif hanya menghubungkan perkalian dengan penjumlahan atau pengurangan—<strong>bukan</strong> perkalian dengan perkalian. Yang benar: $a \times (b \times c) = a \times b \times c$ (sifat asosiatif). Yang salah adalah bila kita "mendistribusikan" $a$ ke dalam kurung sehingga menulis $(a \times b) \times (a \times c)$—bentuk ini berbeda dari $a \times (b \times c)$. Sebagai contoh konkret: $2 \times (3 \times 4) = 24$, sedangkan $(2 \times 3) \times (2 \times 4) = 6 \times 8 = 48$.</li>
+  <li><strong>Salah menerapkan sifat distributif pada pembagian.</strong> $12 \div (2 + 4) \neq 12 \div 2 + 12 \div 4$—karena pembagian di sisi kiri tidak distributif. Yang benar: $12 \div 6 = 2$, sedangkan $12 \div 2 + 12 \div 4 = 9$. Di sisi lain, $(2 + 4) \div 2 = 2 \div 2 + 4 \div 2$ <em>bernilai benar</em>—karena pembagian di sisi kanan memang distributif.</li>
+  <li><strong>Mengabaikan tanda negatif saat menerapkan sifat distributif.</strong> Contoh: $-2(x - 3)$ harus dihitung sebagai $(-2) \cdot x + (-2) \cdot (-3) = -2x + 6$, bukan $-2x - 6$. Tanda negatif harus didistribusikan bersama dengan bilangannya.</li>
+  <li><strong>Menganggap sifat komutatif berlaku pada matriks.</strong> Perkalian matriks <strong>tidak</strong> komutatif secara umum. $AB \neq BA$ untuk sebagian besar matriks.</li>
+  <li><strong>Menganggap sifat distributif selalu bisa dipakai tanpa memperhatikan urutan operasi.</strong> Dalam ekspresi seperti $2 + 3 \times 4$, kita tidak boleh "mendistribusikan" angka $2$ ke dalam $3 \times 4$. Sifat distributif hanya berlaku ketika ada bentuk perkalian terhadap penjumlahan—bukan sebaliknya.</li>
+  <li><strong>Menganggap semua operasi komutatif dan asosiatif.</strong> Ini tidak benar. Setiap operasi memiliki sifatnya sendiri—dan pengurangan serta pembagian tidak memiliki kedua sifat tersebut.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum ketiga sifat beserta penerapan dan batasannya.</p>
+ <ul>
+  <li><strong>Sifat Komutatif</strong>: urutan operand boleh ditukar tanpa mengubah hasil.
+   <ul>
+    <li>Berlaku pada penjumlahan: $a + b = b + a$.</li>
+    <li>Berlaku pada perkalian: $a \times b = b \times a$.</li>
+    <li>Tidak berlaku pada pengurangan dan pembagian.</li>
+   </ul></li>
+  <li><strong>Sifat Asosiatif</strong>: pengelompokan operand boleh diubah tanpa mengubah hasil.
+   <ul>
+    <li>Berlaku pada penjumlahan: $(a + b) + c = a + (b + c)$.</li>
+    <li>Berlaku pada perkalian: $(a \times b) \times c = a \times (b \times c)$.</li>
+    <li>Tidak berlaku pada pengurangan dan pembagian.</li>
+   </ul></li>
+  <li><strong>Sifat Distributif</strong>: perkalian menyebar terhadap penjumlahan dan pengurangan.
+   <ul>
+    <li>$a(b + c) = ab + ac$ dan $a(b - c) = ab - ac$.</li>
+    <li>Berlaku untuk <em>perkalian</em>—bukan untuk perkalian terhadap perkalian.</li>
+    <li>Untuk pembagian, berlaku <strong>hanya jika pembagian berada di sisi kanan</strong>: $(a + b) \div c = a \div c + b \div c$. Pembagian di sisi kiri tidak distributif: $a \div (b + c) \neq a \div b + a \div c$.</li>
+   </ul></li>
+  <li><strong>Hubungan antarsifat</strong>: ketiganya bekerja bersama untuk menyederhanakan perhitungan dan memanipulasi ekspresi aljabar.</li>
+  <li><strong>Penerapan praktis</strong>: perhitungan mental, penyederhanaan aljabar, dan pembuktian identitas matematika.</li>
+  <li>Ketiga sifat ini menjadi fondasi untuk struktur aljabar yang lebih abstrak—seperti <strong>grup</strong>, <strong>ring</strong>, dan <strong>field</strong>—yang akan dipelajari di Aljabar Abstrak.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Sifat komutatif, asosiatif, dan distributif adalah tiga pilar fundamental dalam aritmetika dan aljabar. Meskipun tampak sederhana, ketiganya memiliki peran yang sangat dalam—bukan hanya mempermudah perhitungan, tetapi juga menjadi fondasi bagi struktur matematika yang lebih abstrak.</p>
+ <p class="lesson-text">Pemahaman mendalam tentang ketiga sifat ini akan sangat berguna di semua materi berikutnya: <strong>Pecahan, Desimal, Persen</strong> (yang mengandalkan sifat-sifat ini untuk konversi dan operasi), <strong>Eksponen &amp; Akar</strong> (yang merupakan perluasan dari perkalian), <strong>Aljabar Dasar</strong> (di mana sifat distributif menjadi dasar pemfaktoran dan perkalian suku banyak), hingga <strong>Aljabar Abstrak</strong> (di mana sifat-sifat ini menjadi aksioma yang mendefinisikan struktur aljabar seperti grup dan ring).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal, terutama yang melibatkan manipulasi ekspresi aljabar dan penggunaan sifat distributif dari kanan ke kiri. Semakin terbiasa, semakin cepat Anda mengenali pola dan menghindari kesalahan umum.</p>
+</div>
+
+</div>
+</body>
+</html>

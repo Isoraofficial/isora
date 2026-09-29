@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Satuan, Dimensi &amp; Analisis Dimensi (Panjang, Massa, Waktu, dan Cek Konsistensi Rumus)</title>
+ <meta name="description" content="Satuan, dimensi, dan analisis dimensi: satuan pokok dan turunan, notasi [L][M][T], prinsip homogenitas, serta cara mengecek konsistensi rumus fisika.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Satuan, Dimensi &amp; Analisis Dimensi (Panjang, Massa, Waktu, dan Cek Konsistensi Rumus)</h2>
+
+<div class="content-prasyarat">
+ <ul>
+  <li><strong>Operasi Dasar</strong> — terutama perkalian, pembagian, dan substitusi, karena dimensi setiap besaran diperoleh dengan mengganti besaran ke rumus definisinya.</li>
+  <li><strong>Rasio &amp; Proporsi</strong> — karena banyak besaran turunan didefinisikan sebagai rasio (kecepatan = jarak/waktu, percepatan = kecepatan/waktu).</li>
+  <li><strong>Eksponen &amp; Akar</strong> — karena seluruh notasi dimensi menggunakan bentuk pangkat, misalnya $[L][T]^{-1}$ atau $[M][L]^2[T]^{-2}$. Tanpa menguasai aturan eksponen, menyederhanakan dimensi akan membingungkan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Dalam ilmu pengetahuan—terutama fisika dan matematika terapan—kita tidak hanya berurusan dengan angka, tetapi juga dengan <strong>besaran</strong> yang memiliki satuan. Satuan adalah acuan yang digunakan untuk menyatakan ukuran suatu besaran. Tanpa satuan, angka hanyalah abstraksi belaka: angka 5 tidak memiliki arti fisik sampai kita menyebutkan 5 meter, 5 kilogram, atau 5 detik.</p>
+ <p class="lesson-text">Untuk memastikan bahwa rumus-rumus yang kita gunakan <em>valid secara fisik</em>, kita memerlukan alat yang disebut <strong>analisis dimensi</strong>. Dimensi suatu besaran menyatakan bagaimana besaran tersebut tersusun dari besaran-besaran pokok (panjang, massa, waktu). Analisis dimensi memungkinkan kita memeriksa apakah suatu rumus <strong>konsisten</strong> (homogen) secara dimensional—yaitu apakah dimensi ruas kiri sama dengan dimensi ruas kanan. Yang membuatnya sangat berguna adalah <strong>kemampuannya menyaring rumus yang salah dengan cepat</strong>: jika dimensi tidak seimbang, rumus itu <em>pasti</em> salah—tanpa perlu memeriksa lebih jauh.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari <strong>pengertian satuan pokok dan turunan</strong>, <strong>konsep dimensi besaran</strong>, <strong>prinsip dan prosedur analisis dimensi</strong>, <strong>empat contoh penerapan</strong> (termasuk satu contoh rumus yang salah dimensi), <strong>contoh soal</strong>, hingga <strong>kesalahan umum</strong>. Setiap prinsip akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya menyebutkan aturannya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Satuan</h3>
+ <p class="lesson-text">Kita mulai dari konsep paling dasar: satuan sebagai acuan pengukuran.</p>
+
+ <p class="lesson-subheading">A. Pengertian Satuan</p>
+ <p class="lesson-text"><strong>Satuan</strong> adalah sesuatu yang digunakan sebagai pembanding dalam suatu pengukuran. Untuk memudahkan komunikasi ilmiah global, digunakan <strong>Sistem Satuan Internasional (SI)</strong> yang baku—sehingga hasil pengukuran siapa pun di dunia dapat dibandingkan secara langsung.</p>
+
+ <p class="lesson-subheading">B. Satuan Pokok</p>
+ <p class="lesson-text">Satuan pokok adalah satuan dasar yang <em>tidak</em> diturunkan dari satuan lain. Dalam mekanika, terdapat tiga satuan pokok yang paling fundamental:</p>
+ <ul>
+  <li><strong>Panjang</strong> — satuan SI adalah <strong>meter (m)</strong>. Satu meter didefinisikan sebagai jarak yang ditempuh cahaya dalam ruang hampa selama $1/299.792.458$ detik.</li>
+  <li><strong>Massa</strong> — satuan SI adalah <strong>kilogram (kg)</strong>. Definisi modern kilogram didasarkan pada konstanta Planck.</li>
+  <li><strong>Waktu</strong> — satuan SI adalah <strong>sekon (s)</strong>. Satu sekon didefinisikan sebagai durasi $9.192.631.770$ periode radiasi atom cesium-133.</li>
+ </ul>
+ <p class="lesson-text">Selain tiga satuan pokok ini, terdapat empat satuan pokok lain dalam SI (arus listrik, suhu termodinamika, jumlah zat, intensitas cahaya). Namun untuk analisis dimensi mekanika, tiga satuan pertama sudah mencukupi.</p>
+
+ <p class="lesson-subheading">C. Satuan Turunan</p>
+ <p class="lesson-text">Satuan turunan adalah satuan yang diperoleh dari kombinasi satuan-satuan pokok melalui operasi perkalian atau pembagian.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Besaran</th>
+     <th>Rumus</th>
+     <th>Satuan SI</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Luas</td><td>panjang × lebar</td><td>m²</td></tr>
+    <tr><td>Volume</td><td>panjang × lebar × tinggi</td><td>m³</td></tr>
+    <tr><td>Kecepatan</td><td>perpindahan / waktu</td><td>m/s</td></tr>
+    <tr><td>Percepatan</td><td>kecepatan / waktu</td><td>m/s²</td></tr>
+    <tr><td>Gaya</td><td>massa × percepatan</td><td>kg·m/s² (Newton)</td></tr>
+    <tr><td>Energi</td><td>gaya × perpindahan</td><td>kg·m²/s² (Joule)</td></tr>
+    <tr><td>Daya</td><td>energi / waktu</td><td>kg·m²/s³ (Watt)</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Satuan seperti m/s atau kg·m/s² tampak berbeda-beda, tetapi sebenarnya semuanya tersusun dari tiga satuan pokok yang sama. Untuk melihat struktur ini secara lebih mendalam, kita memerlukan konsep yang lebih abstrak: <strong>dimensi</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Dimensi Besaran</h3>
+ <p class="lesson-text">Setelah memahami satuan, kita masuk ke konsep yang lebih abstrak namun lebih fundamental: <strong>dimensi</strong>.</p>
+
+ <p class="lesson-subheading">A. Pengertian Dimensi</p>
+ <p class="lesson-text"><strong>Dimensi</strong> suatu besaran menunjukkan bagaimana besaran tersebut tersusun dari besaran-besaran pokok. Dimensi tidak bergantung pada satuan yang digunakan (apakah meter, sentimeter, atau feet), karena dimensi adalah <strong>esensi</strong> dari besaran itu sendiri.</p>
+ <p class="lesson-text">Dalam mekanika, kita menggunakan tiga simbol dimensi dasar:</p>
+ <ul>
+  <li>$[L]$ — dimensi panjang (<em>length</em>).</li>
+  <li>$[M]$ — dimensi massa (<em>mass</em>).</li>
+  <li>$[T]$ — dimensi waktu (<em>time</em>).</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Dimensi Besaran Pokok</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Besaran Pokok</th>
+     <th>Dimensi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Panjang</td><td>$[L]$</td></tr>
+    <tr><td>Massa</td><td>$[M]$</td></tr>
+    <tr><td>Waktu</td><td>$[T]$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">C. Dimensi Besaran Turunan</p>
+ <p class="lesson-text">Dimensi besaran turunan ditentukan dari rumus definisinya—dengan mengganti setiap besaran dengan dimensinya, lalu menyederhanakan menggunakan aturan eksponen.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Besaran</th>
+     <th>Rumus</th>
+     <th>Dimensi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Kecepatan</td><td>perpindahan / waktu</td><td>$[L][T]^{-1}$</td></tr>
+    <tr><td>Percepatan</td><td>kecepatan / waktu</td><td>$[L][T]^{-2}$</td></tr>
+    <tr><td>Gaya</td><td>massa × percepatan</td><td>$[M][L][T]^{-2}$</td></tr>
+    <tr><td>Usaha / Energi</td><td>gaya × perpindahan</td><td>$[M][L]^2[T]^{-2}$</td></tr>
+    <tr><td>Daya</td><td>usaha / waktu</td><td>$[M][L]^2[T]^{-3}$</td></tr>
+    <tr><td>Tekanan</td><td>gaya / luas</td><td>$[M][L]^{-1}[T]^{-2}$</td></tr>
+    <tr><td>Frekuensi</td><td>1 / periode</td><td>$[T]^{-1}$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Setiap besaran turunan memiliki "sidik jari" dimensional yang unik—yang menunjukkan kombinasi besaran pokok penyusunnya. Dengan memahami dimensi setiap besaran, kita dapat memeriksa apakah suatu rumus konsisten secara fisik.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Analisis Dimensi</h3>
+ <p class="lesson-text">Setelah memahami satuan dan dimensi, kita masuk ke inti materi: <strong>analisis dimensi</strong>—alat untuk memeriksa apakah suatu rumus konsisten secara dimensional.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Tujuan</p>
+ <p class="lesson-text"><strong>Analisis dimensi</strong> adalah metode untuk memeriksa hubungan antar besaran fisika dengan meneliti dimensinya. Tujuan utamanya:</p>
+ <ol>
+  <li><strong>Mengecek konsistensi (homogenitas)</strong> suatu rumus—memastikan bahwa dimensi ruas kiri sama dengan ruas kanan.</li>
+  <li><strong>Menentukan dimensi suatu besaran turunan</strong> jika rumusnya diketahui.</li>
+  <li><strong>Menurunkan bentuk rumus</strong> (meskipun analisis dimensi tidak dapat menentukan konstanta numerik).</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Prinsip Homogenitas Dimensi</p>
+ <p class="lesson-text">Prinsip paling fundamental dalam analisis dimensi adalah: <strong>hanya besaran-besaran yang berdimensi sama yang dapat dijumlahkan, dikurangkan, atau disamakan (melalui tanda $=$)</strong>. Sebuah persamaan fisika dikatakan <strong>konsisten secara dimensional</strong> jika dimensi ruas kiri sama dengan dimensi ruas kanan.</p>
+ <p class="lesson-subheading-alt">Mengapa prinsip ini berlaku?</p>
+ <p class="lesson-text">Karena kita tidak dapat menjumlahkan "apel dengan jeruk"—memang tidak bermakna secara fisik untuk menambahkan panjang dengan massa, atau waktu dengan kecepatan. Prinsip ini adalah konsekuensi logis dari cara kita mendefinisikan besaran fisika: setiap besaran memiliki "jenis" (dimensi) yang berbeda, dan hanya yang sejenis dapat digabungkan.</p>
+
+ <p class="lesson-subheading">C. Prosedur Cek Konsistensi Rumus</p>
+ <p class="lesson-text">Untuk memeriksa apakah suatu rumus valid secara dimensional, ikuti langkah-langkah berikut:</p>
+ <ol>
+  <li>Tuliskan rumus yang akan diperiksa.</li>
+  <li>Tentukan dimensi dari setiap besaran yang terlibat.</li>
+  <li>Substitusikan dimensi tersebut ke dalam rumus.</li>
+  <li>Sederhanakan ruas kiri dan ruas kanan secara terpisah.</li>
+  <li>Bandingkan dimensi kedua ruas—jika sama, rumus <strong>konsisten secara dimensional</strong>; jika berbeda, rumus <strong>pasti salah</strong>.</li>
+ </ol>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Analisis dimensi hanya menjamin <em>konsistensi dimensional</em>—bukan kebenaran rumus secara numerik. Suatu rumus bisa konsisten secara dimensi tetapi tetap salah karena konstanta numerik atau bentuk fungsi yang keliru (misalnya lupa faktor $\frac{1}{2}$ atau salah tanda). Namun, jika dimensi ruas kiri dan kanan berbeda, rumus tersebut <strong>pasti salah</strong>—tanpa terkecuali.</p>
+ </div>
+
+ <p class="lesson-text">Prinsip dan prosedur ini akan terasa lebih jelas ketika diterapkan pada contoh konkret—terutama pada rumus-rumus fisika yang sudah dikenal.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Contoh Analisis Dimensi</h3>
+ <p class="lesson-text">Teori menjadi jelas melalui contoh. Berikut empat contoh penerapan analisis dimensi—dari cek rumus yang benar, rumus yang salah, hingga penentuan dimensi konstanta yang belum diketahui.</p>
+
+ <p class="lesson-subheading">A. Contoh 1: Cek Konsistensi Rumus GLBB</p>
+ <p class="lesson-text">Periksa apakah rumus $s = v_0 t + \frac{1}{2}at^2$ konsisten secara dimensional, dengan $s$ = jarak, $v_0$ = kecepatan awal, $a$ = percepatan, dan $t$ = waktu.</p>
+ <p class="lesson-subheading-alt">Langkah 1: Tulis dimensi masing-masing besaran.</p>
+ <ul>
+  <li>$s \rightarrow [L]$</li>
+  <li>$v_0 \rightarrow [L][T]^{-1}$</li>
+  <li>$t \rightarrow [T]$</li>
+  <li>$a \rightarrow [L][T]^{-2}$</li>
+ </ul>
+ <p class="lesson-subheading-alt">Langkah 2: Substitusikan ke kedua ruas.</p>
+ <ul>
+  <li>Ruas kiri: $s \rightarrow [L]$.</li>
+  <li>Ruas kanan suku pertama: $[L][T]^{-1} \times [T] = [L]$.</li>
+  <li>Ruas kanan suku kedua: $\frac{1}{2}$ tidak berdimensi, sehingga $[L][T]^{-2} \times [T]^2 = [L]$.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Langkah 3: Bandingkan.</p>
+ <p class="lesson-text">Ruas kiri $[L]$, ruas kanan $[L] + [L] = [L]$. Kedua ruas sama, maka rumus $s = v_0 t + \frac{1}{2}at^2$ <strong>konsisten secara dimensional</strong>.</p>
+
+ <p class="lesson-subheading">B. Contoh 2: Rumus yang Salah Dimensi</p>
+ <p class="lesson-text">Periksa apakah rumus $s = v_0 t + \frac{1}{2}at^3$ konsisten secara dimensional.</p>
+ <p class="lesson-text">Dimensi sama seperti Contoh 1, tetapi perhatikan suku kedua:</p>
+ <ul>
+  <li>Suku kedua: $[L][T]^{-2} \times [T]^3 = [L][T]$.</li>
+ </ul>
+ <p class="lesson-text">Ruas kanan menjadi $[L] + [L][T]$—dua suku dengan dimensi berbeda, sehingga penjumlahannya <strong>tidak bermakna secara fisik</strong>. Rumus ini <strong>tidak konsisten</strong> dan pasti salah.</p>
+
+ <p class="lesson-subheading">C. Contoh 3: Menentukan Dimensi Konstanta Gravitasi</p>
+ <p class="lesson-text">Diketahui $F = G\dfrac{m_1 m_2}{r^2}$, dengan $F$ gaya, $m_1, m_2$ massa, $r$ jarak, dan $G$ konstanta gravitasi universal. Tentukan dimensi $G$.</p>
+ <p class="lesson-text">Susun persamaan dimensi:</p>
+ <p class="lesson-text">$$[F] = [G] \cdot \frac{[m_1][m_2]}{[r]^2}$$</p>
+ <p class="lesson-text">Substitusi nilai yang diketahui: $[F] = [M][L][T]^{-2}$, $[m_1] = [m_2] = [M]$, $[r]^2 = [L]^2$. Maka:</p>
+ <p class="lesson-text">$$[M][L][T]^{-2} = [G] \cdot \frac{[M]^2}{[L]^2} \quad \rightarrow \quad [G] = [M]^{-1}[L]^3[T]^{-2}$$</p>
+
+ <p class="lesson-subheading">D. Contoh 4: Menentukan Dimensi Konstanta Pegas</p>
+ <p class="lesson-text">Diketahui $F = kx$, dengan $F$ gaya, $x$ pertambahan panjang, dan $k$ konstanta pegas. Tentukan dimensi $k$.</p>
+ <p class="lesson-text">$$[F] = [k][x] \quad \rightarrow \quad [M][L][T]^{-2} = [k] \cdot [L] \quad \rightarrow \quad [k] = [M][T]^{-2}$$</p>
+
+ <p class="lesson-text">Empat contoh di atas baru sebagian kecil dari kegunaan analisis dimensi. Mari kita terapkan seluruh prosedur ini—dari cek konsistensi, mendeteksi rumus yang salah, hingga menentukan dimensi konstanta yang belum diketahui—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan cek konsistensi, deteksi rumus salah, penentuan dimensi konstanta, dan analisis fungsi trigonometri. Setiap langkah dituliskan lengkap, dan prinsip yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Cek Konsistensi Rumus Energi Kinetik</p>
+ <p class="lesson-text">Periksa apakah rumus energi kinetik $E_k = \frac{1}{2}mv^2$ konsisten secara dimensional, dengan $m$ = massa dan $v$ = kecepatan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tentukan dimensi setiap besaran:
+   <ul>
+    <li>$m \rightarrow [M]$</li>
+    <li>$v \rightarrow [L][T]^{-1}$</li>
+    <li>$\frac{1}{2} \rightarrow$ tidak berdimensi (konstanta numerik murni)</li>
+   </ul>
+  </li>
+  <li>Hitung dimensi ruas kanan:<br>$[m][v]^2 = [M] \cdot ([L][T]^{-1})^2 = [M][L]^2[T]^{-2}$</li>
+  <li>Bandingkan dengan dimensi energi (dari tabel Bagian II): $[E] = [M][L]^2[T]^{-2}$.</li>
+  <li>Kedua ruas sama, maka rumus $E_k = \frac{1}{2}mv^2$ <strong>konsisten secara dimensional</strong>.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Mendeteksi Rumus yang Salah</p>
+ <p class="lesson-text">Periksa apakah rumus gaya $F = mav$ konsisten secara dimensional, dengan $m$ = massa, $a$ = percepatan, dan $v$ = kecepatan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tentukan dimensi setiap besaran:
+   <ul>
+    <li>$m \rightarrow [M]$</li>
+    <li>$a \rightarrow [L][T]^{-2}$</li>
+    <li>$v \rightarrow [L][T]^{-1}$</li>
+   </ul>
+  </li>
+  <li>Hitung dimensi ruas kanan:<br>$[m][a][v] = [M] \cdot [L][T]^{-2} \cdot [L][T]^{-1} = [M][L]^2[T]^{-3}$</li>
+  <li>Bandingkan dengan dimensi gaya: $[F] = [M][L][T]^{-2}$.</li>
+  <li>Kedua ruas berbeda: $[M][L]^2[T]^{-3} \neq [M][L][T]^{-2}$. Maka rumus ini <strong>tidak konsisten</strong> dan pasti salah.</li>
+ </ol>
+ <p class="lesson-text">Perhatikan bahwa perbedaan dimensi muncul dari kelebihan satu faktor $[L]$ di ruas kanan dan satu faktor $[T]^{-1}$ (yang mengarah ke $[T]^{-3}$ alih-alih $[T]^{-2}$). Analisis dimensi langsung menunjukkan bahwa $mav$ bukanlah rumus gaya yang benar—tanpa perlu tahu nilai numerik apa pun.</p>
+ 
+ <p class="lesson-subheading">Soal 3: Menentukan Dimensi Tekanan Hidrostatik</p>
+ <p class="lesson-text">Diketahui rumus tekanan hidrostatik $P = \rho g h$, dengan $\rho$ = massa jenis, $g$ = percepatan gravitasi, dan $h$ = kedalaman. Tentukan dimensi tekanan dari rumus ini, dan periksa apakah hasilnya sesuai dengan dimensi tekanan yang telah kita kenal.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tentukan dimensi setiap besaran:
+   <ul>
+    <li>$\rho \rightarrow [M][L]^{-3}$ (massa dibagi volume)</li>
+    <li>$g \rightarrow [L][T]^{-2}$</li>
+    <li>$h \rightarrow [L]$</li>
+   </ul>
+  </li>
+  <li>Hitung dimensi ruas kanan:<br>$[\rho][g][h] = [M][L]^{-3} \cdot [L][T]^{-2} \cdot [L] = [M][L]^{-1}[T]^{-2}$</li>
+  <li>Bandingkan dengan dimensi tekanan dari tabel Bagian II: $[P] = [M][L]^{-1}[T]^{-2}$.</li>
+  <li>Kedua ruas sama, maka rumus tekanan hidrostatik <strong>konsisten secara dimensional</strong>.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Menentukan Dimensi Modulus Young</p>
+ <p class="lesson-text">Modulus Young didefinisikan sebagai $Y = \dfrac{F/A}{\Delta L / L}$, dengan $F$ = gaya, $A$ = luas penampang, $\Delta L$ = pertambahan panjang, dan $L$ = panjang awal. Tentukan dimensi $Y$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tentukan dimensi setiap komponen:
+   <ul>
+    <li>$[F] = [M][L][T]^{-2}$</li>
+    <li>$[A] = [L]^2$</li>
+    <li>$[\Delta L] = [L]$ dan $[L] = [L]$, sehingga rasio $[\Delta L]/[L] = 1$ (tidak berdimensi)</li>
+   </ul>
+  </li>
+  <li>Hitung $[F/A]$:<br>$\dfrac{[F]}{[A]} = \dfrac{[M][L][T]^{-2}}{[L]^2} = [M][L]^{-1}[T]^{-2}$</li>
+  <li>Karena $\Delta L/L$ tidak berdimensi, dimensi modulus Young sama dengan $[F/A]$:<br>$[Y] = [M][L]^{-1}[T]^{-2}$</li>
+ </ol>
+ <p class="lesson-text">Menarik: modulus Young memiliki dimensi yang <strong>sama dengan tekanan</strong>. Ini masuk akal secara fisika—modulus Young mengukur "tegangan per regangan", dan regangan tidak berdimensi, sehingga dimensinya setara dengan tegangan.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Analisis Fungsi Trigonometri</p>
+ <p class="lesson-text">Periksa apakah persamaan gelombang $y = A\sin(\omega t)$ konsisten secara dimensional, dengan $y$ = simpangan, $A$ = amplitudo, $\omega$ = frekuensi sudut, dan $t$ = waktu.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Periksa argumen fungsi sinus</strong>: argumen $\sin(\cdot)$ harus <em>tidak berdimensi</em>—karena sinus hanyalah rasio panjang sisi segitiga, dan rasio tidak berdimensi.<br>Argumen $\omega t$ harus memenuhi $[\omega][t] = 1$, sehingga:<br>$[\omega] = [T]^{-1}$</li>
+  <li><strong>Periksa keluaran fungsi sinus</strong>: nilai $\sin(\cdot)$ selalu berada dalam rentang $[-1, 1]$—sehingga tidak berdimensi. Maka $[A\sin(\omega t)] = [A] \cdot 1 = [A]$.</li>
+  <li>Jika $A$ adalah amplitudo simpangan, maka $[A] = [L]$.</li>
+  <li>Ruas kiri $[y] = [L]$, ruas kanan $[A] = [L]$. Kedua ruas sama, maka persamaan gelombang <strong>konsisten secara dimensional</strong>.</li>
+ </ol>
+ <p class="lesson-text">Kunci soal ini adalah memahami bahwa <strong>argumen dan keluaran fungsi transenden selalu tidak berdimensi</strong>—suatu sifat yang sangat penting dalam analisis fungsi fisika.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Verifikasi Rumus Periode Pendulum</p>
+ <p class="lesson-text">Periksa apakah rumus periode pendulum sederhana $T = 2\pi\sqrt{\dfrac{L}{g}}$ konsisten secara dimensional, dengan $L$ = panjang tali dan $g$ = percepatan gravitasi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li>Tentukan dimensi setiap besaran:
+   <ul>
+    <li>$[L] = [L]$</li>
+    <li>$[g] = [L][T]^{-2}$</li>
+    <li>$2\pi$ tidak berdimensi</li>
+   </ul>
+  </li>
+  <li>Hitung dimensi rasio di dalam akar:<br>$\left[\dfrac{L}{g}\right] = \dfrac{[L]}{[L][T]^{-2}} = [T]^2$</li>
+  <li>Ambil akar kuadrat:<br>$\left[\sqrt{\dfrac{L}{g}}\right] = \sqrt{[T]^2} = [T]$</li>
+  <li>Ruas kiri $[T] = [T]$, ruas kanan $[T]$. Kedua ruas sama, maka rumus periode pendulum <strong>konsisten secara dimensional</strong>.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 7: Dimensi Sama, Satuan Berbeda</p>
+ <p class="lesson-text">Massa jenis air adalah $1.000 \text{ kg/m}^3$ dalam SI. Nyatakan dalam CGS (gram per sentimeter kubik), lalu jelaskan mengapa dimensinya tetap sama meskipun satuannya berbeda.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Konversi satuan</strong>:
+   <ul>
+    <li>$1 \text{ kg} = 1.000 \text{ g}$</li>
+    <li>$1 \text{ m}^3 = (100 \text{ cm})^3 = 10^6 \text{ cm}^3$</li>
+   </ul>
+  </li>
+  <li>Maka:<br>$1.000 \text{ kg/m}^3 = \dfrac{1.000 \times 1.000 \text{ g}}{10^6 \text{ cm}^3} = \dfrac{10^6 \text{ g}}{10^6 \text{ cm}^3} = 1 \text{ g/cm}^3$</li>
+  <li><strong>Dimensi massa jenis</strong> tetap sama di kedua sistem:<br>$[\rho] = \dfrac{[M]}{[L]^3} = [M][L]^{-3}$</li>
+  <li>Yang berubah hanyalah <em>nilai numerik</em> dan <em>satuan</em>—bukan dimensi.</li>
+ </ol>
+ <p class="lesson-text">Contoh ini menegaskan bahwa <strong>dimensi bersifat universal</strong>—tidak bergantung pada sistem satuan. Inilah sebabnya analisis dimensi dapat digunakan lintas sistem: apa pun satuannya, dimensi massa jenis tetaplah $[M][L]^{-3}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap konstanta numerik (seperti $\frac{1}{2}$ atau $\pi$) memiliki dimensi.</strong> Konstanta numerik murni <em>tidak berdimensi</em>—dimensinya adalah 1. Angka-angka ini hanya pengali skalar dan sama sekali tidak memengaruhi analisis dimensi. Yang diperhatikan hanyalah variabel fisika seperti $v$, $a$, $t$, dan $m$.</li>
+  <li><strong>Menjumlahkan atau mengurangkan besaran dengan dimensi yang berbeda.</strong> Rumus seperti $s = v_0 t + t$ (menjumlahkan jarak dengan waktu) atau $F = ma + v$ (menjumlahkan gaya dengan kecepatan) adalah pelanggaran langsung terhadap prinsip homogenitas. Hanya besaran dengan dimensi sama yang boleh dijumlahkan atau dikurangkan.</li>
+  <li><strong>Memberikan dimensi pada argumen fungsi transenden (trigonometri, logaritma, eksponensial).</strong> Argumen dari $\sin(\theta)$, $\log(x)$, dan $e^x$ harus <em>tidak berdimensi</em>—yaitu bilangan murni. Contoh: dalam $y = A\sin(\omega t)$, besaran $\omega t$ harus tidak berdimensi, sehingga $\omega$ memiliki dimensi $[T]^{-1}$. Keluaran fungsi-fungsi ini juga tidak berdimensi.</li>
+  <li><strong>Membalik dimensi pada operasi pembagian atau perkalian.</strong> Kecepatan adalah panjang dibagi waktu, sehingga dimensinya $[L][T]^{-1}$—<em>bukan</em> $[T][L]^{-1}$. Kesalahan ini sering terjadi saat menurunkan dimensi secara cepat. Selalu tulis rumus definisi terlebih dahulu, baru ganti setiap besaran dengan dimensinya.</li>
+  <li><strong>Salah menuliskan pangkat negatif pada dimensi yang kompleks.</strong> Ketika dimensi memuat banyak faktor, mudah lupa menandai pangkat negatif pada sebagian faktor. Contoh: satuan tekanan adalah N/m² $=$ kg/(m·s²), sehingga dimensi lengkapnya adalah $[M][L]^{-1}[T]^{-2}$—<em>bukan</em> $[M][L][T]^{-2}$ atau $[M][L]^{-1}[T]^2$. Selalu periksa tanda pangkat setiap faktor saat menyederhanakan dimensi.</li>
+  <li><strong>Menganggap semua konstanta dalam rumus fisika tidak berdimensi.</strong> Konstanta seperti $G$ (gravitasi), $k$ (pegas), $c$ (kecepatan cahaya), dan $\hbar$ (konstanta Planck tereduksi) <em>memiliki dimensi</em>—yang harus diturunkan dari rumusnya. Hanya konstanta numerik murni seperti $\frac{1}{2}$, $\pi$, dan $e$ yang tidak berdimensi. Kesalahan menganggap semua konstanta tidak berdimensi sering berujung pada analisis yang keliru.</li>
+  <li><strong>Menganggap analisis dimensi sebagai bukti kebenaran mutlak.</strong> Analisis dimensi hanya menjamin <em>konsistensi</em>, bukan <em>kebenaran</em>. Rumus dengan dimensi seimbang masih bisa salah karena konstanta numerik (misalnya lupa faktor $\frac{1}{2}$) atau bentuk fungsi yang keliru. Analisis dimensi dapat membuktikan bahwa suatu rumus <em>tidak mungkin benar</em>, tetapi tidak dapat membuktikan bahwa rumus itu <em>pasti benar</em>.</li>
+  <li><strong>Lupa bahwa sudut tidak berdimensi.</strong> Sudut dalam radian didefinisikan sebagai rasio panjang busur terhadap jari-jari—keduanya panjang—sehingga sudut tidak berdimensi. Ini sering membingungkan ketika sudut muncul dalam rumus, misalnya pada $\omega = 2\pi f$—di mana $\omega$ memiliki dimensi $[T]^{-1}$ karena $2\pi$ tidak berdimensi.</li>
+  <li><strong>Menganggap satuan dan dimensi sebagai hal yang identik.</strong> Satuan bergantung pada sistem (meter, kaki, mil), sedangkan dimensi bersifat universal ($[L]$ tetap $[L]$ apa pun satuannya). Meter dan kaki memiliki dimensi yang sama ($[L]$) tetapi satuan yang berbeda.</li>
+  <li><strong>Menganggap satuan sistem tertentu (CGS atau imperial) tidak valid untuk analisis dimensi.</strong> Dimensi adalah universal—analisis dimensi bekerja sama baiknya dalam sistem SI, CGS (centimeter-gram-sekon), maupun imperial. Yang berubah antar sistem hanyalah nilai numerik dari satuan, bukan dimensi. Konversi satuan dapat dilakukan kapan saja tanpa memengaruhi hasil analisis dimensi.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti satuan, dimensi, dan analisis dimensi yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Satuan</strong> adalah acuan pengukuran. Tiga satuan pokok dalam mekanika adalah meter (panjang), kilogram (massa), dan sekon (waktu).</li>
+  <li><strong>Satuan turunan</strong> diperoleh dari kombinasi satuan pokok—misalnya m/s untuk kecepatan, kg·m/s² untuk gaya.</li>
+  <li><strong>Dimensi</strong> adalah ekspresi simbolis yang menunjukkan susunan besaran dari besaran pokok: $[L]$ panjang, $[M]$ massa, $[T]$ waktu.</li>
+  <li><strong>Analisis dimensi</strong> adalah metode untuk memeriksa konsistensi rumus melalui prinsip homogenitas: ruas kiri dan kanan harus memiliki dimensi yang sama.</li>
+  <li><strong>Prosedur analisis dimensi</strong>: tulis rumus, tentukan dimensi setiap besaran, substitusikan, sederhanakan, dan bandingkan kedua ruas.</li>
+  <li>Analisis dimensi juga dapat digunakan untuk menentukan dimensi konstanta atau besaran turunan yang belum diketahui.</li>
+  <li><strong>Keterbatasan analisis dimensi</strong>: tidak dapat menentukan konstanta numerik ($\frac{1}{2}$, $\pi$, dll.) dan tidak dapat membuktikan kebenaran rumus secara mutlak—hanya konsistensi.</li>
+  <li>Kesalahan umum: menganggap konstanta numerik berdimensi, salah tanda pangkat pada dimensi kompleks, dan menganggap analisis dimensi sebagai bukti kebenaran.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Analisis dimensi adalah salah satu alat paling sederhana namun paling kuat dalam gudang senjata seorang ilmuwan. Dengan hanya memeriksa dimensi—tanpa perhitungan rumit—kita dapat dengan cepat menyaring rumus-rumus yang salah sebelum membuang waktu pada perhitungan numerik. Kemampuan merasakan apakah suatu rumus "seimbang" secara dimensional adalah tanda dari pemahaman konseptual yang mendalam. Yang membuat analisis dimensi istimewa adalah <strong>sifatnya yang universal</strong>: tidak peduli apakah kita menggunakan satuan SI, CGS, atau imperial—dimensi tetap sama. Ini membuat analisis dimensi menjadi jembatan yang menghubungkan rumus-rumus dari berbagai sistem satuan, dan menjadi alat standar dalam penelitian lintas negara.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Geometri Analitik</strong> (yang menggunakan satuan panjang dan sudut), <strong>Kalkulus</strong> (di mana turunan dan integral memiliki dimensi yang perlu diperiksa, misalnya kecepatan sebagai turunan posisi terhadap waktu), <strong>Fungsi Multivariabel</strong> (yang menggunakan gradien dengan dimensi per satuan panjang), <strong>Integral Lipat</strong> (yang sering melibatkan besaran fisika dengan dimensi seperti massa jenis atau fluks), dan <strong>Persamaan Diferensial</strong> (yang memodelkan fenomena fisik dan harus konsisten secara dimensional).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan rumus-rumus fisika yang kompleks, karena dari sanalah manfaat analisis dimensi paling terasa. Kebiasaan memeriksa dimensi setiap kali menemukan atau menurunkan rumus baru akan memperkuat intuisi fisika Anda secara signifikan—dan menyelamatkan Anda dari kesalahan yang sulit dilacak secara numerik.</p>
+</div>
+
+</div>
+</body>
+</html>
