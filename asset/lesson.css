@@ -1,3 +1,6 @@
+/* ============================================
+   PRASYARAT
+   ============================================ */
 .box-prasyarat {
  position: relative;
  display: inline-block;
@@ -11,7 +14,7 @@
  font-weight: 400;
  cursor: pointer;
  color:#daa520;
- background: #222222;}
+ background: #1a1a1a;}
 .content-prasyarat {
  position: absolute;
  top: 100%;
@@ -20,9 +23,9 @@
  width: 300px;
  padding: 10px;
  background: #121212;
- border: 0.5px solid #aaa;
+ border: 0.5px solid #3a3a3a;
  border-radius: 8px;
- box-shadow: 0 8px 20px -4px #161616;
+ box-shadow: 0 8px 20px -4px rgba(0,0,0,0.6);
  opacity: 0;
  transform: translateY(-6px);
  pointer-events: none;
@@ -34,7 +37,7 @@
  pointer-events: auto;}
 .content-prasyarat ul li{
  font-size:14px;
- line-height:19px;}
+ line-height:1.6;}
 .lesson-text {
  display: block;
  max-width: 100%;
@@ -56,33 +59,33 @@
  display:block;
  box-sizing: border-box;}
 .lesson-title {
- font-size: 17px;
- font-weight: bold;
+ font-size: 22px;
+ font-weight: 700;
  font-family: "Bricolage Grotesque", sans-serif;
  color: #f1f2f3;
- line-height: 22px;
- letter-spacing: 0.8px;}
+ line-height: 1.2;
+ letter-spacing: -0.01em;}
 .lesson-section-heading {
- font-size: 16px;
+ font-size: 18px;
  font-weight: 700;
  font-family: "Bricolage Grotesque", sans-serif;
  color: #22d3ee;
  padding: 6px 0px;
  margin: 15px 0 10px 0;
- border-bottom: 2px solid rgba(34, 211, 238, 0.25);
- letter-spacing: 1px;}
+ border-bottom: 2px solid rgba(34, 211, 238, 0.15);
+ letter-spacing: 0.6px;}
 .lesson-subheading {
- font-family: 'Bricolage Grotesque', serif;
+ font-family: 'Bricolage Grotesque', sans-serif;
  font-weight: 600;
- font-size: 15.5px;
+ font-size: 16px;
  color: #e8e8e8;
  margin: 18px 0 8px 0;
- letter-spacing: 0.7px;}
+ letter-spacing: 0.3px;}
 .lesson-subheading-alt {
- font-weight: 650;
+ font-weight: 600;
  font-size: 14.5px;
  color: #d9d9d9;
- letter-spacing: 0.5px;
+ letter-spacing: 0.3px;
  margin: 10px 0 4px 0;}
 .lesson-text {
  display: block;
@@ -121,18 +124,18 @@ td {
  vertical-align: top;}
 th {
  color: #e5e5e5;
- font-family: 'Bricolage Grotesque', serif;
+ font-family: 'Bricolage Grotesque', sans-serif;
  font-size: 11.9px;
  font-weight: 700;
- letter-spacing: 1px;
+ letter-spacing: 0.5px;
  width: max-content;
  white-space: nowrap;
- background: rgba(139, 26, 43, 0.3);}
+ background: rgba(255, 255, 255, 0.03);}
 td {
  font-size: 13.8px;
- font-weight: 350;
- letter-spacing: 0.5px;
- line-height: 20px;}
+ font-weight: 400;
+ letter-spacing: 0.2px;
+ line-height: 1.5;}
 tr:hover td {
  transition: 0.5s;
  background: rgba(212, 175, 55, 0.06);}
@@ -151,35 +154,39 @@ ol {
  padding-left: 0;}
 li {
  font-weight: 400;
- letter-spacing: 0.3px;
+ letter-spacing: 0.2px;
  margin-bottom: 2px;
  font-size: 14.5px;}
+.lesson ul li::marker,
+.lesson ol li::marker {
+ color: #22d3ee;}
 .lesson-note {
  background: rgba(20, 20, 20, 0.9);
- border-left: 4px solid #8b1a2b;
+ border-left: 4px solid #daa520;
  padding: 16px 16px 12px 16px;
  margin: 20px 0;
  border-radius: 4px;
  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);}
-.lesson-text,
-li {
- font-size: 14.5px;
- font-weight: 350;
- letter-spacing: 0.5px;
- line-height: 20px;}
+.lesson-text, li {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.65;
+}
 strong {
- font-weight: 650;}
+ font-weight: 700;
+ color: #f1f2f3;}
 .katex-display .katex {
  overflow-y: hidden;
  padding: 2px 0px;
- font-weight: 300 !important;
- font-size: 16px !important;}
+ font-weight: 400 !important;
+ font-size: 15.5px !important;}
 .katex {
  max-width: 100%;
  overflow: auto;
- font-size: 14.5px !important;}
+ font-size: 15px !important;}
 th .katex {
- font-size: 14px !important;}
+ font-size: 13.5px !important;}
 tr td .katex-display .katex {
  font-size: 13px !important;}
 .lesson-text .katex-display .katex {
@@ -199,12 +206,41 @@ tr td .katex-display .katex {
  overflow-x: auto;
  font-size: 14px;}
 .lesson-link{
- text-decoration: underline blue;}
+ text-decoration: underline #22d3ee solid 0.7px;
+ color: #22d3ee;}
 .visual-caption{
  font-size:13.3px;
  font-weight:400;
  color:#a8a8a8;
- line-height:18px;
+ line-height:1.5;
  margin-top:10px;
  margin-bottom:4px;
  text-align:center;}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+ .lesson-title {
+  font-size: 20px;}
+ .lesson-section-heading {
+  font-size: 17px;}
+ .lesson-subheading {
+  font-size: 15px;}
+ .lesson-text, li {
+  font-size: 14.5px;}
+ th {
+  font-size: 11.5px;}
+ td {
+  font-size: 13.3px;}
+ .visual-caption {
+  font-size: 12.5px;}}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+ *, *::before, *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;}}
