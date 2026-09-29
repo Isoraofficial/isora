@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Logika Predikat (Kuantor Universal, Eksistensial)</title>
+ <meta name="description" content="Logika predikat: fungsi proposisional, kuantor universal ∀ dan eksistensial ∃, negasi kuantor, kuantor bersarang, hukum ekuivalensi, dan penerjemahan pernyataan sehari-hari.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Logika Predikat (Kuantor Universal, Eksistensial)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Logika Proposisi</strong> — terutama pengertian pernyataan, nilai kebenaran, operator logika ($\neg$, $\land$, $\lor$, $\rightarrow$, $\leftrightarrow$), serta tabel kebenaran.</li>
+   <li><strong>Himpunan dasar</strong> — terutama notasi keanggotaan ($\in$) dan himpunan bagian ($\subseteq$), karena domain pembicaraan sering dinyatakan sebagai himpunan.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text"><strong>Logika predikat</strong> adalah cabang logika matematika yang memperluas logika proposisi dengan menganalisis <strong>struktur internal</strong> dari sebuah pernyataan. Jika logika proposisi memperlakukan pernyataan sebagai satu kesatuan utuh, logika predikat memecahnya menjadi bagian-bagian yang lebih kecil—yaitu <strong>objek</strong>, <strong>sifat</strong> yang dimiliki objek tersebut, dan <strong>kuantitas</strong> objek yang memenuhi sifat itu.</p>
+ <p class="lesson-text">Mengapa pemecahan ini penting? Karena banyak penalaran matematika yang sah tidak dapat dijelaskan hanya dengan logika proposisi. Perhatikan argumen klasik berikut:</p>
+ <ul>
+  <li>Semua manusia fana.</li>
+  <li>Socrates adalah manusia.</li>
+  <li>Maka, Socrates fana.</li>
+ </ul>
+ <p class="lesson-text">Argumen ini jelas valid. Tetapi dalam logika proposisi, ketiga kalimat di atas hanyalah tiga pernyataan terpisah yang tidak bisa dihubungkan. Logika proposisi "buta" terhadap struktur internal kalimat—ia tidak bisa melihat bahwa "Socrates" adalah salah satu dari "semua manusia". Di sinilah logika predikat berperan.</p>
+ <p class="lesson-text">Materi ini membahas logika predikat secara bertahap: dimulai dari <strong>keterbatasan logika proposisi</strong>, lalu memperkenalkan <strong>fungsi proposisional</strong>, dua <strong>kuantor</strong> utama (universal dan eksistensial), <strong>negasi kuantor</strong>, <strong>kuantor bersarang</strong>, hingga <strong>hukum-hukum ekuivalensi</strong> dan <strong>penerjemahan pernyataan sehari-hari</strong>. Setiap konsep dijelaskan dari dasarnya, dengan alasan mengapa aturan tertentu berlaku—bukan hanya menyebutkan aturannya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Keterbatasan Logika Proposisi</h3>
+ <p class="lesson-text">Untuk memahami mengapa logika predikat diperlukan, kita perlu melihat dulu di mana logika proposisi "gagal".</p>
+
+ <p class="lesson-subheading">A. Argumen yang Valid tetapi Tidak Terjangkau</p>
+ <p class="lesson-text">Perhatikan argumen klasik tentang Socrates berikut:</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Premis 1: Semua manusia fana.</p>
+  <p class="lesson-text">Premis 2: Socrates adalah manusia.</p>
+  <p class="lesson-text">Kesimpulan: Socrates fana.</p>
+ </div>
+ <p class="lesson-text">Dalam logika proposisi, kita hanya bisa memberi nama pada setiap kalimat:</p>
+ <p class="lesson-text">$$p: \text{"Semua manusia fana."}$$ $$q: \text{"Socrates adalah manusia."}$$ $$r: \text{"Socrates fana."}$$</p>
+ <p class="lesson-text">Dengan notasi ini, argumen di atas menjadi "dari $p$ dan $q$, simpulkan $r$". Tetapi tidak ada aturan logika proposisi yang mengizinkan kesimpulan seperti itu—karena $p$, $q$, dan $r$ adalah tiga pernyataan yang tidak saling terkait secara logis dalam pengertian proposisional.</p>
+ <p class="lesson-text">Padahal, secara intuitif, argumen itu jelas valid. Ada sesuatu yang hilang dalam analisis logika proposisi.</p>
+
+ <p class="lesson-subheading">B. Apa yang Hilang?</p>
+ <p class="lesson-text">Yang hilang adalah <strong>struktur internal</strong> dari setiap pernyataan. Logika proposisi tidak bisa melihat bahwa:</p>
+ <ul>
+  <li>"Semua manusia fana" sebenarnya berbicara tentang <em>setiap objek</em> yang memiliki sifat "manusia", dan menyatakan bahwa objek itu juga memiliki sifat "fana".</li>
+  <li>"Socrates adalah manusia" menyatakan bahwa objek tertentu bernama "Socrates" memiliki sifat "manusia".</li>
+  <li>Kesimpulannya diperoleh dengan menggabungkan dua fakta tersebut: karena Socrates adalah manusia, dan setiap manusia fana, maka Socrates pasti fana.</li>
+ </ul>
+ <p class="lesson-text">Untuk menangkap struktur ini, kita memerlukan alat yang lebih ekspresif: <strong>predikat</strong> (untuk menyatakan sifat) dan <strong>kuantor</strong> (untuk menyatakan "semua" atau "ada"). Itulah inti dari logika predikat.</p>
+
+ <p class="lesson-subheading">C. Tiga Komponen Utama dalam Logika Predikat</p>
+ <p class="lesson-text">Logika predikat memecah pernyataan menjadi tiga komponen:</p>
+ <ul>
+  <li><strong>Objek</strong>: hal yang dibicarakan—misalnya "Socrates", "3", "segitiga ABC". Objek bisa berupa individu tertentu atau variabel yang mewakili anggota domain.</li>
+  <li><strong>Predikat</strong>: sifat atau relasi yang dimiliki objek—misalnya "manusia", "fana", "lebih besar dari", "genap".</li>
+  <li><strong>Kuantor</strong>: menyatakan berapa banyak objek yang memenuhi predikat—misalnya "semua" atau "ada".</li>
+ </ul>
+ <p class="lesson-text">Dengan tiga komponen ini, argumen Socrates dapat dianalisis secara formal:</p>
+ <p class="lesson-text">$$\forall x \, (M(x) \rightarrow F(x))$$ $$M(s)$$ $$\text{Maka, } F(s)$$</p>
+ <p class="lesson-text">Kita akan membahas notasi ini secara bertahap pada bagian-bagian berikutnya. Yang penting untuk sekarang: logika predikat memungkinkan kita "membuka" pernyataan dan melihat strukturnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Fungsi Proposisional (Predikat)</h3>
+ <p class="lesson-text">Sebelum masuk ke kuantor, kita perlu memahami dulu konsep <strong>predikat</strong>. Predikat adalah fondasi yang membuat kuantor bermakna.</p>
+
+ <p class="lesson-subheading">A. Definisi Fungsi Proposisional</p>
+ <p class="lesson-text">Sebuah <strong>fungsi proposisional</strong> (atau predikat) adalah kalimat yang mengandung satu atau lebih variabel, dan <strong>belum bisa dinilai benar atau salah</strong> sampai variabelnya diganti dengan nilai tertentu dari suatu domain.</p>
+ <p class="lesson-text">Notasi yang umum:</p>
+ <ul>
+  <li>$P(x)$ untuk predikat dengan satu variabel.</li>
+  <li>$Q(x, y)$ untuk predikat dengan dua variabel.</li>
+  <li>$R(x, y, z)$ untuk predikat dengan tiga variabel.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$P(x): x > 5$$</p>
+ <p class="lesson-text">Kalimat ini belum bisa dinilai benar atau salah, karena bergantung pada nilai $x$. Jika $x = 10$, maka $P(10)$ bernilai benar. Jika $x = 3$, maka $P(3)$ bernilai salah. Jadi $P(x)$ menjadi pernyataan setelah $x$ diisi.</p>
+
+ <p class="lesson-subheading">B. Domain Pembicaraan</p>
+ <p class="lesson-text">Setiap predikat selalu terkait dengan <strong>domain pembicaraan</strong>—yaitu himpunan semua nilai yang mungkin untuk variabelnya. Domain harus selalu dinyatakan, karena kebenaran predikat bisa berubah tergantung domainnya.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Pertimbangkan $P(x): x^2 \geq 0$.</p>
+ <ul>
+  <li>Jika domain adalah $\mathbb{R}$ (bilangan real), maka $P(x)$ selalu benar—karena kuadrat setiap bilangan real nonnegatif.</li>
+  <li>Jika domain adalah $\mathbb{C}$ (bilangan kompleks), maka $P(x)$ tidak selalu benar—karena $i^2 = -1 < 0$.</li>
+ </ul>
+ <p class="lesson-text">Inilah sebabnya mengapa dalam logika predikat, <strong>domain selalu disebutkan atau dipahami dari konteks</strong>. Tanpa domain, sebuah predikat tidak dapat dinilai.</p>
+
+ <p class="lesson-subheading">C. Predikat dengan Lebih dari Satu Variabel</p>
+ <p class="lesson-text">Predikat tidak harus hanya memiliki satu variabel. Predikat dengan dua atau lebih variabel menyatakan <strong>relasi</strong> antar objek.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$Q(x, y): x < y$$</p>
+ <ul>
+  <li>$Q(2, 5)$ benar, karena $2 < 5$.</li>
+  <li>$Q(5, 2)$ salah, karena $5 < 2$ tidak benar.</li>
+  <li>$Q(3, 3)$ salah, karena $3 < 3$ tidak benar.</li>
+ </ul>
+ <p class="lesson-text">$$R(x, y, z): x + y = z$$</p>
+ <ul>
+  <li>$R(1, 2, 3)$ benar, karena $1 + 2 = 3$.</li>
+  <li>$R(2, 2, 5)$ salah, karena $2 + 2 \neq 5$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Dari Predikat ke Pernyataan</p>
+ <p class="lesson-text">Inti dari predikat adalah: <strong>ia menjadi pernyataan setelah variabelnya diisi</strong>. Proses ini disebut <strong>instansiasi</strong>.</p>
+ <p class="lesson-subheading-alt">Ilustrasi:</p>
+ <ul>
+  <li>$P(x)$: "$x$ adalah bilangan genap"—belum bisa dinilai.</li>
+  <li>$P(4)$: "4 adalah bilangan genap"—benar.</li>
+  <li>$P(7)$: "7 adalah bilangan genap"—salah.</li>
+ </ul>
+ <p class="lesson-text">Predikat dengan satu variabel ibarat "cetakan kosong" yang menunggu diisi. Setelah diisi, ia menjadi pernyataan yang memiliki nilai kebenaran—dan bisa dianalisis dengan logika proposisi. Tetapi ada cara lain untuk "mengisi" predikat tanpa mengganti variabelnya dengan objek tertentu: yaitu dengan <strong>kuantor</strong>. Inilah yang akan kita bahas di bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Kuantor Universal: ∀</h3>
+ <p class="lesson-text">Sekarang kita masuk ke inti logika predikat: <strong>kuantor</strong>. Kuantor adalah simbol yang menyatakan <strong>berapa banyak</strong> anggota domain yang memenuhi suatu predikat. Ada dua kuantor utama, dan yang pertama adalah kuantor universal.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Simbol</p>
+ <p class="lesson-text">Simbol $\forall$ dibaca "<strong>untuk setiap</strong>" atau "<strong>untuk semua</strong>". Simbol ini adalah bentuk terbalik dari huruf "A", dari kata Inggris <em>All</em>.</p>
+ <p class="lesson-text">Notasi:</p>
+ <p class="lesson-text">$$\forall x \in S, \, P(x)$$</p>
+ <p class="lesson-text">dibaca "untuk setiap $x$ di dalam $S$, berlaku $P(x)$". Huruf $S$ menyatakan domain pembicaraan.</p>
+ <p class="lesson-text">Jika domain sudah dipahami dari konteks, $S$ bisa dihilangkan:</p>
+ <p class="lesson-text">$$\forall x, \, P(x)$$</p>
+
+ <p class="lesson-subheading">B. Kapan Pernyataan Universal Bernilai Benar?</p>
+ <p class="lesson-text">Pernyataan $\forall x, P(x)$ bernilai:</p>
+ <ul>
+  <li><strong>Benar</strong> jika $P(x)$ benar untuk <strong>setiap</strong> anggota domain.</li>
+  <li><strong>Salah</strong> jika ada <strong>setidaknya satu</strong> anggota domain yang membuat $P(x)$ salah.</li>
+ </ul>
+ <p class="lesson-text">Satu contoh penyangkal (<em>counterexample</em>) saja sudah cukup untuk meruntuhkan pernyataan universal. Inilah kekuatan sekaligus kerentanan dari kuantor universal: ia menuntut <strong>semua</strong>, tanpa kecuali.</p>
+
+ <p class="lesson-subheading">C. Contoh-Contoh</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Domain: himpunan $\{1, 2, 3\}$. Predikat: $P(x): x > 0$.</p>
+ <p class="lesson-text">$$\forall x \in \{1, 2, 3\}, \, x > 0$$</p>
+ <p class="lesson-text">Kita periksa satu per satu: $1 > 0$ benar, $2 > 0$ benar, $3 > 0$ benar. Karena semua anggota memenuhi, pernyataan ini bernilai <strong>benar</strong>.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Domain: himpunan $\{1, 2, 3\}$. Predikat: $P(x): x > 1$.</p>
+ <p class="lesson-text">$$\forall x \in \{1, 2, 3\}, \, x > 1$$</p>
+ <p class="lesson-text">Periksa: $1 > 1$ <strong>salah</strong>. Karena ada satu anggota yang tidak memenuhi, pernyataan ini bernilai <strong>salah</strong>—meskipun $2$ dan $3$ memenuhi. Satu saja yang gagal, seluruhnya gagal.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Domain: bilangan real. Predikat: $P(x): x^2 \geq 0$.</p>
+ <p class="lesson-text">$$\forall x \in \mathbb{R}, \, x^2 \geq 0$$</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>—karena kuadrat setiap bilangan real nonnegatif. Ini adalah sifat fundamental bilangan real yang telah kita kenal.</p>
+
+ <p class="lesson-subheading">D. Kuantor Universal dan Implikasi</p>
+ <p class="lesson-text">Dalam praktiknya, kuantor universal sering muncul bersama implikasi. Bentuk $\forall x (P(x) \rightarrow Q(x))$ dibaca "untuk setiap $x$, jika $P(x)$ maka $Q(x)$".</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Domain: bilangan bulat. Predikat $P(x)$: "$x > 2$". Predikat $Q(x)$: "$x^2 > 4$".</p>
+ <p class="lesson-text">$$\forall x \in \mathbb{Z}, (x > 2 \rightarrow x^2 > 4)$$</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>. Alasannya: untuk setiap bilangan bulat yang lebih besar dari 2, kuadratnya pasti lebih besar dari 4. Untuk $x \leq 2$, anteseden salah—dan implikasi dengan anteseden salah otomatis bernilai benar (kebenaran vakum).</p>
+ <p class="lesson-text"><strong>Catatan penting</strong>: Mengapa kita menggunakan implikasi dan bukan konjungsi di sini? Karena kalimat "semua bilangan bulat yang lebih besar dari 2 memiliki kuadrat lebih besar dari 4" tidak menyatakan bahwa semua bilangan bulat lebih besar dari 2—hanya yang memenuhi syarat itu. Implikasi menangkap syarat ini dengan tepat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Kuantor Eksistensial: ∃</h3>
+ <p class="lesson-text">Kuantor kedua adalah kuantor eksistensial, yang menyatakan bahwa <strong>setidaknya ada satu</strong> anggota domain yang memenuhi predikat.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Simbol</p>
+ <p class="lesson-text">Simbol $\exists$ dibaca "<strong>terdapat</strong>" atau "<strong>ada</strong>". Simbol ini adalah bentuk terbalik dari huruf "E", dari kata Inggris <em>Exists</em>.</p>
+ <p class="lesson-text">Notasi:</p>
+ <p class="lesson-text">$$\exists x \in S, \, P(x)$$</p>
+ <p class="lesson-text">dibaca "terdapat $x$ di dalam $S$ sedemikian sehingga $P(x)$".</p>
+
+ <p class="lesson-subheading">B. Kapan Pernyataan Eksistensial Bernilai Benar?</p>
+ <p class="lesson-text">Pernyataan $\exists x, P(x)$ bernilai:</p>
+ <ul>
+  <li><strong>Benar</strong> jika ada <strong>setidaknya satu</strong> anggota domain yang membuat $P(x)$ benar.</li>
+  <li><strong>Salah</strong> jika untuk <strong>semua</strong> anggota domain, $P(x)$ salah.</li>
+ </ul>
+ <p class="lesson-text">Satu contoh saja sudah cukup untuk membuat pernyataan eksistensial bernilai benar. Inilah kebalikan dari kuantor universal—yang menuntut semua, kuantor eksistensial cukup dengan satu.</p>
+
+ <p class="lesson-subheading">C. Contoh-Contoh</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Domain: himpunan $\{1, 2, 3\}$. Predikat: $P(x): x = 2$.</p>
+ <p class="lesson-text">$$\exists x \in \{1, 2, 3\}, \, x = 2$$</p>
+ <p class="lesson-text">Kita periksa: apakah ada anggota yang bernilai 2? Ya, yaitu $x = 2$. Maka pernyataan ini bernilai <strong>benar</strong>—meskipun $1$ dan $3$ tidak memenuhi.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Domain: himpunan $\{1, 2, 3\}$. Predikat: $P(x): x > 5$.</p>
+ <p class="lesson-text">$$\exists x \in \{1, 2, 3\}, \, x > 5$$</p>
+ <p class="lesson-text">Periksa: apakah ada anggota yang lebih besar dari 5? Tidak ada—$1$, $2$, $3$ semuanya kurang dari 5. Maka pernyataan ini bernilai <strong>salah</strong>.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Domain: bilangan real. Predikat: $P(x): x^2 = 4$.</p>
+ <p class="lesson-text">$$\exists x \in \mathbb{R}, \, x^2 = 4$$</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>—karena ada $x = 2$ dan $x = -2$ yang memenuhi.</p>
+
+ <p class="lesson-subheading">D. Kuantor Eksistensial dan Konjungsi</p>
+ <p class="lesson-text">Sebaliknya dari kuantor universal yang sering dikombinasikan dengan implikasi, kuantor eksistensial sering dikombinasikan dengan <strong>konjungsi</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Domain: bilangan bulat. Predikat $P(x)$: "$x$ genap". Predikat $Q(x)$: "$x$ prima".</p>
+ <p class="lesson-text">$$\exists x \in \mathbb{Z}, (x \text{ genap} \land x \text{ prima})$$</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>—karena ada bilangan bulat yang genap sekaligus prima, yaitu $x = 2$.</p>
+ <p class="lesson-text"><strong>Catatan penting</strong>: Mengapa kita menggunakan konjungsi dan bukan implikasi di sini? Karena kita benar-benar mengklaim adanya satu objek yang memenuhi kedua sifat sekaligus. Konjungsi memastikan kedua sifat itu berlaku pada objek yang sama, bukan sekadar bahwa "jika genap maka prima" (yang akan terpenuhi oleh banyak bilangan, termasuk yang ganjil).</p>
+
+ <p class="lesson-subheading">E. Kuantor Eksistensial Tunggal: ∃!</p>
+ <p class="lesson-text">Ada varian yang lebih kuat dari $\exists$, yaitu $\exists!$ yang dibaca "<strong>terdapat tepat satu</strong>". Simbol ini menuntut bahwa objek yang memenuhi predikat bukan hanya ada, tetapi <strong>hanya satu</strong>.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Domain: bilangan real. Predikat: $P(x): x + 2 = 5$.</p>
+ <p class="lesson-text">$$\exists! x \in \mathbb{R}, \, x + 2 = 5$$</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>—karena hanya $x = 3$ yang memenuhi.</p>
+ <p class="lesson-text">Sebaliknya, $\exists! x \in \mathbb{R}, x^2 = 4$ bernilai <strong>salah</strong>—karena ada dua nilai yang memenuhi ($x = 2$ dan $x = -2$).</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Negasi Kuantor</h3>
+ <p class="lesson-text">Setelah memahami kedua kuantor, kita perlu tahu bagaimana cara <strong>menegasikan</strong> pernyataan berkuantor. Aturan ini sangat penting—baik untuk memahami makna pernyataan, maupun untuk pembuktian matematis (terutama pembuktian dengan kontradiksi).</p>
+
+ <p class="lesson-subheading">A. Dua Aturan Negasi</p>
+ <p class="lesson-text">Ada dua aturan negasi kuantor yang perlu diingat:</p>
+ <p class="lesson-text">$$\neg(\forall x, P(x)) \equiv \exists x, \neg P(x)$$ $$\neg(\exists x, P(x)) \equiv \forall x, \neg P(x)$$</p>
+ <p class="lesson-text">Aturan pertama menyatakan bahwa negasi dari "semua memenuhi" adalah "ada yang tidak memenuhi". Aturan kedua menyatakan bahwa negasi dari "ada yang memenuhi" adalah "semua tidak memenuhi".</p>
+
+ <p class="lesson-subheading">B. Intuisi di Baliknya</p>
+ <p class="lesson-text">Mengapa aturannya seperti ini? Bayangkan Anda memiliki klaim "Semua siswa memakai seragam". Untuk membuktikan bahwa klaim ini <strong>salah</strong>, Anda tidak perlu menunjukkan bahwa <em>tidak ada</em> siswa yang memakai seragam. Anda cukup menunjukkan bahwa <em>ada satu</em> siswa yang tidak memakai seragam. Jadi:</p>
+ <ul>
+  <li>Negasi dari "semua memakai seragam" = "ada yang tidak memakai seragam".</li>
+  <li>Negasi dari "ada yang memakai seragam" = "semua tidak memakai seragam".</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa <strong>negasi dari "semua" bukan "tidak ada"</strong>—melainkan "ada yang tidak". Ini salah satu kesalahan paling umum dalam logika.</p>
+
+ <p class="lesson-subheading">C. Contoh-Contoh</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Pernyataan: "Semua siswa lulus ujian."</p>
+ <p class="lesson-text">$$\forall x (S(x) \rightarrow L(x))$$</p>
+ <p class="lesson-text">Negasi: "Ada siswa yang tidak lulus ujian."</p>
+ <p class="lesson-text">$$\exists x (S(x) \land \neg L(x))$$</p>
+ <p class="lesson-text">Perhatikan bahwa negasi dari implikasi $S(x) \rightarrow L(x)$ adalah $S(x) \land \neg L(x)$—sesuai dengan ekuivalensi $\neg(P \rightarrow Q) \equiv P \land \neg Q$ yang telah kita pelajari di logika proposisi.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Pernyataan: "Ada bilangan real yang kuadratnya negatif."</p>
+ <p class="lesson-text">$$\exists x \in \mathbb{R}, \, x^2 < 0$$</p>
+ <p class="lesson-text">Negasi: "Untuk semua bilangan real, kuadratnya tidak negatif."</p>
+ <p class="lesson-text">$$\forall x \in \mathbb{R}, \, x^2 \geq 0$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Pernyataan: "Semua burung bisa terbang."</p>
+ <p class="lesson-text">$$\forall x (B(x) \rightarrow T(x))$$</p>
+ <p class="lesson-text">Negasi: "Ada burung yang tidak bisa terbang."</p>
+ <p class="lesson-text">$$\exists x (B(x) \land \neg T(x))$$</p>
+ <p class="lesson-text">Contoh konkretnya: pinguin.</p>
+
+ <p class="lesson-subheading">D. Ringkasan Pola Negasi</p>
+ <p class="lesson-text">Tabel berikut merangkum pola negasi untuk bentuk-bentuk yang paling sering muncul:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Pernyataan Asli</th>
+     <th>Negasi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\forall x, P(x)$</td>
+     <td>$\exists x, \neg P(x)$</td>
+    </tr>
+    <tr>
+     <td>$\exists x, P(x)$</td>
+     <td>$\forall x, \neg P(x)$</td>
+    </tr>
+    <tr>
+     <td>$\forall x (P(x) \rightarrow Q(x))$</td>
+     <td>$\exists x (P(x) \land \neg Q(x))$</td>
+    </tr>
+    <tr>
+     <td>$\exists x (P(x) \land Q(x))$</td>
+     <td>$\forall x (P(x) \rightarrow \neg Q(x))$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Dua baris pertama adalah aturan dasar negasi kuantor. Dua baris terakhir adalah padanannya ketika predikat dikombinasikan dengan implikasi (untuk $\forall$) atau konjungsi (untuk $\exists$)—sesuai kebiasaan yang sudah kita lihat di Bagian III.D dan IV.D.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kuantor Bersarang</h3>
+ <p class="lesson-text">Dalam matematika, kita sering menjumpai pernyataan yang memuat lebih dari satu kuantor. Pernyataan seperti ini disebut <strong>kuantor bersarang</strong>. Yang membuatnya menarik (dan sering menjebak) adalah: <strong>urutan kuantor sangat mempengaruhi makna</strong>.</p>
+
+ <p class="lesson-subheading">A. Dua Pola Dasar</p>
+ <p class="lesson-text">Perhatikan dua pola berikut:</p>
+ <p class="lesson-text">$$\forall x \, \exists y, \, P(x, y)$$ $$\exists y \, \forall x, \, P(x, y)$$</p>
+ <p class="lesson-text">Keduanya sama-sama memuat $\forall$ dan $\exists$, tetapi urutannya berbeda—dan urutan itu mengubah makna secara fundamental:</p>
+ <ul>
+  <li>$\forall x \exists y$ berarti: "Untuk setiap $x$, ada $y$ (yang boleh bergantung pada $x$) sehingga $P(x,y)$." Nilai $y$ <strong>boleh berbeda</strong> untuk setiap $x$.</li>
+  <li>$\exists y \forall x$ berarti: "Ada satu $y$ (yang sama untuk semua $x$) sehingga untuk setiap $x$, $P(x,y)$." Nilai $y$ harus <strong>sama</strong> untuk semua $x$.</li>
+ </ul>
+ <p class="lesson-text">Pola kedua jauh lebih kuat daripada pola pertama. Jika pola kedua benar, pola pertama otomatis benar—tetapi tidak sebaliknya.</p>
+
+ <p class="lesson-subheading">B. Contoh Konkret</p>
+ <p class="lesson-text">Mari kita lihat contoh konkret untuk memahami perbedaannya:</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Domain: bilangan real.</p>
+ <p class="lesson-text">$$\forall x \exists y, \, (x + y = 0)$$</p>
+ <p class="lesson-text">Dibaca: "Untuk setiap bilangan real $x$, ada bilangan real $y$ sehingga $x + y = 0$."</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>—karena untuk setiap $x$, kita bisa memilih $y = -x$. Nilai $y$ bergantung pada $x$, dan itu diperbolehkan.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Domain: bilangan real.</p>
+ <p class="lesson-text">$$\exists y \forall x, \, (x + y = 0)$$</p>
+ <p class="lesson-text">Dibaca: "Ada bilangan real $y$ yang membuat $x + y = 0$ untuk semua bilangan real $x$."</p>
+ <p class="lesson-text">Pernyataan ini <strong>salah</strong>—karena tidak mungkin ada satu nilai $y$ yang menjadi lawan dari semua bilangan real sekaligus. Misalnya, jika $y = -1$, maka $x + y = 0$ hanya berlaku untuk $x = 1$, bukan untuk semua $x$.</p>
+
+ <p class="lesson-subheading">C. Contoh dengan Domain Manusia</p>
+ <p class="lesson-text">Perbedaan ini juga bisa dilihat dengan domain manusia. Perhatikan dua pernyataan berikut:</p>
+ <p class="lesson-subheading-alt">Pernyataan A:</p>
+ <p class="lesson-text">$$\forall x \exists y, \, (y \text{ adalah ibu dari } x)$$</p>
+ <p class="lesson-text">Dibaca: "Setiap orang memiliki seorang ibu."</p>
+ <p class="lesson-text">Pernyataan ini <strong>benar</strong>—setiap orang pasti memiliki ibu, meskipun ibunya berbeda untuk setiap orang.</p>
+
+ <p class="lesson-subheading-alt">Pernyataan B:</p>
+ <p class="lesson-text">$$\exists y \forall x, \, (y \text{ adalah ibu dari } x)$$</p>
+ <p class="lesson-text">Dibaca: "Ada satu orang yang menjadi ibu dari semua orang."</p>
+ <p class="lesson-text">Pernyataan ini <strong>salah</strong>—tidak ada satu orang yang menjadi ibu bagi seluruh umat manusia.</p>
+
+ <p class="lesson-subheading">D. Predikat vs Fungsi</p>
+ <p class="lesson-text">Sebelum masuk ke contoh negasi kuantor bersarang, ada satu hal yang perlu diperjelas. Sepanjang materi ini, kita telah menggunakan notasi $P(x)$ untuk <strong>predikat</strong>—yaitu pernyataan tentang $x$ yang bernilai benar atau salah. Contoh: $M(x)$ = "$x$ adalah manusia" menghasilkan True atau False.</p>
+ <p class="lesson-text">Namun, dalam beberapa kasus, kita juga perlu menyatakan <strong>nilai</strong> atau <strong>besaran</strong> yang dimiliki oleh $x$—misalnya tinggi, berat, atau usia. Nilai seperti ini bukan True/False, melainkan <strong>angka</strong> yang bisa dibandingkan. Untuk membedakannya dari predikat, kita gunakan <strong>huruf kecil</strong> sebagai nama fungsi.</p>
+ <p class="lesson-text">Contoh:</p>
+ <ul>
+  <li>$h(x)$ = fungsi yang mengembalikan <strong>tinggi</strong> (dalam cm) dari orang $x$. Hasilnya adalah angka—misalnya $h(\text{Budi}) = 170$.</li>
+  <li>$u(x)$ = fungsi yang mengembalikan <strong>usia</strong> dari orang $x$. Hasilnya adalah angka—misalnya $u(\text{Ani}) = 20$.</li>
+ </ul>
+ <p class="lesson-text">Dengan konvensi ini, ketika kita menulis $h(y) > h(x)$, maknanya jelas: "tinggi $y$ lebih besar daripada tinggi $x$". Berbeda dengan $T(x)$ yang bisa disalahartikan sebagai predikat "x itu tinggi".</p>
+
+ <p class="lesson-subheading">E. Negasi Kuantor Bersarang</p>
+ <p class="lesson-text">Sekarang kita gabungkan dua keterampilan: negasi kuantor (Bagian V) dan kuantor bersarang (Bagian VI.A). Aturan dasarnya: untuk menegasikan pernyataan berkuantor bersarang, kita membalik <strong>setiap</strong> kuantor dari kiri ke kanan, dan menegasikan predikatnya.</p>
+ <p class="lesson-text">$$\neg(\forall x \exists y, P(x,y)) \equiv \exists x \forall y, \neg P(x,y)$$</p>
+ <p class="lesson-text">$$\neg(\exists x \forall y, P(x,y)) \equiv \forall x \exists y, \neg P(x,y)$$</p>
+ <p class="lesson-text">Perhatikan bahwa urutan kuantor juga ikut berubah—bukan hanya jenisnya. Ini penting karena seperti yang sudah kita pelajari di Bagian VI.A, urutan kuantor menentukan makna pernyataan.</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Pernyataan asli: "Untuk setiap orang, ada orang lain yang lebih tinggi darinya."</p>
+ <p class="lesson-text">Dalam notasi logika predikat, dengan domain himpunan manusia dan $h(x)$ menyatakan tinggi $x$ (menggunakan fungsi, bukan predikat—sesuai Bagian VI.D):</p>
+ <p class="lesson-text">$$\forall x \exists y, \, (h(y) > h(x))$$</p>
+ <p class="lesson-text">Bacaan: "Untuk setiap $x$, terdapat $y$ sedemikian sehingga tinggi $y$ lebih besar dari tinggi $x$."</p>
+ <p class="lesson-text">Untuk menegasikan pernyataan di atas, kita balik $\forall$ menjadi $\exists$ dan $\exists$ menjadi $\forall$, lalu negasikan predikatnya:</p>
+ <p class="lesson-text">$$\exists x \forall y, \, \neg(h(y) > h(x))$$</p>
+ <p class="lesson-text">Karena $\neg(a > b) \equiv a \leq b$, maka negasinya menjadi:</p>
+ <p class="lesson-text">$$\exists x \forall y, \, (h(y) \leq h(x))$$</p>
+ <p class="lesson-text">Bacaan: "Ada orang $x$ sedemikian sehingga untuk setiap orang $y$, tinggi $y$ kurang dari atau sama dengan tinggi $x$." Dengan kata lain: ada orang yang tingginya <strong>tidak lebih pendek dari siapa pun</strong>—yaitu orang tertinggi (atau salah satu yang tertinggi, jika ada beberapa dengan tinggi yang sama).</p>
+ <p class="lesson-text">Contoh ini menunjukkan dua hal sekaligus: (i) <strong>negasi kuantor bersarang</strong> membalik urutan kuantor, bukan hanya jenisnya; dan (ii) <strong>perbedaan predikat dan fungsi</strong> penting—kita memerlukan $h(x)$ sebagai fungsi untuk membandingkan tinggi, sementara $P(x)$ dipakai untuk menyatakan sifat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Penerjemahan Pernyataan Sehari-hari</h3>
+ <p class="lesson-text">Salah satu keterampilan terpenting dalam logika predikat adalah <strong>menerjemahkan</strong> pernyataan bahasa sehari-hari ke dalam notasi formal. Tanpa keterampilan ini, kita tidak bisa menganalisis argumen atau menyusun pembuktian.</p>
+
+ <p class="lesson-subheading">A. Langkah-Langkah Penerjemahan</p>
+ <p class="lesson-text">Untuk menerjemahkan pernyataan bahasa sehari-hari ke dalam logika predikat, ikuti langkah-langkah berikut:</p>
+ <ol>
+  <li><strong>Tentukan domain pembicaraan.</strong> Apa saja objek yang dibicarakan? Manusia, bilangan bulat, bilangan real, atau yang lain?</li>
+  <li><strong>Identifikasi predikat.</strong> Sifat atau relasi apa yang muncul dalam pernyataan? Beri nama dengan huruf kapital, misalnya $M(x)$ untuk "manusia" dan $F(x)$ untuk "fana".</li>
+  <li><strong>Tentukan kuantor.</strong> Apakah pernyataan berbicara tentang "semua" atau "ada"?</li>
+  <li><strong>Tuliskan dalam notasi formal.</strong> Susun simbol-simbol dengan benar, perhatikan penggunaan implikasi atau konjungsi sesuai jenis pernyataannya.</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Contoh-Contoh Penerjemahan</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">"Setiap manusia fana."</p>
+ <ul>
+  <li>Domain: semua makhluk hidup.</li>
+  <li>Predikat $M(x)$: "$x$ manusia".</li>
+  <li>Predikat $F(x)$: "$x$ fana".</li>
+ </ul>
+ <p class="lesson-text">Karena berbicara tentang "setiap manusia", kita gunakan kuantor universal bersama implikasi:</p>
+ <p class="lesson-text">$$\forall x, \, (M(x) \rightarrow F(x))$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">"Ada siswa yang menyukai matematika."</p>
+ <ul>
+  <li>Domain: semua orang.</li>
+  <li>Predikat $S(x)$: "$x$ siswa".</li>
+  <li>Predikat $M(x)$: "$x$ menyukai matematika".</li>
+ </ul>
+ <p class="lesson-text">Karena berbicara tentang "ada siswa", kita gunakan kuantor eksistensial bersama konjungsi:</p>
+ <p class="lesson-text">$$\exists x, \, (S(x) \land M(x))$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">"Semua bilangan prima lebih besar dari 1."</p>
+ <ul>
+  <li>Domain: bilangan bulat.</li>
+  <li>Predikat $P(x)$: "$x$ prima".</li>
+  <li>Predikat $G(x)$: "$x > 1$".</li>
+ </ul>
+ <p class="lesson-text">$$\forall x, \, (P(x) \rightarrow G(x))$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">"Tidak semua burung bisa terbang."</p>
+ <ul>
+  <li>Domain: burung.</li>
+  <li>Predikat $B(x)$: "$x$ bisa terbang".</li>
+ </ul>
+ <p class="lesson-text">Karena ini adalah negasi dari pernyataan universal, kita bisa menuliskan:</p>
+ <p class="lesson-text">$$\neg\forall x, \, B(x)$$</p>
+ <p class="lesson-text">Atau, menggunakan hukum negasi kuantor, ekuivalen dengan:</p>
+ <p class="lesson-text">$$\exists x, \, \neg B(x)$$</p>
+ <p class="lesson-text">Keduanya sama-sama benar—yang pertama secara langsung menyatakan negasi, yang kedua setelah menerapkan aturan negasi kuantor.</p>
+
+ <p class="lesson-subheading-alt">Contoh 5:</p>
+ <p class="lesson-text">"Setiap mahasiswa memiliki nomor induk."</p>
+ <ul>
+  <li>Domain: mahasiswa.</li>
+  <li>Predikat $N(x)$: "$x$ memiliki nomor induk".</li>
+ </ul>
+ <p class="lesson-text">Karena domain sudah dibatasi hanya mahasiswa, kita tidak perlu menambahkan predikat $M(x)$. Pernyataan menjadi:</p>
+ <p class="lesson-text">$$\forall x, \, N(x)$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 6 (dengan kuantor bersarang):</p>
+ <p class="lesson-text">"Setiap siswa memiliki buku favorit."</p>
+ <ul>
+  <li>Domain: siswa untuk variabel $x$, dan buku untuk variabel $y$.</li>
+  <li>Predikat $F(x, y)$: "$x$ menyukai buku $y$".</li>
+ </ul>
+ <p class="lesson-text">Karena berbicara tentang setiap siswa (yang boleh memiliki buku berbeda), kita gunakan $\forall x \exists y$:</p>
+ <p class="lesson-text">$$\forall x \exists y, \, F(x, y)$$</p>
+
+ <p class="lesson-text">Setelah bisa menerjemahkan pernyataan, langkah selanjutnya adalah <strong>menyederhanakan</strong> atau <strong>mengubah bentuk</strong> pernyataan dengan hukum-hukum ekuivalensi. Inilah yang akan kita bahas di bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Hukum-Hukum Ekuivalensi Logika Predikat</h3>
+ <p class="lesson-text">Seperti pada logika proposisi, ada beberapa <strong>hukum ekuivalensi</strong> dalam logika predikat yang memungkinkan kita menyederhanakan atau mengubah bentuk pernyataan. Hukum-hukum ini sangat berguna dalam pembuktian matematis.</p>
+
+ <p class="lesson-subheading">A. Distribusi Kuantor Universal terhadap Konjungsi</p>
+ <p class="lesson-text">$$\forall x (P(x) \land Q(x)) \equiv \forall x \, P(x) \land \forall x \, Q(x)$$</p>
+ <p class="lesson-text">Ini berarti: "untuk semua $x$, berlaku $P(x)$ dan $Q(x)$" sama artinya dengan "untuk semua $x$ berlaku $P(x)$, <strong>dan</strong> untuk semua $x$ berlaku $Q(x)$".</p>
+ <p class="lesson-text">Secara intuitif, tidak ada bedanya apakah kita mengklaim keduanya sekaligus untuk setiap $x$, atau mengklaim masing-masing secara terpisah untuk setiap $x$. Hasilnya sama.</p>
+
+ <p class="lesson-subheading">B. Distribusi Kuantor Eksistensial terhadap Disjungsi</p>
+ <p class="lesson-text">$$\exists x (P(x) \lor Q(x)) \equiv \exists x \, P(x) \lor \exists x \, Q(x)$$</p>
+ <p class="lesson-text">Ini berarti: "ada $x$ yang memenuhi $P(x)$ atau $Q(x)$" sama artinya dengan "ada $x$ yang memenuhi $P(x)$ <strong>atau</strong> ada $x$ yang memenuhi $Q(x)$".</p>
+ <p class="lesson-text">Kedua rumus ini simetris satu sama lain—$\forall$ terdistribusi terhadap $\land$, dan $\exists$ terdistribusi terhadap $\lor$.</p>
+
+ <p class="lesson-subheading">C. Yang Bukan Ekuivalensi (Penting!)</p>
+ <p class="lesson-text">Ada dua kasus di mana distribusi <strong>tidak</strong> berlaku—dan ini sering menjebak.</p>
+ <p class="lesson-subheading-alt">Kuantor Universal dan Disjungsi:</p>
+ <p class="lesson-text">$$\forall x (P(x) \lor Q(x)) \not\equiv \forall x \, P(x) \lor \forall x \, Q(x)$$</p>
+ <p class="lesson-text">Contoh penyangkal: domain bilangan bulat. $P(x)$: "$x$ genap". $Q(x)$: "$x$ ganjil".</p>
+ <ul>
+  <li>$\forall x (P(x) \lor Q(x))$—benar, karena setiap bilangan bulat pasti genap atau ganjil.</li>
+  <li>$\forall x P(x) \lor \forall x Q(x)$—salah, karena tidak semua bilangan bulat genap, dan tidak semua bilangan bulat ganjil.</li>
+ </ul>
+ <p class="lesson-text">Perbedaannya: bentuk pertama hanya menuntut bahwa <em>setiap</em> bilangan memenuhi salah satu dari dua sifat, boleh berbeda antar bilangan. Bentuk kedua menuntut bahwa satu sifat di antara keduanya berlaku untuk <em>semua</em> bilangan sekaligus.</p>
+
+ <p class="lesson-subheading-alt">Kuantor Eksistensial dan Konjungsi:</p>
+ <p class="lesson-text">$$\exists x (P(x) \land Q(x)) \not\equiv \exists x \, P(x) \land \exists x \, Q(x)$$</p>
+ <p class="lesson-text">Contoh penyangkal: domain bilangan bulat, $P(x)$: "$x$ genap", $Q(x)$: "$x$ ganjil".</p>
+ <ul>
+  <li>$\exists x (P(x) \land Q(x))$—salah, karena tidak ada bilangan bulat yang sekaligus genap dan ganjil.</li>
+  <li>$\exists x P(x) \land \exists x Q(x)$—benar, karena ada bilangan genap, dan ada bilangan ganjil.</li>
+ </ul>
+ <p class="lesson-text">Perbedaannya: bentuk pertama menuntut adanya <em>satu</em> objek yang memenuhi kedua sifat sekaligus. Bentuk kedua hanya menuntut bahwa masing-masing sifat dipenuhi oleh suatu objek—boleh objek yang berbeda.</p>
+
+ <p class="lesson-subheading">D. Hukum De Morgan untuk Kuantor</p>
+ <p class="lesson-text">Seperti yang sudah dibahas di Bagian V, hukum De Morgan untuk kuantor adalah:</p>
+ <p class="lesson-text">$$\neg\forall x \, P(x) \equiv \exists x \, \neg P(x)$$ $$\neg\exists x \, P(x) \equiv \forall x \, \neg P(x)$$</p>
+ <p class="lesson-text">Hukum ini adalah padanan dari Hukum De Morgan pada logika proposisi, tetapi untuk kuantor.</p>
+
+ <p class="lesson-subheading">E. Perubahan Nama Variabel</p>
+ <p class="lesson-text">Nama variabel dalam kuantor tidak mempengaruhi makna—selama semua kemunculan variabel itu diganti secara konsisten:</p>
+ <p class="lesson-text">$$\forall x \, P(x) \equiv \forall y \, P(y)$$ $$\exists x \, P(x) \equiv \exists y \, P(y)$$</p>
+ <p class="lesson-text">Ini analog dengan variabel "boneka" pada penjumlahan: $\sum_{i=1}^{n} i = \sum_{j=1}^{n} j$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap "negasi dari semua" adalah "tidak ada".</strong> Negasi dari "semua $x$ memenuhi $P$" adalah "ada $x$ yang tidak memenuhi $P$"—<strong>bukan</strong> "tidak ada $x$ yang memenuhi $P$". Secara notasi: $\neg\forall x P(x) \equiv \exists x \neg P(x)$.</li>
+  <li><strong>Menganggap $\exists$ berarti "tepat satu".</strong> $\exists$ hanya berarti "setidaknya satu"—bisa satu, dua, atau lebih. Untuk "tepat satu", gunakan $\exists!$.</li>
+  <li><strong>Mengabaikan domain pembicaraan.</strong> Domain sangat penting karena kebenaran pernyataan bergantung padanya. "$\forall x, x > 0$" benar jika domainnya bilangan asli, tetapi salah jika domainnya bilangan bulat.</li>
+  <li><strong>Menganggap $\forall x (P(x) \lor Q(x))$ ekuivalen dengan $\forall x P(x) \lor \forall x Q(x)$.</strong> Ini salah—seperti dijelaskan pada Bagian VIII.C.</li>
+  <li><strong>Menganggap $\exists x (P(x) \land Q(x))$ ekuivalen dengan $\exists x P(x) \land \exists x Q(x)$.</strong> Ini juga salah—seperti dijelaskan pada Bagian VIII.C.</li>
+  <li><strong>Menukar urutan kuantor tanpa sadar.</strong> $\forall x \exists y$ berbeda secara fundamental dengan $\exists y \forall x$. Yang pertama memungkinkan $y$ bergantung pada $x$; yang kedua menuntut satu $y$ untuk semua $x$.</li>
+  <li><strong>Salah menerapkan negasi pada pernyataan berkuantor bersarang.</strong> Negasi harus membalik <em>setiap</em> kuantor, dari kiri ke kanan. Negasi dari $\forall x \exists y P(x,y)$ adalah $\exists x \forall y \neg P(x,y)$, bukan $\exists x \exists y \neg P(x,y)$.</li>
+  <li><strong>Menggunakan konjungsi ketika seharusnya implikasi (atau sebaliknya).</strong> Untuk $\forall$, biasanya digunakan implikasi. Untuk $\exists$, biasanya digunakan konjungsi. Menukar keduanya bisa menghasilkan pernyataan yang salah secara logis.</li>
+  <li><strong>Menulis predikat untuk sesuatu yang seharusnya fungsi (atau sebaliknya).</strong> Predikat menghasilkan T/F (mis. $M(x)$ = "x manusia"), sedangkan fungsi menghasilkan nilai/angka (mis. $h(x)$ = tinggi x). Menggunakan huruf kapital untuk fungsi—misalnya $T(x) > T(y)$ untuk membandingkan tinggi—membuat notasi ambigu, karena $T(x)$ biasanya dibaca sebagai predikat.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Logika predikat</strong> memperluas logika proposisi dengan menganalisis struktur internal pernyataan—yaitu objek, predikat, dan kuantor.</li>
+  <li><strong>Fungsi proposisional</strong> $P(x)$ adalah kalimat yang mengandung variabel dan menjadi pernyataan setelah variabelnya diisi.</li>
+  <li><strong>Domain pembicaraan</strong> adalah himpunan semua nilai yang mungkin untuk variabel—harus selalu diperhatikan.</li>
+  <li><strong>Predikat vs fungsi</strong>: predikat ($P(x)$, huruf kapital) menghasilkan T/F; fungsi ($h(x)$, huruf kecil) menghasilkan nilai/angka.</li>
+  <li><strong>Kuantor universal</strong> $\forall x, P(x)$ berarti "untuk semua $x$, berlaku $P(x)$". Benar jika semua anggota memenuhi; salah jika ada satu saja yang tidak memenuhi.</li>
+  <li><strong>Kuantor eksistensial</strong> $\exists x, P(x)$ berarti "ada $x$ sehingga $P(x)$". Benar jika setidaknya satu anggota memenuhi.</li>
+  <li><strong>Kuantor eksistensial tunggal</strong> $\exists! x, P(x)$ berarti "ada tepat satu $x$ yang memenuhi $P(x)$".</li>
+  <li><strong>Negasi kuantor</strong>: $\neg\forall x P(x) \equiv \exists x \neg P(x)$ dan $\neg\exists x P(x) \equiv \forall x \neg P(x)$.</li>
+  <li><strong>Kuantor bersarang</strong>: $\forall x \exists y$ berbeda dengan $\exists y \forall x$. Yang pertama memungkinkan $y$ bergantung pada $x$; yang kedua menuntut satu $y$ untuk semua $x$.</li>
+  <li><strong>Hukum distribusi</strong>: $\forall$ terdistribusi terhadap $\land$; $\exists$ terdistribusi terhadap $\lor$. Tetapi $\forall$ <em>tidak</em> terdistribusi terhadap $\lor$, dan $\exists$ <em>tidak</em> terdistribusi terhadap $\land$.</li>
+  <li><strong>Penerjemahan</strong>: untuk $\forall$ biasanya digunakan implikasi; untuk $\exists$ biasanya digunakan konjungsi.</li>
+  <li>Logika predikat adalah fondasi untuk <strong>pembuktian matematis</strong> dan seluruh struktur matematika formal.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Logika predikat memberikan bahasa yang jauh lebih kaya daripada logika proposisi. Dengan kuantor universal dan eksistensial, kita dapat menyatakan pernyataan-pernyataan yang melibatkan "semua", "ada", "tidak semua", dan "tidak ada" secara presisi—sesuatu yang tidak mungkin dilakukan dalam logika proposisi.</p>
+ <p class="lesson-text">Kemampuan ini sangat penting dalam matematika karena hampir semua definisi dan teorema dinyatakan dalam bahasa logika predikat. Misalnya, definisi limit yang akan Anda temui nanti—"untuk setiap $\varepsilon > 0$, terdapat $\delta > 0$ sedemikian sehingga..."—adalah kuantor bersarang yang persis seperti yang kita pelajari di sini. Demikian pula definisi kekontinuan, konvergensi, dan hampir semua konsep analisis.</p>
+ <p class="lesson-text">Latihlah diri Anda dalam menerjemahkan pernyataan bahasa sehari-hari ke dalam notasi logika predikat, dan sebaliknya. Perhatikan penggunaan implikasi untuk kuantor universal dan konjungsi untuk kuantor eksistensial. Dan yang paling penting: perhatikan urutan kuantor—karena perbedaan urutan dapat mengubah makna pernyataan secara fundamental.</p>
+ <p class="lesson-text">Materi ini menjadi batu loncatan menuju topik berikutnya: <strong>pembuktian matematis</strong>, di mana kita akan menggunakan notasi dan aturan-aturan logika—baik proposisi maupun predikat—untuk menulis argumen formal yang sahih. Semakin kuat fondasi logika Anda, semakin mudah Anda memahami dan menyusun pembuktian matematika.</p>
+</div>
+
+</div>
+</body>
+</html>
