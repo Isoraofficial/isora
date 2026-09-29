@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Fungsi (Domain, Kodomain, Injektif, Surjektif, Bijektif)</title>
+ <meta name="description" content="Fungsi: definisi, domain, kodomain, range, serta sifat injektif, surjektif, dan bijektif beserta contoh, hubungan dengan fungsi invers, dan kesalahan umum.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h2 class="lesson-title">Fungsi (Domain, Kodomain, Injektif, Surjektif, Bijektif)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Himpunan</strong> — terutama hasil kali Kartesius ($A \times B$), himpunan bagian, dan operasi himpunan dasar.</li>
+   <li><strong>Relasi</strong> — terutama definisi relasi sebagai himpunan pasangan terurut, karena fungsi adalah relasi khusus.</li>
+   <li><strong>Logika Predikat</strong> — terutama kuantor $\forall$ dan $\exists$, serta simbol $\exists!$ (terdapat tepat satu) yang muncul di definisi formal fungsi.</li>
+   <li><strong>Sistem Bilangan</strong> — terutama notasi $\mathbb{R}$ (bilangan real), $\mathbb{Z}$ (bilangan bulat), dan $\mathbb{N}$ (bilangan asli).</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text"><strong>Fungsi</strong> adalah salah satu konsep paling sentral dalam matematika. Hampir semua cabang matematika—dari kalkulus, aljabar linear, hingga analisis real—menggunakan fungsi sebagai alat utama. Bahkan banyak konsep matematika yang didefinisikan <em>melalui</em> fungsi, misalnya turunan (yang merupakan fungsi baru), integral (yang juga fungsi baru), dan transformasi linear (yang merupakan fungsi khusus).</p>
+ <p class="lesson-text">Secara intuitif, fungsi adalah aturan yang memetakan setiap elemen dari satu himpunan ke <strong>tepat satu</strong> elemen di himpunan lain. Aturan ini bisa berupa rumus sederhana seperti $f(x) = 2x + 1$, bisa berupa tabel nilai, bisa juga berupa diagram panah. Kata kunci dalam definisi fungsi adalah "<strong>tepat satu</strong>": relasi biasa memperbolehkan satu elemen domain berpasangan dengan banyak elemen kodomain, sedangkan fungsi <em>tidak</em>—setiap elemen domain harus punya pasangan tunggal. Inilah sebabnya fungsi disebut <strong>relasi khusus</strong>.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari definisi fungsi dan bagaimana ia berbeda dari relasi biasa, <strong>tiga himpunan penting</strong> yang menyertainya (domain, kodomain, range), <strong>klasifikasi fungsi</strong> berdasarkan sifatnya (injektif, surjektif, bijektif), hingga konsep <strong>fungsi invers</strong> beserta syaratnya. Setiap konsep dijelaskan dengan alasan mengapa ia penting dan bagaimana ia digunakan—bukan hanya definisi dan rumus.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Fungsi</h3>
+ <p class="lesson-text">Sebelum masuk ke definisi formal, mari kita mulai dari intuisi. Ketika kita menulis $f(x) = 2x + 1$, kita sedang menyatakan aturan: "ambil angka apa pun, kalikan dengan 2, lalu tambahkan 1". Aturan ini memetakan setiap angka masukan ke tepat satu angka keluaran. Inilah inti dari fungsi.</p>
+
+ <p class="lesson-subheading">A. Definisi Fungsi</p>
+ <p class="lesson-text"><strong>Fungsi</strong> $f$ dari himpunan $A$ ke himpunan $B$ adalah <strong>relasi khusus</strong> yang memetakan setiap elemen di $A$ ke <strong>tepat satu</strong> elemen di $B$.</p>
+ <p class="lesson-text">Secara formal, fungsi $f$ dari $A$ ke $B$ adalah relasi $f \subseteq A \times B$ yang memenuhi:</p>
+ <p class="lesson-text">$$\forall a \in A, \; \exists! \, b \in B \; \text{sehingga} \; (a, b) \in f$$</p>
+ <p class="lesson-text">Notasi $\exists!$ dibaca "terdapat tepat satu"—simbol yang sudah kita kenal dari logika predikat.</p>
+ <p class="lesson-text">Kita menuliskan fungsi dengan notasi:</p>
+ <p class="lesson-text">$$f: A \to B$$</p>
+ <p class="lesson-text">dan untuk setiap $a \in A$, kita tulis $f(a) = b$ untuk menyatakan bahwa $b$ adalah pasangan dari $a$ melalui $f$.</p>
+
+ <p class="lesson-subheading">B. Contoh Fungsi</p>
+ <p class="lesson-text">Misalkan $A = \{1, 2, 3\}$ dan $B = \{x, y\}$. Relasi berikut adalah fungsi:</p>
+ <p class="lesson-text">$$f = \{(1, x), (2, y), (3, x)\}$$</p>
+ <p class="lesson-text">Mengapa? Karena setiap elemen $A$—yaitu 1, 2, dan 3—muncul tepat satu kali sebagai komponen pertama. Fungsi ini memetakan $1 \mapsto x$, $2 \mapsto y$, dan $3 \mapsto x$. Perhatikan bahwa dua elemen berbeda ($1$ dan $3$) boleh memiliki hasil yang sama ($x$)—kita akan membahas implikasi dari ini pada Bagian III.</p>
+
+ <p class="lesson-subheading">C. Bukan Fungsi</p>
+ <p class="lesson-text">Sebuah relasi <strong>bukan fungsi</strong> jika ada elemen domain yang:</p>
+ <ul>
+  <li>tidak memiliki pasangan sama sekali, atau</li>
+  <li>memiliki lebih dari satu pasangan.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$R = \{(1, a), (1, b)\}$$</p>
+ <p class="lesson-text">Relasi ini bukan fungsi karena elemen 1 memiliki dua pasangan berbeda, yaitu $a$ dan $b$. Fungsi menuntut pasangan tunggal, tidak boleh bercabang.</p>
+
+ <p class="lesson-subheading">D. Hubungan dengan Relasi</p>
+ <p class="lesson-text">Setiap fungsi adalah relasi, tetapi tidak setiap relasi adalah fungsi. Seperti yang sudah kita pelajari di materi Relasi, relasi adalah sembarang himpunan bagian dari $A \times B$. Fungsi memperketat syarat itu dengan menambahkan <strong>ketunggalan pasangan</strong> untuk setiap elemen domain.</p>
+ <p class="lesson-text">Karena itu, seluruh sifat-sifat relasi juga berlaku untuk fungsi—namun fungsi memiliki struktur tambahan yang membuatnya jauh lebih kaya. Struktur tambahan inilah yang akan kita bedah mulai dari bagian berikutnya: tiga himpunan yang selalu menyertai sebuah fungsi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Domain, Kodomain, dan Range</h3>
+ <p class="lesson-text">Setiap fungsi $f: A \to B$ membawa serta tiga himpunan penting yang perlu dipahami: domain, kodomain, dan range. Meskipun terlihat mirip, ketiganya memiliki peran yang sangat berbeda.</p>
+
+ <p class="lesson-subheading">A. Domain</p>
+ <p class="lesson-text"><strong>Domain</strong> adalah himpunan asal—yaitu himpunan semua masukan yang mungkin. Pada notasi $f: A \to B$, domainnya adalah $A$.</p>
+ <p class="lesson-text">Domain sering kali ditentukan bersama dengan fungsinya. Namun, jika domain tidak disebutkan secara eksplisit, kita biasanya menggunakan <strong>domain alami</strong>—yaitu himpunan semua bilangan real yang membuat rumus fungsi terdefinisi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Untuk $f(x) = \sqrt{x}$, domain alaminya adalah $x \geq 0$, karena akar kuadrat dari bilangan negatif tidak terdefinisi pada bilangan real. Untuk $f(x) = 1/x$, domain alaminya adalah $x \neq 0$, karena pembagian dengan nol tidak terdefinisi.</p>
+
+ <p class="lesson-subheading">B. Kodomain</p>
+ <p class="lesson-text"><strong>Kodomain</strong> adalah himpunan tujuan—yaitu himpunan $B$ pada $f: A \to B$. Kodomain memuat semua nilai yang <em>mungkin</em> menjadi pasangan, tetapi tidak harus semua terpakai.</p>
+ <p class="lesson-text">Kodomain biasanya dinyatakan secara eksplisit, misalnya $f: \mathbb{R} \to \mathbb{R}$. Ia memberi tahu kita "wilayah" tempat hasil fungsi berada.</p>
+
+ <p class="lesson-subheading">C. Range (Daerah Hasil)</p>
+ <p class="lesson-text"><strong>Range</strong> adalah himpunan semua hasil aktual dari fungsi:</p>
+ <p class="lesson-text">$$\text{Range}(f) = \{f(a) \mid a \in A\}$$</p>
+ <p class="lesson-text">Range selalu merupakan <strong>himpunan bagian</strong> dari kodomain. Ia bisa sama dengan kodomain, atau lebih kecil.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Untuk $f: \mathbb{R} \to \mathbb{R}$ dengan $f(x) = x^2$:</p>
+ <ul>
+  <li>Domain: $\mathbb{R}$ (semua bilangan real boleh menjadi masukan).</li>
+  <li>Kodomain: $\mathbb{R}$ (hasil fungsi berada di bilangan real).</li>
+  <li>Range: $[0, \infty)$ (karena kuadrat bilangan real selalu nonnegatif).</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa range tidak sama dengan kodomain—range adalah <em>subset</em> dari kodomain. Perbedaan ini penting, karena salah satu sifat fungsi (surjektif) justru tentang apakah range sama dengan kodomain.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Jangan mencampuradukkan kodomain dengan range. Kodomain adalah himpunan tujuan yang dideklarasikan (bersifat "pernyataan niat"), sedangkan range adalah himpunan hasil yang benar-benar dicapai (bersifat "kenyataan"). Range selalu $\subseteq$ kodomain, tetapi belum tentu sama.</p>
+ </div>
+
+ <p class="lesson-text">Dengan tiga himpunan ini kita sudah dapat berbicara tentang "seberapa banyak" kodomain yang terpakai—dan itulah pintu masuk menuju klasifikasi fungsi pada bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Fungsi</h3>
+ <p class="lesson-text">Setelah memahami unsur-unsur fungsi, kita dapat mengklasifikasikan fungsi berdasarkan cara ia memetakan elemen-elemennya. Ada tiga sifat penting yang perlu dikuasai: <strong>injektif</strong>, <strong>surjektif</strong>, dan <strong>bijektif</strong>. Ketiganya memainkan peran kunci dalam banyak topik matematika lanjutan—terutama dalam analisis (untuk membuktikan keterbalikan fungsi) dan aljabar abstrak (untuk mempelajari homomorfisme).</p>
+
+ <p class="lesson-subheading">A. Fungsi Injektif (Satu-satu)</p>
+ <p class="lesson-text">Fungsi $f: A \to B$ disebut <strong>injektif</strong> atau <strong>satu-satu</strong> jika setiap elemen berbeda di $A$ dipetakan ke elemen berbeda di $B$. Dengan kata lain, tidak ada dua elemen berbeda di domain yang memiliki hasil sama.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$f(a_1) = f(a_2) \rightarrow a_1 = a_2$$</p>
+ <p class="lesson-text">Kontraposisinya (yang ekuivalen):</p>
+ <p class="lesson-text">$$a_1 \neq a_2 \rightarrow f(a_1) \neq f(a_2)$$</p>
+ <p class="lesson-text">Kedua bentuk ini sering dipakai untuk membuktikan injektivitas. Bentuk pertama lebih mudah untuk membuktikan fungsi <em>injektif</em>, sedangkan bentuk kedua lebih intuitif untuk memahami maknanya.</p>
+ <p class="lesson-subheading-alt">Contoh injektif:</p>
+ <p class="lesson-text">$$f(x) = 2x$$</p>
+ <p class="lesson-text">Jika $f(x_1) = f(x_2)$, maka $2x_1 = 2x_2$, sehingga $x_1 = x_2$. Terbukti injektif.</p>
+ <p class="lesson-subheading-alt">Contoh tidak injektif:</p>
+ <p class="lesson-text">$$f(x) = x^2$$</p>
+ <p class="lesson-text">pada domain $\mathbb{R}$, karena $f(2) = f(-2) = 4$, padahal $2 \neq -2$. Fungsi ini "menabrakkan" dua elemen berbeda menjadi hasil yang sama.</p>
+ <p class="lesson-text"><strong>Interpretasi:</strong> Fungsi injektif tidak pernah "menempelkan" dua elemen berbeda ke satu hasil yang sama. Ia menjaga kekhasan setiap elemen domain.</p>
+
+ <p class="lesson-subheading">B. Fungsi Surjektif (Onto)</p>
+ <p class="lesson-text">Fungsi $f: A \to B$ disebut <strong>surjektif</strong> atau <strong>onto</strong> jika setiap elemen di $B$ memiliki pasangan di $A$. Dengan kata lain, range sama dengan kodomain.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$\forall b \in B, \; \exists a \in A \; \text{sehingga} \; f(a) = b$$</p>
+ <p class="lesson-text">Perhatikan urutan kuantornya: "untuk setiap $b$, ada $a$". Ini berarti elemen $a$ boleh bergantung pada $b$—setiap $b$ boleh punya "sumber" yang berbeda.</p>
+ <p class="lesson-subheading-alt">Contoh surjektif:</p>
+ <p class="lesson-text">$$f: \mathbb{R} \to \mathbb{R}, \quad f(x) = 2x + 1$$</p>
+ <p class="lesson-text">Untuk setiap $b \in \mathbb{R}$, pilih $a = \frac{b-1}{2}$. Maka $f(a) = 2 \cdot \frac{b-1}{2} + 1 = b$. Karena setiap $b$ punya sumber, fungsi ini surjektif.</p>
+ <p class="lesson-subheading-alt">Contoh tidak surjektif:</p>
+ <p class="lesson-text">$$f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2$$</p>
+ <p class="lesson-text">Ambil $b = -1 \in \mathbb{R}$. Tidak ada $x$ real sehingga $x^2 = -1$. Jadi elemen $-1$ di kodomain tidak punya sumber, sehingga fungsi ini tidak surjektif.</p>
+ <p class="lesson-text"><strong>Interpretasi:</strong> Fungsi surjektif "menjelajahi" seluruh kodomain. Tidak ada elemen di kodomain yang "dilupakan".</p>
+
+ <p class="lesson-subheading">C. Fungsi Bijektif (Korespondensi Satu-Satu)</p>
+ <p class="lesson-text">Fungsi $f: A \to B$ disebut <strong>bijektif</strong> jika ia bersifat <strong>injektif</strong> dan <strong>surjektif</strong> sekaligus.</p>
+ <p class="lesson-text">Fungsi bijektif juga disebut <strong>korespondensi satu-satu</strong>—karena setiap elemen domain dipasangkan dengan tepat satu elemen kodomain, dan sebaliknya.</p>
+ <p class="lesson-subheading-alt">Contoh bijektif:</p>
+ <p class="lesson-text">$$f: \mathbb{R} \to \mathbb{R}, \quad f(x) = 2x + 1$$</p>
+ <p class="lesson-text">Fungsi ini injektif (jika $2x_1 + 1 = 2x_2 + 1$, maka $x_1 = x_2$) dan surjektif (setiap $b$ punya sumber). Karena keduanya, fungsi ini bijektif.</p>
+ <p class="lesson-subheading-alt">Contoh tidak bijektif:</p>
+ <p class="lesson-text">$$f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2$$</p>
+ <p class="lesson-text">Fungsi ini tidak injektif (karena $f(2) = f(-2)$) dan tidak surjektif (karena $-1$ tidak punya sumber), sehingga tidak bijektif.</p>
+ <p class="lesson-text"><strong>Interpretasi:</strong> Fungsi bijektif adalah pemetaan yang "sempurna"—ia memetakan setiap elemen domain ke elemen kodomain yang berbeda, dan tidak ada kodomain yang terlewat. Karena kesempurnaannya inilah fungsi bijektif memiliki invers (akan kita bahas di Bagian VI).</p>
+
+ <p class="lesson-subheading">D. Ringkasan Sifat</p>
+ <p class="lesson-text">Tabel berikut merangkum perbedaan ketiga sifat:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sifat</th>
+     <th>Definisi Formal</th>
+     <th>Makna Intuitif</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Injektif</td>
+     <td>$f(a_1) = f(a_2) \rightarrow a_1 = a_2$</td>
+     <td>Tidak ada dua elemen domain yang punya hasil sama</td>
+    </tr>
+    <tr>
+     <td>Surjektif</td>
+     <td>$\forall b \in B, \, \exists a \in A, f(a) = b$</td>
+     <td>Semua elemen kodomain terpakai</td>
+    </tr>
+    <tr>
+     <td>Bijektif</td>
+     <td>Injektif dan surjektif</td>
+     <td>Pemetaan sempurna: satu-satu dan onto</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Definisi-definisi ini terasa abstrak tanpa contoh. Mari kita terapkan pada beberapa kasus konkret—baik pada himpunan berhingga maupun pada bilangan real—agar sifat-sifat ini menjadi lebih hidup.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Contoh dan Bukan Contoh Sistematis</h3>
+ <p class="lesson-text">Setelah memahami definisi ketiga sifat, mari kita terapkan pada beberapa contoh konkret. Analisis contoh-contoh ini akan membantu membangun intuisi dan menghindari kesalahan.</p>
+
+ <p class="lesson-subheading">A. Fungsi pada Himpunan Berhingga</p>
+ <p class="lesson-text">Misalkan $A = \{1, 2, 3\}$ dan $B = \{a, b, c\}$. Kita akan menganalisis empat relasi dari $A$ ke $B$.</p>
+
+ <p class="lesson-subheading-alt">1. $f = \{(1,a), (2,b), (3,c)\}$</p>
+ <ul>
+  <li><strong>Injektif?</strong> Ya. Ketiga hasil ($a$, $b$, $c$) berbeda.</li>
+  <li><strong>Surjektif?</strong> Ya. Semua elemen $B$ terpakai.</li>
+  <li><strong>Bijektif?</strong> Ya, karena keduanya terpenuhi.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">2. $g = \{(1,a), (2,a), (3,b)\}$</p>
+ <ul>
+  <li><strong>Injektif?</strong> Tidak. Elemen 1 dan 2 sama-sama menghasilkan $a$.</li>
+  <li><strong>Surjektif?</strong> Tidak. Elemen $c$ di kodomain tidak terpakai.</li>
+  <li><strong>Bijektif?</strong> Tidak.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">3. $h = \{(1,a), (2,b), (3,b)\}$</p>
+ <ul>
+  <li><strong>Injektif?</strong> Tidak. Elemen 2 dan 3 sama-sama menghasilkan $b$.</li>
+  <li><strong>Surjektif?</strong> Tidak. Elemen $c$ tidak terpakai.</li>
+  <li><strong>Bijektif?</strong> Tidak.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">4. $k = \{(1,a), (2,c), (3,b)\}$</p>
+ <ul>
+  <li><strong>Injektif?</strong> Ya. Semua hasil berbeda.</li>
+  <li><strong>Surjektif?</strong> Ya. Semua elemen $B$ terpakai.</li>
+  <li><strong>Bijektif?</strong> Ya.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Fungsi Linear</p>
+ <p class="lesson-text">$$f: \mathbb{R} \to \mathbb{R}, \quad f(x) = ax + b \quad (a \neq 0)$$</p>
+ <p class="lesson-text">Fungsi linear dengan kemiringan tak nol selalu bijektif pada $\mathbb{R}$. Injektif karena jika $ax_1 + b = ax_2 + b$, maka $x_1 = x_2$. Surjektif karena untuk setiap $y \in \mathbb{R}$, pilih $x = (y - b)/a$, maka $f(x) = y$.</p>
+
+ <p class="lesson-subheading">C. Fungsi Kuadrat</p>
+ <p class="lesson-text">$$f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2$$</p>
+ <ul>
+  <li>Tidak injektif: $f(2) = f(-2) = 4$.</li>
+  <li>Tidak surjektif: tidak ada $x$ sehingga $x^2 = -1$.</li>
+  <li>Jika domain dibatasi menjadi $[0, \infty)$ dan kodomain $[0, \infty)$, maka fungsi ini menjadi bijektif—karena setiap bilangan nonnegatif memiliki tepat satu akar kuadrat nonnegatif.</li>
+ </ul>
+ <p class="lesson-text">Ini adalah contoh penting tentang bagaimana domain dan kodomain mempengaruhi sifat-sifat fungsi. Fungsi yang sama bisa menjadi bijektif atau tidak, tergantung bagaimana domain dan kodomainnya didefinisikan.</p>
+
+ <p class="lesson-text">Contoh-contoh di atas memperlihatkan bahwa ketiga sifat—injektif, surjektif, bijektif—bukanlah konsep yang terpisah, melainkan saling terkait erat. Mari kita lihat hubungan antar mereka secara lebih sistematis.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Hubungan antara Injektif, Surjektif, dan Bijektif</h3>
+ <p class="lesson-text">Ketiga sifat ini saling berkaitan, dan ada beberapa hubungan penting yang perlu dipahami.</p>
+ <ul>
+  <li>Setiap fungsi bijektif pasti injektif dan surjektif. Sebaliknya, fungsi yang injektif dan surjektif sekaligus pasti bijektif.</li>
+  <li>Fungsi injektif saja tidak menjamin surjektif. Contoh: $f: \mathbb{R} \to \mathbb{R}$ dengan $f(x) = e^x$—injektif, tetapi tidak surjektif (range-nya hanya bilangan positif).</li>
+  <li>Fungsi surjektif saja tidak menjamin injektif. Contoh: $f: \mathbb{R} \to \mathbb{R}$ dengan $f(x) = x^3 - x$—surjektif, tetapi tidak injektif (karena $f(-1) = f(0) = f(1) = 0$).</li>
+ </ul>
+ <p class="lesson-text">Ada satu fakta penting yang berlaku khusus untuk himpunan berhingga:</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Jika $A$ dan $B$ adalah himpunan berhingga dengan $|A| = |B|$, maka untuk fungsi $f: A \to B$ berlaku: injektif $\leftrightarrow$ surjektif $\leftrightarrow$ bijektif. Ketiga sifat ini ekuivalen pada himpunan berhingga dengan ukuran sama. Namun, fakta ini <strong>tidak berlaku</strong> pada himpunan tak hingga. Sebagai contoh, $f: \mathbb{N} \to \mathbb{N}$ dengan $f(n) = 2n$ adalah injektif tetapi tidak surjektif—meskipun domain dan kodomainnya sama-sama $\mathbb{N}$.</p>
+ </div>
+
+ <p class="lesson-text">Karena bijektivitas menjamin bahwa setiap elemen kodomain punya tepat satu sumber, ia membuka pintu bagi konsep berikutnya: mengembalikan setiap hasil fungsi ke asalnya. Inilah gagasan di balik <strong>fungsi invers</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Fungsi Invers</h3>
+ <p class="lesson-text">Salah satu alasan utama mengapa fungsi bijektif begitu penting adalah karena hanya fungsi bijektif yang memiliki <strong>invers</strong>—yaitu fungsi yang "membatalkan" efek fungsi aslinya.</p>
+
+ <p class="lesson-subheading">A. Definisi Fungsi Invers</p>
+ <p class="lesson-text">Jika $f: A \to B$ adalah fungsi bijektif, maka terdapat fungsi <strong>invers</strong> $f^{-1}: B \to A$ yang didefinisikan:</p>
+ <p class="lesson-text">$$f^{-1}(b) = a \leftrightarrow f(a) = b$$</p>
+ <p class="lesson-text">Dengan kata lain, $f^{-1}$ mengembalikan setiap hasil fungsi ke masukan aslinya. Jika $f$ memetakan $a$ ke $b$, maka $f^{-1}$ memetakan $b$ kembali ke $a$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Fungsi $f(x) = 2x + 1$ adalah bijektif. Inversnya:</p>
+ <p class="lesson-text">$$f^{-1}(y) = \frac{y - 1}{2}$$</p>
+ <p class="lesson-text">Verifikasi: $f(f^{-1}(y)) = 2 \cdot \frac{y-1}{2} + 1 = y$, dan $f^{-1}(f(x)) = \frac{(2x+1) - 1}{2} = x$. Kedua arah mengembalikan nilai aslinya.</p>
+
+ <p class="lesson-subheading">B. Mengapa Harus Bijektif?</p>
+ <p class="lesson-text">Invers hanya dapat didefinisikan jika $f$ bijektif. Mari kita lihat mengapa:</p>
+ <ul>
+  <li><strong>Jika $f$ tidak injektif</strong>, maka ada dua elemen berbeda $a_1 \neq a_2$ dengan $f(a_1) = f(a_2) = b$. Fungsi invers tidak bisa menentukan apakah $b$ harus dikembalikan ke $a_1$ atau $a_2$. Jadi invers tidak terdefinisi dengan baik.</li>
+  <li><strong>Jika $f$ tidak surjektif</strong>, maka ada $b \in B$ yang tidak memiliki sumber di $A$. Untuk $b$ ini, $f^{-1}(b)$ tidak terdefinisi—padahal invers harus terdefinisi untuk semua $b \in B$.</li>
+ </ul>
+ <p class="lesson-text">Karena alasan-alasan inilah, bijektivitas menjadi syarat mutlak untuk keberadaan invers.</p>
+
+ <p class="lesson-subheading">C. Invers dari Fungsi Bukan Bijektif</p>
+ <p class="lesson-text">Jika $f$ tidak bijektif, kita kadang masih bisa mendefinisikan "invers" dengan membatasi domain atau kodomainnya. Contohnya, $f(x) = x^2$ pada $\mathbb{R}$ tidak bijektif, tetapi jika domainnya dibatasi menjadi $[0, \infty)$, maka fungsi ini menjadi bijektif dan memiliki invers $f^{-1}(y) = \sqrt{y}$.</p>
+ <p class="lesson-text">Proses membatasi domain seperti ini disebut <strong>pembatasan domain</strong>, dan sering dilakukan untuk mendapatkan invers dari fungsi yang secara alami tidak bijektif. Ini juga alasan mengapa fungsi trigonometri seperti $\sin x$ memiliki "invers" berupa $\arcsin x$—karena domainnya dibatasi pada interval tertentu.</p>
+
+ <p class="lesson-text">Dengan konsep invers, kita sudah melengkapi semua alat dasar untuk bekerja dengan fungsi. Namun, ada beberapa kesalahan yang sering muncul dalam penerapannya—mari kita bahas untuk menghindarinya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap semua fungsi pasti injektif atau surjektif.</strong> Banyak fungsi yang tidak keduanya. Contoh: $f(x) = x^2$ pada $\mathbb{R}$ tidak injektif dan tidak surjektif.</li>
+  <li><strong>Menyamakan kodomain dengan range.</strong> Kodomain adalah himpunan tujuan yang dideklarasikan, sedangkan range adalah himpunan hasil aktual. Range selalu subset dari kodomain, tetapi tidak selalu sama.</li>
+  <li><strong>Menganggap invers selalu ada untuk semua fungsi.</strong> Invers hanya ada untuk fungsi bijektif. Untuk fungsi yang tidak bijektif, kita hanya bisa mendefinisikan "invers parsial" dengan membatasi domain atau kodomain.</li>
+  <li><strong>Menganggap $f^{-1}(x) = \frac{1}{f(x)}$.</strong> Ini salah. $f^{-1}$ adalah fungsi invers (kebalikan operasi), sedangkan $\frac{1}{f(x)}$ adalah kebalikan nilai. Keduanya sangat berbeda. Contoh: jika $f(x) = x + 1$, maka $f^{-1}(x) = x - 1$, bukan $\frac{1}{x+1}$.</li>
+  <li><strong>Salah mengartikan injektif sebagai "setiap elemen domain punya pasangan".</strong> Itu adalah syarat agar relasi disebut fungsi, bukan syarat injektif. Injektif menuntut pasangan yang berbeda untuk elemen yang berbeda.</li>
+  <li><strong>Salah mengartikan surjektif sebagai "semua elemen domain terpakai".</strong> Semua elemen domain memang selalu terpakai pada sembarang fungsi. Surjektif justru menuntut semua elemen <em>kodomain</em> terpakai.</li>
+  <li><strong>Menganggap pada himpunan tak hingga, injektif selalu ekuivalen dengan surjektif.</strong> Pada himpunan berhingga dengan ukuran sama, ekuivalensi ini benar. Tetapi pada himpunan tak hingga, tidak. Contoh: $f: \mathbb{N} \to \mathbb{N}$ dengan $f(n) = 2n$ adalah injektif tetapi tidak surjektif.</li>
+  <li><strong>Menganggap fungsi harus berupa rumus.</strong> Fungsi bisa dinyatakan dalam banyak bentuk: tabel nilai, diagram panah, himpunan pasangan, atau grafik. Rumus hanyalah salah satu cara.</li>
+  <li><strong>Menganggap notasi $f: A \to B$ menyatakan bahwa range sama dengan $B$.</strong> Notasi ini hanya menyatakan bahwa $B$ adalah kodomain—yaitu himpunan tujuan. Apakah semua elemen $B$ terpakai atau tidak, tergantung apakah fungsi itu surjektif.</li>
+  <li><strong>Menganggap fungsi kuadrat selalu tidak bijektif.</strong> Ini tergantung pada domain dan kodomainnya. Jika dibatasi dengan tepat (misalnya domain $[0, \infty)$ dan kodomain $[0, \infty)$), $f(x) = x^2$ bisa menjadi bijektif.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <p class="lesson-text">Bagian ini merangkum konsep-konsep inti fungsi yang telah kita pelajari.</p>
+ <ul>
+  <li><strong>Fungsi</strong> $f: A \to B$ adalah relasi yang memetakan setiap $a \in A$ ke <strong>tepat satu</strong> $b \in B$.</li>
+  <li><strong>Notasi</strong>: $f: A \to B$ menyatakan fungsi dari $A$ ke $B$; $f(a) = b$ menyatakan bahwa $b$ adalah hasil pemetaan $a$.</li>
+  <li><strong>Domain</strong> adalah himpunan asal $A$; <strong>kodomain</strong> adalah himpunan tujuan $B$; <strong>range</strong> adalah himpunan hasil aktual $f(A) \subseteq B$.</li>
+  <li><strong>Injektif</strong>: $f(a_1) = f(a_2) \rightarrow a_1 = a_2$. Tidak ada dua elemen domain yang hasilnya sama.</li>
+  <li><strong>Surjektif</strong>: setiap $b \in B$ memiliki $a \in A$ sehingga $f(a) = b$. Semua elemen kodomain terpakai.</li>
+  <li><strong>Bijektif</strong>: injektif dan surjektif sekaligus.</li>
+  <li>Fungsi bijektif memiliki <strong>invers</strong> $f^{-1}: B \to A$ yang memenuhi $f^{-1}(b) = a \leftrightarrow f(a) = b$.</li>
+  <li>Notasi $f^{-1}$ menyatakan <strong>fungsi invers</strong> (kebalikan operasi), <em>bukan</em> kebalikan nilai $\frac{1}{f}$—keduanya berbeda dan sering tertukar.</li>
+  <li>Pada himpunan berhingga dengan $|A| = |B|$, ketiga sifat (injektif, surjektif, bijektif) saling ekuivalen. Pada himpunan tak hingga, ekuivalensi ini tidak berlaku.</li>
+  <li>Sifat-sifat fungsi bisa berubah jika domain atau kodomain diubah—seperti pada kasus $f(x) = x^2$ dengan pembatasan domain.</li>
+  <li>Kesalahan umum: mencampuradukkan kodomain dan range, menganggap semua fungsi punya invers, salah memahami definisi injektif/surjektif, dan tertukar antara $f^{-1}$ dengan $\frac{1}{f}$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Fungsi adalah salah satu konsep paling fundamental dalam matematika—jembatan antara dua himpunan yang memetakan setiap elemen domain ke tepat satu elemen kodomain. Dari definisi sederhana ini, kita dapat mengembangkan berbagai konsep yang lebih kaya: sifat <strong>injektif</strong>, <strong>surjektif</strong>, dan <strong>bijektif</strong>, yang masing-masing menangkap aspek berbeda dari "seberapa rapi" pemetaan itu. Ketiga sifat ini bukan sekadar klasifikasi formal—injektivitas dibutuhkan untuk membuktikan keterbalikan fungsi, surjektivitas memastikan seluruh kodomain "terjelajahi", dan bijektivitas memberikan korespondensi sempurna yang memungkinkan kita berbicara tentang "ukuran" himpunan yang sama—konsep yang akan menjadi pintu masuk menuju teori kardinalitas di teori himpunan lanjut.</p>
+ <p class="lesson-text">Materi ini akan sangat berguna untuk hampir semua topik berikutnya: <strong>Aljabar Dasar</strong> (ketika membahas fungsi kuadrat dan inversnya), <strong>Aljabar Linear</strong> (ketika mempelajari transformasi linear—yang merupakan fungsi khusus), <strong>Kalkulus</strong> (ketika mempelajari limit, turunan, dan integral—semuanya melibatkan fungsi), hingga <strong>Aljabar Abstrak</strong> (ketika mempelajari homomorfisme—yang merupakan fungsi yang mempertahankan struktur).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak contoh fungsi—terutama yang melibatkan pembatasan domain dan kodomain—untuk membangun intuisi tentang bagaimana ketiga sifat (injektif, surjektif, bijektif) bekerja. Semakin sering Anda berlatih, semakin mudah Anda mengenali sifat-sifat fungsi hanya dengan melihat rumusnya.</p>
+</div>
+
+</main>
+</body>
+</html>

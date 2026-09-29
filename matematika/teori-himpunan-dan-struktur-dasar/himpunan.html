@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Himpunan (Operasi Himpunan, Kardinalitas, Himpunan Kuasa)</title>
+ <meta name="description" content="Himpunan: definisi, cara penulisan, jenis, operasi gabungan dan irisan, sifat De Morgan, kardinalitas, himpunan kuasa, dan kesalahan umum.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h2 class="lesson-title">Himpunan (Operasi Himpunan, Kardinalitas, Himpunan Kuasa)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Notasi &amp; Bahasa Matematika</strong> — terutama cara membaca simbol $\in$, $\subseteq$, $\varnothing$, serta operasi himpunan seperti $\cup$ dan $\cap$.</li>
+   <li><strong>Logika Proposisi</strong> — terutama operator $\neg$, $\land$, $\lor$, dan implikasi $\rightarrow$, karena definisi himpunan akan menggunakan mereka.</li>
+   <li><strong>Logika Predikat</strong> — terutama kuantor $\forall$ dan $\exists$, karena relasi antar himpunan dinyatakan secara formal dengan kuantor.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text"><strong>Himpunan</strong> adalah konsep paling dasar dalam matematika modern. Hampir seluruh cabang matematika—aritmetika, aljabar, kalkulus, hingga analisis—pada akhirnya dibangun di atas konsep himpunan. Bahkan bilangan itu sendiri, secara formal, didefinisikan sebagai himpunan. Secara intuitif, himpunan adalah kumpulan objek yang terdefinisi dengan jelas: untuk setiap objek, kita harus dapat menentukan secara pasti apakah objek tersebut termasuk dalam himpunan atau tidak.</p>
+ <p class="lesson-text">Mengapa himpunan begitu penting? Karena ia memungkinkan kita berbicara tentang sekumpulan objek—bilangan, titik, fungsi, atau apa pun—sebagai satu kesatuan, dan kemudian memanipulasi kesatuan itu dengan operasi-operasi yang terdefinisi dengan baik. Tanpa konsep himpunan, matematika tidak akan memiliki bahasa untuk mendeskripsikan struktur yang lebih kompleks.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dari pengertian himpunan dan cara penulisannya, <strong>jenis-jenis himpunan</strong>, <strong>operasi-operasi himpunan</strong> beserta sifat-sifatnya, <strong>kardinalitas</strong>, hingga <strong>himpunan kuasa</strong>. Setiap konsep akan dijelaskan dengan alasan mengapa ia penting dan bagaimana ia digunakan—bukan hanya definisi dan rumus.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Himpunan</h3>
+ <p class="lesson-subheading">A. Definisi Himpunan</p>
+ <p class="lesson-text"><strong>Himpunan</strong> adalah kumpulan objek-objek yang terdefinisi dengan jelas. Objek-objek di dalamnya disebut <strong>elemen</strong>, <strong>anggota</strong>, atau <strong>unsur</strong>.</p>
+ <p class="lesson-text">Dalam matematika, himpunan biasanya dilambangkan dengan huruf kapital seperti $A$, $B$, $C$, sedangkan elemennya dilambangkan dengan huruf kecil seperti $a$, $b$, $c$. Ini adalah konvensi yang akan sering Anda jumpai—dan membantu membedakan mana himpunan, mana elemen.</p>
+
+ <p class="lesson-subheading">B. Contoh Himpunan</p>
+ <p class="lesson-text">Berikut beberapa contoh himpunan yang terdefinisi dengan jelas:</p>
+ <ul>
+  <li>Himpunan bilangan asli kurang dari 6: $\{1, 2, 3, 4, 5\}$.</li>
+  <li>Himpunan huruf vokal dalam abjad Latin: $\{a, i, u, e, o\}$.</li>
+  <li>Himpunan bilangan genap positif: $\{2, 4, 6, 8, \dots\}$.</li>
+  <li>Himpunan bilangan prima antara 1 dan 10: $\{2, 3, 5, 7\}$.</li>
+ </ul>
+ <p class="lesson-text">Semua contoh di atas jelas—kita dapat memeriksa objek apa pun dan menentukan apakah ia termasuk atau tidak.</p>
+
+ <p class="lesson-subheading">C. Kumpulan yang Bukan Himpunan</p>
+ <p class="lesson-text">Sebaliknya, kumpulan berikut <strong>bukan</strong> himpunan karena batasannya tidak jelas:</p>
+ <ul>
+  <li>"Kumpulan bunga yang cantik." Kata "cantik" bersifat subjektif—bunga yang cantik bagi satu orang belum tentu cantik bagi orang lain.</li>
+  <li>"Kumpulan orang tinggi." Batasan "tinggi" tidak jelas—berapa sentimeter yang dianggap tinggi?</li>
+  <li>"Kumpulan makanan enak." Kata "enak" berbeda bagi setiap orang.</li>
+ </ul>
+ <p class="lesson-text">Pelajaran penting: himpunan menuntut <strong>objektivitas</strong>. Jika tidak ada cara pasti untuk menentukan keanggotaan, itu bukan himpunan.</p>
+
+ <p class="lesson-subheading">D. Keanggotaan</p>
+ <p class="lesson-text">Untuk menyatakan bahwa suatu objek termasuk dalam himpunan, digunakan simbol $\in$. Untuk menyatakan bahwa objek tidak termasuk, digunakan $\notin$.</p>
+ <ul>
+  <li>$a \in A$ dibaca "$a$ adalah elemen dari $A$".</li>
+  <li>$a \notin A$ dibaca "$a$ bukan elemen dari $A$".</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Misalkan $A = \{1, 2, 3, 4, 5\}$. Maka:</p>
+ <ul>
+  <li>$3 \in A$ bernilai benar, karena 3 adalah salah satu elemen $A$.</li>
+  <li>$7 \notin A$ bernilai benar, karena 7 tidak ada dalam daftar elemen $A$.</li>
+ </ul>
+ <p class="lesson-text">Keanggotaan bersifat <strong>biner</strong>: sebuah objek atau termasuk, atau tidak termasuk. Tidak ada keadaan "mungkin" atau "setengah anggota".</p>
+
+ <p class="lesson-text">Setelah memahami apa itu himpunan dan bagaimana menentukan keanggotaan, langkah berikutnya adalah mempelajari <strong>cara menuliskannya</strong>—karena himpunan besar atau tak hingga tidak bisa dituliskan dengan mendaftar satu per satu.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Cara Menyatakan Himpunan</h3>
+ <p class="lesson-text">Ada dua cara utama untuk menyatakan himpunan. Keduanya sah dan dipilih sesuai kebutuhan—tergantung apakah himpunan itu kecil dan konkret, atau besar dan dinyatakan dengan sifat.</p>
+
+ <p class="lesson-subheading">A. Cara Mendaftar (Roster Method)</p>
+ <p class="lesson-text">Semua elemen himpunan dituliskan satu per satu di dalam tanda kurung kurawal, dipisahkan dengan koma.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3, 4, 5\}$$ $$B = \{a, i, u, e, o\}$$ $$C = \{2, 4, 6, 8, \dots\}$$</p>
+ <p class="lesson-text">Tiga titik ($\dots$) digunakan untuk menunjukkan bahwa pola berlanjut tanpa batas, atau sampai suatu titik yang sudah jelas dari konteks.</p>
+ <p class="lesson-text">Cara ini cocok untuk himpunan dengan sedikit elemen, atau himpunan dengan pola yang jelas. Namun untuk himpunan besar atau tak hingga dengan sifat yang kompleks, cara ini tidak praktis.</p>
+ <p class="lesson-text"><strong>Catatan penting tentang urutan dan pengulangan.</strong> Dalam himpunan, urutan elemen tidak penting dan pengulangan tidak dihitung. Artinya:</p>
+ <ul>
+  <li>$\{1, 2, 3\} = \{3, 1, 2\} = \{2, 3, 1\}$—urutan berbeda, himpunan sama.</li>
+  <li>$\{1, 1, 2, 2, 3\} = \{1, 2, 3\}$—pengulangan tidak menambah elemen baru.</li>
+ </ul>
+ <p class="lesson-text">Ini berbeda dengan <em>barisan</em> (sequence) yang memperhatikan urutan, atau <em>multiset</em> yang memperhatikan pengulangan.</p>
+
+ <p class="lesson-subheading">B. Cara Menuliskan Sifat (Set-Builder Notation)</p>
+ <p class="lesson-text">Himpunan dinyatakan dengan menyebutkan sifat atau syarat yang harus dipenuhi oleh setiap elemennya.</p>
+ <p class="lesson-text">Notasi umum:</p>
+ <p class="lesson-text">$$A = \{x \mid P(x)\}$$</p>
+ <p class="lesson-text">dibaca "himpunan semua $x$ sedemikian sehingga $P(x)$". Garis vertikal $|$ dibaca "sedemikian sehingga" atau "dengan syarat".</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{x \mid x \text{ adalah bilangan asli kurang dari 6}\}$$ $$B = \{x \mid x \text{ adalah huruf vokal}\}$$ $$C = \{x \mid x \text{ adalah bilangan genap positif}\}$$</p>
+ <p class="lesson-text">Cara ini lebih presisi karena sifatnya dinyatakan secara eksplisit. Ia juga memungkinkan kita menuliskan himpunan tak hingga tanpa harus menuliskan semua anggotanya—misalnya himpunan semua bilangan real positif dapat dituliskan sebagai $\{x \in \mathbb{R} \mid x > 0\}$.</p>
+
+ <p class="lesson-text">Kedua cara penulisan ini akan kita pakai sepanjang materi. Berikutnya, kita akan mengklasifikasikan himpunan berdasarkan sifat-sifat khasnya—apakah ia kosong, hingga, tak hingga, atau merupakan bagian dari himpunan lain.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Jenis-Jenis Himpunan</h3>
+ <p class="lesson-text">Himpunan dapat diklasifikasikan berdasarkan beberapa kriteria. Memahami jenis-jenis ini penting karena setiap jenis memiliki sifat dan penggunaan yang berbeda.</p>
+
+ <p class="lesson-subheading">A. Himpunan Kosong</p>
+ <p class="lesson-text"><strong>Himpunan kosong</strong> adalah himpunan yang tidak memiliki elemen sama sekali. Dinotasikan dengan $\emptyset$ atau $\{\}$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{x \mid x \text{ adalah bilangan asli kurang dari 1}\} = \emptyset$$ $$B = \{x \mid x^2 = -1, \, x \in \mathbb{R}\} = \emptyset$$</p>
+ <p class="lesson-text">Himpunan kosong adalah <strong>tunggal</strong>—hanya ada satu himpunan kosong. Ini karena himpunan ditentukan oleh anggotanya, dan tidak ada anggota untuk membedakan dua himpunan kosong.</p>
+
+ <p class="lesson-subheading">B. Himpunan Semesta</p>
+ <p class="lesson-text"><strong>Himpunan semesta</strong> adalah himpunan yang memuat semua objek yang sedang dibicarakan dalam suatu konteks. Biasanya dinotasikan dengan $S$ atau $U$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>Jika kita membicarakan bilangan asli, semestanya adalah $\mathbb{N}$.</li>
+  <li>Jika kita membicarakan siswa di suatu sekolah, semestanya adalah himpunan semua siswa di sekolah tersebut.</li>
+  <li>Jika kita membicarakan bilangan real, semestanya adalah $\mathbb{R}$.</li>
+ </ul>
+ <p class="lesson-text">Semesta bersifat <strong>kontekstual</strong>—bergantung pada masalah yang sedang dibahas. Karena itu, semesta harus selalu dinyatakan atau dipahami dari konteks. Seperti akan kita lihat, definisi komplemen sangat bergantung pada pilihan semesta.</p>
+
+ <p class="lesson-subheading">C. Himpunan Hingga dan Tak Hingga</p>
+ <p class="lesson-text"><strong>Himpunan hingga</strong> adalah himpunan yang jumlah elemennya berhingga—yaitu dapat dihitung dan berakhir.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3\}$$ $$B = \{x \mid x \text{ adalah huruf vokal}\}$$</p>
+ <p class="lesson-text"><strong>Himpunan tak hingga</strong> adalah himpunan yang jumlah elemennya tak berhingga—tidak dapat dihitung sampai habis.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$\mathbb{N} = \{1, 2, 3, \dots\}$$ $$\mathbb{R} = \text{himpunan semua bilangan real}$$</p>
+ <p class="lesson-text">Sebagai catatan, tidak semua himpunan tak hingga sama "besarnya". Ada tak hingga yang <em>terhitung</em> (seperti $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$) dan ada tak hingga yang <em>tak terhitung</em> (seperti $\mathbb{R}$). Perbedaan ini akan dibahas di Bagian VI tentang kardinalitas.</p>
+
+ <p class="lesson-subheading">D. Himpunan Bagian (Subset)</p>
+ <p class="lesson-text">Himpunan $A$ disebut <strong>himpunan bagian</strong> dari $B$ jika setiap elemen $A$ juga merupakan elemen $B$. Dinotasikan:</p>
+ <p class="lesson-text">$$A \subseteq B$$</p>
+ <p class="lesson-text">dibaca "$A$ subset dari $B$".</p>
+ <p class="lesson-text">Secara formal, dengan menggunakan kuantor universal:</p>
+ <p class="lesson-text">$$A \subseteq B \leftrightarrow \forall x (x \in A \rightarrow x \in B)$$</p>
+ <p class="lesson-text">Notasi ini adalah contoh konkret bagaimana <strong>logika predikat</strong>—yang telah kita pelajari sebelumnya—digunakan dalam matematika. Definisi $A \subseteq B$ tidak lain adalah pernyataan berkuantor: "untuk setiap $x$, jika $x$ anggota $A$, maka $x$ anggota $B$". Tanpa kuantor $\forall$ dan implikasi $\rightarrow$, definisi ini akan sulit dinyatakan secara presisi.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2\}, \quad B = \{1, 2, 3, 4\}$$</p>
+ <p class="lesson-text">Maka $A \subseteq B$ bernilai benar, karena setiap elemen $A$ (yaitu 1 dan 2) juga ada di $B$.</p>
+ <p class="lesson-subheading-alt">Dua fakta penting:</p>
+ <ul>
+  <li><strong>Himpunan kosong adalah subset dari setiap himpunan.</strong> Mengapa? Karena tidak ada elemen di $\emptyset$ yang bisa melanggar syarat "jika $x \in \emptyset$, maka $x \in B$". Anteseden selalu salah, sehingga implikasinya selalu benar (kebenaran vakum).</li>
+  <li><strong>Setiap himpunan adalah subset dari dirinya sendiri.</strong> Karena setiap elemen $A$ jelas merupakan elemen $A$.</li>
+ </ul>
+
+ <p class="lesson-subheading">E. Himpunan Bagian Sejati (Proper Subset)</p>
+ <p class="lesson-text">Jika $A \subseteq B$ dan $A \neq B$, maka $A$ disebut <strong>himpunan bagian sejati</strong> dari $B$, dinotasikan:</p>
+ <p class="lesson-text">$$A \subset B$$</p>
+ <p class="lesson-text">Artinya, setiap elemen $A$ ada di $B$, tetapi ada elemen $B$ yang tidak ada di $A$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2\}, \quad B = \{1, 2, 3\}$$</p>
+ <p class="lesson-text">Maka $A \subset B$ bernilai benar—karena $A \subseteq B$ dan $A \neq B$.</p>
+ <p class="lesson-text">Perhatikan: jika $A = B$, maka $A \subseteq B$ tetap benar, tetapi $A \subset B$ salah. Himpunan tidak pernah menjadi himpunan bagian sejati dari dirinya sendiri.</p>
+
+ <p class="lesson-subheading">F. Kesamaan Himpunan</p>
+ <p class="lesson-text">Setelah memahami subset, kita dapat mendefinisikan kapan dua himpunan disebut <strong>sama</strong>. Himpunan $A$ dan $B$ disebut sama (ditulis $A = B$) jika keduanya memiliki elemen yang persis sama. Secara formal:</p>
+ <p class="lesson-text">$$A = B \leftrightarrow (A \subseteq B \land B \subseteq A)$$</p>
+ <p class="lesson-text">Inilah cara standar untuk membuktikan bahwa dua himpunan sama: <strong>buktikan kedua arah subset</strong>. Yakni, tunjukkan bahwa setiap elemen $A$ adalah elemen $B$, dan sebaliknya setiap elemen $B$ adalah elemen $A$.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Misalkan $A = \{x \in \mathbb{N} \mid x < 5\}$ dan $B = \{1, 2, 3, 4\}$. Kita bisa periksa: $A = \{1, 2, 3, 4\}$, sehingga $A \subseteq B$ dan $B \subseteq A$. Karena kedua arah berlaku, maka $A = B$.</p>
+ <p class="lesson-text">Metode dua-arah ini akan sangat sering dipakai dalam pembuktian matematis—dan merupakan salah satu teknik dasar yang perlu dikuasai sebelum mempelajari topik <strong>Pembuktian Matematis</strong>.</p>
+
+ <p class="lesson-subheading">G. Perbedaan Kunci: ∈ vs ⊆</p>
+ <p class="lesson-text">Dua simbol ini sering tertukar, padahal menyatakan hal yang sangat berbeda:</p>
+ <ul>
+  <li>Simbol $\in$ menghubungkan <strong>elemen</strong> dengan <strong>himpunan</strong>. Contoh: $1 \in \{1, 2\}$.</li>
+  <li>Simbol $\subseteq$ menghubungkan <strong>dua himpunan</strong>. Contoh: $\{1\} \subseteq \{1, 2\}$.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh lengkap:</p>
+ <p class="lesson-text">$$A = \{1, 2\}, \quad B = \{1, 2, 3\}$$</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Pernyataan</th>
+     <th>Nilai</th>
+     <th>Alasan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$1 \in A$</td><td>Benar</td><td>1 adalah elemen $A$</td></tr>
+    <tr><td>$A \subseteq B$</td><td>Benar</td><td>Semua elemen $A$ ada di $B$</td></tr>
+    <tr><td>$A \in B$</td><td>Salah</td><td>$A$ bukan elemen $B$; $B$ hanya berisi 1, 2, 3</td></tr>
+    <tr><td>$1 \subseteq A$</td><td>Salah</td><td>1 bukan himpunan, jadi tidak bisa jadi subset</td></tr>
+    <tr><td>$\{1\} \in B$</td><td>Salah</td><td>$\{1\}$ bukan elemen $B$</td></tr>
+    <tr><td>$\{1\} \subseteq A$</td><td>Benar</td><td>Semua elemen $\{1\}$ ada di $A$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Pelajaran kuncinya: $\in$ digunakan untuk elemen tunggal, $\subseteq$ untuk himpunan. Jangan tertukar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Operasi Himpunan</h3>
+ <p class="lesson-text">Setelah memahami apa itu himpunan dan bagaimana menyatakannya, langkah berikutnya adalah mempelajari <strong>operasi-operasi</strong> yang dapat dilakukan pada himpunan. Operasi ini memungkinkan kita menggabungkan, memotong, atau memodifikasi himpunan untuk menghasilkan himpunan baru.</p>
+ <p class="lesson-text">Ada enam operasi dasar yang perlu dikuasai: gabungan, irisan, selisih, komplemen, beda setangkup, dan hasil kali Kartesius.</p>
+
+ <p class="lesson-subheading">A. Gabungan (Union): ∪</p>
+ <p class="lesson-text">Gabungan dari himpunan $A$ dan $B$, dinotasikan $A \cup B$, adalah himpunan yang memuat <strong>semua</strong> elemen yang termasuk dalam $A$, atau $B$, atau keduanya.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$A \cup B = \{x \mid x \in A \lor x \in B\}$$</p>
+ <p class="lesson-text">Perhatikan penggunaan disjungsi $\lor$ ("atau") di sini—sesuai dengan sifat gabungan yang menggabungkan semua elemen dari kedua himpunan.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3\}, \quad B = \{3, 4, 5\}$$ $$A \cup B = \{1, 2, 3, 4, 5\}$$</p>
+ <p class="lesson-text">Perhatikan bahwa elemen 3 muncul di kedua himpunan, tetapi dalam gabungan ia hanya ditulis <strong>sekali</strong>—karena himpunan tidak memuat elemen yang sama lebih dari sekali.</p>
+
+ <p class="lesson-subheading">B. Irisan (Intersection): ∩</p>
+ <p class="lesson-text">Irisan dari $A$ dan $B$, dinotasikan $A \cap B$, adalah himpunan yang memuat semua elemen yang termasuk dalam $A$ <strong>dan</strong> $B$ sekaligus.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$A \cap B = \{x \mid x \in A \land x \in B\}$$</p>
+ <p class="lesson-text">Kali ini yang digunakan adalah konjungsi $\land$ ("dan")—sesuai dengan sifat irisan yang hanya memuat elemen yang ada di kedua himpunan.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3\}, \quad B = \{3, 4, 5\}$$ $$A \cap B = \{3\}$$</p>
+ <p class="lesson-text">Jika tidak ada elemen bersama, maka $A \cap B = \emptyset$, dan $A$ serta $B$ disebut <strong>saling lepas</strong> (disjoint).</p>
+
+ <p class="lesson-subheading">C. Selisih (Difference): ∖</p>
+ <p class="lesson-text">Selisih $A$ dan $B$, dinotasikan $A \setminus B$ (atau kadang $A - B$), adalah himpunan yang memuat elemen yang termasuk dalam $A$ tetapi <strong>tidak</strong> termasuk dalam $B$.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$A \setminus B = \{x \mid x \in A \land x \notin B\}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3, 4\}, \quad B = \{3, 4, 5\}$$ $$A \setminus B = \{1, 2\}$$</p>
+ <p class="lesson-text">Perhatikan bahwa $A \setminus B$ dan $B \setminus A$ adalah dua hal yang berbeda. Pada contoh di atas, $B \setminus A = \{5\}$, bukan $\{1, 2\}$. Jadi selisih himpunan <strong>tidak komutatif</strong>.</p>
+
+ <p class="lesson-subheading">D. Komplemen: Aᶜ</p>
+ <p class="lesson-text">Komplemen dari himpunan $A$, dinotasikan $A^c$ atau $\bar{A}$, adalah himpunan semua elemen dalam himpunan semesta yang <strong>tidak</strong> termasuk dalam $A$.</p>
+ <p class="lesson-text">Secara formal, dengan $S$ sebagai semesta:</p>
+ <p class="lesson-text">$$A^c = \{x \mid x \in S \land x \notin A\}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$S = \{1, 2, 3, 4, 5, 6\}, \quad A = \{1, 2, 3\}$$ $$A^c = \{4, 5, 6\}$$</p>
+ <p class="lesson-text">Komplemen selalu bergantung pada semesta. Jika semestanya berbeda, komplemennya juga berbeda. Misalnya, jika semestanya adalah $\mathbb{N}$ (bukan $S$ di atas), maka $A^c$ untuk $A = \{1, 2, 3\}$ akan mencakup semua bilangan asli selain 1, 2, 3—yaitu $\{4, 5, 6, 7, \dots\}$.</p>
+
+ <p class="lesson-subheading">E. Beda Setangkup (Symmetric Difference): △</p>
+ <p class="lesson-text">Beda setangkup dari $A$ dan $B$, dinotasikan $A \triangle B$, adalah himpunan elemen yang termasuk dalam $A$ atau $B$, tetapi <strong>tidak</strong> keduanya sekaligus.</p>
+ <p class="lesson-text">Secara formal, ada dua cara mendefinisikannya:</p>
+ <p class="lesson-text">$$A \triangle B = (A \setminus B) \cup (B \setminus A)$$</p>
+ <p class="lesson-text">atau</p>
+ <p class="lesson-text">$$A \triangle B = (A \cup B) \setminus (A \cap B)$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3\}, \quad B = \{3, 4, 5\}$$ $$A \triangle B = \{1, 2, 4, 5\}$$</p>
+ <p class="lesson-text">Perhatikan bahwa elemen 3 tidak masuk ke $A \triangle B$, karena ia ada di kedua himpunan. Beda setangkup hanya memuat elemen yang "eksklusif" milik salah satu himpunan.</p>
+
+ <p class="lesson-subheading">F. Hasil Kali Kartesius: ×</p>
+ <p class="lesson-text">Hasil kali Kartesius dari $A$ dan $B$, dinotasikan $A \times B$, adalah himpunan semua pasangan terurut $(a, b)$ dengan $a \in A$ dan $b \in B$.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$A \times B = \{(a, b) \mid a \in A \land b \in B\}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2\}, \quad B = \{a, b\}$$ $$A \times B = \{(1, a), (1, b), (2, a), (2, b)\}$$</p>
+ <p class="lesson-text">Perhatikan bahwa <strong>urutan sangat penting</strong>: $(1, a) \neq (a, 1)$. Hasil kali Kartesius tidak komutatif—$A \times B$ berbeda dengan $B \times A$.</p>
+ <p class="lesson-text">Jika $|A| = m$ dan $|B| = n$, maka $|A \times B| = m \cdot n$. Hasil kali Kartesius adalah fondasi untuk konsep relasi dan fungsi, yang akan kita pelajari setelah ini.</p>
+
+ <p class="lesson-text">Keenam operasi ini tidak berdiri sendiri—mereka saling terkait melalui <strong>sifat-sifat aljabar</strong> yang memungkinkan kita menyederhanakan ekspresi himpunan. Sifat-sifat inilah yang akan kita pelajari di bagian berikutnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Sifat-Sifat Operasi Himpunan</h3>
+ <p class="lesson-text">Operasi himpunan memiliki beberapa <strong>sifat aljabar</strong> yang mirip dengan sifat operasi bilangan—tetapi juga ada yang khas milik himpunan. Sifat-sifat ini memungkinkan kita menyederhanakan ekspresi himpunan dan membuktikan ekuivalensi antar himpunan.</p>
+
+ <p class="lesson-subheading">A. Hukum Komutatif</p>
+ <p class="lesson-text">Urutan operasi tidak mempengaruhi hasil:</p>
+ <p class="lesson-text">$$A \cup B = B \cup A$$ $$A \cap B = B \cap A$$</p>
+ <p class="lesson-text">Ini mirip dengan sifat komutatif penjumlahan dan perkalian pada bilangan.</p>
+
+ <p class="lesson-subheading">B. Hukum Asosiatif</p>
+ <p class="lesson-text">Pengelompokan operasi tidak mempengaruhi hasil, selama operatornya sama:</p>
+ <p class="lesson-text">$$(A \cup B) \cup C = A \cup (B \cup C)$$ $$(A \cap B) \cap C = A \cap (B \cap C)$$</p>
+
+ <p class="lesson-subheading">C. Hukum Distributif</p>
+ <p class="lesson-text">Gabungan dan irisan saling terdistribusi:</p>
+ <p class="lesson-text">$$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$$ $$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$$</p>
+ <p class="lesson-text">Ini berbeda dengan aljabar biasa, di mana hanya perkalian yang terdistribusi terhadap penjumlahan (tidak sebaliknya). Dalam himpunan, <strong>kedua arah berlaku</strong>—baik $\cup$ terhadap $\cap$ maupun $\cap$ terhadap $\cup$.</p>
+
+ <p class="lesson-subheading">D. Hukum De Morgan</p>
+ <p class="lesson-text">Hukum De Morgan menghubungkan komplemen dengan gabungan dan irisan:</p>
+ <p class="lesson-text">$$(A \cup B)^c = A^c \cap B^c$$ $$(A \cap B)^c = A^c \cup B^c$$</p>
+ <p class="lesson-text"><strong>Interpretasi intuitif:</strong></p>
+ <ul>
+  <li>Komplemen dari gabungan adalah irisan komplemen-komplemennya. Artinya: "bukan (A atau B)" sama dengan "(bukan A) dan (bukan B)".</li>
+  <li>Komplemen dari irisan adalah gabungan komplemen-komplemennya. Artinya: "bukan (A dan B)" sama dengan "(bukan A) atau (bukan B)".</li>
+ </ul>
+ <p class="lesson-text">Hukum ini sangat mirip dengan hukum De Morgan pada <strong>logika proposisi</strong> yang sudah kita pelajari sebelumnya: $\neg(P \lor Q) \equiv \neg P \land \neg Q$ dan $\neg(P \land Q) \equiv \neg P \lor \neg Q$. Kesamaannya bukan kebetulan—karena definisi gabungan dan irisan memang memakai $\lor$ dan $\land$, sehingga aturan yang sama otomatis berlaku.</p>
+
+ <p class="lesson-subheading">E. Hukum Identitas</p>
+ <p class="lesson-text">Himpunan kosong dan himpunan semesta bertindak sebagai "elemen identitas" untuk operasi himpunan:</p>
+ <p class="lesson-text">$$A \cup \emptyset = A$$ $$A \cap S = A$$</p>
+ <p class="lesson-text">Gabungan dengan himpunan kosong tidak menambah apa pun; irisan dengan semesta tidak mengurangi apa pun.</p>
+
+ <p class="lesson-subheading">F. Hukum Komplemen</p>
+ <p class="lesson-text">Gabungan atau irisan himpunan dengan komplemennya memberikan hasil yang ekstrem:</p>
+ <p class="lesson-text">$$A \cup A^c = S$$ $$A \cap A^c = \emptyset$$</p>
+ <p class="lesson-text">Gabungan himpunan dengan komplemennya adalah seluruh semesta; irisan mereka adalah kosong.</p>
+
+ <p class="lesson-subheading">G. Hukum Idempoten</p>
+ <p class="lesson-text">Menggabungkan atau mengiriskan himpunan dengan dirinya sendiri tidak mengubah apa pun:</p>
+ <p class="lesson-text">$$A \cup A = A$$ $$A \cap A = A$$</p>
+
+ <p class="lesson-subheading">H. Ringkasan Sifat-Sifat</p>
+ <p class="lesson-text">Tabel berikut merangkum semua sifat di atas dalam satu tampilan:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama Hukum</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Komutatif</td><td>$A \cup B = B \cup A$ dan $A \cap B = B \cap A$</td></tr>
+    <tr><td>Asosiatif</td><td>$(A \cup B) \cup C = A \cup (B \cup C)$ dan $(A \cap B) \cap C = A \cap (B \cap C)$</td></tr>
+    <tr><td>Distributif</td><td>$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ dan $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$</td></tr>
+    <tr><td>De Morgan</td><td>$(A \cup B)^c = A^c \cap B^c$ dan $(A \cap B)^c = A^c \cup B^c$</td></tr>
+    <tr><td>Identitas</td><td>$A \cup \emptyset = A$ dan $A \cap S = A$</td></tr>
+    <tr><td>Komplemen</td><td>$A \cup A^c = S$ dan $A \cap A^c = \emptyset$</td></tr>
+    <tr><td>Idempoten</td><td>$A \cup A = A$ dan $A \cap A = A$</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kardinalitas</h3>
+ <p class="lesson-text">Setelah memahami operasi himpunan, kita perlu belajar cara mengukur "ukuran" suatu himpunan. Ukuran ini disebut <strong>kardinalitas</strong>.</p>
+
+ <p class="lesson-subheading">A. Definisi Kardinalitas</p>
+ <p class="lesson-text"><strong>Kardinalitas</strong> dari himpunan $A$, dinotasikan $|A|$ atau $n(A)$, adalah banyaknya elemen dalam himpunan $A$.</p>
+
+ <p class="lesson-subheading">B. Kardinalitas Himpunan Hingga</p>
+ <p class="lesson-text">Untuk himpunan hingga, kardinalitas adalah bilangan bulat nonnegatif.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3, 4, 5\} \implies |A| = 5$$ $$B = \emptyset \implies |B| = 0$$ $$C = \{a, i, u, e, o\} \implies |C| = 5$$</p>
+
+ <p class="lesson-subheading">C. Kardinalitas Himpunan Tak Hingga</p>
+ <p class="lesson-text">Himpunan tak hingga memiliki kardinalitas yang tidak berhingga. Namun, tidak semua ketakhinggaan sama. Ada dua tingkatan utama:</p>
+ <ul>
+  <li><strong>Tak hingga terhitung (countable infinite)</strong>: himpunan yang dapat dipasangkan satu-satu dengan $\mathbb{N}$. Contoh: $\mathbb{N}$, $\mathbb{Z}$ (bilangan bulat), $\mathbb{Q}$ (bilangan rasional). Meskipun $\mathbb{Z}$ dan $\mathbb{Q}$ tampak "lebih besar" dari $\mathbb{N}$, mereka semua memiliki kardinalitas yang sama.</li>
+  <li><strong>Tak hingga tak terhitung (uncountable infinite)</strong>: himpunan yang tidak dapat dipasangkan satu-satu dengan $\mathbb{N}$. Contoh: $\mathbb{R}$ (bilangan real).</li>
+ </ul>
+ <p class="lesson-text">Kardinalitas $\mathbb{N}$ dinotasikan $\aleph_0$ (dibaca "alef null"). Kardinalitas $\mathbb{R}$ dinotasikan $\mathfrak{c}$ atau $2^{\aleph_0}$, dan nilainya lebih besar dari $\aleph_0$.</p>
+ <p class="lesson-text">Fakta bahwa $\mathbb{R}$ memiliki kardinalitas yang lebih besar dari $\mathbb{N}$ adalah salah satu hasil paling terkenal dalam matematika—ditemukan oleh Georg Cantor pada akhir abad ke-19, dan menjadi dasar bagi teori himpunan modern.</p>
+
+ <p class="lesson-subheading">D. Rumus Kardinalitas Gabungan</p>
+ <p class="lesson-text">Untuk dua himpunan hingga $A$ dan $B$:</p>
+ <p class="lesson-text">$$|A \cup B| = |A| + |B| - |A \cap B|$$</p>
+ <p class="lesson-text"><strong>Mengapa mengurangi $|A \cap B|$?</strong> Karena jika kita menjumlahkan $|A|$ dan $|B|$ secara langsung, elemen-elemen yang ada di kedua himpunan akan dihitung <strong>dua kali</strong>. Untuk memperbaikinya, kita kurangi dengan banyaknya elemen yang muncul di keduanya.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2, 3, 4\}, \quad B = \{3, 4, 5\}$$ $$|A| = 4, \quad |B| = 3, \quad |A \cap B| = 2$$ $$|A \cup B| = 4 + 3 - 2 = 5$$</p>
+
+ <p class="lesson-subheading">E. Prinsip Inklusi-Eksklusi</p>
+ <p class="lesson-text">Untuk tiga himpunan $A, B, C$, rumusnya menjadi lebih kompleks:</p>
+ <p class="lesson-text">$$|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$$</p>
+ <p class="lesson-text"><strong>Mengapa tanda-tandanya bergantian?</strong> Karena kita perlu mengoreksi penghitungan ganda, tetapi koreksi itu sendiri bisa menyebabkan elemen tertentu terhitung terlalu sedikit atau terlalu banyak. Pola tambah-kurang-tambah ini adalah pola umum dalam <strong>prinsip inklusi-eksklusi</strong>—yang akan Anda temui lagi di <strong>Kombinatorika</strong>, ketika menghitung banyaknya objek yang memenuhi satu atau lebih sifat.</p>
+
+ <p class="lesson-text">Rumus kardinalitas ini berkaitan erat dengan cara menghitung banyaknya himpunan bagian—yang akan kita bahas di bagian berikutnya. Himpunan kuasa adalah himpunan dari semua himpunan bagian, dan kardinalitasnya mengikuti pola yang sangat elegan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Himpunan Kuasa (Power Set)</h3>
+ <p class="lesson-text">Konsep terakhir yang perlu dikuasai adalah <strong>himpunan kuasa</strong>—yaitu himpunan dari semua himpunan bagian dari suatu himpunan.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Himpunan kuasa</strong> dari himpunan $A$, dinotasikan $\mathcal{P}(A)$, adalah himpunan dari <strong>semua himpunan bagian</strong> dari $A$—termasuk himpunan kosong dan $A$ itu sendiri.</p>
+ <p class="lesson-text">Secara formal:</p>
+ <p class="lesson-text">$$\mathcal{P}(A) = \{X \mid X \subseteq A\}$$</p>
+
+ <p class="lesson-subheading">B. Contoh</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$$A = \{1, 2\}$$ $$\mathcal{P}(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}$$</p>
+ <p class="lesson-text">Ada 4 himpunan bagian dari $A$: himpunan kosong, dua himpunan yang berisi satu elemen, dan himpunan $A$ itu sendiri.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$$B = \{a, b, c\}$$ $$\mathcal{P}(B) = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}\}$$</p>
+ <p class="lesson-text">Ada 8 himpunan bagian dari $B$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">$$C = \emptyset$$ $$\mathcal{P}(C) = \{\emptyset\}$$</p>
+ <p class="lesson-text">Perhatikan bahwa $\mathcal{P}(\emptyset)$ <strong>bukan</strong> himpunan kosong—ia berisi satu elemen, yaitu himpunan kosong. Inilah salah satu kesalahan yang sering terjadi.</p>
+
+ <p class="lesson-subheading">C. Kardinalitas Himpunan Kuasa</p>
+ <p class="lesson-text">Jika $|A| = n$, maka banyaknya himpunan bagian dari $A$ adalah:</p>
+ <p class="lesson-text">$$|\mathcal{P}(A)| = 2^n$$</p>
+ <p class="lesson-text"><strong>Mengapa $2^n$?</strong> Karena setiap elemen dari $A$ memiliki dua kemungkinan: <em>termasuk</em> atau <em>tidak termasuk</em> dalam suatu himpunan bagian. Untuk $n$ elemen, jumlah kombinasinya adalah $2 \times 2 \times \dots \times 2$ (sebanyak $n$ kali) $= 2^n$.</p>
+ <p class="lesson-text">Cara berpikir ini adalah salah satu contoh pertama dari <strong>aturan perkalian</strong> dalam kombinatorika—yang akan diperdalam di materi <strong>Prinsip Menghitung</strong>. Setiap kali kita memilih "masuk atau tidak" untuk setiap elemen, kita sedang melakukan perkalian pilihan yang independen.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$A = \{1, 2\}, \quad |A| = 2 \implies |\mathcal{P}(A)| = 2^2 = 4$$ $$B = \{a, b, c\}, \quad |B| = 3 \implies |\mathcal{P}(B)| = 2^3 = 8$$</p>
+
+ <p class="lesson-subheading">D. Hubungan dengan Himpunan Semula</p>
+ <p class="lesson-text">Beberapa fakta penting tentang hubungan antara $A$ dan $\mathcal{P}(A)$:</p>
+ <ul>
+  <li>Setiap himpunan bagian dari $A$ adalah <strong>elemen</strong> dari $\mathcal{P}(A)$.</li>
+  <li>$\emptyset \in \mathcal{P}(A)$ untuk setiap himpunan $A$.</li>
+  <li>$A \in \mathcal{P}(A)$ untuk setiap himpunan $A$.</li>
+  <li>Jika $x \in A$, maka $\{x\} \subseteq A$, sehingga $\{x\} \in \mathcal{P}(A)$.</li>
+  <li>Namun, $x \in A$ <strong>bukan</strong> berarti $x \in \mathcal{P}(A)$—karena $\mathcal{P}(A)$ hanya memuat <em>himpunan</em>, bukan elemen tunggal.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh untuk memperjelas:</p>
+ <p class="lesson-text">$$A = \{1, 2\}$$</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Pernyataan</th>
+     <th>Nilai</th>
+     <th>Alasan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$1 \in A$</td><td>Benar</td><td>1 adalah elemen $A$</td></tr>
+    <tr><td>$\{1\} \in \mathcal{P}(A)$</td><td>Benar</td><td>$\{1\}$ adalah himpunan bagian dari $A$</td></tr>
+    <tr><td>$\{1\} \subseteq A$</td><td>Benar</td><td>1 adalah elemen $A$</td></tr>
+    <tr><td>$1 \in \mathcal{P}(A)$</td><td>Salah</td><td>1 bukan himpunan, jadi tidak bisa menjadi elemen himpunan kuasa</td></tr>
+    <tr><td>$A \in \mathcal{P}(A)$</td><td>Benar</td><td>$A$ adalah himpunan bagian dari dirinya sendiri</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <p class="lesson-text">Setelah memahami semua konsep di atas, mari kita lihat kesalahan-kesalahan yang paling sering terjadi—agar Anda bisa menghindarinya.</p>
+ <ul>
+  <li><strong>Menganggap $\emptyset = \{\emptyset\}$.</strong> Himpunan kosong $\emptyset$ tidak memiliki elemen, sedangkan $\{\emptyset\}$ memiliki satu elemen, yaitu $\emptyset$. Ini dua hal yang berbeda.</li>
+  <li><strong>Menganggap $A \subseteq B$ sama dengan $A \in B$.</strong> $A \subseteq B$ berarti setiap elemen $A$ adalah elemen $B$; $A \in B$ berarti $A$ adalah salah satu elemen dari $B$. Contoh: jika $A = \{1, 2\}$ dan $B = \{1, 2, 3\}$, maka $A \subseteq B$ benar, tetapi $A \in B$ salah.</li>
+  <li><strong>Membuktikan $A = B$ hanya dengan satu arah subset.</strong> Untuk membuktikan kesamaan himpunan, kita harus menunjukkan <strong>kedua arah</strong>: $A \subseteq B$ <em>dan</em> $B \subseteq A$. Satu arah saja tidak cukup—ia hanya membuktikan subset, bukan kesamaan.</li>
+  <li><strong>Lupa bahwa irisan dua himpunan bisa kosong.</strong> Dua himpunan yang tidak memiliki elemen bersama disebut saling lepas (<em>disjoint</em>). Irisannya adalah $\emptyset$, bukan tidak terdefinisi.</li>
+  <li><strong>Salah menghitung kardinalitas gabungan.</strong> Jangan lupa mengurangi $|A \cap B|$ untuk menghindari penghitungan ganda.</li>
+  <li><strong>Menganggap $A \cup B = A \cap B$.</strong> Keduanya berbeda. Gabungan memuat semua elemen dari kedua himpunan; irisan hanya memuat elemen yang ada di keduanya.</li>
+  <li><strong>Menganggap komplemen tidak bergantung pada semesta.</strong> Komplemen selalu bergantung pada himpunan semesta. Mengubah semesta akan mengubah komplemen.</li>
+  <li><strong>Menganggap himpunan kuasa dari himpunan kosong adalah himpunan kosong.</strong> $\mathcal{P}(\emptyset) = \{\emptyset\}$, bukan $\emptyset$. Himpunan kuasa dari himpunan kosong selalu berisi tepat satu elemen—yaitu himpunan kosong itu sendiri.</li>
+  <li><strong>Menganggap urutan atau pengulangan elemen mempengaruhi himpunan.</strong> $\{1, 2\}$, $\{2, 1\}$, dan $\{1, 1, 2, 2\}$ semuanya himpunan yang sama.</li>
+  <li><strong>Menganggap selisih himpunan komutatif.</strong> $A \setminus B$ tidak sama dengan $B \setminus A$ pada umumnya.</li>
+  <li><strong>Menganggap hasil kali Kartesius komutatif.</strong> $A \times B$ tidak sama dengan $B \times A$—karena pasangan terurut memperhatikan urutan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Himpunan</strong> adalah kumpulan objek yang terdefinisi dengan jelas; objeknya disebut elemen.</li>
+  <li><strong>Keanggotaan</strong>: $a \in A$ berarti "$a$ elemen $A$"; $a \notin A$ berarti "$a$ bukan elemen $A$".</li>
+  <li><strong>Cara menyatakan himpunan</strong>: dengan mendaftar (roster) atau dengan menuliskan sifat (set-builder).</li>
+  <li><strong>Jenis himpunan</strong>: kosong ($\emptyset$), semesta ($S$), hingga, tak hingga, himpunan bagian ($A \subseteq B$), himpunan bagian sejati ($A \subset B$).</li>
+  <li><strong>Kesamaan himpunan</strong>: $A = B$ jika dan hanya jika $A \subseteq B$ dan $B \subseteq A$.</li>
+  <li><strong>Operasi himpunan</strong>: gabungan ($\cup$), irisan ($\cap$), selisih ($\setminus$), komplemen ($A^c$), beda setangkup ($\triangle$), hasil kali Kartesius ($\times$).</li>
+  <li><strong>Sifat operasi</strong>: komutatif, asosiatif, distributif, De Morgan, identitas, komplemen, dan idempoten.</li>
+  <li><strong>Kardinalitas</strong> $|A|$ adalah banyaknya elemen $A$. Untuk gabungan: $|A \cup B| = |A| + |B| - |A \cap B|$.</li>
+  <li><strong>Himpunan kuasa</strong> $\mathcal{P}(A)$ adalah himpunan semua subset dari $A$. Jika $|A| = n$, maka $|\mathcal{P}(A)| = 2^n$.</li>
+  <li><strong>Perbedaan kunci</strong>: $\in$ menghubungkan elemen dengan himpunan; $\subseteq$ menghubungkan dua himpunan.</li>
+  <li>Hindari kesalahan umum seperti menukar $\emptyset$ dengan $\{\emptyset\}$, atau $A \subseteq B$ dengan $A \in B$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Himpunan adalah bahasa dasar matematika. Hampir semua konsep matematika dapat dinyatakan dalam bahasa himpunan—dari bilangan, relasi, fungsi, hingga struktur aljabar yang lebih kompleks. Karena itu, penguasaan yang kuat terhadap konsep himpunan bukan hanya bermanfaat untuk topik-topik berikutnya, tetapi <strong>esensial</strong>.</p>
+ <p class="lesson-text">Materi ini akan segera diikuti oleh <a class="lesson-link" href="/matematika/teori-himpunan-dan-struktur-dasar/relasi"><strong>Relasi</strong></a> dan <a class="lesson-link" href="/matematika/teori-himpunan-dan-struktur-dasar/fungsi"><strong>Fungsi</strong></a>—dua konsep yang dibangun langsung di atas himpunan. Relasi adalah himpunan pasangan terurut (dari hasil kali Kartesius), dan fungsi adalah relasi khusus dengan sifat tambahan. Tanpa pemahaman yang kokoh tentang himpunan, kedua topik itu akan terasa membingungkan.</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak contoh—terutama dalam membedakan $\in$ dan $\subseteq$, serta dalam membuktikan ekuivalensi himpunan menggunakan sifat-sifat aljabar yang telah kita pelajari. Semakin sering Anda berlatih, semakin cepat Anda mengenali pola dan menghindari kesalahan umum.</p>
+</div>
+
+</main>
+</body>
+</html>
