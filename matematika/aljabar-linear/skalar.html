@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Skalar (Pengertian, Struktur, dan Peran dalam Aljabar Linear)</title>
+ <meta name="description" content="Skalar: pengertian dan perbedaannya dengan vektor, jenis-jenis bilangan skalar, struktur lapangan (field), serta peran skalar dalam aljabar linear.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Skalar (Pengertian, Struktur, dan Peran dalam Aljabar Linear)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Sistem Bilangan</strong> — terutama hierarki $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$, karena skalar didefinisikan sebagai elemen dari salah satu himpunan tersebut yang berbentuk lapangan.</li>
+   <li><strong>Sifat Bilangan</strong> — terutama sifat komutatif, asosiatif, dan distributif. Sifat-sifat inilah yang menjadi aksioma bagi struktur lapangan (<em>field</em>) tempat skalar hidup.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan Anda sedang mengendarai mobil. Dua jenis informasi bisa muncul dari perjalanan Anda:</p>
+ <ul>
+  <li>Kelajuan: $60$ km/jam&mdash;cukup satu angka, <strong>skalar</strong>.</li>
+  <li>Kecepatan: $60$ km/jam ke utara&mdash;butuh arah juga, <strong>vektor</strong>.</li>
+ </ul>
+ <p class="lesson-text">Informasi pertama hanya berupa angka—cukup satu nilai saja. Informasi kedua memerlukan arah. Dalam matematika dan fisika, dua jenis informasi ini memiliki nama berbeda: yang pertama disebut <strong>skalar</strong>, yang kedua disebut <strong>vektor</strong>.</p>
+ <p class="lesson-text">Meskipun tampak sederhana, konsep skalar adalah <strong>fondasi dari seluruh aljabar linear</strong>. Setiap kali kita berbicara tentang "ruang vektor", "kombinasi linear", atau "nilai eigen", di dalamnya selalu ada skalar yang bekerja di belakang layar. Materi ini akan membahas apa sebenarnya skalar, mengapa ia dikelompokkan secara khusus, dan mengapa ia begitu penting.</p>
+ <p class="lesson-text">Berbeda dengan materi aritmetika yang berfokus pada <em>cara menghitung</em>, di sini kita akan berfokus pada <strong>hakikat dan struktur</strong>. Pertanyaan yang akan kita jawab: apa yang membuat sebuah bilangan disebut "skalar"? Bagaimana skalar distrukturkan? Dan mengapa skalar menjadi elemen fundamental dalam aljabar linear?</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Skalar</h3>
+ <p class="lesson-text">Mari kita mulai dari definisi yang paling sederhana, lalu berangsur-angsur memperdalamnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Skalar</p>
+ <p class="lesson-text"><strong>Skalar</strong> adalah besaran yang hanya memiliki <strong>nilai (magnitudo)</strong> dan <strong>tidak memiliki arah</strong>. Contoh paling mudah: suhu $30°C$, massa $70$ kg, atau waktu $3$ jam. Semuanya cukup dinyatakan dengan satu angka—tidak ada "arah" yang perlu disebutkan.</p>
+ <p class="lesson-text">Dalam aljabar linear, skalar biasanya berupa <strong>bilangan real</strong> ($\mathbb{R}$) atau <strong>bilangan kompleks</strong> ($\mathbb{C}$). Fungsi utamanya adalah "menskalakan" besaran lain melalui perkalian—memperbesar atau memperkecil.</p>
+ <p class="lesson-text">Secara formal: jika $V$ adalah ruang vektor atas lapangan $\mathbb{F}$, maka elemen-elemen $\mathbb{F}$ disebut <strong>skalar</strong>, dan elemen-elemen $V$ disebut <strong>vektor</strong>. Dalam sebagian besar penerapan, $\mathbb{F} = \mathbb{R}$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 640 220" style="max-width: 100%; height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Perbandingan skalar dan vektor">
+   <defs>
+    <marker id="arrow-vec" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+     <polygon points="0 0, 10 3, 0 6" fill="#c06000"/>
+    </marker>
+   </defs>
+   <rect x="30" y="40" width="240" height="140" rx="14" fill="#eef6ff" stroke="#4a90d9" stroke-width="2"/>
+   <text x="150" y="80" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="600" fill="#1a4d80">SKALAR</text>
+   <text x="150" y="140" text-anchor="middle" font-family="serif" font-size="48" font-weight="700" fill="#1a4d80">5</text>
+   <text x="150" y="168" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4a6a8a">hanya nilai</text>
+   <rect x="370" y="40" width="240" height="140" rx="14" fill="#fff4e6" stroke="#e08b2f" stroke-width="2"/>
+   <text x="490" y="80" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="600" fill="#8a4a00">VEKTOR</text>
+   <line x1="410" y1="125" x2="555" y2="125" stroke="#c06000" stroke-width="3" marker-end="url(#arrow-vec)"/>
+   <text x="490" y="165" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#8a5a20">nilai + arah</text>
+  </svg>
+  <figcaption class="visual-caption">Gambar 1. Perbedaan mendasar skalar dan vektor: skalar cukup dengan satu angka, vektor memerlukan arah.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Mengapa Disebut "Skalar"?</p>
+ <p class="lesson-text">Kata "skalar" berasal dari bahasa Latin <em>scala</em> yang berarti "tangga" atau "skala pengukuran". Istilah ini mulai populer pada abad ke-19 untuk membedakan besaran yang <em>hanya bernilai</em> (seperti suhu dan massa) dari besaran yang <em>bernilai dan berarah</em> (seperti kecepatan dan gaya).</p>
+ <p class="lesson-text">Dalam aljabar linear modern, makna "skalar" menjadi lebih teknis: ia adalah <strong>elemen dari lapangan</strong> (<em>field</em>)—struktur aljabar yang memenuhi aksioma-aksioma tertentu. Definisi teknis ini memungkinkan aljabar linear "dipindahkan" ke berbagai lapangan, bukan hanya bilangan real.</p>
+
+ <p class="lesson-subheading">C. Perbedaan Skalar dan Vektor</p>
+ <p class="lesson-text">Perbedaan keduanya bisa diringkas dalam tabel berikut:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Skalar</th>
+     <th>Vektor</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Informasi yang dibawa</td><td>Hanya nilai</td><td>Nilai dan arah</td></tr>
+    <tr><td>Notasi</td><td>Huruf biasa: $a$, $k$, $\lambda$</td><td>Huruf tebal: $\mathbf{v}$ atau panah: $\vec{v}$</td></tr>
+    <tr><td>Struktur</td><td>Elemen lapangan</td><td>Elemen ruang vektor</td></tr>
+    <tr><td>Dimensi</td><td>Bilangan tunggal (0 dimensi)</td><td>Kumpulan bilangan terurut ($n$ dimensi)</td></tr>
+    <tr><td>Contoh</td><td>Suhu, massa, waktu, energi</td><td>Perpindahan, kecepatan, gaya, momentum</td></tr>
+    <tr><td>Interaksi langsung</td><td>Tidak dapat dijumlahkan dengan vektor</td><td>Tidak dapat dijumlahkan dengan skalar</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Analogi sederhana: suhu $30°C$ adalah <strong>skalar</strong>—tidak masuk akal berbicara tentang "arah suhu". Namun perpindahan $5$ meter <em>ke utara</em> adalah <strong>vektor</strong>—arahnya (utara) sama pentingnya dengan nilainya ($5$ meter).</p>
+
+ <p class="lesson-subheading">D. Contoh Skalar dalam Kehidupan Sehari-hari</p>
+ <p class="lesson-text">Untuk memperkuat pemahaman, perhatikan besaran-besaran berikut yang semuanya adalah skalar—masing-masing cukup dinyatakan dengan satu angka dan satuan:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Besaran</th>
+     <th>Contoh</th>
+     <th>Satuan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Suhu</td><td>$25°C$, $100°C$</td><td>°C, K</td></tr>
+    <tr><td>Massa</td><td>$70$ kg, $500$ gram</td><td>kg, g</td></tr>
+    <tr><td>Waktu</td><td>$3$ jam, $45$ detik</td><td>jam, detik</td></tr>
+    <tr><td>Volume</td><td>$2$ liter, $500$ mL</td><td>liter, mL</td></tr>
+    <tr><td>Energi</td><td>$100$ Joule, $5$ kalori</td><td>J, kal</td></tr>
+    <tr><td>Daya</td><td>$60$ Watt</td><td>W</td></tr>
+    <tr><td>Muatan listrik</td><td>$5$ Coulomb</td><td>C</td></tr>
+    <tr><td>Panjang</td><td>$10$ meter</td><td>m</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Bandingkan dengan besaran vektor seperti perpindahan ($5$ meter ke utara), kecepatan ($60$ km/jam ke barat), dan gaya ($10$ Newton ke kanan). Ketiganya tidak lengkap tanpa arah.</p>
+ <p class="lesson-text">Dengan memahami apa itu skalar dan bagaimana ia berbeda dari vektor, kita kini siap menyelidiki pertanyaan berikutnya: <em>bilangan seperti apa</em> yang layak disebut skalar? Ternyata tidak semua bilangan memenuhi syarat&mdash;dan syarat itulah yang akan kita bahas pada bagian berikutnya.</p>
+ </div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Struktur Bilangan Skalar</h3>
+ <p class="lesson-text">Tidak semua bilangan bisa menjadi skalar dalam arti teknis. Ada syarat tertentu yang harus dipenuhi. Bagian ini akan menjelaskan syarat tersebut.</p>
+
+ <p class="lesson-subheading">A. Hierarki Bilangan yang Dapat Menjadi Skalar</p>
+ <p class="lesson-text">Ingat hierarki himpunan bilangan yang sudah Anda kenal:</p>
+ <p class="lesson-text" style="text-align: center;">$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$</p>
+ <p class="lesson-text">Ternyata tidak semua himpunan dalam hierarki ini bisa menjadi skalar. Syaratnya: himpunan tersebut harus membentuk <strong>lapangan</strong> (<em>field</em>). Perhatikan gambar dan tabel di bawah ini.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 160" style="max-width: 100%; height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hierarki himpunan bilangan">
+   <g>
+    <rect x="20" y="30" width="100" height="70" rx="10" fill="#f0f0f0" stroke="#999" stroke-width="2" stroke-dasharray="4,3"/>
+    <text x="70" y="62" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" fill="#666">ℕ</text>
+    <text x="70" y="86" text-anchor="middle" font-family="serif" font-size="12" fill="#888">1, 2, 3, …</text>
+   </g>
+   <text x="135" y="72" text-anchor="middle" font-size="20" fill="#999">⊂</text>
+   <g>
+    <rect x="150" y="30" width="100" height="70" rx="10" fill="#f0f0f0" stroke="#999" stroke-width="2" stroke-dasharray="4,3"/>
+    <text x="200" y="62" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" fill="#666">ℤ</text>
+    <text x="200" y="86" text-anchor="middle" font-family="serif" font-size="12" fill="#888">−2, 0, 5</text>
+   </g>
+   <text x="265" y="72" text-anchor="middle" font-size="20" fill="#999">⊂</text>
+   <g>
+    <rect x="280" y="30" width="100" height="70" rx="10" fill="#dceeff" stroke="#4a90d9" stroke-width="2"/>
+    <text x="330" y="62" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" fill="#1a4d80">ℚ</text>
+    <text x="330" y="86" text-anchor="middle" font-family="serif" font-size="12" fill="#4a6a8a">1/2, −0,25</text>
+   </g>
+   <text x="395" y="72" text-anchor="middle" font-size="20" fill="#999">⊂</text>
+   <g>
+    <rect x="410" y="30" width="100" height="70" rx="10" fill="#c8e2f7" stroke="#4a90d9" stroke-width="2"/>
+    <text x="460" y="62" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" fill="#1a4d80">ℝ</text>
+    <text x="460" y="86" text-anchor="middle" font-family="serif" font-size="12" fill="#4a6a8a">√2, π, e</text>
+   </g>
+   <text x="525" y="72" text-anchor="middle" font-size="20" fill="#999">⊂</text>
+   <g>
+    <rect x="540" y="30" width="120" height="70" rx="10" fill="#b3d5ef" stroke="#4a90d9" stroke-width="2"/>
+    <text x="600" y="62" text-anchor="middle" font-family="serif" font-size="22" font-weight="700" fill="#1a4d80">ℂ</text>
+    <text x="600" y="86" text-anchor="middle" font-family="serif" font-size="12" fill="#4a6a8a">2 + 3i</text>
+   </g>
+   <text x="360" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#666">Kotak putus-putus = bukan lapangan · Kotak biru = lapangan (dapat menjadi skalar)</text>
+  </svg>
+  <figcaption class="visual-caption">Gambar 2. Hierarki himpunan bilangan. Hanya himpunan yang membentuk lapangan (<em>field</em>) yang memenuhi syarat <strong>formal</strong> sebagai tempat skalar didefinisikan dalam rumusan modern ruang vektor.</figcaption>
+ </figure>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Himpunan</th>
+     <th>Simbol</th>
+     <th>Lapangan?</th>
+     <th>Dapat Menjadi Skalar?</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Bilangan Asli</td><td>$\mathbb{N}$</td><td>Tidak</td><td>Tidak</td></tr>
+    <tr><td>Bilangan Bulat</td><td>$\mathbb{Z}$</td><td>Tidak</td><td>Tidak</td></tr>
+    <tr><td>Bilangan Rasional</td><td>$\mathbb{Q}$</td><td>Ya</td><td>Ya</td></tr>
+    <tr><td>Bilangan Real</td><td>$\mathbb{R}$</td><td>Ya</td><td>Ya (paling sering)</td></tr>
+    <tr><td>Bilangan Kompleks</td><td>$\mathbb{C}$</td><td>Ya</td><td>Ya (tingkat lanjut)</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Tanda "Tidak" pada kolom "Dapat Menjadi Skalar" berlaku untuk definisi <em>formal</em> ruang vektor atas lapangan. Dalam praktiknya, bilangan asli dan bilangan bulat tetap dapat digunakan sebagai pengali skalar pada banyak konteks—misalnya dalam <em>modul atas ring</em> $\mathbb{Z}$, yang merupakan generalisasi ruang vektor. Namun, dalam kerangka aljabar linear standar yang dibahas di sini, skalar dipersyaratkan berasal dari lapangan.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"> Catatan: dalam beberapa konvensi, "bilangan asli" mencakup $0$; dalam konvensi lain, dimulai dari $1$. Perbedaan ini tidak memengaruhi pembahasan kita&mdash;yang penting adalah $\mathbb{N}$ tetap bukan lapangan karena tidak punya invers perkalian.</p>
+ </div>
+ <p class="lesson-text">Mengapa $\mathbb{N}$ dan $\mathbb{Z}$ bukan lapangan? Karena <strong>tidak setiap anggotanya punya invers perkalian di dalam himpunan itu sendiri</strong>. Contohnya, $2 \in \mathbb{Z}$: kebalikannya adalah $\tfrac{1}{2}$, yang tidak termasuk bilangan bulat. Jadi kita "keluar" dari himpunan $\mathbb{Z}$—pelanggaran aturan lapangan. Di sisi lain, $\mathbb{Q}$, $\mathbb{R}$, dan $\mathbb{C}$ tidak memiliki masalah ini.</p>
+
+ <p class="lesson-subheading-alt">Mengapa $\mathbb{R}$ dan $\mathbb{C}$ yang paling sering?</p>
+ <p class="lesson-text">Ada dua alasan utama:</p>
+ <ol>
+ <li><strong>Lengkap secara metrik.</strong> $\mathbb{R}$ dan $\mathbb{C}$ bersifat <em>lengkap</em>—setiap barisan bilangan yang saling mendekat selalu punya limit di dalam himpunan itu sendiri. Sifat ini penting untuk analisis dan kalkulus. Sedangkan $\mathbb{Q}$ tidak: barisan $1, 1{,}4, 1{,}41, 1{,}414, \dots$ mendekati $\sqrt{2}$, tetapi limitnya bukan bilangan rasional.</li>
+ <li><strong>Cocok untuk geometri dan aljabar.</strong> Saat kita menghitung panjang, sudut, atau proyeksi vektor, kita butuh operasi akar dan trigonometri—yang secara alami menghasilkan bilangan real (bahkan irasional). Lebih jauh, $\mathbb{C}$ bersifat <em>tertutup secara aljabar</em>—setiap polinomial punya akar di $\mathbb{C}$—sehingga nilai eigen, yang merupakan akar polinomial karakteristik, selalu ada di $\mathbb{C}$ meskipun kadang tidak di $\mathbb{R}$.</li>
+</ol>
+ <p class="lesson-text">Karena itu, dalam sebagian besar buku aljabar linear, "skalar" secara implisit berarti bilangan real $\mathbb{R}$—kecuali disebutkan lain.</p>
+
+ <p class="lesson-subheading">B. Skalar sebagai Elemen Lapangan</p>
+ <p class="lesson-text">Dari pembahasan di atas, terlihat bahwa skalar "hidup" di dalam sebuah <strong>lapangan</strong> (<em>field</em>). Lapangan adalah himpunan $\mathbb{F}$ bersama dua operasi biner—penjumlahan dan perkalian—yang memenuhi aksioma-aksioma tertentu (akan diuraikan di Bagian III).</p>
+ <p class="lesson-text">Contoh lapangan yang penting dalam aljabar linear:</p>
+ <ul>
+  <li><strong>$\mathbb{R}$</strong> — lapangan yang paling sering digunakan.</li>
+  <li><strong>$\mathbb{C}$</strong> — lebih kaya: setiap polinomial memiliki akar di $\mathbb{C}$.</li>
+  <li><strong>$\mathbb{Q}$</strong> — lapangan, tetapi tidak lengkap.</li>
+  <li><strong>$\mathbb{F}_p$</strong> — bilangan bulat modulo $p$ dengan $p$ prima; lapangan hingga, penting dalam kriptografi.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Notasi dan Representasi Skalar</p>
+ <p class="lesson-text">Skalar dan vektor memiliki konvensi penulisan yang berbeda—dan konvensi ini bukan sekadar estetika, tetapi membantu pembaca mengenali jenis besaran dalam suatu ekspresi.</p>
+ <ul>
+  <li><strong>Huruf Latin biasa</strong>: $a, b, c, k, m, n$ — untuk skalar umum.</li>
+  <li><strong>Huruf Yunani</strong>: $\alpha, \beta, \gamma, \lambda, \mu$ — untuk parameter atau konstanta khusus (misalnya $\lambda$ untuk nilai eigen).</li>
+  <li><strong>Huruf tebal</strong>: $\mathbf{v}, \mathbf{u}, \mathbf{w}$ — khusus untuk vektor.</li>
+  <li><strong>Huruf kapital</strong>: $A, B, C$ — biasanya untuk matriks.</li>
+ </ul>
+ <p class="lesson-text">Saat Anda melihat $\lambda \mathbf{v}$, dengan cepat Anda tahu: $\lambda$ adalah skalar, $\mathbf{v}$ adalah vektor, dan operasinya adalah penskalaan.</p>
+ <p class="lesson-text">Kita sudah melihat bahwa skalar hidup di dalam lapangan&mdash;dan lapanganlah yang memberi "aturan main" bagi operasi-operasi yang melibatkan skalar. Namun apa sesungguhnya yang membuat sebuah himpunan layak disebut lapangan? Aksioma-aksioma inilah yang akan kita uraikan berikutnya.</p>
+ </div>
+
+<div class="lesson-section">
+<h3 class="lesson-section-heading">III. Aksioma Lapangan</h3>
+ <p class="lesson-text">Kita sudah tahu bahwa skalar harus berasal dari sebuah lapangan. Pertanyaannya sekarang: <strong>apa yang membuat sekumpulan bilangan layak disebut lapangan?</strong></p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Analogi:</strong> Bayangkan lapangan sebagai "klub tertutup". Tiga aturan klubnya: (1) hasil penjumlahan dan perkalian dua anggota tetap menjadi anggota klub; (2) setiap operasi bisa dibalik (ada lawan penjumlahan dan kebalikan perkalian); (3) operasi penjumlahan dan perkalian saling bekerja sama (distributif). Jika klub memenuhi ketiganya, ia adalah lapangan.</p>
+ </div>
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 780 240" style="max-width: 100%; height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peta aksioma lapangan">
+  <!-- Kolom 1: Penjumlahan -->
+  <rect x="30" y="40" width="220" height="170" rx="12" fill="#eef6ff" stroke="#4a90d9" stroke-width="2" />
+  <text x="140" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1a4d80">PENJUMLAHAN</text>
+  <text x="140" y="92" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a6a8a">5 aksioma</text>
+  <text x="50" y="120" font-family="sans-serif" font-size="12" fill="#1a4d80">1. Tertutup</text>
+  <text x="50" y="140" font-family="sans-serif" font-size="12" fill="#1a4d80">2. Komutatif</text>
+  <text x="50" y="160" font-family="sans-serif" font-size="12" fill="#1a4d80">3. Asosiatif</text>
+  <text x="50" y="180" font-family="sans-serif" font-size="12" fill="#1a4d80">4. Identitas (0)</text>
+  <text x="50" y="200" font-family="sans-serif" font-size="12" fill="#1a4d80">5. Invers (−a)</text>
+  
+  <!-- Kolom 2: Perkalian -->
+  <rect x="280" y="40" width="220" height="170" rx="12" fill="#eef6ff" stroke="#4a90d9" stroke-width="2" />
+  <text x="390" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1a4d80">PERKALIAN</text>
+  <text x="390" y="92" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4a6a8a">5 aksioma</text>
+  <text x="300" y="120" font-family="sans-serif" font-size="12" fill="#1a4d80">6. Tertutup</text>
+  <text x="300" y="140" font-family="sans-serif" font-size="12" fill="#1a4d80">7. Komutatif</text>
+  <text x="300" y="160" font-family="sans-serif" font-size="12" fill="#1a4d80">8. Asosiatif</text>
+  <text x="300" y="180" font-family="sans-serif" font-size="12" fill="#1a4d80">9. Identitas (1)</text>
+  <text x="300" y="200" font-family="sans-serif" font-size="12" fill="#1a4d80">10. Invers (a⁻¹)</text>
+  
+  <!-- Kolom 3: Distributif -->
+  <rect x="530" y="40" width="220" height="170" rx="12" fill="#fff4e6" stroke="#e08b2f" stroke-width="2" />
+  <text x="640" y="70" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#8a4a00">DISTRIBUTIF</text>
+  <text x="640" y="92" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#8a5a20">1 aksioma</text>
+  <text x="555" y="130" font-family="sans-serif" font-size="12" fill="#8a4a00">11. a · (b + c)</text>
+  <text x="555" y="150" font-family="sans-serif" font-size="12" fill="#8a4a00">= a·b + a·c</text>
+  <text x="555" y="185" font-family="sans-serif" font-size="11" font-style="italic" fill="#8a5a20">jembatan antara</text>
+  <text x="555" y="200" font-family="sans-serif" font-size="11" font-style="italic" fill="#8a5a20">+ dan ×</text>
+  
+  <!-- Pemisah antar kelompok aksioma -->
+  <text x="258" y="130" text-anchor="middle" font-size="20" fill="#999">+</text>
+  <text x="508" y="130" text-anchor="middle" font-size="20" fill="#999">+</text>
+ </svg>
+ <figcaption class="visual-caption">Tiga kelompok aksioma lapangan: 5 aksioma penjumlahan, 5 aksioma perkalian, dan 1 aksioma distributif yang menghubungkan keduanya.</figcaption>
+</figure>
+
+<p class="lesson-text">Secara formal, ada <strong>11 aksioma</strong> yang harus dipenuhi&mdash;dengan "tertutup" (<em>closure</em>) dihitung sebagai aksioma. Aksioma-aksioma ini dikelompokkan menjadi tiga kelompok besar sesuai analogi di atas.</p>
+<div class="lesson-note">
+ <p class="lesson-text"><strong>Catatan konvensi:</strong> Beberapa buku aljabar linear&mdash;misalnya Strang atau Anton&mdash;<em>tidak</em> menghitung sifat tertutup sebagai aksioma terpisah, karena sifat itu sudah tersirat dari definisi "operasi biner" pada suatu himpunan. Buku-buku tersebut menulisnya sebagai <strong>9 aksioma</strong> (4 penjumlahan + 4 perkalian + 1 distributif). Perbedaan jumlah ini hanya soal konvensi&mdash;substansinya sama.</p>
+</div>
+
+ <p class="lesson-subheading">A. Kelompok 1 — Penjumlahan (5 aksioma)</p>
+ <p class="lesson-text">Aturan untuk operasi penjumlahan:</p>
+ <ol>
+  <li><strong>Tertutup</strong>: jika $a, b \in \mathbb{F}$, maka $a + b \in \mathbb{F}$. (Hasilnya tetap di dalam klub.)</li>
+  <li><strong>Komutatif</strong>: $a + b = b + a$. (Urutan tidak penting.)</li>
+  <li><strong>Asosiatif</strong>: $(a + b) + c = a + (b + c)$. (Pengelompokan tidak penting.)</li>
+  <li><strong>Identitas</strong>: ada $0 \in \mathbb{F}$ sehingga $a + 0 = a$. (Ada "unsur netral".)</li>
+  <li><strong>Invers</strong>: untuk setiap $a$, ada $-a \in \mathbb{F}$ sehingga $a + (-a) = 0$. (Setiap anggota punya lawan.)</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Kelompok 2 — Perkalian (5 aksioma)</p>
+ <p class="lesson-text">Aturan untuk operasi perkalian—mirip dengan penjumlahan, tetapi dengan sedikit catatan penting:</p>
+ <ol start="6">
+  <li><strong>Tertutup</strong>: jika $a, b \in \mathbb{F}$, maka $a \cdot b \in \mathbb{F}$.</li>
+  <li><strong>Komutatif</strong>: $a \cdot b = b \cdot a$.</li>
+  <li><strong>Asosiatif</strong>: $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.</li>
+  <li><strong>Identitas</strong>: ada $1 \in \mathbb{F}$ dengan $1 \neq 0$ sehingga $a \cdot 1 = a$.</li>
+  <li><strong>Invers</strong>: untuk setiap $a \neq 0$, ada $a^{-1} \in \mathbb{F}$ sehingga $a \cdot a^{-1} = 1$. <em>Perhatikan syarat $a \neq 0$: nol memang tidak punya kebalikan perkalian.</em></li>
+ </ol>
+
+ <p class="lesson-subheading">C. Kelompok 3 — Jembatan Penjumlahan dan Perkalian (1 aksioma)</p>
+ <ol start="11">
+  <li><strong>Distributif</strong>: $a \cdot (b + c) = a \cdot b + a \cdot c$. (Perkalian bisa "disebar" ke dalam penjumlahan.)</li>
+ </ol>
+
+ <p class="lesson-subheading">D. Mengapa Aksioma Ini Penting?</p>
+ <p class="lesson-text">Aksioma-aksioma di atas bukan hafalan—mereka memastikan operasi pada skalar "berperilaku seperti yang kita harapkan". Semua manipulasi aljabar rutin—memindahkan suku antar ruas, mengeluarkan konstanta, memfaktorkan—bergantung pada aksioma-aksioma ini.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Contoh penting:</strong> Himpunan bilangan bulat $\mathbb{Z}$ <em>bukan</em> lapangan—karena $2 \in \mathbb{Z}$ tidak memiliki invers perkalian di dalam $\mathbb{Z}$ (yaitu $2^{-1} = \tfrac{1}{2} \notin \mathbb{Z}$). Inilah alasan aljabar linear tidak dapat dibangun langsung di atas $\mathbb{Z}$; kita perlu memperluasnya ke $\mathbb{Q}$, $\mathbb{R}$, atau $\mathbb{C}$.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Peran Skalar dalam Aljabar Linear</h3>
+ <p class="lesson-text">Sampai di sini, kita sudah memahami apa itu skalar dan struktur apa yang harus dipenuhi. Sekarang saatnya melihat <strong>peran</strong> skalar dalam aljabar linear—dan mengapa ia disebut "lem" yang menyatukan seluruh struktur.</p>
+
+ <p class="lesson-subheading">A. Skalar sebagai Pengali Vektor</p>
+ <p class="lesson-text">Peran paling dasar skalar adalah <strong>penskalaan vektor</strong>. Jika $\mathbf{v}$ vektor dan $k$ skalar, maka $k\mathbf{v}$ adalah vektor dengan panjang $|k|$ kali panjang $\mathbf{v}$—arahnya sama jika $k > 0$, berlawanan jika $k < 0$.</p>
+ <p class="lesson-text">Bayangkan resep masakan. Jika Anda menggandakan porsi, setiap bahan dikalikan 2—tetapi <em>jenis</em> bahannya tidak berubah. Hal yang sama terjadi pada penskalaan vektor: "isinya" tetap sama, hanya ukurannya berubah.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 500 260" style="max-width: 100%; height: auto;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi penskalaan vektor">
+   <defs>
+    <marker id="arrow-scale" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+     <polygon points="0 0, 8 3, 0 6" fill="#333"/>
+    </marker>
+   </defs>
+   <text x="120" y="56" font-family="serif" font-size="16" fill="#1a4d80" font-weight="700">v</text>
+   <line x1="200" y1="50" x2="300" y2="50" stroke="#4a90d9" stroke-width="3" marker-end="url(#arrow-scale)"/>
+   <text x="120" y="106" font-family="serif" font-size="16" fill="#1a4d80" font-weight="700">2v</text>
+   <line x1="200" y1="100" x2="400" y2="100" stroke="#4a90d9" stroke-width="3" marker-end="url(#arrow-scale)"/>
+   <text x="120" y="156" font-family="serif" font-size="16" fill="#1a4d80" font-weight="700">0.5v</text>
+   <line x1="200" y1="150" x2="250" y2="150" stroke="#4a90d9" stroke-width="3" marker-end="url(#arrow-scale)"/>
+   <text x="120" y="206" font-family="serif" font-size="16" fill="#8a4a00" font-weight="700">−v</text>
+   <line x1="200" y1="200" x2="100" y2="200" stroke="#c06000" stroke-width="3" marker-end="url(#arrow-scale)"/>
+   <line x1="200" y1="20" x2="200" y2="230" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+  </svg>
+  <figcaption class="visual-caption">Gambar 3. Penskalaan vektor: $k > 1$ meregangkan, $0 < k < 1$ memampatkan, $k < 0$ membalik arah.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Skalar sebagai Koefisien Kombinasi Linear</p>
+ <p class="lesson-text">Kombinasi linear adalah bentuk seperti $c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n$—di mana setiap vektor diberi "bobot" oleh skalar $c_i$. Skalar inilah yang menentukan seberapa besar pengaruh tiap vektor.</p>
+ <p class="lesson-text">Konsep kebebasan linear, basis, dan dimensi dibangun di atas gagasan ini. Tanpa skalar, tidak akan ada "kombinasi" yang bermakna.</p>
+
+ <p class="lesson-subheading">C. Skalar sebagai Pengali Matriks</p>
+ <p class="lesson-text">Perkalian skalar dengan matriks—$kA$—didefinisikan sebagai perkalian setiap elemen matriks dengan $k$. Operasi ini muncul dari operasi baris elementer hingga diagonalisasi.</p>
+
+ <p class="lesson-subheading">D. Skalar sebagai Hasil Perkalian Titik</p>
+ <p class="lesson-text">Perkalian titik (<em>dot product</em>) antara dua vektor menghasilkan <strong>skalar</strong>, bukan vektor. Contoh: $(1, 2, 3) \cdot (4, 5, 6) = 4 + 10 + 18 = 32$.</p>
+ <p class="lesson-text">Hasil skalar ini kemudian digunakan untuk menghitung panjang vektor ($\|\mathbf{v}\| = \sqrt{\mathbf{v} \cdot \mathbf{v}}$) dan sudut antar vektor—menghubungkan aljabar linear dengan geometri.</p>
+
+ <p class="lesson-subheading">E. Skalar sebagai Nilai Eigen</p>
+ <p class="lesson-text">Dalam persamaan nilai eigen $A\mathbf{v} = \lambda \mathbf{v}$, nilai $\lambda$ adalah skalar. Konsep ini penting untuk diagonalisasi matriks, analisis sistem dinamik, kompresi data (PCA), dan mekanika kuantum.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> Ketika matriks $A$ "dikenakan" pada vektor eigen $\mathbf{v}$, hasilnya hanyalah vektor yang sama $\mathbf{v}$ yang diregangkan atau dimampatkan sebesar $\lambda$. Jadi $\lambda$ mengukur seberapa besar arah vektor itu "tertarik" atau "terdorong" oleh $A$.</p>
+ </div>
+
+ <p class="lesson-subheading">F. Skalar sebagai Elemen Diagonal Matriks</p>
+ <p class="lesson-text">Pada matriks identitas $I$ dan matriks diagonal $D$, elemen-elemen diagonalnya adalah skalar. Matriks $kI$ (disebut <em>matriks skalar</em>) berperilaku seperti skalar $k$ dalam banyak konteks.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Skalar muncul di <em>hampir setiap konsep utama</em> aljabar linear—sering tersembunyi di balik notasi. Vektor tidak dapat "berinteraksi" satu sama lain tanpa bantuan skalar. Matriks tidak dapat diperbesar atau diperkecil tanpa skalar. Dengan kata lain, skalar adalah "lem" yang menyatukan seluruh struktur aljabar linear.</p>
+ </div>
+<p class="lesson-text">Dengan memahami hakikat skalar dan perannya dalam aljabar linear, kita kini memiliki bekal untuk menganalisis berbagai situasi secara lebih mendalam. Mari kita terapkan seluruh konsep ini—identifikasi skalar dan vektor, uji struktur lapangan, penskalaan, kombinasi linear, dan penalaran tentang lapangan—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Berbeda dari materi aritmetika dan aljabar yang berisi soal hitung, bagian ini berisi soal <strong>identifikasi, uji struktur, dan penalaran</strong>—sesuai dengan sifat materi Skalar yang lebih konseptual. Setiap jawaban disertai alasan yang eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+<p class="lesson-subheading">Soal 1: Identifikasi Skalar dan Vektor</p>
+<p class="lesson-text">Tentukan apakah besaran berikut termasuk <strong>skalar</strong> atau <strong>vektor</strong>: (a) massa 5 kg; (b) kecepatan 60 km/jam ke utara; (c) suhu 30°C; (d) gaya 10 N ke kanan; (e) waktu 3 jam; (f) perpindahan 8 meter ke selatan.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ul>
+ <li><strong>(a) Skalar</strong> — massa hanya memiliki nilai, tidak memiliki arah.</li>
+ <li><strong>(b) Vektor</strong> — kecepatan adalah kelajuan <em>plus</em> arah. "60 km/jam" saja adalah skalar (kelajuan), tetapi dengan tambahan "ke utara" menjadi vektor.</li>
+ <li><strong>(c) Skalar</strong> — suhu tidak memiliki arah; tidak bermakna berbicara "arah suhu".</li>
+ <li><strong>(d) Vektor</strong> — gaya memiliki besar <em>dan</em> arah ("ke kanan").</li>
+ <li><strong>(e) Skalar</strong> — waktu tidak memiliki arah.</li>
+ <li><strong>(f) Vektor</strong> — perpindahan berbeda dengan jarak. Jarak adalah skalar, perpindahan adalah vektor (karena memiliki arah).</li>
+</ul>
+<p class="lesson-text">Perhatikan bahwa istilah "kelajuan" dan "kecepatan" sering dipakai bergantian dalam bahasa sehari-hari—tetapi secara fisika, keduanya berbeda: kelajuan adalah skalar, kecepatan adalah vektor.</p>
+
+<p class="lesson-subheading">Soal 2: Uji Struktur Lapangan</p>
+<p class="lesson-text">Selidiki apakah himpunan bilangan bulat $\mathbb{Z}$ dengan operasi penjumlahan dan perkalian biasa membentuk lapangan.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li>Periksa aksioma penjumlahan: $\mathbb{Z}$ tertutup, komutatif, asosiatif terhadap penjumlahan, memiliki identitas $0$, dan setiap $a \in \mathbb{Z}$ memiliki lawan $-a \in \mathbb{Z}$. <strong>Lima aksioma penjumlahan terpenuhi.</strong></li>
+ <li>Periksa aksioma perkalian: $\mathbb{Z}$ tertutup, komutatif, asosiatif terhadap perkalian, dan memiliki identitas $1$. <strong>Empat aksioma perkalian terpenuhi.</strong></li>
+ <li>Periksa aksioma invers perkalian: apakah setiap $a \neq 0$ memiliki $a^{-1} \in \mathbb{Z}$ dengan $a \cdot a^{-1} = 1$?
+  <ul>
+   <li>Ambil $a = 2$. Kebalikannya adalah $a^{-1} = \dfrac{1}{2}$—tetapi $\dfrac{1}{2} \notin \mathbb{Z}$.</li>
+   <li>Karena ada elemen (yaitu 2) yang tidak memiliki invers perkalian di dalam $\mathbb{Z}$, maka <strong>aksioma invers perkalian gagal</strong>.</li>
+  </ul>
+ </li>
+ <li><strong>Kesimpulan</strong>: $\mathbb{Z}$ <strong>bukan lapangan</strong>. Karena aksioma invers perkalian gagal, seluruh sistem tidak memenuhi syarat lapangan—meskipun semua aksioma lain terpenuhi.</li>
+</ol>
+<p class="lesson-text">Pelajaran penting: untuk membuktikan suatu himpunan bukan lapangan, cukup menunjukkan <em>satu</em> aksioma yang gagal. Tidak perlu memeriksa semua.</p>
+
+<p class="lesson-subheading">Soal 3: Uji Lapangan Hingga $\mathbb{F}_p$</p>
+<p class="lesson-text">Didefinisikan $\mathbb{F}_3 = \{0, 1, 2\}$ dengan operasi penjumlahan dan perkalian <em>modulo 3</em>. Selidiki apakah $\mathbb{F}_3$ membentuk lapangan.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li>Periksa tabel operasi:
+  <ul>
+   <li>Penjumlahan modulo 3: $1 + 2 = 3 \equiv 0 \pmod{3}$—tetap di $\mathbb{F}_3$ ✓</li>
+   <li>Perkalian modulo 3: $2 \times 2 = 4 \equiv 1 \pmod{3}$—tetap di $\mathbb{F}_3$ ✓</li>
+  </ul>
+ </li>
+ <li>Periksa <strong>invers perkalian</strong>:
+  <ul>
+   <li>$1^{-1} = 1$ (karena $1 \times 1 = 1$) ✓</li>
+   <li>$2^{-1} = 2$ (karena $2 \times 2 = 4 \equiv 1 \pmod{3}$) ✓</li>
+  </ul>
+  Setiap elemen bukan nol memiliki invers di dalam $\mathbb{F}_3$ ✓
+ </li>
+ <li>Periksa <strong>distributif</strong> — dipenuhi oleh sifat modulo yang diturunkan dari aritmetika bilangan bulat.</li>
+ <li><strong>Kesimpulan</strong>: $\mathbb{F}_3$ <strong>membentuk lapangan</strong> (lapangan hingga dengan 3 elemen).</li>
+</ol>
+<p class="lesson-text">Lapangan $\mathbb{F}_p$ hanya terbentuk jika $p$ adalah bilangan <strong>prima</strong>. Jika $p = 4$ (bukan prima), misalnya, maka elemen $2$ tidak memiliki invers perkalian modulo 4—sehingga $\mathbb{F}_4$ bukan lapangan dengan definisi ini (lapangan berukuran 4 ada, tetapi konstruksinya berbeda).</p>
+
+<p class="lesson-subheading">Soal 4: Penskalaan Vektor</p>
+<p class="lesson-text">Diberikan vektor $\mathbf{v} = (3, -1, 2)$ dan skalar $k = -2$. Hitung $k\mathbf{v}$ dan tentukan panjang (norma) dari $k\mathbf{v}$ jika $\|\mathbf{v}\| = \sqrt{14}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Penskalaan vektor</strong> — setiap komponen dikalikan dengan $k$:<br>$k\mathbf{v} = -2(3, -1, 2) = (-6, 2, -4)$</li>
+ <li><strong>Panjang (norma)</strong> — gunakan sifat $\|k\mathbf{v}\| = |k| \cdot \|\mathbf{v}\|$:<br>$\|k\mathbf{v}\| = |-2| \cdot \sqrt{14} = 2\sqrt{14}$</li>
+ <li><strong>Verifikasi langsung</strong>:<br>$\|(-6, 2, -4)\| = \sqrt{36 + 4 + 16} = \sqrt{56} = \sqrt{4 \cdot 14} = 2\sqrt{14}$ ✓</li>
+</ol>
+<p class="lesson-text">Perhatikan bahwa modulus skalar $|k|$ yang muncul—bukan $k$ itu sendiri. Ini karena panjang selalu non-negatif. Jika $k < 0$, arah vektor berbalik, tetapi panjangnya tetap sama dengan $|k| \cdot \|\mathbf{v}\|$.</p>
+  
+  <p class="lesson-subheading">Soal 5: Kombinasi Linear</p>
+  <p class="lesson-text">Diberikan vektor $\mathbf{v}_1 = (1, 0)$ dan $\mathbf{v}_2 = (0, 1)$ di $\mathbb{R}^2$. Tentukan skalar $c_1$ dan $c_2$ sehingga $c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 = (5, -3)$.</p>
+  <p class="lesson-subheading-alt">Pembahasan:</p>
+  <ol>
+   <li><strong>Susun kombinasi linear</strong>:<br>$c_1(1, 0) + c_2(0, 1) = (c_1, c_2)$</li>
+   <li><strong>Samakan dengan vektor tujuan</strong>:<br>$(c_1, c_2) = (5, -3)$</li>
+   <li><strong>Kesimpulan</strong>: $c_1 = 5$ dan $c_2 = -3$.</li>
+  </ol>
+  <p class="lesson-text">Contoh ini memperlihatkan peran skalar sebagai "bobot" dalam kombinasi linear. Untuk vektor basis standar seperti $(1, 0)$ dan $(0, 1)$, skalar $c_1$ dan $c_2$ langsung sama dengan komponen vektor tujuan—tetapi untuk vektor basis umum, kita perlu menyelesaikan sistem persamaan untuk menemukan skalar yang tepat.</p>
+  
+  <p class="lesson-subheading">Soal 6: Perkalian Titik Menghasilkan Skalar</p>
+  <p class="lesson-text">Hitung $\mathbf{u} \cdot \mathbf{v}$ untuk $\mathbf{u} = (2, -1, 4)$ dan $\mathbf{v} = (3, 5, -2)$. Tentukan juga sudut antara keduanya.</p>
+  <p class="lesson-subheading-alt">Pembahasan:</p>
+  <ol>
+   <li><strong>Perkalian titik</strong> — jumlahkan hasil kali komponen yang bersesuaian:<br>$\mathbf{u} \cdot \mathbf{v} = 2(3) + (-1)(5) + 4(-2) = 6 - 5 - 8 = -7$</li>
+   <li><strong>Hitung norma masing-masing vektor</strong>:<br>$\|\mathbf{u}\| = \sqrt{4 + 1 + 16} = \sqrt{21}$<br>$\|\mathbf{v}\| = \sqrt{9 + 25 + 4} = \sqrt{38}$</li>
+   <li><strong>Gunakan rumus sudut</strong> $\cos\theta = \dfrac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \cdot \|\mathbf{v}\|}$:<br>$\cos\theta = \dfrac{-7}{\sqrt{21} \cdot \sqrt{38}} = \dfrac{-7}{\sqrt{798}} \approx -0{,}2477$</li>
+   <li><strong>Hitung sudut</strong>:<br>$\theta \approx \arccos(-0{,}2477) \approx 104{,}3°$</li>
+  </ol>
+  <p class="lesson-text">Perhatikan bahwa hasil perkalian titik adalah <strong>skalar</strong> ($-7$), bukan vektor. Sifat inilah yang membedakan perkalian titik dari perkalian silang—yang menghasilkan vektor.</p>
+  
+  <p class="lesson-subheading">Soal 7: Nilai Eigen sebagai Skalar</p>
+  <p class="lesson-text">Diberikan matriks $A = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$ dan vektor $\mathbf{v} = (1, 0)$. Tunjukkan bahwa $\mathbf{v}$ adalah vektor eigen dari $A$ dan tentukan nilai eigen $\lambda$ yang bersesuaian.</p>
+  <p class="lesson-subheading-alt">Pembahasan:</p>
+  <ol>
+   <li><strong>Hitung $A\mathbf{v}$</strong>:<br>$A\mathbf{v} = \begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 3(1) + 1(0) \\ 0(1) + 2(0) \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}$</li>
+   <li><strong>Periksa apakah hasilnya kelipatan skalar dari $\mathbf{v}$</strong>:<br>$\begin{pmatrix} 3 \\ 0 \end{pmatrix} = 3 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = 3\mathbf{v}$</li>
+   <li><strong>Simpulkan</strong>: karena $A\mathbf{v} = 3\mathbf{v}$, maka $\mathbf{v} = (1, 0)$ adalah vektor eigen dari $A$, dengan nilai eigen $\lambda = 3$.</li>
+  </ol>
+  <p class="lesson-text">Nilai eigen $\lambda = 3$ adalah <strong>skalar</strong>—bukan vektor, bukan matriks. Ia mengukur seberapa besar arah vektor $\mathbf{v}$ "tertarik" atau "terdorong" oleh matriks $A$. Inilah salah satu peran paling penting skalar dalam aljabar linear—dan fondasi dari diagonalisasi matriks, kompresi data (PCA), dan mekanika kuantum.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap skalar sebagai vektor.</strong> Skalar adalah bilangan tunggal, sedangkan vektor adalah kumpulan bilangan terurut. Notasi $3$ (skalar) berbeda dengan $(3, 0)$ (vektor dua dimensi).</li>
+  <li><strong>Menganggap vektor berdimensi satu sama dengan skalar.</strong> Vektor $(3)$ dalam $\mathbb{R}^1$ <em>tidak sama</em> dengan skalar $3$. Vektor tetap objek berstruktur (memiliki aturan penjumlahan vektor, perkalian titik, dan sebagainya), sedangkan skalar hanyalah bilangan.</li>
+  <li><strong>Menganggap setiap bilangan dapat menjadi skalar dalam konteks apa pun.</strong> Skalar harus berasal dari <em>lapangan</em>. Karena $\mathbb{Z}$ bukan lapangan, bilangan bulat tidak dapat langsung dijadikan skalar dalam definisi ruang vektor formal.</li>
+  <li><strong>Mengabaikan peran skalar dalam definisi ruang vektor.</strong> Ruang vektor didefinisikan <em>atas</em> suatu lapangan—dan sifat lapangan tersebut menentukan perilaku seluruh ruang vektor. Mengganti lapangan dari $\mathbb{R}$ ke $\mathbb{C}$ mengubah struktur ruang vektor secara signifikan.</li>
+  <li><strong>Menganggap "skalar" hanya berarti "bilangan real".</strong> Meskipun $\mathbb{R}$ paling sering dipakai, skalar juga dapat berupa $\mathbb{C}$, $\mathbb{Q}$, atau elemen lapangan hingga $\mathbb{F}_p$. Kontekslah yang menentukan.</li>
+  <li><strong>Menganggap skalar tidak dapat beroperasi dengan vektor.</strong> Justru sebaliknya—perkalian skalar dengan vektor adalah salah satu operasi paling fundamental dalam aljabar linear.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <ul>
+  <li><strong>Skalar</strong> adalah besaran yang hanya memiliki nilai (magnitudo) tanpa arah—yaitu elemen dari lapangan (<em>field</em>) seperti $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Q}$, atau $\mathbb{F}_p$.</li>
+  <li>Istilah "skalar" berasal dari kata Latin <em>scala</em>—merujuk pada bilangan yang digunakan untuk "menskalakan" besaran lain.</li>
+  <li><strong>Perbedaan skalar dan vektor</strong>: skalar hanya nilai, vektor nilai dan arah. Skalar ditulis dengan huruf biasa; vektor dengan huruf tebal atau panah.</li>
+  <li><strong>Hierarki bilangan</strong>: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$. Namun hanya $\mathbb{Q}, \mathbb{R}, \mathbb{C}$ (dan lapangan hingga) yang dapat menjadi lapangan tempat skalar didefinisikan.</li>
+  <li><strong>Skalar adalah elemen lapangan</strong>—memenuhi 11 aksioma: 5 aksioma penjumlahan, 5 aksioma perkalian, dan 1 aksioma distributif. Himpunan $\mathbb{Z}$ <em>bukan</em> lapangan.</li>
+  <li><strong>Peran skalar dalam aljabar linear</strong>: pengali vektor, koefisien kombinasi linear, pengali matriks, hasil perkalian titik, nilai eigen, dan elemen diagonal matriks.</li>
+  <li>Skalar adalah "lem" yang menyatukan seluruh struktur aljabar linear—sering tersembunyi, tetapi selalu ada.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Skalar adalah <strong>fondasi dari seluruh aljabar linear</strong>&mdash;tetapi fondasi yang sering diabaikan karena kesederhanaannya. Di permukaan, skalar hanyalah bilangan biasa. Namun di balik kesederhanaan itu terdapat struktur aljabar yang kaya: lapangan (<em>field</em>) dengan 11 aksioma yang menjamin konsistensi seluruh sistem. Yang membuat skalar istimewa adalah <strong>perannya sebagai "tanah" tempat ruang vektor dibangun</strong>&mdash;hampir setiap definisi dalam aljabar linear menyebut "atas lapangan $\mathbb{F}$" untuk memastikan skalar memenuhi sifat-sifat yang diperlukan.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi bagi topik berikutnya: <strong>Vektor</strong> (yang menggunakan skalar sebagai pengali dan komponen), <strong>Matriks</strong> (dengan skalar sebagai elemen dan pengali), <strong>Ruang Vektor</strong> ("ruang vektor atas lapangan $\mathbb{F}$"), <strong>Transformasi Linear</strong>, <strong>Nilai Eigen &amp; Vektor Eigen</strong> ($A\mathbf{v} = \lambda \mathbf{v}$ dengan $\lambda$ skalar), hingga <strong>Aljabar Abstrak</strong> (yang menggeneralisasi lapangan menjadi ring dan medan).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama yang melibatkan identifikasi skalar dalam konteks berbeda, serta alasan mengapa suatu himpunan bilangan membentuk lapangan atau tidak. Kebiasaan memperhatikan konvensi notasi (huruf biasa vs huruf tebal) akan menyelamatkan Anda dari kesalahan yang tidak perlu, terutama saat berpindah ke topik vektor dan matriks.</p>
+</div>
+
+</div>
+</body>
+</html>

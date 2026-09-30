@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Vektor (Penjumlahan, Perkalian Skalar, Dot/Cross Product, dan Proyeksi)</title>
+ <meta name="description" content="Vektor: magnitudo dan vektor satuan, penjumlahan dan perkalian skalar, dot product, cross product, sudut antar vektor, serta proyeksi dan dekomposisi ortogonal.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Vektor (Penjumlahan, Perkalian Skalar, Dot/Cross Product, dan Proyeksi)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Skalar</strong> — karena vektor dan skalar selalu berinteraksi: skalar menjadi pengali, komponen, dan hasil dot product.</li>
+   <li><strong>Trigonometri Dasar</strong> — terutama nilai $\sin\theta$ dan $\cos\theta$, karena dot dan cross product melibatkan sudut antar vektor.</li>
+   <li><strong>Geometri Analitik</strong> — terutama koordinat Kartesius dan jarak antar titik, karena magnitudo vektor dihitung dengan teorema Pythagoras.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan Anda menggunakan aplikasi peta di ponsel. Aplikasi itu memberi tahu: "Belok kanan 200 meter, lalu lurus 1 kilometer ke utara." Perhatikan bahwa instruksinya tidak hanya berupa angka—ada <em>angka</em> (200 meter, 1 kilometer) dan ada <em>arah</em> (kanan, utara). Informasi seperti inilah yang dalam matematika disebut <strong>vektor</strong>: besaran yang memiliki <strong>nilai (magnitudo)</strong> sekaligus <strong>arah</strong>.</p>
+ <p class="lesson-text">Bandingkan dengan "suhu hari ini 30°C". Angka saja sudah cukup—tidak ada arah yang perlu disebutkan. Besaran seperti ini disebut <strong>skalar</strong>, dan sudah kita pelajari di materi sebelumnya. Vektor adalah <em>perluasan</em> dari gagasan skalar: ketika suatu besaran tidak dapat dijelaskan hanya dengan satu angka, kita memerlukan vektor.</p>
+ <p class="lesson-text">Dalam materi ini, kita akan mempelajari vektor secara bertahap: mulai dari definisi dan notasi, cara menghitung magnitudonya, operasi penjumlahan dan perkalian skalar, dua jenis perkalian antar vektor (dot product dan cross product), sudut antar vektor, proyeksi, hingga contoh soal. Setiap rumus akan dijelaskan dengan <em>alasan mengapa</em> ia berlaku—bukan hanya hasil akhirnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Notasi Vektor</h3>
+<p class="lesson-text">Sebelum masuk ke operasi, kita perlu menyepakati dulu: apa itu vektor, bagaimana ia dituliskan, dan bagaimana cara mengukur "panjangnya".</p>
+
+<p class="lesson-subheading">A. Pengertian Vektor</p>
+<p class="lesson-text"><strong>Vektor</strong> adalah besaran yang memiliki <strong>besar (magnitudo)</strong> dan <strong>arah</strong>. Dalam ruang berdimensi $n$, vektor dinyatakan sebagai daftar $n$ bilangan real yang terurut:</p>
+<p class="lesson-text">$$\mathbf{v} = (v_1, v_2, \dots, v_n)$$</p>
+<p class="lesson-text">Bilangan $v_1, v_2, \dots, v_n$ disebut <strong>komponen</strong> vektor. Urutan komponen sangat penting—vektor $(1, 2)$ berbeda dengan vektor $(2, 1)$.</p>
+
+<div class="lesson-note">
+ <p class="lesson-text"><strong>Notasi $\mathbb{R}^n$:</strong> simbol $\mathbb{R}$ adalah singkatan dari <em>real numbers</em> (bilangan real), sedangkan pangkat $n$ menyatakan <strong>dimensi</strong>—yaitu banyaknya komponen yang dibutuhkan untuk menentukan satu titik secara unik.</p>
+ <ul>
+  <li>$\mathbb{R}^1$ = garis bilangan (1 dimensi).</li>
+  <li>$\mathbb{R}^2$ = bidang datar (2 dimensi)—butuh komponen $(x, y)$.</li>
+  <li>$\mathbb{R}^3$ = ruang tiga dimensi—butuh komponen $(x, y, z)$.</li>
+  <li>$\mathbb{R}^n$ = ruang berdimensi $n$—butuh $n$ komponen.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa <em>dimensi</em> di sini <strong>bukan</strong> berarti "banyaknya titik" (karena setiap ruang punya tak hingga banyak titik), melainkan <strong>banyaknya arah independen</strong> yang dibutuhkan untuk merentang ruang tersebut. Menambah satu titik pada $\mathbb{R}^2$ tidak mengubahnya menjadi $\mathbb{R}^3$—tetapi menambahkan satu <em>sumbu baru</em> (arah independen baru) akan mengubahnya.</p>
+</div>
+
+<p class="lesson-text">Dalam geometri, vektor digambarkan sebagai <strong>anak panah</strong>: panjang panah menyatakan magnitudo, ujung panah menyatakan arah. Mari kita perhatikan contoh konkret untuk memperjelas hubungan antara "komponen" dan "gambar anak panah".</p>
+
+<p class="lesson-subheading-alt">Contoh konkret: vektor $\mathbf{v} = (3, 4)$ di $\mathbb{R}^2$</p>
+<p class="lesson-text">Vektor ini menyatakan: "bergeraklah 3 satuan ke kanan, lalu 4 satuan ke atas". Komponen pertamanya ($v_1 = 3$) adalah <strong>perpindahan horizontal</strong>, dan komponen keduanya ($v_2 = 4$) adalah <strong>perpindahan vertikal</strong>. Perhatikan gambarnya:</p>
+
+<figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 500 320" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="80" y1="250" x2="450" y2="250" stroke="#666" stroke-width="1"/>
+  <line x1="80" y1="250" x2="80" y2="40" stroke="#666" stroke-width="1"/>
+  <polygon points="450,250 444,247 444,253" fill="#666"/>
+  <polygon points="80,40 77,46 83,46" fill="#666"/>
+  <text x="456" y="255" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="68" y="38" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <text x="64" y="266" font-size="12" fill="#b8b8b8">O</text>
+  <line x1="320" y1="90" x2="320" y2="250" stroke="#daa520" stroke-width="1" stroke-dasharray="4,4" opacity="0.45"/>
+  <line x1="80" y1="90" x2="320" y2="90" stroke="#daa520" stroke-width="1" stroke-dasharray="4,4" opacity="0.45"/>
+  <line x1="80" y1="250" x2="320" y2="250" stroke="#5dade2" stroke-width="4.5" opacity="0.85"/>
+  <text x="185" y="278" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v₁ = 3</text>
+  <line x1="80" y1="250" x2="80" y2="90" stroke="#5dade2" stroke-width="4.5" opacity="0.85"/>
+  <text x="12" y="175" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v₂ = 4</text>
+  <line x1="80" y1="250" x2="320" y2="90" stroke="#daa520" stroke-width="3"/>
+  <polygon points="320,90 306,94 313,105" fill="#daa520"/>
+  <text x="180" y="150" font-size="17" fill="#daa520" font-weight="700" font-style="italic">v</text>
+  <path d="M 125 250 A 45 45 0 0 0 118 226" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+  <text x="128" y="238" font-size="14" fill="#f0c75e" font-weight="700" font-style="italic">θ</text>
+ </svg>
+ <figcaption class="visual-caption">
+  Gambar 1: Vektor $\mathbf{v} = (3, 4)$ pada bidang $\mathbb{R}^2$. Komponen $v_1 = 3$ diukur sepanjang sumbu $x$ (biru), dan $v_2 = 4$ diukur sepanjang sumbu $y$ (biru). Vektor $\mathbf{v}$ (emas) menghubungkan pangkal $O$ dengan titik $(3, 4)$.
+ </figcaption>
+</figure>
+
+<p class="lesson-text">Dari gambar di atas, ada tiga hal yang perlu dicermati:</p>
+<ol>
+ <li>$v_1$ dan $v_2$ adalah <strong>skalar (bilangan)</strong>—bukan vektor. Mereka mengukur "seberapa jauh" vektor bergerak pada masing-masing arah.</li>
+ <li>Vektor $\mathbf{v}$ sendiri adalah <strong>pasangan terurut</strong> dari kedua komponen itu: $\mathbf{v} = (v_1, v_2) = (3, 4)$.</li>
+ <li>Sudut $\theta$ diukur dari sumbu $x$ positif berlawanan arah jarum jam.</li>
+</ol>
+
+<p class="lesson-text">Sekarang, apa yang terjadi jika kita <strong>menambahkan satu sumbu baru</strong>—yaitu sumbu $z$ yang tegak lurus terhadap bidang $xy$? Kita berpindah dari <strong>bidang datar</strong> $\mathbb{R}^2$ ke <strong>ruang tiga dimensi</strong> $\mathbb{R}^3$. Vektor di $\mathbb{R}^3$ memiliki komponen ketiga, $v_3$, yang menyatakan seberapa jauh vektor bergerak pada arah sumbu $z$—yaitu arah yang keluar dari bidang $xy$. Perhatikan gambarnya:</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 620 460" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid halus pada bidang xy -->
+  <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.16">
+   <line x1="300" y1="220" x2="560" y2="220" />
+   <line x1="300" y1="180" x2="560" y2="180" />
+   <line x1="300" y1="140" x2="560" y2="140" />
+   <line x1="300" y1="100" x2="560" y2="100" />
+   <line x1="300" y1="60" x2="560" y2="60" />
+   <line x1="350" y1="40" x2="350" y2="260" />
+   <line x1="400" y1="40" x2="400" y2="260" />
+   <line x1="450" y1="40" x2="450" y2="260" />
+   <line x1="500" y1="40" x2="500" y2="260" />
+   <line x1="550" y1="40" x2="550" y2="260" />
+  </g>
+  
+  <!-- Sumbu x (horizontal ke kanan) -->
+  <line x1="300" y1="260" x2="575" y2="260" stroke="#e8e8e8" stroke-width="1.6" />
+  <polygon points="584,260 570,254 570,266" fill="#e8e8e8" />
+  <text x="590" y="265" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  
+  <!-- Sumbu y (vertikal ke atas) -->
+  <line x1="300" y1="260" x2="300" y2="40" stroke="#e8e8e8" stroke-width="1.6" />
+  <polygon points="300,30 294,44 306,44" fill="#e8e8e8" />
+  <text x="286" y="34" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  
+  <!-- Sumbu z (diagonal ke kiri-bawah, mendekati pengamat) -->
+  <line x1="300" y1="260" x2="150" y2="400" stroke="#e8e8e8" stroke-width="1.6" />
+  <polygon points="140,410 152,398 158,412" fill="#e8e8e8" />
+  <text x="122" y="428" font-size="13" fill="#b8b8b8" font-style="italic">z</text>
+  
+  <!-- Proyeksi v pada bidang xy: O → P_xy (garis putus-putus) -->
+  <line x1="300" y1="260" x2="500" y2="130" stroke="#5dade2" stroke-width="1.4" stroke-dasharray="6,4" opacity="0.55" />
+  
+  <!-- Komponen v₁ (sepanjang x) -->
+  <line x1="300" y1="260" x2="500" y2="260" stroke="#5dade2" stroke-width="4.5" opacity="0.85" />
+  <text x="400" y="284" font-size="15" fill="#5dade2" font-weight="700" font-style="italic" text-anchor="middle">v₁</text>
+  
+  <!-- Komponen v₂ (sepanjang y) -->
+  <line x1="500" y1="260" x2="500" y2="130" stroke="#5dade2" stroke-width="4.5" opacity="0.85" />
+  <text x="509" y="200" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v₂</text>
+  
+  <!-- Komponen v₃ (sepanjang z, ke arah pengamat) -->
+  <line x1="500" y1="130" x2="434" y2="192" stroke="#f0c75e" stroke-width="4.5" opacity="0.9" />
+  <text x="452" y="152" font-size="15" fill="#f0c75e" font-weight="700" font-style="italic">v₃</text>
+  
+  <!-- Titik O -->
+  <circle cx="300" cy="260" r="4" fill="#e8e8e8" />
+  <text x="282" y="280" font-size="12" fill="#b8b8b8" font-style="italic">O</text>
+  
+  <!-- Titik A (akhir v₁, di sumbu x) -->
+  <circle cx="500" cy="260" r="3.5" fill="#5dade2" opacity="0.7" />
+  
+  <!-- Titik P_xy (akhir v₁+v₂, di bidang xy) -->
+  <circle cx="500" cy="130" r="4.5" fill="#5dade2" />
+  <text x="509" y="126" font-size="11" fill="#5dade2" font-style="italic">P_xy</text>
+  
+  <!-- Vektor v (dari O ke P) -->
+  <line x1="300" y1="260" x2="434" y2="192" stroke="#daa520" stroke-width="3.5" />
+  <polygon points="434,192 424,201 419,193" fill="#daa520" />
+  <text x="348" y="222" font-size="17" fill="#daa520" font-weight="700" font-style="italic">v</text>
+  
+  <!-- Titik P (akhir v) -->
+  <circle cx="434" cy="192" r="5" fill="#daa520" />
+  <text x="443" y="188" font-size="12" fill="#daa520" font-weight="600" font-style="italic">P</text>
+  
+  <!-- Keterangan bawah -->
+  <text x="310" y="452" text-anchor="middle" font-size="12" fill="#b8b8b8" font-style="italic">Vektor di ℝ³: komponen (v₁, v₂, v₃)</text>
+ </svg>
+ <figcaption class="visual-caption">
+  Gambar 2: Vektor $\mathbf{v} = (v_1, v_2, v_3)$ di ruang $\mathbb{R}^3$. Berbeda dari Gambar 1 yang hanya berdimensi 2 (bidang $xy$), di sini kita <strong>menambahkan sumbu ketiga ($z$)</strong> sebagai arah independen baru. Komponen $v_1$ (biru) dan $v_2$ (biru) bergerak di sepanjang bidang $xy$, sedangkan $v_3$ (emas muda) bergerak di sepanjang sumbu $z$—yaitu keluar dari bidang $xy$ menuju pengamat. Titik $P_{xy}$ adalah bayangan titik $P$ pada bidang $xy$; garis putus-putus dari $O$ ke $P_{xy}$ adalah proyeksi vektor $\mathbf{v}$ pada bidang $xy$.
+ </figcaption>
+</figure>
+
+<p class="lesson-text">Perbedaan kunci antara Gambar 1 dan Gambar 2: Gambar 1 hanya memiliki <strong>dua sumbu</strong> ($x$ dan $y$), sehingga setiap titik diwakili oleh dua bilangan. Gambar 2 memiliki <strong>tiga sumbu</strong> ($x$, $y$, dan $z$), sehingga setiap titik diwakili oleh tiga bilangan. Sumbu $z$ inilah yang membuat gambarnya tampak "keluar dari layar"—itulah dimensi ketiga.</p>
+
+<p class="lesson-text">Untuk keperluan geometris, kita biasanya bekerja di dua ruang:</p>
+<div class="lesson-table">
+ <table>
+  <thead>
+   <tr>
+    <th>Ruang</th>
+    <th>Notasi</th>
+    <th>Komponen</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr><td>Bidang datar</td><td>$\mathbb{R}^2$</td><td>$\mathbf{v} = (v_1, v_2)$—perpindahan pada sumbu $x$ dan $y$</td></tr>
+   <tr><td>Ruang tiga dimensi</td><td>$\mathbb{R}^3$</td><td>$\mathbf{v} = (v_1, v_2, v_3)$—perpindahan pada sumbu $x, y, z$</td></tr>
+  </tbody>
+ </table>
+</div>
+
+ <p class="lesson-subheading">B. Cara Menuliskan Vektor</p>
+ <p class="lesson-text">Ada beberapa konvensi penulisan yang perlu Anda kenali—semuanya menyatakan hal yang sama:</p>
+ <ul>
+  <li><strong>Huruf tebal</strong>: $\mathbf{v}$, $\mathbf{u}$, $\mathbf{w}$—untuk tulisan cetak.</li>
+  <li><strong>Huruf dengan panah</strong>: $\vec{v}$, $\vec{u}$—untuk tulisan tangan.</li>
+  <li><strong>Notasi kolom</strong>: $\mathbf{v} = \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}$—sering dipakai saat berurusan dengan matriks.</li>
+ </ul>
+ <p class="lesson-text">Konvensi ini membantu kita membedakan vektor dari skalar (yang ditulis dengan huruf biasa seperti $k$ atau $\lambda$).</p>
+
+ <p class="lesson-subheading">C. Magnitudo (Panjang) Vektor</p>
+ <p class="lesson-text"><strong>Magnitudo</strong>—disebut juga panjang atau norma—dari vektor $\mathbf{v} = (v_1, v_2, \dots, v_n)$ dinotasikan $|\mathbf{v}|$ atau $\|\mathbf{v}\|$, dan dihitung dengan:</p>
+ <p class="lesson-text">$$|\mathbf{v}| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}$$</p>
+ <p class="lesson-subheading-alt">Mengapa rumusnya berbentuk akar seperti itu?</p>
+ <p class="lesson-text">Perhatikan vektor $\mathbf{v} = (3, 4)$ di $\mathbb{R}^2$. Jika kita gambarkan bersama komponennya, vektor ini membentuk sebuah <strong>segitiga siku-siku</strong>: sisi mendatar 3, sisi tegak 4, dan sisi miring adalah vektor $\mathbf{v}$ itu sendiri. Panjang sisi miring diberikan oleh <strong>teorema Pythagoras</strong>:</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 500 300" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Segitiga siku-siku -->
+   <polygon points="100,240 380,240 380,80" fill="#daa520" fill-opacity="0.08" stroke="none"/>
+
+   <!-- Sisi horizontal (v1) -->
+   <line x1="100" y1="240" x2="380" y2="240" stroke="#5dade2" stroke-width="3.5"/>
+   <text x="220" y="268" font-size="16" fill="#5dade2" font-weight="700" font-style="italic">v₁ = 3</text>
+
+   <!-- Sisi vertikal (v2) -->
+   <line x1="380" y1="240" x2="380" y2="80" stroke="#5dade2" stroke-width="3.5"/>
+   <text x="392" y="165" font-size="16" fill="#5dade2" font-weight="700" font-style="italic">v₂ = 4</text>
+
+   <!-- Sisi miring (|v|) -->
+   <line x1="100" y1="240" x2="380" y2="80" stroke="#daa520" stroke-width="3.5"/>
+   <polygon points="380,80 366,85 374,95" fill="#daa520"/>
+   <text x="200" y="145" font-size="16" fill="#daa520" font-weight="700" font-style="italic">|v| = 5</text>
+
+   <!-- Tanda siku-siku -->
+   <polyline points="380,220 360,220 360,240" fill="none" stroke="#b8b8b8" stroke-width="1.5"/>
+
+   <!-- Rumus di bawah -->
+   <text x="250" y="295" text-anchor="middle" font-size="14" fill="#e8e8e8" font-style="italic">|v| = √(3² + 4²) = √(9 + 16) = √25 = 5</text>
+  </svg>
+  <figcaption class="visual-caption">
+   Gambar 3: Magnitudo vektor $\mathbf{v} = (3, 4)$ dihitung dengan teorema Pythagoras. Sisi horizontal $v_1 = 3$ dan sisi vertikal $v_2 = 4$ membentuk segitiga siku-siku dengan hipotenusa $|\mathbf{v}| = 5$.
+  </figcaption>
+ </figure>
+
+ <p class="lesson-text">Untuk dimensi yang lebih tinggi, rumus ini hanyalah penerapan Pythagoras berulang kali: setiap komponen baru menambah satu sisi pada "segitiga" yang lebih tinggi dimensinya.</p>
+
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Tentukan magnitudo $\mathbf{v} = (3, 4)$. Maka $|\mathbf{v}| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Tentukan magnitudo $\mathbf{u} = (1, -2, 2)$. Maka $|\mathbf{u}| = \sqrt{1^2 + (-2)^2 + 2^2} = \sqrt{1 + 4 + 4} = \sqrt{9} = 3$.</p>
+ <p class="lesson-text">Perhatikan bahwa tanda negatif pada komponen hilang saat dikuadratkan—ini masuk akal karena panjang tidak mungkin negatif.</p>
+
+<p class="lesson-subheading">D. Vektor Satuan</p>
+
+<p class="lesson-text">Dalam banyak situasi, kita hanya peduli pada <em>arah</em> vektor—bukan panjangnya. Misalnya, ketika menentukan arah angin, kita tidak peduli seberapa "panjang" angin itu; yang penting ke mana ia bertiup. Untuk keperluan ini, kita mendefinisikan <strong>vektor satuan</strong>: vektor yang panjangnya dipatok tepat <strong>1 satuan panjang</strong>, searah dengan vektor aslinya.</p>
+
+<p class="lesson-subheading-alt">Apa arti "1 satuan panjang"?</p>
+<p class="lesson-text">Ini adalah pertanyaan yang sering membingungkan. Angka "1" di sini <strong>bukan berarti "1 kotak grid"</strong> dan bukan juga bilangan sembarang—melainkan <strong>panjang sebesar 1 satuan</strong>, mengikuti skala yang sama dengan sumbu koordinat. Mari kita perjelas dengan perbandingan:</p>
+
+<figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 720 340" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Judul -->
+  <text x="360" y="24" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Vektor satuan = "tongkat ukur" sepanjang 1 satuan untuk arah tertentu</text>
+  
+  <!-- PANEL KIRI: vektor v -->
+  <rect x="30" y="50" width="320" height="260" rx="8" fill="none" stroke="#444" stroke-width="1" stroke-dasharray="4,3" />
+  
+  <!-- Sumbu -->
+  <line x1="70" y1="280" x2="330" y2="280" stroke="#666" stroke-width="1" />
+  <line x1="70" y1="280" x2="70" y2="80" stroke="#666" stroke-width="1" />
+  <text x="336" y="284" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="58" y="78" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+  
+  <!-- Skala 1 satuan -->
+  <line x1="70" y1="300" x2="110" y2="300" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="70" y1="297" x2="70" y2="303" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="110" y1="297" x2="110" y2="303" stroke="#e8e8e8" stroke-width="1.5" />
+  <text x="90" y="316" text-anchor="middle" font-size="10" fill="#e8e8e8" font-style="italic">1 satuan</text>
+  
+  <!-- Vektor v = (3,4), panjang 5 -->
+  <line x1="70" y1="280" x2="270" y2="120" stroke="#daa520" stroke-width="3" />
+  <polygon points="270,120 256,123 263,134" fill="#daa520" />
+  <text x="150" y="185" font-size="16" fill="#daa520" font-weight="700" font-style="italic">v</text>
+  <text x="160" y="202" font-size="11" fill="#daa520" font-style="italic">|v| = 5 satuan</text>
+  
+  <text x="190" y="75" text-anchor="middle" font-size="12" fill="#daa520" font-weight="600">Vektor asli</text>
+  
+  <!-- PANEL KANAN: vektor satuan -->
+  <rect x="370" y="50" width="320" height="260" rx="8" fill="none" stroke="#444" stroke-width="1" stroke-dasharray="4,3" />
+  
+  <!-- Sumbu -->
+  <line x1="410" y1="280" x2="670" y2="280" stroke="#666" stroke-width="1" />
+  <line x1="410" y1="280" x2="410" y2="80" stroke="#666" stroke-width="1" />
+  <text x="676" y="284" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="398" y="78" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+  
+  <!-- Skala 1 satuan (sama persis dengan kiri) -->
+  <line x1="410" y1="300" x2="450" y2="300" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="410" y1="297" x2="410" y2="303" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="450" y1="297" x2="450" y2="303" stroke="#e8e8e8" stroke-width="1.5" />
+  <text x="430" y="316" text-anchor="middle" font-size="10" fill="#e8e8e8" font-style="italic">1 satuan</text>
+  
+  <!-- Vektor satuan v̂ (panjang 1, searah v) -->
+  <line x1="410" y1="280" x2="450" y2="248" stroke="#5dade2" stroke-width="4" />
+  <circle cx="450" cy="248" r="4" fill="#5dade2" />
+  <text x="470" y="245" font-size="16" fill="#5dade2" font-weight="700" font-style="italic">v̂</text>
+  <text x="475" y="262" font-size="11" fill="#5dade2" font-style="italic">|v̂| = 1 satuan</text>
+  
+  <text x="530" y="75" text-anchor="middle" font-size="12" fill="#5dade2" font-weight="600">Vektor satuan</text>
+  
+  <!-- Penjelasan bawah -->
+  <text x="360" y="332" text-anchor="middle" font-size="12" fill="#e8e8e8" font-style="italic">
+   Keduanya menunjuk arah yang sama, tetapi panjangnya berbeda: |v| = 5 satuan, |v̂| = 1 satuan.
+  </text>
+ </svg>
+ <figcaption class="visual-caption">
+ Gambar 4. Perbandingan vektor asli $\mathbf{v}$ dengan vektor satuannya $\hat{\mathbf{v}}$. Keduanya searah, tetapi $\hat{\mathbf{v}}$ panjangnya tepat 1 satuan—persis sepanjang "1 satuan" pada skala sumbu.
+</figcaption>
+</figure>
+
+<p class="lesson-text">Dari gambar di atas, terlihat bahwa "1 satuan" pada vektor satuan mengacu pada <strong>skala yang sama</strong> dengan sumbu koordinat. Jadi:</p>
+<ul>
+ <li>Jika pada gambar 1 satuan = 1 cm, maka vektor satuan panjangnya 1 cm.</li>
+ <li>Jika 1 satuan = 1 meter, maka vektor satuan panjangnya 1 meter.</li>
+ <li>Jika pada grid, 1 kotak = 1 satuan, maka vektor satuan panjangnya 1 kotak. Tetapi jika 1 kotak = 2 satuan, maka vektor satuan panjangnya setengah kotak.</li>
+</ul>
+<p class="lesson-text">Pendeknya: <strong>vektor satuan adalah "tongkat ukur" sepanjang 1 satuan untuk suatu arah.</strong> Ia tidak bergantung pada panjang vektor aslinya—selama arahnya sama, vektor satuannya selalu sama.</p>
+
+<p class="lesson-subheading-alt">Cara menghitung vektor satuan</p>
+<p class="lesson-text">Untuk memperoleh vektor satuan dari $\mathbf{v} \neq \mathbf{0}$, kita bagi vektor tersebut dengan magnitudonya sendiri:</p>
+<p class="lesson-text">$$\hat{\mathbf{v}} = \frac{\mathbf{v}}{|\mathbf{v}|}$$</p>
+<p class="lesson-text"><strong>Mengapa membagi dengan magnitudonya sendiri?</strong> Karena pembagian ini "menormalkan" panjang menjadi 1 tanpa mengubah arah:</p>
+<p class="lesson-text">$$|\hat{\mathbf{v}}| = \left|\frac{\mathbf{v}}{|\mathbf{v}|}\right| = \frac{|\mathbf{v}|}{|\mathbf{v}|} = 1$$</p>
+<p class="lesson-text">Operasi ini disebut <strong>normalisasi</strong>—mengubah vektor apa pun menjadi vektor satuan yang searah.</p>
+
+<p class="lesson-subheading-alt">Contoh 3:</p>
+<p class="lesson-text">Tentukan vektor satuan dari $\mathbf{v} = (3, 4)$.</p>
+<ul>
+ <li>Hitung magnitudo: $|\mathbf{v}| = 5$.</li>
+ <li>Bagi setiap komponen dengan 5: $\hat{\mathbf{v}} = \dfrac{(3, 4)}{5} = \left(\dfrac{3}{5}, \dfrac{4}{5}\right) = (0{,}6, 0{,}8)$.</li>
+ <li><strong>Verifikasi</strong>: $|\hat{\mathbf{v}}| = \sqrt{0{,}6^2 + 0{,}8^2} = \sqrt{0{,}36 + 0{,}64} = \sqrt{1} = 1$. Benar—panjangnya tepat 1 satuan.</li>
+</ul>
+<p class="lesson-text">Perhatikan bahwa $\hat{\mathbf{v}}$ memiliki arah yang sama dengan $\mathbf{v}$, dan jika dikalikan kembali dengan 5, kita memperoleh $\mathbf{v}$ semula: $5\hat{\mathbf{v}} = (3, 4) = \mathbf{v}$. Inilah makna "tongkat ukur": $\mathbf{v}$ dapat disusun dari 5 tongkat ukur sepanjang 1 satuan yang semuanya searah.</p>
+
+<p class="lesson-subheading-alt">Vektor satuan standar</p>
+<p class="lesson-text">Di ruang tiga dimensi, terdapat tiga <strong>vektor satuan standar</strong> yang sangat sering dipakai—masing-masing searah dengan satu sumbu koordinat:</p>
+<ul>
+ <li>$\mathbf{i} = (1, 0, 0)$—searah sumbu $x$ positif.</li>
+ <li>$\mathbf{j} = (0, 1, 0)$—searah sumbu $y$ positif.</li>
+ <li>$\mathbf{k} = (0, 0, 1)$—searah sumbu $z$ positif.</li>
+</ul>
+<p class="lesson-text">Setiap vektor di $\mathbb{R}^3$ dapat ditulis sebagai kombinasi ketiganya: $(2, -3, 5) = 2\mathbf{i} - 3\mathbf{j} + 5\mathbf{k}$. Bentuk ini sangat membantu dalam perhitungan cross product nanti.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Penjumlahan dan Pengurangan Vektor</h3>
+ <p class="lesson-text">Setelah memahami apa itu vektor, kita masuk ke operasinya. Operasi paling dasar adalah penjumlahan dan pengurangan—keduanya dilakukan komponen per komponen.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan Vektor</p>
+ <p class="lesson-text">Penjumlahan dua vektor dilakukan dengan menjumlahkan <strong>komponen yang bersesuaian</strong>:</p>
+ <p class="lesson-text">$$\mathbf{u} + \mathbf{v} = (u_1 + v_1, \ u_2 + v_2, \ \dots, \ u_n + v_n)$$</p>
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">$\mathbf{u} = (2, 3)$ dan $\mathbf{v} = (5, -1)$. Maka $\mathbf{u} + \mathbf{v} = (2 + 5, 3 + (-1)) = (7, 2)$.</p>
+ <p class="lesson-text">Secara geometris, penjumlahan vektor dapat dipahami dengan dua aturan ekuivalen—aturan segitiga dan aturan jajargenjang.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 500 270" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <circle cx="60" cy="200" r="4.5" fill="#5dade2"/>
+   <text x="44" y="222" font-size="13" fill="#e8e8e8" font-weight="600">A</text>
+   <circle cx="240" cy="200" r="4.5" fill="#5dade2"/>
+   <text x="234" y="222" font-size="13" fill="#e8e8e8" font-weight="600">B</text>
+   <circle cx="380" cy="80" r="4.5" fill="#5dade2"/>
+   <text x="388" y="80" font-size="13" fill="#e8e8e8" font-weight="600">C</text>
+   <line x1="60" y1="200" x2="240" y2="200" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="240,200 227,195 227,205" fill="#daa520"/>
+   <text x="140" y="192" font-size="15" fill="#daa520" font-weight="700" font-style="italic">u</text>
+   <line x1="240" y1="200" x2="380" y2="80" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="380,80 366,83 371,94" fill="#5dade2"/>
+   <text x="322" y="132" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v</text>
+   <line x1="60" y1="200" x2="380" y2="80" stroke="#f0c75e" stroke-width="3" stroke-dasharray="7,5"/>
+   <text x="180" y="112" font-size="15" fill="#f0c75e" font-weight="700" font-style="italic">u + v</text>
+   <text x="60" y="255" font-size="12" fill="#b8b8b8" font-style="italic">Aturan segitiga: ujung u bertemu pangkal v.</text>
+  </svg>
+  <figcaption class="visual-caption">
+   Gambar 5a: Aturan <strong>segitiga</strong>—tempatkan pangkal $\mathbf{v}$ di ujung $\mathbf{u}$; hasil $\mathbf{u} + \mathbf{v}$ menghubungkan pangkal $\mathbf{u}$ dengan ujung $\mathbf{v}$.
+  </figcaption>
+ </figure>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 460 290" style="max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="60,220 300,220 340,110 100,110" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+   <line x1="60" y1="220" x2="300" y2="220" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="300,220 287,215 287,225" fill="#daa520"/>
+   <text x="175" y="240" font-size="15" fill="#daa520" font-weight="700" font-style="italic">u</text>
+   <line x1="60" y1="220" x2="100" y2="110" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="100,110 88,116 95,125" fill="#5dade2"/>
+   <text x="48" y="160" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v</text>
+   <line x1="60" y1="220" x2="340" y2="110" stroke="#f0c75e" stroke-width="3"/>
+   <polygon points="340,110 327,111 332,122" fill="#f0c75e"/>
+   <text x="200" y="152" font-size="15" fill="#f0c75e" font-weight="700" font-style="italic">u + v</text>
+   <circle cx="60" cy="220" r="4.5" fill="#5dade2"/>
+   <text x="60" y="265" font-size="12" fill="#b8b8b8" font-style="italic">Aturan jajargenjang: u dan v dari pangkal yang sama.</text>
+  </svg>
+  <figcaption class="visual-caption">
+   Gambar 5b: Aturan <strong>jajargenjang</strong>—jika $\mathbf{u}$ dan $\mathbf{v}$ digambar dari pangkal yang sama, maka $\mathbf{u} + \mathbf{v}$ adalah diagonal jajargenjang.
+  </figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Pengurangan Vektor</p>
+ <p class="lesson-text">Pengurangan vektor mengikuti pola yang sama—kurangkan komponen yang bersesuaian:</p>
+ <p class="lesson-text">$$\mathbf{u} - \mathbf{v} = (u_1 - v_1, \ u_2 - v_2, \ \dots, \ u_n - v_n)$$</p>
+ <p class="lesson-text">Perhatikan bahwa $\mathbf{u} - \mathbf{v}$ sama dengan $\mathbf{u} + (-\mathbf{v})$—yaitu penjumlahan $\mathbf{u}$ dengan vektor yang berlawanan arah dari $\mathbf{v}$.</p>
+ <p class="lesson-subheading-alt">Contoh 5:</p>
+ <p class="lesson-text">$\mathbf{u} = (2, 3)$ dan $\mathbf{v} = (5, -1)$. Maka $\mathbf{u} - \mathbf{v} = (2 - 5, 3 - (-1)) = (-3, 4)$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 460 290" style="max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="70" y1="220" x2="290" y2="150" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="290,150 276,152 280,163" fill="#daa520"/>
+   <text x="180" y="172" font-size="15" fill="#daa520" font-weight="700" font-style="italic">u</text>
+   <line x1="70" y1="220" x2="330" y2="220" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="330,220 317,215 317,225" fill="#5dade2"/>
+   <text x="195" y="240" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v</text>
+   <line x1="330" y1="220" x2="290" y2="150" stroke="#f0c75e" stroke-width="3"/>
+   <polygon points="290,150 291,163 302,158" fill="#f0c75e"/>
+   <text x="335" y="180" font-size="15" fill="#f0c75e" font-weight="700" font-style="italic">u − v</text>
+   <circle cx="70" cy="220" r="4.5" fill="#5dade2"/>
+   <text x="52" y="238" font-size="12" fill="#b8b8b8" font-style="italic">O</text>
+   <text x="90" y="270" font-size="12" fill="#b8b8b8" font-style="italic">u − v menghubungkan ujung v ke ujung u.</text>
+  </svg>
+  <figcaption class="visual-caption">
+   Gambar 6: Pengurangan $\mathbf{u} - \mathbf{v}$ dapat dipandang sebagai $\mathbf{u} + (-\mathbf{v})$—vektor yang menghubungkan ujung $\mathbf{v}$ ke ujung $\mathbf{u}$.
+  </figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Penjumlahan Vektor</p>
+ <p class="lesson-text">Penjumlahan vektor memiliki sifat-sifat berikut—yang semuanya sejalan dengan penjumlahan bilangan biasa:</p>
+ <ol>
+  <li><strong>Komutatif</strong>: $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$.</li>
+  <li><strong>Asosiatif</strong>: $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$.</li>
+  <li><strong>Elemen identitas</strong>: $\mathbf{v} + \mathbf{0} = \mathbf{v}$, dengan $\mathbf{0} = (0, 0, \dots, 0)$.</li>
+  <li><strong>Elemen invers</strong>: $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$, dengan $-\mathbf{v} = (-v_1, -v_2, \dots, -v_n)$.</li>
+ </ol>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Perkalian Skalar dengan Vektor</h3>
+ <p class="lesson-text">Jika sebelumnya kita menjumlahkan dua vektor, sekarang kita mengalikan vektor dengan <strong>skalar</strong>—sebuah bilangan biasa. Hasilnya adalah vektor yang panjangnya berubah, tetapi garis kerjanya tetap.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text">Jika $k$ adalah skalar dan $\mathbf{v} = (v_1, v_2, \dots, v_n)$ adalah vektor, maka:</p>
+ <p class="lesson-text">$$k\mathbf{v} = (kv_1, \ kv_2, \ \dots, \ kv_n)$$</p>
+ <p class="lesson-text">Setiap komponen dikalikan dengan $k$. Itu saja—tetapi makna geometrisnya penting.</p>
+ <p class="lesson-subheading-alt">Contoh 6:</p>
+ <p class="lesson-text">Jika $k = 3$ dan $\mathbf{v} = (2, -1, 4)$, maka $3\mathbf{v} = (6, -3, 12)$.</p>
+ <p class="lesson-subheading-alt">Contoh 7:</p>
+ <p class="lesson-text">Jika $k = -\frac{1}{2}$ dan $\mathbf{v} = (4, -2)$, maka $-\frac{1}{2}\mathbf{v} = (-2, 1)$.</p>
+
+ <p class="lesson-subheading">B. Makna Geometris</p>
+ <p class="lesson-text">Perkalian skalar "meregangkan" atau "memampatkan" vektor tanpa mengubah arah garis kerjanya:</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 600 220" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="40" y1="140" x2="560" y2="140" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+   <text x="566" y="145" font-size="12" fill="#b8b8b8" font-style="italic">garis kerja</text>
+   <circle cx="300" cy="140" r="4" fill="#e8e8e8"/>
+   <text x="298" y="165" font-size="12" fill="#b8b8b8">O</text>
+   <line x1="300" y1="140" x2="180" y2="140" stroke="#e74c3c" stroke-width="2.5"/>
+   <polygon points="180,140 193,135 193,145" fill="#e74c3c"/>
+   <text x="200" y="118" font-size="14" fill="#e74c3c" font-weight="700" font-style="italic">−v</text>
+   <line x1="300" y1="140" x2="360" y2="140" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="360,140 347,135 347,145" fill="#5dade2"/>
+   <text x="320" y="122" font-size="13" fill="#5dade2" font-weight="600" font-style="italic">0,5v</text>
+   <line x1="300" y1="140" x2="420" y2="140" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="420,140 407,135 407,145" fill="#daa520"/>
+   <text x="350" y="160" font-size="15" fill="#daa520" font-weight="700" font-style="italic">v</text>
+   <line x1="300" y1="140" x2="480" y2="140" stroke="#f0c75e" stroke-width="2.5"/>
+   <polygon points="480,140 467,135 467,145" fill="#f0c75e"/>
+   <text x="410" y="122" font-size="13" fill="#f0c75e" font-weight="600" font-style="italic">1,5v</text>
+   <text x="60" y="195" font-size="12" fill="#b8b8b8" font-style="italic">Perkalian skalar: hanya panjang dan arah yang berubah, garis kerja tetap.</text>
+  </svg>
+  <figcaption class="visual-caption">
+   Gambar 7: Perkalian skalar $k\mathbf{v}$ mengubah panjang vektor menjadi $|k|$ kali dan membalik arah jika $k < 0$—tetapi tetap pada garis kerja yang sama.
+  </figcaption>
+ </figure>
+
+ <p class="lesson-text">Perilaku $k\mathbf{v}$ bergantung pada nilai $k$:</p>
+ <ul>
+  <li>$k > 1$: vektor <strong>meregang</strong> menjadi $k$ kali lebih panjang—arah tetap.</li>
+  <li>$0 < k < 1$: vektor <strong>memampat</strong>—arah tetap.</li>
+  <li>$k = 1$: vektor tidak berubah (identitas).</li>
+  <li>$k = 0$: vektor menjadi vektor nol—kehilangan arah.</li>
+  <li>$k < 0$: vektor <strong>membalik arah</strong> (180°)—panjangnya menjadi $|k|$ kali lipat.</li>
+ </ul>
+ <p class="lesson-text">Magnitudo hasil perkalian skalar memenuhi:</p>
+ <p class="lesson-text">$$|k\mathbf{v}| = |k| \cdot |\mathbf{v}|$$</p>
+ <p class="lesson-text">Perhatikan tanda <strong>nilai mutlak</strong> pada $k$—panjang tidak mungkin negatif. Jika $k = -3$ dan $|\mathbf{v}| = 2$, maka $|k\mathbf{v}| = 6$, bukan $-6$.</p>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Perkalian Skalar</p>
+ <ol>
+  <li><strong>Distributif terhadap penjumlahan vektor</strong>: $k(\mathbf{u} + \mathbf{v}) = k\mathbf{u} + k\mathbf{v}$.</li>
+  <li><strong>Distributif terhadap penjumlahan skalar</strong>: $(k + m)\mathbf{v} = k\mathbf{v} + m\mathbf{v}$.</li>
+  <li><strong>Asosiatif</strong>: $(km)\mathbf{v} = k(m\mathbf{v})$.</li>
+  <li><strong>Identitas</strong>: $1 \cdot \mathbf{v} = \mathbf{v}$.</li>
+  <li><strong>Nol</strong>: $0 \cdot \mathbf{v} = \mathbf{0}$ dan $k \cdot \mathbf{0} = \mathbf{0}$.</li>
+ </ol>
+ <p class="lesson-text">Sifat-sifat ini persis seperti yang kita kenal pada bilangan—dan itulah sebabnya skalar disebut "berperilaku baik".</p>
+
+ <p class="lesson-subheading">D. Vektor Paralel</p>
+ <p class="lesson-text">Dua vektor $\mathbf{u}$ dan $\mathbf{v}$ disebut <strong>paralel</strong> (sejajar) jika salah satu merupakan kelipatan skalar dari yang lain:</p>
+ <p class="lesson-text">$$\mathbf{u} = k\mathbf{v} \quad \text{untuk suatu } k \in \mathbb{R}$$</p>
+ <p class="lesson-text">Jika $k > 0$, keduanya searah. Jika $k < 0$, keduanya berlawanan arah. Contoh: $\mathbf{u} = (2, 4)$ dan $\mathbf{v} = (1, 2)$ paralel karena $\mathbf{u} = 2\mathbf{v}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Dot Product (Perkalian Titik)</h3>
+ <p class="lesson-text">Sampai sini, kita sudah bisa menjumlahkan vektor dan mengalikannya dengan skalar. Tetapi bagaimana cara mengalikan <em>dua vektor</em>? Ternyata ada dua cara—dan keduanya memberi hasil yang berbeda jenis. Yang pertama kita bahas adalah <strong>dot product</strong>, yang menghasilkan skalar.</p>
+
+ <p class="lesson-subheading">A. Definisi Aljabar</p>
+ <p class="lesson-text"><strong>Dot product</strong> (perkalian titik) dari dua vektor $\mathbf{u}$ dan $\mathbf{v}$ didefinisikan sebagai jumlah hasil kali komponen yang bersesuaian:</p>
+ <p class="lesson-text">$$\mathbf{u} \cdot \mathbf{v} = u_1v_1 + u_2v_2 + \dots + u_nv_n$$</p>
+ <p class="lesson-text">Perhatikan bahwa hasilnya adalah <strong>skalar</strong>, bukan vektor.</p>
+ <p class="lesson-subheading-alt">Contoh 8:</p>
+ <p class="lesson-text">$\mathbf{u} = (2, 3)$ dan $\mathbf{v} = (4, -1)$. Maka $\mathbf{u} \cdot \mathbf{v} = (2)(4) + (3)(-1) = 8 - 3 = 5$.</p>
+ <p class="lesson-subheading-alt">Contoh 9:</p>
+ <p class="lesson-text">$\mathbf{u} = (1, 2, 3)$ dan $\mathbf{v} = (4, -5, 6)$. Maka $\mathbf{u} \cdot \mathbf{v} = 4 - 10 + 18 = 12$.</p>
+
+ <p class="lesson-subheading">B. Definisi Geometris</p>
+ <p class="lesson-text">Dot product juga dapat dinyatakan lewat sudut antara kedua vektor:</p>
+ <p class="lesson-text">$$\mathbf{u} \cdot \mathbf{v} = |\mathbf{u}| \cdot |\mathbf{v}| \cos \theta$$</p>
+ <p class="lesson-text">dengan $\theta$ adalah sudut antara $\mathbf{u}$ dan $\mathbf{v}$ ($0 \le \theta \le \pi$).</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 460 260" style="max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="60" y1="200" x2="400" y2="200" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="400,200 387,195 387,205" fill="#5dade2"/>
+   <text x="410" y="205" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v</text>
+   <line x1="60" y1="200" x2="260" y2="70" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="260,70 246,74 250,86" fill="#daa520"/>
+   <text x="200" y="120" font-size="15" fill="#daa520" font-weight="700" font-style="italic">u</text>
+   <line x1="260" y1="70" x2="215" y2="200" stroke="#f0c75e" stroke-width="1.3" stroke-dasharray="5,4"/>
+   <line x1="60" y1="200" x2="215" y2="200" stroke="#f0c75e" stroke-width="4.5" opacity="0.75"/>
+   <text x="88" y="222" font-size="12" fill="#f0c75e" font-weight="600" font-style="italic">|u| cos θ</text>
+   <path d="M 120 200 A 60 60 0 0 0 108 168" fill="none" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="124" y="180" font-size="14" fill="#e8e8e8" font-weight="700">θ</text>
+   <polyline points="215,200 215,190 225,190" fill="none" stroke="#f0c75e" stroke-width="1"/>
+   <text x="60" y="248" font-size="12" fill="#b8b8b8" font-style="italic">Panjang proyeksi u pada v adalah |u| cos θ.</text>
+  </svg>
+  <figcaption class="visual-caption">
+   Gambar 8: Definisi geometris dot product. Bayangan $\mathbf{u}$ pada arah $\mathbf{v}$ memiliki panjang $|\mathbf{u}|\cos\theta$; inilah yang "dijumlahkan" dengan $|\mathbf{v}|$ untuk menghasilkan $\mathbf{u} \cdot \mathbf{v}$.
+  </figcaption>
+ </figure>
+
+ <p class="lesson-text">Definisi aljabar dan definisi geometris memberi hasil yang sama—tetapi menekankan aspek yang berbeda. Yang aljabar mudah dihitung; yang geometris mengungkap makna sudut. Keduanya dihubungkan oleh hukum kosinus.</p>
+ <p class="lesson-text">Dari definisi geometris, kita dapat menentukan besar sudut antara dua vektor:</p>
+ <p class="lesson-text">$$\cos \theta = \frac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{u}| \cdot |\mathbf{v}|}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 10:</p>
+ <p class="lesson-text">Tentukan sudut antara $\mathbf{u} = (1, 0)$ dan $\mathbf{v} = (0, 1)$. Maka $\mathbf{u} \cdot \mathbf{v} = 0$, sehingga $\cos \theta = 0$ dan $\theta = 90°$—kedua vektor <strong>tegak lurus</strong>.</p>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Dot Product</p>
+ <ol>
+  <li><strong>Komutatif</strong>: $\mathbf{u} \cdot \mathbf{v} = \mathbf{v} \cdot \mathbf{u}$.</li>
+  <li><strong>Distributif</strong>: $\mathbf{u} \cdot (\mathbf{v} + \mathbf{w}) = \mathbf{u} \cdot \mathbf{v} + \mathbf{u} \cdot \mathbf{w}$.</li>
+  <li><strong>Skalar keluar</strong>: $(k\mathbf{u}) \cdot \mathbf{v} = k(\mathbf{u} \cdot \mathbf{v})$.</li>
+  <li><strong>Positif definit</strong>: $\mathbf{v} \cdot \mathbf{v} = |\mathbf{v}|^2 \ge 0$—dan sama dengan nol jika dan hanya jika $\mathbf{v} = \mathbf{0}$.</li>
+ </ol>
+
+ <p class="lesson-subheading">D. Kondisi Ortogonalitas</p>
+ <p class="lesson-text">Dua vektor $\mathbf{u}$ dan $\mathbf{v}$ dikatakan <strong>tegak lurus (ortogonal)</strong> jika dan hanya jika:</p>
+ <p class="lesson-text">$$\mathbf{u} \cdot \mathbf{v} = 0$$</p>
+ <p class="lesson-text">Alasannya sederhana: jika $\mathbf{u} \cdot \mathbf{v} = 0$ dan kedua vektor bukan nol, maka $\cos\theta = 0$, sehingga $\theta = 90°$.</p>
+ <p class="lesson-subheading-alt">Contoh 11:</p>
+ <p class="lesson-text">Periksa apakah $\mathbf{u} = (2, -3)$ dan $\mathbf{v} = (3, 2)$ tegak lurus. Kita hitung $\mathbf{u} \cdot \mathbf{v} = 6 - 6 = 0$—kedua vektor <strong>tegak lurus</strong>.</p>
+
+ <p class="lesson-subheading">E. Menentukan Jenis Sudut dari Nilai Dot Product</p>
+ <p class="lesson-text">Karena $\cos\theta$ menentukan jenis sudut, kita dapat membaca jenis sudut langsung dari tanda dot product:</p>
+ <ul>
+  <li>$\mathbf{u} \cdot \mathbf{v} > 0$: sudut <strong>lancip</strong> ($0° < \theta < 90°$).</li>
+  <li>$\mathbf{u} \cdot \mathbf{v} = 0$: sudut <strong>tegak lurus</strong> ($\theta = 90°$).</li>
+  <li>$\mathbf{u} \cdot \mathbf{v} < 0$: sudut <strong>tumpul</strong> ($90° < \theta < 180°$).</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh 12:</p>
+ <p class="lesson-text">Tentukan sudut antara $\mathbf{u} = (1, 1)$ dan $\mathbf{v} = (1, 0)$. Maka $\cos \theta = \dfrac{1}{\sqrt{2} \cdot 1} = \dfrac{\sqrt{2}}{2}$, sehingga $\theta = 45°$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Cross Product (Perkalian Silang)</h3>
+ <p class="lesson-text">Jika dot product menghasilkan skalar, <strong>cross product</strong> menghasilkan vektor baru—dan hanya terdefinisi di $\mathbb{R}^3$. Cross product mengukur "seberapa tegak lurus" dua vektor, sekaligus memberi informasi tentang <em>bidang</em> yang dibentuk keduanya.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text">Untuk $\mathbf{u} = (u_1, u_2, u_3)$ dan $\mathbf{v} = (v_1, v_2, v_3)$:</p>
+ <p class="lesson-text">$$\mathbf{u} \times \mathbf{v} = (u_2v_3 - u_3v_2, \quad u_3v_1 - u_1v_3, \quad u_1v_2 - u_2v_1)$$</p>
+ <p class="lesson-text">Pola ini mudah diingat: komponen pertama melibatkan komponen 2 dan 3, komponen kedua melibatkan 3 dan 1, komponen ketiga melibatkan 1 dan 2—secara siklik. Urutan pengurangan harus tepat agar tanda tidak salah.</p>
+
+ <p class="lesson-subheading">B. Cara Menghafal dengan Determinan</p>
+ <p class="lesson-text">Cara paling praktis untuk menghitung cross product adalah menggunakan determinan simbolik dengan vektor satuan $\mathbf{i}, \mathbf{j}, \mathbf{k}$ pada baris pertama:</p>
+ <p class="lesson-text">$$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix}$$</p>
+ <p class="lesson-text">Ekspansi determinan ini menghasilkan:</p>
+ <p class="lesson-text">$$= \mathbf{i}(u_2v_3 - u_3v_2) - \mathbf{j}(u_1v_3 - u_3v_1) + \mathbf{k}(u_1v_2 - u_2v_1)$$</p>
+ <p class="lesson-text">Perhatikan tanda <strong>negatif</strong> di depan komponen $\mathbf{j}$—ini adalah sumber kesalahan yang paling sering terjadi.</p>
+
+ <p class="lesson-subheading-alt">Contoh 13:</p>
+ <p class="lesson-text">Hitung $\mathbf{u} \times \mathbf{v}$ dengan $\mathbf{u} = (2, 1, 0)$ dan $\mathbf{v} = (1, 3, 2)$.</p>
+ <p class="lesson-text">$$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 2 & 1 & 0 \\ 1 & 3 & 2 \end{vmatrix}$$</p>
+ <ul>
+  <li>Komponen $\mathbf{i}$: $1 \cdot 2 - 0 \cdot 3 = 2$.</li>
+  <li>Komponen $\mathbf{j}$: $-(2 \cdot 2 - 0 \cdot 1) = -4$.</li>
+  <li>Komponen $\mathbf{k}$: $2 \cdot 3 - 1 \cdot 1 = 5$.</li>
+ </ul>
+ <p class="lesson-text">Hasil: $\mathbf{u} \times \mathbf{v} = (2, -4, 5)$.</p>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Cross Product</p>
+ <ol>
+  <li><strong>Anti-komutatif</strong>: $\mathbf{u} \times \mathbf{v} = -(\mathbf{v} \times \mathbf{u})$—mengubah urutan membalik arah.</li>
+  <li><strong>Distributif</strong>: $\mathbf{u} \times (\mathbf{v} + \mathbf{w}) = \mathbf{u} \times \mathbf{v} + \mathbf{u} \times \mathbf{w}$.</li>
+  <li><strong>Skalar keluar</strong>: $(k\mathbf{u}) \times \mathbf{v} = k(\mathbf{u} \times \mathbf{v})$.</li>
+  <li><strong>Nol jika paralel</strong>: $\mathbf{u} \times \mathbf{v} = \mathbf{0}$ jika dan hanya jika $\mathbf{u}$ dan $\mathbf{v}$ paralel.</li>
+  <li><strong>Tidak asosiatif</strong>: $(\mathbf{u} \times \mathbf{v}) \times \mathbf{w} \ne \mathbf{u} \times (\mathbf{v} \times \mathbf{w})$ secara umum.</li>
+ </ol>
+
+ <p class="lesson-subheading">D. Magnitudo Cross Product</p>
+ <p class="lesson-text">Magnitudo cross product memiliki interpretasi geometris yang sangat berguna:</p>
+ <p class="lesson-text">$$|\mathbf{u} \times \mathbf{v}| = |\mathbf{u}| \cdot |\mathbf{v}| \sin \theta$$</p>
+ <p class="lesson-text">Artinya, $|\mathbf{u} \times \mathbf{v}|$ sama dengan <strong>luas jajargenjang</strong> yang dibentuk oleh $\mathbf{u}$ dan $\mathbf{v}$. Karena segitiga hanya separuh jajargenjang, luas segitiga yang dibentuk keduanya adalah $\frac{1}{2}|\mathbf{u} \times \mathbf{v}|$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 520 380" style="max-width:100%; height:auto; width:520px;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <!-- Marker arrowhead untuk tiap vektor -->
+   <marker id="arrow-cp-u" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+   </marker>
+   <marker id="arrow-cp-v" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#5dade2"/>
+   </marker>
+   <marker id="arrow-cp-cross" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+   </marker>
+  </defs>
+
+  <!-- Judul -->
+  <text x="260" y="24" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Cross Product: vektor yang tegak lurus bidang u–v</text>
+
+  <!-- Parallelogram (bidang u-v) -->
+  <polygon points="80,270 330,270 420,180 170,180"
+           fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="1.2"/>
+
+  <!-- Vektor u: dari O=(80,270) ke titik sudut (330,270) -->
+  <line x1="80" y1="270" x2="330" y2="270"
+        stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-cp-u)"/>
+  <text x="200" y="296" font-size="16" fill="#daa520" font-weight="700" font-style="italic">u</text>
+
+  <!-- Vektor v: dari O=(80,270) ke titik sudut (170,180) -->
+  <line x1="80" y1="270" x2="170" y2="180"
+        stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-cp-v)"/>
+  <text x="100" y="222" font-size="16" fill="#5dade2" font-weight="700" font-style="italic">v</text>
+
+  <!-- Vektor u x v: dari O tegak lurus ke atas -->
+  <line x1="80" y1="270" x2="80" y2="72"
+        stroke="#f0c75e" stroke-width="3" marker-end="url(#arrow-cp-cross)"/>
+  <text x="94" y="62" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">u × v</text>
+
+  <!-- Tanda siku-siku di O antara u dan u x v -->
+  <polyline points="80,250 100,250 100,270"
+            fill="none" stroke="#f0c75e" stroke-width="1.2"/>
+
+  <!-- Busur sudut θ antara u dan v -->
+  <path d="M 140 270 A 60 60 0 0 0 122 228"
+        fill="none" stroke="#e8e8e8" stroke-width="1.3"/>
+  <text x="134" y="248" font-size="14" fill="#e8e8e8" font-weight="700" font-style="italic">θ</text>
+
+  <!-- Keterangan bawah -->
+  <text x="260" y="355" text-anchor="middle" font-size="12" fill="#b8b8b8" font-style="italic">
+   Luas jajargenjang = |u × v| = |u||v| sin θ.
+  </text>
+ </svg>
+ <figcaption class="visual-caption">
+  Gambar 9: Cross product $\mathbf{u} \times \mathbf{v}$ menghasilkan vektor yang tegak lurus terhadap bidang yang dibentuk oleh $\mathbf{u}$ dan $\mathbf{v}$. Besarnya $|\mathbf{u}||\mathbf{v}|\sin\theta$ sama dengan luas jajargenjang.
+ </figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">Contoh 14:</p>
+ <p class="lesson-text">Tentukan luas segitiga dengan titik sudut $A(0,0,0)$, $B(2,1,0)$, dan $C(1,3,2)$.</p>
+ <ul>
+  <li>Vektor $\vec{AB} = (2, 1, 0)$ dan $\vec{AC} = (1, 3, 2)$.</li>
+  <li>$\vec{AB} \times \vec{AC} = (2, -4, 5)$ (dari Contoh 13).</li>
+  <li>$|\vec{AB} \times \vec{AC}| = \sqrt{4 + 16 + 25} = \sqrt{45} = 3\sqrt{5}$.</li>
+  <li>Luas segitiga = $\frac{1}{2} \cdot 3\sqrt{5} = \frac{3\sqrt{5}}{2}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">E. Arah Cross Product (Aturan Tangan Kanan)</p>
+ <p class="lesson-text">Arah $\mathbf{u} \times \mathbf{v}$ selalu tegak lurus terhadap bidang yang dibentuk $\mathbf{u}$ dan $\mathbf{v}$. Tetapi ada dua kemungkinan arah (ke atas atau ke bawah bidang)—aturan tangan kanan memilih salah satunya.</p>
+ <p class="lesson-text"><strong>Aturan tangan kanan</strong>: lengkungkan jari-jari tangan kanan dari $\mathbf{u}$ ke $\mathbf{v}$ melalui sudut terpendek; ibu jari akan menunjuk ke arah $\mathbf{u} \times \mathbf{v}$.</p>
+ <p class="lesson-text">Sebagai contoh, $\mathbf{i} \times \mathbf{j} = \mathbf{k}$. Ini membentuk siklus: $\mathbf{i} \times \mathbf{j} = \mathbf{k}$, $\mathbf{j} \times \mathbf{k} = \mathbf{i}$, $\mathbf{k} \times \mathbf{i} = \mathbf{j}$. Jika urutannya dibalik, tandanya berubah: $\mathbf{j} \times \mathbf{i} = -\mathbf{k}$.</p>
+
+ <p class="lesson-subheading">F. Perbandingan Dot dan Cross Product</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Dot Product</th>
+     <th>Cross Product</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Hasil</td><td>Skalar</td><td>Vektor</td></tr>
+    <tr><td>Dimensi</td><td>Semua dimensi</td><td>Hanya $\mathbb{R}^3$</td></tr>
+    <tr><td>Rumus</td><td>$|\mathbf{u}||\mathbf{v}|\cos\theta$</td><td>$|\mathbf{u}||\mathbf{v}|\sin\theta$</td></tr>
+    <tr><td>Sifat</td><td>Komutatif</td><td>Anti-komutatif</td></tr>
+    <tr><td>Interpretasi</td><td>Ukuran "kesejajaran"</td><td>Ukuran "ketegaklurusan"</td></tr>
+    <tr><td>Kondisi nol</td><td>Saat tegak lurus</td><td>Saat paralel</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Proyeksi Vektor</h3>
+ <p class="lesson-text">Dot product memungkinkan kita menjawab pertanyaan: "Berapa besar pengaruh vektor $\mathbf{u}$ pada arah $\mathbf{v}$?" Jawabannya diberikan oleh <strong>proyeksi</strong>—konsep yang sangat penting untuk dekomposisi ortogonal, regresi linear, dan analisis komponen utama (PCA).</p>
+
+ <p class="lesson-subheading">A. Dua Jenis Proyeksi</p>
+ <p class="lesson-text">Bayangkan sinar matahari jatuh tegak lurus pada arah $\mathbf{v}$—bayangan $\mathbf{u}$ pada arah itu adalah <strong>proyeksi</strong>. Proyeksi terdiri dari dua jenis:</p>
+ <ol>
+  <li><strong>Proyeksi skalar</strong>—menghasilkan skalar (panjang bayangan).</li>
+  <li><strong>Proyeksi vektor</strong>—menghasilkan vektor (bayangan itu sendiri).</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Proyeksi Skalar</p>
+ <p class="lesson-text"><strong>Proyeksi skalar</strong> dari $\mathbf{u}$ pada $\mathbf{v}$ adalah <strong>panjang</strong> bayangan $\mathbf{u}$ pada arah $\mathbf{v}$:</p>
+ <p class="lesson-text">$$\text{komp}_{\mathbf{v}} \mathbf{u} = \frac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|} = |\mathbf{u}| \cos \theta$$</p>
+ <p class="lesson-text">Tanda proyeksi skalar memberi informasi tambahan:</p>
+ <ul>
+  <li><strong>Positif</strong>: sudut lancip—proyeksi searah dengan $\mathbf{v}$.</li>
+  <li><strong>Nol</strong>: sudut tegak lurus—proyeksi berupa titik.</li>
+  <li><strong>Negatif</strong>: sudut tumpul—proyeksi berlawanan arah dengan $\mathbf{v}$.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh 15:</p>
+ <p class="lesson-text">Tentukan proyeksi skalar $\mathbf{u} = (3, 4)$ pada $\mathbf{v} = (1, 0)$. Maka $\mathbf{u} \cdot \mathbf{v} = 3$ dan $|\mathbf{v}| = 1$, sehingga proyeksi skalarnya $3$. Ini masuk akal karena $\mathbf{v}$ mengarah ke sumbu $x$—dan komponen $x$ dari $\mathbf{u}$ adalah 3.</p>
+
+ <p class="lesson-subheading">C. Proyeksi Vektor</p>
+ <p class="lesson-text"><strong>Proyeksi vektor</strong> dari $\mathbf{u}$ pada $\mathbf{v}$ adalah vektor yang searah dengan $\mathbf{v}$, dan panjangnya sama dengan proyeksi skalar (dengan tanda diperhatikan):</p>
+ <p class="lesson-text">$$\text{proj}_{\mathbf{v}} \mathbf{u} = \left(\frac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|^2}\right) \mathbf{v} = (\mathbf{u} \cdot \hat{\mathbf{v}}) \hat{\mathbf{v}}$$</p>
+ <p class="lesson-subheading-alt">Mengapa dibagi $|\mathbf{v}|^2$?</p>
+ <p class="lesson-text">Faktor $\dfrac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|}$ memberikan panjang yang diinginkan. Untuk mengubah <em>panjang</em> menjadi <em>vektor</em>, kita kalikan dengan vektor satuan searah $\mathbf{v}$, yaitu $\dfrac{\mathbf{v}}{|\mathbf{v}|}$. Hasilnya adalah $\dfrac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|^2} \mathbf{v}$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 16:</p>
+ <p class="lesson-text">Tentukan proyeksi vektor $\mathbf{u} = (3, 4)$ pada $\mathbf{v} = (1, 0)$.</p>
+ <ul>
+  <li>$\mathbf{u} \cdot \mathbf{v} = 3$, $|\mathbf{v}|^2 = 1$.</li>
+  <li>$\text{proj}_{\mathbf{v}} \mathbf{u} = \dfrac{3}{1}(1, 0) = (3, 0)$—yaitu komponen horizontal dari $\mathbf{u}$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 17:</p>
+ <p class="lesson-text">Tentukan proyeksi vektor $\mathbf{u} = (2, 3)$ pada $\mathbf{v} = (1, 1)$.</p>
+ <ul>
+  <li>$\mathbf{u} \cdot \mathbf{v} = 5$, $|\mathbf{v}|^2 = 2$.</li>
+  <li>$\text{proj}_{\mathbf{v}} \mathbf{u} = \dfrac{5}{2}(1, 1) = (2{,}5, \ 2{,}5)$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Dekomposisi Ortogonal</p>
+ <p class="lesson-text">Proyeksi memungkinkan kita <strong>memecah</strong> vektor $\mathbf{u}$ menjadi dua komponen yang saling tegak lurus terhadap $\mathbf{v}$:</p>
+ <ol>
+  <li><strong>Komponen paralel</strong> terhadap $\mathbf{v}$: $\mathbf{u}_{\parallel} = \text{proj}_{\mathbf{v}} \mathbf{u}$.</li>
+  <li><strong>Komponen tegak lurus</strong> terhadap $\mathbf{v}$: $\mathbf{u}_{\perp} = \mathbf{u} - \text{proj}_{\mathbf{v}} \mathbf{u}$.</li>
+ </ol>
+ <p class="lesson-text">Dekomposisi ini memenuhi $\mathbf{u} = \mathbf{u}_{\parallel} + \mathbf{u}_{\perp}$, dan komponen tegak lurus benar-benar tegak lurus terhadap $\mathbf{v}$—yaitu $\mathbf{u}_{\perp} \cdot \mathbf{v} = 0$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 520 330" style="max-width:100%; height:auto; width:520px;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <!-- Marker arrowhead untuk tiap vektor -->
+   <marker id="arrow-do-v" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#5dade2"/>
+   </marker>
+   <marker id="arrow-do-u" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+   </marker>
+   <marker id="arrow-do-perp" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c"/>
+   </marker>
+  </defs>
+
+  <!-- Judul -->
+  <text x="260" y="24" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Dekomposisi ortogonal: u = u∥ + u⊥</text>
+
+  <!-- Sumbu v (dengan panah di kanan) -->
+  <line x1="80" y1="260" x2="440" y2="260"
+        stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-do-v)"/>
+  <text x="452" y="265" font-size="15" fill="#5dade2" font-weight="700" font-style="italic">v</text>
+
+  <!-- Komponen paralel u∥ (segmen tebal di atas sumbu v) -->
+  <line x1="80" y1="260" x2="330" y2="260"
+        stroke="#f0c75e" stroke-width="5" opacity="0.85" stroke-linecap="round"/>
+  <text x="170" y="284" font-size="13" fill="#f0c75e" font-weight="700" font-style="italic">u∥ = proj_v u</text>
+
+  <!-- Vektor u (diagonal) -->
+  <line x1="80" y1="260" x2="330" y2="90"
+        stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-do-u)"/>
+  <text x="215" y="155" font-size="16" fill="#daa520" font-weight="700" font-style="italic">u</text>
+
+  <!-- Komponen tegak lurus u⊥ (vertikal dari ujung u∥ ke ujung u) -->
+  <line x1="330" y1="260" x2="330" y2="90"
+        stroke="#e74c3c" stroke-width="3" marker-end="url(#arrow-do-perp)"/>
+  <text x="342" y="185" font-size="13" fill="#e74c3c" font-weight="700" font-style="italic">u⊥</text>
+
+  <!-- Tanda siku-siku di O antara u∥ dan u⊥ -->
+  <polyline points="310,260 310,240 330,240"
+            fill="none" stroke="#e74c3c" stroke-width="1.2"/>
+
+  <!-- Titik pangkal O -->
+  <circle cx="80" cy="260" r="3.5" fill="#e8e8e8"/>
+  <text x="64" y="278" font-size="12" fill="#b8b8b8" font-style="italic">O</text>
+
+  <!-- Keterangan bawah -->
+  <text x="260" y="312" text-anchor="middle" font-size="12" fill="#b8b8b8" font-style="italic">
+   u = u∥ + u⊥, dengan u⊥ tegak lurus terhadap v.
+  </text>
+ </svg>
+ <figcaption class="visual-caption">
+  Gambar 10: Dekomposisi ortogonal vektor $\mathbf{u}$ menjadi komponen paralel $\mathbf{u}_{\parallel}$ (sejajar dengan $\mathbf{v}$) dan komponen tegak lurus $\mathbf{u}_{\perp}$.
+ </figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">Contoh 18:</p>
+ <p class="lesson-text">Dekomposisi $\mathbf{u} = (3, 4)$ terhadap $\mathbf{v} = (1, 0)$.</p>
+ <ul>
+  <li>$\mathbf{u}_{\parallel} = (3, 0)$.</li>
+  <li>$\mathbf{u}_{\perp} = (3, 4) - (3, 0) = (0, 4)$.</li>
+  <li>Verifikasi: $\mathbf{u}_{\perp} \cdot \mathbf{v} = 0$. Benar.</li>
+ </ul>
+ <p class="lesson-text">Dengan menguasai magnitudo, operasi penjumlahan, perkalian skalar, dot product, cross product, dan proyeksi, kita kini memiliki perangkat lengkap untuk bekerja dengan vektor. Mari kita terapkan seluruh konsep ini—dari perhitungan magnitudo hingga dekomposisi ortogonal—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h3>
+<p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan magnitudo, vektor satuan, penjumlahan, perkalian skalar, dot product, cross product, sudut antar vektor, proyeksi, dan dekomposisi ortogonal. Setiap langkah dituliskan lengkap, dan rumus yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+<p class="lesson-subheading">Soal 1: Magnitudo dan Vektor Satuan</p>
+<p class="lesson-text">Diberikan vektor $\mathbf{v} = (6, -8)$. Tentukan $|\mathbf{v}|$ dan vektor satuannya $\hat{\mathbf{v}}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Magnitudo</strong>:<br>$|\mathbf{v}| = \sqrt{6^2 + (-8)^2} = \sqrt{36 + 64} = \sqrt{100} = 10$</li>
+ <li><strong>Vektor satuan</strong> — bagi setiap komponen dengan magnitudo:<br>$\hat{\mathbf{v}} = \dfrac{(6, -8)}{10} = \left(\dfrac{6}{10}, \dfrac{-8}{10}\right) = (0{,}6, -0{,}8)$</li>
+ <li><strong>Verifikasi</strong>: $|\hat{\mathbf{v}}| = \sqrt{0{,}6^2 + (-0{,}8)^2} = \sqrt{0{,}36 + 0{,}64} = \sqrt{1} = 1$ ✓</li>
+</ol>
+<p class="lesson-text">Perhatikan tanda negatif pada komponen kedua—tanda ini tetap dipertahankan saat normalisasi, karena arah vektor tidak boleh berubah.</p>
+
+<p class="lesson-subheading">Soal 2: Penjumlahan dan Pengurangan Vektor</p>
+<p class="lesson-text">Diberikan $\mathbf{u} = (3, -2, 5)$ dan $\mathbf{v} = (-1, 4, 2)$. Hitung $\mathbf{u} + \mathbf{v}$ dan $\mathbf{u} - \mathbf{v}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Penjumlahan</strong> — komponen per komponen:<br>$\mathbf{u} + \mathbf{v} = (3 + (-1), \ -2 + 4, \ 5 + 2) = (2, 2, 7)$</li>
+ <li><strong>Pengurangan</strong>:<br>$\mathbf{u} - \mathbf{v} = (3 - (-1), \ -2 - 4, \ 5 - 2) = (4, -6, 3)$</li>
+</ol>
+<p class="lesson-text">Perhatikan pada pengurangan: $-2 - 4 = -6$ (bukan $-2$, bukan $+2$). Distribusi tanda negatif ke seluruh komponen $\mathbf{v}$ adalah langkah yang paling sering salah.</p>
+
+<p class="lesson-subheading">Soal 3: Perkalian Skalar</p>
+<p class="lesson-text">Diberikan $\mathbf{v} = (-2, 3)$ dan skalar $k = -4$. Hitung $k\mathbf{v}$ dan $|k\mathbf{v}|$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Perkalian skalar</strong>:<br>$k\mathbf{v} = -4(-2, 3) = (8, -12)$</li>
+ <li><strong>Magnitudo $k\mathbf{v}$</strong> — gunakan sifat $|k\mathbf{v}| = |k| \cdot |\mathbf{v}|$:
+  <ul>
+   <li>$|\mathbf{v}| = \sqrt{4 + 9} = \sqrt{13}$</li>
+   <li>$|k\mathbf{v}| = |-4| \cdot \sqrt{13} = 4\sqrt{13}$</li>
+  </ul>
+ </li>
+ <li><strong>Verifikasi langsung</strong>:<br>$|(8, -12)| = \sqrt{64 + 144} = \sqrt{208} = \sqrt{16 \cdot 13} = 4\sqrt{13}$ ✓</li>
+</ol>
+<p class="lesson-text">Perhatikan tanda $k$ (negatif) memengaruhi <em>arah</em> vektor—hasilnya berlawanan arah dengan $\mathbf{v}$—tetapi tidak memengaruhi magnitudo. Magnitudo hanya bergantung pada $|k|$.</p>
+
+<p class="lesson-subheading">Soal 4: Dot Product dan Sudut Antar Vektor</p>
+<p class="lesson-text">Diberikan $\mathbf{u} = (1, 2, 2)$ dan $\mathbf{v} = (2, 1, -2)$. Hitung $\mathbf{u} \cdot \mathbf{v}$ dan tentukan sudut antara keduanya.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Dot product</strong>:<br>$\mathbf{u} \cdot \mathbf{v} = 1(2) + 2(1) + 2(-2) = 2 + 2 - 4 = 0$</li>
+ <li><strong>Kesimpulan</strong>: karena $\mathbf{u} \cdot \mathbf{v} = 0$ dan kedua vektor bukan nol, maka <strong>kedua vektor tegak lurus</strong> ($\theta = 90°$).</li>
+ <li><strong>Verifikasi dengan magnitudo</strong>:
+  <ul>
+   <li>$|\mathbf{u}| = \sqrt{1 + 4 + 4} = \sqrt{9} = 3$</li>
+   <li>$|\mathbf{v}| = \sqrt{4 + 1 + 4} = \sqrt{9} = 3$</li>
+   <li>$\cos\theta = \dfrac{0}{3 \cdot 3} = 0 \rightarrow \theta = 90°$ ✓</li>
+  </ul>
+ </li>
+</ol>
+<p class="lesson-text">Perhatikan bahwa nilai dot product boleh negatif—tetapi <em>magnitudo</em> tidak pernah negatif. Perbedaan ini penting: dot product $\mathbf{u} \cdot \mathbf{v} = -7$ berarti sudutnya tumpul (lebih dari 90°), sedangkan $|\mathbf{u}| = 7$ berarti panjangnya tujuh satuan.</p>
+
+<p class="lesson-subheading">Soal 5: Cross Product dan Luas Segitiga</p>
+<p class="lesson-text">Diberikan $\mathbf{u} = (1, 2, 3)$ dan $\mathbf{v} = (4, 5, 6)$. Hitung $\mathbf{u} \times \mathbf{v}$, lalu tentukan luas jajargenjang yang dibentuk keduanya.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Hitung cross product</strong> dengan determinan simbolik:
+  $$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 1 & 2 & 3 \\ 4 & 5 & 6 \end{vmatrix}$$
+  <ul>
+   <li>Komponen $\mathbf{i}$: $2 \cdot 6 - 3 \cdot 5 = 12 - 15 = -3$</li>
+   <li>Komponen $\mathbf{j}$: $-(1 \cdot 6 - 3 \cdot 4) = -(6 - 12) = +6$</li>
+   <li>Komponen $\mathbf{k}$: $1 \cdot 5 - 2 \cdot 4 = 5 - 8 = -3$</li>
+  </ul>
+  Hasil: $\mathbf{u} \times \mathbf{v} = (-3, 6, -3)$
+ </li>
+ <li><strong>Luas jajargenjang</strong>:
+  <ul>
+   <li>$|\mathbf{u} \times \mathbf{v}| = \sqrt{9 + 36 + 9} = \sqrt{54} = 3\sqrt{6}$</li>
+   <li>Luas jajargenjang = $|\mathbf{u} \times \mathbf{v}| = 3\sqrt{6}$</li>
+   <li>Jika yang diminta luas segitiga: $\dfrac{1}{2} \cdot 3\sqrt{6} = \dfrac{3\sqrt{6}}{2}$</li>
+  </ul>
+ </li>
+</ol>
+<p class="lesson-text">Perhatikan tanda <strong>negatif di depan komponen $\mathbf{j}$</strong>—inilah penyebab paling umum kesalahan cross product. Jika lupa tanda negatif, komponen $\mathbf{j}$ akan salah (menjadi $-6$ bukan $+6$).</p>
+
+<p class="lesson-subheading">Soal 6: Proyeksi Vektor</p>
+<p class="lesson-text">Tentukan proyeksi vektor $\mathbf{u} = (4, 2)$ pada $\mathbf{v} = (3, 0)$, lalu tentukan pula proyeksi skalar dan komponen tegak lurusnya.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Dot product</strong>:<br>$\mathbf{u} \cdot \mathbf{v} = 4(3) + 2(0) = 12$</li>
+ <li><strong>Magnitudo $\mathbf{v}$ dikuadratkan</strong>:<br>$|\mathbf{v}|^2 = 9 + 0 = 9$</li>
+ <li><strong>Proyeksi vektor</strong>:<br>$\text{proj}_{\mathbf{v}} \mathbf{u} = \dfrac{12}{9}(3, 0) = \dfrac{4}{3}(3, 0) = (4, 0)$</li>
+ <li><strong>Proyeksi skalar</strong>:<br>$\dfrac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|} = \dfrac{12}{3} = 4$</li>
+ <li><strong>Komponen tegak lurus</strong>:<br>$\mathbf{u}_{\perp} = \mathbf{u} - \text{proj}_{\mathbf{v}} \mathbf{u} = (4, 2) - (4, 0) = (0, 2)$</li>
+ <li><strong>Verifikasi</strong>: $\mathbf{u}_{\perp} \cdot \mathbf{v} = 0(3) + 2(0) = 0$ ✓</li>
+</ol>
+<p class="lesson-text">Perhatikan bahwa $\mathbf{v} = (3, 0)$ sejajar dengan sumbu $x$—sehingga proyeksinya adalah komponen horizontal dari $\mathbf{u}$, dan komponen tegak lurusnya adalah komponen vertikal. Contoh ini memberi intuisi geometris yang jelas: proyeksi ortogonal pada sumbu $x$ mengambil komponen $x$, pada sumbu $y$ mengambil komponen $y$.</p>
+
+<p class="lesson-subheading">Soal 7: Soal Cerita — Usaha (Kerja) oleh Gaya</p>
+<p class="lesson-text">Sebuah balok ditarik dengan gaya $\mathbf{F} = (6, 8)$ Newton sepanjang perpindahan $\mathbf{d} = (5, 0)$ meter. Berapa usaha yang dilakukan oleh gaya tersebut?</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Konsep fisika</strong>: usaha didefinisikan sebagai $W = \mathbf{F} \cdot \mathbf{d}$—yaitu komponen gaya yang searah dengan perpindahan, dikalikan panjang perpindahan. Dalam bentuk dot product:
+  $$W = \mathbf{F} \cdot \mathbf{d}$$
+ </li>
+ <li><strong>Hitung dot product</strong>:<br>$W = 6(5) + 8(0) = 30$ Joule</li>
+ <li><strong>Interpretasi</strong>: hanya komponen gaya <em>horizontal</em> (yaitu 6 N) yang berkontribusi pada usaha—karena perpindahan seluruhnya horizontal. Komponen gaya vertikal (8 N) tegak lurus perpindahan, sehingga dot product-nya nol (tidak melakukan usaha).
+ </li>
+ <li><strong>Verifikasi dengan rumus fisika</strong>:<br>$W = |\mathbf{F}| \cdot |\mathbf{d}| \cdot \cos\theta$
+  <ul>
+   <li>$|\mathbf{F}| = \sqrt{36 + 64} = 10$ N</li>
+   <li>$|\mathbf{d}| = 5$ m</li>
+   <li>$\cos\theta = \dfrac{\mathbf{F} \cdot \mathbf{d}}{|\mathbf{F}| \cdot |\mathbf{d}|} = \dfrac{30}{10 \cdot 5} = \dfrac{30}{50} = 0{,}6$</li>
+   <li>$W = 10 \cdot 5 \cdot 0{,}6 = 30$ Joule ✓</li>
+  </ul>
+ </li>
+</ol>
+<p class="lesson-text">Contoh ini memperlihatkan bagaimana dot product <strong>langsung terhubung dengan konsep fisika</strong>: usaha hanya melibatkan komponen gaya yang searah perpindahan. Gaya yang tegak lurus terhadap perpindahan tidak melakukan usaha—inilah sebabnya mengangkat beban secara horizontal dianggap tidak melakukan usaha terhadap beban (dalam pengertian fisika).</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menyamakan dot product dan cross product.</strong> Dot product menghasilkan <strong>skalar</strong>; cross product menghasilkan <strong>vektor</strong>. Dot berlaku untuk semua dimensi; cross hanya untuk $\mathbb{R}^3$. Jangan mencampur keduanya—rumus, sifat, dan interpretasinya berbeda.</li>
+  <li><strong>Menghitung cross product dengan urutan yang salah.</strong> Cross product bersifat <strong>anti-komutatif</strong>: $\mathbf{u} \times \mathbf{v} = -(\mathbf{v} \times \mathbf{u})$. Mengubah urutan membalik tanda hasilnya.</li>
+  <li><strong>Menganggap $\mathbf{u} \cdot \mathbf{v} = 0$ berarti salah satu vektor nol.</strong> Tidak. $\mathbf{u} \cdot \mathbf{v} = 0$ berarti kedua vektor <strong>tegak lurus</strong>. Vektor nol juga memberi dot product nol dengan vektor apa pun—tetapi kondisi "tegak lurus" hanya berlaku untuk vektor tak nol.</li>
+  <li><strong>Lupa rumus proyeksi yang benar.</strong> Proyeksi vektor menggunakan $\dfrac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|^2} \mathbf{v}$—dengan $|\mathbf{v}|^2$ (kuadrat) di penyebut. Menggunakan $|\mathbf{v}|$ (tanpa kuadrat) adalah salah satu miskonsepsi paling umum.</li>
+  <li><strong>Menghitung magnitudo tanpa mengkuadratkan setiap komponen.</strong> Rumusnya $|\mathbf{v}| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}$—bukan $|v_1| + |v_2| + \dots$. Ini adalah generalisasi teorema Pythagoras, bukan penjumlahan biasa.</li>
+  <li><strong>Menggunakan cross product untuk vektor di $\mathbb{R}^2$.</strong> Cross product hanya terdefinisi di $\mathbb{R}^3$. Untuk vektor $\mathbb{R}^2$, kita bisa "mengangkatnya" ke $\mathbb{R}^3$ dengan menambah komponen $z = 0$—hasilnya akan selalu mengarah sepanjang sumbu $z$.</li>
+  <li><strong>Salah menentukan tanda pada komponen $\mathbf{j}$ dalam cross product.</strong> Dalam ekspansi determinan, komponen $\mathbf{j}$ memiliki tanda <strong>negatif</strong> di depannya: $-\mathbf{j}(u_1v_3 - u_3v_1)$. Kesalahan tanda di sini adalah sumber kesalahan paling umum.</li>
+  <li><strong>Menganggap cross product bersifat asosiatif.</strong> $(\mathbf{u} \times \mathbf{v}) \times \mathbf{w} \neq \mathbf{u} \times (\mathbf{v} \times \mathbf{w})$ secara umum. Cross product <em>tidak</em> asosiatif—berbeda dengan perkalian skalar biasa.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Vektor</strong> adalah besaran dengan magnitudo dan arah—direpresentasikan sebagai $(v_1, v_2, \dots, v_n)$.</li>
+  <li><strong>Magnitudo</strong>: $|\mathbf{v}| = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}$.</li>
+  <li><strong>Vektor satuan</strong>: $\hat{\mathbf{v}} = \mathbf{v}/|\mathbf{v}|$—magnitudo 1, menunjukkan arah.</li>
+  <li><strong>Penjumlahan dan pengurangan vektor</strong> dilakukan komponen per komponen.</li>
+  <li><strong>Perkalian skalar</strong> mengalikan setiap komponen dengan skalar—mengubah panjang dan mungkin arah.</li>
+  <li><strong>Dot product</strong>: $\mathbf{u} \cdot \mathbf{v} = u_1v_1 + \dots + u_nv_n = |\mathbf{u}||\mathbf{v}|\cos\theta$. Hasilnya <strong>skalar</strong>.</li>
+  <li><strong>Cross product</strong>: hanya untuk $\mathbb{R}^3$, hasilnya <strong>vektor</strong> yang tegak lurus terhadap kedua vektor asal. Magnitudonya $|\mathbf{u}||\mathbf{v}|\sin\theta$—luas jajargenjang.</li>
+  <li><strong>Kondisi tegak lurus</strong>: $\mathbf{u} \cdot \mathbf{v} = 0$. <strong>Kondisi paralel</strong>: $\mathbf{u} \times \mathbf{v} = \mathbf{0}$.</li>
+  <li><strong>Proyeksi skalar</strong>: $\dfrac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|}$—panjang bayangan.</li>
+  <li><strong>Proyeksi vektor</strong>: $\dfrac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{v}|^2}\mathbf{v}$—vektor bayangan.</li>
+  <li><strong>Dekomposisi ortogonal</strong>: $\mathbf{u} = \mathbf{u}_{\parallel} + \mathbf{u}_{\perp}$—dengan $\mathbf{u}_{\parallel}$ sejajar $\mathbf{v}$ dan $\mathbf{u}_{\perp}$ tegak lurus $\mathbf{v}$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Vektor adalah <strong>alat matematika yang sangat kuat</strong> untuk merepresentasikan dan memanipulasi besaran yang memiliki arah. Operasi-operasi dasar seperti penjumlahan, perkalian skalar, dot product, dan cross product memungkinkan kita menganalisis hubungan antar besaran vektor secara kuantitatif—mulai dari menentukan sudut antara dua gaya, menghitung luas jajargenjang yang dibentuk oleh dua sisi, hingga memisahkan komponen gerak searah dan tegak lurus terhadap suatu acuan.</p>
+ <p class="lesson-text">Yang membuat vektor istimewa adalah <strong>kekayaan interpretasi geometrisnya</strong>. Hampir setiap operasi vektor memiliki makna visual yang jelas: penjumlahan adalah "aturan segitiga", dot product mengukur "seberapa sejajar", cross product mengukur "seberapa tegak lurus", dan proyeksi adalah "bayangan" pada arah tertentu. Kemampuan berpindah antara representasi aljabar dan geometris ini adalah salah satu keterampilan paling bernilai dalam matematika terapan—dan akan terus Anda gunakan saat mempelajari topik yang lebih abstrak seperti ruang vektor berdimensi $n$.</p>
+ <p class="lesson-text">Materi ini menjadi fondasi untuk topik-topik berikutnya: <strong>Matriks</strong> (yang dapat dipandang sebagai kumpulan vektor kolom atau baris), <strong>Determinan</strong> (yang mengukur "volume" parallelepiped—generalisasi dari cross product), <strong>Ruang Vektor</strong> (yang mengabstraksi vektor menjadi objek matematika dengan aksioma tertentu), <strong>Transformasi Linear</strong> (yang memetakan vektor ke vektor), <strong>Nilai Eigen &amp; Vektor Eigen</strong> (yang mencari vektor yang hanya "diregangkan" oleh transformasi), serta <strong>Dekomposisi Matriks</strong> (yang menggunakan proyeksi ortogonal secara ekstensif—seperti pada QR dan SVD).</p>
+</div>
+
+</div>
+</body>
+</html>

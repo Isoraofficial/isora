@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Matriks (Operasi Matriks, Invers, dan Transpose)</title>
+ <meta name="description" content="Matriks: definisi, notasi a_ij, jenis matriks khusus, operasi penjumlahan, perkalian skalar, perkalian matriks, transpose, invers, dan metode Gauss-Jordan.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Matriks (Operasi Matriks, Invers, dan Transpose)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Vektor</strong> — karena matriks dapat dipandang sebagai kumpulan vektor baris atau vektor kolom, dan operasi "baris × kolom" pada perkalian matriks pada dasarnya adalah dot product antar vektor.</li>
+   <li><strong>Sistem Persamaan</strong> — karena salah satu aplikasi utama matriks adalah menyelesaikan sistem persamaan linear, dan notasi $AX = B$ mengasumsikan pemahaman tentang sistem persamaan.</li>
+   <li><strong>Skalar</strong> — karena perkalian skalar dengan matriks dan operasi baris elementer (OBE) melibatkan skalar sebagai pengali baris.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan Anda seorang guru yang baru selesai memeriksa ulangan. Anda memiliki nilai tiga siswa untuk tiga mata pelajaran:</p>
+ <ul>
+  <li>Budi: Matematika 85, Fisika 90, Kimia 78</li>
+  <li>Sari: Matematika 92, Fisika 88, Kimia 95</li>
+  <li>Andi: Matematika 70, Fisika 75, Kimia 82</li>
+ </ul>
+ <p class="lesson-text">Cara paling rapi untuk menyimpan data ini tentu dalam bentuk <strong>tabel</strong>—dengan baris menyatakan siswa dan kolom menyatakan mata pelajaran. Dalam matematika, susunan tabel seperti inilah yang disebut <strong>matriks</strong>: kumpulan bilangan yang diatur dalam baris dan kolom.</p>
+ <p class="lesson-text">Matriks bukan sekadar cara menyimpan data. Ia adalah <strong>bahasa universal untuk data multidimensi dan transformasi linear</strong>. Setiap kali Anda memproses gambar di ponsel, menyelesaikan sistem persamaan, atau menerima rekomendasi produk, di belakang layar ada matriks yang bekerja. Hampir tidak ada bidang matematika terapan modern—dari grafika komputer hingga pembelajaran mesin—yang tidak menggunakan matriks.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: mulai dari definisi dan notasi indeks ($a_{ij}$), jenis-jenis matriks khusus, operasi dasar (penjumlahan, perkalian skalar, perkalian matriks), transpose, invers (rumus langsung untuk $2 \times 2$ dan Gauss-Jordan untuk ordo lebih tinggi), contoh soal, hingga kesalahan umum. Setiap aturan akan dijelaskan <em>mengapa</em> ia berlaku—bukan hanya hasilnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi dan Notasi Matriks</h3>
+ <p class="lesson-text">Sebelum masuk ke operasi, kita perlu menyepakati dulu: apa itu matriks, bagaimana elemennya diberi "alamat", dan bagaimana ukurannya dinyatakan.</p>
+
+ <p class="lesson-subheading">A. Pengertian Matriks</p>
+ <p class="lesson-text"><strong>Matriks</strong> adalah susunan bilangan real (atau kompleks) yang diatur dalam <strong>baris</strong> (horizontal) dan <strong>kolom</strong> (vertikal), dibatasi oleh tanda kurung siku $[\ ]$ atau kurung biasa $(\ )$. Setiap bilangan di dalamnya disebut <strong>elemen</strong> atau <strong>entri</strong>.</p>
+ <p class="lesson-text">Secara umum, matriks $A$ dengan $m$ baris dan $n$ kolom dituliskan sebagai:</p>
+ <p class="lesson-text">$$A = \begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{bmatrix}$$</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 560 380" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Column labels -->
+   <text x="180" y="50" fill="#5dade2" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">j=1</text>
+   <text x="260" y="50" fill="#5dade2" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">j=2</text>
+   <text x="340" y="50" fill="#5dade2" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">j=3</text>
+
+   <!-- Brackets -->
+   <path d="M 130 70 L 110 70 L 110 320 L 130 320" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 390 70 L 410 70 L 410 320 L 390 320" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Row labels -->
+   <text x="60" y="140" fill="#daa520" font-size="14" font-style="italic" text-anchor="end" font-weight="600">i=1</text>
+   <text x="60" y="220" fill="#daa520" font-size="14" font-style="italic" text-anchor="end" font-weight="600">i=2</text>
+   <text x="60" y="300" fill="#daa520" font-size="14" font-style="italic" text-anchor="end" font-weight="600">i=3</text>
+
+   <!-- Row 1: 7 8 9 -->
+   <text x="180" y="140" fill="#e8e8e8" font-size="22" text-anchor="middle">7</text>
+   <text x="260" y="140" fill="#e8e8e8" font-size="22" text-anchor="middle">8</text>
+   <text x="340" y="140" fill="#e8e8e8" font-size="22" text-anchor="middle">9</text>
+
+   <!-- Row 2: 4 5 6 (highlight a_23 = 6) -->
+   <text x="180" y="220" fill="#e8e8e8" font-size="22" text-anchor="middle">4</text>
+   <text x="260" y="220" fill="#e8e8e8" font-size="22" text-anchor="middle">5</text>
+   <rect x="322" y="192" width="36" height="36" fill="#f0c75e" fill-opacity="0.2" stroke="#f0c75e" stroke-width="1.5" rx="4"/>
+   <text x="340" y="220" fill="#f0c75e" font-size="22" font-weight="700" text-anchor="middle">6</text>
+
+   <!-- Row 3: 1 2 3 -->
+   <text x="180" y="300" fill="#e8e8e8" font-size="22" text-anchor="middle">1</text>
+   <text x="260" y="300" fill="#e8e8e8" font-size="22" text-anchor="middle">2</text>
+   <text x="340" y="300" fill="#e8e8e8" font-size="22" text-anchor="middle">3</text>
+
+   <!-- Callout -->
+   <line x1="360" y1="210" x2="450" y2="210" stroke="#f0c75e" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <text x="455" y="205" fill="#f0c75e" font-size="14" font-weight="700">a₂₃ = 6</text>
+   <text x="455" y="225" fill="#b8b8b8" font-size="12">baris 2, kolom 3</text>
+  </svg>
+  <figcaption class="visual-caption">Posisi elemen $a_{ij}$ pada matriks: baris dihitung dari atas (indeks $i$), kolom dihitung dari kiri (indeks $j$). Contoh: $a_{23}$ berada di baris ke-2, kolom ke-3.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Notasi Indeks: Memahami $a_{ij}$ Secara Mendalam</p>
+ <p class="lesson-text">Notasi $a_{ij}$ adalah jantung dari seluruh pembahasan matriks. Setiap elemen memiliki "alamat" unik berupa kombinasi baris dan kolom. Aturan penulisan indeksnya:</p>
+ <ul>
+  <li><strong>Indeks pertama</strong> ($i$) — nomor baris, dihitung dari atas ke bawah.</li>
+  <li><strong>Indeks kedua</strong> ($j$) — nomor kolom, dihitung dari kiri ke kanan.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan contoh matriks berikut:</p>
+ <p class="lesson-text">$$B = \begin{bmatrix} 7 & 8 & 9 \\ 4 & 5 & 6 \\ 1 & 2 & 3 \end{bmatrix}$$</p>
+ <p class="lesson-text">Mari kita identifikasi setiap elemen dengan cermat:</p>
+ <ul>
+  <li>$b_{11} = 7$ (baris 1, kolom 1—paling kiri atas)</li>
+  <li>$b_{12} = 8$ (baris 1, kolom 2)</li>
+  <li>$b_{13} = 9$ (baris 1, kolom 3—paling kanan atas)</li>
+  <li>$b_{21} = 4$ (baris 2, kolom 1)</li>
+  <li>$b_{22} = 5$ (baris 2, kolom 2)</li>
+  <li>$b_{23} = 6$ (baris 2, kolom 3)</li>
+  <li>$b_{31} = 1$ (baris 3, kolom 1—paling kiri bawah)</li>
+  <li>$b_{32} = 2$ (baris 3, kolom 2)</li>
+  <li>$b_{33} = 3$ (baris 3, kolom 3—paling kanan bawah)</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> urutan indeks sangat penting—$b_{12}$ dan $b_{21}$ adalah elemen yang berbeda. $b_{12}$ berada di baris 1 kolom 2, sedangkan $b_{21}$ berada di baris 2 kolom 1. Ingat mantra: <strong>"$i$ itu baris (turun ke bawah), $j$ itu kolom (geser ke samping)"</strong>.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Ordo Matriks</p>
+ <p class="lesson-text"><strong>Ordo</strong> (atau ukuran) suatu matriks dinyatakan sebagai $m \times n$ (dibaca "m kali n"), di mana $m$ adalah jumlah baris dan $n$ adalah jumlah kolom.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Matriks $C = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}$ memiliki 2 baris dan 3 kolom—berordo $2 \times 3$.</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Matriks $D = \begin{bmatrix} 5 \\ -2 \\ 7 \end{bmatrix}$ memiliki 3 baris dan 1 kolom—berordo $3 \times 1$.</p>
+ <p class="lesson-text"><strong>Mengapa ordo penting?</strong> Ordo adalah "KTP" matriks—ia menentukan operasi apa yang boleh dilakukan. Dua matriks hanya bisa dijumlahkan jika ordonya sama, dan dua matriks hanya bisa dikalikan jika kolom kiri sama dengan baris kanan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Jenis-Jenis Matriks Khusus</h3>
+ <p class="lesson-text">Beberapa matriks memiliki struktur khusus yang sering muncul dalam aplikasi—dan penting untuk dikenali agar dapat memanfaatkan sifat-sifat khususnya.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Jenis</th>
+     <th>Syarat</th>
+     <th>Contoh</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Matriks Baris</td><td>Hanya 1 baris ($1 \times n$)</td><td>$\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}$</td></tr>
+    <tr><td>Matriks Kolom</td><td>Hanya 1 kolom ($m \times 1$)</td><td>$\begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix}$</td></tr>
+    <tr><td>Matriks Persegi</td><td>$m = n$</td><td>$\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$</td></tr>
+    <tr><td>Matriks Diagonal</td><td>Persegi, elemen non-diagonal = 0</td><td>$\begin{bmatrix} 5 & 0 & 0 \\ 0 & 7 & 0 \\ 0 & 0 & 2 \end{bmatrix}$</td></tr>
+    <tr><td>Matriks Identitas ($I_n$)</td><td>Diagonal utama = 1, lainnya 0</td><td>$\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$</td></tr>
+    <tr><td>Matriks Nol ($O$)</td><td>Semua elemen = 0</td><td>$\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$</td></tr>
+    <tr><td>Matriks Skalar</td><td>Diagonal utama bernilai sama ($k$)</td><td>$\begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix} = 3I_2$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perhatikan bahwa <strong>hanya matriks persegi</strong> yang dapat memiliki determinan dan invers—inilah mengapa jenis matriks persegi menjadi sangat penting dalam aljabar linear.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Operasi Dasar Matriks</h3>
+ <p class="lesson-text">Terdapat tiga operasi dasar pada matriks—masing-masing memiliki syarat dan mekanisme yang berbeda.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan Matriks</p>
+ <p class="lesson-text"><strong>Syarat mutlak:</strong> dua matriks hanya dapat dijumlahkan atau dikurangkan jika <strong>ordonya sama persis</strong> ($m \times n$ yang identik). Jika ordo berbeda, operasi tidak terdefinisi.</p>
+ <p class="lesson-text"><strong>Mekanisme:</strong> operasi dilakukan dengan menjumlahkan atau mengurangkan elemen-elemen yang <strong>bersesuaian</strong> (berada pada posisi baris dan kolom yang sama). Secara formal: $(A \pm B)_{ij} = a_{ij} \pm b_{ij}$.</p>
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Diberikan $A = \begin{bmatrix} 2 & 1 \\ 3 & 4 \end{bmatrix}$ dan $B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$.</p>
+ <p class="lesson-text">Penjumlahan: $A + B = \begin{bmatrix} 2+5 & 1+6 \\ 3+7 & 4+8 \end{bmatrix} = \begin{bmatrix} 7 & 7 \\ 10 & 12 \end{bmatrix}$.</p>
+ <p class="lesson-text">Pengurangan: $A - B = \begin{bmatrix} 2-5 & 1-6 \\ 3-7 & 4-8 \end{bmatrix} = \begin{bmatrix} -3 & -5 \\ -4 & -4 \end{bmatrix}$.</p>
+ <p class="lesson-subheading-alt">Contoh 4 (ordo berbeda—tidak valid):</p>
+ <p class="lesson-text">Jika $A$ berordo $2 \times 3$ dan $B$ berordo $2 \times 2$, maka $A + B$ <strong>tidak terdefinisi</strong> karena jumlah kolomnya berbeda.</p>
+
+ <p class="lesson-subheading-alt">Sifat-sifat penjumlahan matriks:</p>
+ <ul>
+  <li><strong>Komutatif</strong>: $A + B = B + A$.</li>
+  <li><strong>Asosiatif</strong>: $(A + B) + C = A + (B + C)$.</li>
+  <li><strong>Elemen identitas</strong>: $A + O = A$ (dengan $O$ adalah matriks nol berordo sama).</li>
+  <li><strong>Elemen invers</strong>: $A + (-A) = O$, di mana $-A$ adalah matriks yang setiap elemennya dinegatifkan.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Perkalian Matriks dengan Skalar</p>
+ <p class="lesson-text">Jika $k$ adalah skalar (bilangan real) dan $A$ adalah matriks, maka $kA$ diperoleh dengan mengalikan <strong>setiap elemen</strong> matriks $A$ dengan $k$. Operasi ini tidak memerlukan syarat ordo khusus—karena bekerja pada setiap elemen secara individual.</p>
+ <p class="lesson-subheading-alt">Contoh 5:</p>
+ <p class="lesson-text">Jika $k = 3$ dan $A = \begin{bmatrix} 1 & -2 \\ 4 & 0 \end{bmatrix}$, maka $3A = \begin{bmatrix} 3 & -6 \\ 12 & 0 \end{bmatrix}$.</p>
+ <p class="lesson-subheading-alt">Contoh 6:</p>
+ <p class="lesson-text">Jika $k = -\frac{1}{2}$ dan $B = \begin{bmatrix} 4 & -6 \\ 2 & 8 \end{bmatrix}$, maka $-\frac{1}{2}B = \begin{bmatrix} -2 & 3 \\ -1 & -4 \end{bmatrix}$.</p>
+
+ <p class="lesson-subheading-alt">Sifat-sifat perkalian skalar:</p>
+ <ul>
+  <li><strong>Distributif terhadap penjumlahan matriks</strong>: $k(A + B) = kA + kB$.</li>
+  <li><strong>Distributif terhadap penjumlahan skalar</strong>: $(k + m)A = kA + mA$.</li>
+  <li><strong>Asosiatif</strong>: $(km)A = k(mA)$.</li>
+  <li><strong>Identitas</strong>: $1 \cdot A = A$.</li>
+  <li><strong>Nol</strong>: $0 \cdot A = O$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Perkalian Matriks (Operasi Paling Kompleks)</p>
+ <p class="lesson-text">Ini adalah operasi yang paling sering menimbulkan kesalahan—mari kita bahas dengan sangat teliti.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> Perkalian matriks pada dasarnya adalah <strong>dot product</strong> yang dilakukan berulang-ulang. Setiap elemen hasil adalah dot product dari satu <em>baris</em> matriks kiri dengan satu <em>kolom</em> matriks kanan. Karena dot product mensyaratkan kedua vektor berukuran sama, maka panjang baris kiri harus sama dengan panjang kolom kanan—itulah asal aturan "kolom kiri = baris kanan".</p>
+ </div>
+
+ <p class="lesson-text"><strong>Syarat dimensi (ordo):</strong> matriks $A$ berordo $m \times n$ dapat dikalikan dengan matriks $B$ berordo $p \times q$ <strong>hanya jika</strong> $n = p$ (jumlah kolom $A$ = jumlah baris $B$).</p>
+ <p class="lesson-text"><strong>Ordo hasil:</strong> jika perkalian valid, hasilnya berordo $m \times q$—baris dari kiri, kolom dari kanan.</p>
+ <p class="lesson-text"><strong>Mekanisme perhitungan:</strong> elemen $C_{ij}$ diperoleh dengan mengalikan elemen-elemen <strong>baris ke-$i$</strong> dari matriks $A$ dengan elemen-elemen <strong>kolom ke-$j$</strong> dari matriks $B$ secara berurutan, lalu menjumlahkan hasilnya:</p>
+ <p class="lesson-text">$$C_{ij} = \sum_{k=1}^{n} a_{ik} \cdot b_{kj} = a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj}$$</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 720 500" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Matriks A -->
+  <text x="120" y="40" fill="#e8e8e8" font-size="14" font-style="italic" font-weight="600">A</text>
+  <path d="M 80 55 L 60 55 L 60 175 L 80 175" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <path d="M 200 55 L 220 55 L 220 175 L 200 175" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Highlight baris 1 dari A -->
+  <rect x="60" y="70" width="160" height="45" fill="#f0c75e" fill-opacity="0.15" />
+  <text x="100" y="100" fill="#f0c75e" font-size="20" font-weight="700" text-anchor="middle">1</text>
+  <text x="170" y="100" fill="#f0c75e" font-size="20" font-weight="700" text-anchor="middle">2</text>
+  
+  <text x="100" y="160" fill="#e8e8e8" font-size="20" text-anchor="middle">3</text>
+  <text x="170" y="160" fill="#e8e8e8" font-size="20" text-anchor="middle">4</text>
+  
+  <!-- × -->
+  <text x="245" y="125" fill="#b8b8b8" font-size="24" text-anchor="middle">×</text>
+  
+  <!-- Matriks B -->
+  <text x="320" y="40" fill="#e8e8e8" font-size="14" font-style="italic" font-weight="600">B</text>
+  <path d="M 300 55 L 280 55 L 280 175 L 300 175" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <path d="M 420 55 L 440 55 L 440 175 L 420 175" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Highlight kolom 2 dari B -->
+  <rect x="360" y="55" width="60" height="120" fill="#5dade2" fill-opacity="0.15" />
+  <text x="320" y="100" fill="#e8e8e8" font-size="20" text-anchor="middle">5</text>
+  <text x="390" y="100" fill="#5dade2" font-size="20" font-weight="700" text-anchor="middle">6</text>
+  <text x="320" y="160" fill="#e8e8e8" font-size="20" text-anchor="middle">7</text>
+  <text x="390" y="160" fill="#5dade2" font-size="20" font-weight="700" text-anchor="middle">8</text>
+  
+  <!-- = -->
+  <text x="470" y="125" fill="#b8b8b8" font-size="24" text-anchor="middle">=</text>
+  
+  <!-- Matriks C -->
+  <text x="540" y="40" fill="#e8e8e8" font-size="14" font-style="italic" font-weight="600">C</text>
+  <path d="M 520 55 L 500 55 L 500 175 L 520 175" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <path d="M 640 55 L 660 55 L 660 175 L 640 175" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <text x="540" y="100" fill="#e8e8e8" font-size="20" text-anchor="middle">19</text>
+  <rect x="600" y="70" width="50" height="45" fill="#f0c75e" fill-opacity="0.2" stroke="#f0c75e" stroke-width="1.5" rx="3" />
+  <text x="625" y="100" fill="#f0c75e" font-size="20" font-weight="700" text-anchor="middle">22</text>
+  <text x="540" y="160" fill="#e8e8e8" font-size="20" text-anchor="middle">43</text>
+  <text x="625" y="160" fill="#e8e8e8" font-size="20" text-anchor="middle">50</text>
+  
+  <!-- Divider -->
+  <line x1="40" y1="205" x2="680" y2="205" stroke="#444" stroke-width="0.8" />
+  
+  <!-- Header -->
+  <text x="360" y="232" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Perhitungan lengkap setiap elemen C (baris i dari A × kolom j dari B):</text>
+  
+  <!-- Baris 1: c11 -->
+  <rect x="60" y="248" width="600" height="42" fill="#f0c75e" fill-opacity="0.06" rx="6" />
+  <text x="80" y="275" fill="#e8e8e8" font-size="14">
+   <tspan fill="#f0c75e" font-weight="700">c₁₁</tspan> = 1·5 + 2·7 = 5 + 14 = <tspan fill="#f0c75e" font-weight="700">19</tspan>
+  </text>
+  
+  <!-- Baris 2: c12 -->
+  <rect x="60" y="298" width="600" height="42" fill="#f0c75e" fill-opacity="0.13" stroke="#f0c75e" stroke-width="1.2" rx="6" />
+  <text x="80" y="325" fill="#e8e8e8" font-size="14">
+   <tspan fill="#f0c75e" font-weight="700">c₁₂</tspan> = 1·6 + 2·8 = 6 + 16 = <tspan fill="#f0c75e" font-weight="700">22</tspan>
+  </text>
+  
+  <!-- Baris 3: c21 -->
+  <rect x="60" y="348" width="600" height="42" fill="#f0c75e" fill-opacity="0.06" rx="6" />
+  <text x="80" y="375" fill="#e8e8e8" font-size="14">
+   <tspan fill="#f0c75e" font-weight="700">c₂₁</tspan> = 3·5 + 4·7 = 15 + 28 = <tspan fill="#f0c75e" font-weight="700">43</tspan>
+  </text>
+  
+  <!-- Baris 4: c22 -->
+  <rect x="60" y="398" width="600" height="42" fill="#f0c75e" fill-opacity="0.06" rx="6" />
+  <text x="80" y="425" fill="#e8e8e8" font-size="14">
+   <tspan fill="#f0c75e" font-weight="700">c₂₂</tspan> = 3·6 + 4·8 = 18 + 32 = <tspan fill="#f0c75e" font-weight="700">50</tspan>
+  </text>
+  
+  <!-- Note -->
+  <text x="360" y="470" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">Setiap elemen cᵢⱼ = (baris ke-i dari A) · (kolom ke-j dari B).</text>
+ </svg>
+ <figcaption class="visual-caption">Perkalian matriks: setiap elemen $c_{ij}$ diperoleh dari dot product baris ke-$i$ dari $A$ dengan kolom ke-$j$ dari $B$. Keempat elemen dihitung dengan pola yang sama.</figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">Contoh 7 (perkalian $2 \times 2$ dengan $2 \times 2$):</p>
+ <p class="lesson-text">Diberikan $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ dan $B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$.</p>
+ <ul>
+  <li>Periksa syarat: kolom $A$ (2) = baris $B$ (2). Valid. Hasilnya berordo $2 \times 2$.</li>
+  <li>$C_{11} = (1)(5) + (2)(7) = 5 + 14 = 19$.</li>
+  <li>$C_{12} = (1)(6) + (2)(8) = 6 + 16 = 22$.</li>
+  <li>$C_{21} = (3)(5) + (4)(7) = 15 + 28 = 43$.</li>
+  <li>$C_{22} = (3)(6) + (4)(8) = 18 + 32 = 50$.</li>
+ </ul>
+ <p class="lesson-text">$$A \times B = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 8 (perkalian $2 \times 3$ dengan $3 \times 2$):</p>
+ <p class="lesson-text">$A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}_{(2 \times 3)}$ dan $B = \begin{bmatrix} 7 & 8 \\ 9 & 10 \\ 11 & 12 \end{bmatrix}_{(3 \times 2)}$.</p>
+ <ul>
+  <li>Kolom $A$ (3) = baris $B$ (3). Valid. Hasilnya berordo $2 \times 2$.</li>
+  <li>$C_{11} = (1)(7) + (2)(9) + (3)(11) = 7 + 18 + 33 = 58$.</li>
+  <li>$C_{12} = (1)(8) + (2)(10) + (3)(12) = 8 + 20 + 36 = 64$.</li>
+  <li>$C_{21} = (4)(7) + (5)(9) + (6)(11) = 28 + 45 + 66 = 139$.</li>
+  <li>$C_{22} = (4)(8) + (5)(10) + (6)(12) = 32 + 50 + 72 = 154$.</li>
+ </ul>
+ <p class="lesson-text">$$A \times B = \begin{bmatrix} 58 & 64 \\ 139 & 154 \end{bmatrix}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 9 (perkalian tidak valid):</p>
+ <p class="lesson-text">Jika $A$ berordo $2 \times 3$ dan $B$ berordo $2 \times 2$, maka $AB$ <strong>tidak terdefinisi</strong> karena kolom $A$ (3) $\neq$ baris $B$ (2).</p>
+
+ <p class="lesson-subheading-alt">Sifat-sifat perkalian matriks:</p>
+ <ul>
+  <li><strong>Asosiatif</strong>: $(AB)C = A(BC)$.</li>
+  <li><strong>Distributif</strong>: $A(B + C) = AB + AC$ dan $(A + B)C = AC + BC$.</li>
+  <li><strong>Tidak komutatif</strong>: secara umum, $AB \neq BA$. Bahkan, jika $AB$ terdefinisi, belum tentu $BA$ terdefinisi (karena syarat ordo bisa gagal di salah satu arah).</li>
+  <li><strong>Elemen identitas</strong>: $AI = IA = A$ (dengan $I$ berordo sesuai).</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 10 (bukti tidak komutatif):</p>
+ <p class="lesson-text">Dengan $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ dan $B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$:</p>
+ <ul>
+  <li>$AB = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}$ (dari Contoh 7).</li>
+  <li>$BA = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} 23 & 34 \\ 31 & 46 \end{bmatrix}$.</li>
+ </ul>
+ <p class="lesson-text">Terlihat jelas bahwa $AB \neq BA$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Transpose Matriks</h3>
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Transpose</strong> dari matriks $A$ berordo $m \times n$—dinotasikan $A^T$ atau $A'$—adalah matriks baru berordo $n \times m$ yang diperoleh dengan <strong>menukar baris menjadi kolom dan kolom menjadi baris</strong>. Secara notasi indeks: jika $A = [a_{ij}]$, maka $A^T = [a_{ji}]$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 600 320" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-transpose" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <!-- Matrix A -->
+   <text x="140" y="50" fill="#e8e8e8" font-size="16" font-style="italic" font-weight="600">A</text>
+   <path d="M 80 70 L 60 70 L 60 210 L 80 210" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 260 70 L 280 70 L 280 210 L 260 210" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Row 1 (gold) -->
+   <rect x="60" y="70" width="220" height="45" fill="#f0c75e" fill-opacity="0.13"/>
+   <text x="110" y="100" fill="#f0c75e" font-size="20" font-weight="600" text-anchor="middle">1</text>
+   <text x="170" y="100" fill="#f0c75e" font-size="20" font-weight="600" text-anchor="middle">2</text>
+   <text x="230" y="100" fill="#f0c75e" font-size="20" font-weight="600" text-anchor="middle">3</text>
+
+   <!-- Row 2 (blue) -->
+   <rect x="60" y="160" width="220" height="45" fill="#5dade2" fill-opacity="0.13"/>
+   <text x="110" y="190" fill="#5dade2" font-size="20" font-weight="600" text-anchor="middle">4</text>
+   <text x="170" y="190" fill="#5dade2" font-size="20" font-weight="600" text-anchor="middle">5</text>
+   <text x="230" y="190" fill="#5dade2" font-size="20" font-weight="600" text-anchor="middle">6</text>
+
+   <!-- Arrow with marker -->
+   <line x1="305" y1="140" x2="365" y2="140" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-transpose)"/>
+   <text x="335" y="125" fill="#f0c75e" font-size="12" font-style="italic" text-anchor="middle">transpose</text>
+
+   <!-- Matrix A^T -->
+   <text x="470" y="50" fill="#e8e8e8" font-size="16" font-style="italic" font-weight="600">Aᵀ</text>
+   <path d="M 420 70 L 400 70 L 400 260 L 420 260" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 540 70 L 560 70 L 560 260 L 540 260" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Column 1 (gold) -->
+   <rect x="400" y="70" width="70" height="190" fill="#f0c75e" fill-opacity="0.13"/>
+   <text x="435" y="115" fill="#f0c75e" font-size="20" font-weight="600" text-anchor="middle">1</text>
+   <text x="435" y="175" fill="#f0c75e" font-size="20" font-weight="600" text-anchor="middle">2</text>
+   <text x="435" y="235" fill="#f0c75e" font-size="20" font-weight="600" text-anchor="middle">3</text>
+
+   <!-- Column 2 (blue) -->
+   <rect x="470" y="70" width="70" height="190" fill="#5dade2" fill-opacity="0.13"/>
+   <text x="505" y="115" fill="#5dade2" font-size="20" font-weight="600" text-anchor="middle">4</text>
+   <text x="505" y="175" fill="#5dade2" font-size="20" font-weight="600" text-anchor="middle">5</text>
+   <text x="505" y="235" fill="#5dade2" font-size="20" font-weight="600" text-anchor="middle">6</text>
+  </svg>
+  <figcaption class="visual-caption">Transpose menukar baris menjadi kolom dan sebaliknya. Baris 1 dari $A$ menjadi kolom 1 dari $A^T$; baris 2 dari $A$ menjadi kolom 2 dari $A^T$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh 11:</p>
+ <p class="lesson-text">$A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}_{(2 \times 3)}$, maka $A^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}_{(3 \times 2)}$.</p>
+ <p class="lesson-subheading-alt">Contoh 12:</p>
+ <p class="lesson-text">$B = \begin{bmatrix} 2 & -1 \\ 0 & 3 \\ 5 & 4 \end{bmatrix}_{(3 \times 2)}$, maka $B^T = \begin{bmatrix} 2 & 0 & 5 \\ -1 & 3 & 4 \end{bmatrix}_{(2 \times 3)}$.</p>
+
+ <p class="lesson-subheading">B. Sifat-Sifat Transpose</p>
+ <ul>
+  <li><strong>Transpose dua kali</strong>: $(A^T)^T = A$—menukar baris dan kolom dua kali mengembalikan ke bentuk asal.</li>
+  <li><strong>Transpose penjumlahan</strong>: $(A + B)^T = A^T + B^T$.</li>
+  <li><strong>Transpose perkalian skalar</strong>: $(kA)^T = kA^T$.</li>
+  <li><strong>Transpose perkalian matriks</strong>: $(AB)^T = B^T A^T$—<strong>perhatikan urutan membalik!</strong> Ini adalah sifat yang paling sering dilupakan.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 13 (verifikasi sifat 4):</p>
+ <p class="lesson-text">Misalkan $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ dan $B = \begin{bmatrix} 0 & 1 \\ 2 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-text">Hitung $AB$ terlebih dahulu: $AB = \begin{bmatrix} 4 & 7 \\ 8 & 15 \end{bmatrix}$. Maka $(AB)^T = \begin{bmatrix} 4 & 8 \\ 7 & 15 \end{bmatrix}$.</p>
+ <p class="lesson-text">Sekarang hitung $B^T A^T$ dengan $B^T = \begin{bmatrix} 0 & 2 \\ 1 & 3 \end{bmatrix}$ dan $A^T = \begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix}$:</p>
+ <p class="lesson-text">$$B^T A^T = \begin{bmatrix} 4 & 8 \\ 7 & 15 \end{bmatrix}$$</p>
+ <p class="lesson-text">Terbukti bahwa $(AB)^T = B^T A^T$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 14 (matriks simetris):</p>
+ <p class="lesson-text">Matriks $A$ disebut simetris jika $A^T = A$. Contoh: $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}$—perhatikan bahwa $a_{12} = a_{21} = 2$, $a_{13} = a_{31} = 3$, $a_{23} = a_{32} = 5$. Matriks simetris selalu persegi dan elemen-elemennya simetris terhadap diagonal utama.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Invers Matriks</h3>
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text">Untuk matriks persegi $A$ berordo $n \times n$, <strong>invers</strong> dari $A$—dinotasikan $A^{-1}$—adalah matriks yang memenuhi:</p>
+ <p class="lesson-text">$$A \cdot A^{-1} = A^{-1} \cdot A = I_n$$</p>
+ <p class="lesson-text">di mana $I_n$ adalah matriks identitas berordo $n$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Analogi:</strong> invers matriks itu seperti "kebalikan" pada perkalian bilangan. Karena $2 \times \tfrac{1}{2} = 1$, maka $\tfrac{1}{2}$ adalah invers dari 2. Pada matriks, $A^{-1}$ adalah "kebalikan" $A$ sehingga $A \times A^{-1} = I$—dan $I$ di sini berperan seperti angka 1 pada bilangan: elemen identitas yang tidak mengubah apa pun.</p>
+ </div>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan kritis:</strong> tidak semua matriks persegi memiliki invers. Matriks yang memiliki invers disebut <strong>invertible</strong> atau <strong>non-singular</strong>; yang tidak memiliki invers disebut <strong>singular</strong>. Syarat agar matriks memiliki invers adalah <strong>determinannya tidak sama dengan nol</strong> ($\det(A) \neq 0$).</p>
+ </div>
+
+ <p class="lesson-subheading">B. Invers Matriks Ordo $2 \times 2$</p>
+ <p class="lesson-text">Jika $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, maka inversnya adalah:</p>
+ <p class="lesson-text">$$A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$</p>
+ <p class="lesson-text">di mana $ad - bc$ adalah determinan $A$. Rumus ini hanya berlaku jika $ad - bc \neq 0$.</p>
+
+ <p class="lesson-subheading-alt">Langkah-langkah:</p>
+ <ol>
+  <li>Hitung determinan: $D = (a \times d) - (b \times c)$.</li>
+  <li>Jika $D = 0$, matriks tidak memiliki invers (singular)—hentikan.</li>
+  <li>Tukar posisi $a$ dan $d$ (elemen diagonal utama bertukar), dan ubah tanda $b$ serta $c$.</li>
+  <li>Kalikan seluruh matriks dengan $\frac{1}{D}$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 15:</p>
+ <p class="lesson-text">Cari invers dari $A = \begin{bmatrix} 2 & 1 \\ 5 & 3 \end{bmatrix}$.</p>
+ <ul>
+  <li>Determinan: $D = (2)(3) - (1)(5) = 6 - 5 = 1$.</li>
+  <li>Karena $D \neq 0$, invers ada.</li>
+  <li>Tukar $a$ dan $d$: $3$ dan $2$. Ubah tanda $b$ dan $c$: $-1$ dan $-5$.</li>
+  <li>Kalikan dengan $\frac{1}{1} = 1$.</li>
+ </ul>
+ <p class="lesson-text">$$A^{-1} = \begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix}$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $A \cdot A^{-1} = \begin{bmatrix} 2 & 1 \\ 5 & 3 \end{bmatrix} \begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$. Benar.</p>
+
+ <p class="lesson-subheading-alt">Contoh 16 (kasus singular):</p>
+ <p class="lesson-text">$A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$. Determinan: $D = (1)(4) - (2)(2) = 0$. Karena $D = 0$, matriks <strong>tidak memiliki invers</strong>—baris kedua adalah kelipatan dari baris pertama (baris 2 = 2 × baris 1), sehingga informasi baris kedua redundan.</p>
+
+ <p class="lesson-subheading-alt">Contoh 17 (invers dengan determinan negatif):</p>
+ <p class="lesson-text">$A = \begin{bmatrix} 4 & 3 \\ 2 & 1 \end{bmatrix}$.</p>
+ <ul>
+  <li>Determinan: $D = (4)(1) - (3)(2) = -2$.</li>
+  <li>Invers: $A^{-1} = \frac{1}{-2} \begin{bmatrix} 1 & -3 \\ -2 & 4 \end{bmatrix} = \begin{bmatrix} -\frac{1}{2} & \frac{3}{2} \\ 1 & -2 \end{bmatrix}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Metode Gauss-Jordan untuk Invers (Ordo $n \geq 3$)</p>
+ <p class="lesson-text">Untuk matriks berordo 3 atau lebih tinggi, rumus langsung menjadi sangat rumit. Metode standar adalah <strong>eliminasi Gauss-Jordan</strong> dengan Operasi Baris Elementer (OBE).</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 700 240" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-gj" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <!-- Left: [A | I] -->
+   <text x="150" y="50" fill="#e8e8e8" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Matriks Augmentasi</text>
+
+   <!-- "A" block -->
+   <rect x="60" y="80" width="90" height="70" fill="#daa520" fill-opacity="0.13" stroke="#daa520" stroke-width="1.5" rx="4"/>
+   <text x="105" y="122" fill="#daa520" font-size="20" font-weight="700" text-anchor="middle">A</text>
+
+   <!-- Vertical bar -->
+   <line x1="160" y1="75" x2="160" y2="155" stroke="#e8e8e8" stroke-width="1.5"/>
+
+   <!-- "I" block -->
+   <rect x="170" y="80" width="90" height="70" fill="#5dade2" fill-opacity="0.13" stroke="#5dade2" stroke-width="1.5" rx="4"/>
+   <text x="215" y="122" fill="#5dade2" font-size="20" font-weight="700" text-anchor="middle">I</text>
+
+   <!-- Arrow with marker -->
+   <line x1="290" y1="115" x2="375" y2="115" stroke="#f0c75e" stroke-width="2.5" marker-end="url(#arrow-gj)"/>
+   <text x="335" y="103" fill="#f0c75e" font-size="13" font-style="italic" text-anchor="middle">OBE</text>
+
+   <!-- Right: [I | A^-1] -->
+   <text x="500" y="50" fill="#e8e8e8" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Bentuk Akhir</text>
+
+   <!-- "I" block -->
+   <rect x="410" y="80" width="90" height="70" fill="#5dade2" fill-opacity="0.13" stroke="#5dade2" stroke-width="1.5" rx="4"/>
+   <text x="455" y="122" fill="#5dade2" font-size="20" font-weight="700" text-anchor="middle">I</text>
+
+   <!-- Vertical bar -->
+   <line x1="510" y1="75" x2="510" y2="155" stroke="#e8e8e8" stroke-width="1.5"/>
+
+   <!-- "A^-1" block -->
+   <rect x="520" y="80" width="100" height="70" fill="#f0c75e" fill-opacity="0.13" stroke="#f0c75e" stroke-width="1.5" rx="4"/>
+   <text x="570" y="122" fill="#f0c75e" font-size="18" font-weight="700" text-anchor="middle">A⁻¹</text>
+
+   <!-- Note below -->
+   <text x="350" y="200" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Tujuan: ubah bagian kiri menjadi I dengan OBE—bagian kanan otomatis menjadi A⁻¹.</text>
+   <text x="350" y="220" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Setiap operasi harus diterapkan pada seluruh baris, termasuk bagian identitas.</text>
+  </svg>
+  <figcaption class="visual-caption">Prosedur Gauss-Jordan: matriks augmentasi $[A \mid I]$ diubah melalui Operasi Baris Elementer hingga menjadi $[I \mid A^{-1}]$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Prosedur lengkap:</p>
+ <ol>
+  <li><strong>Bentuk matriks augmentasi</strong>: tulis matriks $A$ di sebelah kiri dan matriks identitas $I$ di sebelah kanan, dipisahkan oleh garis vertikal—$[A \mid I]$.</li>
+  <li><strong>Lakukan Operasi Baris Elementer (OBE)</strong>: tujuannya adalah mengubah bagian kiri ($A$) menjadi matriks identitas ($I$). Operasi yang diperbolehkan adalah:
+   <ul>
+    <li><strong>Tukar baris</strong>: $R_i \leftrightarrow R_j$.</li>
+    <li><strong>Kalikan baris dengan skalar bukan nol</strong>: $R_i \leftarrow kR_i$ ($k \neq 0$).</li>
+    <li><strong>Tambahkan kelipatan baris ke baris lain</strong>: $R_i \leftarrow R_i + kR_j$.</li>
+   </ul>
+  </li>
+  <li><strong>Bentuk akhir</strong>: ketika bagian kiri menjadi $I$, bagian kanan otomatis menjadi $A^{-1}$—bentuknya $[I \mid A^{-1}]$.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 18 (Gauss-Jordan untuk $2 \times 2$):</p>
+ <p class="lesson-text">Cari invers $B = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.</p>
+ <p class="lesson-text"><strong>Langkah 1</strong>—bentuk augmentasi:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{cc|cc} 1 & 2 & 1 & 0 \\ 3 & 4 & 0 & 1 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 2</strong>—jadikan elemen baris 2 kolom 1 menjadi 0. Operasi: $R_2 \leftarrow R_2 - 3R_1$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{cc|cc} 1 & 2 & 1 & 0 \\ 0 & -2 & -3 & 1 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 3</strong>—jadikan elemen diagonal baris 2 menjadi 1. Operasi: $R_2 \leftarrow -\frac{1}{2}R_2$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{cc|cc} 1 & 2 & 1 & 0 \\ 0 & 1 & \frac{3}{2} & -\frac{1}{2} \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 4</strong>—jadikan elemen baris 1 kolom 2 menjadi 0. Operasi: $R_1 \leftarrow R_1 - 2R_2$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{cc|cc} 1 & 0 & -2 & 1 \\ 0 & 1 & \frac{3}{2} & -\frac{1}{2} \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Hasil</strong>—bagian kanan adalah inversnya:</p>
+ <p class="lesson-text">$$B^{-1} = \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix}$$</p>
+ <p class="lesson-text">Verifikasi: $B \cdot B^{-1} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \begin{bmatrix} -2 & 1 \\ \frac{3}{2} & -\frac{1}{2} \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$. Benar.</p>
+
+ <p class="lesson-subheading-alt">Contoh 19 (Gauss-Jordan untuk $3 \times 3$):</p>
+ <p class="lesson-text">Cari invers $C = \begin{bmatrix} 2 & 1 & 0 \\ 1 & 3 & 1 \\ 0 & 1 & 2 \end{bmatrix}$.</p>
+ <p class="lesson-text"><strong>Langkah 1</strong>—augmentasi:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 2 & 1 & 0 & 1 & 0 & 0 \\ 1 & 3 & 1 & 0 & 1 & 0 \\ 0 & 1 & 2 & 0 & 0 & 1 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 2</strong>—tukar $R_1$ dan $R_2$ agar elemen kiri atas menjadi 1:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 1 & 0 & 1 & 0 \\ 2 & 1 & 0 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 & 0 & 1 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 3</strong>—$R_2 \leftarrow R_2 - 2R_1$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 1 & 0 & 1 & 0 \\ 0 & -5 & -2 & 1 & -2 & 0 \\ 0 & 1 & 2 & 0 & 0 & 1 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 4</strong>—tukar $R_2$ dan $R_3$ agar elemen baris 2 kolom 2 menjadi 1:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 1 & 0 & 1 & 0 \\ 0 & 1 & 2 & 0 & 0 & 1 \\ 0 & -5 & -2 & 1 & -2 & 0 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 5</strong>—$R_3 \leftarrow R_3 + 5R_2$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 1 & 0 & 1 & 0 \\ 0 & 1 & 2 & 0 & 0 & 1 \\ 0 & 0 & 8 & 1 & -2 & 5 \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 6</strong>—$R_3 \leftarrow \frac{1}{8}R_3$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 1 & 0 & 1 & 0 \\ 0 & 1 & 2 & 0 & 0 & 1 \\ 0 & 0 & 1 & \frac{1}{8} & -\frac{1}{4} & \frac{5}{8} \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 7</strong>—$R_2 \leftarrow R_2 - 2R_3$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & -\frac{1}{4} & \frac{1}{2} & -\frac{1}{4} \\ 0 & 0 & 1 & \frac{1}{8} & -\frac{1}{4} & \frac{5}{8} \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 8</strong>—$R_1 \leftarrow R_1 - R_3$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 3 & 0 & -\frac{1}{8} & \frac{5}{4} & -\frac{5}{8} \\ 0 & 1 & 0 & -\frac{1}{4} & \frac{1}{2} & -\frac{1}{4} \\ 0 & 0 & 1 & \frac{1}{8} & -\frac{1}{4} & \frac{5}{8} \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Langkah 9</strong>—$R_1 \leftarrow R_1 - 3R_2$:</p>
+ <p class="lesson-text">$$\left[ \begin{array}{ccc|ccc} 1 & 0 & 0 & \frac{5}{8} & -\frac{1}{4} & \frac{1}{8} \\ 0 & 1 & 0 & -\frac{1}{4} & \frac{1}{2} & -\frac{1}{4} \\ 0 & 0 & 1 & \frac{1}{8} & -\frac{1}{4} & \frac{5}{8} \end{array} \right]$$</p>
+ <p class="lesson-text"><strong>Hasil</strong>—bagian kanan adalah inversnya:</p>
+ <p class="lesson-text">$$C^{-1} = \frac{1}{8}\begin{bmatrix} 5 & -2 & 1 \\ -2 & 4 & -2 \\ 1 & -2 & 5 \end{bmatrix}$$</p>
+
+ <p class="lesson-subheading">D. Sifat-Sifat Invers</p>
+ <ol>
+  <li><strong>Invers dari invers</strong>: $(A^{-1})^{-1} = A$.</li>
+  <li><strong>Invers perkalian</strong>: $(AB)^{-1} = B^{-1} A^{-1}$—perhatikan urutan membalik!</li>
+  <li><strong>Invers transpose</strong>: $(A^T)^{-1} = (A^{-1})^T$.</li>
+  <li><strong>Invers skalar</strong>: $(kA)^{-1} = \frac{1}{k} A^{-1}$ (untuk $k \neq 0$).</li>
+ </ol>
+
+ <p class="lesson-subheading">E. Penggunaan Invers: Menyelesaikan Sistem Persamaan Linear</p>
+ <p class="lesson-text">Sistem persamaan linear $AX = B$ (dengan $A$ matriks koefisien, $X$ vektor variabel, $B$ vektor konstanta) dapat diselesaikan dengan mengalikan kedua ruas dengan $A^{-1}$:</p>
+ <p class="lesson-text">$$A^{-1}(AX) = A^{-1}B \implies IX = A^{-1}B \implies X = A^{-1}B$$</p>
+ <p class="lesson-text">Asalkan $A$ invertible (determinannya tidak nol).</p>
+ <p class="lesson-subheading-alt">Contoh 20:</p>
+ <p class="lesson-text">Selesaikan sistem $2x + y = 5$ dan $5x + 3y = 13$.</p>
+ <p class="lesson-text">Matriks koefisien: $A = \begin{bmatrix} 2 & 1 \\ 5 & 3 \end{bmatrix}$, $B = \begin{bmatrix} 5 \\ 13 \end{bmatrix}$. Dari Contoh 15, $A^{-1} = \begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix}$.</p>
+ <p class="lesson-text">$$X = A^{-1}B = \begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix} \begin{bmatrix} 5 \\ 13 \end{bmatrix} = \begin{bmatrix} 15 - 13 \\ -25 + 26 \end{bmatrix} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$$</p>
+ <p class="lesson-text">Jadi, $x = 2$ dan $y = 1$.</p>
+<p class="lesson-text">Dengan menguasai operasi matriks, transpose, dan invers—baik dengan rumus langsung untuk ordo $2 \times 2$ maupun Gauss-Jordan untuk ordo lebih tinggi—kita kini memiliki perangkat lengkap untuk memanipulasi matriks. Mari kita terapkan seluruh konsep ini pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Contoh Soal dan Pembahasan</h3>
+<p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan operasi dasar, perkalian matriks, transpose, invers $2 \times 2$, invers $3 \times 3$ dengan Gauss-Jordan, dan penerapan invers untuk menyelesaikan sistem persamaan linear. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+<p class="lesson-subheading">Soal 1: Operasi Penjumlahan dan Perkalian Skalar</p>
+<p class="lesson-text">Diberikan $A = \begin{bmatrix} 2 & -1 & 3 \\ 4 & 0 & -2 \end{bmatrix}$ dan $B = \begin{bmatrix} 1 & 5 & -3 \\ -2 & 3 & 4 \end{bmatrix}$. Hitung $2A - 3B$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Periksa ordo</strong>: keduanya berordo $2 \times 3$—sama. Operasi penjumlahan/pengurangan sah dilakukan.</li>
+ <li><strong>Hitung $2A$</strong>:<br>$2A = \begin{bmatrix} 4 & -2 & 6 \\ 8 & 0 & -4 \end{bmatrix}$</li>
+ <li><strong>Hitung $3B$</strong>:<br>$3B = \begin{bmatrix} 3 & 15 & -9 \\ -6 & 9 & 12 \end{bmatrix}$</li>
+ <li><strong>Kurangkan</strong>:<br>$2A - 3B = \begin{bmatrix} 4-3 & -2-15 & 6-(-9) \\ 8-(-6) & 0-9 & -4-12 \end{bmatrix} = \begin{bmatrix} 1 & -17 & 15 \\ 14 & -9 & -16 \end{bmatrix}$</li>
+</ol>
+<p class="lesson-text">Perhatikan pada elemen $(2,2)$: $0 - 9 = -9$, bukan $+9$. Serta pada elemen $(2,1)$: $8 - (-6) = 14$—tanda negatif di depan $B$ berubah menjadi positif saat dikurangkan.</p>
+
+<p class="lesson-subheading">Soal 2: Perkalian Matriks dengan Pemeriksaan Ordo</p>
+<p class="lesson-text">Diberikan $A = \begin{bmatrix} 2 & 1 \\ 3 & 4 \\ 1 & 0 \end{bmatrix}_{(3 \times 2)}$ dan $B = \begin{bmatrix} 5 & 2 \\ -1 & 3 \end{bmatrix}_{(2 \times 2)}$. Hitung $AB$ dan tentukan ordonya.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Periksa syarat perkalian</strong>: kolom $A$ (2) = baris $B$ (2) ✓. Hasilnya berordo $3 \times 2$ (baris kiri × kolom kanan).</li>
+ <li><strong>Hitung setiap elemen</strong> $c_{ij}$ = baris $i$ dari $A$ × kolom $j$ dari $B$:
+  <ul>
+   <li>$c_{11} = (2)(5) + (1)(-1) = 10 - 1 = 9$</li>
+   <li>$c_{12} = (2)(2) + (1)(3) = 4 + 3 = 7$</li>
+   <li>$c_{21} = (3)(5) + (4)(-1) = 15 - 4 = 11$</li>
+   <li>$c_{22} = (3)(2) + (4)(3) = 6 + 12 = 18$</li>
+   <li>$c_{31} = (1)(5) + (0)(-1) = 5 + 0 = 5$</li>
+   <li>$c_{32} = (1)(2) + (0)(3) = 2 + 0 = 2$</li>
+  </ul>
+ </li>
+ <li><strong>Hasil</strong>:<br>$AB = \begin{bmatrix} 9 & 7 \\ 11 & 18 \\ 5 & 2 \end{bmatrix}_{(3 \times 2)}$</li>
+</ol>
+<p class="lesson-text">Perhatikan: hasilnya $3 \times 2$, bukan $2 \times 2$—meskipun $B$ berordo $2 \times 2$. Ordo hasil selalu mengikuti <em>baris kiri × kolom kanan</em>.</p>
+
+<p class="lesson-subheading">Soal 3: Perkalian Matriks dan Sifat Tidak Komutatif</p>
+<p class="lesson-text">Diberikan $A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$ dan $B = \begin{bmatrix} 3 & 0 \\ 1 & 2 \end{bmatrix}$. Tunjukkan bahwa $AB \neq BA$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Hitung $AB$</strong>:<br>$AB = \begin{bmatrix} (1)(3)+(2)(1) & (1)(0)+(2)(2) \\ (0)(3)+(1)(1) & (0)(0)+(1)(2) \end{bmatrix} = \begin{bmatrix} 5 & 4 \\ 1 & 2 \end{bmatrix}$</li>
+ <li><strong>Hitung $BA$</strong>:<br>$BA = \begin{bmatrix} (3)(1)+(0)(0) & (3)(2)+(0)(1) \\ (1)(1)+(2)(0) & (1)(2)+(2)(1) \end{bmatrix} = \begin{bmatrix} 3 & 6 \\ 1 & 4 \end{bmatrix}$</li>
+ <li><strong>Bandingkan</strong>: $\begin{bmatrix} 5 & 4 \\ 1 & 2 \end{bmatrix} \neq \begin{bmatrix} 3 & 6 \\ 1 & 4 \end{bmatrix}$—terbukti $AB \neq BA$.</li>
+</ol>
+<p class="lesson-text">Contoh ini memperlihatkan bahwa urutan perkalian matriks sangat penting. Bahkan ketika $AB$ dan $BA$ sama-sama terdefinisi (keduanya $2 \times 2$), hasilnya umumnya berbeda—kecuali dalam kasus khusus seperti matriks diagonal atau matriks yang saling komut.</p>
+
+<p class="lesson-subheading">Soal 4: Transpose dan Sifat $(AB)^T$</p>
+<p class="lesson-text">Diberikan $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{bmatrix}_{(3 \times 2)}$ dan $B = \begin{bmatrix} 2 & 0 & 1 \\ 1 & 3 & -1 \end{bmatrix}_{(2 \times 3)}$. Verifikasi bahwa $(AB)^T = B^T A^T$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Hitung $AB$</strong> (berordo $3 \times 3$):
+  <ul>
+   <li>$c_{11} = (1)(2)+(2)(1) = 4$</li>
+   <li>$c_{12} = (1)(0)+(2)(3) = 6$</li>
+   <li>$c_{13} = (1)(1)+(2)(-1) = -1$</li>
+   <li>$c_{21} = (3)(2)+(4)(1) = 10$</li>
+   <li>$c_{22} = (3)(0)+(4)(3) = 12$</li>
+   <li>$c_{23} = (3)(1)+(4)(-1) = -1$</li>
+   <li>$c_{31} = (5)(2)+(6)(1) = 16$</li>
+   <li>$c_{32} = (5)(0)+(6)(3) = 18$</li>
+   <li>$c_{33} = (5)(1)+(6)(-1) = -1$</li>
+  </ul>
+  $$AB = \begin{bmatrix} 4 & 6 & -1 \\ 10 & 12 & -1 \\ 16 & 18 & -1 \end{bmatrix}$$
+ </li>
+ <li><strong>Transpose $(AB)^T$</strong>:<br>$(AB)^T = \begin{bmatrix} 4 & 10 & 16 \\ 6 & 12 & 18 \\ -1 & -1 & -1 \end{bmatrix}$</li>
+ <li><strong>Hitung $B^T A^T$</strong>:
+  <ul>
+   <li>$B^T = \begin{bmatrix} 2 & 1 \\ 0 & 3 \\ 1 & -1 \end{bmatrix}_{(3 \times 2)}$ dan $A^T = \begin{bmatrix} 1 & 3 & 5 \\ 2 & 4 & 6 \end{bmatrix}_{(2 \times 3)}$</li>
+   <li>$B^T A^T$ berordo $3 \times 3$:
+    <ul>
+     <li>Baris 1: $(2)(1)+(1)(2) = 4$; $(2)(3)+(1)(4) = 10$; $(2)(5)+(1)(6) = 16$</li>
+     <li>Baris 2: $(0)(1)+(3)(2) = 6$; $(0)(3)+(3)(4) = 12$; $(0)(5)+(3)(6) = 18$</li>
+     <li>Baris 3: $(1)(1)+(-1)(2) = -1$; $(1)(3)+(-1)(4) = -1$; $(1)(5)+(-1)(6) = -1$</li>
+    </ul>
+   </li>
+  </ul>
+  $$B^T A^T = \begin{bmatrix} 4 & 10 & 16 \\ 6 & 12 & 18 \\ -1 & -1 & -1 \end{bmatrix}$$
+ </li>
+ <li><strong>Bandingkan</strong>: $(AB)^T = B^T A^T$ ✓</li>
+</ol>
+<p class="lesson-text">Perhatikan bahwa <strong>urutan dibalik</strong>—$(AB)^T = B^T A^T$, bukan $A^T B^T$. Sifat ini sejalan dengan $(AB)^{-1} = B^{-1} A^{-1}$.</p>
+
+<p class="lesson-subheading">Soal 5: Invers Matriks Ordo $2 \times 2$</p>
+<p class="lesson-text">Tentukan invers dari $A = \begin{bmatrix} 3 & 4 \\ 1 & 2 \end{bmatrix}$, lalu verifikasi dengan $A \cdot A^{-1} = I$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Hitung determinan</strong>:<br>$D = (3)(2) - (4)(1) = 6 - 4 = 2$</li>
+ <li><strong>Periksa syarat</strong>: $D \neq 0$—invers ada.</li>
+ <li><strong>Terapkan rumus</strong> $A^{-1} = \dfrac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$:<br>$$A^{-1} = \frac{1}{2}\begin{bmatrix} 2 & -4 \\ -1 & 3 \end{bmatrix} = \begin{bmatrix} 1 & -2 \\ -\frac{1}{2} & \frac{3}{2} \end{bmatrix}$$</li>
+ <li><strong>Verifikasi</strong>:<br>$$A \cdot A^{-1} = \begin{bmatrix} 3 & 4 \\ 1 & 2 \end{bmatrix}\begin{bmatrix} 1 & -2 \\ -\frac{1}{2} & \frac{3}{2} \end{bmatrix} = \begin{bmatrix} 3-2 & -6+6 \\ 1-1 & -2+3 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$ ✓</li>
+</ol>
+
+<p class="lesson-subheading">Soal 6: Invers Matriks Ordo $3 \times 3$ dengan Gauss-Jordan</p>
+<p class="lesson-text">Tentukan invers dari $A = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 5 & 6 & 0 \end{bmatrix}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Bentuk matriks augmentasi</strong> $[A \mid I]$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 4 & 0 & 1 & 0 \\ 5 & 6 & 0 & 0 & 0 & 1 \end{array} \right]$$</li>
+ <li><strong>$R_3 \leftarrow R_3 - 5R_1$</strong>:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 4 & 0 & 1 & 0 \\ 0 & -4 & -15 & -5 & 0 & 1 \end{array} \right]$$</li>
+ <li><strong>$R_3 \leftarrow R_3 + 4R_2$</strong>:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 4 & 0 & 1 & 0 \\ 0 & 0 & 1 & -5 & 4 & 1 \end{array} \right]$$</li>
+ <li><strong>$R_2 \leftarrow R_2 - 4R_3$</strong>:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 3 & 1 & 0 & 0 \\ 0 & 1 & 0 & 20 & -15 & -4 \\ 0 & 0 & 1 & -5 & 4 & 1 \end{array} \right]$$</li>
+ <li><strong>$R_1 \leftarrow R_1 - 3R_3$</strong>:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 0 & 16 & -12 & -3 \\ 0 & 1 & 0 & 20 & -15 & -4 \\ 0 & 0 & 1 & -5 & 4 & 1 \end{array} \right]$$</li>
+ <li><strong>$R_1 \leftarrow R_1 - 2R_2$</strong>:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 0 & 0 & -24 & 18 & 5 \\ 0 & 1 & 0 & 20 & -15 & -4 \\ 0 & 0 & 1 & -5 & 4 & 1 \end{array} \right]$$</li>
+ <li><strong>Hasil</strong>:<br>$$A^{-1} = \begin{bmatrix} -24 & 18 & 5 \\ 20 & -15 & -4 \\ -5 & 4 & 1 \end{bmatrix}$$</li>
+ <li><strong>Verifikasi</strong> salah satu elemen: hitung $(A \cdot A^{-1})_{11} = (1)(-24)+(2)(20)+(3)(-5) = -24+40-15 = 1$ ✓</li>
+</ol>
+
+<p class="lesson-subheading">Soal 7: Soal Cerita — Sistem Persamaan Linear $3 \times 3$ dengan Invers</p>
+<p class="lesson-text">Sebuah kedai minuman menjual tiga jenis minuman: kopi, teh, dan jus. Kedai menawarkan tiga paket bundling:</p>
+<ul>
+ <li><strong>Paket A</strong>: 2 kopi + 1 teh + 1 jus, dijual Rp60.000.</li>
+ <li><strong>Paket B</strong>: 1 kopi + 2 teh + 1 jus, dijual Rp57.000.</li>
+ <li><strong>Paket C</strong>: 1 kopi + 1 teh + 2 jus, dijual Rp63.000.</li>
+</ul>
+<p class="lesson-text">Tentukan harga satu gelas kopi, satu gelas teh, dan satu gelas jus menggunakan metode invers matriks.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Definisikan variabel</strong>: misalkan $x$ = harga kopi, $y$ = harga teh, dan $z$ = harga jus (semuanya dalam ribuan rupiah).</li>
+ <li><strong>Susun sistem persamaan</strong> dari ketiga paket:
+  <ul>
+   <li>Paket A: $2x + y + z = 60$</li>
+   <li>Paket B: $x + 2y + z = 57$</li>
+   <li>Paket C: $x + y + 2z = 63$</li>
+  </ul>
+ </li>
+ <li><strong>Bentuk $AX = B$</strong>:
+  $$A = \begin{bmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{bmatrix}, \quad X = \begin{bmatrix} x \\ y \\ z \end{bmatrix}, \quad B = \begin{bmatrix} 60 \\ 57 \\ 63 \end{bmatrix}$$
+ </li>
+ <li><strong>Hitung determinan $A$</strong> (untuk memastikan invers ada):
+  <ul>
+   <li>Ekspansi baris pertama:<br>$\det(A) = 2(2 \cdot 2 - 1 \cdot 1) - 1(1 \cdot 2 - 1 \cdot 1) + 1(1 \cdot 1 - 2 \cdot 1)$</li>
+   <li>$= 2(3) - 1(1) + 1(-1) = 6 - 1 - 1 = 4$</li>
+  </ul>
+  Karena $\det(A) = 4 \neq 0$, matriks <strong>invertible</strong>—invers ada.
+ </li>
+ <li><strong>Cari $A^{-1}$ dengan Gauss-Jordan</strong>. Bentuk augmentasi $[A \mid I]$:
+  $$\left[ \begin{array}{ccc|ccc} 2 & 1 & 1 & 1 & 0 & 0 \\ 1 & 2 & 1 & 0 & 1 & 0 \\ 1 & 1 & 2 & 0 & 0 & 1 \end{array} \right]$$
+  <ul>
+   <li>$R_1 \leftrightarrow R_2$ (agar pivot kiri atas = 1):<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 1 & 0 & 1 & 0 \\ 2 & 1 & 1 & 1 & 0 & 0 \\ 1 & 1 & 2 & 0 & 0 & 1 \end{array} \right]$$</li>
+   <li>$R_2 \leftarrow R_2 - 2R_1$ dan $R_3 \leftarrow R_3 - R_1$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 1 & 0 & 1 & 0 \\ 0 & -3 & -1 & 1 & -2 & 0 \\ 0 & -1 & 1 & 0 & -1 & 1 \end{array} \right]$$</li>
+   <li>$R_2 \leftrightarrow R_3$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 1 & 0 & 1 & 0 \\ 0 & -1 & 1 & 0 & -1 & 1 \\ 0 & -3 & -1 & 1 & -2 & 0 \end{array} \right]$$</li>
+   <li>$R_2 \leftarrow -R_2$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 1 & 0 & 1 & 0 \\ 0 & 1 & -1 & 0 & 1 & -1 \\ 0 & -3 & -1 & 1 & -2 & 0 \end{array} \right]$$</li>
+   <li>$R_3 \leftarrow R_3 + 3R_2$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 1 & 0 & 1 & 0 \\ 0 & 1 & -1 & 0 & 1 & -1 \\ 0 & 0 & -4 & 1 & 1 & -3 \end{array} \right]$$</li>
+   <li>$R_3 \leftarrow -\tfrac{1}{4}R_3$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 1 & 0 & 1 & 0 \\ 0 & 1 & -1 & 0 & 1 & -1 \\ 0 & 0 & 1 & -\tfrac{1}{4} & -\tfrac{1}{4} & \tfrac{3}{4} \end{array} \right]$$</li>
+   <li>$R_2 \leftarrow R_2 + R_3$ dan $R_1 \leftarrow R_1 - R_3$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 2 & 0 & \tfrac{1}{4} & \tfrac{5}{4} & -\tfrac{3}{4} \\ 0 & 1 & 0 & -\tfrac{1}{4} & \tfrac{3}{4} & -\tfrac{1}{4} \\ 0 & 0 & 1 & -\tfrac{1}{4} & -\tfrac{1}{4} & \tfrac{3}{4} \end{array} \right]$$</li>
+   <li>$R_1 \leftarrow R_1 - 2R_2$:<br>$$\left[ \begin{array}{ccc|ccc} 1 & 0 & 0 & \tfrac{3}{4} & -\tfrac{1}{4} & -\tfrac{1}{4} \\ 0 & 1 & 0 & -\tfrac{1}{4} & \tfrac{3}{4} & -\tfrac{1}{4} \\ 0 & 0 & 1 & -\tfrac{1}{4} & -\tfrac{1}{4} & \tfrac{3}{4} \end{array} \right]$$</li>
+  </ul>
+  Maka:
+  $$A^{-1} = \frac{1}{4}\begin{bmatrix} 3 & -1 & -1 \\ -1 & 3 & -1 \\ -1 & -1 & 3 \end{bmatrix}$$
+ </li>
+ <li><strong>Hitung $X = A^{-1}B$</strong>:
+  $$X = \frac{1}{4}\begin{bmatrix} 3 & -1 & -1 \\ -1 & 3 & -1 \\ -1 & -1 & 3 \end{bmatrix}\begin{bmatrix} 60 \\ 57 \\ 63 \end{bmatrix}$$
+  <ul>
+   <li>Baris 1: $\dfrac{3(60) - 1(57) - 1(63)}{4} = \dfrac{180 - 57 - 63}{4} = \dfrac{60}{4} = 15$</li>
+   <li>Baris 2: $\dfrac{-1(60) + 3(57) - 1(63)}{4} = \dfrac{-60 + 171 - 63}{4} = \dfrac{48}{4} = 12$</li>
+   <li>Baris 3: $\dfrac{-1(60) - 1(57) + 3(63)}{4} = \dfrac{-60 - 57 + 189}{4} = \dfrac{72}{4} = 18$</li>
+  </ul>
+  Hasil: $X = \begin{bmatrix} 15 \\ 12 \\ 18 \end{bmatrix}$—yaitu $x = 15$, $y = 12$, $z = 18$.
+ </li>
+ <li><strong>Verifikasi ke ketiga persamaan asli</strong>:
+  <ul>
+   <li>Paket A: $2(15) + 12 + 18 = 30 + 12 + 18 = 60$ ✓</li>
+   <li>Paket B: $15 + 2(12) + 18 = 15 + 24 + 18 = 57$ ✓</li>
+   <li>Paket C: $15 + 12 + 2(18) = 15 + 12 + 36 = 63$ ✓</li>
+  </ul>
+ </li>
+ <li><strong>Kesimpulan</strong>: harga kopi <strong>Rp15.000</strong>, harga teh <strong>Rp12.000</strong>, dan harga jus <strong>Rp18.000</strong>.</li>
+</ol>
+<p class="lesson-text">Contoh ini memperlihatkan penggunaan invers matriks untuk menyelesaikan sistem persamaan linear dengan tiga variabel—sesuai dengan aplikasi nyata dalam ekonomi dan bisnis. Langkah verifikasi ke <em>semua</em> persamaan asli bersifat wajib: jika salah satu tidak terpenuhi, berarti sistem tidak konsisten dan solusi tidak valid untuk seluruh data.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menukar indeks $i$ dan $j$ pada notasi $a_{ij}$.</strong> $a_{ij}$ berarti baris ke-$i$, kolom ke-$j$. Membalik urutan akan menghasilkan elemen yang salah—kebiasaan menghafal "i dulu, baru j" akan menyelamatkan Anda dari kesalahan ini.</li>
+  <li><strong>Menganggap perkalian matriks komutatif ($AB = BA$).</strong> Perkalian matriks <em>tidak</em> komutatif. Bahkan jika $AB$ terdefinisi, $BA$ belum tentu terdefinisi karena syarat ordo bisa gagal di salah satu arah.</li>
+  <li><strong>Salah menentukan ordo hasil perkalian.</strong> Untuk $A_{m \times n} \times B_{p \times q}$ dengan $n = p$, hasilnya berordo $m \times q$—baris kiri × kolom kanan. Kebiasaan menuliskan ordo di samping matriks akan menyelamatkan dari kesalahan ini.</li>
+  <li><strong>Lupa membalik urutan pada transpose perkalian.</strong> $(AB)^T = B^T A^T$—<em>bukan</em> $A^T B^T$. Urutan harus dibalik, sama seperti pada invers perkalian.</li>
+  <li><strong>Mencari invers pada matriks dengan determinan nol.</strong> Jika $\det(A) = 0$, matriks singular dan tidak memiliki invers. Jangan dipaksakan menghitung—akan terjadi pembagian dengan nol yang tidak terdefinisi.</li>
+  <li><strong>Salah menerapkan rumus invers $2 \times 2$.</strong> Posisi $a$ dan $d$ bertukar, sedangkan $b$ dan $c$ berubah tanda. Pastikan urutannya benar: $\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$.</li>
+  <li><strong>Melupakan syarat ordo pada penjumlahan.</strong> Penjumlahan matriks hanya sah jika ordonya sama persis. Matriks $2 \times 3$ tidak bisa dijumlahkan dengan matriks $2 \times 2$.</li>
+  <li><strong>Menganggap $AA^{-1} = I$ tetapi $A^{-1}A \neq I$.</strong> Untuk matriks persegi, jika $A^{-1}$ ada, maka $AA^{-1} = A^{-1}A = I$—keduanya harus sama.</li>
+  <li><strong>Tidak konsisten dalam operasi baris elementer.</strong> Saat melakukan Gauss-Jordan, setiap operasi harus diterapkan pada <em>seluruh baris</em>—termasuk bagian identitas di sebelah kanan. Melupakan bagian kanan akan menghasilkan jawaban yang salah.</li>
+  <li><strong>Menganggap semua matriks persegi memiliki invers.</strong> Hanya matriks dengan determinan $\neq 0$ yang memiliki invers. Matriks seperti $\begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix}$ adalah singular—tidak memiliki invers.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <ul>
+  <li><strong>Matriks</strong> adalah susunan bilangan dalam baris dan kolom. <strong>Ordo</strong> dinyatakan sebagai $m \times n$ (baris × kolom).</li>
+  <li><strong>Notasi</strong> $a_{ij}$: $i$ = baris (dari atas), $j$ = kolom (dari kiri).</li>
+  <li><strong>Penjumlahan dan pengurangan</strong> mensyaratkan ordo sama; operasi dilakukan elemen per elemen.</li>
+  <li><strong>Perkalian skalar</strong> mengalikan setiap elemen dengan skalar—tidak memerlukan syarat ordo khusus.</li>
+  <li><strong>Perkalian matriks</strong> mensyaratkan kolom kiri = baris kanan. Hasilnya diperoleh dari "baris × kolom" (yaitu dot product). Perkalian matriks <strong>tidak komutatif</strong>.</li>
+  <li><strong>Transpose</strong> ($A^T$) menukar baris dan kolom. Sifat penting: $(AB)^T = B^T A^T$.</li>
+  <li><strong>Invers</strong> ($A^{-1}$) hanya ada untuk matriks persegi dengan <strong>determinan ≠ 0</strong>:
+   <ul>
+    <li>Untuk $2 \times 2$: $A^{-1} = \dfrac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$.</li>
+    <li>Untuk $n \ge 3$: gunakan <strong>eliminasi Gauss-Jordan</strong>—$[A \mid I] \to [I \mid A^{-1}]$.</li>
+   </ul>
+  </li>
+  <li><strong>Sifat invers</strong>: $(AB)^{-1} = B^{-1}A^{-1}$ dan $(A^T)^{-1} = (A^{-1})^T$.</li>
+  <li><strong>Penggunaan invers</strong>: menyelesaikan sistem persamaan linear $AX = B$ dengan $X = A^{-1}B$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Matriks adalah <strong>bahasa universal untuk memproses data multidimensi</strong> dan merepresentasikan transformasi linear. Kunci untuk menguasai matriks terletak pada disiplin terhadap ordo dan pemahaman mekanis tentang indeks ($a_{ij}$). Kesalahan kecil dalam indeks atau syarat perkalian akan merambat menjadi kesalahan besar pada hasil akhir—dan dalam aplikasi nyata seperti grafika komputer atau machine learning, kesalahan semacam ini bisa berakibat fatal.</p>
+ <p class="lesson-text">Yang membuat matriks istimewa adalah <strong>kekayaan strukturnya</strong>. Hampir setiap jenis matriks memiliki sifat khusus yang dapat dimanfaatkan: matriks diagonal mudah diinvers, matriks simetris memiliki nilai eigen real, matriks ortogonal mempertahankan panjang. Memahami struktur matriks berarti memahami <em>mengapa</em> operasi tertentu bekerja—dan ini akan menyelamatkan Anda saat berhadapan dengan matriks berukuran besar di dunia nyata.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Determinan</strong> (yang menentukan apakah matriks invertible dan menjadi fondasi Aturan Cramer), <strong>Ruang Vektor</strong> (yang mengabstraksi matriks menjadi transformasi linear antar ruang vektor), <strong>Transformasi Linear</strong> (yang mempelajari matriks sebagai pemetaan antar vektor), <strong>Nilai Eigen &amp; Vektor Eigen</strong> (yang mencari vektor yang hanya "diregangkan" oleh matriks), <strong>Dekomposisi Matriks</strong> (LU, QR, SVD—yang memecah matriks kompleks menjadi matriks-matriks sederhana), dan <strong>Aljabar Linear Numerik</strong> (yang mempelajari algoritma efisien untuk operasi matriks berukuran besar).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan perkalian matriks dan eliminasi Gauss-Jordan. Kebiasaan menuliskan ordo di samping setiap matriks sebelum melakukan operasi, konsisten dalam menerapkan operasi baris pada <em>seluruh</em> baris, dan memverifikasi hasil dengan substitusi balik akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik determinan dan ruang vektor, di mana operasi pada matriks menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

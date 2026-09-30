@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Dekomposisi Matriks (LU, QR, SVD, dan Pseudoinverse)</title>
+ <meta name="description" content="Dekomposisi matriks: LU, QR, SVD, dan pseudoinverse Moore-Penrose, koneksinya dengan nilai eigen, aplikasi least squares, serta stabilitas numeriknya.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Dekomposisi Matriks (LU, QR, SVD, dan Pseudoinverse)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Nilai Eigen &amp; Vektor Eigen</strong> — karena SVD dibangun langsung dari nilai eigen matriks $A^TA$, dan diagonalisasi adalah "dekomposisi pertama" yang menjadi titik tolak materi ini.</li>
+   <li><strong>Matriks</strong> — terutama perkalian matriks, invers, dan operasi baris elementer, karena seluruh dekomposisi bertumpu pada manipulasi matriks.</li>
+   <li><strong>Ruang Vektor</strong> — terutama konsep basis ortogonal dan proyeksi, karena dekomposisi QR dibangun melalui proses Gram-Schmidt yang menggunakan proyeksi ortogonal.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi Nilai Eigen &amp; Vektor Eigen, kita telah mempelajari <strong>diagonalisasi</strong>: mengubah matriks $A$ menjadi matriks diagonal $D$ melalui $A = PDP^{-1}$. Diagonalisasi adalah bentuk dekomposisi pertama yang kita kenal—dan ia sangat berguna karena matriks diagonal mudah dihitung. Namun, diagonalisasi memiliki dua keterbatasan serius yang membuatnya tidak selalu dapat diterapkan.</p>
+ <p class="lesson-text"><strong>Keterbatasan pertama</strong>: diagonalisasi hanya berlaku untuk matriks <em>persegi</em>. Matriks non-persegi—seperti matriks data berordo $1000 \times 50$ yang sering muncul dalam machine learning—tidak memiliki nilai eigen, sehingga tidak dapat didiagonalisasi. <strong>Keterbatasan kedua</strong>: tidak semua matriks persegi dapat didiagonalisasi. Matriks seperti $\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$ hanya memiliki satu vektor eigen bebas linear—tidak cukup untuk membentuk basis.</p>
+ <p class="lesson-text">Untuk mengatasi keterbatasan ini, matematikawan mengembangkan berbagai <strong>dekomposisi matriks</strong>—yaitu memecah satu matriks menjadi perkalian beberapa matriks yang lebih sederhana. Setiap dekomposisi memiliki keunggulan tersendiri dan digunakan dalam konteks yang berbeda. Yang menarik, dekomposisi terkuat di antara semuanya—SVD—justru <strong>dibangun dari nilai eigen</strong> matriks $A^TA$. Jadi, materi ini bukanlah topik yang terlepas dari sebelumnya—melainkan kelanjutan alami yang memanfaatkan fondasi nilai eigen yang sudah Anda kuasai.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dimulai dari koneksi dengan nilai eigen, lalu empat dekomposisi utama—<strong>LU</strong> (untuk sistem persamaan), <strong>QR</strong> (untuk least squares), <strong>SVD</strong> (dekomposisi universal), dan <strong>pseudoinverse</strong> (generalisasi invers)—dilanjutkan dengan perbandingan stabilitas numerik, contoh soal, dan diakhiri dengan kesalahan umum. Setiap dekomposisi akan dijelaskan dengan <em>alasan mengapa</em> ia berguna—bukan hanya cara menghitungnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Koneksi dengan Nilai Eigen</h3>
+ <p class="lesson-text">Sebelum masuk ke masing-masing dekomposisi, mari kita lihat bagaimana keempatnya berhubungan dengan diagonalisasi yang sudah kita pelajari—karena memahami hubungan ini akan membuat seluruh materi terasa lebih koheren.</p>
+
+ <p class="lesson-subheading">A. Diagonalisasi sebagai Dekomposisi Pertama</p>
+ <p class="lesson-text">Diagonalisasi $A = PDP^{-1}$ memecah matriks $A$ menjadi tiga bagian: $P$ (kolomnya adalah vektor eigen), $D$ (diagonal, berisi nilai eigen), dan $P^{-1}$ (invers dari $P$). Syaratnya: $A$ harus persegi dan memiliki $n$ vektor eigen bebas linear.</p>
+
+ <p class="lesson-subheading">B. Empat Dekomposisi dan Perannya</p>
+ <p class="lesson-text">Setiap dekomposisi yang akan kita pelajari menutupi keterbatasan diagonalisasi dengan cara yang berbeda:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Dekomposisi</th>
+     <th>Syarat</th>
+     <th>Kegunaan Utama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td><strong>LU</strong></td><td>Matriks persegi</td><td>Menyelesaikan sistem persamaan berulang</td></tr>
+    <tr><td><strong>QR</strong></td><td>Matriks $m \times n$ dengan $m \geq n$</td><td>Least squares, pencarian nilai eigen</td></tr>
+    <tr><td><strong>SVD</strong></td><td>Semua matriks</td><td>Kompresi data, PCA, sistem rekomendasi</td></tr>
+    <tr><td><strong>Pseudoinverse</strong></td><td>Semua matriks</td><td>Solusi sistem yang tidak konsisten</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text"><strong>Hubungan kunci SVD dengan nilai eigen:</strong> nilai singular dalam SVD adalah <strong>akar kuadrat dari nilai eigen</strong> matriks $A^TA$ (atau $AA^T$). Jadi SVD benar-benar merupakan "diagonalisasi yang digeneralisasi" untuk semua matriks—termasuk matriks non-persegi dan matriks yang tidak dapat didiagonalisasi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Dekomposisi LU (Lower-Upper)</h3>
+ <p class="lesson-text">Dekomposisi paling sederhana—dan yang paling intuitif—adalah LU. Ia tidak memerlukan nilai eigen sama sekali.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Dekomposisi LU</strong> adalah pemfaktoran matriks persegi $A$ menjadi perkalian dua matriks segitiga:</p>
+ <p class="lesson-text">$$A = LU$$</p>
+ <p class="lesson-text">di mana $L$ adalah matriks <strong>segitiga bawah</strong> (<em>lower triangular</em>) dengan diagonal utama bernilai 1, dan $U$ adalah matriks <strong>segitiga atas</strong> (<em>upper triangular</em>).</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 280" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel 1: A -->
+   <text x="120" y="30" fill="#e8e8e8" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">A</text>
+   <rect x="40" y="50" width="160" height="160" fill="#2a2a2a" stroke="#e8e8e8" stroke-width="1.5"/>
+   <text x="120" y="135" fill="#e8e8e8" font-size="28" text-anchor="middle" font-weight="700">A</text>
+   <text x="120" y="240" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">matriks umum</text>
+
+   <!-- = -->
+   <text x="240" y="140" fill="#b8b8b8" font-size="26" text-anchor="middle">=</text>
+
+   <!-- Panel 2: L -->
+   <text x="360" y="30" fill="#daa520" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">L</text>
+   <rect x="280" y="50" width="160" height="160" fill="#2a2a2a" stroke="#daa520" stroke-width="1.5"/>
+   <!-- Segitiga bawah L -->
+   <polygon points="280,50 280,210 440,210" fill="#daa520" fill-opacity="0.18"/>
+   <!-- Diagonal 1s -->
+   <circle cx="306" cy="76" r="5" fill="#f0c75e"/>
+   <circle cx="346" cy="116" r="5" fill="#f0c75e"/>
+   <circle cx="386" cy="156" r="5" fill="#f0c75e"/>
+   <!-- Nol di atas diagonal -->
+   <text x="366" y="76" fill="#666" font-size="14" text-anchor="middle">0</text>
+   <text x="406" y="76" fill="#666" font-size="14" text-anchor="middle">0</text>
+   <text x="406" y="116" fill="#666" font-size="14" text-anchor="middle">0</text>
+   <text x="360" y="240" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">segitiga bawah, diagonal = 1</text>
+
+   <!-- × -->
+   <text x="470" y="140" fill="#b8b8b8" font-size="22" text-anchor="middle">×</text>
+
+   <!-- Panel 3: U -->
+   <text x="600" y="30" fill="#5dade2" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">U</text>
+   <rect x="520" y="50" width="160" height="160" fill="#2a2a2a" stroke="#5dade2" stroke-width="1.5"/>
+   <!-- Segitiga atas U -->
+   <polygon points="520,50 680,50 680,210" fill="#5dade2" fill-opacity="0.18"/>
+   <!-- Nol di bawah diagonal -->
+   <text x="546" y="176" fill="#666" font-size="14" text-anchor="middle">0</text>
+   <text x="546" y="196" fill="#666" font-size="14" text-anchor="middle">0</text>
+   <text x="586" y="196" fill="#666" font-size="14" text-anchor="middle">0</text>
+   <text x="600" y="240" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">segitiga atas</text>
+  </svg>
+  <figcaption class="visual-caption">Dekomposisi LU memecah matriks $A$ menjadi matriks segitiga bawah $L$ (dengan diagonal 1) dan matriks segitiga atas $U$. Struktur segitiga inilah yang membuat penyelesaian sistem menjadi sangat mudah.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Syarat Keberadaan</p>
+ <p class="lesson-text">Dekomposisi LU <strong>tanpa penukaran baris</strong> ada jika dan hanya jika semua <strong>minor utama</strong> (<em>leading principal minors</em>) dari $A$ tidak nol. Minor utama ke-$k$ adalah determinan submatriks $k \times k$ yang diambil dari sudut kiri atas.</p>
+ <p class="lesson-text">Jika syarat ini tidak terpenuhi, kita masih bisa melakukan dekomposisi LU <strong>dengan penukaran baris</strong>, yang berbentuk $PA = LU$—di mana $P$ adalah matriks permutasi.</p>
+
+ <p class="lesson-subheading">C. Prosedur Perhitungan</p>
+ <ol>
+  <li>Lakukan eliminasi Gauss pada $A$ untuk mendapatkan matriks segitiga atas $U$.</li>
+  <li>Catat setiap pengali $m_{ij} = \dfrac{a_{ij}}{a_{jj}}$ yang digunakan untuk mengeliminasi elemen $a_{ij}$.</li>
+  <li>Susun matriks $L$ dengan menempatkan $m_{ij}$ pada posisi $(i,j)$, dan 1 pada diagonal utama.</li>
+ </ol>
+
+ <p class="lesson-subheading">D. Contoh Lengkap</p>
+ <p class="lesson-subheading-alt">Contoh 1 (dekomposisi LU $3 \times 3$):</p>
+ <p class="lesson-text">Dekomposisi LU dari $A = \begin{bmatrix} 2 & 1 & 1 \\ 4 & 3 & 3 \\ 8 & 7 & 9 \end{bmatrix}$.</p>
+ <p class="lesson-text"><strong>Langkah 1—Mencari $U$ melalui eliminasi Gauss:</strong></p>
+ <p class="lesson-text">Eliminasi kolom 1:</p>
+ <ul>
+  <li>$m_{21} = \dfrac{4}{2} = 2$. Baris 2 baru: $R_2 - 2R_1 = (0, 1, 1)$.</li>
+  <li>$m_{31} = \dfrac{8}{2} = 4$. Baris 3 baru: $R_3 - 4R_1 = (0, 3, 5)$.</li>
+ </ul>
+ <p class="lesson-text">Eliminasi kolom 2:</p>
+ <ul>
+  <li>$m_{32} = \dfrac{3}{1} = 3$. Baris 3 baru: $R_3 - 3R_2 = (0, 0, 2)$.</li>
+ </ul>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$U = \begin{bmatrix} 2 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{bmatrix}, \quad L = \begin{bmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 4 & 3 & 1 \end{bmatrix}$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $LU = \begin{bmatrix} 2 & 1 & 1 \\ 4 & 3 & 3 \\ 8 & 7 & 9 \end{bmatrix} = A$. ✓</p>
+
+ <p class="lesson-subheading">E. Aplikasi: Menyelesaikan Sistem Persamaan Linear</p>
+ <p class="lesson-text">Dekomposisi LU sangat berguna ketika kita perlu menyelesaikan $A\mathbf{x} = \mathbf{b}$ untuk <strong>banyak</strong> vektor $\mathbf{b}$ yang berbeda dengan matriks $A$ yang sama. Prosedurnya:</p>
+ <ol>
+  <li>Faktorkan $A = LU$.</li>
+  <li>Selesaikan $L\mathbf{y} = \mathbf{b}$ untuk $\mathbf{y}$—substitusi maju (mudah karena $L$ segitiga bawah).</li>
+  <li>Selesaikan $U\mathbf{x} = \mathbf{y}$ untuk $\mathbf{x}$—substitusi mundur (mudah karena $U$ segitiga atas).</li>
+ </ol>
+ <p class="lesson-text">Keuntungan utama: faktorisasi $A = LU$ hanya dilakukan <strong>sekali</strong>, lalu digunakan untuk semua $\mathbf{b}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Dekomposisi QR</h3>
+ <p class="lesson-text">Dekomposisi berikutnya memperkenalkan konsep ortogonalitas—yang menjadi kunci stabilitas numerik.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Dekomposisi QR</strong> adalah pemfaktoran matriks $A$ berordo $m \times n$ (dengan $m \geq n$) menjadi:</p>
+ <p class="lesson-text">$$A = QR$$</p>
+ <p class="lesson-text">di mana $Q$ adalah matriks <strong>ortogonal</strong> ($Q^TQ = I$)—kolom-kolomnya saling tegak lurus dan bernorma 1—dan $R$ adalah matriks <strong>segitiga atas</strong>.</p>
+ <p class="lesson-text"><strong>Intuisi:</strong> dekomposisi QR adalah "versi ortogonalisasi" dari matriks. Matriks $Q$ kolom-kolomnya membentuk basis ortonormal, sedangkan $R$ menyimpan informasi tentang kombinasi linear yang dibutuhkan untuk merekonstruksi kolom-kolom asli $A$.</p>
+
+ <p class="lesson-subheading">B. Prosedur: Proses Gram-Schmidt</p>
+ <p class="lesson-text">Untuk matriks $A$ dengan kolom $\mathbf{a}_1, \mathbf{a}_2, \dots, \mathbf{a}_n$, kita membangun kolom-kolom ortonormal $\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_n$ secara bertahap:</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> normalisasi kolom pertama: $\mathbf{q}_1 = \dfrac{\mathbf{a}_1}{\|\mathbf{a}_1\|}$.</p>
+ <p class="lesson-text"><strong>Langkah 2:</strong> untuk kolom kedua, kurangi proyeksinya ke $\mathbf{q}_1$, lalu normalisasi:</p>
+ <p class="lesson-text">$$\mathbf{v}_2 = \mathbf{a}_2 - (\mathbf{a}_2 \cdot \mathbf{q}_1)\mathbf{q}_1, \qquad \mathbf{q}_2 = \frac{\mathbf{v}_2}{\|\mathbf{v}_2\|}$$</p>
+ <p class="lesson-text"><strong>Langkah ke-$k$:</strong></p>
+ <p class="lesson-text">$$\mathbf{v}_k = \mathbf{a}_k - \sum_{j=1}^{k-1} (\mathbf{a}_k \cdot \mathbf{q}_j)\mathbf{q}_j, \qquad \mathbf{q}_k = \frac{\mathbf{v}_k}{\|\mathbf{v}_k\|}$$</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 340" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Title -->
+   <text x="360" y="28" fill="#daa520" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Gram-Schmidt: Ortogonalisasi Kolom</text>
+
+   <!-- Panel 1: Original vectors -->
+   <text x="140" y="60" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Kolom asli</text>
+   <line x1="60" y1="240" x2="240" y2="240" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="140" y1="280" x2="140" y2="100" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <!-- a1 -->
+   <line x1="140" y1="240" x2="220" y2="180" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="220,180 208,182 213,191" fill="#daa520"/>
+   <text x="228" y="176" fill="#daa520" font-size="13" font-weight="700" font-style="italic">a₁</text>
+
+   <!-- a2 -->
+   <line x1="140" y1="240" x2="200" y2="130" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="200,130 189,136 196,143" fill="#5dade2"/>
+   <text x="206" y="126" fill="#5dade2" font-size="13" font-weight="700" font-style="italic">a₂</text>
+
+   <circle cx="140" cy="240" r="4" fill="#e8e8e8"/>
+
+   <!-- Arrow -->
+   <line x1="270" y1="190" x2="320" y2="190" stroke="#f0c75e" stroke-width="2.5"/>
+   <polygon points="328,190 315,184 315,196" fill="#f0c75e"/>
+   <text x="298" y="178" fill="#f0c75e" font-size="12" text-anchor="middle" font-style="italic">Gram–Schmidt</text>
+
+   <!-- Panel 2: Ortonormal vectors -->
+   <text x="500" y="60" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Kolom ortonormal</text>
+   <line x1="420" y1="240" x2="600" y2="240" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="500" y1="280" x2="500" y2="100" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <!-- q1 (same direction as a1, normalized) -->
+   <line x1="500" y1="240" x2="570" y2="187" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="570,187 558,189 563,198" fill="#daa520"/>
+   <text x="578" y="184" fill="#daa520" font-size="13" font-weight="700" font-style="italic">q₁</text>
+
+   <!-- q2 (perpendicular to q1) -->
+   <line x1="500" y1="240" x2="540" y2="160" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="540,160 531,168 540,173" fill="#5dade2"/>
+   <text x="548" y="158" fill="#5dade2" font-size="13" font-weight="700" font-style="italic">q₂</text>
+
+   <!-- Sudut siku-siku kecil -->
+   <polyline points="524,220 536,213 545,226" fill="none" stroke="#b8b8b8" stroke-width="1.2"/>
+   <text x="535" y="205" fill="#b8b8b8" font-size="10" font-style="italic">90°</text>
+
+   <circle cx="500" cy="240" r="4" fill="#e8e8e8"/>
+
+   <!-- Caption -->
+   <text x="360" y="322" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Kolom-kolom $A$ diubah menjadi kolom-kolom ortonormal $Q$ dengan arah yang sama untuk kolom pertama, dan tegak lurus untuk kolom-kolom berikutnya.</text>
+  </svg>
+  <figcaption class="visual-caption">Proses Gram-Schmidt mengubah kolom-kolom asli menjadi kolom-kolom ortonormal. Kolom pertama dipertahankan arahnya (hanya dinormalisasi); kolom berikutnya diortogonalisasi terhadap semua kolom sebelumnya, lalu dinormalisasi.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Elemen-elemen $R$:</strong></p>
+ <ul>
+  <li>$r_{ij} = \mathbf{a}_j \cdot \mathbf{q}_i$ untuk $i < j$.</li>
+  <li>$r_{jj} = \|\mathbf{v}_j\|$.</li>
+  <li>$r_{ij} = 0$ untuk $i > j$.</li>
+ </ul>
+ <p class="lesson-subheading">C. Contoh Perhitungan</p>
+<p class="lesson-subheading-alt">Contoh 2 (dekomposisi QR matriks $3 \times 2$):</p>
+<p class="lesson-text">Dekomposisi QR dari $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \\ 0 & 1 \end{bmatrix}$.</p>
+<p class="lesson-text"><strong>Langkah 1—Identifikasi kolom:</strong> $\mathbf{a}_1 = (1, 1, 0)$ dan $\mathbf{a}_2 = (1, 0, 1)$.</p>
+<p class="lesson-text"><strong>Langkah 2—Kolom pertama $Q$:</strong></p>
+<ul>
+ <li>$\|\mathbf{a}_1\| = \sqrt{1^2 + 1^2 + 0^2} = \sqrt{2}$</li>
+ <li>$\mathbf{q}_1 = \dfrac{(1, 1, 0)}{\sqrt{2}} = \left(\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}, 0\right)$</li>
+</ul>
+<p class="lesson-text"><strong>Langkah 3—Kolom kedua $Q$:</strong></p>
+<ul>
+ <li>Proyeksi $\mathbf{a}_2$ ke $\mathbf{q}_1$: $\mathbf{a}_2 \cdot \mathbf{q}_1 = \dfrac{1 + 0 + 0}{\sqrt{2}} = \dfrac{1}{\sqrt{2}}$</li>
+ <li>$\mathbf{v}_2 = \mathbf{a}_2 - \left(\dfrac{1}{\sqrt{2}}\right)\mathbf{q}_1 = (1, 0, 1) - \left(\tfrac{1}{2}, \tfrac{1}{2}, 0\right) = \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right)$</li>
+ <li>$\|\mathbf{v}_2\| = \sqrt{\tfrac{1}{4} + \tfrac{1}{4} + 1} = \sqrt{\tfrac{3}{2}} = \dfrac{\sqrt{6}}{2}$</li>
+ <li>$\mathbf{q}_2 = \dfrac{\mathbf{v}_2}{\|\mathbf{v}_2\|} = \left(\tfrac{1}{\sqrt{6}}, -\tfrac{1}{\sqrt{6}}, \tfrac{2}{\sqrt{6}}\right)$</li>
+</ul>
+<p class="lesson-text"><strong>Langkah 4—Matriks $R$:</strong> elemen $r_{ij}$ dengan $r_{11} = \|\mathbf{a}_1\|$, $r_{12} = \mathbf{a}_2 \cdot \mathbf{q}_1$, $r_{22} = \|\mathbf{v}_2\|$, dan $r_{21} = 0$:</p>
+<p class="lesson-text">$$R = \begin{bmatrix} \sqrt{2} & \dfrac{1}{\sqrt{2}} \\[6pt] 0 & \dfrac{\sqrt{6}}{2} \end{bmatrix}$$</p>
+<p class="lesson-text"><strong>Hasil:</strong> $A = QR$ dengan</p>
+<p class="lesson-text">$$Q = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{6}} \\[3pt] \tfrac{1}{\sqrt{2}} & -\tfrac{1}{\sqrt{6}} \\[3pt] 0 & \tfrac{2}{\sqrt{6}} \end{bmatrix}, \qquad R = \begin{bmatrix} \sqrt{2} & \tfrac{1}{\sqrt{2}} \\[3pt] 0 & \tfrac{\sqrt{6}}{2} \end{bmatrix}$$</p>
+<p class="lesson-text"><strong>Verifikasi $QR = A$:</strong></p>
+<ul>
+ <li>Kolom 1: $\sqrt{2} \cdot \mathbf{q}_1 = \sqrt{2}\left(\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}, 0\right) = (1, 1, 0) = \mathbf{a}_1$ ✓</li>
+ <li>Kolom 2: $\dfrac{1}{\sqrt{2}}\mathbf{q}_1 + \dfrac{\sqrt{6}}{2}\mathbf{q}_2 = \left(\tfrac{1}{2}, \tfrac{1}{2}, 0\right) + \left(\tfrac{1}{2}, -\tfrac{1}{2}, 1\right) = (1, 0, 1) = \mathbf{a}_2$ ✓</li>
+</ul>
+<p class="lesson-text"><strong>Verifikasi ortogonalitas $Q$</strong>: $\mathbf{q}_1 \cdot \mathbf{q}_2 = \dfrac{1}{\sqrt{12}} - \dfrac{1}{\sqrt{12}} + 0 = 0$ ✓—kolom-kolom $Q$ saling tegak lurus, sesuai definisi matriks ortogonal.</p>
+
+ <p class="lesson-subheading">D. Aplikasi: Masalah Kuadrat Terkecil</p>
+ <p class="lesson-text">Dekomposisi QR sangat berguna untuk <strong>masalah kuadrat terkecil</strong> (<em>least squares</em>)—yaitu mencari $\mathbf{x}$ yang meminimalkan $\|A\mathbf{x} - \mathbf{b}\|^2$ ketika sistem $A\mathbf{x} = \mathbf{b}$ tidak memiliki solusi eksak.</p>
+ <p class="lesson-text">Dengan $A = QR$, solusi kuadrat terkecil diberikan oleh:</p>
+ <p class="lesson-text">$$R\mathbf{x} = Q^T\mathbf{b}$$</p>
+ <p class="lesson-text">Ini adalah sistem segitiga atas yang mudah diselesaikan dengan substitusi mundur. <strong>Mengapa bekerja?</strong> Karena $Q$ ortogonal, $\|A\mathbf{x} - \mathbf{b}\| = \|QR\mathbf{x} - \mathbf{b}\| = \|R\mathbf{x} - Q^T\mathbf{b}\|$—sehingga meminimalkan bentuk ini setara dengan menyelesaikan $R\mathbf{x} = Q^T\mathbf{b}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Dekomposisi Nilai Singular (SVD)</h3>
+ <p class="lesson-text">SVD adalah <strong>puncak dari seluruh dekomposisi matriks</strong>—karena berlaku untuk semua matriks, tanpa syarat apa pun. Jika diagonalisasi adalah "raja" untuk matriks yang dapat didiagonalisasi, SVD adalah "raja" untuk semua matriks.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Singular Value Decomposition (SVD)</strong> menyatakan bahwa setiap matriks $A$ berordo $m \times n$ dapat difaktorkan menjadi:</p>
+ <p class="lesson-text">$$A = U\Sigma V^T$$</p>
+ <p class="lesson-text">di mana:</p>
+ <ul>
+  <li>$U$ adalah matriks ortogonal berordo $m \times m$—kolom-kolomnya disebut <strong>vektor singular kiri</strong>.</li>
+  <li>$\Sigma$ adalah matriks diagonal berordo $m \times n$ dengan elemen diagonal $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_{\min(m,n)} \geq 0$—disebut <strong>nilai singular</strong>.</li>
+  <li>$V$ adalah matriks ortogonal berordo $n \times n$—kolom-kolomnya disebut <strong>vektor singular kanan</strong>.</li>
+ </ul>
+ <p class="lesson-text">Nilai singular adalah akar kuadrat dari nilai eigen matriks $A^TA$:</p>
+ <p class="lesson-text">$$\sigma_i = \sqrt{\lambda_i(A^TA)}$$</p>
+
+ <p class="lesson-subheading">B. Interpretasi Geometris</p>
+ <p class="lesson-text">SVD memiliki interpretasi geometris yang sangat indah: <strong>setiap transformasi linear dapat dipandang sebagai kombinasi dari tiga operasi sederhana</strong>—rotasi, penskalaan, dan rotasi lagi.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 340" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Title -->
+   <text x="360" y="28" fill="#daa520" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">SVD: Lingkaran Satuan Dipetakan ke Elips</text>
+
+   <!-- Panel 1: Unit circle (domain) -->
+   <text x="130" y="60" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Domain</text>
+   <line x1="40" y1="200" x2="220" y2="200" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="130" y1="280" x2="130" y2="80" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <!-- Unit circle -->
+   <circle cx="130" cy="200" r="60" fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="2"/>
+
+   <!-- v1 dan v2 sebagai basis ortonormal -->
+   <line x1="130" y1="200" x2="190" y2="200" stroke="#5dade2" stroke-width="2"/>
+   <polygon points="190,200 178,196 178,204" fill="#5dade2"/>
+   <text x="196" y="205" fill="#5dade2" font-size="11" font-weight="700" font-style="italic">v₁</text>
+
+   <line x1="130" y1="200" x2="130" y2="140" stroke="#5dade2" stroke-width="2"/>
+   <polygon points="130,140 126,152 134,152" fill="#5dade2"/>
+   <text x="120" y="134" fill="#5dade2" font-size="11" font-weight="700" font-style="italic">v₂</text>
+
+   <circle cx="130" cy="200" r="3.5" fill="#e8e8e8"/>
+
+   <!-- Transformation arrow -->
+   <text x="270" y="175" fill="#f0c75e" font-size="22" text-anchor="middle">A =</text>
+   <text x="270" y="200" fill="#f0c75e" font-size="16" text-anchor="middle" font-style="italic">UΣVᵀ</text>
+   <line x1="310" y1="188" x2="380" y2="188" stroke="#f0c75e" stroke-width="2.5"/>
+   <polygon points="388,188 375,182 375,194" fill="#f0c75e"/>
+
+   <!-- Panel 2: Ellipse (image) -->
+   <text x="560" y="60" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Image</text>
+   <line x1="420" y1="200" x2="700" y2="200" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="560" y1="280" x2="560" y2="80" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <!-- Ellipse (image of unit circle) -->
+   <ellipse cx="560" cy="200" rx="110" ry="50" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="2" transform="rotate(-30 560 200)"/>
+
+   <!-- σ1 · u1 (semi-major axis) -->
+   <line x1="560" y1="200" x2="655" y2="145" stroke="#e74c3c" stroke-width="3"/>
+   <polygon points="655,145 643,144 646,154" fill="#e74c3c"/>
+   <text x="670" y="140" fill="#e74c3c" font-size="12" font-weight="700" font-style="italic">σ₁u₁</text>
+
+   <!-- σ2 · u2 (semi-minor axis) -->
+   <line x1="560" y1="200" x2="525" y2="156" stroke="#f0c75e" stroke-width="3"/>
+   <polygon points="525,156 533,164 526,169" fill="#f0c75e"/>
+   <text x="500" y="152" fill="#f0c75e" font-size="12" font-weight="700" font-style="italic">σ₂u₂</text>
+
+   <circle cx="560" cy="200" r="3.5" fill="#e8e8e8"/>
+
+   <!-- Info box -->
+   <text x="560" y="292" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">σ₁ = sumbu panjang · σ₂ = sumbu pendek</text>
+   <text x="560" y="310" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">(σ₁ ≥ σ₂ ≥ 0)</text>
+  </svg>
+  <figcaption class="visual-caption">SVD memetakan lingkaran satuan menjadi elips. Vektor singular kanan $V$ menentukan arah sumbu sebelum transformasi; vektor singular kiri $U$ menentukan arah sumbu setelah transformasi. Nilai singular $\sigma_1, \sigma_2$ adalah panjang semi-sumbu elips.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Dengan kata lain: SVD mengungkap <strong>arah-arah utama</strong> di mana transformasi linear meregangkan atau memampatkan ruang. Nilai singular menunjukkan <em>seberapa besar</em> peregangan pada masing-masing arah.</p>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Penting</p>
+ <ul>
+  <li><strong>Eksistensi universal:</strong> SVD ada untuk <em>setiap</em> matriks—persegi, non-persegi, singular, apa pun.</li>
+  <li><strong>Nilai singular selalu real dan non-negatif</strong>—karena merupakan akar kuadrat.</li>
+  <li><strong>Rank matriks</strong> = jumlah nilai singular yang tidak nol.</li>
+  <li><strong>Norma spektral</strong> $\|A\|_2 = \sigma_1$—nilai singular terbesar.</li>
+  <li><strong>Norma Frobenius</strong> $\|A\|_F = \sqrt{\sigma_1^2 + \dots + \sigma_r^2}$.</li>
+ </ul>
+ 
+ 
+
+ <p class="lesson-subheading">D. Cara Menghitung SVD</p>
+ <ol>
+  <li>Hitung $A^TA$ (matriks $n \times n$).</li>
+  <li>Cari nilai eigen $A^TA$: $\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n \geq 0$.</li>
+  <li>Nilai singular: $\sigma_i = \sqrt{\lambda_i}$.</li>
+  <li>Cari vektor eigen $A^TA$ yang ortonormal → kolom-kolom $V$.</li>
+  <li>Hitung vektor singular kiri: $\mathbf{u}_i = \dfrac{1}{\sigma_i}A\mathbf{v}_i$ untuk $\sigma_i > 0$.</li>
+  <li>Lengkapi $U$ menjadi matriks ortogonal $m \times m$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">E. Contoh Perhitungan</p>
+<p class="lesson-subheading-alt">Contoh 3 (SVD matriks simetris $2 \times 2$):</p>
+<p class="lesson-text">Cari SVD dari $A = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$.</p>
+<p class="lesson-text"><strong>Langkah 1—Hitung $A^TA$:</strong></p>
+<p class="lesson-text">$$A^TA = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}\begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix} = \begin{bmatrix} 10 & 6 \\ 6 & 10 \end{bmatrix}$$</p>
+<p class="lesson-text"><strong>Langkah 2—Cari nilai eigen $A^TA$:</strong></p>
+<p class="lesson-text">$$\det(A^TA - \lambda I) = (10-\lambda)^2 - 36 = 0 \Rightarrow 10 - \lambda = \pm 6$$</p>
+<p class="lesson-text">Jadi $\lambda_1 = 16$ dan $\lambda_2 = 4$.</p>
+<p class="lesson-text"><strong>Langkah 3—Nilai singular:</strong> $\sigma_1 = \sqrt{16} = 4$ dan $\sigma_2 = \sqrt{4} = 2$.</p>
+<p class="lesson-text"><strong>Langkah 4—Vektor singular kanan $V$:</strong></p>
+<ul>
+ <li>Untuk $\lambda_1 = 16$: $(A^TA - 16I) = \begin{bmatrix} -6 & 6 \\ 6 & -6 \end{bmatrix} \Rightarrow x = y \Rightarrow \mathbf{v}_1 = \left(\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\right)$.</li>
+ <li>Untuk $\lambda_2 = 4$: $(A^TA - 4I) = \begin{bmatrix} 6 & 6 \\ 6 & 6 \end{bmatrix} \Rightarrow y = -x \Rightarrow \mathbf{v}_2 = \left(\tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}\right)$.</li>
+</ul>
+<p class="lesson-text"><strong>Langkah 5—Vektor singular kiri $U$</strong> dengan $\mathbf{u}_i = \dfrac{1}{\sigma_i}A\mathbf{v}_i$:</p>
+<ul>
+ <li>$\mathbf{u}_1 = \dfrac{1}{4}\begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}\begin{bmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix} = \dfrac{1}{4}\begin{bmatrix} 4/\sqrt{2} \\ 4/\sqrt{2} \end{bmatrix} = \left(\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\right)$</li>
+ <li>$\mathbf{u}_2 = \dfrac{1}{2}\begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}\begin{bmatrix} 1/\sqrt{2} \\ -1/\sqrt{2} \end{bmatrix} = \dfrac{1}{2}\begin{bmatrix} 2/\sqrt{2} \\ -2/\sqrt{2} \end{bmatrix} = \left(\tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}\right)$</li>
+</ul>
+<p class="lesson-text"><strong>Hasil SVD:</strong></p>
+<p class="lesson-text">$$U = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \\[3pt] \tfrac{1}{\sqrt{2}} & -\tfrac{1}{\sqrt{2}} \end{bmatrix}, \quad \Sigma = \begin{bmatrix} 4 & 0 \\ 0 & 2 \end{bmatrix}, \quad V = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \\[3pt] \tfrac{1}{\sqrt{2}} & -\tfrac{1}{\sqrt{2}} \end{bmatrix}$$</p>
+<p class="lesson-text"><strong>Verifikasi $U\Sigma V^T = A$:</strong> karena $A$ simetris, kita peroleh $U = V$. Hitung $U\Sigma$ terlebih dahulu:</p>
+<p class="lesson-text">$$U\Sigma = \begin{bmatrix} 4/\sqrt{2} & 2/\sqrt{2} \\[3pt] 4/\sqrt{2} & -2/\sqrt{2} \end{bmatrix}$$</p>
+<p class="lesson-text">Lalu $(U\Sigma)V^T = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix} = A$ ✓</p>
+<p class="lesson-text"><strong>Catatan penting:</strong> untuk matriks simetris, SVD secara otomatis menjadi diagonalisasi ortogonal $A = QDQ^T$ dengan $Q = U = V$ dan $D = \Sigma$. Ini konsisten dengan <strong>Teorema Spektral</strong> yang telah kita pelajari di materi Nilai Eigen.</p>
+
+ <p class="lesson-subheading">F. Aplikasi: Kompresi dan Reduksi Dimensi</p>
+ <p class="lesson-text">SVD memungkinkan <strong>aproksimasi berperingkat rendah</strong>. Jika kita hanya mengambil $k$ nilai singular terbesar:</p>
+ <p class="lesson-text">$$A_k = \sum_{i=1}^{k} \sigma_i \mathbf{u}_i \mathbf{v}_i^T$$</p>
+ <p class="lesson-text"><strong>Teorema Eckart-Young:</strong> $A_k$ adalah matriks berperingkat $k$ yang paling mendekati $A$ dalam norma Frobenius. Inilah dasar dari kompresi gambar, sistem rekomendasi, dan PCA.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Pseudoinverse (Moore-Penrose)</h3>
+ <p class="lesson-text">Setelah memahami SVD, kita dapat mendefinisikan generalisasi invers yang berlaku untuk semua matriks.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Pseudoinverse</strong> dari matriks $A$ berordo $m \times n$—dinotasikan $A^+$—adalah matriks berordo $n \times m$ yang memenuhi empat kondisi Penrose:</p>
+ <ol>
+  <li>$AA^+A = A$</li>
+  <li>$A^+AA^+ = A^+$</li>
+  <li>$(AA^+)^T = AA^+$</li>
+  <li>$(A^+A)^T = A^+A$</li>
+ </ol>
+ <p class="lesson-text">Pseudoinverse selalu ada dan <strong>unik</strong> untuk setiap matriks.</p>
+
+ <p class="lesson-subheading">B. Rumus untuk Kasus Full Rank</p>
+ <p class="lesson-subheading-alt">Full column rank ($m \geq n$):</p>
+ <p class="lesson-text">$$A^+ = (A^TA)^{-1}A^T$$</p>
+ <p class="lesson-subheading-alt">Full row rank ($m \leq n$):</p>
+ <p class="lesson-text">$$A^+ = A^T(AA^T)^{-1}$$</p>
+
+ <p class="lesson-subheading">C. Rumus Umum melalui SVD</p>
+ <p class="lesson-text">Untuk kasus umum (termasuk matriks singular), gunakan SVD:</p>
+ <p class="lesson-text">$$A^+ = V\Sigma^+U^T$$</p>
+ <p class="lesson-text">di mana $\Sigma^+$ diperoleh dengan mentranspose $\Sigma$ (sehingga berordo $n \times m$), lalu mengganti setiap nilai singular bukan nol dengan kebalikannya ($1/\sigma_i$), dan membiarkan nol tetap nol.</p>
+ 
+ <p class="lesson-subheading">D. Contoh Perhitungan</p>
+<p class="lesson-subheading-alt">Contoh 4 (pseudoinverse matriks full column rank):</p>
+<p class="lesson-text">Hitung pseudoinverse dari $A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{bmatrix}$ (berordo $3 \times 2$, full column rank).</p>
+<p class="lesson-text"><strong>Langkah 1—Hitung $A^TA$:</strong></p>
+<p class="lesson-text">$$A^TA = \begin{bmatrix} 1 & 0 & 1 \\ 2 & 1 & 0 \end{bmatrix}\begin{bmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{bmatrix} = \begin{bmatrix} 2 & 2 \\ 2 & 5 \end{bmatrix}$$</p>
+<p class="lesson-text"><strong>Langkah 2—Hitung $(A^TA)^{-1}$:</strong></p>
+<ul>
+ <li>$\det(A^TA) = 2 \cdot 5 - 2 \cdot 2 = 10 - 4 = 6 \neq 0$ ✓</li>
+ <li>$(A^TA)^{-1} = \dfrac{1}{6}\begin{bmatrix} 5 & -2 \\ -2 & 2 \end{bmatrix}$</li>
+</ul>
+<p class="lesson-text"><strong>Langkah 3—Hitung $A^+ = (A^TA)^{-1}A^T$:</strong></p>
+<p class="lesson-text">$$A^+ = \dfrac{1}{6}\begin{bmatrix} 5 & -2 \\ -2 & 2 \end{bmatrix}\begin{bmatrix} 1 & 0 & 1 \\ 2 & 1 & 0 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 5 - 4 & -2 & 5 \\ -2 + 4 & 2 & -2 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 1 & -2 & 5 \\ 2 & 2 & -2 \end{bmatrix}$$</p>
+<p class="lesson-text"><strong>Langkah 4—Verifikasi $AA^+A = A$:</strong></p>
+<p class="lesson-text">Hitung $AA^+$ terlebih dahulu:</p>
+<p class="lesson-text">$$AA^+ = \begin{bmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{bmatrix} \cdot \dfrac{1}{6}\begin{bmatrix} 1 & -2 & 5 \\ 2 & 2 & -2 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 5 & 2 & 1 \\ 2 & 2 & -2 \\ 1 & -2 & 5 \end{bmatrix}$$</p>
+<p class="lesson-text">Lalu $(AA^+)A$:</p>
+<p class="lesson-text">$$(AA^+)A = \dfrac{1}{6}\begin{bmatrix} 5 & 2 & 1 \\ 2 & 2 & -2 \\ 1 & -2 & 5 \end{bmatrix}\begin{bmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 6 & 12 \\ 0 & 6 \\ 6 & 0 \end{bmatrix} = \begin{bmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{bmatrix} = A$$ ✓</p>
+<p class="lesson-text"><strong>Kesimpulan:</strong> $A^+ = \dfrac{1}{6}\begin{bmatrix} 1 & -2 & 5 \\ 2 & 2 & -2 \end{bmatrix}$—berordo $2 \times 3$, sesuai harapan (transpose dari ordo $A$).</p>
+<p class="lesson-text"><strong>Catatan:</strong> untuk matriks full column rank, $(A^TA)^{-1}$ selalu ada—inilah alasan rumus $A^+ = (A^TA)^{-1}A^T$ dapat diterapkan langsung. Untuk matriks yang tidak full rank, rumus ini gagal dan kita harus menggunakan SVD: $A^+ = V\Sigma^+U^T$.</p>
+
+ <p class="lesson-subheading">E. Aplikasi: Solusi Kuadrat Terkecil</p>
+ <p class="lesson-text">Pseudoinverse memberikan solusi kuadrat terkecil dari sistem $A\mathbf{x} = \mathbf{b}$:</p>
+ <p class="lesson-text">$$\mathbf{x} = A^+\mathbf{b}$$</p>
+ <p class="lesson-text">Keistimewaannya:</p>
+ <ul>
+  <li>Jika sistem memiliki solusi eksak, $A^+\mathbf{b}$ memberikan solusi dengan <strong>norma terkecil</strong>.</li>
+  <li>Jika sistem tidak memiliki solusi eksak (overdetermined), $A^+\mathbf{b}$ memberikan solusi <strong>kuadrat terkecil</strong>.</li>
+  <li>Jika sistem memiliki tak hingga solusi (underdetermined), $A^+\mathbf{b}$ memberikan solusi dengan <strong>norma minimum</strong>.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Perbandingan dan Stabilitas Numerik</h3>
+ <p class="lesson-subheading">A. Tabel Perbandingan</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>LU</th>
+     <th>QR</th>
+     <th>SVD</th>
+     <th>Pseudoinverse</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td><strong>Syarat</strong></td><td>Matriks persegi, minor utama ≠ 0</td><td>$m \geq n$</td><td>Semua matriks</td><td>Semua matriks</td></tr>
+    <tr><td><strong>Bentuk</strong></td><td>$A = LU$</td><td>$A = QR$</td><td>$A = U\Sigma V^T$</td><td>$A^+ = V\Sigma^+U^T$</td></tr>
+    <tr><td><strong>Keunikan</strong></td><td>Unik jika tanpa pivot</td><td>Unik jika $R$ diagonal positif</td><td>Unik hingga tanda</td><td>Selalu unik</td></tr>
+    <tr><td><strong>Aplikasi utama</strong></td><td>Sistem persamaan</td><td>Least squares, nilai eigen</td><td>Kompresi, PCA, rekomendasi</td><td>Sistem tidak konsisten</td></tr>
+    <tr><td><strong>Kompleksitas</strong></td><td>$O(n^3)$</td><td>$O(mn^2)$</td><td>$O(mn^2)$</td><td>$O(mn^2)$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">B. Catatan Stabilitas Numerik</p>
+ <ul>
+  <li><strong>LU:</strong> kurang stabil jika ada elemen diagonal yang sangat kecil. Solusinya adalah <strong>LU dengan pivot parsial</strong>—menukar baris untuk mendapatkan pivot terbesar.</li>
+  <li><strong>QR:</strong> lebih stabil daripada LU. Dalam praktik, <strong>Householder reflection</strong> digunakan sebagai ganti Gram-Schmidt karena lebih stabil secara numerik.</li>
+  <li><strong>SVD:</strong> paling stabil secara numerik. Karena itu, SVD sering digunakan untuk menghitung pseudoinverse—terutama untuk matriks yang mendekati singular.</li>
+  <li><strong>Pseudoinverse:</strong> rumus $(A^TA)^{-1}A^T$ secara numerik tidak stabil karena mengkuadratkan kondisi matriks. Untuk matriks yang mendekati singular, gunakan SVD.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> dalam komputasi numerik, perbedaan antara rumus yang "secara matematis ekuivalen" bisa sangat besar ketika diterapkan pada matriks yang mendekati singular. Inilah mengapa SVD—yang paling stabil—lebih disukai untuk aplikasi praktis, meskipun secara komputasi lebih mahal.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan dekomposisi LU, penyelesaian sistem persamaan melalui LU, dekomposisi QR dengan Gram-Schmidt, SVD, aproksimasi berperingkat rendah, serta pseudoinverse full column rank dan full row rank. Setiap langkah dituliskan lengkap, dan hasil setiap dekomposisi diverifikasi dengan perkalian balik—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Dekomposisi LU Matriks $3 \times 3$</p>
+ <p class="lesson-text">Tentukan dekomposisi LU dari $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 5 & 8 \\ 3 & 8 & 14 \end{bmatrix}$ dan verifikasi bahwa $LU = A$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Eliminasi kolom 1</strong>:
+   <ul>
+    <li>$m_{21} = \dfrac{2}{1} = 2$. Baris 2 baru: $R_2 - 2R_1 = (0, 1, 2)$.</li>
+    <li>$m_{31} = \dfrac{3}{1} = 3$. Baris 3 baru: $R_3 - 3R_1 = (0, 2, 5)$.</li>
+   </ul>
+  </li>
+  <li><strong>Eliminasi kolom 2</strong>:
+   <ul>
+    <li>$m_{32} = \dfrac{2}{1} = 2$. Baris 3 baru: $R_3 - 2R_2 = (0, 0, 1)$.</li>
+   </ul>
+  </li>
+  <li><strong>Susun $U$ dan $L$</strong>:
+   $$U = \begin{bmatrix} 1 & 2 & 3 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{bmatrix}, \quad L = \begin{bmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 3 & 2 & 1 \end{bmatrix}$$
+  </li>
+  <li><strong>Verifikasi $LU = A$</strong>:
+   <ul>
+    <li>Baris 1: $1 \cdot (1,2,3) = (1, 2, 3)$ ✓</li>
+    <li>Baris 2: $2(1,2,3) + 1(0,1,2) = (2,5,8)$ ✓</li>
+    <li>Baris 3: $3(1,2,3) + 2(0,1,2) + 1(0,0,1) = (3,8,14)$ ✓</li>
+   </ul>
+  </li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Menyelesaikan SPL dengan Dekomposisi LU</p>
+ <p class="lesson-text">Gunakan dekomposisi LU dari Soal 1 untuk menyelesaikan sistem $A\mathbf{x} = \mathbf{b}$ dengan $\mathbf{b} = (1, 4, 7)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Selesaikan $L\mathbf{y} = \mathbf{b}$ (substitusi maju)</strong>:
+   $$y_1 = 1; \quad 2y_1 + y_2 = 4 \Rightarrow y_2 = 2; \quad 3y_1 + 2y_2 + y_3 = 7 \Rightarrow y_3 = 0$$
+   Jadi $\mathbf{y} = (1, 2, 0)$.</li>
+  <li><strong>Selesaikan $U\mathbf{x} = \mathbf{y}$ (substitusi mundur)</strong>:
+   $$x_3 = 0; \quad x_2 + 2x_3 = 2 \Rightarrow x_2 = 2; \quad x_1 + 2x_2 + 3x_3 = 1 \Rightarrow x_1 = -3$$
+   Jadi $\mathbf{x} = (-3, 2, 0)$.</li>
+  <li><strong>Verifikasi $A\mathbf{x} = \mathbf{b}$</strong>:
+   <ul>
+    <li>Baris 1: $-3 + 2(2) + 3(0) = 1$ ✓</li>
+    <li>Baris 2: $2(-3) + 5(2) + 8(0) = 4$ ✓</li>
+    <li>Baris 3: $3(-3) + 8(2) + 14(0) = 7$ ✓</li>
+   </ul>
+  </li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Dekomposisi QR dengan Gram-Schmidt</p>
+ <p class="lesson-text">Tentukan dekomposisi QR dari $A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 1 \end{bmatrix}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Identifikasi kolom</strong>: $\mathbf{a}_1 = (1, 0, 1)$ dan $\mathbf{a}_2 = (2, 1, 1)$.</li>
+  <li><strong>Kolom pertama $Q$</strong>:<br>$\|\mathbf{a}_1\| = \sqrt{1 + 0 + 1} = \sqrt{2}$, sehingga $\mathbf{q}_1 = \left(\tfrac{1}{\sqrt{2}}, 0, \tfrac{1}{\sqrt{2}}\right)$.</li>
+  <li><strong>Kolom kedua $Q$</strong>:
+   <ul>
+    <li>$\mathbf{a}_2 \cdot \mathbf{q}_1 = \dfrac{2}{\sqrt{2}} + 0 + \dfrac{1}{\sqrt{2}} = \dfrac{3}{\sqrt{2}}$</li>
+    <li>$\mathbf{v}_2 = \mathbf{a}_2 - \dfrac{3}{\sqrt{2}}\mathbf{q}_1 = (2, 1, 1) - \left(\tfrac{3}{2}, 0, \tfrac{3}{2}\right) = \left(\tfrac{1}{2}, 1, -\tfrac{1}{2}\right)$</li>
+    <li>$\|\mathbf{v}_2\| = \sqrt{\tfrac{1}{4} + 1 + \tfrac{1}{4}} = \dfrac{\sqrt{6}}{2}$</li>
+    <li>$\mathbf{q}_2 = \dfrac{\mathbf{v}_2}{\|\mathbf{v}_2\|} = \left(\tfrac{1}{\sqrt{6}}, \tfrac{2}{\sqrt{6}}, -\tfrac{1}{\sqrt{6}}\right)$</li>
+   </ul>
+  </li>
+  <li><strong>Matriks $R$</strong>:
+   $$R = \begin{bmatrix} \sqrt{2} & \tfrac{3}{\sqrt{2}} \\[4pt] 0 & \tfrac{\sqrt{6}}{2} \end{bmatrix}$$
+  </li>
+  <li><strong>Verifikasi $QR = A$</strong>:
+   <ul>
+    <li>Kolom 1: $\sqrt{2}\,\mathbf{q}_1 = (1, 0, 1) = \mathbf{a}_1$ ✓</li>
+    <li>Kolom 2: $\tfrac{3}{\sqrt{2}}\mathbf{q}_1 + \tfrac{\sqrt{6}}{2}\mathbf{q}_2 = \left(\tfrac{3}{2}, 0, \tfrac{3}{2}\right) + \left(\tfrac{1}{2}, 1, -\tfrac{1}{2}\right) = (2, 1, 1) = \mathbf{a}_2$ ✓</li>
+   </ul>
+  </li>
+  <li><strong>Verifikasi ortogonalitas</strong>: $\mathbf{q}_1 \cdot \mathbf{q}_2 = \tfrac{1}{\sqrt{12}} + 0 - \tfrac{1}{\sqrt{12}} = 0$ ✓</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: SVD Matriks Simetris $2 \times 2$</p>
+ <p class="lesson-text">Tentukan SVD dari $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Hitung $A^TA$</strong>:<br>$$A^TA = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}\begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 5 & 4 \\ 4 & 5 \end{bmatrix}$$</li>
+  <li><strong>Nilai eigen $A^TA$</strong>: $\det(A^TA - \lambda I) = (5-\lambda)^2 - 16 = 0 \Rightarrow 5 - \lambda = \pm 4$. Jadi $\lambda_1 = 9$, $\lambda_2 = 1$.</li>
+  <li><strong>Nilai singular</strong>: $\sigma_1 = 3$, $\sigma_2 = 1$.</li>
+  <li><strong>Vektor singular kanan $V$</strong>:
+   <ul>
+    <li>$\lambda_1 = 9$: $(A^TA - 9I) = \begin{bmatrix} -4 & 4 \\ 4 & -4 \end{bmatrix} \Rightarrow x = y \Rightarrow \mathbf{v}_1 = \left(\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\right)$</li>
+    <li>$\lambda_2 = 1$: $(A^TA - I) = \begin{bmatrix} 4 & 4 \\ 4 & 4 \end{bmatrix} \Rightarrow y = -x \Rightarrow \mathbf{v}_2 = \left(\tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}\right)$</li>
+   </ul>
+  </li>
+  <li><strong>Vektor singular kiri $U$</strong> dengan $\mathbf{u}_i = \dfrac{1}{\sigma_i}A\mathbf{v}_i$:
+   <ul>
+    <li>$\mathbf{u}_1 = \dfrac{1}{3}\begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}\begin{bmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix} = \dfrac{1}{3}\begin{bmatrix} 3/\sqrt{2} \\ 3/\sqrt{2} \end{bmatrix} = \left(\tfrac{1}{\sqrt{2}}, \tfrac{1}{\sqrt{2}}\right)$</li>
+    <li>$\mathbf{u}_2 = \dfrac{1}{1}\begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}\begin{bmatrix} 1/\sqrt{2} \\ -1/\sqrt{2} \end{bmatrix} = \begin{bmatrix} 1/\sqrt{2} \\ -1/\sqrt{2} \end{bmatrix} = \left(\tfrac{1}{\sqrt{2}}, -\tfrac{1}{\sqrt{2}}\right)$</li>
+   </ul>
+  </li>
+  <li><strong>Hasil SVD</strong>:
+   $$U = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \\[4pt] \tfrac{1}{\sqrt{2}} & -\tfrac{1}{\sqrt{2}} \end{bmatrix}, \quad \Sigma = \begin{bmatrix} 3 & 0 \\ 0 & 1 \end{bmatrix}, \quad V = \begin{bmatrix} \tfrac{1}{\sqrt{2}} & \tfrac{1}{\sqrt{2}} \\[4pt] \tfrac{1}{\sqrt{2}} & -\tfrac{1}{\sqrt{2}} \end{bmatrix}$$
+  </li>
+  <li><strong>Verifikasi $U\Sigma V^T = A$</strong>: hitung $U\Sigma$ terlebih dahulu:
+   $$U\Sigma = \begin{bmatrix} 3/\sqrt{2} & 1/\sqrt{2} \\ 3/\sqrt{2} & -1/\sqrt{2} \end{bmatrix}$$
+   Lalu $(U\Sigma)V^T = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix} = A$ ✓</li>
+ </ol>
+ <p class="lesson-text">Karena $A$ simetris, SVD-nya menghasilkan $U = V$—konsisten dengan Teorema Spektral yang menyatakan $A = QDQ^T$ untuk matriks simetris.</p>
+ 
+ <p class="lesson-subheading">Soal 5: Aproksimasi Berperingkat Rendah</p>
+ <p class="lesson-text">Gunakan SVD dari Soal 4 untuk menentukan aproksimasi rank-1 terbaik dari $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$, lalu hitung error aproksimasinya dalam norma Frobenius.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Rumus aproksimasi rank-1</strong>: $A_1 = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T$—hanya menggunakan nilai singular terbesar.</li>
+  <li><strong>Hitung $\mathbf{u}_1\mathbf{v}_1^T$</strong>:
+   $$\mathbf{u}_1\mathbf{v}_1^T = \begin{bmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{bmatrix}\begin{bmatrix} 1/\sqrt{2} & 1/\sqrt{2} \end{bmatrix} = \begin{bmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung $A_1$</strong>:
+   $$A_1 = 3 \cdot \begin{bmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{bmatrix} = \begin{bmatrix} 3/2 & 3/2 \\ 3/2 & 3/2 \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung error</strong>:
+   $$A - A_1 = \begin{bmatrix} 2 - 3/2 & 1 - 3/2 \\ 1 - 3/2 & 2 - 3/2 \end{bmatrix} = \begin{bmatrix} 1/2 & -1/2 \\ -1/2 & 1/2 \end{bmatrix}$$
+  </li>
+  <li><strong>Norma Frobenius error</strong>: $\|A - A_1\|_F = \sqrt{1/4 + 1/4 + 1/4 + 1/4} = 1$.</li>
+  <li><strong>Verifikasi dengan Teorema Eckart-Young</strong>: secara teori, $\|A - A_1\|_F = \sigma_2 = 1$ ✓</li>
+ </ol>
+ <p class="lesson-text">Teorema Eckart-Young menjamin bahwa $A_1$ adalah matriks rank-1 terbaik yang paling mendekati $A$ dalam norma Frobenius. Error yang tersisa—yaitu $\sigma_2$—adalah "informasi" yang hilang karena kita memaksa kompresi ke rank 1.</p>
+ 
+ <p class="lesson-subheading">Soal 6: Pseudoinverse Matriks Full Column Rank</p>
+ <p class="lesson-text">Hitung pseudoinverse dari $A = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix}$ (berordo $3 \times 2$, full column rank) dan verifikasi dengan $AA^+A = A$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Hitung $A^TA$</strong>:
+   $$A^TA = \begin{bmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{bmatrix}\begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix} = \begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung $(A^TA)^{-1}$</strong>:
+   <ul>
+    <li>$\det(A^TA) = 15 - 9 = 6 \neq 0$ ✓</li>
+    <li>$(A^TA)^{-1} = \dfrac{1}{6}\begin{bmatrix} 5 & -3 \\ -3 & 3 \end{bmatrix}$</li>
+   </ul>
+  </li>
+  <li><strong>Hitung $A^+ = (A^TA)^{-1}A^T$</strong>:
+   $$A^+ = \dfrac{1}{6}\begin{bmatrix} 5 & -3 \\ -3 & 3 \end{bmatrix}\begin{bmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 5 & 2 & -1 \\ -3 & 0 & 3 \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung $AA^+$</strong>:
+   $$AA^+ = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix} \cdot \dfrac{1}{6}\begin{bmatrix} 5 & 2 & -1 \\ -3 & 0 & 3 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung $(AA^+)A$</strong>:
+   $$(AA^+)A = \dfrac{1}{6}\begin{bmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{bmatrix}\begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 6 & 0 \\ 6 & 6 \\ 6 & 12 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix} = A$$ ✓
+  </li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Regresi Linear via Least Squares</p>
+ <p class="lesson-text">Sebuah eksperimen mengukur hubungan antara variabel $x$ (input) dan $y$ (output) dengan tiga titik data: $(0, 1)$, $(1, 2)$, dan $(2, 4)$. Tentukan garis terbaik $y = c + mx$ menggunakan metode kuadrat terkecil, lalu prediksikan nilai $y$ saat $x = 3$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Susun sistem $A\mathbf{x} = \mathbf{b}$</strong> dengan $A$ = kolom konstanta dan kolom $x$:
+   $$A = \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix} 1 \\ 2 \\ 4 \end{bmatrix}, \quad \mathbf{x} = \begin{bmatrix} c \\ m \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung $A^TA$ dan $A^T\mathbf{b}$</strong>:
+   $$A^TA = \begin{bmatrix} 3 & 3 \\ 3 & 5 \end{bmatrix}, \quad A^T\mathbf{b} = \begin{bmatrix} 1+2+4 \\ 0 \cdot 1 + 1 \cdot 2 + 2 \cdot 4 \end{bmatrix} = \begin{bmatrix} 7 \\ 10 \end{bmatrix}$$
+  </li>
+  <li><strong>Hitung $(A^TA)^{-1}$</strong>: dari Soal 6, $(A^TA)^{-1} = \dfrac{1}{6}\begin{bmatrix} 5 & -3 \\ -3 & 3 \end{bmatrix}$.</li>
+  <li><strong>Selesaikan $\mathbf{x} = (A^TA)^{-1}A^T\mathbf{b}$</strong>:
+   $$\begin{bmatrix} c \\ m \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 5 & -3 \\ -3 & 3 \end{bmatrix}\begin{bmatrix} 7 \\ 10 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 35 - 30 \\ -21 + 30 \end{bmatrix} = \dfrac{1}{6}\begin{bmatrix} 5 \\ 9 \end{bmatrix} = \begin{bmatrix} 5/6 \\ 3/2 \end{bmatrix}$$
+   Jadi garis terbaik: $y = \dfrac{5}{6} + \dfrac{3}{2}x$.
+  </li>
+  <li><strong>Verifikasi kecocokan</strong>:
+   <ul>
+    <li>$x = 0$: prediksi $5/6 \approx 0{,}83$; data $1$</li>
+    <li>$x = 1$: prediksi $5/6 + 3/2 = 7/3 \approx 2{,}33$; data $2$</li>
+    <li>$x = 2$: prediksi $5/6 + 3 = 23/6 \approx 3{,}83$; data $4$</li>
+   </ul>
+   Prediksi cukup dekat dengan data—menunjukkan model linear sudah baik.
+  </li>
+  <li><strong>Prediksi $x = 3$</strong>: $y = \dfrac{5}{6} + \dfrac{3}{2}(3) = \dfrac{5}{6} + \dfrac{9}{2} = \dfrac{5 + 27}{6} = \dfrac{32}{6} = \dfrac{16}{3} \approx 5{,}33$.</li>
+  <li><strong>Catatan numerik</strong>: dalam praktik produksi, menyelesaikan persamaan normal $(A^TA)^{-1}A^T\mathbf{b}$ kurang stabil secara numerik. Dekomposisi QR lebih disukai: hitung $A = QR$, lalu selesaikan $R\mathbf{x} = Q^T\mathbf{b}$. Hasilnya identik secara matematis, tetapi lebih stabil untuk data berdimensi besar.</li>
+ </ol>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap LU selalu ada tanpa penukaran baris.</strong> Dekomposisi LU tanpa pivot hanya ada jika semua minor utama tidak nol. Jika ada nol di diagonal, perlu penukaran baris—bentuknya menjadi $PA = LU$.</li>
+  <li><strong>Menganggap QR hanya berlaku untuk matriks persegi.</strong> QR berlaku untuk matriks $m \times n$ dengan $m \geq n$—bukan hanya matriks persegi.</li>
+  <li><strong>Lupa bahwa nilai singular selalu non-negatif.</strong> Nilai singular adalah akar kuadrat dari nilai eigen—sehingga tidak mungkin negatif.</li>
+  <li><strong>Menganggap SVD sama dengan diagonalisasi.</strong> Diagonalisasi hanya berlaku untuk matriks yang dapat didiagonalisasi. SVD berlaku untuk <em>semua</em> matriks—termasuk yang tidak dapat didiagonalisasi dan yang non-persegi.</li>
+  <li><strong>Salah menghitung pseudoinverse untuk matriks full rank.</strong> Untuk full column rank, gunakan $(A^TA)^{-1}A^T$. Untuk full row rank, gunakan $A^T(AA^T)^{-1}$. Jangan tertukar—keduanya memiliki syarat dan bentuk yang berbeda.</li>
+  <li><strong>Menganggap $A^+$ selalu sama dengan $A^{-1}$.</strong> Pseudoinverse sama dengan invers biasa hanya jika $A$ persegi dan invertibel. Untuk kasus lain, mereka berbeda.</li>
+  <li><strong>Lupa memverifikasi hasil dekomposisi.</strong> Selalu periksa dengan mengalikan kembali. Untuk LU: $LU = A$. Untuk QR: $QR = A$ dan $Q^TQ = I$. Untuk SVD: $U\Sigma V^T = A$.</li>
+  <li><strong>Mengabaikan urutan nilai singular dalam SVD.</strong> Nilai singular harus disusun menurun ($\sigma_1 \geq \sigma_2 \geq \dots$). Urutan ini penting untuk aproksimasi berperingkat rendah.</li>
+  <li><strong>Menggunakan pseudoinverse untuk matriks yang sangat besar tanpa SVD.</strong> Rumus $(A^TA)^{-1}A^T$ secara numerik tidak stabil. Gunakan SVD untuk matriks besar atau yang mendekati singular.</li>
+  <li><strong>Menganggap dekomposisi matriks hanya untuk matriks persegi.</strong> SVD dan pseudoinverse berlaku untuk semua matriks—termasuk non-persegi.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Dekomposisi matriks</strong> adalah kelanjutan dari diagonalisasi—mengatasi keterbatasannya (hanya persegi, tidak selalu dapat didiagonalisasi).</li>
+  <li><strong>LU:</strong> $A = LU$—memecah matriks menjadi segitiga bawah dan atas. Berguna untuk sistem persamaan berulang.</li>
+  <li><strong>QR:</strong> $A = QR$—memecah matriks menjadi ortogonal dan segitiga atas. Berguna untuk least squares.</li>
+  <li><strong>SVD:</strong> $A = U\Sigma V^T$—dekomposisi paling universal. Nilai singular adalah akar kuadrat nilai eigen $A^TA$. Berguna untuk kompresi, PCA, dan rekomendasi.</li>
+  <li><strong>Pseudoinverse:</strong> $A^+ = V\Sigma^+U^T$—generalisasi invers untuk semua matriks. Memberikan solusi kuadrat terkecil dari $A\mathbf{x} = \mathbf{b}$.</li>
+  <li><strong>Koneksi dengan nilai eigen:</strong> SVD adalah generalisasi diagonalisasi; nilai singular berasal dari nilai eigen $A^TA$.</li>
+  <li><strong>Stabilitas numerik:</strong> SVD paling stabil, diikuti QR, lalu LU. Pseudoinverse paling stabil jika dihitung via SVD.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Dekomposisi matriks adalah <strong>jembatan antara aljabar linear teoretis dan komputasi numerik praktis</strong>. Dengan memecah matriks kompleks menjadi matriks-matriks sederhana, kita dapat menyelesaikan masalah yang tampaknya mustahil—dari menyelesaikan sistem dengan jutaan variabel hingga mengompresi gambar beresolusi tinggi. Keempat dekomposisi yang kita pelajari—LU, QR, SVD, dan pseudoinverse—masing-masing memiliki peran unik dalam ekosistem komputasi modern.</p>
+ <p class="lesson-text">Yang membuat materi ini istimewa adalah <strong>hirarki universalitasnya</strong>. LU hanya berlaku untuk matriks persegi dengan syarat khusus. QR memperluas cakupan ke matriks $m \times n$ dengan $m \geq n$. SVD akhirnya berlaku untuk <em>semua</em> matriks—tanpa terkecuali. Dan pseudoinverse memberikan solusi "terbaik" bahkan ketika sistem tidak memiliki solusi eksak. Memahami hirarki ini membantu kita memilih dekomposisi yang tepat untuk setiap situasi—bukan hanya yang paling umum.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Tensor Dasar</strong> (yang menggeneralisasi matriks ke array berdimensi lebih tinggi—dengan CP Decomposition sebagai analog SVD), <strong>Tensor Lanjut</strong> (yang mempelajari tensor metrik dan kalkulus tensor—menggunakan dekomposisi untuk analisis struktur), <strong>Matematika untuk Machine Learning</strong> (yang menggunakan SVD untuk dimensionality reduction dan pseudoinverse untuk regresi), <strong>Analisis Fourier</strong> (yang menggunakan dekomposisi ortogonal untuk menguraikan sinyal), dan <strong>Aljabar Linear Numerik</strong> (yang mempelajari algoritma efisien untuk matriks berukuran besar—dengan SVD sebagai alat utama).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan dekomposisi LU, QR, dan SVD pada matriks kecil. Kebiasaan memverifikasi hasil dekomposisi dengan mengalikan kembali, konsisten dalam menerapkan prosedur, dan memahami kapan menggunakan dekomposisi yang mana akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik tensor dan machine learning, di mana dekomposisi matriks menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

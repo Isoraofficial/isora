@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Nilai Eigen &amp; Vektor Eigen (Diagonalisasi)</title>
+ <meta name="description" content="Nilai eigen dan vektor eigen: persamaan karakteristik, multiplisitas aljabar dan geometri, diagonalisasi matriks, serta aplikasi perpangkatan matriks dan teorema spektral.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Nilai Eigen &amp; Vektor Eigen (Diagonalisasi)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Matriks</strong> — terutama perkalian matriks, invers, dan operasi baris elementer, karena persamaan $A\mathbf{v} = \lambda\mathbf{v}$ dan pencarian vektor eigen bertumpu pada manipulasi matriks.</li>
+   <li><strong>Determinan</strong> — terutama Ekspansi Kofaktor, karena persamaan karakteristik $\det(A - \lambda I) = 0$ adalah kunci untuk menemukan nilai eigen—dan determinan juga menjadi pemeriksa ketika memverifikasi hasil.</li>
+   <li><strong>Ruang Vektor</strong> — terutama konsep basis, kebebasan linear, dan dimensi, karena diagonalisasi mensyaratkan keberadaan $n$ vektor eigen yang bebas linear.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan sebuah matriks $A$ sebagai sebuah "mesin transformasi". Ketika mesin ini bekerja pada sebuah vektor $\mathbf{v}$, ia mengubah vektor tersebut menjadi vektor baru—biasanya arah dan panjangnya berubah. Namun, ada vektor-vektor tertentu yang bersifat istimewa: ketika dikenai transformasi $A$, <strong>arahnya tetap sama</strong>, hanya panjangnya yang berubah (diperbesar, diperkecil, atau dibalik). Vektor-vektor istimewa inilah yang disebut <strong>vektor eigen</strong>, dan faktor skala perubahan panjangnya disebut <strong>nilai eigen</strong>.</p>
+ <p class="lesson-text">Kata "eigen" berasal dari bahasa Jerman yang berarti "milik sendiri" atau "khas". Jadi, nilai eigen adalah nilai khas yang dimiliki oleh suatu matriks—sebuah "sidik jari" yang membedakannya dari matriks lain. Konsep ini adalah salah satu konsep paling penting dalam aljabar linear karena kemampuannya <strong>mengungkap struktur tersembunyi</strong> dari suatu transformasi linear. Vektor eigen menunjukkan "arah-arah alami" dari transformasi—arah di mana transformasi berperilaku paling sederhana.</p>
+ <p class="lesson-text">Yang membuat nilai eigen sangat powerful adalah <strong>kemampuannya menyederhanakan masalah yang kompleks</strong>. Dengan nilai eigen, kita dapat menghitung pangkat matriks berorde besar dengan cepat ($A^{100}$ tanpa mengalikan 100 kali), menganalisis stabilitas sistem dinamis, melakukan kompresi gambar (PCA), memeringkat halaman web (algoritma PageRank Google), menyelesaikan sistem persamaan diferensial, dan memahami perilaku mekanika kuantum. Nyaris tidak ada bidang matematika terapan yang tidak menggunakan nilai eigen.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: dimulai dari definisi dan interpretasi geometris, lalu prosedur mencari nilai eigen melalui persamaan karakteristik, kemudian mencari vektor eigen, dilanjutkan dengan konsep multiplisitas aljabar dan geometri, diagonalisasi lengkap dengan verifikasi, contoh soal, dan diakhiri dengan kesalahan umum. Setiap langkah dilengkapi dengan contoh perhitungan dan verifikasi—sehingga Anda dapat memastikan setiap perhitungan benar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Nilai Eigen dan Vektor Eigen</h3>
+ <p class="lesson-text">Kita mulai dari definisi formal dan interpretasi geometrisnya—fondasi untuk seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Formal</p>
+ <p class="lesson-text">Diberikan matriks persegi $A$ berordo $n \times n$. Skalar $\lambda$ (dibaca "lambda") disebut <strong>nilai eigen</strong> dari $A$ jika terdapat vektor tak-nol $\mathbf{v} \in \mathbb{R}^n$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$A\mathbf{v} = \lambda \mathbf{v}$$</p>
+ <p class="lesson-text">Vektor $\mathbf{v}$ yang memenuhi persamaan ini disebut <strong>vektor eigen</strong> dari $A$ yang bersesuaian dengan nilai eigen $\lambda$.</p>
+
+ <p class="lesson-subheading-alt">Empat poin penting yang wajib dipahami:</p>
+ <ol>
+  <li><strong>Matriks harus persegi.</strong> Nilai eigen hanya didefinisikan untuk matriks $n \times n$. Matriks non-persegi tidak memiliki nilai eigen.</li>
+  <li><strong>Vektor eigen harus tak-nol.</strong> Syarat $\mathbf{v} \neq \mathbf{0}$ sangat penting. Jika $\mathbf{v} = \mathbf{0}$, maka $A\mathbf{0} = \lambda\mathbf{0}$ selalu benar untuk sembarang $\lambda$—sehingga persamaan menjadi tidak bermakna.</li>
+  <li><strong>Persamaan $A\mathbf{v} = \lambda\mathbf{v}$ mengandung dua operasi berbeda.</strong> Di ruas kiri, $\mathbf{v}$ dikalikan dengan matriks $A$. Di ruas kanan, $\mathbf{v}$ dikalikan dengan skalar $\lambda$. Persamaan ini menyatakan bahwa kedua operasi menghasilkan hasil yang sama.</li>
+  <li><strong>Vektor eigen tidak unik.</strong> Jika $\mathbf{v}$ adalah vektor eigen, maka setiap kelipatan skalar $c\mathbf{v}$ (dengan $c \neq 0$) juga merupakan vektor eigen yang sama. Yang unik adalah <strong>ruang eigen</strong>—yaitu seluruh garis (atau bidang) yang dibentuk oleh vektor eigen tersebut.</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Interpretasi Geometris</p>
+ <p class="lesson-text">Persamaan $A\mathbf{v} = \lambda\mathbf{v}$ memiliki makna geometris yang mendalam: <strong>ketika matriks $A$ bekerja pada vektor eigen $\mathbf{v}$, arah vektor tidak berubah. Yang berubah hanyalah panjangnya</strong>.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 640 340" style="max-width:100%; height:auto; width:640px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Sumbu koordinat -->
+   <line x1="60" y1="270" x2="600" y2="270" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+   <line x1="180" y1="40" x2="180" y2="300" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+   <text x="605" y="274" fill="#b8b8b8" font-size="12" font-style="italic">x</text>
+   <text x="168" y="36" fill="#b8b8b8" font-size="12" font-style="italic">y</text>
+   <text x="166" y="288" fill="#b8b8b8" font-size="12" font-style="italic">O</text>
+
+   <!-- Vektor biasa v (biru) -->
+   <line x1="180" y1="270" x2="340" y2="220" stroke="#5dade2" stroke-width="2.5"/>
+   <polygon points="340,220 328,217 331,227" fill="#5dade2"/>
+   <text x="345" y="218" fill="#5dade2" font-size="14" font-weight="700" font-style="italic">v</text>
+
+   <!-- Av (biru dashed, arah berubah) -->
+   <line x1="180" y1="270" x2="250" y2="120" stroke="#5dade2" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+   <polygon points="250,120 240,130 249,133" fill="#5dade2" opacity="0.7"/>
+   <text x="255" y="118" fill="#5dade2" font-size="13" font-weight="700" font-style="italic">Av</text>
+
+   <!-- Vektor eigen w (emas) -->
+   <line x1="180" y1="270" x2="250" y2="180" stroke="#daa520" stroke-width="2.5"/>
+   <polygon points="250,180 238,182 242,191" fill="#daa520"/>
+   <text x="255" y="178" fill="#daa520" font-size="14" font-weight="700" font-style="italic">w</text>
+
+   <!-- Aw = λw (emas dashed, arah sama) -->
+   <line x1="180" y1="270" x2="320" y2="90" stroke="#f0c75e" stroke-width="2.5" stroke-dasharray="6,4"/>
+   <polygon points="320,90 308,93 313,102" fill="#f0c75e"/>
+   <text x="290" y="82" fill="#f0c75e" font-size="14" font-weight="700" font-style="italic">Aw = λw</text>
+
+   <!-- Keterangan panel -->
+   <text x="450" y="80" fill="#5dade2" font-size="13" font-weight="700">Vektor biasa:</text>
+   <text x="450" y="102" fill="#b8b8b8" font-size="12" font-style="italic">v → Av (arah berubah)</text>
+
+   <text x="450" y="160" fill="#daa520" font-size="13" font-weight="700">Vektor eigen:</text>
+   <text x="450" y="182" fill="#b8b8b8" font-size="12" font-style="italic">w → Aw (arah tetap)</text>
+   <text x="450" y="200" fill="#b8b8b8" font-size="12" font-style="italic">hanya panjang berubah</text>
+
+   <!-- Garis bantu: w dan Aw sepanjang garis yang sama -->
+   <line x1="180" y1="270" x2="320" y2="90" stroke="#daa520" stroke-width="0.8" stroke-dasharray="2,6" opacity="0.4"/>
+  </svg>
+  <figcaption class="visual-caption">Vektor eigen $\mathbf{w}$ tetap pada garis kerjanya setelah ditransformasi—hanya panjangnya yang berubah menjadi $\lambda$ kali. Vektor biasa $\mathbf{v}$ berubah arah setelah ditransformasi menjadi $A\mathbf{v}$.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Perilaku transformasi bergantung pada nilai $\lambda$:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nilai $\lambda$</th>
+     <th>Perilaku Vektor Eigen</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$\lambda > 1$</td><td><strong>Diregangkan</strong> menjadi $\lambda$ kali lipat</td></tr>
+    <tr><td>$0 < \lambda < 1$</td><td><strong>Dimampatkan</strong> (diperpendek)</td></tr>
+    <tr><td>$\lambda = 1$</td><td><strong>Tidak berubah</strong> (titik tetap)</td></tr>
+    <tr><td>$\lambda = 0$</td><td><strong>Dipetakan ke vektor nol</strong>—$A$ singular</td></tr>
+    <tr><td>$\lambda < 0$</td><td><strong>Membalik arah</strong> (180°) dan panjangnya $|\lambda|$ kali</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text"><strong>Analogi:</strong> Bayangkan karet gelang yang ditarik dari titik asal. Ada beberapa "serat" pada karet yang hanya meregang tanpa berputar—itulah arah-arah eigen. Serat lain berputar dan berubah arah secara kompleks.</p>
+
+ <p class="lesson-subheading">C. Contoh Sederhana</p>
+ <p class="lesson-subheading-alt"><strong>Contoh 1 (matriks diagonal)</strong>:</p>
+ <p class="lesson-text">Diberikan matriks diagonal $A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-text">Periksa vektor $\mathbf{v}_1 = (1, 0)$: maka $A\mathbf{v}_1 = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 2 \\ 0 \end{bmatrix} = 2\mathbf{v}_1$. Jadi $\lambda_1 = 2$ dengan vektor eigen $(1, 0)$.</p>
+ <p class="lesson-text">Periksa vektor $\mathbf{v}_2 = (0, 1)$: maka $A\mathbf{v}_2 = \begin{bmatrix} 0 \\ 3 \end{bmatrix} = 3\mathbf{v}_2$. Jadi $\lambda_2 = 3$ dengan vektor eigen $(0, 1)$.</p>
+ <p class="lesson-text">Untuk matriks diagonal, vektor eigennya adalah vektor basis standar, dan nilai eigennya adalah elemen-elemen diagonal.</p>
+
+ <p class="lesson-subheading">D. Persamaan Karakteristik</p>
+ <p class="lesson-text">Bagaimana cara mencari nilai eigen tanpa menebak-nebak? Kita mulai dari persamaan dasar $A\mathbf{v} = \lambda\mathbf{v}$ dan memanipulasinya secara aljabar.</p>
+ <ol>
+  <li>Pindahkan semua suku ke ruas kiri: $A\mathbf{v} - \lambda\mathbf{v} = \mathbf{0}$.</li>
+  <li>Tulis $\lambda\mathbf{v}$ sebagai $\lambda I \mathbf{v}$ (karena $I\mathbf{v} = \mathbf{v}$): $A\mathbf{v} - \lambda I \mathbf{v} = \mathbf{0}$.</li>
+  <li>Faktorkan $\mathbf{v}$: $(A - \lambda I)\mathbf{v} = \mathbf{0}$.</li>
+ </ol>
+ <p class="lesson-text">Persamaan ini adalah <strong>sistem persamaan linear homogen</strong>. Sistem homogen selalu memiliki solusi trivial $\mathbf{v} = \mathbf{0}$—tetapi solusi tersebut tidak berguna. Sistem homogen memiliki <strong>solusi tak-nol jika dan hanya jika matriks koefisiennya singular</strong>, yaitu determinannya sama dengan nol:</p>
+ <p class="lesson-text">$$\det(A - \lambda I) = 0$$</p>
+ <p class="lesson-text">Persamaan ini disebut <strong>persamaan karakteristik</strong> dari matriks $A$. Sisi kiri $\det(A - \lambda I)$ adalah polinomial dalam $\lambda$ berderajat $n$, yang disebut <strong>polinomial karakteristik</strong>. Akar-akar polinomial inilah yang menjadi nilai eigen dari $A$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting:</strong> Saat membentuk $A - \lambda I$, yang dikurangi dengan $\lambda$ hanyalah elemen-elemen <em>diagonal utama</em>. Elemen non-diagonal tetap tidak berubah. Kesalahan paling umum adalah mengurangkan $\lambda$ dari semua elemen—yang tentu saja salah.</p>
+ </div>
+
+ <p class="lesson-subheading-alt">Langkah-langkah mencari nilai eigen:</p>
+ <ol>
+  <li>Bentuk matriks $(A - \lambda I)$ dengan mengurangkan $\lambda$ dari setiap elemen diagonal utama.</li>
+  <li>Hitung determinan $\det(A - \lambda I)$ dan sederhanakan menjadi polinomial dalam $\lambda$.</li>
+  <li>Selesaikan persamaan $\det(A - \lambda I) = 0$ untuk mendapatkan nilai-nilai $\lambda$.</li>
+ </ol>
+
+ <p class="lesson-subheading">E. Contoh Lengkap Mencari Nilai Eigen</p>
+ <p class="lesson-subheading-alt"><strong>Contoh 2 (Matriks $2 \times 2$):</strong> Cari nilai eigen dari $A = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-text">Langkah 1: Bentuk $A - \lambda I = \begin{bmatrix} 4 - \lambda & 1 \\ 2 & 3 - \lambda \end{bmatrix}$.</p>
+ <p class="lesson-text">Langkah 2: Hitung determinan:</p>
+ <p class="lesson-text">$$\det(A - \lambda I) = (4 - \lambda)(3 - \lambda) - (1)(2) = 12 - 7\lambda + \lambda^2 - 2 = \lambda^2 - 7\lambda + 10$$</p>
+ <p class="lesson-text">Langkah 3: Selesaikan $\lambda^2 - 7\lambda + 10 = 0$:</p>
+ <p class="lesson-text">$$(\lambda - 2)(\lambda - 5) = 0 \quad \Rightarrow \quad \lambda_1 = 2, \ \lambda_2 = 5$$</p>
+ <p class="lesson-subheading-alt">Verifikasi dengan sifat-sifat nilai eigen:</p>
+ <ul>
+  <li><strong>Trace:</strong> $4 + 3 = 7$, dan $2 + 5 = 7$. ✓</li>
+  <li><strong>Determinan:</strong> $(4)(3) - (1)(2) = 10$, dan $2 \times 5 = 10$. ✓</li>
+ </ul>
+
+ <p class="lesson-subheading-alt"><strong>Contoh 3 (Matriks Segitiga):</strong> Cari nilai eigen dari $A = \begin{bmatrix} 2 & 0 & 0 \\ 1 & 3 & 0 \\ 4 & 5 & 6 \end{bmatrix}$.</p>
+ <p class="lesson-text">Perhatikan bahwa matriks ini adalah <strong>matriks segitiga bawah</strong>—semua elemen di atas diagonal utama bernilai nol. Untuk matriks segitiga (atas atau bawah), $\det(A - \lambda I)$ sama dengan hasil kali elemen-elemen diagonalnya:</p>
+ <p class="lesson-text">$$\det(A - \lambda I) = (2-\lambda)(3-\lambda)(6-\lambda) = 0$$</p>
+ <p class="lesson-text">Jadi, nilai eigennya adalah $\lambda_1 = 2$, $\lambda_2 = 3$, $\lambda_3 = 6$.</p>
+
+ <p class="lesson-subheading">F. Sifat-Sifat Nilai Eigen</p>
+ <p class="lesson-text">Sifat-sifat berikut sangat berguna untuk memverifikasi hasil perhitungan dan memahami perilaku matriks:</p>
+ <ul>
+  <li><strong>Jumlah nilai eigen = trace matriks:</strong> $\lambda_1 + \lambda_2 + \dots + \lambda_n = \text{tr}(A) = a_{11} + a_{22} + \dots + a_{nn}$.</li>
+  <li><strong>Hasil kali nilai eigen = determinan:</strong> $\lambda_1 \cdot \lambda_2 \cdots \lambda_n = \det(A)$.</li>
+  <li><strong>Matriks singular $\iff$ memiliki nilai eigen nol.</strong> Jika $\det(A) = 0$, maka salah satu nilai eigennya adalah 0.</li>
+  <li><strong>Matriks segitiga:</strong> nilai eigen = elemen diagonalnya.</li>
+  <li><strong>Nilai eigen $A^k$ adalah $\lambda^k$</strong>—dengan vektor eigen yang sama.</li>
+  <li><strong>Nilai eigen $A^{-1}$ adalah $1/\lambda$</strong>—jika $A$ invertibel dan $\lambda \neq 0$.</li>
+  <li><strong>Nilai eigen $A^T$ sama dengan nilai eigen $A$</strong>—transpose tidak mengubah himpunan nilai eigen.</li>
+  <li><strong>Matriks serupa memiliki nilai eigen yang sama.</strong> Jika $B = P^{-1}AP$, maka $A$ dan $B$ memiliki polinomial karakteristik yang sama.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Mencari Vektor Eigen</h3>
+ <p class="lesson-text">Setelah nilai eigen ditemukan, langkah berikutnya adalah mencari vektor eigen yang bersesuaian.</p>
+
+ <p class="lesson-subheading">A. Prosedur Umum</p>
+ <p class="lesson-text">Vektor eigen diperoleh dengan menyelesaikan sistem persamaan linear homogen $(A - \lambda I)\mathbf{v} = \mathbf{0}$. Karena $\det(A - \lambda I) = 0$, sistem ini <strong>pasti memiliki solusi tak-nol</strong> (tak hingga banyaknya). Solusi-solusi ini membentuk <strong>ruang eigen</strong> (<em>eigenspace</em>) dari $\lambda$.</p>
+ <p class="lesson-subheading-alt">Langkah-langkah sistematis:</p>
+ <ol>
+  <li>Substitusikan nilai eigen $\lambda$ ke dalam $(A - \lambda I)$.</li>
+  <li>Tulis sistem $(A - \lambda I)\mathbf{v} = \mathbf{0}$ secara eksplisit.</li>
+  <li>Sederhanakan dengan eliminasi Gauss untuk mendapatkan bentuk eselon.</li>
+  <li>Identifikasi variabel bebas (variabel yang tidak memiliki pivot).</li>
+  <li>Nyatakan solusi dalam bentuk parameter.</li>
+  <li>Tuliskan vektor eigen sebagai vektor basis dari ruang eigen.</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Contoh Lengkap Mencari Vektor Eigen</p>
+ <p class="lesson-subheading-alt"><strong>Contoh 4 (lanjutan Contoh 2):</strong> Cari vektor eigen dari $A = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix}$ dengan $\lambda_1 = 2$ dan $\lambda_2 = 5$.</p>
+
+ <p class="lesson-subheading-alt">Bagian A: Vektor eigen untuk $\lambda_1 = 2$</p>
+ <p class="lesson-text">Substitusikan $\lambda = 2$: $A - 2I = \begin{bmatrix} 2 & 1 \\ 2 & 1 \end{bmatrix}$.</p>
+ <p class="lesson-text">Selesaikan $(A - 2I)\mathbf{v} = \mathbf{0}$:</p>
+ <p class="lesson-text">$$\begin{bmatrix} 2 & 1 \\ 2 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$$</p>
+ <p class="lesson-text">Kedua baris memberikan persamaan yang sama: $2x + y = 0 \Rightarrow y = -2x$. Variabel $x$ bebas.</p>
+ <p class="lesson-text">Vektor eigen untuk $\lambda_1 = 2$: $\mathbf{v}_1 = (1, -2)$.</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $A\mathbf{v}_1 = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix} \begin{bmatrix} 1 \\ -2 \end{bmatrix} = \begin{bmatrix} 2 \\ -4 \end{bmatrix} = 2\begin{bmatrix} 1 \\ -2 \end{bmatrix}$. ✓</p>
+
+ <p class="lesson-subheading-alt">Bagian B: Vektor eigen untuk $\lambda_2 = 5$</p>
+ <p class="lesson-text">Substitusikan $\lambda = 5$: $A - 5I = \begin{bmatrix} -1 & 1 \\ 2 & -2 \end{bmatrix}$.</p>
+ <p class="lesson-text">Dari baris pertama: $-x + y = 0 \Rightarrow y = x$. Variabel $x$ bebas.</p>
+ <p class="lesson-text">Vektor eigen untuk $\lambda_2 = 5$: $\mathbf{v}_2 = (1, 1)$.</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $A\mathbf{v}_2 = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 5 \\ 5 \end{bmatrix} = 5\begin{bmatrix} 1 \\ 1 \end{bmatrix}$. ✓</p>
+
+ <p class="lesson-subheading">C. Multiplisitas Aljabar dan Geometri</p>
+ <p class="lesson-text">Dua konsep ini adalah kunci untuk menentukan apakah suatu matriks dapat didiagonalisasi.</p>
+ <ul>
+  <li><strong>Multiplisitas aljabar</strong> dari nilai eigen $\lambda$ adalah berapa kali $\lambda$ muncul sebagai akar polinomial karakteristik.</li>
+  <li><strong>Multiplisitas geometri</strong> dari nilai eigen $\lambda$ adalah dimensi ruang eigen yang bersesuaian—yaitu jumlah maksimum vektor eigen yang bebas linear untuk $\lambda$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Teorema:</strong> selalu berlaku $1 \leq \text{multiplisitas geometri} \leq \text{multiplisitas aljabar}$. Matriks dapat didiagonalisasi <strong>jika dan hanya jika</strong> untuk setiap nilai eigen, multiplisitas geometri <strong>sama dengan</strong> multiplisitas aljabar.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 300" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel kiri: gagal diagonalisasi -->
+   <text x="180" y="30" fill="#e74c3c" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Tidak dapat didiagonalisasi</text>
+
+   <line x1="40" y1="220" x2="330" y2="220" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="180" y1="250" x2="180" y2="60" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <!-- Satu-satunya arah eigen (horizontal) -->
+   <line x1="60" y1="220" x2="300" y2="220" stroke="#f0c75e" stroke-width="3"/>
+   <text x="180" y="245" fill="#f0c75e" font-size="11" text-anchor="middle" font-style="italic">hanya 1 arah eigen (dimensi ruang eigen = 1)</text>
+
+   <!-- Vektor generik yang berubah arah -->
+   <line x1="180" y1="220" x2="240" y2="140" stroke="#5dade2" stroke-width="2"/>
+   <polygon points="240,140 228,144 234,152" fill="#5dade2"/>
+   <text x="245" y="135" fill="#5dade2" font-size="11" font-weight="700" font-style="italic">v</text>
+
+   <!-- Bayangan (rotated) -->
+   <line x1="180" y1="220" x2="130" y2="150" stroke="#5dade2" stroke-width="2" stroke-dasharray="4,3" opacity="0.65"/>
+   <polygon points="130,150 130,163 141,158" fill="#5dade2" opacity="0.65"/>
+   <text x="118" y="145" fill="#5dade2" font-size="11" font-weight="700" font-style="italic">Av</text>
+
+   <text x="180" y="280" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">Tidak cukup vektor eigen untuk membentuk basis</text>
+
+   <!-- Garis pemisah -->
+   <line x1="370" y1="40" x2="370" y2="270" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <!-- Panel kanan: berhasil diagonalisasi -->
+   <text x="550" y="30" fill="#5dade2" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Dapat didiagonalisasi</text>
+
+   <line x1="400" y1="220" x2="700" y2="220" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="550" y1="250" x2="550" y2="60" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <!-- Beberapa arah eigen -->
+   <line x1="430" y1="220" x2="670" y2="220" stroke="#f0c75e" stroke-width="2.5"/>
+   <line x1="550" y1="250" x2="550" y2="90" stroke="#f0c75e" stroke-width="2.5"/>
+
+   <!-- Vektor generik yang tetap searah -->
+   <line x1="550" y1="220" x2="630" y2="160" stroke="#5dade2" stroke-width="2"/>
+   <polygon points="630,160 617,161 622,171" fill="#5dade2"/>
+   <text x="638" y="158" fill="#5dade2" font-size="11" font-weight="700" font-style="italic">v</text>
+
+   <line x1="550" y1="220" x2="680" y2="125" stroke="#5dade2" stroke-width="2" stroke-dasharray="4,3" opacity="0.65"/>
+   <polygon points="680,125 667,127 672,137" fill="#5dade2" opacity="0.65"/>
+   <text x="688" y="123" fill="#5dade2" font-size="11" font-weight="700" font-style="italic">Av</text>
+
+   <text x="550" y="280" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">2 arah eigen independen → cukup untuk basis → bisa diagonalisasi</text>
+  </svg>
+  
+  <figcaption class="visual-caption">Perbedaan kunci: kiri—matriks dengan satu arah eigen saja tidak dapat didiagonalisasi (tidak cukup vektor eigen untuk membentuk basis). Kanan—matriks dengan semua arah eigen (atau cukup banyak arah independen) dapat didiagonalisasi.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh 5 (kasus tidak dapat didiagonalisasi):</p>
+ <p class="lesson-text">$A = \begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$. Polinomial karakteristik: $(2-\lambda)^2 = 0$—jadi $\lambda = 2$ dengan <strong>multiplisitas aljabar 2</strong>.</p>
+ <p class="lesson-text">Vektor eigen: $A - 2I = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$. Persamaan: $y = 0$. Solusi: $(x, 0) = x(1, 0)$. Hanya ada <strong>satu</strong> vektor eigen bebas linear. <strong>Multiplisitas geometri = 1</strong>.</p>
+ <p class="lesson-text">Karena $1 < 2$, matriks ini <strong>tidak dapat didiagonalisasi</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Diagonalisasi</h3>
+ <p class="lesson-text">Setelah memahami vektor eigen, kita masuk ke aplikasi paling pentingnya: <strong>diagonalisasi</strong>.</p>
+
+ <p class="lesson-subheading">A. Definisi dan Tujuan</p>
+ <p class="lesson-text"><strong>Diagonalisasi</strong> adalah proses mengubah matriks persegi $A$ menjadi matriks diagonal $D$ melalui transformasi keserupaan:</p>
+ <p class="lesson-text">$$D = P^{-1}AP \quad \text{atau ekuivalen} \quad A = PDP^{-1}$$</p>
+ <p class="lesson-text">di mana $P$ adalah matriks yang kolom-kolomnya adalah vektor eigen dari $A$, dan $D$ adalah matriks diagonal dengan nilai eigen pada diagonal utama.</p>
+ <p class="lesson-text"><strong>Mengapa diagonalisasi penting?</strong> Matriks diagonal sangat mudah dihitung. Jika $A = PDP^{-1}$, maka $A^k = PD^kP^{-1}$—di mana $D^k$ hanya memerlukan pemangkatan elemen diagonal, bukan perkalian matriks berulang.</p>
+
+ <p class="lesson-subheading">B. Syarat Diagonalisasi</p>
+ <p class="lesson-text"><strong>Teorema:</strong> matriks $A$ berordo $n \times n$ dapat didiagonalisasi <strong>jika dan hanya jika</strong> $A$ memiliki $n$ vektor eigen yang <strong>bebas linear</strong>.</p>
+ <ul>
+  <li><strong>Syarat cukup:</strong> jika $A$ memiliki $n$ nilai eigen yang <strong>berbeda</strong>, maka $A$ pasti dapat didiagonalisasi.</li>
+  <li><strong>Syarat yang lebih umum:</strong> untuk setiap nilai eigen, multiplisitas geometri = multiplisitas aljabar.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Prosedur Diagonalisasi</p>
+ <ol>
+  <li><strong>Cari nilai eigen</strong> dengan menyelesaikan $\det(A - \lambda I) = 0$.</li>
+  <li><strong>Cari vektor eigen</strong> untuk setiap nilai eigen dengan menyelesaikan $(A - \lambda I)\mathbf{v} = \mathbf{0}$.</li>
+  <li><strong>Bentuk matriks $P$</strong> dengan menempatkan vektor-vektor eigen sebagai kolom. Urutan kolom harus sesuai dengan urutan nilai eigen di $D$.</li>
+  <li><strong>Bentuk matriks $D$</strong> sebagai matriks diagonal dengan nilai eigen pada diagonal utama.</li>
+  <li><strong>Verifikasi</strong> bahwa $AP = PD$ (atau $A = PDP^{-1}$).</li>
+ </ol>
+
+ <p class="lesson-subheading">D. Contoh Diagonalisasi Lengkap</p>
+ <p class="lesson-subheading-alt"><strong>Contoh 6:</strong> Diagonalisasi $A = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-text">Dari Contoh 4: $\lambda_1 = 2$ dengan $\mathbf{v}_1 = (1, -2)$, dan $\lambda_2 = 5$ dengan $\mathbf{v}_2 = (1, 1)$.</p>
+ <p class="lesson-text">Bentuk matriks $P$ dan $D$:</p>
+ <p class="lesson-text">$$P = \begin{bmatrix} 1 & 1 \\ -2 & 1 \end{bmatrix}, \quad D = \begin{bmatrix} 2 & 0 \\ 0 & 5 \end{bmatrix}$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $\det(P) = (1)(1) - (1)(-2) = 3$, sehingga $P^{-1} = \frac{1}{3}\begin{bmatrix} 1 & -1 \\ 2 & 1 \end{bmatrix}$.</p>
+ <p class="lesson-text">Hitung $AP$:</p>
+ <p class="lesson-text">$$AP = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix} \begin{bmatrix} 1 & 1 \\ -2 & 1 \end{bmatrix} = \begin{bmatrix} 2 & 5 \\ -4 & 5 \end{bmatrix}$$</p>
+ <p class="lesson-text">Hitung $PD$:</p>
+ <p class="lesson-text">$$PD = \begin{bmatrix} 1 & 1 \\ -2 & 1 \end{bmatrix} \begin{bmatrix} 2 & 0 \\ 0 & 5 \end{bmatrix} = \begin{bmatrix} 2 & 5 \\ -4 & 5 \end{bmatrix}$$</p>
+ <p class="lesson-text">Karena $AP = PD$, diagonalisasi berhasil. ✓</p>
+
+ <p class="lesson-subheading">E. Aplikasi: Perpangkatan Matriks</p>
+ <p class="lesson-subheading-alt"><strong>Contoh 7:</strong> Hitung $A^3$ untuk $A = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-text">Dari Contoh 6: $P = \begin{bmatrix} 1 & 1 \\ -2 & 1 \end{bmatrix}$ dan $D = \begin{bmatrix} 2 & 0 \\ 0 & 5 \end{bmatrix}$. Maka $D^3 = \begin{bmatrix} 8 & 0 \\ 0 & 125 \end{bmatrix}$.</p>
+ <p class="lesson-text">$$A^3 = PD^3P^{-1} = \frac{1}{3}\begin{bmatrix} 1 & 1 \\ -2 & 1 \end{bmatrix} \begin{bmatrix} 8 & 0 \\ 0 & 125 \end{bmatrix} \begin{bmatrix} 1 & -1 \\ 2 & 1 \end{bmatrix} = \begin{bmatrix} 86 & 39 \\ 78 & 47 \end{bmatrix}$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan perkalian langsung:</strong> $A^2 = \begin{bmatrix} 18 & 7 \\ 14 & 11 \end{bmatrix}$, lalu $A^3 = A^2 \cdot A = \begin{bmatrix} 86 & 39 \\ 78 & 47 \end{bmatrix}$. Cocok. ✓</p>
+
+ <p class="lesson-subheading">F. Diagonalisasi Ortogonal untuk Matriks Simetris</p>
+ <p class="lesson-text"><strong>Teorema Spektral:</strong> setiap matriks simetris ($A^T = A$) dengan entri real dapat didiagonalisasi secara <strong>ortogonal</strong>, yaitu $A = QDQ^T$—di mana $Q$ adalah matriks ortogonal (kolom-kolomnya adalah vektor eigen <strong>ortonormal</strong>, sehingga $Q^{-1} = Q^T$).</p>
+ <p class="lesson-text">Sifat tambahan matriks simetris: semua nilai eigennya <strong>real</strong>, dan vektor eigen untuk nilai eigen berbeda selalu <strong>saling tegak lurus</strong>.</p>
+ <p class="lesson-subheading-alt"><strong>Contoh 8:</strong> $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$ (simetris).</p>
+ <p class="lesson-text">Polinomial karakteristik: $\det(A - \lambda I) = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-1)(\lambda-3)$. Nilai eigen: $\lambda_1 = 1$, $\lambda_2 = 3$—keduanya real.</p>
+ <p class="lesson-text">Vektor eigen untuk $\lambda = 1$: $y = -x$, $\mathbf{v}_1 = (1, -1)$. Vektor eigen untuk $\lambda = 3$: $y = x$, $\mathbf{v}_2 = (1, 1)$.</p>
+ <p class="lesson-text"><strong>Verifikasi ortogonalitas:</strong> $\mathbf{v}_1 \cdot \mathbf{v}_2 = (1)(1) + (-1)(1) = 0$. ✓</p>
+ <p class="lesson-text">Setelah dinormalisasi:</p>
+ <p class="lesson-text">$$Q = \begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix}, \quad D = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}$$</p>
+ <p class="lesson-text">Maka $A = QDQ^T$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan pencarian nilai eigen, vektor eigen, diagonalisasi, perpangkatan matriks melalui diagonalisasi, dan identifikasi matriks yang tidak dapat didiagonalisasi. Setiap langkah dituliskan lengkap—dan setiap hasil diverifikasi dengan sifat-sifat nilai eigen atau perkalian balik.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Nilai Eigen Matriks $2 \times 2$</p>
+ <p class="lesson-text">Tentukan nilai eigen dari $A = \begin{bmatrix} 6 & -1 \\ 2 & 3 \end{bmatrix}$ dan verifikasi hasilnya dengan sifat trace dan determinan.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Bentuk $A - \lambda I$</strong>:<br>$A - \lambda I = \begin{bmatrix} 6 - \lambda & -1 \\ 2 & 3 - \lambda \end{bmatrix}$</li>
+  <li><strong>Hitung determinan</strong>:<br>$\det(A - \lambda I) = (6-\lambda)(3-\lambda) - (-1)(2) = 18 - 9\lambda + \lambda^2 + 2 = \lambda^2 - 9\lambda + 20$</li>
+  <li><strong>Faktorkan</strong>: $\lambda^2 - 9\lambda + 20 = (\lambda - 4)(\lambda - 5) = 0$. Jadi $\lambda_1 = 4$ dan $\lambda_2 = 5$.</li>
+  <li><strong>Verifikasi trace</strong>: $\text{tr}(A) = 6 + 3 = 9$, dan $4 + 5 = 9$ ✓</li>
+  <li><strong>Verifikasi determinan</strong>: $\det(A) = (6)(3) - (-1)(2) = 20$, dan $4 \times 5 = 20$ ✓</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Nilai Eigen Matriks Segitiga $3 \times 3$</p>
+ <p class="lesson-text">Tentukan nilai eigen dari $A = \begin{bmatrix} 3 & 5 & 7 \\ 0 & -2 & 4 \\ 0 & 0 & 1 \end{bmatrix}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Kenali jenis matriks</strong>: $A$ adalah matriks segitiga atas (semua elemen di bawah diagonal utama = 0).</li>
+  <li><strong>Gunakan sifat</strong>: untuk matriks segitiga, $\det(A - \lambda I)$ = hasil kali elemen diagonal dikurangi $\lambda$:<br>$\det(A - \lambda I) = (3-\lambda)(-2-\lambda)(1-\lambda) = 0$</li>
+  <li><strong>Solusi</strong>: $\lambda_1 = 3$, $\lambda_2 = -2$, $\lambda_3 = 1$.</li>
+  <li><strong>Verifikasi trace</strong>: $3 + (-2) + 1 = 2$, dan $\text{tr}(A) = 3 + (-2) + 1 = 2$ ✓</li>
+  <li><strong>Verifikasi determinan</strong>: $\det(A) = 3 \cdot (-2) \cdot 1 = -6$, dan $3 \times (-2) \times 1 = -6$ ✓</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Vektor Eigen Lengkap dengan Verifikasi</p>
+ <p class="lesson-text">Untuk matriks pada Soal 1, tentukan vektor eigen untuk setiap nilai eigen, lalu verifikasi dengan $A\mathbf{v} = \lambda\mathbf{v}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Vektor eigen untuk $\lambda_1 = 4$</strong>:<br>$A - 4I = \begin{bmatrix} 2 & -1 \\ 2 & -1 \end{bmatrix}$. Sistem: $2x - y = 0 \Rightarrow y = 2x$. Ambil $x = 1$: $\mathbf{v}_1 = (1, 2)$.</li>
+  <li><strong>Verifikasi</strong>: $A\mathbf{v}_1 = \begin{bmatrix} 6 & -1 \\ 2 & 3 \end{bmatrix}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 6-2 \\ 2+6 \end{bmatrix} = \begin{bmatrix} 4 \\ 8 \end{bmatrix} = 4\begin{bmatrix} 1 \\ 2 \end{bmatrix}$ ✓</li>
+  <li><strong>Vektor eigen untuk $\lambda_2 = 5$</strong>:<br>$A - 5I = \begin{bmatrix} 1 & -1 \\ 2 & -2 \end{bmatrix}$. Sistem: $x - y = 0 \Rightarrow y = x$. Ambil $x = 1$: $\mathbf{v}_2 = (1, 1)$.</li>
+  <li><strong>Verifikasi</strong>: $A\mathbf{v}_2 = \begin{bmatrix} 6-1 \\ 2+3 \end{bmatrix} = \begin{bmatrix} 5 \\ 5 \end{bmatrix} = 5\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ ✓</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Diagonalisasi Matriks $2 \times 2$</p>
+ <p class="lesson-text">Diagonalisasi $A = \begin{bmatrix} 6 & -1 \\ 2 & 3 \end{bmatrix}$ dari Soal 1, lalu verifikasi bahwa $AP = PD$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Susun matriks $P$</strong> (kolom = vektor eigen):<br>$P = \begin{bmatrix} 1 & 1 \\ 2 & 1 \end{bmatrix}$</li>
+  <li><strong>Susun matriks $D$</strong> (diagonal = nilai eigen sesuai urutan kolom $P$):<br>$D = \begin{bmatrix} 4 & 0 \\ 0 & 5 \end{bmatrix}$</li>
+  <li><strong>Hitung $AP$</strong>:<br>$AP = \begin{bmatrix} 6 & -1 \\ 2 & 3 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 2 & 1 \end{bmatrix} = \begin{bmatrix} 6-2 & 6-1 \\ 2+6 & 2+3 \end{bmatrix} = \begin{bmatrix} 4 & 5 \\ 8 & 5 \end{bmatrix}$</li>
+  <li><strong>Hitung $PD$</strong>:<br>$PD = \begin{bmatrix} 1 & 1 \\ 2 & 1 \end{bmatrix}\begin{bmatrix} 4 & 0 \\ 0 & 5 \end{bmatrix} = \begin{bmatrix} 4 & 5 \\ 8 & 5 \end{bmatrix}$</li>
+  <li><strong>Verifikasi</strong>: $AP = PD$ ✓—diagonalisasi berhasil.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Diagonalisasi Matriks $3 \times 3$</p>
+ <p class="lesson-text">Diagonalisasi $A = \begin{bmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 1 & 1 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Nilai eigen</strong> (matriks segitiga bawah—nilai eigen = elemen diagonal): $\lambda_1 = 1$, $\lambda_2 = 2$, $\lambda_3 = 3$.</li>
+  <li><strong>Vektor eigen untuk $\lambda = 1$</strong>: $A - I = \begin{bmatrix} 0 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 2 \end{bmatrix}$. Dari baris 2: $x + y = 0 \Rightarrow y = -x$. Dari baris 3: $x + y + 2z = 0 \Rightarrow 2z = 0 \Rightarrow z = 0$. Jadi $\mathbf{v}_1 = (1, -1, 0)$.</li>
+  <li><strong>Vektor eigen untuk $\lambda = 2$</strong>: $A - 2I = \begin{bmatrix} -1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 1 \end{bmatrix}$. Baris 1: $-x = 0 \Rightarrow x = 0$. Baris 3: $0 + y + z = 0 \Rightarrow y = -z$. Jadi $\mathbf{v}_2 = (0, 1, -1)$.</li>
+  <li><strong>Vektor eigen untuk $\lambda = 3$</strong>: $A - 3I = \begin{bmatrix} -2 & 0 & 0 \\ 1 & -1 & 0 \\ 1 & 1 & 0 \end{bmatrix}$. Baris 1: $x = 0$. Baris 2: $-y = 0 \Rightarrow y = 0$. Jadi $\mathbf{v}_3 = (0, 0, 1)$.</li>
+  <li><strong>Verifikasi salah satu</strong>: $A\mathbf{v}_2 = \begin{bmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 1 & 1 & 3 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix} = \begin{bmatrix} 0 \\ 2 \\ 1-3 \end{bmatrix} = \begin{bmatrix} 0 \\ 2 \\ -2 \end{bmatrix} = 2\mathbf{v}_2$ ✓</li>
+  <li><strong>Matriks $P$ dan $D$</strong>:<br>$$P = \begin{bmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{bmatrix}, \quad D = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}$$</li>
+  <li><strong>Verifikasi $AP = PD$</strong>:<br>$AP = \begin{bmatrix} 1 & 0 & 0 \\ -1 & 2 & 0 \\ 0 & -2 & 3 \end{bmatrix}$, dan $PD = \begin{bmatrix} 1 & 0 & 0 \\ -1 & 2 & 0 \\ 0 & -2 & 3 \end{bmatrix}$ ✓</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 6: Matriks yang Tidak Dapat Didiagonalisasi</p>
+ <p class="lesson-text">Selidiki apakah $A = \begin{bmatrix} 3 & 1 \\ 0 & 3 \end{bmatrix}$ dapat didiagonalisasi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Cari nilai eigen</strong>: $A$ segitiga atas, jadi $\lambda = 3$ dengan <strong>multiplisitas aljabar 2</strong>.</li>
+  <li><strong>Cari vektor eigen</strong>: $A - 3I = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$. Sistem: $y = 0$. Variabel $x$ bebas: $\mathbf{v} = (1, 0)$.</li>
+  <li><strong>Multiplisitas geometri</strong>: hanya 1 vektor eigen bebas linear—jadi multiplisitas geometri = 1.</li>
+  <li><strong>Kesimpulan</strong>: karena $1 < 2$, matriks <strong>tidak dapat didiagonalisasi</strong>.</li>
+  <li><strong>Interpretasi</strong>: matriks ini mewakili transformasi "shear" (gunting)—yang menggeser vektor horizontal tanpa mengubah arah eigen-nya, sehingga tidak ada cukup arah eigen untuk membentuk basis $\mathbb{R}^2$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 7: Perpangkatan Matriks melalui Diagonalisasi</p>
+ <p class="lesson-text">Hitung $A^4$ untuk $A = \begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix}$ (matriks simetris) menggunakan diagonalisasi.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Cari nilai eigen</strong>: $\det(A - \lambda I) = (1-\lambda)^2 - 4 = \lambda^2 - 2\lambda - 3 = (\lambda - 3)(\lambda + 1)$. Jadi $\lambda_1 = 3$, $\lambda_2 = -1$.</li>
+  <li><strong>Cari vektor eigen</strong>:<br>$\lambda = 3$: $A - 3I = \begin{bmatrix} -2 & 2 \\ 2 & -2 \end{bmatrix} \Rightarrow x = y \Rightarrow \mathbf{v}_1 = (1, 1)$.<br>$\lambda = -1$: $A + I = \begin{bmatrix} 2 & 2 \\ 2 & 2 \end{bmatrix} \Rightarrow x = -y \Rightarrow \mathbf{v}_2 = (1, -1)$.</li>
+  <li><strong>Susun $P$ dan $D$</strong>: $P = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$, $D = \begin{bmatrix} 3 & 0 \\ 0 & -1 \end{bmatrix}$.</li>
+  <li><strong>Hitung $P^{-1}$</strong>: $\det(P) = -2$, sehingga $P^{-1} = -\frac{1}{2}\begin{bmatrix} -1 & -1 \\ -1 & 1 \end{bmatrix} = \begin{bmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} \end{bmatrix}$.</li>
+  <li><strong>Hitung $D^4$</strong>: $D^4 = \begin{bmatrix} 3^4 & 0 \\ 0 & (-1)^4 \end{bmatrix} = \begin{bmatrix} 81 & 0 \\ 0 & 1 \end{bmatrix}$.</li>
+  <li><strong>Hitung $A^4 = PD^4P^{-1}$</strong>:<br>$$A^4 = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 81 & 0 \\ 0 & 1 \end{bmatrix}\begin{bmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} \end{bmatrix} = \begin{bmatrix} 41 & 40 \\ 40 & 41 \end{bmatrix}$$</li>
+  <li><strong>Verifikasi via perpangkatan langsung</strong>: $A^2 = \begin{bmatrix} 5 & 4 \\ 4 & 5 \end{bmatrix}$, sehingga $A^4 = A^2 \cdot A^2 = \begin{bmatrix} 41 & 40 \\ 40 & 41 \end{bmatrix}$ ✓</li>
+ </ol>
+ <p class="lesson-text">Soal ini memperlihatkan kekuatan diagonalisasi: matriks apapun yang dapat didiagonalisasi dapat dipangkatkan dengan mudah melalui $A^k = PD^kP^{-1}$—dan $D^k$ hanya membutuhkan pemangkatan tiga bilangan diagonal, bukan perkalian matriks berulang.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap vektor nol sebagai vektor eigen.</strong> Vektor eigen harus <em>tak-nol</em>. Jika $\mathbf{v} = \mathbf{0}$, maka $A\mathbf{0} = \lambda\mathbf{0}$ selalu benar untuk sembarang $\lambda$—sehingga tidak bermakna.</li>
+  <li><strong>Lupa bahwa matriks harus persegi.</strong> Nilai eigen hanya didefinisikan untuk matriks persegi ($n \times n$). Matriks non-persegi tidak memiliki nilai eigen.</li>
+  <li><strong>Salah menghitung determinan $\det(A - \lambda I)$.</strong> Pastikan mengurangkan $\lambda$ dari <em>setiap elemen diagonal utama</em>—bukan dari semua elemen. Kesalahan tanda di sini adalah sumber kesalahan paling umum.</li>
+  <li><strong>Menganggap semua matriks dapat didiagonalisasi.</strong> Matriks seperti $\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$ tidak dapat didiagonalisasi—karena multiplisitas geometri (1) kurang dari multiplisitas aljabar (2).</li>
+  <li><strong>Salah menyusun matriks $P$ dan $D$.</strong> Urutan kolom $P$ harus sesuai dengan urutan nilai eigen di $D$. Jika kolom pertama $P$ adalah vektor eigen untuk $\lambda_1$, maka elemen diagonal pertama $D$ harus $\lambda_1$.</li>
+  <li><strong>Lupa memverifikasi bahwa $\mathbf{v}$ adalah vektor eigen yang benar.</strong> Selalu periksa dengan menghitung $A\mathbf{v}$ dan memastikan hasilnya sama dengan $\lambda\mathbf{v}$.</li>
+  <li><strong>Menganggap nilai eigen selalu real.</strong> Nilai eigen bisa berupa bilangan kompleks—misalnya untuk matriks rotasi. Namun, untuk matriks simetris dengan entri real, semua nilai eigennya real.</li>
+  <li><strong>Menganggap vektor eigen unik.</strong> Vektor eigen tidak unik—setiap kelipatan skalar dari vektor eigen juga merupakan vektor eigen yang sama. Yang unik adalah <strong>ruang eigen</strong> (garis atau bidang yang dibentuk oleh vektor eigen).</li>
+  <li><strong>Bingung antara multiplisitas aljabar dan geometri.</strong> Multiplisitas aljabar adalah berapa kali $\lambda$ muncul di polinomial karakteristik. Multiplisitas geometri adalah dimensi ruang eigen. Perbedaannya menentukan apakah matriks dapat didiagonalisasi.</li>
+  <li><strong>Menganggap $P$ selalu ortogonal.</strong> Matriks $P$ hanya ortogonal jika $A$ simetris (atau lebih umum, normal). Untuk matriks umum, $P$ tidak ortogonal—sehingga $P^{-1} \neq P^T$.</li>
+  <li><strong>Lupa memverifikasi hasil diagonalisasi.</strong> Setelah mendapatkan $P$ dan $D$, selalu periksa bahwa $AP = PD$ atau $P^{-1}AP = D$. Verifikasi ini menangkap kesalahan tanda atau urutan.</li>
+  <li><strong>Salah mengidentifikasi variabel bebas saat mencari vektor eigen.</strong> Setelah eliminasi Gauss, variabel bebas adalah variabel yang tidak memiliki pivot (leading 1). Pastikan mengidentifikasi dengan benar sebelum menulis solusi parametrik.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Ringkasan</h3>
+ <ul>
+  <li><strong>Nilai eigen</strong> $\lambda$ dan <strong>vektor eigen</strong> $\mathbf{v}$ memenuhi $A\mathbf{v} = \lambda\mathbf{v}$, dengan $\mathbf{v} \neq \mathbf{0}$.</li>
+  <li><strong>Persamaan karakteristik</strong> $\det(A - \lambda I) = 0$ digunakan untuk mencari nilai eigen.</li>
+  <li><strong>Vektor eigen</strong> dicari dengan menyelesaikan $(A - \lambda I)\mathbf{v} = \mathbf{0}$.</li>
+  <li><strong>Jumlah nilai eigen = trace</strong> matriks; <strong>hasil kali nilai eigen = determinan</strong> matriks.</li>
+  <li><strong>Multiplisitas aljabar</strong> = berapa kali $\lambda$ muncul di polinomial karakteristik; <strong>multiplisitas geometri</strong> = dimensi ruang eigen. Selalu $1 \leq$ geometri $\leq$ aljabar.</li>
+  <li><strong>Diagonalisasi:</strong> $A = PDP^{-1}$—di mana $P$ berisi vektor eigen sebagai kolom dan $D$ berisi nilai eigen pada diagonal.</li>
+  <li><strong>Syarat diagonalisasi:</strong> $A$ harus memiliki $n$ vektor eigen bebas linear. Jika semua nilai eigen berbeda, pasti dapat didiagonalisasi.</li>
+  <li><strong>Aplikasi:</strong> $A^k = PD^kP^{-1}$—memudahkan perpangkatan matriks berorde besar.</li>
+  <li><strong>Matriks simetris</strong> selalu dapat didiagonalisasi secara ortogonal: $A = QDQ^T$—dengan $Q$ ortogonal ($Q^{-1} = Q^T$).</li>
+  <li><strong>Verifikasi:</strong> selalu periksa dengan $AP = PD$ atau $A\mathbf{v} = \lambda\mathbf{v}$ untuk memastikan perhitungan benar.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Nilai eigen dan vektor eigen adalah konsep yang <strong>menjembatani aljabar linear dengan aplikasi dunia nyata</strong>. Mereka mengungkap "arah-arah istimewa" di mana transformasi linear berperilaku paling sederhana—hanya meregang atau memampatkan, tanpa memutar. Diagonalisasi, yang memanfaatkan vektor eigen sebagai basis baru, mengubah matriks kompleks menjadi matriks diagonal yang trivial untuk dihitung.</p>
+ <p class="lesson-text">Yang membuat nilai eigen istimewa adalah <strong>kombinasi keindahan teoretis dan kekuatan praktisnya</strong>. Secara teoretis, nilai eigen mengungkap struktur tersembunyi dari matriks—seperti "sidik jari" yang membedakan satu transformasi dari yang lain. Secara praktis, nilai eigen memungkinkan kita memecahkan masalah yang tampaknya mustahil—seperti menghitung $A^{100}$ untuk matriks berukuran besar, atau menemukan arah-arah utama dalam data berdimensi tinggi. Kombinasi inilah yang menjadikan nilai eigen sebagai salah satu konsep paling penting dalam matematika terapan.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Dekomposisi Matriks</strong> (LU, QR, SVD—yang memecah matriks kompleks menjadi matriks dengan struktur khusus), <strong>Analisis Kompleks</strong> (yang menggunakan nilai eigen untuk menganalisis sistem dinamis), <strong>Persamaan Diferensial</strong> (yang menyelesaikan sistem linear menggunakan diagonalisasi), <strong>Machine Learning</strong> (di mana PCA, spectral clustering, dan banyak algoritma lain bertumpu pada nilai eigen), <strong>Mekanika Kuantum</strong> (yang menggunakan nilai eigen untuk merepresentasikan observables), dan <strong>Analisis Jaringan</strong> (yang menggunakan nilai eigen untuk mendeteksi komunitas dan menyebarkan pengaruh).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan pencarian nilai eigen, vektor eigen, dan diagonalisasi matriks $3 \times 3$. Kebiasaan memverifikasi hasil dengan sifat-sifat nilai eigen (trace dan determinan), memeriksa apakah matriks dapat didiagonalisasi sebelum memaksakan prosedurnya, serta konsisten dalam menyusun matriks $P$ dan $D$ akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik dekomposisi matriks dan aplikasi lanjutan, di mana manipulasi nilai eigen menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

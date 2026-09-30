@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Tensor Dasar (Pengertian, Orde, Notasi Indeks, dan Operasi Dasar)</title>
+ <meta name="description" content="Tensor dasar: pengertian tensor, orde (rank), notasi indeks, operasi dasar (penjumlahan, perkalian skalar, produk tensor, kontraksi), tensor khusus, tensor simetris/antisimetris, dan aturan transformasi.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Tensor Dasar (Pengertian, Orde, Notasi Indeks, dan Operasi Dasar)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Vektor</strong> — karena tensor orde-1 <em>adalah</em> vektor, dan operasi seperti dot product adalah bentuk khusus dari operasi tensor.</li>
+   <li><strong>Matriks</strong> — karena tensor orde-2 <em>adalah</em> matriks, dan perkalian matriks adalah bentuk khusus dari kontraksi tensor.</li>
+   <li><strong>Notasi Sigma</strong> — karena notasi indeks tensor (notasi Einstein) adalah singkatan dari penjumlahan beruntun.</li>
+   <li><strong>Ruang Vektor</strong> — karena tensor "hidup" di atas ruang vektor, dan aturan transformasi tensor melibatkan perubahan basis ruang tersebut.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Selama ini kita telah berkenalan dengan tiga "tingkat" objek matematika: <strong>skalar</strong> (satu angka), <strong>vektor</strong> (daftar angka), dan <strong>matriks</strong> (tabel angka). Ketiganya memiliki pola yang menarik—setiap kenaikan tingkat menambah satu "arah" indeks:</p>
+ <ul>
+  <li>Skalar: 0 indeks—misalnya suhu $30°C$.</li>
+  <li>Vektor: 1 indeks—misalnya posisi $(3, 4, 5)$.</li>
+  <li>Matriks: 2 indeks—misalnya tabel nilai $a_{ij}$.</li>
+ </ul>
+ <p class="lesson-text">Pertanyaan alaminya: apa yang terjadi jika kita menambah indeks lagi—menjadi 3, 4, atau $n$? Objek yang dihasilkan itulah yang disebut <strong>tensor</strong>. Tensor adalah <em>generalisasi</em> dari skalar, vektor, dan matriks ke sembarang jumlah indeks.</p>
+ <p class="lesson-text">Mengapa tensor penting? Karena banyak fenomena di alam memerlukan lebih dari sekadar angka, panah, atau tabel untuk dideskripsikan secara lengkap:</p>
+ <ul>
+  <li><strong>Tegangan material</strong> memerlukan tensor orde-2, karena arah gaya dan arah permukaan yang dikenai gaya sama-sama penting. Sembilan komponen tegangan tidak dapat disederhanakan menjadi vektor.</li>
+  <li><strong>Kelengkungan ruang-waktu</strong> dalam relativitas umum memerlukan tensor orde-4 (<em>tensor Riemann</em>), karena cara ruang melengkung bergantung pada dua arah perpindahan dan dua arah percepatan.</li>
+  <li><strong>Sifat anisotropik kristal</strong>—yaitu sifat yang berbeda pada arah berbeda—memerlukan tensor orde-3 atau lebih tinggi.</li>
+  <li><strong>Data dalam machine learning</strong>—gambar, video, batch data—direpresentasikan sebagai tensor multi-orde. Konsep "batch × tinggi × lebar × kanal" adalah tensor orde-4.</li>
+ </ul>
+ <p class="lesson-text">Yang membuat tensor bukan sekadar "array besar" adalah <strong>aturan transformasinya</strong>. Ketika kita mengganti sistem koordinat, komponen tensor berubah dengan cara yang terdefinisi dengan baik—dan cara inilah yang membedakan tensor dari array biasa. Inilah alasan mengapa tensor menjadi bahasa universal untuk fisika teoretis, geometri diferensial, dan machine learning modern.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: definisi tensor dan hierarki ordenya, notasi indeks (termasuk konvensi penjumlahan Einstein), operasi dasar (penjumlahan, perkalian skalar, produk tensor, kontraksi), tensor khusus (delta Kronecker dan Levi-Civita), tensor simetris dan antisimetris, sekilas aturan transformasi, contoh soal, dan kesalahan umum. Setiap rumus akan dijelaskan <em>mengapa</em> ia berlaku—bukan hanya menyebutkan hasilnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Tensor</h3>
+ <p class="lesson-text">Kita mulai dari definisi paling intuitif—hierarki objek matematika berdasarkan jumlah indeks.</p>
+
+ <p class="lesson-subheading">A. Hierarki Tensor: Skalar, Vektor, Matriks, dan Seterusnya</p>
+ <p class="lesson-text">Tensor bukanlah objek yang sepenuhnya baru. Ia adalah <strong>kelanjutan alami</strong> dari konsep-konsep yang sudah kita kenal. Perhatikan hierarki berikut:</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 820 280" style="max-width:100%; height:auto; width:820px;" xmlns="http://www.w3.org/2000/svg">
+   <text x="410" y="26" fill="#daa520" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Hierarki Tensor: Setiap Orde Menambah Satu Indeks</text>
+
+   <!-- Orde 0: titik (skalar) -->
+   <circle cx="80" cy="160" r="12" fill="#daa520"/>
+   <text x="80" y="120" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Orde-0</text>
+   <text x="80" y="215" fill="#daa520" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">Skalar</text>
+   <text x="80" y="235" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">1 komponen</text>
+   <text x="80" y="252" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">contoh: suhu</text>
+
+   <polygon points="135,160 122,155 122,165" fill="#666"/>
+
+   <!-- Orde 1: vektor (garis berisi titik) -->
+   <line x1="200" y1="160" x2="290" y2="160" stroke="#5dade2" stroke-width="6" stroke-linecap="round"/>
+   <circle cx="200" cy="160" r="5" fill="#f0c75e"/>
+   <circle cx="245" cy="160" r="5" fill="#f0c75e"/>
+   <circle cx="290" cy="160" r="5" fill="#f0c75e"/>
+   <text x="245" y="120" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Orde-1</text>
+   <text x="245" y="215" fill="#5dade2" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">Vektor</text>
+   <text x="245" y="235" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">d komponen</text>
+   <text x="245" y="252" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">contoh: posisi</text>
+
+   <polygon points="335,160 322,155 322,165" fill="#666"/>
+
+   <!-- Orde 2: matriks (grid) -->
+   <rect x="380" y="130" width="80" height="60" fill="#5dade2" fill-opacity="0.25" stroke="#5dade2" stroke-width="1.5" rx="3"/>
+   <line x1="407" y1="130" x2="407" y2="190" stroke="#5dade2" stroke-width="0.6" opacity="0.6"/>
+   <line x1="433" y1="130" x2="433" y2="190" stroke="#5dade2" stroke-width="0.6" opacity="0.6"/>
+   <line x1="380" y1="150" x2="460" y2="150" stroke="#5dade2" stroke-width="0.6" opacity="0.6"/>
+   <line x1="380" y1="170" x2="460" y2="170" stroke="#5dade2" stroke-width="0.6" opacity="0.6"/>
+   <text x="420" y="120" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Orde-2</text>
+   <text x="420" y="215" fill="#5dade2" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">Matriks</text>
+   <text x="420" y="235" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">d² komponen</text>
+   <text x="420" y="252" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">contoh: tabel</text>
+
+   <polygon points="510,160 497,155 497,165" fill="#666"/>
+
+   <!-- Orde 3: kubus -->
+   <rect x="570" y="140" width="70" height="50" fill="#f0c75e" fill-opacity="0.18" stroke="#f0c75e" stroke-width="1.5"/>
+   <polygon points="570,140 600,115 670,115 640,140" fill="#f0c75e" fill-opacity="0.28" stroke="#f0c75e" stroke-width="1.5"/>
+   <polygon points="640,140 670,115 670,165 640,190" fill="#f0c75e" fill-opacity="0.12" stroke="#f0c75e" stroke-width="1.5"/>
+   <text x="620" y="110" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Orde-3</text>
+   <text x="620" y="215" fill="#f0c75e" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">Tensor</text>
+   <text x="620" y="235" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">d³ komponen</text>
+   <text x="620" y="252" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">contoh: tegangan</text>
+
+   <polygon points="720,160 707,155 707,165" fill="#666"/>
+
+   <!-- Orde n: dots -->
+   <text x="770" y="165" fill="#e8e8e8" font-size="24" text-anchor="middle">⋯</text>
+   <text x="770" y="120" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Orde-n</text>
+   <text x="770" y="215" fill="#b8b8b8" font-size="13" text-anchor="middle" font-weight="700" font-style="italic">dⁿ</text>
+  </svg>
+  <figcaption class="visual-caption">Hierarki tensor: setiap kenaikan orde menambah satu indeks dan mengalikan jumlah komponen dengan $d$ (dimensi ruang). Skalar $d^0 = 1$, vektor $d^1 = d$, matriks $d^2$, tensor orde-3 $d^3$, dan seterusnya.</figcaption>
+ </figure>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Orde</th>
+     <th>Nama</th>
+     <th>Notasi</th>
+     <th>Komponen (di $\mathbb{R}^3$)</th>
+     <th>Contoh</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>0</td><td>Skalar</td><td>$s$</td><td>$3^0 = 1$</td><td>suhu, massa</td></tr>
+    <tr><td>1</td><td>Vektor</td><td>$v_i$</td><td>$3^1 = 3$</td><td>posisi, kecepatan</td></tr>
+    <tr><td>2</td><td>Matriks</td><td>$A_{ij}$</td><td>$3^2 = 9$</td><td>tabel data, tensor tegangan</td></tr>
+    <tr><td>3</td><td>Tensor orde-3</td><td>$T_{ijk}$</td><td>$3^3 = 27$</td><td>tensor piezoelektrik</td></tr>
+    <tr><td>4</td><td>Tensor orde-4</td><td>$R_{ijkl}$</td><td>$3^4 = 81$</td><td>tensor Riemann</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">B. Definisi Formal Tensor</p>
+ <p class="lesson-text">Secara informal, <strong>tensor</strong> adalah array multidimensi berisi bilangan yang diindeks oleh satu atau lebih indeks. Tetapi definisi ini belum lengkap—karena tidak semua array disebut tensor. Yang membuat sebuah array menjadi tensor adalah <strong>bagaimana ia bertransformasi</strong> ketika kita mengganti sistem koordinat.</p>
+
+ <p class="lesson-text">Definisi formal: <strong>tensor orde-$(p+q)$ tipe $(p, q)$</strong> adalah objek matematika yang memiliki $p$ indeks atas (kontravarian) dan $q$ indeks bawah (kovarian), yang komponennya bertransformasi secara linear dan homogen ketika basis ruang diubah.</p>
+
+ <p class="lesson-text">Untuk materi dasar ini, kita fokus pada tensor tipe $(0, p)$—yaitu tensor yang hanya memiliki indeks bawah—karena inilah bentuk yang paling sederhana dan paling sering muncul dalam penerapan.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi kunci:</strong> tensor adalah <em>array yang mengikuti aturan transformasi tertentu</em>. Array biasa (misalnya tiga bilangan acak yang disusun dalam kubus) belum tentu tensor—karena belum tentu ia bertransformasi seperti tensor ketika koordinat diubah. Aturan transformasi inilah yang membuat tensor menjadi objek geometris, bukan sekadar array.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Apa Bedanya Tensor dengan Array Biasa?</p>
+ <p class="lesson-text">Pertanyaan ini sangat penting—dan sering disalahpahami. Mari kita bandingkan tiga objek yang sekilas tampak sama:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Objek</th>
+     <th>Struktur</th>
+     <th>Aturan Transformasi</th>
+     <th>Apakah Tensor?</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Vektor posisi $\mathbf{r} = (x, y, z)$</td>
+     <td>3 angka</td>
+     <td>Berubah sesuai rotasi koordinat</td>
+     <td>Ya (orde-1)</td>
+    </tr>
+    <tr>
+     <td>Daftar nama $(A, B, C)$</td>
+     <td>3 angka</td>
+     <td>Tidak berubah</td>
+     <td>Bukan tensor</td>
+    </tr>
+    <tr>
+     <td>Tensor tegangan $\sigma_{ij}$</td>
+     <td>Matriks $3 \times 3$</td>
+     <td>Berubah sesuai aturan $R_{ip} R_{jq}$</td>
+     <td>Ya (orde-2)</td>
+    </tr>
+    <tr>
+     <td>Tabel harga $\begin{bmatrix} 10 & 20 \\ 30 & 40 \end{bmatrix}$</td>
+     <td>Matriks $2 \times 2$</td>
+     <td>Tidak berubah</td>
+     <td>Bukan tensor</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perhatikan: tensor tegangan <strong>berubah</strong> ketika kita memutar sistem koordinat—karena tegangan sesungguhnya adalah besaran fisik yang tidak bergantung pada koordinat, tetapi komponennya bergantung. Sebaliknya, tabel harga tidak berubah ketika koordinat diputar—karena tabel harga bukan besaran geometris.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Analogi:</strong> bayangkan sebuah patung. Ketika Anda berjalan mengelilinginya, <em>bentuk patung</em> tidak berubah—tetapi <em>bayangan patung di retina Anda</em> berubah. Patung adalah "besaran fisik" (tidak bergantung sudut pandang), sedangkan bayangan di retina adalah "komponen" (bergantung sudut pandang). Nah, aturan transformasi tensor memberi tahu kita bagaimana "bayangan" ini berubah ketika kita berpindah sudut pandang.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Orde (Rank) Tensor</h3>
+ <p class="lesson-text"><strong>Orde</strong> (disebut juga <em>rank</em>) tensor adalah jumlah indeks yang dimilikinya. Orde juga menentukan seberapa banyak tingkat "kedalaman" array tersebut.</p>
+
+ <p class="lesson-subheading">A. Tensor Orde-0: Skalar</p>
+ <p class="lesson-text">Tensor orde-0 tidak memiliki indeks sama sekali. Ia hanyalah bilangan tunggal:</p>
+ <p class="lesson-text">$$s \in \mathbb{R}$$</p>
+ <p class="lesson-text">Contoh: suhu, massa, muatan listrik. Ketika sistem koordinat diubah, skalar <strong>tidak berubah</strong>—inilah sifat khas tensor orde-0.</p>
+ <p class="lesson-text"><strong>Mengapa penting?</strong> Skalar adalah "invariant" geometris—ia merepresentasikan sesuatu yang tidak bergantung pada pilihan koordinat. Panjang vektor, sudut antar vektor, dan determinan matriks semuanya adalah skalar (tensor orde-0).</p>
+
+ <p class="lesson-subheading">B. Tensor Orde-1: Vektor</p>
+ <p class="lesson-text">Tensor orde-1 memiliki satu indeks. Di $\mathbb{R}^3$, ia memiliki 3 komponen:</p>
+ <p class="lesson-text">$$v_i \quad \text{untuk } i = 1, 2, 3$$</p>
+ <p class="lesson-text">Contoh: posisi, kecepatan, gaya. Ketika basis diubah, komponen vektor bertransformasi mengikuti matriks rotasi.</p>
+ <p class="lesson-text">Ada dua jenis tensor orde-1 berdasarkan cara transformasinya:</p>
+ <ul>
+  <li><strong>Vektor kontravarian</strong> (indeks atas: $v^i$)—bertransformasi dengan matriks rotasi $R^i_{\ j}$.</li>
+  <li><strong>Vektor kovarian</strong> (indeks bawah: $v_i$)—bertransformasi dengan matriks invers rotasi.</li>
+ </ul>
+ <p class="lesson-text">Di ruang Euclidean dengan basis ortonormal (seperti koordinat Kartesius), kedua jenis ini setara—sehingga kita bisa menggunakan indeks bawah saja tanpa kehilangan keumuman.</p>
+
+ <p class="lesson-subheading">C. Tensor Orde-2: Matriks</p>
+ <p class="lesson-text">Tensor orde-2 memiliki dua indeks. Di $\mathbb{R}^3$, ia memiliki $3^2 = 9$ komponen:</p>
+ <p class="lesson-text">$$T_{ij} \quad \text{untuk } i, j = 1, 2, 3$$</p>
+ <p class="lesson-text">Contoh: matriks tegangan, matriks regangan, tensor metrik. Perhatikan bahwa tensor orde-2 <em>dapat</em> direpresentasikan sebagai matriks $3 \times 3$, tetapi tidak semua matriks adalah tensor—hanya yang mengikuti aturan transformasi tensor.</p>
+ <p class="lesson-text">Tensor orde-2 dibedakan menjadi tiga jenis berdasarkan posisi indeksnya:</p>
+ <ul>
+  <li><strong>Tipe $(2, 0)$</strong>—kedua indeks di atas: $T^{ij}$ (kontravarian murni).</li>
+  <li><strong>Tipe $(1, 1)$</strong>—satu di atas, satu di bawah: $T^i_{\ j}$ (campuran)—ini adalah jenis yang paling sering muncul karena merepresentasikan transformasi linear.</li>
+  <li><strong>Tipe $(0, 2)$</strong>—kedua indeks di bawah: $T_{ij}$ (kovarian murni)—seperti tensor metrik.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Tensor Orde-3 dan Lebih Tinggi</p>
+ <p class="lesson-text">Tensor orde-3 memiliki tiga indeks dan $3^3 = 27$ komponen di $\mathbb{R}^3$:</p>
+ <p class="lesson-text">$$T_{ijk} \quad \text{untuk } i, j, k = 1, 2, 3$$</p>
+ <p class="lesson-text">Contoh tensor orde-3: tensor piezoelektrik (menghubungkan medan listrik dengan regangan mekanik pada kristal). Tensor orde-4, seperti tensor Riemann pada relativitas umum, memiliki $3^4 = 81$ komponen. Tensor orde-5 atau lebih tinggi jarang muncul dalam fisika, tetapi mungkin dalam matematika murni.</p>
+
+ <p class="lesson-subheading-alt">Mengapa orde penting?</p>
+ <p class="lesson-text">Orde menentukan <strong>cara tensor bertransformasi</strong> ketika sistem koordinat berubah:</p>
+ <ul>
+  <li>Tensor orde-0: tidak berubah.</li>
+  <li>Tensor orde-1: satu matriks rotasi diterapkan.</li>
+  <li>Tensor orde-2: dua matriks rotasi diterapkan.</li>
+  <li>Tensor orde-$n$: $n$ matriks rotasi diterapkan.</li>
+ </ul>
+ <p class="lesson-text">Selain itu, orde juga menentukan <strong>jumlah komponen</strong> yang harus disimpan. Untuk ruang berdimensi $d$, tensor orde-$n$ memiliki $d^n$ komponen. Inilah sebabnya mengapa tensor orde tinggi—meskipun secara matematis valid—sering dihindari dalam praktik: jumlah komponen tumbuh secara eksponensial.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Notasi Indeks</h3>
+ <p class="lesson-text">Notasi indeks adalah bahasa utama tensor—dan memahami aturannya adalah kunci untuk membaca dan menulis tensor dengan benar.</p>
+
+ <p class="lesson-subheading">A. Indeks Atas dan Indeks Bawah</p>
+ <p class="lesson-text">Dalam notasi tensor modern, indeks dapat dituliskan di <strong>bawah</strong> (subskrip) atau di <strong>atas</strong> (superskrip):</p>
+ <ul>
+  <li><strong>Indeks bawah</strong> (kovarian): $v_i$, $T_{ij}$, $T_{ijk}$—mengukur komponen terhadap basis vektor.</li>
+  <li><strong>Indeks atas</strong> (kontravarian): $v^i$, $T^{ij}$, $T^{ijk}$—mengukur komponen terhadap basis kovektor.</li>
+ </ul>
+ <p class="lesson-text">Dalam ruang Euclidean dengan basis ortonormal (seperti $\mathbb{R}^3$ dengan koordinat Kartesius), kedua jenis indeks ini <strong>setara</strong>—kita bisa menaikkan atau menurunkan indeks tanpa mengubah nilai. Karena itu, pada materi dasar ini kita hanya akan menggunakan <strong>indeks bawah</strong> saja.</p>
+
+ <p class="lesson-subheading">B. Notasi Einstein: Penjumlahan Tersirat</p>
+ <p class="lesson-text">Salah satu fitur paling elegan dari notasi tensor adalah <strong>konvensi penjumlahan Einstein</strong>: jika sebuah indeks muncul <strong>dua kali</strong> dalam satu suku—sekali di atas dan sekali di bawah (atau dalam kasus kita, keduanya di bawah tetapi "saling membatalkan")—maka secara implisit dilakukan penjumlahan atas indeks tersebut dari 1 sampai $n$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 760 260" style="max-width:100%; height:auto; width:760px;" xmlns="http://www.w3.org/2000/svg">
+   <text x="180" y="40" fill="#b8b8b8" font-size="14" font-weight="600" text-anchor="middle">Notasi panjang (dengan Σ)</text>
+
+   <text x="180" y="120" fill="#e8e8e8" font-size="16" text-anchor="middle" font-family="serif">c = a₁b₁ + a₂b₂ + a₃b₃</text>
+   <text x="180" y="160" fill="#e8e8e8" font-size="16" text-anchor="middle" font-family="serif">= Σᵢ aᵢbᵢ  (i = 1..3)</text>
+
+   <text x="180" y="220" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Indeks i muncul di setiap suku</text>
+
+   <line x1="370" y1="140" x2="440" y2="140" stroke="#f0c75e" stroke-width="2"/>
+   <polygon points="450,140 437,135 437,145" fill="#f0c75e"/>
+   <text x="410" y="125" fill="#f0c75e" font-size="12" font-style="italic" text-anchor="middle">disingkat</text>
+
+   <text x="600" y="40" fill="#daa520" font-size="14" font-weight="600" text-anchor="middle">Notasi Einstein</text>
+
+   <text x="600" y="120" fill="#f0c75e" font-size="22" text-anchor="middle" font-family="serif" font-weight="700">c = aᵢbᵢ</text>
+
+   <text x="600" y="170" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Σ implisit—langsung jumlahkan</text>
+   <text x="600" y="195" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">atas semua nilai i</text>
+
+   <rect x="530" y="215" width="140" height="30" fill="#f0c75e" fill-opacity="0.12" stroke="#f0c75e" stroke-width="1" rx="6"/>
+   <text x="600" y="235" fill="#f0c75e" font-size="13" font-weight="700" text-anchor="middle">i = indeks dummy</text>
+  </svg>
+  <figcaption class="visual-caption">Notasi Einstein: indeks yang muncul dua kali dalam satu suku (<em>indeks dummy</em>) menyiratkan penjumlahan. Dalam $a_i b_i$, indeks $i$ muncul dua kali—otomatis dijumlahkan. Hasil akhirnya adalah skalar (indeks $i$ "habis").</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Dot product dua vektor dapat dituliskan sangat ringkas:</p>
+ <p class="lesson-text">$$\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^{3} u_i v_i = u_i v_i \quad \text{(dalam notasi Einstein)}$$</p>
+ <p class="lesson-text">Indeks $i$ muncul dua kali—sekali pada $u_i$ dan sekali pada $v_i$—sehingga dijumlahkan. Hasilnya adalah skalar (tidak ada indeks bebas yang tersisa).</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Perkalian matriks $C = AB$ dalam notasi indeks:</p>
+ <p class="lesson-text">$$C_{ij} = \sum_{k=1}^{3} A_{ik} B_{kj} = A_{ik} B_{kj}$$</p>
+ <p class="lesson-text">Indeks $k$ muncul dua kali (indeks dummy)—dijumlahkan. Indeks $i$ dan $j$ masing-masing muncul satu kali (indeks bebas)—tidak dijumlahkan. Hasilnya adalah tensor orde-2 dengan indeks $i, j$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Aturan main notasi indeks:</strong></p>
+  <ul>
+   <li><strong>Indeks dummy</strong>—muncul tepat 2 kali dalam satu suku—secara implisit dijumlahkan. Nama indeks dummy boleh diganti sesuka hati (misalnya $a_i b_i = a_j b_j$).</li>
+   <li><strong>Indeks bebas</strong>—muncul tepat 1 kali—tidak dijumlahkan. Nama indeks bebas harus konsisten di kedua ruas persamaan.</li>
+   <li><strong>Indeks muncul &gt; 2 kali</strong>—adalah kesalahan notasi. Setiap indeks harus muncul tepat 1 atau 2 kali per suku.</li>
+   <li><strong>Ruas kiri dan kanan</strong> harus memiliki himpunan indeks bebas yang sama.</li>
+  </ul>
+ </div>
+
+ <p class="lesson-subheading">C. Membaca Tensor dari Notasinya</p>
+ <p class="lesson-text">Notasi indeks memberi tahu kita dua hal sekaligus:</p>
+ <ol>
+  <li><strong>Jumlah indeks bebas</strong>: menyatakan orde tensor hasil.</li>
+  <li><strong>Jumlah indeks dummy</strong>: menyatakan berapa penjumlahan beruntun yang terjadi.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Perhatikan ekspresi $T_{ijk} = A_{ij} B_{k}$. Indeks $i$ dan $j$ muncul satu kali (indeks bebas), indeks $k$ juga muncul satu kali (indeks bebas). Hasilnya adalah tensor orde-3.</p>
+ <p class="lesson-subheading-alt">Contoh 4:</p>
+ <p class="lesson-text">Perhatikan $u_i = T_{ij} v_j$. Di ruas kanan, indeks $j$ muncul dua kali (dummy—dijumlahkan), indeks $i$ muncul satu kali (bebas). Hasilnya adalah vektor (tensor orde-1). Ini adalah bentuk umum dari "matriks dikalikan vektor".</p>
+ <p class="lesson-subheading-alt">Contoh 5:</p>
+ <p class="lesson-text">Perhatikan $s = T_{ij} v_i v_j$. Indeks $i$ dan $j$ keduanya muncul dua kali—keduanya dijumlahkan. Tidak ada indeks bebas yang tersisa—hasilnya skalar. Ekspresi seperti ini muncul dalam bentuk kuadratik (misalnya energi kinetik $E = \frac{1}{2} m v_i v_i$).</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Operasi Dasar Tensor</h3>
+ <p class="lesson-text">Tensor mendukung beberapa operasi dasar yang mirip dengan operasi vektor dan matriks—namun diperluas untuk sembarang orde.</p>
+
+ <p class="lesson-subheading">A. Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text"><strong>Syarat:</strong> dua tensor hanya dapat dijumlahkan jika <strong>ordenya sama</strong> dan <strong>dimensi setiap indeks juga sama</strong>. Operasi dilakukan komponen per komponen:</p>
+ <p class="lesson-text">$$(A + B)_{ij} = A_{ij} + B_{ij}$$</p>
+ <p class="lesson-text">Untuk tensor orde-3: $(A + B)_{ijk} = A_{ijk} + B_{ijk}$. Prinsipnya sama—jumlahkan komponen yang bersesuaian.</p>
+ <p class="lesson-subheading-alt">Contoh 6:</p>
+ <p class="lesson-text">Jika $A_{ij} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ dan $B_{ij} = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$, maka $A + B = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix}$.</p>
+
+ <p class="lesson-subheading">B. Perkalian dengan Skalar</p>
+ <p class="lesson-text">Mengalikan tensor dengan skalar $k$ berarti mengalikan <strong>setiap komponen</strong> dengan $k$:</p>
+ <p class="lesson-text">$$(kT)_{ijk} = k \cdot T_{ijk}$$</p>
+ <p class="lesson-text">Operasi ini tidak mengubah orde tensor.</p>
+ <p class="lesson-subheading-alt">Contoh 7:</p>
+ <p class="lesson-text">Jika $k = 3$ dan $T_{ij} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$, maka $kT = \begin{bmatrix} 3 & 6 \\ 9 & 12 \end{bmatrix}$.</p>
+
+ <p class="lesson-subheading">C. Produk Tensor (Outer Product)</p>
+ <p class="lesson-text"><strong>Produk tensor</strong> (disebut juga <em>produk luar</em> atau <em>outer product</em>) menggabungkan dua tensor dengan cara mengalikan setiap komponennya—dan menghasilkan tensor dengan orde <strong>hasil penjumlahan orde</strong> kedua tensor asal.</p>
+ <p class="lesson-text">Jika $A$ bertipe orde-$m$ dan $B$ bertipe orde-$n$, maka produk tensor $A \otimes B$ bertipe orde-$(m+n)$:</p>
+ <p class="lesson-text">$$(A \otimes B)_{i_1 \dots i_m j_1 \dots j_n} = A_{i_1 \dots i_m} \cdot B_{j_1 \dots j_n}$$</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 700 300" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-prod-tensor" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <text x="80" y="40" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Vektor (orde-1)</text>
+   <text x="80" y="140" fill="#daa520" font-size="20" text-anchor="middle" font-family="serif" font-weight="700">u</text>
+   <text x="80" y="170" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">3 komponen</text>
+
+   <text x="180" y="140" fill="#f0c75e" font-size="28" text-anchor="middle">⊗</text>
+
+   <text x="290" y="40" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Vektor (orde-1)</text>
+   <text x="290" y="140" fill="#5dade2" font-size="20" text-anchor="middle" font-family="serif" font-weight="700">v</text>
+   <text x="290" y="170" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">3 komponen</text>
+
+   <line x1="360" y1="140" x2="440" y2="140" stroke="#f0c75e" stroke-width="2.5" marker-end="url(#arrow-prod-tensor)"/>
+
+   <text x="560" y="40" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Matriks (orde-2)</text>
+   <rect x="500" y="100" width="120" height="80" fill="#f0c75e" fill-opacity="0.15" stroke="#f0c75e" stroke-width="1.5" rx="4"/>
+   <line x1="540" y1="100" x2="540" y2="180" stroke="#f0c75e" stroke-width="0.6" opacity="0.6"/>
+   <line x1="580" y1="100" x2="580" y2="180" stroke="#f0c75e" stroke-width="0.6" opacity="0.6"/>
+   <line x1="500" y1="127" x2="620" y2="127" stroke="#f0c75e" stroke-width="0.6" opacity="0.6"/>
+   <line x1="500" y1="153" x2="620" y2="153" stroke="#f0c75e" stroke-width="0.6" opacity="0.6"/>
+   <text x="560" y="170" fill="#f0c75e" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">Tᵢⱼ = uᵢvⱼ</text>
+   <text x="560" y="205" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">9 komponen</text>
+
+   <text x="350" y="260" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Produk tensor: orde hasil = jumlah orde input (1 + 1 = 2).</text>
+   <text x="350" y="282" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Contoh: u ⊗ v menghasilkan matriks uᵢvⱼ.</text>
+  </svg>
+  <figcaption class="visual-caption">Produk tensor (outer product) dari dua vektor menghasilkan matriks. Setiap komponen hasil adalah perkalian komponen dari kedua tensor asal. Orde hasil = penjumlahan orde input.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh 8:</p>
+ <p class="lesson-text">Jika $\mathbf{u} = (1, 2)$ dan $\mathbf{v} = (3, 4)$, maka produk tensor $T_{ij} = u_i v_j$ adalah:</p>
+ <p class="lesson-text">$$T = \begin{bmatrix} u_1 v_1 & u_1 v_2 \\ u_2 v_1 & u_2 v_2 \end{bmatrix} = \begin{bmatrix} 3 & 4 \\ 6 & 8 \end{bmatrix}$$</p>
+
+ <p class="lesson-subheading">D. Kontraksi (Contraction)</p>
+ <p class="lesson-text"><strong>Kontraksi</strong> adalah operasi yang <em>mengurangi orde</em> tensor dengan cara menjumlahkan atas sepasang indeks. Operasi ini adalah generalisasi dari "trace" matriks dan "dot product" vektor.</p>
+ <p class="lesson-text">Jika $T_{ijk}$ adalah tensor orde-3, maka kontraksi atas indeks $i$ dan $j$ menghasilkan:</p>
+ <p class="lesson-text">$$S_k = \sum_{i=1}^{3} T_{iik} = T_{11k} + T_{22k} + T_{33k}$$</p>
+ <p class="lesson-text">Perhatikan bahwa indeks $i$ (yang muncul dua kali) "habis"—sehingga hasilnya adalah tensor orde-1 (dengan indeks $k$). Orde turun dari 3 menjadi 1.</p>
+
+ <p class="lesson-subheading-alt">Contoh 9 (trace sebagai kontraksi):</p>
+ <p class="lesson-text">Trace matriks $A$ adalah kontraksi atas kedua indeksnya:</p>
+ <p class="lesson-text">$$\operatorname{tr}(A) = A_{ii} = A_{11} + A_{22} + A_{33}$$</p>
+ <p class="lesson-text">Hasilnya skalar (orde turun dari 2 menjadi 0).</p>
+
+ <p class="lesson-subheading-alt">Contoh 10 (dot product sebagai kontraksi):</p>
+ <p class="lesson-text">Dot product $\mathbf{u} \cdot \mathbf{v} = u_i v_i$ adalah kontraksi atas indeks $i$ yang sama-sama dimiliki. Hasilnya skalar.</p>
+
+ <p class="lesson-subheading-alt">Contoh 11 (matriks kali vektor sebagai kontraksi):</p>
+ <p class="lesson-text">$w_i = A_{ij} v_j$ adalah kontraksi atas indeks $j$. Hasilnya vektor (orde turun dari 2+1 = 3 → 1).</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Aturan kontraksi:</strong> setiap pasangan indeks yang dijumlahkan mengurangi orde tensor hasil sebanyak 2. Jadi kontraksi atas satu pasang indeks menurunkan orde dari $n$ menjadi $n - 2$. Itulah sebabnya mengapa trace (kontraksi orde-2) menghasilkan skalar (orde-0).</p>
+ </div>
+
+ <p class="lesson-subheading">E. Transpose Tensor</p>
+ <p class="lesson-text">Untuk tensor orde-2, <strong>transpose</strong> menukar kedua indeksnya:</p>
+ <p class="lesson-text">$$(A^T)_{ij} = A_{ji}$$</p>
+ <p class="lesson-text">Untuk tensor orde lebih tinggi, transpose dilakukan dengan menukar posisi dua indeks tertentu. Misalnya, untuk tensor orde-3, kita bisa menukar indeks pertama dan ketiga:</p>
+ <p class="lesson-text">$$(T^T)_{ijk} = T_{kji}$$</p>
+ <p class="lesson-text">Transpose tidak mengubah orde tensor—ia hanya menyusun ulang komponen.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Tensor Khusus</h3>
+ <p class="lesson-text">Terdapat dua tensor khusus yang sangat sering muncul dalam fisika dan matematika—dan keduanya memiliki sifat yang memudahkan perhitungan.</p>
+
+ <p class="lesson-subheading">A. Delta Kronecker ($\delta_{ij}$)</p>
+ <p class="lesson-text"><strong>Delta Kronecker</strong> didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\delta_{ij} = \begin{cases} 1 & \text{jika } i = j \\ 0 & \text{jika } i \neq j \end{cases}$$</p>
+ <p class="lesson-text">Dalam bentuk matriks, delta Kronecker sama dengan <strong>matriks identitas</strong>:</p>
+ <p class="lesson-text">$$\delta_{ij} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$$</p>
+
+ <p class="lesson-subheading-alt">Sifat penting: efek "substitusi indeks"</p>
+ <p class="lesson-text">Ketika delta Kronecker dikontraksikan dengan tensor lain, ia <strong>mengganti nama indeks</strong>:</p>
+ <p class="lesson-text">$$\delta_{ij} v_j = v_i$$</p>
+ <p class="lesson-text">Mari kita periksa: $\delta_{ij} v_j = \delta_{i1} v_1 + \delta_{i2} v_2 + \delta_{i3} v_3$. Jika $i = 1$, hanya suku pertama yang tidak nol ($\delta_{11} = 1$), sehingga hasilnya $v_1$. Secara umum, hasilnya adalah $v_i$—indeks $j$ pada $v_j$ "diganti" menjadi $i$.</p>
+ <p class="lesson-text">Sifat ini sangat berguna untuk menyederhanakan ekspresi tensor. Contoh: $\delta_{ij} A_{jk} = A_{ik}$—delta Kronecker "menyerap" indeks $j$ dan menggantinya dengan $i$.</p>
+
+ <p class="lesson-subheading">B. Tensor Levi-Civita ($\varepsilon_{ijk}$)</p>
+ <p class="lesson-text"><strong>Tensor Levi-Civita</strong> didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\varepsilon_{ijk} = \begin{cases} +1 & \text{jika } (i, j, k) \text{ adalah permutasi genap dari } (1, 2, 3) \\ -1 & \text{jika } (i, j, k) \text{ adalah permutasi ganjil dari } (1, 2, 3) \\ 0 & \text{jika ada indeks yang sama} \end{cases}$$</p>
+ <p class="lesson-text">Permutasi <strong>genap</strong> adalah susunan yang diperoleh dengan jumlah pertukaran genap: $(1,2,3), (2,3,1), (3,1,2)$. Permutasi <strong>ganjil</strong>: $(1,3,2), (3,2,1), (2,1,3)$.</p>
+
+ <p class="lesson-subheading-alt">Sifat penting: cross product dalam notasi indeks</p>
+ <p class="lesson-text">Cross product dapat dituliskan sangat elegan menggunakan $\varepsilon_{ijk}$:</p>
+ <p class="lesson-text">$$(\mathbf{u} \times \mathbf{v})_i = \varepsilon_{ijk} u_j v_k$$</p>
+ <p class="lesson-text">Ini menjelaskan mengapa cross product hanya ada di $\mathbb{R}^3$—karena $\varepsilon_{ijk}$ memerlukan tepat tiga indeks.</p>
+
+ <p class="lesson-subheading-alt">Contoh 12:</p>
+ <p class="lesson-text">Hitung komponen ke-3 dari $\mathbf{u} \times \mathbf{v}$ dengan $\mathbf{u} = (1, 0, 0)$ dan $\mathbf{v} = (0, 1, 0)$.</p>
+ <p class="lesson-text">$$(\mathbf{u} \times \mathbf{v})_3 = \varepsilon_{3jk} u_j v_k$$</p>
+ <p class="lesson-text">Suku yang tidak nol hanya jika $j = 1$ dan $k = 2$: $\varepsilon_{312} u_1 v_2 = (1)(1)(1) = 1$.</p>
+ <p class="lesson-text">Jadi $\mathbf{u} \times \mathbf{v} = (0, 0, 1) = \mathbf{k}$. Ini sesuai dengan aturan standar: $\mathbf{i} \times \mathbf{j} = \mathbf{k}$.</p>
+
+ <p class="lesson-subheading-alt">Identitas penting: hubungan $\varepsilon$ dan $\delta$</p>
+ <p class="lesson-text">Terdapat identitas yang sangat berguna—disebut <em>identitas epsilon-delta</em>:</p>
+ <p class="lesson-text">$$\varepsilon_{ijk} \varepsilon_{ilm} = \delta_{jl} \delta_{km} - \delta_{jm} \delta_{kl}$$</p>
+ <p class="lesson-text">Identitas ini dipakai untuk membuktikan berbagai identitas vektor, seperti $\mathbf{u} \times (\mathbf{v} \times \mathbf{w}) = (\mathbf{u} \cdot \mathbf{w})\mathbf{v} - (\mathbf{u} \cdot \mathbf{v})\mathbf{w}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Tensor Simetris dan Antisimetris</h3>
+ <p class="lesson-text">Tensor orde-2 (dan lebih tinggi) dapat memiliki sifat simetri tertentu—yang menyederhanakan perhitungan dan mengungkap struktur yang tersembunyi.</p>
+
+ <p class="lesson-subheading">A. Tensor Simetris</p>
+ <p class="lesson-text">Tensor orde-2 $S_{ij}$ disebut <strong>simetris</strong> jika:</p>
+ <p class="lesson-text">$$S_{ij} = S_{ji}$$</p>
+ <p class="lesson-text">Artinya, komponen pada posisi $(i, j)$ sama dengan komponen pada posisi $(j, i)$. Dalam bentuk matriks, ini berarti matriks tersebut simetris terhadap diagonal utama.</p>
+ <p class="lesson-text">Contoh: tensor tegangan $\sigma_{ij}$ dan tensor regangan $\varepsilon_{ij}$ adalah tensor simetris—sifat ini bukan kebetulan, tetapi konsekuensi dari hukum fisika (keseimbangan momen).</p>
+
+ <p class="lesson-subheading">B. Tensor Antisimetris</p>
+ <p class="lesson-text">Tensor orde-2 $A_{ij}$ disebut <strong>antisimetris</strong> (atau <em>skew-symmetric</em>) jika:</p>
+ <p class="lesson-text">$$A_{ij} = -A_{ji}$$</p>
+ <p class="lesson-text">Konsekuensinya, semua elemen diagonal harus nol: $A_{ii} = -A_{ii} \Rightarrow A_{ii} = 0$.</p>
+ <p class="lesson-text">Contoh tensor antisimetris:</p>
+ <p class="lesson-text">$$A = \begin{bmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{bmatrix}$$</p>
+ <p class="lesson-text">Tensor antisimetris sering muncul dalam fisika—misalnya tensor medan elektromagnetik $F_{\mu\nu}$.</p>
+
+ <p class="lesson-subheading">C. Dekomposisi Tensor Orde-2</p>
+ <p class="lesson-text">Setiap tensor orde-2 dapat dipecah menjadi bagian simetris dan antisimetris:</p>
+ <p class="lesson-text">$$T_{ij} = \underbrace{\frac{1}{2}(T_{ij} + T_{ji})}_{\text{simetris}} + \underbrace{\frac{1}{2}(T_{ij} - T_{ji})}_{\text{antisimetris}}$$</p>
+ <p class="lesson-text">Dekomposisi ini sangat berguna dalam mekanika kontinum dan teori medan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Sekilas Aturan Transformasi</h3>
+ <p class="lesson-text">Salah satu ciri khas tensor—yang membedakannya dari array biasa—adalah <strong>aturan transformasinya</strong> ketika sistem koordinat diubah. Bagian ini memberikan gambaran singkat; pembahasan lengkap akan ada di materi Tensor Lanjut.</p>
+
+ <p class="lesson-subheading">A. Mengapa Transformasi Penting?</p>
+ <p class="lesson-text">Bayangkan sebuah vektor yang mewakili gaya pada suatu objek. Jika kita memutar sistem koordinat—tetapi objek dan gayanya tidak berubah—maka <em>komponen</em> vektor akan berubah, meskipun vektornya sendiri tetap. Aturan transformasi memberi tahu kita <strong>bagaimana</strong> komponen berubah.</p>
+
+ <p class="lesson-subheading">B. Aturan Transformasi untuk Tensor Orde-1</p>
+ <p class="lesson-text">Jika kita mengganti basis dengan matriks rotasi $R = [R_{ij}]$, maka komponen vektor bertransformasi sebagai:</p>
+ <p class="lesson-text">$$v'_i = R_{ij} v_j$$</p>
+ <p class="lesson-text">Ini adalah bentuk khusus dari "matriks rotasi dikalikan vektor"—yang sebenarnya sudah kita kenal.</p>
+
+ <p class="lesson-subheading">C. Aturan Transformasi untuk Tensor Orde-2 dan Lebih Tinggi</p>
+ <p class="lesson-text">Untuk tensor orde-2, dua matriks rotasi diterapkan—satu untuk setiap indeks:</p>
+ <p class="lesson-text">$$T'_{ij} = R_{ip} R_{jq} T_{pq}$$</p>
+ <p class="lesson-text">Untuk tensor orde-3, tiga matriks rotasi diterapkan:</p>
+ <p class="lesson-text">$$T'_{ijk} = R_{ip} R_{jq} R_{kr} T_{pqr}$$</p>
+ <p class="lesson-text">Pola ini dapat diperluas ke sembarang orde: tensor orde-$n$ memerlukan $n$ matriks rotasi.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Inilah definisi tensor yang sesungguhnya:</strong> sebuah array adalah tensor jika komponennya bertransformasi mengikuti pola di atas ketika basis diubah. Array yang tidak mengikuti pola ini hanyalah array biasa—bukan tensor.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Konsekuensi Penting: Invarian</p>
+ <p class="lesson-text">Salah satu konsekuensi paling penting dari aturan transformasi adalah adanya <strong>invarian</strong>—yaitu besaran yang <em>tidak berubah</em> ketika koordinat diubah. Contoh invarian:</p>
+ <ul>
+  <li>Panjang vektor: $|\mathbf{v}|^2 = v_i v_i$—skalar, tidak berubah.</li>
+  <li>Trace matriks: $\operatorname{tr}(A) = A_{ii}$—skalar, tidak berubah.</li>
+  <li>Determinan matriks: $\det(A)$—skalar, tidak berubah.</li>
+ </ul>
+ <p class="lesson-text">Invarian inilah yang menjadi "kebenaran" dari suatu sistem fisik—karena mereka tidak bergantung pada pilihan koordinat.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal dan Pembahasan</h3>
+<p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan identifikasi orde tensor, penulisan ulang dalam notasi Einstein, operasi dasar (penjumlahan, perkalian skalar, produk tensor, kontraksi), serta penggunaan delta Kronecker dan Levi-Civita—beserta satu soal cerita penerapan. Setiap langkah dituliskan lengkap, dan hasil setiap operasi diperiksa—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+<p class="lesson-subheading">Soal 1: Identifikasi Orde dan Jumlah Komponen</p>
+<p class="lesson-text">Tentukan orde dan jumlah komponen dari tensor berikut di $\mathbb{R}^3$: (a) $S_{ij}$, (b) $T_{ijk}$, (c) $R_{ijkl}$, (d) skalar $s$, (e) $v_i$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>(a) $S_{ij}$</strong>: 2 indeks → orde-2. Jumlah komponen $3^2 = 9$.</li>
+ <li><strong>(b) $T_{ijk}$</strong>: 3 indeks → orde-3. Jumlah komponen $3^3 = 27$.</li>
+ <li><strong>(c) $R_{ijkl}$</strong>: 4 indeks → orde-4. Jumlah komponen $3^4 = 81$.</li>
+ <li><strong>(d) $s$</strong>: tidak ada indeks → orde-0. Jumlah komponen $3^0 = 1$.</li>
+ <li><strong>(e) $v_i$</strong>: 1 indeks → orde-1. Jumlah komponen $3^1 = 3$.</li>
+</ol>
+<p class="lesson-text">Pola: tensor orde-$n$ di ruang berdimensi $d$ memiliki $d^n$ komponen.</p>
+
+<p class="lesson-subheading">Soal 2: Menulis Ulang dalam Notasi Einstein</p>
+<p class="lesson-text">Tuliskan ekspresi berikut dalam notasi Einstein: (a) $c = a_1 b_1 + a_2 b_2 + a_3 b_3$; (b) $c_{ij} = a_{i1} b_{1j} + a_{i2} b_{2j} + a_{i3} b_{3j}$; (c) $s = A_{11} + A_{22} + A_{33}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>(a)</strong> Indeks $i = 1, 2, 3$ muncul dua kali → dummy. Dalam notasi Einstein:
+  $$c = a_i b_i$$
+ </li>
+ <li><strong>(b)</strong> Indeks $k = 1, 2, 3$ muncul dua kali (dummy), indeks $i$ dan $j$ masing-masing sekali (bebas):
+  $$c_{ij} = a_{ik} b_{kj}$$
+ </li>
+ <li><strong>(c)</strong> Penjumlahan pada diagonal utama—indeks $i$ muncul dua kali:
+  $$s = A_{ii}$$
+ </li>
+</ol>
+
+<p class="lesson-subheading">Soal 3: Penjumlahan dan Perkalian Skalar Tensor</p>
+<p class="lesson-text">Diberikan $A_{ij} = \begin{bmatrix} 2 & 1 \\ 0 & 3 \end{bmatrix}$ dan $B_{ij} = \begin{bmatrix} 1 & -1 \\ 2 & 4 \end{bmatrix}$. Hitung $2A_{ij} - B_{ij}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Perkalian skalar:</strong>
+  $$2A = \begin{bmatrix} 4 & 2 \\ 0 & 6 \end{bmatrix}$$
+ </li>
+ <li><strong>Pengurangan komponen-per-komponen:</strong>
+  $$2A - B = \begin{bmatrix} 4-1 & 2-(-1) \\ 0-2 & 6-4 \end{bmatrix} = \begin{bmatrix} 3 & 3 \\ -2 & 2 \end{bmatrix}$$
+ </li>
+ <li><strong>Verifikasi orde:</strong> $A$ dan $B$ keduanya orde-2 berordo $2 \times 2$—penjumlahan valid, hasilnya orde-2 berordo $2 \times 2$.</li>
+</ol>
+
+<p class="lesson-subheading">Soal 4: Produk Tensor (Outer Product)</p>
+<p class="lesson-text">Diberikan $\mathbf{u} = (1, 2, 3)$ dan $\mathbf{v} = (4, 5)$. Tentukan produk tensor $T_{ij} = u_i v_j$ dan sebutkan ordenya.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Orde hasil</strong>: $\mathbf{u}$ orde-1 + $\mathbf{v}$ orde-1 = orde-2. Bentuknya matriks berordo $3 \times 2$.</li>
+ <li><strong>Hitung komponen</strong>—kalikan setiap $u_i$ dengan setiap $v_j$:
+  $$T = \begin{bmatrix} 1 \cdot 4 & 1 \cdot 5 \\ 2 \cdot 4 & 2 \cdot 5 \\ 3 \cdot 4 & 3 \cdot 5 \end{bmatrix} = \begin{bmatrix} 4 & 5 \\ 8 & 10 \\ 12 & 15 \end{bmatrix}$$
+ </li>
+ <li><strong>Verifikasi</strong>: baris ke-$i$ dari $T$ adalah kelipatan $u_i$ dari $\mathbf{v}$—konsisten dengan definisi outer product $T_{ij} = u_i v_j$.</li>
+</ol>
+
+<p class="lesson-subheading">Soal 5: Kontraksi Tensor</p>
+<p class="lesson-text">Diberikan tensor orde-3 dengan komponen berikut (hanya nilai tak-nol yang dituliskan): $T_{112} = 3$, $T_{221} = 5$, $T_{332} = 2$, $T_{123} = 4$. Tentukan hasil kontraksi $S_k = T_{iik}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Rumus kontraksi</strong>: $S_k = T_{11k} + T_{22k} + T_{33k}$ untuk setiap $k = 1, 2, 3$.</li>
+ <li><strong>Hitung setiap komponen</strong>:
+  <ul>
+   <li>$S_1 = T_{111} + T_{221} + T_{331} = 0 + 5 + 0 = 5$</li>
+   <li>$S_2 = T_{112} + T_{222} + T_{332} = 3 + 0 + 2 = 5$</li>
+   <li>$S_3 = T_{113} + T_{223} + T_{333} = 0 + 0 + 0 = 0$</li>
+  </ul>
+ </li>
+ <li><strong>Hasil</strong>: $S = (5, 5, 0)$—tensor orde-1. Orde turun dari 3 menjadi 1 (kontraksi mengurangi orde sebanyak 2).</li>
+</ol>
+
+<p class="lesson-subheading">Soal 6: Delta Kronecker dan Levi-Civita</p>
+<p class="lesson-text">(a) Hitung $\delta_{ij} A_{jk}$ untuk $A_{jk} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$. (b) Hitung $(\mathbf{u} \times \mathbf{v})_1$ untuk $\mathbf{u} = (2, 1, 3)$ dan $\mathbf{v} = (1, 0, 2)$ menggunakan $\varepsilon_{ijk}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>(a)</strong> Delta Kronecker mengganti indeks $j$ menjadi $i$:
+  $$\delta_{ij} A_{jk} = A_{ik}$$
+  Jadi hasilnya sama dengan $A$ itu sendiri: $\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$. Sifat ini disebut "substitusi indeks".</li>
+ <li><strong>(b)</strong> Komponen pertama: $(\mathbf{u} \times \mathbf{v})_1 = \varepsilon_{1jk} u_j v_k$.
+  <ul>
+   <li>Suku tak-nol hanya jika $(j, k) = (2, 3)$ atau $(3, 2)$.</li>
+   <li>$\varepsilon_{123} u_2 v_3 = (1)(1)(2) = 2$</li>
+   <li>$\varepsilon_{132} u_3 v_2 = (-1)(3)(0) = 0$</li>
+   <li>Jumlah: $2 + 0 = 2$</li>
+  </ul>
+  Jadi $(\mathbf{u} \times \mathbf{v})_1 = 2$.</li>
+ <li><strong>Verifikasi dengan rumus standar</strong>: $u_2 v_3 - u_3 v_2 = (1)(2) - (3)(0) = 2$ ✓</li>
+</ol>
+
+<p class="lesson-subheading">Soal 7: Soal Cerita — Tensor Tegangan Material</p>
+<p class="lesson-text">Sebuah material diberi tegangan pada tiga bidang. Komponen tensor tegangan (dalam MPa) yang terukur adalah $\sigma_{ij} = \begin{bmatrix} 10 & 3 & 0 \\ 3 & 8 & 1 \\ 0 & 1 & 5 \end{bmatrix}$. Tentukan: (a) apakah tensor ini simetris, (b) trace-nya, (c) bagian antisimetrisnya.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>(a) Cek simetri</strong>: periksa apakah $\sigma_{ij} = \sigma_{ji}$:
+  <ul>
+   <li>$\sigma_{12} = 3 = \sigma_{21} = 3$ ✓</li>
+   <li>$\sigma_{13} = 0 = \sigma_{31} = 0$ ✓</li>
+   <li>$\sigma_{23} = 1 = \sigma_{32} = 1$ ✓</li>
+  </ul>
+  Tensor <strong>simetris</strong>—sesuai dengan hukum fisika (keseimbangan momen pada material kontinu).</li>
+ <li><strong>(b) Trace</strong>—jumlah elemen diagonal:
+  $$\operatorname{tr}(\sigma) = \sigma_{ii} = 10 + 8 + 5 = 23 \text{ MPa}$$
+  Trace adalah <strong>invariant</strong>—nilainya tidak berubah meskipun sistem koordinat diputar. Dalam fisika, trace tensor tegangan terkait dengan tekanan hidrostatik.</li>
+ <li><strong>(c) Bagian antisimetris</strong>: karena tensor sudah simetris, bagian antisimetrisnya adalah nol:
+  $$A_{ij} = \tfrac{1}{2}(\sigma_{ij} - \sigma_{ji}) = 0$$
+  Secara umum, jika material memiliki tegangan geser asimetris (jarang terjadi pada material ideal), bagian antisimetris akan bukan nol.</li>
+ <li><strong>Interpretasi praktis</strong>: elemen diagonal $(10, 8, 5)$ adalah tegangan normal pada tiga arah—yaitu tekanan/regangan yang bekerja tegak lurus bidang. Elemen non-diagonal $(3, 0, 1)$ adalah tegangan geser—yaitu gaya yang bekerja sejajar bidang.</li>
+</ol>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap setiap array multidimensi adalah tensor.</strong> Array biasa baru menjadi tensor jika ia bertransformasi mengikuti aturan tertentu ketika koordinat diubah. Array dengan tiga indeks belum tentu tensor orde-3—ia harus memenuhi aturan transformasi.</li>
+  <li><strong>Menjumlahkan tensor dengan orde berbeda.</strong> Penjumlahan hanya valid jika orde kedua tensor sama dan dimensi setiap indeks juga sama. $T_{ij} + S_{ijk}$ tidak terdefinisi.</li>
+  <li><strong>Menuliskan indeks lebih dari dua kali dalam satu suku.</strong> Dalam notasi Einstein, setiap indeks hanya boleh muncul <em>tepat dua kali</em> (dijumlahkan) atau <em>tepat satu kali</em> (bebas). Ekspresi seperti $A_{ii} B_{ii}$ adalah kesalahan notasi—karena indeks $i$ muncul empat kali.</li>
+  <li><strong>Menganggap hasil kontraksi tetap memiliki orde yang sama.</strong> Kontraksi selalu mengurangi orde sebanyak 2 (dua indeks yang dijumlahkan "habis"). Trace matriks orde-2 menghasilkan skalar (orde-0), bukan matriks.</li>
+  <li><strong>Mengira produk tensor mengurangi orde.</strong> Justru sebaliknya—produk tensor <strong>menambah</strong> orde. Jika $A$ orde-2 dan $B$ orde-1, maka $A \otimes B$ orde-3.</li>
+  <li><strong>Mengabaikan konvensi Einstein dan menuliskan Σ setiap saat.</strong> Meskipun tidak salah, ini membuat tulisan menjadi panjang dan sulit dibaca. Notasi Einstein diciptakan justru untuk menyederhanakan penulisan—biasakan menggunakannya.</li>
+  <li><strong>Menukar indeks atas dan bawah sembarangan.</strong> Dalam ruang umum, indeks atas (kontravarian) dan indeks bawah (kovarian) memiliki peran berbeda. Hanya di ruang Euclidean dengan basis ortonormal keduanya setara.</li>
+  <li><strong>Menganggap cross product bersifat asosiatif.</strong> $(\mathbf{u} \times \mathbf{v}) \times \mathbf{w} \neq \mathbf{u} \times (\mathbf{v} \times \mathbf{w})$ secara umum. Dalam notasi tensor, ini karena urutan indeks pada $\varepsilon_{ijk}$ sangat menentukan.</li>
+  <li><strong>Menganggap trace dapat dilakukan pada tensor sembarang orde.</strong> Trace adalah kontraksi sepasang indeks. Untuk tensor orde-1, trace tidak terdefinisi (butuh dua indeks). Untuk tensor orde-3, kontraksi menghasilkan tensor orde-1 (bukan skalar).</li>
+  <li><strong>Menganggap tensor simetris dan antisimetris saling eksklusif.</strong> Sebuah tensor dapat bersifat keduanya hanya jika semua komponennya nol (karena $T_{ij} = T_{ji}$ dan $T_{ij} = -T_{ji}$ mengimplikasikan $T_{ij} = 0$).</li>
+  <li><strong>Menyamakan operasi "trace" dengan "kontraksi penuh".</strong> Trace adalah kontraksi satu pasang indeks. Tensor orde-4 memiliki lebih dari satu cara kontraksi (misalnya $R_{ijij}$ atau $R_{ijji}$), yang menghasilkan nilai berbeda.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Tensor</strong> adalah generalisasi dari skalar, vektor, dan matriks ke sembarang jumlah indeks.</li>
+  <li><strong>Orde (rank)</strong> tensor adalah jumlah indeksnya: skalar (0), vektor (1), matriks (2), dan seterusnya. Di $\mathbb{R}^3$, tensor orde-$n$ memiliki $3^n$ komponen.</li>
+  <li>Yang membedakan tensor dari array biasa adalah <strong>aturan transformasinya</strong> ketika sistem koordinat diubah—bukan sekadar jumlah indeks.</li>
+  <li><strong>Notasi indeks</strong> adalah bahasa utama tensor. Indeks bawah (kovarian) dan atas (kontravarian) memiliki peran berbeda—meskipun setara di ruang Euclidean ortonormal.</li>
+  <li><strong>Konvensi Einstein:</strong> indeks yang muncul dua kali dalam satu suku menyiratkan penjumlahan. Indeks dummy (dua kali) dijumlahkan; indeks bebas (sekali) tidak.</li>
+  <li><strong>Operasi dasar tensor:</strong>
+   <ul>
+    <li><strong>Penjumlahan:</strong> hanya jika orde dan dimensi sama.</li>
+    <li><strong>Perkalian skalar:</strong> kalikan setiap komponen.</li>
+    <li><strong>Produk tensor ($\otimes$):</strong> menambah orde (orde hasil = jumlah orde input).</li>
+    <li><strong>Kontraksi:</strong> mengurangi orde sebanyak 2 (dua indeks yang dijumlahkan "habis").</li>
+    <li><strong>Transpose:</strong> menukar posisi dua indeks tanpa mengubah orde.</li>
+   </ul>
+  </li>
+  <li><strong>Tensor khusus:</strong>
+   <ul>
+    <li>$\delta_{ij}$ (delta Kronecker)—mengganti nama indeks lewat kontraksi.</li>
+    <li>$\varepsilon_{ijk}$ (Levi-Civita)—mendefinisikan cross product. Identitas $\varepsilon_{ijk} \varepsilon_{ilm} = \delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl}$.</li>
+   </ul>
+  </li>
+  <li><strong>Tensor simetris</strong> ($S_{ij} = S_{ji}$) dan <strong>antisimetris</strong> ($A_{ij} = -A_{ji}$). Setiap tensor orde-2 dapat dipecah menjadi bagian simetris + antisimetris.</li>
+  <li><strong>Aturan transformasi:</strong> tensor orde-$n$ bertransformasi dengan $n$ matriks rotasi. Invarian adalah besaran yang tidak berubah ketika koordinat diubah.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Tensor adalah <strong>kelanjutan alami dari skalar, vektor, dan matriks</strong>. Konsep ini memungkinkan kita mendeskripsikan objek yang memiliki lebih dari dua "arah" keterkaitan—seperti tegangan pada material, kelengkungan ruang-waktu, atau distribusi data dalam machine learning. Yang membuat tensor istimewa bukan sekadar jumlah indeksnya, melainkan <strong>aturan transformasinya</strong>—yaitu cara komponen-komponennya berubah ketika sistem koordinat diubah.</p>
+ <p class="lesson-text">Notasi indeks dan konvensi penjumlahan Einstein adalah <strong>alat bantu yang sangat ampuh</strong>. Dengan notasi ini, ekspresi yang panjang dapat dituliskan dengan sangat ringkas—dan hubungan antar objek matematika menjadi jauh lebih transparan. Kemampuan membaca dan menulis tensor dalam notasi indeks adalah keterampilan yang akan terus Anda gunakan, terutama saat mempelajari topik lanjutan seperti relativitas umum, mekanika kontinum, dan geometri diferensial.</p>
+ <p class="lesson-text">Materi ini menjadi fondasi untuk topik <strong>Tensor Lanjut</strong>, yang akan membahas secara mendalam: aturan transformasi penuh (termasuk kontravarian dan kovarian), tensor metrik, turunan kovarian, simbol Christoffel, tensor Riemann, kalkulus tensor, dan penerapan pada relativitas umum. Setelah menguasai Tensor Lanjut, Anda akan siap memasuki relativitas umum dan geometri diferensial—di mana tensor menjadi bahasa utama.</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan manipulasi notasi indeks, penggunaan konvensi Einstein, dan operasi kontraksi. Kebiasaan memeriksa jumlah indeks (bebas vs dummy) pada setiap langkah akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik tensor lanjut, di mana operasi menjadi jauh lebih rumit.</p>
+</div>
+
+</div>
+</body>
+</html>

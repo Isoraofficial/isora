@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Determinan (Sifat-Sifat dan Aturan Cramer)</title>
+ <meta name="description" content="Determinan: definisi untuk ordo 2×2 dan 3×3, Aturan Sarrus, Ekspansi Kofaktor, sifat-sifat determinan, serta penerapan Aturan Cramer pada sistem persamaan linear.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Determinan (Sifat-Sifat dan Aturan Cramer)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Matriks</strong> — terutama ordo matriks, transpose, dan invers, karena determinan didefinisikan khusus pada matriks persegi dan menjadi syarat keberadaan invers.</li>
+   <li><strong>Sistem Persamaan</strong> — karena Aturan Cramer adalah metode penyelesaian sistem persamaan linear, dan notasi $AX = B$ mengasumsikan pemahaman tentang sistem persamaan.</li>
+   <li><strong>Vektor</strong> — karena determinan memiliki interpretasi geometris sebagai luas jajargenjang atau volume parallelepiped yang dibentuk oleh vektor-vektor kolom matriks.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi Matriks, kita sudah melihat bahwa matriks dapat mengalikan vektor—memetakan satu vektor ke vektor lain. Namun sebenarnya matriks melakukan sesuatu yang lebih besar: ia memetakan <strong>seluruh bidang</strong>, memindahkan setiap titik, garis, dan bangun di dalamnya.</p>
+ <p class="lesson-text">Untuk melihat apa yang dilakukan sebuah matriks $2 \times 2$, mari lakukan percobaan. Ambil <strong>persegi satuan</strong>—persegi dengan panjang sisi 1 dan luas 1—lalu petakan setiap titiknya menggunakan matriks $A$. Apa yang terjadi? Perhatikan gambar berikut.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 900 460" style="max-width:100%; height:auto; width:900px;" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Transformasi linear matriks A mengubah persegi satuan berluas 1 menjadi jajargenjang berluas 2">
+   <defs>
+    <marker id="arr-intro-tf" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+    <marker id="arr-intro-ax" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+    </marker>
+   </defs>
+   <text x="220" y="40" fill="#e8e8e8" font-size="15" font-weight="700" text-anchor="middle">Sebelum: Persegi Satuan</text>
+   <text x="220" y="65" fill="#b8b8b8" font-size="13" text-anchor="middle" font-style="italic">luas = 1</text>
+
+   <!-- Sumbu -->
+   <line x1="100" y1="370" x2="380" y2="370" stroke="#666" stroke-width="1" marker-end="url(#arr-intro-ax)"/>
+   <line x1="120" y1="400" x2="120" y2="170" stroke="#666" stroke-width="1" marker-end="url(#arr-intro-ax)"/>
+   <text x="386" y="374" fill="#888" font-size="12" font-style="italic">x</text>
+   <text x="108" y="166" fill="#888" font-size="12" font-style="italic">y</text>
+   <text x="104" y="388" fill="#888" font-size="11" font-style="italic">O</text>
+
+   <!-- Persegi satuan (unit 70px) -->
+   <polygon points="120,370 190,370 190,300 120,300" fill="#daa520" fill-opacity="0.4" stroke="#daa520" stroke-width="2"/>
+
+   <!-- Titik sudut -->
+   <circle cx="120" cy="370" r="3.5" fill="#f0c75e"/>
+   <circle cx="190" cy="370" r="3.5" fill="#f0c75e"/>
+   <circle cx="190" cy="300" r="3.5" fill="#f0c75e"/>
+   <circle cx="120" cy="300" r="3.5" fill="#f0c75e"/>
+
+   <!-- Label titik sudut -->
+   <text x="112" y="390" fill="#f0c75e" font-size="11" font-weight="600" text-anchor="end">(0,0)</text>
+   <text x="198" y="390" fill="#f0c75e" font-size="11" font-weight="600">(1,0)</text>
+   <text x="198" y="295" fill="#f0c75e" font-size="11" font-weight="600">(1,1)</text>
+   <text x="96" y="295" fill="#f0c75e" font-size="11" font-weight="600" text-anchor="end">(0,1)</text>
+
+   <!-- Label sisi -->
+   <text x="155" y="392" fill="#5dade2" font-size="13" font-weight="700" text-anchor="middle">1</text>
+   <text x="104" y="339" fill="#5dade2" font-size="13" font-weight="700" text-anchor="middle">1</text>
+
+   <!-- ============ PANAH TRANSFORMASI ============ -->
+   <line x1="440" y1="335" x2="540" y2="335" stroke="#f0c75e" stroke-width="2.5" marker-end="url(#arr-intro-tf)"/>
+   <text x="490" y="310" fill="#f0c75e" font-size="13" font-weight="700" text-anchor="middle">dikalikan matriks A</text>
+
+   <!-- Matriks A ditampilkan di bawah panah -->
+   <text x="490" y="385" fill="#b8b8b8" font-size="14" text-anchor="middle" font-family="monospace">A = ⎡2  1⎤</text>
+   <text x="490" y="405" fill="#b8b8b8" font-size="14" text-anchor="middle" font-family="monospace">       ⎣0  1⎦</text>
+
+   <!-- ============ PANEL KANAN: JAJARGENJANG ============ -->
+   <text x="700" y="40" fill="#e8e8e8" font-size="15" font-weight="700" text-anchor="middle">Sesudah: Jajargenjang</text>
+  <text x="700" y="65" fill="#f0c75e" font-size="13" font-weight="700" text-anchor="middle">luas = 2 = nilai mutlak det(A)</text>
+
+   <!-- Sumbu -->
+   <line x1="560" y1="370" x2="840" y2="370" stroke="#666" stroke-width="1" marker-end="url(#arr-intro-ax)"/>
+   <line x1="580" y1="400" x2="580" y2="170" stroke="#666" stroke-width="1" marker-end="url(#arr-intro-ax)"/>
+   <text x="846" y="374" fill="#888" font-size="12" font-style="italic">x</text>
+   <text x="568" y="166" fill="#888" font-size="12" font-style="italic">y</text>
+   <text x="564" y="388" fill="#888" font-size="11" font-style="italic">O</text>
+
+   <!-- Jajargenjang: (0,0)→(2,0)→(3,1)→(1,1) -->
+   <polygon points="580,370 720,370 790,300 650,300" fill="#daa520" fill-opacity="0.4" stroke="#daa520" stroke-width="2"/>
+
+   <!-- Titik sudut -->
+   <circle cx="580" cy="370" r="3.5" fill="#f0c75e"/>
+   <circle cx="720" cy="370" r="3.5" fill="#f0c75e"/>
+   <circle cx="790" cy="300" r="3.5" fill="#f0c75e"/>
+   <circle cx="650" cy="300" r="3.5" fill="#f0c75e"/>
+
+   <!-- Label titik sudut -->
+   <text x="572" y="390" fill="#f0c75e" font-size="11" font-weight="600" text-anchor="end">(0,0)</text>
+   <text x="728" y="390" fill="#f0c75e" font-size="11" font-weight="600">(2,0)</text>
+   <text x="795" y="295" fill="#f0c75e" font-size="11" font-weight="600">(3,1)</text>
+   <text x="644" y="295" fill="#f0c75e" font-size="11" font-weight="600" text-anchor="end">(1,1)</text>
+
+   <!-- Label sisi -->
+   <text x="650" y="392" fill="#5dade2" font-size="13" font-weight="700" text-anchor="middle">2</text>
+
+   <!-- Keterangan bawah -->
+ <text x="450" y="440" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Persegi berubah menjadi jajargenjang — luasnya berubah dari 1 menjadi nilai mutlak det(A) = 2.</text>
+  </svg>
+  <figcaption class="visual-caption">Transformasi linear oleh matriks $A = \begin{bmatrix} 2 & 1 \\ 0 & 1 \end{bmatrix}$ mengubah persegi satuan (luas 1) menjadi jajargenjang dengan luas $|\det(A)| = 2$.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Perhatikan dua hal dari percobaan ini. <strong>Pertama</strong>, persegi berubah menjadi <em>jajargenjang</em>—bukan sembarang bentuk. Hal ini terjadi karena transformasi linear selalu mempertahankan kelurusan garis dan kesejajaran: sisi-sisi yang semula <strong>sejajar tetap sejajar</strong>, tetapi sisi-sisi yang semula <strong>tegak lurus kini tidak lagi tegak lurus</strong>—sudutnya berubah. <strong>Kedua</strong>, luasnya berubah—dari 1 menjadi 2. Perubahan luas inilah yang diukur oleh determinan.</p>
+
+ <p class="lesson-text">Jadi, <strong>determinan adalah bilangan yang mengukur seberapa besar transformasi linear mengubah luas (di $\mathbb{R}^2$) atau volume (di $\mathbb{R}^3$)</strong>. Ia menjawab pertanyaan: jika kita mengubah bidang dengan matriks $A$, berapa kali lipat luas setiap bangun berubah—dan apakah orientasinya tetap atau terbalik?</p>
+
+ <p class="lesson-text">Pada materi Matriks, kita sudah menyentuh determinan sekilas sebagai <strong>penentu apakah matriks memiliki invers</strong>. Sekarang kita akan mengupasnya secara mendalam: bagaimana cara menghitungnya untuk berbagai ordo, sifat-sifat apa yang dimilikinya, dan bagaimana ia dapat dipakai untuk menyelesaikan sistem persamaan linear melalui <strong>Aturan Cramer</strong>.</p>
+
+ <p class="lesson-text">Materi ini disusun bertahap: definisi untuk ordo $1 \times 1$ dan $2 \times 2$, lalu ordo $3 \times 3$ dengan dua metode (Sarrus dan Ekspansi Kofaktor), sifat-sifat fundamental determinan, Aturan Cramer untuk sistem $2 \times 2$ dan $3 \times 3$, contoh soal, dan diakhiri dengan kesalahan umum. Setiap rumus akan dijelaskan <em>mengapa</em> ia berlaku—bukan hanya hasilnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Determinan</h3>
+ <p class="lesson-text">Kita mulai dari definisi dasar dan interpretasi geometrisnya—fondasi untuk seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Pengertian Determinan</p>
+ <p class="lesson-text"><strong>Determinan</strong> adalah suatu bilangan skalar yang diasosiasikan dengan setiap matriks <strong>persegi</strong> ($n \times n$). Determinan dari matriks $A$ dinotasikan $\det(A)$ atau $|A|$—dengan garis vertikal, <em>bukan</em> nilai mutlak. Determinan memberikan informasi penting tentang matriks, terutama mengenai:</p>
+ <ol>
+  <li>Apakah matriks memiliki invers (invertibel) atau tidak.</li>
+  <li>Faktor skala transformasi linear yang diwakili oleh matriks.</li>
+  <li>Solusi sistem persamaan linear (melalui Aturan Cramer).</li>
+ </ol>
+
+ <p class="lesson-subheading">B. Determinan untuk Matriks Ordo $1 \times 1$</p>
+ <p class="lesson-text">Untuk matriks $A = [a]$, determinannya didefinisikan sebagai $\det(A) = a$. Sederhana—untuk matriks satu elemen, determinannya adalah elemen itu sendiri.</p>
+
+ <p class="lesson-subheading">C. Determinan untuk Matriks Ordo $2 \times 2$</p>
+ <p class="lesson-text">Untuk matriks $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, determinannya didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\det(A) = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc$$</p>
+ <p class="lesson-text">Perhatikan polanya: kalikan elemen diagonal utama ($a \cdot d$), lalu kurangi dengan hasil kali elemen diagonal kedua ($b \cdot c$).</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">$A = \begin{bmatrix} 2 & 1 \\ 5 & 3 \end{bmatrix} \implies \det(A) = (2)(3) - (1)(5) = 6 - 5 = 1$.</p>
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">$B = \begin{bmatrix} 4 & -2 \\ 3 & 1 \end{bmatrix} \implies \det(B) = (4)(1) - (-2)(3) = 4 + 6 = 10$.</p>
+ <p class="lesson-text">Perhatikan tanda: karena $b = -2$, maka $bc = (-2)(3) = -6$, dan $ad - bc = 4 - (-6) = 4 + 6 = 10$. Hati-hati dengan tanda negatif pada elemen.</p>
+
+ <p class="lesson-subheading">D. Interpretasi Geometris Determinan $2 \times 2$</p>
+ <p class="lesson-text">Determinan $\det(A) = ad - bc$ memiliki makna geometris yang dalam: ia adalah <strong>luas jajargenjang</strong> yang dibentuk oleh vektor-vektor kolom matriks $\mathbf{u} = (a, c)$ dan $\mathbf{v} = (b, d)$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-det-u" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+    </marker>
+    <marker id="arrow-det-v" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#5dade2"/>
+    </marker>
+   </defs>
+
+   <!-- Grid koordinat -->
+   <line x1="60" y1="280" x2="560" y2="280" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+   <line x1="60" y1="280" x2="60" y2="40" stroke="#444" stroke-width="1" stroke-dasharray="4,3"/>
+   <text x="564" y="284" fill="#b8b8b8" font-size="12" font-style="italic">x</text>
+   <text x="48" y="34" fill="#b8b8b8" font-size="12" font-style="italic">y</text>
+
+   <!-- Jajargenjang (area = |det|) -->
+   <polygon points="60,280 260,280 400,120 200,120" fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="1.2" stroke-dasharray="5,4"/>
+
+   <!-- Vektor kolom 1: u = (a,c) -->
+   <line x1="60" y1="280" x2="260" y2="280" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-det-u)"/>
+   <text x="160" y="302" fill="#daa520" font-size="14" font-weight="700" font-style="italic">u = (a, c)</text>
+
+   <!-- Vektor kolom 2: v = (b,d) -->
+   <line x1="60" y1="280" x2="200" y2="120" stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-det-v)"/>
+   <text x="98" y="182" fill="#5dade2" font-size="14" font-weight="700" font-style="italic">v = (b, d)</text>
+
+   <!-- Titik asal -->
+   <circle cx="60" cy="280" r="4.5" fill="#e8e8e8"/>
+
+   <!-- Info box -->
+   <text x="330" y="220" fill="#f0c75e" font-size="15" font-weight="700">Luas jajargenjang</text>
+   <text x="330" y="245" fill="#f0c75e" font-size="15" font-weight="700">= |ad − bc| = |det(A)|</text>
+   <text x="330" y="275" fill="#b8b8b8" font-size="12" font-style="italic">Tanda det menunjukkan orientasi</text>
+
+   <!-- Label sumbu -->
+   <text x="42" y="296" fill="#b8b8b8" font-size="12" font-style="italic">O</text>
+  </svg>
+  <figcaption class="visual-caption">Determinan matriks $2 \times 2$ adalah luas jajargenjang yang dibentuk oleh vektor-vektor kolomnya. Tanda determinan menunjukkan orientasi: positif jika pasangan kolom mengikuti orientasi standar (berlawanan arah jarum jam), negatif jika orientasi terbalik.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Dengan kata lain, determinan mengukur <strong>seberapa besar transformasi "meregangkan" atau "memampatkan" ruang</strong>.</p>
+ <p class="lesson-text">Karena $\det(A) = \det(A^T)$, interpretasi yang sama juga berlaku jika kita menggunakan vektor <strong>baris</strong> sebagai sisi-sisi jajargenjang—hasilnya identik.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi kunci:</strong> determinan bernilai 0 berarti transformasi "menghancurkan" ruang—dari bidang menjadi garis atau titik. Inilah alasan geometris mengapa $\det(A) = 0$ berarti matriks singular (tidak invertibel): informasi sebagian sudah hilang, sehingga tidak bisa dibalik.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Determinan untuk Matriks Ordo $3 \times 3$</h3>
+ <p class="lesson-text">Untuk matriks berordo $3 \times 3$ atau lebih tinggi, perhitungan determinan memerlukan metode sistematis. Ada dua metode utama: <strong>Aturan Sarrus</strong> (khusus $3 \times 3$, visual dan cepat) dan <strong>Ekspansi Kofaktor</strong> (universal, berlaku semua ordo).</p>
+
+ <p class="lesson-subheading">A. Aturan Sarrus (Khusus $3 \times 3$)</p>
+ <p class="lesson-text">Aturan Sarrus adalah metode visual yang bekerja dengan menyalin dua kolom pertama dan menjumlahkan hasil kali diagonal.</p>
+ <p class="lesson-text">Diberikan matriks:</p>
+ <p class="lesson-text">$$A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}$$</p>
+
+ <p class="lesson-subheading-alt">Prosedur:</p>
+ <ol>
+  <li>Salin dua kolom pertama di sebelah kanan matriks (memperluas menjadi 5 kolom).</li>
+  <li>Jumlahkan hasil kali elemen-elemen pada <strong>diagonal turun</strong> (kiri-atas → kanan-bawah) beserta dua diagonal di bawahnya.</li>
+  <li>Kurangkan hasil kali elemen-elemen pada <strong>diagonal naik</strong> (kanan-atas → kiri-bawah) beserta dua diagonal di bawahnya.</li>
+ </ol>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 400" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Extended matrix (5 columns) -->
+   <text x="60" y="40" fill="#e8e8e8" font-size="12" font-style="italic">Salin kolom 1 dan 2 di sebelah kanan:</text>
+
+   <!-- Original 3 columns -->
+   <text x="120" y="80" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₁</text>
+   <text x="190" y="80" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₂</text>
+   <text x="260" y="80" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₃</text>
+   <text x="340" y="80" fill="#b8b8b8" font-size="20" text-anchor="middle">a₁₁</text>
+   <text x="410" y="80" fill="#b8b8b8" font-size="20" text-anchor="middle">a₁₂</text>
+
+   <text x="120" y="130" fill="#e8e8e8" font-size="20" text-anchor="middle">a₂₁</text>
+   <text x="190" y="130" fill="#e8e8e8" font-size="20" text-anchor="middle">a₂₂</text>
+   <text x="260" y="130" fill="#e8e8e8" font-size="20" text-anchor="middle">a₂₃</text>
+   <text x="340" y="130" fill="#b8b8b8" font-size="20" text-anchor="middle">a₂₁</text>
+   <text x="410" y="130" fill="#b8b8b8" font-size="20" text-anchor="middle">a₂₂</text>
+
+   <text x="120" y="180" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₁</text>
+   <text x="190" y="180" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₂</text>
+   <text x="260" y="180" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₃</text>
+   <text x="340" y="180" fill="#b8b8b8" font-size="20" text-anchor="middle">a₃₁</text>
+   <text x="410" y="180" fill="#b8b8b8" font-size="20" text-anchor="middle">a₃₂</text>
+
+   <!-- Downward arrows (gold, positive) -->
+   <line x1="120" y1="95" x2="260" y2="180" stroke="#f0c75e" stroke-width="2" opacity="0.85"/>
+   <line x1="190" y1="95" x2="340" y2="180" stroke="#f0c75e" stroke-width="2" opacity="0.85"/>
+   <line x1="260" y1="95" x2="410" y2="180" stroke="#f0c75e" stroke-width="2" opacity="0.85"/>
+
+   <!-- Upward arrows (blue, negative) -->
+   <line x1="120" y1="180" x2="260" y2="95" stroke="#5dade2" stroke-width="2" opacity="0.85"/>
+   <line x1="190" y1="180" x2="340" y2="95" stroke="#5dade2" stroke-width="2" opacity="0.85"/>
+   <line x1="260" y1="180" x2="410" y2="95" stroke="#5dade2" stroke-width="2" opacity="0.85"/>
+
+   <!-- Divider -->
+   <line x1="40" y1="220" x2="680" y2="220" stroke="#444" stroke-width="0.8"/>
+
+   <!-- Legend -->
+   <text x="60" y="255" fill="#f0c75e" font-size="13" font-weight="600">→ Diagonal turun (positif, dijumlahkan):</text>
+   <text x="80" y="280" fill="#e8e8e8" font-size="13" font-style="italic">a₁₁a₂₂a₃₃ + a₁₂a₂₃a₃₁ + a₁₃a₂₁a₃₂</text>
+
+   <text x="60" y="325" fill="#5dade2" font-size="13" font-weight="600">→ Diagonal naik (negatif, dikurangkan):</text>
+   <text x="80" y="350" fill="#e8e8e8" font-size="13" font-style="italic">a₁₃a₂₂a₃₁ + a₁₁a₂₃a₃₂ + a₁₂a₂₁a₃₃</text>
+  </svg>
+  <figcaption class="visual-caption">Aturan Sarrus: determinan $3 \times 3$ = (jumlah hasil kali diagonal turun) − (jumlah hasil kali diagonal naik). Salin dua kolom pertama di sebelah kanan untuk memudahkan visualisasi.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh 3 (Aturan Sarrus):</p>
+ <p class="lesson-text">Hitung determinan $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$.</p>
+ <p class="lesson-text">$$|A| = (1 \cdot 5 \cdot 9) + (2 \cdot 6 \cdot 7) + (3 \cdot 4 \cdot 8) - (3 \cdot 5 \cdot 7) - (1 \cdot 6 \cdot 8) - (2 \cdot 4 \cdot 9)$$ $$= 45 + 84 + 96 - 105 - 48 - 72 = 225 - 225 = 0$$</p>
+ <p class="lesson-text">Karena determinannya 0, matriks ini <strong>singular</strong>—tidak memiliki invers. Perhatikan bahwa baris ketiga adalah hasil operasi linear dari dua baris lainnya (baris 3 = 2 × baris 2 − baris 1), sehingga ketiga baris tidak bebas linear.</p>
+
+ <p class="lesson-subheading">B. Ekspansi Kofaktor—Metode Universal</p>
+ <p class="lesson-text">Aturan Sarrus hanya berlaku untuk $3 \times 3$. Untuk matriks $4 \times 4$ atau lebih tinggi, kita memerlukan metode yang lebih umum: <strong>Ekspansi Kofaktor</strong> (disebut juga Metode Laplace).</p>
+ <p class="lesson-text">Ide dasarnya: <strong>memecah determinan besar menjadi gabungan determinan-determinan kecil</strong>. Setiap langkah menghilangkan satu baris dan satu kolom, sampai akhirnya kita hanya perlu menghitung determinan $2 \times 2$.</p>
+
+ <p class="lesson-subheading-alt">1. Minor dan Kofaktor</p>
+ <ul>
+  <li><strong>Minor</strong> $M_{ij}$ adalah determinan dari submatriks yang diperoleh dengan <strong>menghapus baris ke-$i$ dan kolom ke-$j$</strong> dari matriks $A$.</li>
+  <li><strong>Kofaktor</strong> $C_{ij}$ adalah minor yang diberi tanda sesuai posisi: $C_{ij} = (-1)^{i+j} \cdot M_{ij}$.</li>
+ </ul>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 680 320" style="max-width:100%; height:auto; width:680px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-kofaktor" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <!-- Matrix A dengan highlight baris 2 dan kolom 3 -->
+   <text x="100" y="40" fill="#e8e8e8" font-size="14" font-style="italic" font-weight="600">Matriks A (3×3)</text>
+
+   <path d="M 60 60 L 40 60 L 40 220 L 60 220" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 300 60 L 320 60 L 320 220 L 300 220" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Row 1 -->
+   <text x="90" y="100" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₁</text>
+   <text x="160" y="100" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₂</text>
+   <rect x="200" y="78" width="80" height="36" fill="#e74c3c" fill-opacity="0.15"/>
+   <text x="235" y="100" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₃</text>
+
+   <!-- Row 2 (highlighted) -->
+   <rect x="40" y="120" width="280" height="40" fill="#f0c75e" fill-opacity="0.15"/>
+   <text x="90" y="150" fill="#f0c75e" font-size="20" text-anchor="middle" font-weight="600">a₂₁</text>
+   <text x="160" y="150" fill="#f0c75e" font-size="20" text-anchor="middle" font-weight="600">a₂₂</text>
+   <text x="235" y="150" fill="#f0c75e" font-size="20" text-anchor="middle" font-weight="600" opacity="0.5">a₂₃</text>
+
+   <!-- Row 3 -->
+   <text x="90" y="200" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₁</text>
+   <text x="160" y="200" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₂</text>
+   <rect x="200" y="178" width="80" height="36" fill="#e74c3c" fill-opacity="0.15"/>
+   <text x="235" y="200" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₃</text>
+
+   <!-- Arrow -->
+   <line x1="350" y1="140" x2="425" y2="140" stroke="#f0c75e" stroke-width="2.5" marker-end="url(#arrow-kofaktor)"/>
+   <text x="390" y="126" fill="#f0c75e" font-size="12" font-style="italic" text-anchor="middle">hapus baris 2 &amp; kolom 3</text>
+
+   <!-- Minor M_23 (2×2) -->
+   <text x="555" y="40" fill="#e8e8e8" font-size="14" font-style="italic" font-weight="600">Minor M₂₃ (2×2)</text>
+   <path d="M 500 80 L 480 80 L 480 200 L 500 200" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 620 80 L 640 80 L 640 200 L 620 200" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <text x="530" y="120" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₁</text>
+   <text x="590" y="120" fill="#e8e8e8" font-size="20" text-anchor="middle">a₁₂</text>
+   <text x="530" y="180" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₁</text>
+   <text x="590" y="180" fill="#e8e8e8" font-size="20" text-anchor="middle">a₃₂</text>
+
+   <!-- Caption inside -->
+   <text x="340" y="270" fill="#b8b8b8" font-size="13" text-anchor="middle" font-style="italic">Kofaktor C₂₃ = (−1)²⁺³ · M₂₃ = −M₂₃</text>
+   <text x="340" y="295" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Minor diperoleh dengan "menghapus" baris i dan kolom j.</text>
+  </svg>
+  <figcaption class="visual-caption">Minor $M_{ij}$ diperoleh dengan menghapus baris ke-$i$ dan kolom ke-$j$. Kofaktor $C_{ij}$ = minor dikalikan tanda $(-1)^{i+j}$.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Pola tanda $(-1)^{i+j}$ pada posisi $(i,j)$ membentuk pola papan catur:</p>
+ <p class="lesson-text">$$\begin{bmatrix} + & - & + & \dots \\ - & + & - & \dots \\ + & - & + & \dots \\ \vdots & \vdots & \vdots & \ddots \end{bmatrix}$$</p>
+ <p class="lesson-text">Ingat pola ini dengan mudah: <strong>posisi $(1,1)$ selalu positif, dan tanda bergantian secara horizontal dan vertikal.</strong></p>
+
+ <p class="lesson-subheading-alt">2. Rumus Ekspansi Kofaktor</p>
+ <p class="lesson-text">Determinan matriks $A$ dapat dihitung dengan ekspansi sepanjang <strong>baris ke-$i$</strong>:</p>
+ <p class="lesson-text">$$\det(A) = a_{i1}C_{i1} + a_{i2}C_{i2} + \dots + a_{in}C_{in} = \sum_{j=1}^{n} a_{ij}C_{ij}$$</p>
+ <p class="lesson-text">atau sepanjang <strong>kolom ke-$j$</strong>:</p>
+ <p class="lesson-text">$$\det(A) = a_{1j}C_{1j} + a_{2j}C_{2j} + \dots + a_{nj}C_{nj} = \sum_{i=1}^{n} a_{ij}C_{ij}$$</p>
+ <p class="lesson-text">Kedua rumus memberi hasil yang sama—pilihan bergantung pada mana yang lebih mudah dihitung.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Strategi praktis:</strong> pilih baris atau kolom yang memiliki <strong>banyak angka nol</strong>. Setiap angka nol pada baris/kolom yang dipilih membuat satu suku menjadi nol—sehingga Anda tidak perlu menghitung kofaktornya. Ini bisa menghemat banyak perhitungan.</p>
+ </div>
+
+ <p class="lesson-subheading-alt">Contoh 4 (Ekspansi Kofaktor):</p>
+ <p class="lesson-text">Hitung determinan $B = \begin{bmatrix} 2 & -1 & 0 \\ 3 & 1 & 4 \\ 1 & 0 & -2 \end{bmatrix}$.</p>
+ <p class="lesson-text">Baris pertama memiliki satu angka nol di posisi $(1,3)$, jadi ekspansi sepanjang baris pertama akan menghemat satu perhitungan kofaktor.</p>
+ <p class="lesson-text">$$\det(B) = b_{11}C_{11} + b_{12}C_{12} + b_{13}C_{13}$$</p>
+ <p class="lesson-text">$$= 2 \cdot (+1) \begin{vmatrix} 1 & 4 \\ 0 & -2 \end{vmatrix} + (-1) \cdot (-1) \begin{vmatrix} 3 & 4 \\ 1 & -2 \end{vmatrix} + 0 \cdot C_{13}$$</p>
+ <p class="lesson-text">Hitung minor:</p>
+ <ul>
+  <li>$M_{11} = (1)(-2) - (4)(0) = -2$. Tanda $(-1)^{2} = +1$, jadi $C_{11} = -2$.</li>
+  <li>$M_{12} = (3)(-2) - (4)(1) = -6 - 4 = -10$. Tanda $(-1)^{3} = -1$, jadi $C_{12} = 10$.</li>
+ </ul>
+ <p class="lesson-text">$$\det(B) = 2(-2) + (-1)(10) + 0 = -4 - 10 = -14$$</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Determinan</h3>
+ <p class="lesson-text">Sifat-sifat ini sangat penting untuk menyederhanakan perhitungan determinan tanpa harus melakukan ekspansi penuh—dan untuk memahami perilaku determinan di bawah operasi matriks.</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>No</th>
+     <th>Sifat</th>
+     <th>Keterangan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>1</strong></td>
+     <td>$\det(I_n) = 1$</td>
+     <td>Determinan matriks identitas adalah 1.</td>
+    </tr>
+    <tr>
+     <td><strong>2</strong></td>
+     <td>$\det(A^T) = \det(A)$</td>
+     <td>Determinan matriks sama dengan determinan transposenya.</td>
+    </tr>
+    <tr>
+     <td><strong>3</strong></td>
+     <td>Tukar baris/kolom $\Rightarrow$ determinan $\times (-1)$</td>
+     <td>Jika dua baris (atau dua kolom) ditukar, determinan berubah tanda.</td>
+    </tr>
+    <tr>
+     <td><strong>4</strong></td>
+     <td>Kalikan baris/kolom dengan $k$ $\Rightarrow$ determinan $\times k$</td>
+     <td>Jika suatu baris (atau kolom) dikalikan skalar $k$, determinan dikalikan $k$.</td>
+    </tr>
+    <tr>
+     <td><strong>5</strong></td>
+     <td>Baris/kolom nol $\Rightarrow$ $\det(A) = 0$</td>
+     <td>Jika ada baris atau kolom yang seluruhnya nol.</td>
+    </tr>
+    <tr>
+     <td><strong>6</strong></td>
+     <td>Baris/kolom identik $\Rightarrow$ $\det(A) = 0$</td>
+     <td>Jika ada dua baris atau dua kolom yang identik.</td>
+    </tr>
+    <tr>
+ <td><strong>7</strong></td>
+ <td>$R_i \leftarrow R_i + kR_j$ $\Rightarrow$ determinan tidak berubah</td>
+ <td>Menambahkan kelipatan suatu baris ke baris lain tidak mengubah determinan (berbeda dari mengalikan satu baris dengan $k$, yang mengalikan determinan dengan $k$).</td>
+</tr>
+    <tr>
+     <td><strong>8</strong></td>
+     <td>$\det(AB) = \det(A) \cdot \det(B)$</td>
+     <td>Determinan perkalian matriks = hasil kali determinan.</td>
+    </tr>
+    <tr>
+     <td><strong>9</strong></td>
+     <td>$\det(kA) = k^n \cdot \det(A)$</td>
+     <td>Untuk matriks $n \times n$, mengalikan seluruh matriks dengan $k$ mengalikan determinan dengan $k^n$.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading-alt">Contoh 5 (penerapan sifat):</p>
+ <p class="lesson-text">Diketahui $\det(A) = 3$ untuk $A$ berordo $3 \times 3$.</p>
+ <ul>
+  <li>$\det(2A) = 2^3 \cdot 3 = 24$—karena seluruh matriks dikalikan 2, determinan dikalikan $2^3 = 8$.</li>
+  <li>Jika dua baris ditukar: $\det(A') = -3$.</li>
+  <li>Jika suatu baris dikalikan 2: $\det(A') = 2 \cdot 3 = 6$.</li>
+  <li>Jika dilakukan OBE ($R_1 \leftarrow R_1 + 2R_2$): $\det(A') = 3$—tidak berubah.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perhatikan perbedaan sifat 4 dan sifat 9:</strong> sifat 4 berlaku jika <em>satu baris/kolom</em> dikalikan $k$ (determinan dikalikan $k$). Sifat 9 berlaku jika <em>seluruh matriks</em> dikalikan $k$ (determinan dikalikan $k^n$). Ini adalah sumber kebingungan yang paling umum—pastikan Anda membedakan keduanya.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Aturan Cramer</h3>
+ <p class="lesson-text"><strong>Aturan Cramer</strong> adalah metode untuk menyelesaikan <strong>sistem persamaan linear</strong> dengan jumlah variabel yang sama dengan jumlah persamaan ($n$ persamaan, $n$ variabel)—menggunakan determinan. Metode ini sangat efisien untuk sistem berukuran kecil ($n = 2$ atau $n = 3$), tetapi menjadi tidak praktis untuk $n \ge 4$ karena perhitungan determinan yang berat.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> jika solusi sistem $AX = B$ adalah $X = A^{-1}B$, dan invers matriks melibatkan determinan di penyebutnya, maka masuk akal bahwa solusi dapat dinyatakan sebagai <em>rasio dua determinan</em>—itulah inti Aturan Cramer.</p>
+ </div>
+
+ <p class="lesson-subheading">A. Prosedur Aturan Cramer</p>
+ <p class="lesson-text">Misalkan kita memiliki sistem linear $n$ persamaan dengan $n$ variabel:</p>
+ <p class="lesson-text">$$a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1$$ $$a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2$$ $$\vdots$$ $$a_{n1}x_1 + a_{n2}x_2 + \dots + a_{nn}x_n = b_n$$</p>
+ <p class="lesson-text">Dalam bentuk matriks: $AX = B$—dengan $A$ matriks koefisien, $X$ vektor variabel, dan $B$ vektor konstanta.</p>
+ <p class="lesson-text">Aturan Cramer menyatakan bahwa solusi untuk variabel $x_j$ adalah:</p>
+ <p class="lesson-text">$$x_j = \frac{\det(A_j)}{\det(A)}$$</p>
+ <p class="lesson-text">di mana $A_j$ adalah matriks yang diperoleh dengan <strong>mengganti kolom ke-$j$</strong> dari matriks $A$ dengan <strong>vektor konstanta $B$</strong>.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 320" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-cramer" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <!-- Matriks A -->
+   <text x="120" y="40" fill="#e8e8e8" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Matriks A</text>
+   <path d="M 50 70 L 30 70 L 30 230 L 50 230" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 210 70 L 230 70 L 230 230 L 210 230" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <text x="80" y="120" fill="#e8e8e8" font-size="18" text-anchor="middle">a₁₁</text>
+   <text x="130" y="120" fill="#e8e8e8" font-size="18" text-anchor="middle">a₁₂</text>
+   <text x="180" y="120" fill="#e8e8e8" font-size="18" text-anchor="middle">a₁₃</text>
+
+   <text x="80" y="170" fill="#e8e8e8" font-size="18" text-anchor="middle">a₂₁</text>
+   <text x="130" y="170" fill="#e8e8e8" font-size="18" text-anchor="middle">a₂₂</text>
+   <text x="180" y="170" fill="#e8e8e8" font-size="18" text-anchor="middle">a₂₃</text>
+
+   <text x="80" y="220" fill="#e8e8e8" font-size="18" text-anchor="middle">a₃₁</text>
+   <text x="130" y="220" fill="#e8e8e8" font-size="18" text-anchor="middle">a₃₂</text>
+   <text x="180" y="220" fill="#e8e8e8" font-size="18" text-anchor="middle">a₃₃</text>
+
+   <!-- = B -->
+   <text x="260" y="155" fill="#b8b8b8" font-size="20" text-anchor="middle">·</text>
+   <text x="290" y="155" fill="#b8b8b8" font-size="20" text-anchor="middle">X</text>
+   <text x="320" y="155" fill="#b8b8b8" font-size="20" text-anchor="middle">=</text>
+
+   <!-- Vektor B -->
+   <text x="400" y="40" fill="#e8e8e8" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Vektor B</text>
+   <path d="M 350 70 L 330 70 L 330 230 L 350 230" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 440 70 L 460 70 L 460 230 L 440 230" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <text x="395" y="120" fill="#f0c75e" font-size="18" text-anchor="middle" font-weight="600">b₁</text>
+   <text x="395" y="170" fill="#f0c75e" font-size="18" text-anchor="middle" font-weight="600">b₂</text>
+   <text x="395" y="220" fill="#f0c75e" font-size="18" text-anchor="middle" font-weight="600">b₃</text>
+
+   <!-- Divider -->
+   <line x1="490" y1="30" x2="490" y2="280" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <!-- Arrow -->
+   <line x1="500" y1="155" x2="515" y2="155" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-cramer)"/>
+
+   <!-- A_1 untuk x_1 -->
+   <text x="615" y="45" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Untuk x₁: kolom 1 diganti B</text>
+
+   <path d="M 530 70 L 510 70 L 510 230 L 530 230" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 690 70 L 710 70 L 710 230 L 690 230" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Column 1 replaced (highlighted) -->
+   <rect x="510" y="70" width="60" height="160" fill="#f0c75e" fill-opacity="0.15"/>
+   <text x="540" y="120" fill="#f0c75e" font-size="18" text-anchor="middle" font-weight="600">b₁</text>
+   <text x="540" y="170" fill="#f0c75e" font-size="18" text-anchor="middle" font-weight="600">b₂</text>
+   <text x="540" y="220" fill="#f0c75e" font-size="18" text-anchor="middle" font-weight="600">b₃</text>
+
+   <text x="600" y="120" fill="#e8e8e8" font-size="18" text-anchor="middle">a₁₂</text>
+   <text x="600" y="170" fill="#e8e8e8" font-size="18" text-anchor="middle">a₂₂</text>
+   <text x="600" y="220" fill="#e8e8e8" font-size="18" text-anchor="middle">a₃₂</text>
+
+   <text x="660" y="120" fill="#e8e8e8" font-size="18" text-anchor="middle">a₁₃</text>
+   <text x="660" y="170" fill="#e8e8e8" font-size="18" text-anchor="middle">a₂₃</text>
+   <text x="660" y="220" fill="#e8e8e8" font-size="18" text-anchor="middle">a₃₃</text>
+
+   <!-- Formula -->
+   <text x="360" y="295" fill="#f0c75e" font-size="14" text-anchor="middle" font-weight="600">x_j = det(A_j) / det(A)   —   syarat: det(A) ≠ 0</text>
+  </svg>
+  <figcaption class="visual-caption">Aturan Cramer: untuk mencari variabel $x_j$, ganti kolom ke-$j$ dari matriks $A$ dengan vektor konstanta $B$, lalu hitung $\det(A_j)/\det(A)$.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Syarat:</strong> $\det(A) \neq 0$. Jika $\det(A) = 0$, Aturan Cramer tidak berlaku—sistem memiliki tak hingga solusi atau tidak memiliki solusi.</p>
+
+ <p class="lesson-subheading">B. Aturan Cramer untuk Sistem $2 \times 2$</p>
+ <p class="lesson-text">Untuk sistem $a_{11}x + a_{12}y = b_1$ dan $a_{21}x + a_{22}y = b_2$:</p>
+ <p class="lesson-text">$$x = \frac{\begin{vmatrix} b_1 & a_{12} \\ b_2 & a_{22} \end{vmatrix}}{\begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix}} = \frac{b_1a_{22} - a_{12}b_2}{a_{11}a_{22} - a_{12}a_{21}}$$</p>
+ <p class="lesson-text">$$y = \frac{\begin{vmatrix} a_{11} & b_1 \\ a_{21} & b_2 \end{vmatrix}}{\begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix}} = \frac{a_{11}b_2 - b_1a_{21}}{a_{11}a_{22} - a_{12}a_{21}}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 6 (Aturan Cramer $2 \times 2$):</p>
+ <p class="lesson-text">Selesaikan sistem $2x + 3y = 8$ dan $3x - 2y = -1$.</p>
+ <p class="lesson-text">Matriks koefisien $A = \begin{bmatrix} 2 & 3 \\ 3 & -2 \end{bmatrix}$ dengan $\det(A) = -4 - 9 = -13 \neq 0$.</p>
+ <ul>
+  <li>$A_1 = \begin{bmatrix} 8 & 3 \\ -1 & -2 \end{bmatrix}$, $\det(A_1) = (8)(-2) - (3)(-1) = -16 + 3 = -13$.</li>
+  <li>$A_2 = \begin{bmatrix} 2 & 8 \\ 3 & -1 \end{bmatrix}$, $\det(A_2) = (2)(-1) - (8)(3) = -2 - 24 = -26$.</li>
+ </ul>
+ <p class="lesson-text">Maka $x = \dfrac{-13}{-13} = 1$ dan $y = \dfrac{-26}{-13} = 2$. Solusi: $(1, 2)$.</p>
+
+ <p class="lesson-subheading">C. Aturan Cramer untuk Sistem $3 \times 3$</p>
+ <p class="lesson-subheading-alt">Contoh 7 (Aturan Cramer $3 \times 3$):</p>
+ <p class="lesson-text">Selesaikan sistem:</p>
+ <p class="lesson-text">$$x + y + z = 6$$ $$2x + 3y + z = 14$$ $$x - y + 2z = 3$$</p>
+ <p class="lesson-text">Matriks koefisien $A = \begin{bmatrix} 1 & 1 & 1 \\ 2 & 3 & 1 \\ 1 & -1 & 2 \end{bmatrix}$.</p>
+ <p class="lesson-text">Hitung $\det(A)$ dengan Aturan Sarrus:</p>
+ <p class="lesson-text">$$|A| = (1 \cdot 3 \cdot 2) + (1 \cdot 1 \cdot 1) + (1 \cdot 2 \cdot (-1)) - (1 \cdot 3 \cdot 1) - (1 \cdot 1 \cdot (-1)) - (1 \cdot 2 \cdot 2)$$ $$= 6 + 1 - 2 - 3 + 1 - 4 = 8 - 9 = -1$$</p>
+ <p class="lesson-text">Untuk $x$—ganti kolom 1 dengan $B$: $A_1 = \begin{bmatrix} 6 & 1 & 1 \\ 14 & 3 & 1 \\ 3 & -1 & 2 \end{bmatrix}$.</p>
+ <p class="lesson-text">$$|A_1| = (6 \cdot 3 \cdot 2) + (1 \cdot 1 \cdot 3) + (1 \cdot 14 \cdot (-1)) - (1 \cdot 3 \cdot 3) - (6 \cdot 1 \cdot (-1)) - (1 \cdot 14 \cdot 2)$$ $$= 36 + 3 - 14 - 9 + 6 - 28 = 45 - 51 = -6$$</p>
+ <p class="lesson-text">Untuk $y$—ganti kolom 2 dengan $B$: $A_2 = \begin{bmatrix} 1 & 6 & 1 \\ 2 & 14 & 1 \\ 1 & 3 & 2 \end{bmatrix}$.</p>
+ <p class="lesson-text">$$|A_2| = (1 \cdot 14 \cdot 2) + (6 \cdot 1 \cdot 1) + (1 \cdot 2 \cdot 3) - (1 \cdot 14 \cdot 1) - (1 \cdot 1 \cdot 3) - (6 \cdot 2 \cdot 2)$$ $$= 28 + 6 + 6 - 14 - 3 - 24 = 40 - 41 = -1$$</p>
+ <p class="lesson-text">Untuk $z$—ganti kolom 3 dengan $B$: $A_3 = \begin{bmatrix} 1 & 1 & 6 \\ 2 & 3 & 14 \\ 1 & -1 & 3 \end{bmatrix}$.</p>
+ <p class="lesson-text">$$|A_3| = (1 \cdot 3 \cdot 3) + (1 \cdot 14 \cdot 1) + (6 \cdot 2 \cdot (-1)) - (6 \cdot 3 \cdot 1) - (1 \cdot 14 \cdot (-1)) - (1 \cdot 2 \cdot 3)$$ $$= 9 + 14 - 12 - 18 + 14 - 6 = 37 - 36 = 1$$</p>
+ <p class="lesson-text">Maka $x = \dfrac{-6}{-1} = 6$, $y = \dfrac{-1}{-1} = 1$, $z = \dfrac{1}{-1} = -1$. Solusi: $(6, 1, -1)$.</p>
+ <p class="lesson-text">Dengan menguasai determinan dan Aturan Cramer, kita kini memiliki alat untuk menyelesaikan sistem persamaan linear secara langsung—tanpa perlu eliminasi baris. Mari kita terapkan seluruh konsep ini—dari perhitungan determinan hingga Aturan Cramer—pada tujuh soal berikut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Contoh Soal dan Pembahasan</h3>
+<p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan perhitungan determinan ordo $2 \times 2$, $3 \times 3$, dan $4 \times 4$, penggunaan sifat-sifat determinan, pencarian determinan dengan Ekspansi Kofaktor, serta penerapan Aturan Cramer pada sistem $2 \times 2$ dan $3 \times 3$. Setiap langkah dituliskan lengkap, dan sifat yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+
+<p class="lesson-subheading">Soal 1: Determinan Ordo $2 \times 2$</p>
+<p class="lesson-text">Hitung determinan dari $A = \begin{bmatrix} 4 & -3 \\ 2 & 5 \end{bmatrix}$ dan $B = \begin{bmatrix} -1 & 6 \\ 3 & -2 \end{bmatrix}$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Determinan $A$</strong>:<br>$\det(A) = (4)(5) - (-3)(2) = 20 + 6 = 26$</li>
+ <li><strong>Determinan $B$</strong>:<br>$\det(B) = (-1)(-2) - (6)(3) = 2 - 18 = -16$</li>
+</ol>
+<p class="lesson-text">Perhatikan pada $A$: $b = -3$, sehingga $bc = -3 \cdot 2 = -6$, dan $ad - bc = 20 - (-6) = 26$. Tanda negatif pada elemen harus diperhatikan—inilah sumber kesalahan paling umum pada determinan $2 \times 2$.</p>
+
+<p class="lesson-subheading">Soal 2: Determinan Ordo $3 \times 3$ dengan Aturan Sarrus</p>
+<p class="lesson-text">Hitung determinan $C = \begin{bmatrix} 2 & -1 & 3 \\ 1 & 4 & -2 \\ 3 & 0 & 1 \end{bmatrix}$ dengan Aturan Sarrus.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Salin dua kolom pertama</strong> di sebelah kanan:
+  $$\begin{bmatrix} 2 & -1 & 3 & 2 & -1 \\ 1 & 4 & -2 & 1 & 4 \\ 3 & 0 & 1 & 3 & 0 \end{bmatrix}$$
+ </li>
+ <li><strong>Jumlahkan hasil kali diagonal turun</strong> (kiri-atas → kanan-bawah, tiga diagonal):
+  $$(2)(4)(1) + (-1)(-2)(3) + (3)(1)(0) = 8 + 6 + 0 = 14$$
+ </li>
+ <li><strong>Jumlahkan hasil kali diagonal naik</strong> (kanan-atas → kiri-bawah, tiga diagonal):
+  $$(3)(4)(3) + (2)(-2)(0) + (-1)(1)(1) = 36 + 0 - 1 = 35$$
+ </li>
+ <li><strong>Kurangkan</strong>:<br>$\det(C) = 14 - 35 = -21$</li>
+</ol>
+<p class="lesson-text">Jadi $\det(C) = -21 \neq 0$—matriks ini invertibel.</p>
+
+<p class="lesson-subheading">Soal 3: Ekspansi Kofaktor pada Baris dengan Banyak Nol</p>
+<p class="lesson-text">Hitung determinan $D = \begin{bmatrix} 3 & 0 & 0 & 2 \\ 1 & 4 & 0 & 1 \\ 2 & 1 & 5 & 3 \\ 0 & 0 & 0 & 6 \end{bmatrix}$ dengan strategi pemilihan baris/kolom.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Pilih baris/kolom dengan banyak nol.</strong> Kolom 3 memiliki tiga angka nol (posisi $(1,3)$, $(2,3)$, $(4,3)$), dan baris 4 juga memiliki tiga angka nol. Mari pilih <strong>baris 4</strong>.</li>
+ <li><strong>Ekspansi sepanjang baris 4</strong>:
+  $$\det(D) = d_{41}C_{41} + d_{42}C_{42} + d_{43}C_{43} + d_{44}C_{44}$$
+  Karena $d_{41} = d_{42} = d_{43} = 0$, hanya suku terakhir yang bertahan:
+  $$\det(D) = d_{44} \cdot C_{44} = 6 \cdot (+1) \cdot M_{44}$$
+ </li>
+ <li><strong>Hitung minor $M_{44}$</strong> (hapus baris 4, kolom 4):
+  $$M_{44} = \begin{vmatrix} 3 & 0 & 0 \\ 1 & 4 & 0 \\ 2 & 1 & 5 \end{vmatrix}$$
+ </li>
+ <li><strong>Hitung $M_{44}$ dengan Aturan Sarrus</strong>:
+  $$M_{44} = (3)(4)(5) + (0)(0)(2) + (0)(1)(1) - (0)(4)(2) - (3)(0)(1) - (0)(1)(5)$$ $$= 60 + 0 + 0 - 0 - 0 - 0 = 60$$
+ </li>
+ <li><strong>Hitung determinan total</strong>:<br>$\det(D) = 6 \cdot 60 = 360$</li>
+</ol>
+<p class="lesson-text">Soal ini menunjukkan kekuatan strategi "pilih baris/kolom dengan banyak nol"—dengan memilih baris yang tepat, kita hanya perlu menghitung satu kofaktor saja, bukan empat. Bandingkan dengan memilih baris 2 yang hanya punya satu nol, atau baris 1 yang punya dua nol—keduanya tetap memerlukan lebih banyak perhitungan kofaktor daripada baris 4.</p>
+
+<p class="lesson-subheading">Soal 4: Penerapan Sifat-Sifat Determinan</p>
+<p class="lesson-text">Diketahui matriks $A$ berordo $3 \times 3$ dengan $\det(A) = 5$. Hitung $\det(B)$ untuk setiap kasus berikut: (a) $B = 3A$; (b) $B$ diperoleh dari $A$ dengan menukar baris 1 dan baris 3; (c) $B$ diperoleh dari $A$ dengan mengalikan baris 2 dengan $-2$; (d) $B$ diperoleh dari $A$ dengan operasi $R_1 \leftarrow R_1 + 4R_3$.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>(a) $B = 3A$</strong>—seluruh matriks dikalikan skalar. Gunakan sifat $\det(kA) = k^n \det(A)$:<br>$\det(B) = 3^3 \cdot 5 = 27 \cdot 5 = 135$</li>
+ <li><strong>(b) Tukar baris 1 dan 3</strong>—mengubah tanda determinan:<br>$\det(B) = -\det(A) = -5$</li>
+ <li><strong>(c) Kalikan baris 2 dengan $-2$</strong>—determinan dikalikan $-2$:<br>$\det(B) = -2 \cdot 5 = -10$</li>
+ <li><strong>(d) Operasi baris $R_1 \leftarrow R_1 + 4R_3$</strong>—OBE jenis ini <em>tidak mengubah</em> determinan:<br>$\det(B) = \det(A) = 5$</li>
+</ol>
+<p class="lesson-text">Soal ini memperlihatkan perbedaan penting antara "mengalikan seluruh matriks" (sifat 9: dikali $k^n$) dan "mengalikan satu baris" (sifat 4: dikali $k$). Kesalahan mencampur keduanya adalah miskonsepsi yang paling sering terjadi.</p>
+
+<p class="lesson-subheading">Soal 5: Aturan Cramer $2 \times 2$</p>
+<p class="lesson-text">Selesaikan sistem $3x + 2y = 12$ dan $x - 4y = -6$ dengan Aturan Cramer.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Bentuk matriks koefisien</strong>:<br>$A = \begin{bmatrix} 3 & 2 \\ 1 & -4 \end{bmatrix}$</li>
+ <li><strong>Hitung determinan utama</strong>:<br>$\det(A) = (3)(-4) - (2)(1) = -12 - 2 = -14 \neq 0$ ✓</li>
+ <li><strong>Untuk $x$</strong>—ganti kolom 1 dengan vektor konstanta $(12, -6)$:<br>$A_1 = \begin{bmatrix} 12 & 2 \\ -6 & -4 \end{bmatrix}$, $\det(A_1) = (12)(-4) - (2)(-6) = -48 + 12 = -36$<br>$x = \dfrac{-36}{-14} = \dfrac{18}{7}$</li>
+ <li><strong>Untuk $y$</strong>—ganti kolom 2:<br>$A_2 = \begin{bmatrix} 3 & 12 \\ 1 & -6 \end{bmatrix}$, $\det(A_2) = (3)(-6) - (12)(1) = -18 - 12 = -30$<br>$y = \dfrac{-30}{-14} = \dfrac{15}{7}$</li>
+ <li><strong>Verifikasi</strong>: $3\left(\dfrac{18}{7}\right) + 2\left(\dfrac{15}{7}\right) = \dfrac{54 + 30}{7} = \dfrac{84}{7} = 12$ ✓</li>
+</ol>
+<p class="lesson-text">Solusinya: $(x, y) = \left(\dfrac{18}{7}, \dfrac{15}{7}\right)$. Solusi SPL tidak harus bilangan bulat—pecahan juga valid selama memenuhi kedua persamaan.</p>
+
+<p class="lesson-subheading">Soal 6: Aturan Cramer $3 \times 3$</p>
+<p class="lesson-text">Selesaikan sistem berikut dengan Aturan Cramer:</p>
+<p class="lesson-text">$$2x + y - z = 3$$ $$x + 3y + 2z = 11$$ $$3x - y + z = 4$$</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Matriks koefisien</strong>:<br>$A = \begin{bmatrix} 2 & 1 & -1 \\ 1 & 3 & 2 \\ 3 & -1 & 1 \end{bmatrix}$</li>
+ <li><strong>Hitung $\det(A)$ dengan Aturan Sarrus</strong>:<br>$= (2)(3)(1) + (1)(2)(3) + (-1)(1)(-1) - (-1)(3)(3) - (2)(2)(-1) - (1)(1)(1)$<br>$= 6 + 6 + 1 - (-9) - (-4) - 1 = 6 + 6 + 1 + 9 + 4 - 1 = 25$</li>
+ <li><strong>Untuk $x$</strong>—ganti kolom 1 dengan $(3, 11, 4)$:<br>$A_1 = \begin{bmatrix} 3 & 1 & -1 \\ 11 & 3 & 2 \\ 4 & -1 & 1 \end{bmatrix}$<br>$\det(A_1) = (3)(3)(1) + (1)(2)(4) + (-1)(11)(-1) - (-1)(3)(4) - (3)(2)(-1) - (1)(11)(1)$<br>$= 9 + 8 + 11 + 12 + 6 - 11 = 35$<br>$x = \dfrac{35}{25} = \dfrac{7}{5}$</li>
+ <li><strong>Untuk $y$</strong>—ganti kolom 2:<br>$A_2 = \begin{bmatrix} 2 & 3 & -1 \\ 1 & 11 & 2 \\ 3 & 4 & 1 \end{bmatrix}$<br>$\det(A_2) = (2)(11)(1) + (3)(2)(3) + (-1)(1)(4) - (-1)(11)(3) - (2)(2)(4) - (3)(1)(1)$<br>$= 22 + 18 - 4 + 33 - 16 - 3 = 50$<br>$y = \dfrac{50}{25} = 2$</li>
+ <li><strong>Untuk $z$</strong>—ganti kolom 3:<br>$A_3 = \begin{bmatrix} 2 & 1 & 3 \\ 1 & 3 & 11 \\ 3 & -1 & 4 \end{bmatrix}$<br>$\det(A_3) = (2)(3)(4) + (1)(11)(3) + (3)(1)(-1) - (3)(3)(3) - (2)(11)(-1) - (1)(1)(4)$<br>$= 24 + 33 - 3 - 27 + 22 - 4 = 45$<br>$z = \dfrac{45}{25} = \dfrac{9}{5}$</li>
+ <li><strong>Verifikasi ke persamaan pertama</strong>: $2\left(\dfrac{7}{5}\right) + 2 - \dfrac{9}{5} = \dfrac{14 + 10 - 9}{5} = \dfrac{15}{5} = 3$ ✓</li>
+</ol>
+<p class="lesson-text">Solusinya: $(x, y, z) = \left(\dfrac{7}{5}, 2, \dfrac{9}{5}\right)$.</p>
+
+<p class="lesson-subheading">Soal 7: Soal Cerita — Analisis Investasi</p>
+<p class="lesson-text">Seorang investor menginvestasikan total Rp100 juta ke dalam tiga jenis aset: saham (A), obligasi (B), dan deposito (C). Ia menginvestasikan dua kali lebih banyak di saham dibandingkan deposito. Total keuntungan tahunan yang diperoleh adalah Rp8,5 juta, dengan tingkat keuntungan saham 12%, obligasi 7%, dan deposito 5%. Tentukan jumlah investasi pada masing-masing aset.</p>
+<p class="lesson-subheading-alt">Pembahasan:</p>
+<ol>
+ <li><strong>Definisikan variabel</strong> (dalam juta rupiah):<br>$x$ = investasi saham, $y$ = investasi obligasi, $z$ = investasi deposito</li>
+ <li><strong>Susun sistem persamaan</strong>:
+  <ul>
+   <li>Total investasi: $x + y + z = 100$</li>
+   <li>Saham dua kali deposito: $x = 2z$, yaitu $x - 2z = 0$</li>
+   <li>Keuntungan total: $0{,}12x + 0{,}07y + 0{,}05z = 8{,}5$</li>
+  </ul>
+ </li>
+ <li><strong>Matriks koefisien</strong>:<br>$A = \begin{bmatrix} 1 & 1 & 1 \\ 1 & 0 & -2 \\ 0{,}12 & 0{,}07 & 0{,}05 \end{bmatrix}$</li>
+ <li><strong>Hitung $\det(A)$ dengan Aturan Sarrus</strong>:<br>$= (1)(0)(0{,}05) + (1)(-2)(0{,}12) + (1)(1)(0{,}07) - (1)(0)(0{,}12) - (1)(-2)(0{,}07) - (1)(1)(0{,}05)$<br>$= 0 - 0{,}24 + 0{,}07 - 0 + 0{,}14 - 0{,}05 = -0{,}08$</li>
+ <li><strong>Untuk $x$</strong>—ganti kolom 1 dengan $(100, 0, 8{,}5)$:<br>$A_1 = \begin{bmatrix} 100 & 1 & 1 \\ 0 & 0 & -2 \\ 8{,}5 & 0{,}07 & 0{,}05 \end{bmatrix}$<br>$\det(A_1) = (100)(0)(0{,}05) + (1)(-2)(8{,}5) + (1)(0)(0{,}07) - (1)(0)(8{,}5) - (100)(-2)(0{,}07) - (1)(0)(0{,}05)$<br>$= 0 - 17 + 0 - 0 + 14 - 0 = -3$<br>$x = \dfrac{-3}{-0{,}08} = 37{,}5$</li>
+ <li><strong>Untuk $y$</strong>—ganti kolom 2:<br>$A_2 = \begin{bmatrix} 1 & 100 & 1 \\ 1 & 0 & -2 \\ 0{,}12 & 8{,}5 & 0{,}05 \end{bmatrix}$<br>$\det(A_2) = (1)(0)(0{,}05) + (100)(-2)(0{,}12) + (1)(1)(8{,}5) - (1)(0)(0{,}12) - (1)(-2)(8{,}5) - (100)(1)(0{,}05)$<br>$= 0 - 24 + 8{,}5 - 0 + 17 - 5 = -3{,}5$<br>$y = \dfrac{-3{,}5}{-0{,}08} = 43{,}75$</li>
+ <li><strong>Untuk $z$</strong>—ganti kolom 3:<br>$A_3 = \begin{bmatrix} 1 & 1 & 100 \\ 1 & 0 & 0 \\ 0{,}12 & 0{,}07 & 8{,}5 \end{bmatrix}$<br>$\det(A_3) = (1)(0)(8{,}5) + (1)(0)(0{,}12) + (100)(1)(0{,}07) - (100)(0)(0{,}12) - (1)(0)(0{,}07) - (1)(1)(8{,}5)$<br>$= 0 + 0 + 7 - 0 - 0 - 8{,}5 = -1{,}5$<br>$z = \dfrac{-1{,}5}{-0{,}08} = 18{,}75$</li>
+ <li><strong>Verifikasi</strong>: $x + y + z = 37{,}5 + 43{,}75 + 18{,}75 = 100$ ✓; $x = 37{,}5 = 2 \cdot 18{,}75 = 2z$ ✓</li>
+</ol>
+<p class="lesson-text">Jadi, investor menginvestasikan <strong>Rp37,5 juta di saham</strong>, <strong>Rp43,75 juta di obligasi</strong>, dan <strong>Rp18,75 juta di deposito</strong>. Soal ini memperlihatkan bahwa Aturan Cramer sangat berguna untuk masalah nyata—asalkan sistemnya konsisten dan $\det(A) \neq 0$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menukar notasi determinan dengan nilai mutlak.</strong> $|A|$ adalah notasi determinan, <em>bukan</em> nilai mutlak. Hasil determinan bisa negatif, dan itu sah—tanda negatif menunjukkan orientasi.</li>
+  <li><strong>Lupa tanda pada ekspansi kofaktor.</strong> Kofaktor $C_{ij}$ melibatkan faktor $(-1)^{i+j}$. Ingat pola tanda: $\begin{bmatrix} + & - & + \\ - & + & - \\ + & - & + \end{bmatrix}$—kesalahan tanda di sini adalah penyebab paling umum hasil yang salah.</li>
+  <li><strong>Menukar baris tetapi lupa mengubah tanda determinan.</strong> Setelah menukar dua baris, determinan berubah tanda—$\det(A') = -\det(A)$. Lupa mengubah tanda akan menghasilkan jawaban dengan tanda salah.</li>
+  <li><strong>Menerapkan Aturan Cramer untuk sistem dengan $\det(A) = 0$.</strong> Aturan Cramer hanya berlaku jika $\det(A) \neq 0$. Jika $\det(A) = 0$, sistem tidak memiliki solusi tunggal—gunakan eliminasi Gauss untuk menganalisisnya.</li>
+  <li><strong>Salah mengganti kolom pada Aturan Cramer.</strong> Untuk mencari $x_j$, ganti kolom <strong>ke-$j$</strong> (sesuai indeks variabel) dengan vektor $B$. Untuk $x$: kolom 1; untuk $y$: kolom 2; untuk $z$: kolom 3. Jangan tertukar.</li>
+  <li><strong>Menganggap $\det(A+B) = \det(A) + \det(B)$.</strong> Determinan <em>tidak linear</em> terhadap penjumlahan matriks. Sifat linearitas determinan hanya berlaku untuk perkalian skalar pada baris/kolom (sifat 4).</li>
+  <li><strong>Salah menerapkan Aturan Sarrus untuk ordo lebih dari 3.</strong> Aturan Sarrus hanya berlaku untuk matriks $3 \times 3$. Untuk matriks $4 \times 4$ atau lebih, gunakan Ekspansi Kofaktor—bukan Sarrus dengan "diagonal" tambahan.</li>
+  <li><strong>Melupakan sifat $\det(kA) = k^n \det(A)$.</strong> Jika seluruh matriks $n \times n$ dikalikan skalar $k$, determinan dikalikan $k^n$—<em>bukan</em> $k$. Ini adalah kesalahan yang sering terjadi karena tertukar dengan sifat 4 (yang hanya berlaku untuk satu baris/kolom).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Ringkasan</h3>
+ <ul>
+  <li><strong>Determinan</strong> adalah fungsi dari matriks persegi ke skalar. Untuk $2 \times 2$: $ad - bc$; untuk $3 \times 3$: Aturan Sarrus atau Ekspansi Kofaktor.</li>
+  <li><strong>Ekspansi Kofaktor</strong> (Metode Laplace) adalah metode universal untuk semua ordo—pilih baris/kolom dengan banyak nol untuk efisiensi.</li>
+  <li><strong>Sifat-sifat kunci determinan:</strong>
+   <ul>
+    <li>$\det(I) = 1$; $\det(A^T) = \det(A)$.</li>
+    <li>Tukar baris/kolom $\Rightarrow$ determinan berubah tanda.</li>
+    <li>Baris/kolom nol atau identik $\Rightarrow$ determinan = 0.</li>
+    <li>$\det(AB) = \det(A)\det(B)$.</li>
+    <li>$\det(kA) = k^n \det(A)$ untuk $A$ ordo $n \times n$.</li>
+   </ul>
+  </li>
+  <li><strong>Aturan Cramer</strong> menyelesaikan SPL $n \times n$ dengan $x_j = \dfrac{\det(A_j)}{\det(A)}$—di mana $A_j$ adalah matriks $A$ dengan kolom ke-$j$ diganti vektor konstanta $B$. <strong>Hanya berlaku jika</strong> $\det(A) \neq 0$.</li>
+  <li>Determinan juga merupakan indikator keinvertibelan matriks: $\det(A) \neq 0 \iff A$ invertibel.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Determinan adalah salah satu konsep paling elegan dalam aljabar linear. Ia tidak hanya berfungsi sebagai "alat pemeriksa" untuk invers matriks, tetapi juga sebagai <strong>jembatan antara aljabar dan geometri</strong>—faktor skala transformasi yang mengubah luas dan volume secara terukur. Pemahaman tentang determinan membuka pintu ke interpretasi geometris dari operasi matriks yang sering kali tersembunyi di balik rumus-rumus aljabar.</p>
+ <p class="lesson-text">Yang membuat determinan istimewa adalah <strong>sifat-sifatnya yang kaya</strong>. Hampir setiap operasi matriks memiliki konsekuensi yang dapat dijelaskan melalui determinan: transpose mempertahankan determinan, penukaran baris membalik tanda, dan perkalian matriks mengalikan determinan. Memahami sifat-sifat ini bukan sekadar menghafal rumus—ini adalah cara berpikir yang memungkinkan Anda menyederhanakan perhitungan dan mengenali pola dengan cepat.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Ruang Vektor</strong> (yang menggunakan determinan untuk memeriksa kebebasan linear), <strong>Transformasi Linear</strong> (yang menggunakan determinan sebagai faktor skala), <strong>Nilai Eigen &amp; Vektor Eigen</strong> (yang mendefinisikan nilai eigen melalui $\det(A - \lambda I) = 0$), <strong>Diagonalisasi</strong> (yang mensyaratkan determinan tertentu tidak nol), <strong>Aljabar Linear Numerik</strong> (yang menggunakan determinan untuk menganalisis kestabilan sistem), dan <strong>Geometri Diferensial</strong> (yang menggunakan determinan Jacobian untuk transformasi koordinat).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan Ekspansi Kofaktor pada baris/kolom dengan banyak nol, dan penerapan Aturan Cramer pada sistem $3 \times 3$. Kebiasaan memeriksa pola tanda pada kofaktor, konsisten dalam menerapkan sifat-sifat determinan, dan berhati-hati dalam mengganti kolom pada Aturan Cramer akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik nilai eigen dan diagonalisasi, di mana determinan menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

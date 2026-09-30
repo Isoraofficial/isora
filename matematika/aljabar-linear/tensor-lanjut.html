@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Tensor Lanjut (Aturan Transformasi, Tensor Metrik, dan Kalkulus Tensor)</title>
+ <meta name="description" content="Tensor lanjut: aturan transformasi kontravarian dan kovarian, matriks Jacobian, tensor metrik g_ij, menaikkan/menurunkan indeks, simbol Christoffel, dan turunan kovarian.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Tensor Lanjut (Aturan Transformasi, Tensor Metrik, dan Kalkulus Tensor)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Tensor Dasar</strong> — terutama notasi indeks, konvensi Einstein, dan operasi kontraksi, karena seluruh materi ini dibangun di atas fondasi tersebut.</li>
+   <li><strong>Turunan Parsial</strong> — karena aturan transformasi melibatkan turunan parsial ($\partial x'^i / \partial x^j$), dan kalkulus tensor adalah generalisasi dari turunan biasa.</li>
+   <li><strong>Transformasi Linear</strong> — karena matriks Jacobian adalah transformasi linear antara ruang singgung, dan pemahaman tentang kernel serta rank-nya membantu memahami kapan transformasi koordinat valid.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan Anda sedang menjelaskan arah kepada seorang teman. Anda bisa berkata "belok 30° dari utara"—yang berarti teman Anda perlu tahu dulu di mana "utara". Atau Anda bisa berkata "belok ke arah timur laut". Kedua instruksi ini menunjuk arah yang sama, tetapi menggunakan <strong>kerangka acuan</strong> yang berbeda.</p>
+ <p class="lesson-text">Dalam matematika, fenomena yang sama terjadi ketika kita mengubah sistem koordinat. Sebuah vektor—misalnya "kecepatan angin 5 m/s ke arah timur laut"—memiliki <em>arah dan besar</em> yang tidak bergantung pada kerangka acuan. Tetapi ketika kita nyatakan dalam <strong>komponen</strong>, angkanya berubah: di koordinat Kartesius mungkin $(3, 4)$, di koordinat polar mungkin $(5, 0°)$. Vektornya sama, tetapi deskripsinya berbeda.</p>
+ <p class="lesson-text">Pertanyaan yang menjadi inti materi ini: <strong>bagaimana tepatnya komponen tensor berubah ketika kita mengubah koordinat?</strong> Pada materi Tensor Dasar, kita sudah menyinggung bahwa aturan transformasi inilah yang membedakan tensor dari array biasa. Sekarang kita akan menyelami aturan itu secara mendalam—dan mengungkap konsekuensi-konsekuensinya yang sangat kaya.</p>
+ <p class="lesson-text">Yang membuat materi ini istimewa adalah <strong>perannya sebagai jembatan antara aljabar linear dan geometri diferensial</strong>. Di satu sisi, aturan transformasi adalah konsekuensi langsung dari aturan rantai dalam kalkulus. Di sisi lain, tensor metrik $g_{ij}$ dan simbol Christoffel $\Gamma^i_{jk}$ memperkenalkan konsep-konsep geometris—jarak, kelengkungan, dan koneksi—yang menjadi fondasi relativitas umum.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: motivasi mengapa aturan transformasi diperlukan, transformasi koordinat dan matriks Jacobian, aturan transformasi untuk vektor kontravarian dan kovarian, tensor orde-2 dan orde-$n$, tensor metrik dan operasi menaikkan/menurunkan indeks, kalkulus tensor (simbol Christoffel, turunan kovarian, geodesik, tensor Riemann), penerapan praktis, dan kesalahan umum. Setiap rumus akan diturunkan dari motivasi konkret—bukan sekadar dinyatakan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Mengapa Tensor Butuh Aturan Transformasi?</h3>
+ <p class="lesson-text">Sebelum masuk ke rumus, kita perlu memahami <em>mengapa</em> rumus-rumus itu diperlukan.</p>
+
+ <p class="lesson-subheading">A. Motivasi: Vektor Angin di Dua Koordinat</p>
+ <p class="lesson-text">Bayangkan Anda mengukur kecepatan angin di suatu titik. Di koordinat Kartesius $(x, y)$, Anda mencatat komponen kecepatan sebagai $(v_x, v_y) = (3, 4)$ m/s—artinya angin bertiup 3 m/s ke arah timur dan 4 m/s ke arah utara. Sekarang, Anda ingin menyatakan kecepatan angin yang sama dalam koordinat polar $(r, \theta)$. Apakah komponennya tetap $(3, 4)$? <strong>Tidak</strong>. Dalam koordinat polar, komponennya adalah $(v_r, v_\theta)$—kecepatan radial dan tangensial.</p>
+ <p class="lesson-text">Pertanyaan kuncinya: <strong>bagaimana kita menghitung $(v_r, v_\theta)$ dari $(v_x, v_y)$?</strong> Jawabannya melibatkan <strong>aturan transformasi</strong>. Komponen vektor berubah ketika koordinat berubah, tetapi <strong>vektor angin itu sendiri tidak berubah</strong>—arah dan besarnya tetap sama. Yang berubah hanyalah "bahasa" yang kita gunakan untuk mendeskripsikannya.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 340" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-tl-v1" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+    </marker>
+   </defs>
+
+   <text x="360" y="26" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Vektor yang Sama, Komponen Berbeda di Koordinat Berbeda</text>
+
+   <!-- Panel 1: Kartesius -->
+   <text x="180" y="60" fill="#b8b8b8" font-size="13" text-anchor="middle" font-weight="600">Koordinat Kartesius</text>
+
+   <line x1="40" y1="250" x2="330" y2="250" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="180" y1="270" x2="180" y2="90" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <text x="335" y="254" fill="#b8b8b8" font-size="11" font-style="italic">x</text>
+   <text x="168" y="84" fill="#b8b8b8" font-size="11" font-style="italic">y</text>
+
+   <line x1="180" y1="250" x2="290" y2="130" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-tl-v1)"/>
+   <text x="296" y="128" fill="#daa520" font-size="14" font-weight="700" font-style="italic">v</text>
+
+   <line x1="180" y1="130" x2="290" y2="130" stroke="#f0c75e" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <line x1="290" y1="130" x2="290" y2="250" stroke="#f0c75e" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+   <text x="230" y="268" fill="#f0c75e" font-size="12" font-weight="700" text-anchor="middle">v_x = 3</text>
+   <text x="150" y="194" fill="#f0c75e" font-size="12" font-weight="700" text-anchor="middle">v_y = 4</text>
+
+   <circle cx="180" cy="250" r="4" fill="#e8e8e8"/>
+
+   <!-- Divider -->
+   <line x1="390" y1="60" x2="390" y2="290" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <!-- Panel 2: Polar -->
+   <text x="555" y="60" fill="#b8b8b8" font-size="13" text-anchor="middle" font-weight="600">Koordinat Polar</text>
+
+   <circle cx="480" cy="250" r="4" fill="#e8e8e8"/>
+   <text x="466" y="268" fill="#b8b8b8" font-size="11" font-style="italic">O</text>
+
+   <line x1="480" y1="250" x2="650" y2="80" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-tl-v1)"/>
+   <text x="656" y="78" fill="#daa520" font-size="14" font-weight="700" font-style="italic">v</text>
+
+   <circle cx="480" cy="250" r="241" fill="none" stroke="#5dade2" stroke-width="0.8" stroke-dasharray="3,4" opacity="0.5"/>
+
+   <line x1="480" y1="250" x2="700" y2="250" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <path d="M 540 250 A 60 60 0 0 0 520 205" fill="none" stroke="#5dade2" stroke-width="1.5"/>
+   <text x="540" y="228" fill="#5dade2" font-size="12" font-weight="700" font-style="italic">θ</text>
+
+   <text x="575" y="152" fill="#f0c75e" font-size="12" font-weight="700" font-style="italic" transform="rotate(-45 575 152)">v_r = 5</text>
+   <text x="510" y="230" fill="#e74c3c" font-size="12" font-weight="700" font-style="italic">v_θ = 0</text>
+  </svg>
+  <figcaption class="visual-caption">Vektor yang sama (panah emas) direpresentasikan dengan komponen berbeda di koordinat Kartesius dan Polar. Di Kartesius: $(v_x, v_y) = (3, 4)$. Di Polar: $(v_r, v_\theta) = (5, 0)$—karena vektor ini mengarah radial keluar dari titik asal.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Inilah esensi tensor</strong>: tensor adalah objek geometris yang invarian terhadap perubahan koordinat, tetapi komponen-komponennya bertransformasi dengan aturan tertentu. Memahami aturan ini berarti memahami bagaimana matematika mendeskripsikan objek yang sama dengan "bahasa" yang berbeda.</p>
+
+ <p class="lesson-subheading">B. Analogi yang Lebih Mendalam</p>
+ <p class="lesson-text">Bayangkan Anda mendeskripsikan sebuah patung dari dua sudut pandang yang berbeda: <em>dari depan</em>—"patung menghadap ke kanan, tingginya 2 meter"; <em>dari samping</em>—"patung menghadap ke kiri, tingginya 2 meter". Deskripsi verbalnya berbeda, tetapi patungnya tetap sama. Yang berubah adalah <strong>kerangka acuan</strong> pengamat.</p>
+ <p class="lesson-text">Demikian pula, vektor angin dengan komponen $(3, 4)$ di Kartesius dan $(5, 0)$ di polar adalah <strong>vektor yang sama</strong>—hanya dinyatakan dalam "bahasa" koordinat yang berbeda. Aturan transformasi adalah "kamus" yang menerjemahkan deskripsi dari satu bahasa ke bahasa lain.</p>
+
+ <p class="lesson-subheading">C. Konsekuensi: Array Biasa vs Tensor</p>
+ <p class="lesson-text">Ini adalah poin yang paling krusial. Bayangkan Anda memiliki array 3D berisi 27 bilangan. Apakah array itu otomatis disebut tensor? <strong>Tidak</strong>—array biasa hanyalah kumpulan angka; tensor adalah array yang <strong>dilengkapi dengan aturan transformasi</strong>. Konsekuensi praktisnya:</p>
+ <ul>
+  <li>Dua array yang memiliki bilangan yang sama persis bisa jadi merupakan tensor yang berbeda—jika aturan transformasinya berbeda.</li>
+  <li>Sebaliknya, dua array yang bilangannya berbeda bisa jadi merupakan tensor yang sama—jika keduanya hanyalah representasi dari objek geometris yang sama dalam koordinat yang berbeda.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Transformasi Koordinat dan Matriks Jacobian</h3>
+ <p class="lesson-text">Setelah memahami motivasi, kita masuk ke alat matematika yang menjadi dasar aturan transformasi: matriks Jacobian.</p>
+
+ <p class="lesson-subheading">A. Transformasi Koordinat</p>
+ <p class="lesson-text">Misalkan kita memiliki dua sistem koordinat: <strong>koordinat lama</strong> $(x^1, x^2, \dots, x^d)$ dan <strong>koordinat baru</strong> $(x'^1, x'^2, \dots, x'^d)$. Hubungan antara keduanya dinyatakan sebagai fungsi $x'^i = x'^i(x^1, \dots, x^d)$, dan sebaliknya $x^i = x^i(x'^1, \dots, x'^d)$.</p>
+ <p class="lesson-text"><strong>Contoh 1 (Kartesius ke Polar):</strong> Di ruang 2D, $r = \sqrt{x^2 + y^2}$ dan $\theta = \arctan(y/x)$. Sebaliknya, $x = r\cos\theta$ dan $y = r\sin\theta$.</p>
+
+ <p class="lesson-subheading">B. Diferensial dan Aturan Rantai</p>
+ <p class="lesson-text">Perubahan kecil pada koordinat baru bergantung pada perubahan kecil pada koordinat lama melalui aturan rantai:</p>
+ <p class="lesson-text">$$dx'^i = \frac{\partial x'^i}{\partial x^j}dx^j$$</p>
+ <p class="lesson-text">(Dengan konvensi penjumlahan Einstein—indeks $j$ dijumlahkan.)</p>
+
+ <p class="lesson-subheading">C. Matriks Jacobian</p>
+ <p class="lesson-text"><strong>Matriks Jacobian</strong> dari transformasi dari koordinat lama ke koordinat baru adalah matriks yang elemennya adalah turunan parsial: $J^i_{\ j} = \dfrac{\partial x'^i}{\partial x^j}$.</p>
+ <p class="lesson-subheading-alt">Contoh 2 (Jacobian Kartesius → Polar):</p>
+ <p class="lesson-text">$$J = \begin{bmatrix} \frac{\partial r}{\partial x} & \frac{\partial r}{\partial y} \\ \frac{\partial \theta}{\partial x} & \frac{\partial \theta}{\partial y} \end{bmatrix} = \begin{bmatrix} \cos\theta & \sin\theta \\ -\frac{\sin\theta}{r} & \frac{\cos\theta}{r} \end{bmatrix}$$</p>
+ <p class="lesson-text">Determinannya: $\det(J) = \dfrac{\cos^2\theta + \sin^2\theta}{r} = \dfrac{1}{r}$.</p>
+ <p class="lesson-text"><strong>Interpretasi:</strong> faktor $1/r$ menunjukkan bahwa elemen luas di koordinat polar adalah $r\,dr\,d\theta$—bukan sekadar $dr\,d\theta$. Ini masuk akal karena semakin jauh dari titik asal, semakin besar busur yang dibentuk oleh $d\theta$ yang sama.</p>
+ <p class="lesson-subheading-alt">Verifikasi Jacobian invers:</p>
+ <p class="lesson-text">$$J^{-1} = \begin{bmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} \end{bmatrix} = \begin{bmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{bmatrix}$$</p>
+ <p class="lesson-text">Periksa $J \cdot J^{-1} = I$—setiap elemen perkalian menghasilkan delta Kronecker.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Transformasi Vektor Kontravarian</h3>
+ <p class="lesson-text">Setelah memahami Jacobian, kita dapat mendefinisikan aturan transformasi untuk vektor.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Vektor kontravarian</strong> adalah vektor yang komponennya bertransformasi <strong>sama seperti diferensial koordinat</strong> $dx^i$. Ditulis dengan indeks atas: $v^i$. Aturan transformasinya:</p>
+ <p class="lesson-text">$$v'^i = \frac{\partial x'^i}{\partial x^j}v^j$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa rumusnya seperti ini?</strong> Karena $v^i$ didefinisikan sebagai objek yang "bertransformasi seperti $dx^i$". Dari Bagian II, kita tahu bahwa $dx'^i = \frac{\partial x'^i}{\partial x^j}dx^j$. Karena vektor kontravarian didefinisikan bertransformasi dengan cara yang sama, rumusnya identik.</p>
+ </div>
+ <p class="lesson-text"><strong>Interpretasi fisik:</strong> vektor kontravarian adalah vektor yang "menunjuk ke suatu arah"—seperti vektor perpindahan, kecepatan, dan gaya.</p>
+
+ <p class="lesson-subheading">B. Contoh Perhitungan Lengkap</p>
+ <p class="lesson-text"><strong>Contoh 3:</strong> Misalkan vektor kontravarian di koordinat Kartesius adalah $(v^x, v^y) = (3, 4)$. Cari komponennya di koordinat polar.</p>
+ <p class="lesson-text">Gunakan aturan transformasi:</p>
+ <p class="lesson-text">$$v^r = \frac{\partial r}{\partial x}v^x + \frac{\partial r}{\partial y}v^y = \cos\theta \cdot 3 + \sin\theta \cdot 4$$ $$v^\theta = \frac{\partial \theta}{\partial x}v^x + \frac{\partial \theta}{\partial y}v^y = -\frac{\sin\theta}{r} \cdot 3 + \frac{\cos\theta}{r} \cdot 4$$</p>
+ <p class="lesson-text">Di titik $(3, 4)$: $r = 5$, $\cos\theta = 3/5$, $\sin\theta = 4/5$. Maka:</p>
+ <p class="lesson-text">$$v^r = \frac{9}{5} + \frac{16}{5} = 5, \qquad v^\theta = -\frac{12}{25} + \frac{12}{25} = 0$$</p>
+ <p class="lesson-text"><strong>Interpretasi:</strong> di titik $(3, 4)$, vektor $(3, 4)$ mengarah radial keluar dari titik asal (karena sejajar dengan posisi). Jadi komponen radialnya adalah panjang penuh ($5$ m/s), dan komponen tangensialnya nol.</p>
+
+ <p class="lesson-subheading">C. Verifikasi Invarian</p>
+ <p class="lesson-text">Cara memverifikasi transformasi: <strong>besar (magnitudo) harus sama di kedua koordinat</strong>.</p>
+ <p class="lesson-text">Di Kartesius: $|v|^2 = 3^2 + 4^2 = 25$. Di polar: $|v|^2 = (v^r)^2 + r^2(v^\theta)^2 = 25 + 25 \cdot 0 = 25$. ✓</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perhatikan:</strong> di koordinat polar, rumus magnitudo adalah $(v^r)^2 + r^2(v^\theta)^2$—<em>bukan</em> $(v^r)^2 + (v^\theta)^2$. Faktor $r^2$ muncul dari tensor metrik, yang akan kita bahas di Bagian VI. Inilah bukti pertama bahwa koordinat polar tidak ortonormal.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Transformasi Vektor Kovarian</h3>
+ <p class="lesson-text">Setelah kontravarian, kita masuk ke "kembarannya"—kovarian.</p>
+
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Vektor kovarian</strong> adalah vektor yang komponennya bertransformasi <strong>sama seperti gradien fungsi</strong> $\partial f / \partial x^i$. Ditulis dengan indeks bawah: $v_i$. Aturan transformasinya:</p>
+ <p class="lesson-text">$$v'_i = \frac{\partial x^j}{\partial x'^i}v_j$$</p>
+ <p class="lesson-text"><strong>Perhatikan perbedaannya dengan kontravarian:</strong> kontravarian menggunakan $\partial x'/\partial x$ (Jacobian maju); kovarian menggunakan $\partial x/\partial x'$ (Jacobian mundur—invers).</p>
+ <p class="lesson-text"><strong>Mengapa berbeda?</strong> Karena kovarian "bertransformasi seperti gradien". Jika $f$ adalah fungsi skalar, maka gradiennya $\partial f/\partial x^i$ adalah vektor kovarian. Mari kita verifikasi dengan aturan rantai:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x'^i} = \frac{\partial f}{\partial x^j}\frac{\partial x^j}{\partial x'^i}$$</p>
+ <p class="lesson-text">Ini persis rumus transformasi kovarian.</p>
+ <p class="lesson-text"><strong>Interpretasi fisik:</strong> vektor kovarian adalah vektor yang "mengukur sesuatu"—seperti gradien suhu, gradien tekanan, atau medan gaya yang merupakan turunan dari potensial.</p>
+
+ <p class="lesson-subheading">B. Contoh Perhitungan</p>
+ <p class="lesson-text"><strong>Contoh 4:</strong> Misalkan vektor kovarian di Kartesius adalah $(v_x, v_y) = (2, -1)$ di titik $(3, 4)$. Cari komponennya di polar.</p>
+ <p class="lesson-text">$$v_r = \frac{\partial x}{\partial r}v_x + \frac{\partial y}{\partial r}v_y = \cos\theta \cdot 2 + \sin\theta \cdot (-1)$$ $$v_\theta = \frac{\partial x}{\partial \theta}v_x + \frac{\partial y}{\partial \theta}v_y = -r\sin\theta \cdot 2 + r\cos\theta \cdot (-1)$$</p>
+ <p class="lesson-text">Di titik $(3, 4)$: $r = 5$, $\cos\theta = 3/5$, $\sin\theta = 4/5$:</p>
+ <p class="lesson-text">$$v_r = \frac{6}{5} - \frac{4}{5} = \frac{2}{5}, \qquad v_\theta = -8 - 3 = -11$$</p>
+
+ <p class="lesson-subheading">C. Hubungan Kontravarian dan Kovarian</p>
+ <p class="lesson-text">Dalam ruang Euclidean dengan koordinat Kartesius, vektor kontravarian dan kovarian memiliki komponen yang <strong>sama</strong>. Namun, di koordinat non-Kartesius (seperti polar) atau ruang melengkung, keduanya <strong>berbeda</strong>. Hubungan formalnya: $v_i = g_{ij}v^j$ dan $v^i = g^{ij}v_j$—di mana $g_{ij}$ adalah tensor metrik.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Transformasi Tensor Orde-2 dan Orde-$n$</h3>
+ <p class="lesson-text">Pola yang sama berlaku untuk tensor dengan orde lebih tinggi—setiap indeks "menyumbang" satu faktor Jacobian.</p>
+
+ <p class="lesson-subheading">A. Empat Varian Tensor Orde-2</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Jenis</th>
+     <th>Aturan Transformasi</th>
+     <th>Faktor Jacobian</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Kontravarian murni $T^{ij}$</td><td>$T'^{ij} = \dfrac{\partial x'^i}{\partial x^k}\dfrac{\partial x'^j}{\partial x^l}T^{kl}$</td><td>2× Jacobian maju</td></tr>
+    <tr><td>Kovarian murni $T_{ij}$</td><td>$T'_{ij} = \dfrac{\partial x^k}{\partial x'^i}\dfrac{\partial x^l}{\partial x'^j}T_{kl}$</td><td>2× Jacobian mundur</td></tr>
+    <tr><td>Campuran $T^i_{\ j}$</td><td>$T'^i_{\ j} = \dfrac{\partial x'^i}{\partial x^k}\dfrac{\partial x^l}{\partial x'^j}T^k_{\ l}$</td><td>1× maju + 1× mundur</td></tr>
+    <tr><td>Campuran $T_i^{\ j}$</td><td>$T'_i{}^{j} = \dfrac{\partial x^k}{\partial x'^i}\dfrac{\partial x'^j}{\partial x^l}T_k{}^{l}$</td><td>1× mundur + 1× maju</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text"><strong>Pola umum:</strong> setiap indeks atas menyumbang satu faktor $\partial x'/\partial x$ (Jacobian maju); setiap indeks bawah menyumbang satu faktor $\partial x/\partial x'$ (Jacobian mundur).</p>
+
+ <p class="lesson-subheading">B. Transformasi Tensor Orde-$n$ (Umum)</p>
+ <p class="lesson-text">Untuk tensor orde-$n$ dengan $p$ indeks atas dan $q$ indeks bawah ($p + q = n$):</p>
+ <p class="lesson-text">$$T'^{i_1 \dots i_p}_{\quad j_1 \dots j_q} = \frac{\partial x'^{i_1}}{\partial x^{k_1}} \cdots \frac{\partial x'^{i_p}}{\partial x^{k_p}} \cdot \frac{\partial x^{l_1}}{\partial x'^{j_1}} \cdots \frac{\partial x^{l_q}}{\partial x'^{j_q}} \cdot T^{k_1 \dots k_p}_{\quad l_1 \dots l_q}$$</p>
+ <p class="lesson-text"><strong>Verifikasi untuk kasus yang sudah dikenal:</strong></p>
+ <ul>
+  <li>Skalar (orde-0): $T' = T$—tidak ada Jacobian, konsisten dengan fakta bahwa skalar tidak berubah.</li>
+  <li>Vektor kontravarian (1 indeks atas): $v'^i = \frac{\partial x'^i}{\partial x^j}v^j$. ✓</li>
+  <li>Vektor kovarian (1 indeks bawah): $v'_i = \frac{\partial x^j}{\partial x'^i}v_j$. ✓</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Mengapa Aturan Ini Penting?</p>
+ <p class="lesson-text">Aturan transformasi ini memastikan bahwa <strong>kontraksi tensor menghasilkan objek yang juga bertransformasi dengan benar</strong>. Misalnya, jika $u^i$ adalah vektor kontravarian dan $v_i$ adalah vektor kovarian, maka $u^i v_i$ adalah skalar. Mari kita verifikasi:</p>
+ <p class="lesson-text">$$u'^i v'_i = \frac{\partial x'^i}{\partial x^j}u^j \cdot \frac{\partial x^k}{\partial x'^i}v_k = \frac{\partial x'^i}{\partial x^j}\frac{\partial x^k}{\partial x'^i}u^j v_k = \delta^k_{\ j}u^j v_k = u^j v_j$$</p>
+ <p class="lesson-text">Terbukti bahwa $u^i v_i$ adalah skalar (invarian). Verifikasi dengan contoh konkret: $u^i = (3, 4)$, $v_i = (2, -1)$ di Kartesius → $u^i v_i = 6 - 4 = 2$. Di polar (di titik $(3,4)$): $u'^i = (5, 0)$ dan $v'_i = (2/5, -11)$ → $u'^i v'_i = 2 + 0 = 2$. ✓</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Tensor Metrik</h3>
+ <p class="lesson-text">Setelah memahami aturan transformasi, kita masuk ke objek yang memungkinkan kita "mengukur" jarak di ruang melengkung—dan yang menjadi kunci untuk menaikkan/menurunkan indeks.</p>
+
+ <p class="lesson-subheading">A. Motivasi: Mengukur Jarak di Ruang Melengkung</p>
+ <p class="lesson-text">Di ruang Euclidean dengan koordinat Kartesius, jarak antara dua titik yang berdekatan diberikan oleh teorema Pythagoras: $ds^2 = (dx^1)^2 + (dx^2)^2 + \dots + (dx^d)^2$. Namun, di koordinat polar, rumusnya berbeda: $ds^2 = dr^2 + r^2 d\theta^2$.</p>
+ <p class="lesson-text">Faktor $r^2$ di depan $d\theta^2$ muncul karena koordinat polar tidak ortonormal—perubahan kecil pada $\theta$ tidak menghasilkan perpindahan fisik yang sama di semua titik. <strong>Tensor metrik</strong> $g_{ij}$ adalah objek yang menyatukan semua faktor ini dalam satu rumus umum: $ds^2 = g_{ij}dx^idx^j$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 340" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <text x="360" y="26" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Mengapa Jarak Bergantung pada Koordinat?</text>
+
+   <text x="180" y="58" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Kartesius: grid seragam</text>
+
+   <g stroke="#444" stroke-width="0.6">
+    <line x1="60" y1="90" x2="60" y2="290"/>
+    <line x1="110" y1="90" x2="110" y2="290"/>
+    <line x1="160" y1="90" x2="160" y2="290"/>
+    <line x1="210" y1="90" x2="210" y2="290"/>
+    <line x1="260" y1="90" x2="260" y2="290"/>
+    <line x1="60" y1="90" x2="260" y2="90"/>
+    <line x1="60" y1="140" x2="260" y2="140"/>
+    <line x1="60" y1="190" x2="260" y2="190"/>
+    <line x1="60" y1="240" x2="260" y2="240"/>
+    <line x1="60" y1="290" x2="260" y2="290"/>
+   </g>
+
+   <rect x="110" y="190" width="50" height="50" fill="#f0c75e" fill-opacity="0.22" stroke="#f0c75e" stroke-width="1.8"/>
+   <text x="135" y="220" fill="#f0c75e" font-size="11" text-anchor="middle" font-weight="700">1×1</text>
+
+   <text x="160" y="320" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">semua sel berukuran sama</text>
+
+   <line x1="400" y1="60" x2="400" y2="290" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <text x="560" y="58" fill="#b8b8b8" font-size="12" text-anchor="middle" font-weight="600">Polar: grid tidak seragam</text>
+
+   <circle cx="470" cy="220" r="4" fill="#e8e8e8"/>
+
+   <g stroke="#444" stroke-width="0.6">
+    <line x1="470" y1="220" x2="620" y2="220"/>
+    <line x1="470" y1="220" x2="590" y2="146"/>
+    <line x1="470" y1="220" x2="536" y2="100"/>
+    <line x1="470" y1="220" x2="470" y2="90"/>
+    <line x1="470" y1="220" x2="404" y2="100"/>
+    <line x1="470" y1="220" x2="350" y2="146"/>
+    <line x1="470" y1="220" x2="350" y2="220"/>
+   </g>
+
+   <g stroke="#444" stroke-width="0.6" fill="none">
+    <circle cx="470" cy="220" r="40"/>
+    <circle cx="470" cy="220" r="80"/>
+    <circle cx="470" cy="220" r="120"/>
+   </g>
+
+   <path d="M 470 180 A 40 40 0 0 0 504 200 L 504 200 A 40 40 0 0 1 470 180 Z"
+         fill="#e74c3c" fill-opacity="0.28" stroke="#e74c3c" stroke-width="1.5"/>
+   <path d="M 470 100 A 120 120 0 0 0 574 160 L 574 160 A 120 120 0 0 1 470 100 Z"
+         fill="#f0c75e" fill-opacity="0.22" stroke="#f0c75e" stroke-width="1.5"/>
+
+   <text x="500" y="178" fill="#e74c3c" font-size="10" text-anchor="middle" font-weight="700">kecil</text>
+   <text x="540" y="120" fill="#f0c75e" font-size="10" text-anchor="middle" font-weight="700">besar</text>
+
+   <text x="560" y="320" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">dθ sama · r berbeda → panjang busur berbeda</text>
+  </svg>
+  <figcaption class="visual-caption">Di Kartesius (kiri), semua sel grid berukuran sama. Di Polar (kanan), sel grid yang dibentuk oleh $dr$ dan $d\theta$ yang sama memiliki ukuran berbeda—sel di $r$ besar lebih panjang daripada sel di $r$ kecil. Perbedaan inilah yang dikodekan oleh tensor metrik $g_{ij}$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Definisi Tensor Metrik</p>
+ <p class="lesson-text"><strong>Tensor metrik</strong> $g_{ij}$ adalah tensor kovarian orde-2 yang <strong>simetris</strong> ($g_{ij} = g_{ji}$) dan <strong>non-degenerate</strong> ($\det(g) \neq 0$). Tensor ini mendefinisikan cara mengukur jarak dan sudut di ruang.</p>
+ <p class="lesson-subheading-alt">Contoh 5 (Kartesius):</p>
+ <p class="lesson-text">$ds^2 = dx^2 + dy^2$, sehingga $g_{ij} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = \delta_{ij}$—matriks identitas.</p>
+ <p class="lesson-subheading-alt">Contoh 6 (Polar):</p>
+ <p class="lesson-text">$ds^2 = dr^2 + r^2 d\theta^2$, sehingga $g_{ij} = \begin{bmatrix} 1 & 0 \\ 0 & r^2 \end{bmatrix}$—perhatikan faktor $r^2$.</p>
+ <p class="lesson-subheading-alt">Contoh 7 (Ruang Minkowski):</p>
+ <p class="lesson-text">Dalam relativitas khusus, ruang-waktu 4D memiliki $ds^2 = -c^2 dt^2 + dx^2 + dy^2 + dz^2$. Dengan $c = 1$: $g_{\mu\nu} = \operatorname{diag}(-1, 1, 1, 1)$—salah satu elemen diagonalnya negatif, yang menandakan metrik Lorentzian.</p>
+
+ <p class="lesson-subheading">C. Invers Tensor Metrik</p>
+ <p class="lesson-text"><strong>Invers tensor metrik</strong> $g^{ij}$ didefinisikan sebagai matriks yang memenuhi $g^{ik}g_{kj} = \delta^i_{\ j}$. Dalam bentuk matriks, $g^{ij}$ adalah invers dari $g_{ij}$.</p>
+ <p class="lesson-subheading-alt">Contoh 8 (Polar):</p>
+ <p class="lesson-text">Invers dari $g_{ij} = \begin{bmatrix} 1 & 0 \\ 0 & r^2 \end{bmatrix}$ adalah $g^{ij} = \begin{bmatrix} 1 & 0 \\ 0 & \frac{1}{r^2} \end{bmatrix}$.</p>
+
+ <p class="lesson-subheading">D. Menaikkan dan Menurunkan Indeks</p>
+ <p class="lesson-text">Salah satu fungsi paling penting dari tensor metrik adalah <strong>menaikkan dan menurunkan indeks</strong>—mengubah vektor kontravarian menjadi kovarian dan sebaliknya:</p>
+ <p class="lesson-text">$$v_i = g_{ij}v^j \qquad \text{(menurunkan indeks)}$$ $$v^i = g^{ij}v_j \qquad \text{(menaikkan indeks)}$$</p>
+ <p class="lesson-subheading-alt">Contoh 9 (Polar):</p>
+ <p class="lesson-text">Misalkan $v^i = (v^r, v^\theta) = (3, 2)$ di polar. Maka:</p>
+ <p class="lesson-text">$$v_r = g_{rr}v^r + g_{r\theta}v^\theta = 1 \cdot 3 + 0 = 3$$ $$v_\theta = g_{\theta r}v^r + g_{\theta\theta}v^\theta = 0 + r^2 \cdot 2 = 2r^2$$</p>
+ <p class="lesson-text">Verifikasi magnitudo: $|v|^2 = v^i v_i = 3 \cdot 3 + 2 \cdot 2r^2 = 9 + 4r^2$. Dengan rumus langsung: $(v^r)^2 + r^2(v^\theta)^2 = 9 + 4r^2$. ✓</p>
+ <p class="lesson-text">Untuk tensor orde lebih tinggi, setiap indeks dapat dinaikkan atau diturunkan secara independen: $T^i_{\ j} = g_{jk}T^{ik}$, $T_{ij} = g_{ik}g_{jl}T^{kl}$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kalkulus Tensor: Turunan Kovarian</h3>
+ <p class="lesson-text">Setelah memahami tensor metrik, kita masuk ke bagian terakhir—dan yang paling penting dalam fisika teoretis: bagaimana menurunkan tensor dengan benar.</p>
+
+ <p class="lesson-subheading">A. Masalah dengan Turunan Biasa</p>
+ <p class="lesson-text">Pertanyaan alami: jika $v^i$ adalah vektor kontravarian, apakah $\partial_j v^i = \partial v^i / \partial x^j$ juga merupakan tensor? <strong>Jawabannya: TIDAK</strong>.</p>
+ <p class="lesson-text">Jika $v^i$ bertransformasi sebagai $v'^i = \frac{\partial x'^i}{\partial x^k}v^k$, maka turunan parsialnya adalah:</p>
+ <p class="lesson-text">$$\frac{\partial v'^i}{\partial x'^j} = \frac{\partial x'^i}{\partial x^k}\frac{\partial v^k}{\partial x'^j} + v^k\frac{\partial^2 x'^i}{\partial x'^j \partial x^k}$$</p>
+ <p class="lesson-text">Suku pertama terlihat seperti transformasi tensor, tetapi suku kedua—yang melibatkan turunan <strong>kedua</strong> dari transformasi koordinat—tidak menghilang. Akibatnya, $\partial_j v^i$ <strong>bukan</strong> tensor.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Implikasi:</strong> turunan parsial biasa tidak dapat digunakan untuk menurunkan tensor. Kita membutuhkan <strong>turunan kovarian</strong> yang memperhitungkan perubahan basis koordinat dari titik ke titik. Inilah salah satu motivasi utama dikembangkannya kalkulus tensor.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Simbol Christoffel</p>
+ <p class="lesson-text">Untuk memperbaiki masalah ini, kita perlu objek yang mengukur bagaimana basis koordinat berubah—<strong>simbol Christoffel</strong> $\Gamma^i_{jk}$:</p>
+ <p class="lesson-text">$$\Gamma^i_{jk} = \frac{1}{2}g^{il}\left(\frac{\partial g_{jl}}{\partial x^k} + \frac{\partial g_{kl}}{\partial x^j} - \frac{\partial g_{jk}}{\partial x^l}\right)$$</p>
+ <p class="lesson-text"><strong>Sifat:</strong> simbol Christoffel <strong>simetris</strong> pada dua indeks bawah ($\Gamma^i_{jk} = \Gamma^i_{kj}$), dan <strong>bukan tensor</strong>—ia bertransformasi dengan cara yang lebih kompleks. Di ruang Euclidean dengan koordinat Kartesius, semua $\Gamma^i_{jk} = 0$.</p>
+ <p class="lesson-subheading-alt">Contoh 10 (Polar):</p>
+ <p class="lesson-text">Untuk $g_{ij} = \operatorname{diag}(1, r^2)$ dan $g^{ij} = \operatorname{diag}(1, 1/r^2)$, komponen yang tidak nol:</p>
+ <p class="lesson-text">$$\Gamma^1_{22} = -r, \qquad \Gamma^2_{12} = \Gamma^2_{21} = \frac{1}{r}$$</p>
+ <p class="lesson-text">Semua komponen lainnya nol. Perhatikan bahwa meskipun ruangnya datar (Euclidean), simbol Christoffel <strong>tidak nol</strong> di koordinat polar—karena basis koordinat polar berubah arah dari titik ke titik.</p>
+
+ <p class="lesson-subheading">C. Turunan Kovarian</p>
+ <p class="lesson-text">Dengan simbol Christoffel, kita dapat mendefinisikan <strong>turunan kovarian</strong> $\nabla_j$ yang menghasilkan tensor ketika diterapkan pada tensor:</p>
+ <p class="lesson-text">$$\nabla_j v^i = \frac{\partial v^i}{\partial x^j} + \Gamma^i_{jk}v^k \qquad \text{(kontravarian)}$$ $$\nabla_j v_i = \frac{\partial v_i}{\partial x^j} - \Gamma^k_{ij}v_k \qquad \text{(kovarian)}$$</p>
+ <p class="lesson-text"><strong>Pola umum untuk tensor orde-2 campuran:</strong></p>
+ <p class="lesson-text">$$\nabla_k T^i_{\ j} = \frac{\partial T^i_{\ j}}{\partial x^k} + \Gamma^i_{kl}T^l_{\ j} - \Gamma^l_{kj}T^i_{\ l}$$</p>
+ <p class="lesson-text">Untuk setiap indeks atas, tambahkan suku $+\Gamma^i_{kl}(\dots)$; untuk setiap indeks bawah, tambahkan suku $-\Gamma^l_{kj}(\dots)$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 11 (Polar):</p>
+ <p class="lesson-text">Hitung $\nabla_\theta v^\theta$ untuk vektor $v^i = (v^r, v^\theta)$ di polar:</p>
+ <p class="lesson-text">$$\nabla_\theta v^\theta = \frac{\partial v^\theta}{\partial \theta} + \Gamma^2_{21}v^r = \frac{\partial v^\theta}{\partial \theta} + \frac{v^r}{r}$$</p>
+ <p class="lesson-text"><strong>Interpretasi:</strong> turunan kovarian mengandung suku ekstra $v^r/r$ yang memperhitungkan fakta bahwa basis $\theta$ berubah arah saat kita bergerak ke arah $r$. Inilah yang membuat turunan kovarian "sadar" akan geometri ruang.</p>
+
+ <p class="lesson-subheading">D. Persamaan Geodesik</p>
+ <p class="lesson-text"><strong>Geodesik</strong> adalah kurva "terlurus" yang dapat digambar di ruang melengkung. Di ruang Euclidean, geodesik adalah garis lurus. Persamaannya:</p>
+ <p class="lesson-text">$$\frac{d^2 x^i}{d\tau^2} + \Gamma^i_{jk}\frac{dx^j}{d\tau}\frac{dx^k}{d\tau} = 0$$</p>
+ <p class="lesson-text">Untuk koordinat polar, persamaan ini menjadi $\frac{d^2 r}{d\tau^2} - r(\frac{d\theta}{d\tau})^2 = 0$ dan $\frac{d^2\theta}{d\tau^2} + \frac{2}{r}\frac{dr}{d\tau}\frac{d\theta}{d\tau} = 0$—mendeskripsikan garis lurus dalam koordinat polar.</p>
+
+ <p class="lesson-subheading">E. Tensor Kelengkungan Riemann (Pengantar)</p>
+ <p class="lesson-text"><strong>Tensor Riemann</strong> $R^i_{\ jkl}$ adalah tensor orde-4 yang mengukur kelengkungan intrinsik ruang:</p>
+ <p class="lesson-text">$$R^i_{\ jkl} = \frac{\partial \Gamma^i_{jl}}{\partial x^k} - \frac{\partial \Gamma^i_{jk}}{\partial x^l} + \Gamma^i_{mk}\Gamma^m_{jl} - \Gamma^i_{ml}\Gamma^m_{jk}$$</p>
+ <p class="lesson-text">Jika semua komponen $R^i_{\ jkl} = 0$, ruang tersebut <strong>datar</strong>. Jika ada yang tidak nol, ruang tersebut <strong>melengkung</strong>. Tensor Riemann adalah fondasi dari persamaan medan Einstein dalam relativitas umum.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Poin penting:</strong> meskipun simbol Christoffel tidak nol di koordinat polar, tensor Riemann <strong>nol</strong>—karena polar hanyalah koordinat alternatif untuk ruang Euclidean yang datar. Kelengkungan adalah sifat <em>intrinsik</em> ruang, bukan efek koordinat. Untuk permukaan bola yang benar-benar melengkung, tensor Riemann tidak nol.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Penerapan Praktis</h3>
+ <p class="lesson-text">Tensor lanjut bukan hanya objek matematika abstrak—ia menjadi bahasa utama dalam fisika modern dan berbagai bidang terapan.</p>
+
+ <p class="lesson-subheading">A. Relativitas Umum</p>
+ <p class="lesson-text">Persamaan medan Einstein $R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}$ menghubungkan kelengkungan ruang-waktu (kiri, melalui tensor Ricci $R_{\mu\nu}$ dan skalar $R$) dengan distribusi materi-energi (kanan, melalui tensor energi-momentum $T_{\mu\nu}$). Seluruh kosmologi modern—dari Big Bang hingga lubang hitam—dibangun di atas kerangka tensor ini.</p>
+
+ <p class="lesson-subheading">B. Mekanika Kontinuum dan Elastisitas</p>
+ <p class="lesson-text">Dalam analisis tegangan pada material, tensor tegangan $\sigma^{ij}$ (orde-2) dan tensor regangan $\epsilon_{ij}$ (orde-2) dihubungkan oleh tensor elastisitas $C_{ijkl}$ (orde-4) melalui hukum Hooke umum: $\sigma^{ij} = C^{ijkl}\epsilon_{kl}$. Tanpa kerangka tensor, tidak mungkin mendeskripsikan material anisotropik secara konsisten.</p>
+
+ <p class="lesson-subheading">C. Pemrosesan Citra Medis</p>
+ <p class="lesson-text">Dalam pencitraan tensor difusi (DTI), difusi air di otak dimodelkan sebagai tensor orde-2. Analisis nilai eigen tensor ini mengungkap arah serabut saraf—memungkinkan dokter untuk "melihat" konektivitas otak tanpa operasi.</p>
+
+ <p class="lesson-subheading">D. Machine Learning Berbasis Tensor</p>
+ <p class="lesson-text">Jaringan tensor (<em>tensor networks</em>) menggunakan dekomposisi tensor untuk mengompresi model machine learning berukuran besar—memungkinkan model yang lebih efisien untuk dijalankan di perangkat tepi. TensorFlow, PyTorch, dan framework modern lainnya seluruhnya dibangun di atas operasi tensor.</p>
+
+ <p class="lesson-subheading">E. Sistem Navigasi dan GPS</p>
+ <p class="lesson-text">Relativitas umum diperlukan untuk GPS: satelit bergerak cepat dan berada di medan gravitasi yang berbeda—sehingga waktu mereka berlalu sedikit berbeda dari waktu di Bumi. Koreksi tensor-relativistik diperlukan agar akurasi GPS tetap dalam hitungan meter.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap turunan parsial biasa menghasilkan tensor.</strong> $\partial_j v^i$ <em>bukan</em> tensor. Untuk mendapatkan tensor, gunakan turunan kovarian $\nabla_j v^i$ yang melibatkan simbol Christoffel.</li>
+  <li><strong>Menganggap simbol Christoffel adalah tensor.</strong> Simbol Christoffel $\Gamma^i_{jk}$ <em>bukan</em> tensor—ia bertransformasi dengan cara yang lebih kompleks yang melibatkan turunan kedua. Karena itu, ia tidak dapat digunakan untuk mengontraksi indeks seperti tensor biasa.</li>
+  <li><strong>Lupa membedakan aturan transformasi kontravarian dan kovarian.</strong> Kontravarian menggunakan $\partial x'/\partial x$; kovarian menggunakan $\partial x/\partial x'$. Tertukar keduanya akan menghasilkan tensor yang salah.</li>
+  <li><strong>Menganggap tensor metrik selalu diagonal.</strong> Tensor metrik diagonal hanya untuk koordinat ortogonal (seperti Kartesius dan polar). Untuk koordinat umum, tensor metrik bisa memiliki elemen off-diagonal.</li>
+  <li><strong>Menganggap simbol Christoffel selalu nol di ruang Euclidean.</strong> Simbol Christoffel nol di koordinat Kartesius, tetapi <strong>tidak nol</strong> di koordinat polar—meskipun ruangnya sama (Euclidean). Simbol Christoffel bergantung pada koordinat, bukan hanya pada ruang.</li>
+  <li><strong>Mengabaikan peran tensor metrik dalam menaikkan/menurunkan indeks.</strong> Menurunkan indeks bukan sekadar "memindahkan posisi"—ia melibatkan perkalian dengan tensor metrik $g_{ij}$. Demikian pula menaikkan indeks melibatkan $g^{ij}$.</li>
+  <li><strong>Menganggap tensor Riemann selalu nol untuk koordinat melengkung.</strong> Tensor Riemann nol untuk semua koordinat di ruang datar (termasuk polar). Tensor Riemann <em>tidak</em> nol untuk ruang yang benar-benar melengkung (seperti bola). Kelengkungan adalah sifat intrinsik, bukan efek koordinat.</li>
+  <li><strong>Salah menerapkan konvensi penjumlahan Einstein pada turunan kovarian.</strong> Dalam $\nabla_j v^i = \partial_j v^i + \Gamma^i_{jk}v^k$, indeks $k$ adalah indeks dummy yang dijumlahkan, sedangkan $i$ dan $j$ adalah indeks bebas.</li>
+  <li><strong>Menganggap geodesik selalu garis lurus.</strong> Geodesik adalah kurva "terlurus" di ruang melengkung—tetapi di ruang datar dengan koordinat melengkung (seperti polar), geodesik tampak melengkung. Yang penting adalah geodesik meminimalkan jarak, bukan penampilan visualnya.</li>
+  <li><strong>Salah menentukan tanda dalam turunan kovarian vektor kovarian.</strong> Untuk vektor kovarian, tanda di depan $\Gamma$ adalah <strong>negatif</strong>: $\nabla_j v_i = \partial_j v_i - \Gamma^k_{ij}v_k$. Untuk vektor kontravarian, tandanya <strong>positif</strong>.</li>
+  <li><strong>Menganggap tensor Riemann nol untuk silinder.</strong> Silinder secara intrinsik datar (tensor Riemann nol)—meskipun terlihat melengkung di ruang 3D. Yang benar-benar melengkung adalah bola (tensor Riemann tidak nol).</li>
+  <li><strong>Menggunakan simbol Christoffel tanpa menghitung tensor metrik terlebih dahulu.</strong> Simbol Christoffel didefinisikan dari tensor metrik. Tanpa mengetahui $g_{ij}$, kita tidak dapat menghitung $\Gamma^i_{jk}$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Aturan transformasi</strong> adalah ciri pembeda tensor. Setiap indeks atas menyumbang faktor $\partial x'/\partial x$; setiap indeks bawah menyumbang faktor $\partial x/\partial x'$.</li>
+  <li><strong>Vektor kontravarian</strong> $v^i$ bertransformasi seperti $dx^i$: $v'^i = \frac{\partial x'^i}{\partial x^j}v^j$.</li>
+  <li><strong>Vektor kovarian</strong> $v_i$ bertransformasi seperti gradien: $v'_i = \frac{\partial x^j}{\partial x'^i}v_j$.</li>
+  <li><strong>Tensor orde-$n$</strong> bertransformasi dengan satu faktor Jacobian untuk setiap indeksnya.</li>
+  <li><strong>Tensor metrik</strong> $g_{ij}$ mendefinisikan jarak: $ds^2 = g_{ij}dx^idx^j$. Ia juga berfungsi untuk menaikkan/menurunkan indeks: $v_i = g_{ij}v^j$ dan $v^i = g^{ij}v_j$.</li>
+  <li><strong>Simbol Christoffel</strong> $\Gamma^i_{jk}$ mengukur perubahan basis koordinat dan memungkinkan definisi turunan kovarian.</li>
+  <li><strong>Turunan kovarian</strong> $\nabla_j$ memperbaiki turunan parsial biasa sehingga hasilnya adalah tensor.</li>
+  <li><strong>Persamaan geodesik</strong> mendeskripsikan kurva "terlurus" di ruang melengkung.</li>
+  <li><strong>Tensor Riemann</strong> $R^i_{\ jkl}$ mengukur kelengkungan intrinsik ruang.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Tensor Lanjut adalah <strong>jembatan antara aljabar linear dan geometri diferensial</strong>. Jika Tensor Dasar mengajarkan kita "apa itu tensor", maka Tensor Lanjut mengajarkan kita "mengapa tensor harus ada"—karena kita membutuhkan objek yang invarian terhadap perubahan koordinat untuk mendeskripsikan hukum alam. Aturan transformasi adalah inti dari tensor: ia memastikan bahwa meskipun komponen-komponen tensor berubah ketika koordinat berubah, objek geometris yang diwakilinya tetap sama.</p>
+ <p class="lesson-text">Yang membuat materi ini istimewa adalah <strong>perannya sebagai bahasa alam semesta</strong>. Hukum-hukum fisika harus sama di semua kerangka acuan—dan tensor adalah satu-satunya objek matematika yang secara otomatis menjamin invariansi ini. Persamaan medan Einstein $R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}$ akan terlihat berbeda di setiap koordinat—tetapi fakta bahwa "kelengkungan setara dengan materi-energi" tetap berlaku universal. Inilah yang membuat tensor bukan sekadar alat matematika, tetapi bahasa fundamental untuk mendeskripsikan alam semesta.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Geometri Diferensial</strong> (yang menggunakan tensor untuk mempelajari permukaan melengkung dan manifold), <strong>Relativitas Umum</strong> (yang bertumpu pada kalkulus tensor untuk mendeskripsikan gravitasi sebagai kelengkungan ruang-waktu), <strong>Kalkulus Variasi</strong> (yang menggunakan prinsip aksi terkecil—dan persamaan Euler-Lagrange dapat dinyatakan dalam bahasa tensor), <strong>Teori Medan Kuantum</strong> (yang menggunakan tensor untuk mendeskripsikan medan partikel), dan <strong>Machine Learning Berbasis Tensor</strong> (di mana jaringan tensor dan TensorFlow menjadi tulang punggung deep learning).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan transformasi koordinat, perhitungan tensor metrik, dan simbol Christoffel. Kebiasaan memeriksa konsistensi indeks (jumlah indeks atas dan bawah di kedua ruas), berhati-hati dengan tanda dalam turunan kovarian, dan selalu memverifikasi invarian skalar akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik relativitas umum dan geometri diferensial, di mana manipulasi tensor menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

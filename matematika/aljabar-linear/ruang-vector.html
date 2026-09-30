@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Ruang Vektor (Subruang, Basis, dan Dimensi)</title>
+ <meta name="description" content="Ruang vektor: aksioma, subruang, kombinasi linear, rentang, kebebasan linear, basis, dimensi, serta teorema rank-nullity beserta contoh penerapannya.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Ruang Vektor (Subruang, Basis, dan Dimensi)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Vektor</strong> — terutama operasi penjumlahan, perkalian skalar, dan konsep kebebasan arah, karena ruang vektor adalah abstraksi dari $\mathbb{R}^n$.</li>
+   <li><strong>Matriks</strong> — karena matriks dapat menjadi elemen ruang vektor (seperti $M_{m \times n}$), dan ruang nol matriks adalah salah satu subruang paling penting.</li>
+   <li><strong>Sistem Persamaan</strong> — karena mencari basis ruang nol dan memahami rank-nullity bertumpu pada penyelesaian sistem persamaan linear.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Selama ini kita telah berkenalan dengan beberapa objek matematika yang sekilas tampak tidak berhubungan: vektor di $\mathbb{R}^2$ seperti $(3, 4)$, polinomial seperti $3x^2 + 2x + 1$, matriks seperti $\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$, dan fungsi kontinu seperti $\sin x$. Apakah ada kesamaan mendasar di antara mereka?</p>
+ <p class="lesson-text">Ternyata ada. Semuanya dapat <strong>dijumlahkan</strong>, dan semuanya dapat <strong>dikalikan dengan skalar</strong>. Vektor bisa dijumlahkan, polinomial bisa dijumlahkan, matriks bisa dijumlahkan, fungsi bisa dijumlahkan. Dan masing-masing bisa dikalikan dengan bilangan. Perhatikan visual berikut:</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 820 320" style="max-width:100%; height:auto; width:820px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-rv-pend" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+    </marker>
+   </defs>
+
+   <!-- Panel 1: Vektor -->
+   <rect x="30" y="50" width="220" height="180" rx="12" fill="#daa520" fill-opacity="0.08" stroke="#daa520" stroke-width="1.5"/>
+   <text x="140" y="80" fill="#daa520" font-size="14" font-weight="700" text-anchor="middle">Vektor di ℝ²</text>
+
+   <!-- Sumbu kecil -->
+   <line x1="70" y1="200" x2="200" y2="200" stroke="#b8b8b8" stroke-width="0.8"/>
+   <line x1="70" y1="200" x2="70" y2="110" stroke="#b8b8b8" stroke-width="0.8"/>
+   <text x="204" y="204" fill="#888" font-size="10" font-style="italic">x</text>
+   <text x="60" y="108" fill="#888" font-size="10" font-style="italic">y</text>
+
+   <!-- Vektor (3,4) scaled: panjang horizontal 60, vertikal 60 -->
+   <line x1="70" y1="200" x2="130" y2="140" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-rv-pend)"/>
+   <text x="155" y="140" fill="#daa520" font-size="14" font-weight="700" font-style="italic">(3, 4)</text>
+
+   <!-- Panel 2: Polinomial -->
+   <rect x="300" y="50" width="220" height="180" rx="12" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="1.5"/>
+   <text x="410" y="80" fill="#5dade2" font-size="14" font-weight="700" text-anchor="middle">Polinomial di P₂</text>
+   <text x="410" y="145" fill="#e8e8e8" font-size="18" text-anchor="middle" font-family="serif">3x² + 2x + 1</text>
+   <text x="410" y="185" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">derajat ≤ 2</text>
+
+   <!-- Panel 3: Matriks -->
+   <rect x="570" y="50" width="220" height="180" rx="12" fill="#f0c75e" fill-opacity="0.08" stroke="#f0c75e" stroke-width="1.5"/>
+   <text x="680" y="80" fill="#f0c75e" font-size="14" font-weight="700" text-anchor="middle">Matriks di M₂ₓ₂</text>
+   <text x="680" y="145" fill="#e8e8e8" font-size="20" text-anchor="middle" font-family="monospace">⎡1  2⎤</text>
+   <text x="680" y="170" fill="#e8e8e8" font-size="20" text-anchor="middle" font-family="monospace">⎣3  4⎦</text>
+
+   <!-- Bottom label -->
+   <text x="410" y="270" fill="#e8e8e8" font-size="14" text-anchor="middle" font-weight="600">Ketiganya memiliki operasi yang sama:</text>
+   <text x="410" y="298" fill="#f0c75e" font-size="15" text-anchor="middle" font-weight="700" font-style="italic">penjumlahan + perkalian skalar</text>
+  </svg>
+  <figcaption class="visual-caption">Objek-objek yang sekilas berbeda—vektor, polinomial, dan matriks—ternyata memiliki <em>tata bahasa</em> yang sama: dapat dijumlahkan dan dikalikan skalar. Struktur abstrak inilah yang disebut <strong>ruang vektor</strong>.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Kesamaan inilah yang mendorong matematikawan mendefinisikan konsep abstrak bernama <strong>ruang vektor</strong>: himpunan objek apa pun yang dilengkapi dua operasi (penjumlahan dan perkalian skalar) yang memenuhi aturan-aturan tertentu. Objek apa pun dalam himpunan itu disebut <strong>vektor</strong>—meskipun secara fisik bukan panah. Dengan kata lain, "vektor" dalam pengertian ini adalah <em>peran</em>, bukan bentuk.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa abstraksi ini penting?</strong> Karena dengan mendefinisikan struktur umum, kita cukup membuktikan sebuah teorema <em>satu kali</em>—dan teorema itu otomatis berlaku untuk semua ruang vektor. Fakta bahwa "setiap ruang vektor berdimensi $n$ isomorfik dengan $\mathbb{R}^n$" berlaku sekaligus untuk vektor, polinomial, matriks, dan fungsi. Inilah kekuatan matematika modern: satu teori, banyak penerapan.</p>
+ </div>
+
+ <p class="lesson-text">Materi ini disusun bertahap: definisi formal dan aksioma, kombinasi linear dan rentang, subruang, kebebasan linear, basis, dimensi, teorema rank-nullity, contoh soal, dan kesalahan umum. Setiap konsep dijelaskan dengan <em>alasan mengapa</em> ia diperlukan—bukan hanya definisinya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Formal Ruang Vektor</h3>
+ <p class="lesson-text">Kita mulai dari definisi formal—yang menjadi fondasi seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Apa itu Ruang Vektor?</p>
+ <p class="lesson-text">Secara formal, <strong>ruang vektor</strong> atas lapangan bilangan real $\mathbb{R}$ adalah himpunan tak-kosong $V$ yang dilengkapi dua operasi:</p>
+ <ol>
+  <li><strong>Penjumlahan vektor</strong> ($+$): untuk setiap $u, v \in V$, hasil $u + v$ juga berada di $V$.</li>
+  <li><strong>Perkalian skalar</strong> ($\cdot$): untuk setiap $u \in V$ dan setiap $c \in \mathbb{R}$, hasil $c \cdot u$ juga berada di $V$.</li>
+ </ol>
+ <p class="lesson-text">Kedua operasi ini harus memenuhi <strong>10 aksioma</strong> berikut:</p>
+ <p class="lesson-subheading-alt">Aksioma penjumlahan:</p>
+ <ol>
+  <li><strong>Tertutup</strong>: jika $u, v \in V$, maka $u + v \in V$—tidak ada hasil penjumlahan yang "keluar" dari $V$.</li>
+  <li><strong>Komutatif</strong>: $u + v = v + u$.</li>
+  <li><strong>Asosiatif</strong>: $(u + v) + w = u + (v + w)$.</li>
+  <li><strong>Elemen identitas</strong>: terdapat vektor $\mathbf{0} \in V$ sehingga $u + \mathbf{0} = u$.</li>
+  <li><strong>Elemen invers</strong>: untuk setiap $u \in V$, terdapat $-u \in V$ sehingga $u + (-u) = \mathbf{0}$.</li>
+ </ol>
+ <p class="lesson-subheading-alt">Aksioma perkalian skalar:</p>
+ <ol start="6">
+  <li><strong>Tertutup</strong>: jika $u \in V$ dan $c \in \mathbb{R}$, maka $c \cdot u \in V$.</li>
+  <li><strong>Distributif terhadap penjumlahan vektor</strong>: $c(u + v) = cu + cv$.</li>
+  <li><strong>Distributif terhadap penjumlahan skalar</strong>: $(c + d)u = cu + du$.</li>
+  <li><strong>Asosiatif</strong>: $(cd)u = c(du)$.</li>
+  <li><strong>Elemen identitas skalar</strong>: $1 \cdot u = u$.</li>
+ </ol>
+
+ <div class="lesson-note">
+ <p class="lesson-text"><strong>Inti praktis:</strong> jika Anda mengambil dua vektor di $V$ dan menjumlahkannya, hasilnya tetap di $V$. Jika Anda mengalikan vektor di $V$ dengan skalar apa pun, hasilnya tetap di $V$. Tidak boleh ada hasil operasi yang "bocor" keluar dari himpunan. Sepuluh aksioma lainnya hanyalah jaminan bahwa operasi ini berperilaku seperti operasi bilangan yang sudah kita kenal.</p>
+</div>
+<div class="lesson-note">
+ <p class="lesson-text"><strong>Catatan konvensi:</strong> Beberapa buku aljabar linear&mdash;misalnya Strang atau Anton&mdash;<em>tidak</em> menghitung sifat tertutup sebagai aksioma terpisah, karena sifat itu sudah tersirat dari definisi "operasi biner" pada suatu himpunan. Buku-buku tersebut menulisnya sebagai <strong>8 aksioma</strong> (4 penjumlahan + 4 perkalian skalar). Perbedaan jumlah ini hanya soal konvensi&mdash;substansinya sama.</p>
+</div>
+
+ <p class="lesson-subheading">B. Contoh-Contoh Ruang Vektor</p>
+ <p class="lesson-text">Beberapa ruang vektor standar yang akan sering muncul:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr>
+    <th>Ruang Vektor</th>
+    <th>Deskripsi</th>
+    <th>Basis Standar</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr><td>$\mathbb{R}^n$</td><td>Semua $n$-tupel bilangan real</td><td>$\{(1,0,\dots,0),\ (0,1,\dots,0),\ \dots,\ (0,0,\dots,1)\}$</td></tr>
+   <tr><td>$M_{m \times n}$</td><td>Semua matriks berordo $m \times n$</td><td>Matriks-matriks dengan satu entri $=1$, sisanya $0$</td></tr>
+   <tr><td>$P_n$</td><td>Polinomial berderajat $\le n$</td><td>$\{1, x, x^2, \dots, x^n\}$</td></tr>
+   <tr><td>$\{\mathbf{0}\}$</td><td>Ruang nol (hanya memuat vektor nol)</td><td>Himpunan kosong $\varnothing$</td></tr>
+  </tbody>
+ </table>
+</div>
+<p class="lesson-text">Jumlah vektor dalam basis standar ini sama dengan <strong>dimensi</strong> ruang vektor—konsep yang akan kita bahas formal di Bagian VI. Untuk sekarang, cukup catat bahwa setiap ruang vektor memiliki "ukuran" yang khas.</p>
+ <p class="lesson-subheading-alt">Ilustrasi beberapa aksioma untuk $\mathbb{R}^2$:</p>
+ <ul>
+  <li>$(2, 3) + (5, 1) = (7, 4) \in \mathbb{R}^2$—tertutup terhadap penjumlahan. ✓</li>
+  <li>$3 \cdot (2, 3) = (6, 9) \in \mathbb{R}^2$—tertutup terhadap perkalian skalar. ✓</li>
+  <li>Vektor nol: $(0, 0)$. Invers: $-(2, 3) = (-2, -3)$. ✓</li>
+  <li>Distributif: $2((2,3) + (5,1)) = 2(7,4) = (14,8)$ dan $2(2,3) + 2(5,1) = (4,6) + (10,2) = (14,8)$. ✓</li>
+ </ul>
+ <p class="lesson-text">Daftar ini hanya mengilustrasikan 4 dari 10 aksioma—sisanya dapat diverifikasi dengan cara serupa. Ruang vektor yang paling akrab sudah kita jumpai.</p>
+
+ <p class="lesson-subheading">C. Mengapa Aksioma Ini Penting?</p>
+ <p class="lesson-text">Aksioma-aksioma ini bukan sekadar formalitas. Mereka menjamin bahwa operasi pada ruang vektor "berperilaku wajar" seperti operasi pada bilangan real. Aksioma komutatif memastikan urutan penjumlahan tidak penting; aksioma distributif memastikan kita bisa "mengeluarkan" skalar dari kurung. Tanpa aksioma-aksioma ini, teorema-teorema yang kita buktikan mungkin tidak berlaku.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Kombinasi Linear dan Rentang</h3>
+ <p class="lesson-text">Setelah memahami apa itu ruang vektor, kita masuk ke konsep yang memungkinkan kita "membangun" vektor-vektor baru dari vektor-vektor yang sudah ada.</p>
+
+ <p class="lesson-subheading">A. Kombinasi Linear</p>
+ <p class="lesson-text">Diberikan vektor-vektor $v_1, v_2, \dots, v_k \in V$ dan skalar $c_1, c_2, \dots, c_k \in \mathbb{R}$. Bentuk:</p>
+ <p class="lesson-text">$$c_1 v_1 + c_2 v_2 + \dots + c_k v_k$$</p>
+ <p class="lesson-text">disebut <strong>kombinasi linear</strong>. Skalar $c_1, c_2, \dots, c_k$ adalah "bobot" yang menentukan seberapa besar kontribusi masing-masing vektor.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 760 320" style="max-width:100%; height:auto; width:760px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-kl-gold" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+    </marker>
+    <marker id="arrow-kl-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#5dade2"/>
+    </marker>
+    <marker id="arrow-kl-yellow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <!-- Panel 1: Vektor dasar -->
+   <text x="110" y="30" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Vektor dasar</text>
+
+   <circle cx="60" cy="220" r="4" fill="#e8e8e8"/>
+   <text x="46" y="240" fill="#b8b8b8" font-size="11">O</text>
+
+   <line x1="60" y1="220" x2="120" y2="220" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-kl-gold)"/>
+   <text x="126" y="240" fill="#daa520" font-size="13" font-weight="700" font-style="italic">v₁</text>
+
+   <line x1="60" y1="220" x2="95" y2="170" stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-kl-blue)"/>
+   <text x="72" y="162" fill="#5dade2" font-size="13" font-weight="700" font-style="italic">v₂</text>
+
+   <!-- × symbol -->
+   <text x="210" y="215" fill="#b8b8b8" font-size="26" text-anchor="middle">·</text>
+
+   <!-- Panel 2: Bobot -->
+   <text x="310" y="30" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Bobot (skalar)</text>
+   <text x="310" y="150" fill="#f0c75e" font-size="22" font-weight="700" text-anchor="middle">c₁ = 1,5</text>
+   <text x="310" y="188" fill="#f0c75e" font-size="22" font-weight="700" text-anchor="middle">c₂ = 2</text>
+
+   <!-- = symbol -->
+   <text x="420" y="185" fill="#b8b8b8" font-size="26" text-anchor="middle">=</text>
+
+   <!-- Panel 3: Hasil -->
+   <text x="600" y="30" fill="#e8e8e8" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Hasil kombinasi</text>
+
+   <circle cx="480" cy="220" r="4" fill="#e8e8e8"/>
+   <text x="466" y="240" fill="#b8b8b8" font-size="11">O</text>
+
+   <line x1="480" y1="220" x2="560" y2="220" stroke="#f0c75e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+   <line x1="480" y1="220" x2="530" y2="170" stroke="#f0c75e" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+
+   <line x1="480" y1="220" x2="660" y2="110" stroke="#f0c75e" stroke-width="3" marker-end="url(#arrow-kl-yellow)"/>
+   <text x="555" y="180" fill="#f0c75e" font-size="14" font-weight="700" font-style="italic">c₁v₁ + c₂v₂</text>
+
+   <text x="380" y="300" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">Kombinasi linear = "campuran berbobot" dari vektor-vektor dasar.</text>
+  </svg>
+  <figcaption class="visual-caption">Kombinasi linear $c_1 v_1 + c_2 v_2$ adalah vektor baru yang diperoleh dengan "mencampur" vektor-vektor dasar menggunakan bobot $c_1, c_2$. Di sini $c_1 = 1{,}5$ dan $c_2 = 2$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Di $\mathbb{R}^2$, vektor $(5, 2)$ adalah kombinasi linear dari $v_1 = (1, 0)$ dan $v_2 = (0, 1)$ karena $(5, 2) = 5(1, 0) + 2(0, 1)$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Apakah $(7, 4)$ adalah kombinasi linear dari $v_1 = (2, 1)$ dan $v_2 = (1, 3)$? Kita perlu mencari $c_1, c_2$ sehingga $c_1(2, 1) + c_2(1, 3) = (7, 4)$.</p>
+ <p class="lesson-text">Ini menghasilkan sistem persamaan:</p>
+ <p class="lesson-text">$$2c_1 + c_2 = 7$$ $$c_1 + 3c_2 = 4$$</p>
+ <p class="lesson-text">Dari persamaan kedua: $c_1 = 4 - 3c_2$. Substitusi ke persamaan pertama: $2(4 - 3c_2) + c_2 = 7 \Rightarrow 8 - 5c_2 = 7 \Rightarrow c_2 = 1/5$. Maka $c_1 = 4 - 3/5 = 17/5$. Karena solusi ada, $(7, 4)$ adalah kombinasi linear dari $v_1$ dan $v_2$.</p>
+
+ <p class="lesson-subheading">B. Rentang (Span)</p>
+ <p class="lesson-text"><strong>Rentang</strong> dari himpunan $S = \{v_1, v_2, \dots, v_k\}$—dinotasikan $\operatorname{Span}(S)$—adalah himpunan <strong>semua kombinasi linear</strong> yang mungkin dari vektor-vektor dalam $S$:</p>
+ <p class="lesson-text">$$\operatorname{Span}(S) = \{c_1 v_1 + c_2 v_2 + \dots + c_k v_k \mid c_1, c_2, \dots, c_k \in \mathbb{R}\}$$</p>
+ <p class="lesson-text"><strong>Sifat fundamental:</strong> rentang dari suatu himpunan vektor <strong>selalu membentuk subruang</strong> dari $V$. Ini masuk akal karena kombinasi linear dari kombinasi linear tetap merupakan kombinasi linear.</p>
+ <p class="lesson-text">Jika $\operatorname{Span}(S) = V$, maka $S$ dikatakan <strong>merentang</strong> $V$—atau $S$ membangun $V$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Di $\mathbb{R}^2$:</p>
+ <ul>
+  <li>$S = \{(1, 0), (0, 1)\}$—maka $\operatorname{Span}(S) = \mathbb{R}^2$ karena setiap vektor $(x, y) = x(1, 0) + y(0, 1)$.</li>
+  <li>$S = \{(1, 0)\}$—maka $\operatorname{Span}(S)$ adalah sumbu $x$ (garis horizontal)—bukan seluruh $\mathbb{R}^2$.</li>
+  <li>$S = \{(1, 0), (2, 0)\}$—maka $\operatorname{Span}(S)$ tetap sumbu $x$, karena $(2, 0)$ hanyalah kelipatan $(1, 0)$. Menambahkan vektor yang bergantung linear tidak memperluas rentang.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Subruang (Subspace)</h3>
+ <p class="lesson-text">Setelah memahami rentang, kita masuk ke konsep "ruang di dalam ruang"—yaitu himpunan bagian yang tetap merupakan ruang vektor.</p>
+
+ <p class="lesson-subheading">A. Definisi Subruang</p>
+ <p class="lesson-text"><strong>Subruang</strong> adalah himpunan bagian tak-kosong $W$ dari suatu ruang vektor $V$ yang <strong>tertutup</strong> terhadap operasi penjumlahan dan perkalian skalar yang didefinisikan pada $V$. Dengan kata lain, $W$ adalah "ruang vektor mini" yang hidup di dalam $V$.</p>
+ <p class="lesson-text">Untuk membuktikan $W$ adalah subruang dari $V$, periksa <strong>tiga syarat</strong>:</p>
+ <ol>
+  <li>$W \neq \varnothing$—biasanya cukup dengan memastikan $\mathbf{0} \in W$.</li>
+  <li><strong>Tertutup penjumlahan</strong>: jika $u, v \in W$, maka $u + v \in W$.</li>
+  <li><strong>Tertutup perkalian skalar</strong>: jika $u \in W$ dan $c \in \mathbb{R}$, maka $c \cdot u \in W$.</li>
+ </ol>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Uji cepat (Zero Test):</strong> jika sebuah himpunan bagian <strong>tidak memuat</strong> vektor nol $\mathbf{0}$, maka ia <strong>bukan</strong> subruang. Ini adalah filter pertama yang paling ampuh—dan sering menjadi pembeda antara subruang dan bukan subruang.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Interpretasi Geometris Subruang</p>
+ <p class="lesson-text">Untuk membangun intuisi, mari kita lihat semua kemungkinan subruang dari $\mathbb{R}^2$ dan $\mathbb{R}^3$.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 780 260" style="max-width:100%; height:auto; width:780px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Subruang di R² -->
+   <text x="120" y="25" fill="#daa520" font-size="13" font-style="italic" font-weight="600">Subruang dari ℝ²</text>
+
+   <!-- Case 1: {0} -->
+   <circle cx="60" cy="120" r="5" fill="#f0c75e"/>
+   <text x="60" y="105" fill="#f0c75e" font-size="11" text-anchor="middle" font-weight="600">{0}</text>
+   <text x="60" y="165" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">titik asal</text>
+   <text x="60" y="180" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">dim = 0</text>
+
+   <!-- Case 2: Garis melalui asal -->
+   <line x1="140" y1="180" x2="220" y2="60" stroke="#5dade2" stroke-width="2"/>
+   <circle cx="180" cy="120" r="4" fill="#f0c75e"/>
+   <text x="180" y="165" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">garis melalui</text>
+   <text x="180" y="178" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">titik asal</text>
+   <text x="180" y="193" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">dim = 1</text>
+
+   <!-- Case 3: Seluruh R² -->
+   <rect x="240" y="55" width="100" height="130" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="1.5"/>
+   <circle cx="290" cy="120" r="4" fill="#f0c75e"/>
+   <text x="290" y="165" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">seluruh ℝ²</text>
+   <text x="290" y="180" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">dim = 2</text>
+
+   <!-- Divider -->
+   <line x1="380" y1="30" x2="380" y2="240" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <!-- Subruang di R³ -->
+   <text x="580" y="25" fill="#daa520" font-size="13" font-style="italic" font-weight="600">Subruang dari ℝ³</text>
+
+   <!-- Case 1: {0} -->
+   <circle cx="415" cy="120" r="5" fill="#f0c75e"/>
+   <text x="415" y="105" fill="#f0c75e" font-size="11" text-anchor="middle" font-weight="600">{0}</text>
+   <text x="415" y="165" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">dim = 0</text>
+
+   <!-- Case 2: Garis -->
+   <line x1="460" y1="180" x2="500" y2="60" stroke="#5dade2" stroke-width="2"/>
+   <circle cx="480" cy="120" r="4" fill="#f0c75e"/>
+   <text x="480" y="193" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">garis · dim 1</text>
+
+   <!-- Case 3: Bidang -->
+   <polygon points="530,180 610,180 630,140 550,140" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="1.5"/>
+   <circle cx="580" cy="160" r="4" fill="#f0c75e"/>
+   <text x="580" y="200" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">bidang · dim 2</text>
+
+   <!-- Case 4: Seluruh R³ -->
+   <rect x="660" y="60" width="90" height="120" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="1.5"/>
+   <circle cx="705" cy="120" r="4" fill="#f0c75e"/>
+   <text x="705" y="200" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">seluruh ℝ³</text>
+   <text x="705" y="215" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">dim = 3</text>
+  </svg>
+  <figcaption class="visual-caption">Subruang dari $\mathbb{R}^2$ (kiri) dan $\mathbb{R}^3$ (kanan). Setiap subruang harus melalui titik asal dan tertutup terhadap penjumlahan dan perkalian skalar. Perhatikan pola dimensi: subruang dari $\mathbb{R}^3$ berurutan $\{0\}$ (dim 0), garis (dim 1), bidang (dim 2), dan seluruh ruang (dim 3).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh subruang yang sah:</p>
+ <p class="lesson-text"><strong>Contoh 4</strong>: $W = \{(x, y) \in \mathbb{R}^2 \mid y = 2x\}$—garis miring melalui titik asal.</p>
+ <ul>
+  <li>Vektor nol: $(0, 0)$ memenuhi $0 = 2(0)$. ✓</li>
+  <li>Tertutup penjumlahan: $u = (x_1, 2x_1)$, $v = (x_2, 2x_2)$; maka $u + v = (x_1+x_2, 2(x_1+x_2))$—masih berada di garis. ✓</li>
+  <li>Tertutup perkalian skalar: $cu = (cx_1, 2cx_1)$—masih di garis. ✓</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Contoh 5</strong>: $W = \{(x, y, z) \in \mathbb{R}^3 \mid x + y + z = 0\}$—bidang melalui titik asal.</p>
+ <p class="lesson-text">Verifikasi: $(0,0,0)$ memenuhi $0 + 0 + 0 = 0$. Jika $u, v \in W$, maka $(u_1+v_1) + (u_2+v_2) + (u_3+v_3) = (u_1+u_2+u_3) + (v_1+v_2+v_3) = 0 + 0 = 0$. Jika $c \in \mathbb{R}$, maka $cu_1 + cu_2 + cu_3 = c \cdot 0 = 0$. Jadi $W$ adalah subruang.</p>
+
+ <p class="lesson-subheading-alt">Contoh yang bukan subruang:</p>
+ <p class="lesson-text"><strong>Contoh 6</strong>: $W = \{(x, y) \in \mathbb{R}^2 \mid y = 2x + 1\}$—garis yang tidak melalui titik asal. Vektor nol: $0 = 2(0) + 1 \Rightarrow 0 = 1$ (salah). <strong>Bukan subruang.</strong></p>
+ <p class="lesson-text"><strong>Contoh 7</strong>: $W = \{(x, y) \in \mathbb{R}^2 \mid x \ge 0, y \ge 0\}$—kuadran I. Memuat vektor nol, tetapi gagal tertutup perkalian skalar: $(-1)(1, 1) = (-1, -1) \notin W$. <strong>Bukan subruang.</strong></p>
+ <p class="lesson-text"><strong>Contoh 8</strong>: $W = \{(x, y) \in \mathbb{R}^2 \mid xy = 0\}$—gabungan dari sumbu-$x$ dan sumbu-$y$. Ambil $u = (1, 0)$ dan $v = (0, 1)$, keduanya di $W$. Tetapi $u + v = (1, 1)$, dengan $1 \cdot 1 = 1 \neq 0$, sehingga $(1, 1) \notin W$. <strong>Bukan subruang.</strong></p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Kebebasan Linear</h3>
+ <p class="lesson-text">Kebebasan linear adalah konsep yang memisahkan vektor-vektor yang "penting" dari yang "berlebihan"—dan menjadi syarat kedua untuk basis.</p>
+
+ <p class="lesson-subheading">A. Definisi Formal</p>
+ <p class="lesson-text">Himpunan vektor $S = \{v_1, v_2, \dots, v_k\}$ dikatakan <strong>bebas linear</strong> jika satu-satunya cara untuk membuat kombinasi linear sama dengan vektor nol adalah dengan memilih <strong>semua koefisien sama dengan nol</strong>:</p>
+ <p class="lesson-text">$$c_1 v_1 + c_2 v_2 + \dots + c_k v_k = \mathbf{0} \quad \implies \quad c_1 = c_2 = \dots = c_k = 0$$</p>
+ <p class="lesson-text">Jika terdapat koefisien yang tidak semuanya nol yang memenuhi persamaan di atas, maka himpunan tersebut <strong>bergantung linear</strong>. Secara intuitif, dalam himpunan yang bergantung linear, setidaknya ada satu vektor yang "berlebihan" karena bisa dinyatakan sebagai kombinasi linear dari vektor-vektor lainnya.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 720 260" style="max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-bl-gold" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+    </marker>
+    <marker id="arrow-bl-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#5dade2"/>
+    </marker>
+    <marker id="arrow-bl-red" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c"/>
+    </marker>
+   </defs>
+
+   <!-- Panel 1: Bebas linear -->
+   <text x="180" y="25" fill="#daa520" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Bebas Linear</text>
+
+   <line x1="80" y1="200" x2="280" y2="200" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="80" y1="200" x2="80" y2="60" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <line x1="80" y1="200" x2="200" y2="200" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-bl-gold)"/>
+   <text x="215" y="205" fill="#daa520" font-size="13" font-weight="700" font-style="italic">v₁</text>
+
+   <line x1="80" y1="200" x2="160" y2="100" stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-bl-blue)"/>
+   <text x="145" y="90" fill="#5dade2" font-size="13" font-weight="700" font-style="italic">v₂</text>
+
+   <circle cx="80" cy="200" r="4" fill="#e8e8e8"/>
+   <text x="180" y="240" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">v₁ dan v₂ tidak segaris</text>
+
+   <!-- Divider -->
+   <line x1="360" y1="30" x2="360" y2="230" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <!-- Panel 2: Bergantung linear -->
+   <text x="540" y="25" fill="#e74c3c" font-size="14" font-style="italic" text-anchor="middle" font-weight="600">Bergantung Linear</text>
+
+   <line x1="440" y1="200" x2="700" y2="200" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="440" y1="200" x2="440" y2="60" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <line x1="440" y1="200" x2="540" y2="200" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-bl-gold)"/>
+   <text x="555" y="205" fill="#daa520" font-size="13" font-weight="700" font-style="italic">v₁</text>
+
+   <line x1="440" y1="200" x2="640" y2="200" stroke="#e74c3c" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrow-bl-red)"/>
+   <text x="655" y="205" fill="#e74c3c" font-size="13" font-weight="700" font-style="italic">v₂</text>
+
+   <circle cx="440" cy="200" r="4" fill="#e8e8e8"/>
+   <text x="540" y="240" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">v₂ = 2v₁ (segaris)</text>
+  </svg>
+  <figcaption class="visual-caption">Di $\mathbb{R}^2$: dua vektor bebas linear jika tidak segaris (kiri); bergantung linear jika salah satu adalah kelipatan skalar dari yang lain (kanan)—dalam contoh ini $v_2 = 2v_1$, sehingga panjang $v_2$ tepat dua kali panjang $v_1$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Interpretasi Geometris</p>
+ <p class="lesson-text">Di $\mathbb{R}^2$: dua vektor <strong>bebas linear</strong> jika <em>tidak segaris</em>. Di $\mathbb{R}^3$: tiga vektor <strong>bebas linear</strong> jika <em>tidak sebidang</em>—yaitu membentuk volume.</p>
+
+ <p class="lesson-subheading">C. Prosedur Praktis Menguji Kebebasan Linear</p>
+ <p class="lesson-text">Untuk menguji apakah vektor-vektor di $\mathbb{R}^n$ bebas linear, bentuk persamaan $c_1 v_1 + \dots + c_k v_k = \mathbf{0}$—yang menghasilkan <strong>sistem persamaan linear homogen</strong>. Jika sistem tersebut hanya memiliki solusi trivial (semua $c_i = 0$), maka bebas linear; jika ada solusi nontrivial, maka bergantung linear.</p>
+
+ <p class="lesson-subheading-alt">Contoh 9 (bebas linear):</p>
+ <p class="lesson-text">Periksa $v_1 = (1, 2, 3)$, $v_2 = (0, 1, 2)$, $v_3 = (0, 0, 1)$ di $\mathbb{R}^3$.</p>
+ <p class="lesson-text">Bentuk $c_1 v_1 + c_2 v_2 + c_3 v_3 = (0, 0, 0)$. Dari komponen pertama: $c_1 = 0$. Dari komponen kedua: $2c_1 + c_2 = 0 \Rightarrow c_2 = 0$. Dari komponen ketiga: $3c_1 + 2c_2 + c_3 = 0 \Rightarrow c_3 = 0$. Hanya solusi trivial—<strong>bebas linear</strong>.</p>
+
+ <p class="lesson-subheading-alt">Contoh 10 (bergantung linear):</p>
+ <p class="lesson-text">Periksa $v_1 = (1, 2)$, $v_2 = (2, 4)$ di $\mathbb{R}^2$. Persamaan: $c_1 + 2c_2 = 0$ dan $2c_1 + 4c_2 = 0$. Dari persamaan pertama, $c_1 = -2c_2$. Pilih $c_2 = 1$, maka $c_1 = -2$ (tidak nol). Ada solusi nontrivial—<strong>bergantung linear</strong> (karena $v_2 = 2v_1$).</p>
+
+ <p class="lesson-subheading">D. Konsekuensi Penting</p>
+ <ul>
+  <li>Himpunan yang memuat <strong>vektor nol</strong> pasti bergantung linear—karena $1 \cdot \mathbf{0} = \mathbf{0}$ dengan koefisien 1 tidak nol.</li>
+  <li>Jika salah satu vektor adalah kelipatan skalar dari vektor lain, maka himpunan bergantung linear.</li>
+  <li>Untuk $\mathbb{R}^n$, jumlah maksimum vektor yang dapat bebas linear adalah $n$. Jika ada lebih dari $n$ vektor, himpunan tersebut <strong>pasti</strong> bergantung linear.</li>
+  <li>Jika himpunan bebas linear, tidak ada vektor yang dapat dinyatakan sebagai kombinasi linear dari vektor-vektor lainnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Basis Suatu Ruang Vektor</h3>
+ <p class="lesson-text">Setelah memahami rentang dan kebebasan linear, kita dapat mendefinisikan konsep paling fundamental dalam ruang vektor: <strong>basis</strong>.</p>
+
+ <p class="lesson-subheading">A. Definisi Basis</p>
+ <p class="lesson-text"><strong>Basis</strong> dari suatu ruang vektor $V$ adalah himpunan vektor $B = \{b_1, b_2, \dots, b_n\}$ yang memenuhi <strong>dua syarat sekaligus</strong>:</p>
+ <ol>
+  <li><strong>Merentang $V$</strong>: $\operatorname{Span}(B) = V$—cukup untuk membangun seluruh ruang.</li>
+  <li><strong>Bebas linear</strong>: tidak ada vektor yang berlebihan—efisien.</li>
+ </ol>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Analogi:</strong> basis itu seperti "koordinat" atau "alfabet" untuk ruang vektor. Dengan 26 huruf, kita bisa menuliskan kata apa pun—tidak lebih, tidak kurang. Menambah huruf akan berlebihan; mengurangi akan membuat kita tidak bisa menulis beberapa kata.</p>
+ </div>
+
+ <p class="lesson-text"><strong>Konsekuensi penting:</strong> jika $B$ adalah basis, maka setiap vektor $v \in V$ dapat dinyatakan sebagai kombinasi linear dari vektor-vektor di $B$ secara <strong>unik</strong>. Sifat keunikan inilah yang membuat basis sangat berharga—ia memungkinkan kita memberikan "alamat" (koordinat) pada setiap vektor.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 760 340" style="max-width:100%; height:auto; width:760px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-bs-gold" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520"/>
+    </marker>
+    <marker id="arrow-bs-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#5dade2"/>
+    </marker>
+    <marker id="arrow-bs-yellow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e"/>
+    </marker>
+   </defs>
+
+   <!-- Panel 1: Basis standar -->
+   <text x="170" y="30" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Basis standar: {e₁, e₂}</text>
+
+   <line x1="60" y1="230" x2="300" y2="230" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="60" y1="230" x2="60" y2="70" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <line x1="60" y1="230" x2="160" y2="230" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-bs-gold)"/>
+   <text x="175" y="235" fill="#daa520" font-size="12" font-weight="700" font-style="italic">e₁=(1,0)</text>
+
+   <line x1="60" y1="230" x2="60" y2="130" stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-bs-blue)"/>
+   <text x="70" y="120" fill="#5dade2" font-size="12" font-weight="700" font-style="italic">e₂=(0,1)</text>
+
+   <line x1="60" y1="230" x2="160" y2="130" stroke="#f0c75e" stroke-width="2.5" marker-end="url(#arrow-bs-yellow)"/>
+   <text x="170" y="125" fill="#f0c75e" font-size="13" font-weight="700" font-style="italic">v</text>
+
+   <line x1="160" y1="130" x2="160" y2="230" stroke="#b8b8b8" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="160" y1="130" x2="60" y2="130" stroke="#b8b8b8" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <circle cx="60" cy="230" r="4" fill="#e8e8e8"/>
+   <text x="170" y="280" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">v = 1·e₁ + 1·e₂ → koordinat (1, 1)</text>
+
+   <!-- Divider -->
+   <line x1="380" y1="30" x2="380" y2="310" stroke="#444" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+   <!-- Panel 2: Basis non-standar -->
+   <text x="570" y="30" fill="#daa520" font-size="13" font-style="italic" text-anchor="middle" font-weight="600">Basis lain: {b₁, b₂}</text>
+
+   <line x1="440" y1="200" x2="700" y2="200" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+   <line x1="440" y1="200" x2="440" y2="60" stroke="#444" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+   <line x1="440" y1="200" x2="520" y2="120" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrow-bs-gold)"/>
+   <text x="530" y="115" fill="#daa520" font-size="12" font-weight="700" font-style="italic">b₁=(1,1)</text>
+
+   <line x1="440" y1="200" x2="520" y2="280" stroke="#5dade2" stroke-width="2.5" marker-end="url(#arrow-bs-blue)"/>
+   <text x="530" y="295" fill="#5dade2" font-size="12" font-weight="700" font-style="italic">b₂=(1,−1)</text>
+
+   <line x1="440" y1="200" x2="520" y2="120" stroke="#f0c75e" stroke-width="1.6" marker-end="url(#arrow-bs-yellow)"/>
+   <text x="475" y="165" fill="#f0c75e" font-size="13" font-weight="700" font-style="italic">v</text>
+
+   <circle cx="440" cy="200" r="4" fill="#e8e8e8"/>
+   <text x="570" y="270" fill="#b8b8b8" font-size="11" text-anchor="middle" font-style="italic">v = 1·b₁ + 0·b₂ → koordinat (1, 0)</text>
+   <text x="570" y="288" fill="#b8b8b8" font-size="10" text-anchor="middle" font-style="italic">(koordinat berubah sesuai basis)</text>
+  </svg>
+  <figcaption class="visual-caption">Vektor yang sama dapat memiliki koordinat berbeda tergantung pada basisnya. Basis hanya mengubah "cara membaca" vektor, bukan vektornya sendiri. Di panel kanan, $v = (1,1)$ tepat berimpit dengan $b_1$—karena itu koordinatnya $(1,0)$ terhadap basis $\{b_1, b_2\}$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Basis Standar (Basis Baku)</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Ruang Vektor</th>
+     <th>Basis Standar</th>
+     <th>Jumlah Vektor</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$\mathbb{R}^2$</td><td>$\{(1, 0), (0, 1)\}$</td><td>2</td></tr>
+    <tr><td>$\mathbb{R}^3$</td><td>$\{(1, 0, 0), (0, 1, 0), (0, 0, 1)\}$</td><td>3</td></tr>
+    <tr><td>$\mathbb{R}^n$</td><td>$\{e_1, e_2, \dots, e_n\}$</td><td>$n$</td></tr>
+    <tr><td>$M_{2 \times 2}$</td><td>$\left\{ \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 \\ 1 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix} \right\}$</td><td>4</td></tr>
+    <tr><td>$P_2$</td><td>$\{1, x, x^2\}$</td><td>3</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">C. Prosedur Menemukan Basis dari Himpunan yang Merentang</p>
+ <p class="lesson-text">Jika diberikan himpunan yang merentang $V$ tetapi belum tentu bebas linear, cara menemukan basisnya adalah dengan <strong>membuang vektor-vektor yang bergantung linear</strong> hingga tersisa vektor-vektor yang saling bebas.</p>
+ <p class="lesson-subheading-alt">Contoh 11:</p>
+ <p class="lesson-text">Diberikan $S = \{(1, 2), (2, 4), (3, 5)\}$ di $\mathbb{R}^2$. Cari basis untuk $\operatorname{Span}(S)$.</p>
+ <ul>
+  <li>Perhatikan $(2, 4) = 2(1, 2)$—jadi $(2, 4)$ bergantung linear dan bisa dibuang.</li>
+  <li>Periksa $(3, 5)$—apakah kelipatan $(1, 2)$? Tidak, karena $c = 3$ menghasilkan $y = 6 \neq 5$. Jadi $(3, 5)$ bebas linear terhadap $(1, 2)$.</li>
+  <li>Karena $\mathbb{R}^2$ berdimensi 2 dan kita sudah punya 2 vektor yang bebas, basisnya adalah $\{(1, 2), (3, 5)\}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Koordinat terhadap Basis</p>
+ <p class="lesson-text">Jika $B = \{b_1, b_2, \dots, b_n\}$ adalah basis dari $V$, maka setiap vektor $v \in V$ dapat ditulis secara <strong>unik</strong> sebagai $v = c_1 b_1 + c_2 b_2 + \dots + c_n b_n$. Skalar $c_1, \dots, c_n$ disebut <strong>koordinat</strong> dari $v$ terhadap basis $B$.</p>
+ <p class="lesson-subheading-alt">Contoh 12:</p>
+ <p class="lesson-text">Di $\mathbb{R}^2$, vektor $v = (5, 2)$ terhadap basis standar memiliki koordinat $(5, 2)$. Jika basisnya $B = \{(1, 1), (1, -1)\}$, kita perlu mencari $c_1, c_2$ sehingga $(5, 2) = c_1(1, 1) + c_2(1, -1)$.</p>
+ <p class="lesson-text">Selesaikan: $c_1 + c_2 = 5$ dan $c_1 - c_2 = 2$. Jumlahkan: $2c_1 = 7 \Rightarrow c_1 = 3{,}5$. Kurangkan: $2c_2 = 3 \Rightarrow c_2 = 1{,}5$. Jadi koordinat $v$ terhadap $B$ adalah $(3{,}5;\ 1{,}5)$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Dimensi Suatu Ruang Vektor</h3>
+ <p class="lesson-text">Dimensi adalah "bilangan kuantum" ruang vektor—angka tunggal yang menangkap kompleksitasnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Dimensi</p>
+ <p class="lesson-text"><strong>Dimensi</strong> dari suatu ruang vektor $V$—dinotasikan $\dim(V)$—adalah jumlah vektor dalam suatu basis untuk $V$.</p>
+ <p class="lesson-text"><strong>Teorema fundamental:</strong> semua basis dari ruang vektor yang sama memiliki jumlah vektor yang sama. Inilah yang membuat dimensi menjadi konsep yang terdefinisi dengan baik (<em>well-defined</em>). Jika suatu ruang vektor memiliki basis dengan $n$ vektor, maka semua basisnya memiliki tepat $n$ vektor.</p>
+ <p class="lesson-text"><strong>Mengapa penting?</strong> Dimensi memberi kita "ukuran" ruang vektor—ia memberitahu berapa banyak informasi yang dibutuhkan untuk menentukan setiap vektor dalam ruang tersebut. Ruang berdimensi 3 memerlukan 3 angka; ruang berdimensi 100 memerlukan 100 angka.</p>
+
+ <p class="lesson-subheading">B. Dimensi Ruang-Ruang Standar</p>
+ <ul>
+  <li>$\dim(\mathbb{R}^n) = n$.</li>
+  <li>$\dim(M_{m \times n}) = mn$—jumlah total entri matriks.</li>
+  <li>$\dim(P_n) = n + 1$—karena basisnya $\{1, x, x^2, \dots, x^n\}$.</li>
+  <li>$\dim(\{\mathbf{0}\}) = 0$—ruang nol.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Teorema Dimensi untuk Subruang</p>
+ <p class="lesson-text">Jika $W$ adalah subruang dari $V$, maka $\dim(W) \leq \dim(V)$. Selain itu:</p>
+ <ul>
+  <li>Jika $\dim(W) = \dim(V)$, maka $W = V$—subruang tersebut sama dengan ruang induknya.</li>
+  <li>Jika $\dim(W) < \dim(V)$, maka $W$ adalah subruang sejati (<em>proper subspace</em>).</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Aplikasi: Dimensi Ruang Solusi (Nullity)</p>
+ <p class="lesson-text">Perhatikan sistem persamaan linear homogen $Ax = \mathbf{0}$. Himpunan semua solusinya membentuk subruang dari $\mathbb{R}^n$—yang disebut <strong>ruang nol</strong> (<em>null space</em>) dari $A$. Dimensi ruang nol ini disebut <strong>nullity</strong>. Menentukan dimensi ruang solusi sama dengan menghitung berapa banyak variabel bebas dalam sistem tersebut.</p>
+
+ <p class="lesson-subheading-alt">Contoh 13:</p>
+ <p class="lesson-text">Cari dimensi ruang solusi dari $x + y + z = 0$ di $\mathbb{R}^3$. Ini adalah persamaan bidang melalui titik asal. Selesaikan: $x = -y - z$. Variabel bebas: $y$ dan $z$ (2 buah). Ruang solusi dibangun oleh $(-1, 1, 0)$ dan $(-1, 0, 1)$. Kedua vektor ini bebas linear, sehingga dimensi ruang solusi adalah <strong>2</strong>.</p>
+
+ <p class="lesson-subheading">E. Teorema Rank-Nullity</p>
+ <p class="lesson-text">Untuk matriks $A$ berordo $m \times n$:</p>
+ <p class="lesson-text">$$\operatorname{rank}(A) + \operatorname{nullity}(A) = n$$</p>
+ <p class="lesson-text">di mana $\operatorname{rank}(A)$ adalah <strong>dimensi ruang kolom</strong> (dapat dihitung sebagai jumlah baris tak-nol setelah eliminasi Gauss), dan $\operatorname{nullity}(A)$ adalah <strong>dimensi ruang nol</strong> (jumlah variabel bebas).</p>
+ <p class="lesson-subheading-alt">Contoh 14:</p>
+ <p class="lesson-text">Matriks $A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{bmatrix}$. Baris kedua adalah 2 kali baris pertama, sehingga $\operatorname{rank}(A) = 1$. Maka $\operatorname{nullity}(A) = n - \operatorname{rank} = 3 - 1 = 2$. Ruang solusi $Ax = \mathbf{0}$ memiliki dimensi 2.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h3>
+ <p class="lesson-text">Bagian ini menyajikan tujuh soal yang menggabungkan verifikasi subruang, kombinasi linear dan rentang, kebebasan linear, pencarian basis, koordinat terhadap basis, serta teorema rank-nullity—beserta satu soal cerita penerapan. Setiap langkah dituliskan lengkap, dan konsep yang dipakai disebut secara eksplisit—agar Anda dapat menelusuri penalarannya, bukan hanya menerima hasilnya.</p>
+ 
+ <p class="lesson-subheading">Soal 1: Verifikasi Subruang</p>
+ <p class="lesson-text">Tentukan apakah himpunan $W = \{(x, y, z) \in \mathbb{R}^3 \mid 2x - y + z = 0\}$ adalah subruang dari $\mathbb{R}^3$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Uji vektor nol</strong>: substitusi $(0, 0, 0)$ menghasilkan $2(0) - 0 + 0 = 0$ ✓ — vektor nol ada di $W$.</li>
+  <li><strong>Tertutup penjumlahan</strong>: ambil $u = (x_1, y_1, z_1)$ dan $v = (x_2, y_2, z_2)$ di $W$, sehingga $2x_1 - y_1 + z_1 = 0$ dan $2x_2 - y_2 + z_2 = 0$. Maka:<br>$2(x_1 + x_2) - (y_1 + y_2) + (z_1 + z_2) = (2x_1 - y_1 + z_1) + (2x_2 - y_2 + z_2) = 0 + 0 = 0$ ✓ — jadi $u + v \in W$.</li>
+  <li><strong>Tertutup perkalian skalar</strong>: untuk $c \in \mathbb{R}$,<br>$2(cx_1) - (cy_1) + (cz_1) = c(2x_1 - y_1 + z_1) = c \cdot 0 = 0$ ✓ — jadi $cu \in W$.</li>
+  <li><strong>Kesimpulan</strong>: ketiga syarat terpenuhi, sehingga $W$ <strong>adalah subruang</strong> dari $\mathbb{R}^3$—secara geometris berupa bidang melalui titik asal.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 2: Kombinasi Linear dan Rentang</p>
+ <p class="lesson-text">Diberikan $v_1 = (1, 2, 1)$, $v_2 = (2, 1, 0)$, dan $v_3 = (0, 1, 1)$ di $\mathbb{R}^3$. Selidiki apakah $u = (3, 4, 2)$ berada di $\operatorname{Span}\{v_1, v_2, v_3\}$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Susun persamaan</strong>: kita perlu $c_1, c_2, c_3$ sehingga $c_1 v_1 + c_2 v_2 + c_3 v_3 = u$:<br>$c_1 + 2c_2 = 3$; &nbsp; $2c_1 + c_2 + c_3 = 4$; &nbsp; $c_1 + c_3 = 2$.</li>
+  <li><strong>Selesaikan sistem</strong>: dari persamaan ke-3, $c_3 = 2 - c_1$. Substitusi ke persamaan ke-2: $2c_1 + c_2 + (2 - c_1) = 4 \Rightarrow c_1 + c_2 = 2$. Dari persamaan ke-1: $c_1 + 2c_2 = 3$. Kurangkan: $c_2 = 1$, sehingga $c_1 = 1$ dan $c_3 = 1$.</li>
+  <li><strong>Verifikasi</strong>: $1 \cdot (1, 2, 1) + 1 \cdot (2, 1, 0) + 1 \cdot (0, 1, 1) = (3, 4, 2)$ ✓</li>
+  <li><strong>Kesimpulan</strong>: karena solusi ada, $u$ <strong>berada di</strong> $\operatorname{Span}\{v_1, v_2, v_3\}$—tepatnya $u = v_1 + v_2 + v_3$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 3: Kebebasan Linear</p>
+ <p class="lesson-text">Selidiki apakah $S = \{(1, 2, 3),\ (2, 4, 6),\ (1, 0, 1)\}$ bebas linear di $\mathbb{R}^3$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Bentuk persamaan</strong>: $c_1(1, 2, 3) + c_2(2, 4, 6) + c_3(1, 0, 1) = (0, 0, 0)$.</li>
+  <li><strong>Pengamatan langsung</strong>: $(2, 4, 6) = 2(1, 2, 3)$—vektor kedua adalah kelipatan vektor pertama. Jadi himpunan ini <strong>bergantung linear</strong> tanpa perlu menyelesaikan sistem.</li>
+  <li><strong>Verifikasi</strong>: ambil $c_1 = -2$, $c_2 = 1$, $c_3 = 0$:<br>$-2(1, 2, 3) + 1(2, 4, 6) + 0 = (-2, -4, -6) + (2, 4, 6) = (0, 0, 0)$ ✓—dengan koefisien tidak semua nol.</li>
+  <li><strong>Kesimpulan</strong>: $S$ <strong>bergantung linear</strong>.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 4: Mencari Basis dari Himpunan Merentang</p>
+ <p class="lesson-text">Diberikan $S = \{(1, 2, 1),\ (2, 4, 2),\ (1, 0, 1),\ (0, 2, 0)\}$ di $\mathbb{R}^3$. Tentukan basis dan dimensi dari $\operatorname{Span}(S)$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Identifikasi ketergantungan</strong>: $(2, 4, 2) = 2(1, 2, 1)$—vektor kedua bisa dibuang. Tersisa $\{(1, 2, 1),\ (1, 0, 1),\ (0, 2, 0)\}$.</li>
+  <li><strong>Uji vektor ketiga</strong>: periksa apakah $(0, 2, 0)$ adalah kombinasi dari dua lainnya:<br>$c_1(1, 2, 1) + c_2(1, 0, 1) = (0, 2, 0)$<br>$c_1 + c_2 = 0$; &nbsp; $2c_1 = 2$; &nbsp; $c_1 + c_2 = 0$<br>Dari persamaan kedua: $c_1 = 1$, maka $c_2 = -1$. Verifikasi persamaan ke-3: $1 + (-1) = 0$ ✓</li>
+  <li><strong>Reduksi</strong>: karena $(0, 2, 0) = (1, 2, 1) - (1, 0, 1)$, vektor ini juga bergantung. Tersisa $\{(1, 2, 1),\ (1, 0, 1)\}$.</li>
+  <li><strong>Uji kebebasan sisa</strong>: $c_1(1, 2, 1) + c_2(1, 0, 1) = (0, 0, 0)$ menghasilkan $c_1 + c_2 = 0$, $2c_1 = 0$, $c_1 + c_2 = 0$. Dari persamaan ke-2: $c_1 = 0$, lalu $c_2 = 0$. Hanya solusi trivial ✓—kedua vektor <strong>bebas linear</strong>.</li>
+  <li><strong>Kesimpulan</strong>: basis untuk $\operatorname{Span}(S)$ adalah $\{(1, 2, 1),\ (1, 0, 1)\}$, dengan $\dim(\operatorname{Span}(S)) = 2$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 5: Koordinat terhadap Basis</p>
+ <p class="lesson-text">Diberikan basis $B = \{(1, 1),\ (2, -1)\}$ untuk $\mathbb{R}^2$. Tentukan koordinat vektor $v = (4, 1)$ terhadap basis $B$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Susun persamaan</strong>: $(4, 1) = c_1(1, 1) + c_2(2, -1)$.</li>
+  <li><strong>Pecah komponen</strong>:<br>$c_1 + 2c_2 = 4$; &nbsp; $c_1 - c_2 = 1$.</li>
+  <li><strong>Selesaikan</strong>: kurangkan kedua persamaan: $3c_2 = 3 \Rightarrow c_2 = 1$. Maka $c_1 = 1 + c_2 = 2$.</li>
+  <li><strong>Verifikasi</strong>: $2(1, 1) + 1(2, -1) = (2, 2) + (2, -1) = (4, 1)$ ✓</li>
+  <li><strong>Kesimpulan</strong>: koordinat $v$ terhadap basis $B$ adalah $(c_1, c_2) = (2, 1)$.</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 6: Rank-Nullity dan Basis Ruang Nol</p>
+ <p class="lesson-text">Diberikan matriks $A = \begin{bmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 6 & 8 \\ 1 & 1 & 1 & 1 \end{bmatrix}$. Tentukan rank, nullity, dan basis ruang nol dari $A$.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Tentukan rank</strong>: perhatikan baris 2 = $2 \times$ baris 1, sehingga hanya baris 1 dan 3 yang independen. Maka $\operatorname{rank}(A) = 2$.</li>
+  <li><strong>Hitung nullity</strong>: dengan teorema rank-nullity dan $n = 4$:<br>$\operatorname{nullity}(A) = 4 - 2 = 2$</li>
+  <li><strong>Cari basis ruang nol</strong>: selesaikan $Ax = \mathbf{0}$ dengan baris independen:<br>$x_1 + 2x_2 + 3x_3 + 4x_4 = 0$<br>$x_1 + x_2 + x_3 + x_4 = 0$<br>Kurangkan: $x_2 + 2x_3 + 3x_4 = 0 \Rightarrow x_2 = -2x_3 - 3x_4$. Substitusi ke baris 3: $x_1 + (-2x_3 - 3x_4) + x_3 + x_4 = 0 \Rightarrow x_1 = x_3 + 2x_4$.</li>
+  <li><strong>Variabel bebas</strong>: $x_3$ dan $x_4$. Pilih nilai satuan:
+   <ul>
+    <li>$x_3 = 1$, $x_4 = 0$: $x_1 = 1$, $x_2 = -2$ → $v_1 = (1, -2, 1, 0)$</li>
+    <li>$x_3 = 0$, $x_4 = 1$: $x_1 = 2$, $x_2 = -3$ → $v_2 = (2, -3, 0, 1)$</li>
+   </ul>
+  </li>
+  <li><strong>Verifikasi</strong>: kedua vektor jelas bebas linear (posisi 3 dan 4 berbeda). Basis ruang nol: $\{(1, -2, 1, 0),\ (2, -3, 0, 1)\}$ dengan dimensi 2 = nullity ✓</li>
+ </ol>
+ 
+ <p class="lesson-subheading">Soal 7: Soal Cerita — Kompresi Data Sederhana</p>
+ <p class="lesson-text">Sebuah perusahaan <em>e-commerce</em> menyimpan data tiga pelanggan dengan tiga fitur: usia, pendapatan, dan jumlah pembelian. Matriks data tersebut adalah $D = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{bmatrix}$. Tentukan: (a) rank matriks, (b) nullity, (c) dimensi minimum untuk menyimpan data tanpa kehilangan informasi, (d) interpretasi praktisnya.</p>
+ <p class="lesson-subheading-alt">Pembahasan:</p>
+ <ol>
+  <li><strong>Tentukan rank</strong>: baris 2 = $2 \times$ baris 1 dan baris 3 = $3 \times$ baris 1, sehingga semua baris adalah kelipatan skalar baris pertama. Maka $\operatorname{rank}(D) = 1$.</li>
+  <li><strong>Hitung nullity</strong>: dengan $n = 3$ kolom,<br>$\operatorname{nullity}(D) = 3 - 1 = 2$</li>
+  <li><strong>Dimensi minimum</strong>: setara dengan rank = 1—cukup satu kolom untuk merepresentasikan seluruh data.</li>
+  <li><strong>Interpretasi praktis</strong>: ketiga fitur bergantung linear—redundan. Setiap fitur dapat diturunkan dari fitur lainnya. PCA akan dengan mudah menemukan bahwa variansi data terkonsentrasi pada satu arah, sehingga menyimpan tiga kolom hanyalah pemborosan.</li>
+ </ol>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap semua himpunan bagian adalah subruang.</strong> Garis $y = x + 1$ di $\mathbb{R}^2$ bukan subruang karena tidak memuat $(0,0)$. Selalu lakukan uji vektor nol terlebih dahulu—jika gagal, langsung simpulkan bukan subruang.</li>
+  <li><strong>Menukar konsep "merentang" dan "bebas linear".</strong> Himpunan $\{(1,0), (0,1), (1,1)\}$ merentang $\mathbb{R}^2$ tetapi <em>tidak</em> bebas linear (karena $(1,1) = (1,0) + (0,1)$). Basis harus memenuhi <em>kedua</em> syarat.</li>
+  <li><strong>Menganggap hanya ada satu basis untuk suatu ruang.</strong> $\mathbb{R}^2$ memiliki tak hingga basis. $\{(2,0), (0,3)\}$ basis, $\{(1,1), (1,-1)\}$ basis. Yang penting jumlahnya sama dan bebas linear.</li>
+  <li><strong>Mencampur dimensi dengan jumlah komponen vektor.</strong> Matriks $2 \times 2$ memiliki dimensi 4—karena basisnya membutuhkan 4 matriks.</li>
+  <li><strong>Menganggap himpunan kosong sebagai subruang.</strong> Subruang harus tak-kosong. Himpunan $\{\mathbf{0}\}$ adalah subruang terkecil—bukan $\varnothing$.</li>
+  <li><strong>Mengabaikan solusi nontrivial dalam uji kebebasan linear.</strong> Selalu bentuk persamaan $c_1 v_1 + \dots + c_k v_k = \mathbf{0}$ dan selesaikan. Jika ada solusi tak-nol, himpunan bergantung linear.</li>
+  <li><strong>Menganggap vektor nol membuat himpunan bebas linear.</strong> Himpunan yang memuat vektor nol <strong>pasti</strong> bergantung linear—karena $1 \cdot \mathbf{0} = \mathbf{0}$ dengan koefisien 1 tidak nol.</li>
+  <li><strong>Menyamakan "bebas linear" dengan "saling tegak lurus".</strong> Bebas linear dan ortogonal adalah konsep yang berbeda. Vektor $(1, 1)$ dan $(2, 3)$ bebas linear, tetapi tidak ortogonal. Sebaliknya, vektor ortogonal (bukan nol) selalu bebas linear.</li>
+  <li><strong>Menganggap bahwa jika $\dim(W) = \dim(V)$, maka $W$ pasti berbeda dari $V$.</strong> Justru sebaliknya: jika $W$ subruang dari $V$ dan $\dim(W) = \dim(V)$, maka $W = V$.</li>
+  <li><strong>Salah menghitung nullity.</strong> Nullity adalah dimensi ruang nol—yaitu jumlah variabel bebas dalam sistem homogen. Bukan jumlah variabel total, dan bukan jumlah baris nol.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Ruang vektor</strong> adalah himpunan tak-kosong yang tertutup terhadap penjumlahan dan perkalian skalar, memenuhi 10 aksioma. Contoh: $\mathbb{R}^n$, $M_{m \times n}$, $P_n$.</li>
+  <li><strong>Kombinasi linear</strong> adalah $c_1 v_1 + \dots + c_k v_k$. <strong>Rentang (span)</strong> adalah himpunan semua kombinasi linear dari suatu himpunan—selalu membentuk subruang.</li>
+  <li><strong>Subruang</strong> adalah himpunan bagian dari $V$ yang juga merupakan ruang vektor. Syarat: memuat vektor nol dan tertutup terhadap penjumlahan/perkalian skalar.</li>
+  <li><strong>Kebebasan linear</strong>: $c_1 v_1 + \dots + c_k v_k = \mathbf{0}$ hanya bisa terjadi jika semua $c_i = 0$. Jika ada solusi nontrivial, himpunan bergantung linear.</li>
+  <li><strong>Basis</strong> adalah himpunan yang <strong>merentang</strong> dan <strong>bebas linear</strong>. Setiap vektor dalam ruang memiliki representasi unik dalam basis tersebut.</li>
+  <li><strong>Dimensi</strong> ($\dim$) adalah jumlah vektor dalam basis. $\dim(\mathbb{R}^n) = n$, $\dim(M_{m \times n}) = mn$, $\dim(P_n) = n+1$.</li>
+  <li>Jika $W$ subruang dari $V$, maka $\dim(W) \leq \dim(V)$. Ruang $\{\mathbf{0}\}$ memiliki dimensi 0.</li>
+  <li><strong>Teorema rank-nullity</strong>: $\operatorname{rank}(A) + \operatorname{nullity}(A) = n$ untuk matriks $A$ berordo $m \times n$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Ruang vektor, subruang, basis, dan dimensi adalah <strong>fondasi abstrak yang mengubah cara kita memandang aljabar linear</strong>. Basis adalah "bahasa" paling efisien untuk mendeskripsikan seluruh ruang, sementara dimensi adalah "bilangan kuantum" yang menentukan kompleksitas ruang. Kemampuan membedakan antara himpunan yang merentang, himpunan yang bebas, dan himpunan yang menjadi basis adalah keterampilan paling kritis dalam bab ini—dan menjadi prasyarat untuk semua topik lanjutan.</p>
+ <p class="lesson-text">Yang membuat materi ini istimewa adalah <strong>sifat abstraksinya</strong>. Ketika kita membuktikan bahwa "setiap ruang vektor berdimensi $n$ isomorfik dengan $\mathbb{R}^n$", kita tidak perlu membuktikannya per kasus—bukti itu otomatis berlaku untuk $\mathbb{R}^n$, $M_{m \times n}$, $P_n$, dan semua ruang vektor lainnya. Kemampuan abstraksi ini adalah kekuatan utama matematika modern—dan menjadi ciri khas dari aljabar linear sebagai disiplin ilmu.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Transformasi Linear</strong> (yang memetakan antara ruang vektor), <strong>Nilai Eigen &amp; Vektor Eigen</strong> (yang mencari vektor khusus yang "diperbesar" oleh transformasi), <strong>Diagonalisasi</strong> (yang mencari basis di mana matriks menjadi diagonal), <strong>Dekomposisi Matriks</strong> (LU, QR, SVD—yang memecah matriks menjadi matriks dengan struktur khusus), <strong>Aljabar Linear Numerik</strong> (yang mempelajari algoritma efisien untuk ruang berdimensi besar), dan <strong>Analisis Fungsional</strong> (yang memperluas konsep ruang vektor ke dimensi tak hingga—seperti ruang Hilbert dan Banach).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal—terutama yang melibatkan pembuktian subruang, pengujian kebebasan linear, dan pencarian basis. Kebiasaan melakukan uji vektor nol untuk subruang, konsisten dalam menyusun sistem homogen untuk kebebasan linear, dan memeriksa dimensi hasil sebagai verifikasi akan menyelamatkan Anda dari kesalahan yang tidak perlu—terutama saat berpindah ke topik nilai eigen dan diagonalisasi, di mana manipulasi basis menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>
