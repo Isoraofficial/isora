@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Segitiga (Teorema Pythagoras, Kongruensi, Kesebangunan)</title>
+ <meta name="description" content="Materi lengkap segitiga: pengertian, unsur-unsur, jenis-jenis (berdasarkan sisi dan sudut), sifat sudut dan sisi, Teorema Pythagoras dengan pembuktian, triple Pythagoras, kongruensi (SSS, SAS, ASA, AAS), dan kesebangunan (AA, SSS, SAS).">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Segitiga (Teorema Pythagoras, Kongruensi, Kesebangunan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Titik, Garis, dan Sudut</strong> — terutama konsep sudut (jenis dan hubungan antar sudut), karena seluruh sifat segitiga dibangun dari hubungan sudut—seperti jumlah sudut dalam yang $180^\circ$ dan sifat sudut luar.</li>
+   <li><strong>Eksponen &amp; Akar</strong> — terutama akar kuadrat, karena Teorema Pythagoras melibatkan operasi $c = \sqrt{a^2 + b^2}$ dan perhitungan panjang sisi sering menghasilkan bentuk akar.</li>
+   <li><strong>Rasio &amp; Proporsi</strong> — karena kesebangunan segitiga bertumpu pada perbandingan sisi yang sebanding, dan konsep faktor skala $k$ adalah aplikasi langsung dari proporsi.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Coba perhatikan rangka atap rumah di sekitar Anda. Anda akan menemukan pola yang berulang: <strong>susunan batang-batang yang membentuk segitiga-segitiga kecil</strong>. Mengapa bukan persegi? Karena segitiga memiliki sifat istimewa&mdash;ia <strong>tidak dapat berubah bentuk tanpa mengubah panjang salah satu sisinya</strong>. Rangka persegi bisa "miring" menjadi jajargenjang tanpa mengubah panjang sisinya, tetapi rangka segitiga tidak bisa. Sifat kaku inilah yang menjadikan segitiga sebagai pilihan utama untuk rangka jembatan baja, menara transmisi listrik, dan kubah geodesik.</p>
+ <p class="lesson-text">Tetapi segitiga bukan hanya penting karena kekuatannya. Ia adalah <strong>bangun datar paling sederhana yang dapat dibentuk dari tiga titik tidak kolinear</strong>&mdash;dan dari kesederhanaan itulah muncul kekayaan sifat yang luar biasa. Setiap segiempat, poligon, atau bangun majemuk dapat dipecah menjadi segitiga-segitiga kecil. Bahkan trigonometri&mdash;ilmu tentang sinus, kosinus, dan tangen&mdash;lahir dari perbandingan sisi-sisi dalam segitiga siku-siku. Dalam materi ini, kita akan membahas segitiga secara menyeluruh: mulai dari pengertian dan unsur-unsurnya, jenis-jenisnya, sifat-sifat penting (jumlah sudut dalam, sudut luar, ketidaksamaan segitiga), <strong>Teorema Pythagoras</strong> beserta pembuktiannya, <strong>kongruensi</strong>, <strong>kesebangunan</strong>, penerapan praktis, hingga kesalahan umum&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap sifat berlaku, bukan sekadar definisinya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Segitiga dan Unsur-Unsurnya</h3>
+ <p class="lesson-text">Kita mulai dari definisi dan komponen dasar—fondasi untuk seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Segitiga</p>
+ <p class="lesson-text"><strong>Segitiga</strong> adalah bangun datar yang dibentuk oleh <strong>tiga titik tidak kolinear</strong> (tidak segaris) dan <strong>tiga segmen garis</strong> yang menghubungkan setiap pasangan titik tersebut. Ketiga segmen itu disebut <strong>sisi</strong>, dan ketiga titik itu disebut <strong>titik sudut</strong> (vertex). Kata "segitiga" berasal dari bahasa Latin <em>triangulus</em>: <em>tri</em> berarti "tiga" dan <em>angulus</em> berarti "sudut". Segitiga dengan titik sudut $A$, $B$, dan $C$ ditulis $\triangle ABC$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa harus "tidak kolinear"?</strong> Jika ketiga titik berada pada satu garis lurus, segmen yang menghubungkan mereka tidak akan membentuk daerah tertutup—bukan segitiga, melainkan hanya segmen garis yang bertumpuk. Syarat ini memastikan bahwa ketiga titik benar-benar "menyebar" dan membentuk suatu daerah.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Unsur-Unsur Segitiga</p>
+ <p class="lesson-text">Setiap segitiga $\triangle ABC$ memiliki unsur-unsur berikut:</p>
+ <ul>
+  <li><strong>Tiga titik sudut</strong>: titik $A$, $B$, dan $C$.</li>
+  <li><strong>Tiga sisi</strong>: sisi $AB$, sisi $BC$, dan sisi $CA$.</li>
+  <li><strong>Tiga sudut dalam</strong>: $\angle A$ (yaitu $\angle BAC$), $\angle B$ (yaitu $\angle ABC$), dan $\angle C$ (yaitu $\angle ACB$).</li>
+  <li><strong>Tiga sudut luar</strong>: sudut yang dibentuk oleh perpanjangan salah satu sisi dengan sisi lainnya di titik sudut.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Konvensi Penamaan</p>
+ <p class="lesson-text">Ada konvensi standar dalam penamaan sisi dan sudut segitiga yang sangat membantu komunikasi—dan akan terus digunakan di seluruh materi geometri maupun trigonometri.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="200,50 60,250 340,250" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="200" cy="50" r="4.5" fill="#daa520"/>
+   <circle cx="60" cy="250" r="4.5" fill="#daa520"/>
+   <circle cx="340" cy="250" r="4.5" fill="#daa520"/>
+   <text x="207" y="42" font-size="16" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="38" y="268" font-size="16" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="346" y="268" font-size="16" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="115" y="145" font-size="16" fill="#5dade2" font-style="italic">c</text>
+   <text x="278" y="145" font-size="16" fill="#5dade2" font-style="italic">b</text>
+   <text x="195" y="272" font-size="16" fill="#5dade2" font-style="italic">a</text>
+   <text x="188" y="82" font-size="14" fill="#daa520" font-style="italic">α</text>
+   <text x="80" y="238" font-size="14" fill="#daa520" font-style="italic">β</text>
+   <text x="312" y="238" font-size="14" fill="#daa520" font-style="italic">γ</text>
+  </svg>
+  <figcaption class="visual-caption">Segitiga $\triangle ABC$ dengan sisi $a = BC$, $b = AC$, dan $c = AB$. Sudut dalam $\alpha = \angle A$, $\beta = \angle B$, $\gamma = \angle C$. Huruf kapital untuk sudut, huruf kecil untuk panjang sisi di hadapannya.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Konvensi yang dipakai:</p>
+ <ul>
+  <li>Sisi $a$ adalah sisi yang <strong>berhadapan dengan sudut $A$</strong> (yaitu sisi $BC$).</li>
+  <li>Sisi $b$ adalah sisi yang <strong>berhadapan dengan sudut $B$</strong> (yaitu sisi $AC$).</li>
+  <li>Sisi $c$ adalah sisi yang <strong>berhadapan dengan sudut $C$</strong> (yaitu sisi $AB$).</li>
+ </ul>
+ <p class="lesson-text">Konvensi "huruf kecil berhadapan dengan huruf kapital yang sama" ini akan sangat membantu, terutama saat kita mempelajari trigonometri—karena rumus seperti Aturan Sinus dan Aturan Kosinus mengasumsikan konvensi ini.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Jenis-Jenis Segitiga</h3>
+ <p class="lesson-text">Segitiga dapat diklasifikasikan dengan dua cara: berdasarkan <strong>panjang sisinya</strong> dan berdasarkan <strong>besar sudutnya</strong>. Kedua klasifikasi ini tidak saling eksklusif—sebuah segitiga bisa sekaligus "sama kaki" (berdasarkan sisi) dan "siku-siku" (berdasarkan sudut).</p>
+
+ <p class="lesson-subheading">A. Berdasarkan Panjang Sisi</p>
+
+ <p class="lesson-subheading-alt">1. Segitiga Sama Sisi (Equilateral)</p>
+ <p class="lesson-text">Segitiga yang <strong>ketiga sisinya sama panjang</strong>. Karena ketiga sisinya sama, ketiga sudutnya juga otomatis sama besar. <strong>Mengapa?</strong> Karena dalam sebuah segitiga, sisi yang lebih panjang berhadapan dengan sudut yang lebih besar. Jika semua sisi sama, maka semua sudut juga harus sama. Karena jumlah sudut dalam segitiga selalu $180^\circ$, maka masing-masing sudut bernilai $180^\circ / 3 = 60^\circ$.</p>
+
+ <figure>
+  <svg viewBox="0 0 300 250" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,210 220,210 150,89" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="80" cy="210" r="4" fill="#daa520"/>
+   <circle cx="220" cy="210" r="4" fill="#daa520"/>
+   <circle cx="150" cy="89" r="4" fill="#daa520"/>
+   <text x="66" y="228" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="225" y="228" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="145" y="82" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <line x1="110.67" y1="147" x2="119.33" y2="152" stroke="#daa520" stroke-width="2"/>
+   <line x1="180.67" y1="152" x2="189.33" y2="147" stroke="#daa520" stroke-width="2"/>
+   <line x1="150" y1="205" x2="150" y2="215" stroke="#daa520" stroke-width="2"/>
+   <text x="100" y="80" font-size="12" fill="#b8b8b8" font-style="italic">60°</text>
+   <text x="180" y="200" font-size="12" fill="#b8b8b8" font-style="italic">60°</text>
+   <text x="110" y="200" font-size="12" fill="#b8b8b8" font-style="italic">60°</text>
+  </svg>
+  <figcaption class="visual-caption">Segitiga sama sisi. Ketiga sisi sama panjang (ditandai satu garis kecil di tengah setiap sisi) dan ketiga sudutnya $60^\circ$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">2. Segitiga Sama Kaki (Isosceles)</p>
+ <p class="lesson-text">Segitiga yang <strong>dua sisinya sama panjang</strong>. Kedua sisi yang sama panjang disebut <em>kaki</em>, sedangkan sisi ketiga disebut <em>alas</em>. Karena dua sisinya sama panjang, maka dua sudut di hadapan kedua kaki tersebut—yaitu kedua sudut yang menempel pada alas—juga sama besar. Sifat ini disebut <strong>sifat sudut alas</strong>.</p>
+
+ <figure>
+ <svg viewBox="0 0 300 260" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Segitiga sama kaki: B=(110,220), C=(190,220), A=(150,118) -->
+  <polygon points="110,220 190,220 150,118" fill="#daa520" fill-opacity="0.06" stroke="#e8e8e8" stroke-width="2"/>
+
+  <!-- Titik sudut -->
+
+  <circle cx="110" cy="220" r="4" fill="#daa520"/>
+  <circle cx="190" cy="220" r="4" fill="#daa520"/>
+  <circle cx="150" cy="118" r="4" fill="#daa520"/>
+
+  <!-- Label titik sudut -->
+
+<text x="96" y="240" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+<text x="196" y="240" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+<text x="144" y="110" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+
+  <!-- Tanda kaki sama panjang (satu garis kecil di tengah tiap kaki) -->
+
+  <line x1="126.28" y1="167.54" x2="133.72" y2="170.46" stroke="#daa520" stroke-width="2.2"/>
+  <line x1="166.28" y1="170.46" x2="173.72" y2="167.54" stroke="#daa520" stroke-width="2.2"/>
+
+  <!-- Busur sudut alas B: dari titik (130,220) di sisi BC ke (117.3,201.4) di sisi BA -->
+
+  <path d="M 130 220 A 20 20 0 0 0 117.3 201.4" fill="none" stroke="#5dade2" stroke-width="2"/>
+
+  <!-- Busur sudut alas C: dari (182.7,201.4) di sisi CA ke (170,220) di sisi CB -->
+
+  <path d="M 182.7 201.4 A 20 20 0 0 0 170 220" fill="none" stroke="#5dade2" stroke-width="2"/>
+
+  <!-- Label -->
+
+<text x="112" y="158" font-size="11" fill="#b8b8b8" font-style="italic">kaki</text>
+<text x="172" y="158" font-size="11" fill="#b8b8b8" font-style="italic">kaki</text>
+<text x="150" y="242" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">alas</text>
+</svg>
+
+ <figcaption class="visual-caption">Segitiga sama kaki. Dua sisi (kaki) sama panjang—ditandai dengan garis kecil pada kedua kaki. Dua sudut alas (di $B$ dan $C$) sama besar—ditandai dengan busur biru yang panjangnya sama.</figcaption>
+</figure>
+
+
+ <p class="lesson-subheading-alt">3. Segitiga Sembarang (Scalene)</p>
+ <p class="lesson-text">Segitiga yang <strong>ketiga sisinya berbeda panjang</strong>. Tidak ada simetri khusus pada segitiga ini, dan ketiga sudutnya juga berbeda besar. Sisi terpanjang berhadapan dengan sudut terbesar, sisi terpendek berhadapan dengan sudut terkecil.</p>
+
+ <figure>
+  <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="100,210 250,210 154,138" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="100" cy="210" r="4" fill="#daa520"/>
+   <circle cx="250" cy="210" r="4" fill="#daa520"/>
+   <circle cx="154" cy="138" r="4" fill="#daa520"/>
+   <text x="86" y="228" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="255" y="228" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="149" y="130" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <line x1="123" y1="171" x2="131" y2="177" stroke="#daa520" stroke-width="2"/>
+   <line x1="170" y1="205" x2="170" y2="215" stroke="#daa520" stroke-width="2"/>
+   <line x1="180" y1="205" x2="180" y2="215" stroke="#daa520" stroke-width="2"/>
+   <line x1="192.6" y1="173.2" x2="198.6" y2="165.2" stroke="#daa520" stroke-width="2"/>
+   <line x1="199" y1="178" x2="205" y2="170" stroke="#daa520" stroke-width="2"/>
+   <line x1="205.4" y1="182.8" x2="211.4" y2="174.8" stroke="#daa520" stroke-width="2"/>
+  </svg>
+  <figcaption class="visual-caption">Segitiga sembarang. Ketiga sisi berbeda (ditandai jumlah garis yang berbeda pada setiap sisi) dan ketiga sudutnya juga berbeda.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Berdasarkan Besar Sudut</p>
+
+ <p class="lesson-subheading-alt">1. Segitiga Lancip (Acute)</p>
+ <p class="lesson-text">Segitiga yang <strong>ketiga sudutnya lancip</strong>—yaitu kurang dari $90^\circ$. Contoh paling sederhana adalah segitiga sama sisi, karena ketiga sudutnya $60^\circ$ (semuanya lancip).</p>
+ <figure>
+ <svg viewBox="0 0 420 300" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="70,240 330,240 180,70" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <circle cx="70" cy="240" r="4" fill="#daa520" />
+  <circle cx="330" cy="240" r="4" fill="#daa520" />
+  <circle cx="180" cy="70" r="4" fill="#daa520" />
+  <text x="55" y="258" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="335" y="258" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="180" y="62" font-size="14" fill="#e8e8e8" font-style="italic" text-anchor="middle">A</text>
+  
+  <path d="M 166.4 91.0 A 25 25 0 0 0 196.5 88.8" fill="none" stroke="#daa520" stroke-width="2" />
+  <text x="180" y="110" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle">74°</text>
+  
+  <path d="M 86.3 214.8 A 30 30 0 0 1 100 240" fill="none" stroke="#5dade2" stroke-width="2" />
+  <text x="102" y="224" font-size="13" fill="#5dade2" font-style="italic">57°</text>
+  
+  <path d="M 310.2 217.5 A 30 30 0 0 0 300 240" fill="none" stroke="#f0c75e" stroke-width="2" />
+  <text x="288" y="224" font-size="13" fill="#f0c75e" font-style="italic">49°</text>
+ </svg>
+ <figcaption class="visual-caption">Segitiga lancip: ketiga sudutnya kurang dari $90^\circ$ (contoh: $74^\circ$, $57^\circ$, $49^\circ$&mdash;totalnya $180^\circ$).</figcaption>
+</figure>
+ <p class="lesson-subheading-alt">2. Segitiga Siku-Siku (Right)</p>
+ <p class="lesson-text">Segitiga yang <strong>salah satu sudutnya siku-siku</strong> ($90^\circ$). Sisi di hadapan sudut siku-siku disebut <strong>hipotenusa</strong> (sisi miring), dan kedua sisi lainnya disebut <strong>kaki</strong>. Segitiga inilah yang menjadi subjek Teorema Pythagoras. Pada gambar, sudut siku-siku ditandai dengan <strong>persegi kecil</strong> di titik sudutnya—bukan busur.</p>
+
+ <figure>
+  <svg viewBox="0 0 380 260" style="max-width:100%; height:auto; width:380px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,220 280,220 80,70" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="80" cy="220" r="4" fill="#daa520"/>
+   <circle cx="280" cy="220" r="4" fill="#daa520"/>
+   <circle cx="80" cy="70" r="4" fill="#daa520"/>
+   <text x="65" y="238" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="285" y="238" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="65" y="63" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <path d="M 80 205 L 95 205 L 95 220" fill="none" stroke="#daa520" stroke-width="1.8"/>
+   <text x="165" y="128" font-size="13" fill="#5dade2" font-style="italic">hipotenusa</text>
+   <text x="42" y="150" font-size="13" fill="#5dade2" font-style="italic">kaki</text>
+   <text x="170" y="238" font-size="13" fill="#5dade2" font-style="italic">kaki</text>
+  </svg>
+  <figcaption class="visual-caption">Segitiga siku-siku. Sudut siku-siku di $A$ ditandai dengan persegi kecil. Sisi $BC$ (di hadapan sudut siku-siku) adalah hipotenusa, sedangkan $AB$ dan $AC$ adalah kaki.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">3. Segitiga Tumpul (Obtuse)</p>
+ <p class="lesson-text">Segitiga yang <strong>salah satu sudutnya tumpul</strong>—yaitu lebih dari $90^\circ$. Karena jumlah sudut dalam segitiga hanya $180^\circ$, hanya mungkin ada <strong>satu</strong> sudut tumpul dalam satu segitiga. Jika ada dua, jumlahnya sudah melebihi $180^\circ$—tidak mungkin. Sudut tumpul ini berhadapan dengan sisi terpanjang segitiga.</p>
+
+ <figure>
+  <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,210 220,210 270,123.4" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="80" cy="210" r="4" fill="#daa520"/>
+   <circle cx="220" cy="210" r="4" fill="#daa520"/>
+   <circle cx="270" cy="123.4" r="4" fill="#daa520"/>
+   <text x="65" y="228" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="225" y="228" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="275" y="118" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <path d="M 206 210 A 14 14 0 0 1 227 197.9" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="198" y="192" font-size="13" fill="#5dade2" font-style="italic">120°</text>
+  </svg>
+  <figcaption class="visual-caption">Segitiga tumpul. Sudut di $B$ tumpul ($120^\circ$, ditandai busur biru). Sisi $AC$ (terpanjang) berhadapan dengan sudut tumpul tersebut.</figcaption>
+ </figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sifat-Sifat Penting Segitiga</h3>
+ <p class="lesson-text">Setelah memahami jenis-jenis segitiga, kita masuk ke sifat-sifat yang berlaku untuk semua segitiga—sifat yang akan terus digunakan di seluruh geometri.</p>
+
+ <p class="lesson-subheading">A. Jumlah Sudut Dalam Segitiga adalah $180^\circ$</p>
+ <p class="lesson-text">Salah satu sifat paling fundamental: <strong>jumlah ketiga sudut dalamnya selalu $180^\circ$</strong>. Sifat ini berlaku untuk setiap segitiga—lancip, siku-siku, tumpul, sama kaki, sama sisi, atau sembarang. Mari kita buktikan mengapa demikian.</p>
+ <p class="lesson-text"><strong>Pembuktian:</strong> Perhatikan segitiga $\triangle ABC$. Tarik sebuah garis lurus melalui titik $A$ yang sejajar dengan sisi $BC$ (garis biru pada gambar). Karena garis ini sejajar dengan $BC$, maka berdasarkan sifat <em>sudut dalam berseberangan</em> pada garis sejajar (materi sebelumnya): sudut antara garis sejajar dengan sisi $AB$ sama besar dengan $\angle B$; sudut antara garis sejajar dengan sisi $AC$ sama besar dengan $\angle C$.</p>
+ <p class="lesson-text">Sekarang perhatikan titik $A$: kita memiliki tiga sudut yang bersama-sama membentuk <strong>sudut lurus</strong> (setengah putaran): sudut $\beta$ (salinan dari $\angle B$), sudut $\alpha$ ($\angle A$ asli), dan sudut $\gamma$ (salinan dari $\angle C$). Karena sudut lurus besarnya $180^\circ$, maka $\alpha + \beta + \gamma = 180^\circ$. Terbukti. ∎</p>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="40" y1="60" x2="360" y2="60" stroke="#5dade2" stroke-width="1.8"/>
+   <polygon points="200,60 80,240 320,240" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 160 60 A 40 40 0 0 0 178 93" fill="none" stroke="#daa520" stroke-width="2"/>
+   <path d="M 178 93 A 40 40 0 0 0 222 93" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <path d="M 222 93 A 40 40 0 0 0 240 60" fill="none" stroke="#f0c75e" stroke-width="2"/>
+   <text x="170" y="92" font-size="14" fill="#daa520" font-style="italic">β</text>
+   <text x="193" y="82" font-size="14" fill="#e8e8e8" font-style="italic">α</text>
+   <text x="222" y="92" font-size="14" fill="#f0c75e" font-style="italic">γ</text>
+   <circle cx="200" cy="60" r="4.5" fill="#daa520"/>
+   <circle cx="80" cy="240" r="4" fill="#daa520"/>
+   <circle cx="320" cy="240" r="4" fill="#daa520"/>
+   <text x="206" y="52" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="60" y="258" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="325" y="258" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="340" y="55" font-size="12" fill="#5dade2" font-style="italic">sejajar BC</text>
+  </svg>
+  <figcaption class="visual-caption">Pembuktian $\angle A + \angle B + \angle C = 180^\circ$ menggunakan garis bantu sejajar $BC$. Sudut $\beta$ adalah salinan dari $\angle B$, sudut $\gamma$ adalah salinan dari $\angle C$, dan $\alpha$ adalah $\angle A$ itu sendiri.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Sudut Luar Segitiga</p>
+ <p class="lesson-text"><strong>Sudut luar segitiga</strong> adalah sudut yang dibentuk oleh perpanjangan salah satu sisi segitiga dengan sisi lainnya di titik sudut. Misalnya, perpanjang sisi $BC$ melewati $C$ ke titik $D$. Sudut $\angle ACD$ adalah sudut luar di titik $C$. <strong>Sifat:</strong> sudut luar segitiga sama dengan jumlah dua sudut dalam yang tidak berdekatan dengannya.</p>
+ <figure>
+ <svg viewBox="0 0 460 300" style="display:block; margin:0 auto; max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Segitiga ABC -->
+  <polygon points="60,240 300,240 150,60" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Perpanjangan BC ke D (garis putus-putus) -->
+  <line x1="300" y1="240" x2="420" y2="240" stroke="#e8e8e8" stroke-width="2" stroke-dasharray="6 4" />
+  
+  <!-- Titik sudut -->
+  <circle cx="60" cy="240" r="4" fill="#daa520" />
+  <circle cx="300" cy="240" r="4" fill="#daa520" />
+  <circle cx="150" cy="60" r="4" fill="#daa520" />
+  <circle cx="420" cy="240" r="4" fill="#5dade2" />
+  
+  <!-- Label titik -->
+  <text x="45" y="258" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="305" y="258" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="150" y="52" font-size="14" fill="#e8e8e8" font-style="italic" text-anchor="middle">A</text>
+  <text x="425" y="258" font-size="14" fill="#5dade2" font-style="italic">D</text>
+  
+  <!-- Sudut dalam A: α -->
+  <path d="M 139 82.4 A 25 25 0 0 0 166 79.2" fill="none" stroke="#daa520" stroke-width="2" />
+  <text x="153" y="102" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle">α</text>
+  
+  <!-- Sudut dalam B: β -->
+  <path d="M 71.2 217.6 A 25 25 0 0 1 85 240" fill="none" stroke="#daa520" stroke-width="2" />
+  <text x="100" y="228" font-size="13" fill="#daa520" font-style="italic">β</text>
+  
+  <!-- Sudut dalam C: γ -->
+  <path d="M 275 240 A 25 25 0 0 1 284 220.8" fill="none" stroke="#daa520" stroke-width="2" />
+  <text x="263" y="227" font-size="13" fill="#daa520" font-style="italic">γ</text>
+  
+  <!-- Sudut luar C: δ -->
+  <path d="M 340 240 A 40 40 0 0 0 274.4 209.3" fill="none" stroke="#5dade2" stroke-width="2.2" />
+  <text x="316" y="222" font-size="13" fill="#5dade2" font-style="italic">δ</text>
+  
+  <!-- Anotasi δ = α + β -->
+  <text x="230" y="285" font-size="13" fill="#b8b8b8" font-style="italic" text-anchor="middle">δ = α + β</text>
+ </svg>
+ <figcaption class="visual-caption">Sudut luar segitiga. Sisi $BC$ diperpanjang melewati $C$ sampai $D$ (garis putus-putus). Sudut luar $\angle ACD = \delta$ sama dengan jumlah dua sudut dalam yang tidak berdekatan dengannya: $\delta = \alpha + \beta$.</figcaption>
+</figure>
+ <p class="lesson-text"><strong>Mengapa?</strong> Sudut dalam $\angle ACB$ dan sudut luar $\angle ACD$ berpelurus, sehingga $\angle ACB + \angle ACD = 180^\circ$. Dari sifat jumlah sudut dalam segitiga, kita juga tahu $\angle A + \angle B + \angle ACB = 180^\circ$. Mengurangkan kedua persamaan: $\angle ACD = \angle A + \angle B$. Terbukti. ∎</p>
+
+ <p class="lesson-subheading">C. Ketidaksamaan Segitiga</p>
+ <p class="lesson-text">Tiga segmen garis dengan panjang $a$, $b$, dan $c$ <strong>dapat membentuk segitiga</strong> jika dan hanya jika <strong>jumlah dua sisi manapun lebih besar dari sisi ketiga</strong>: $a + b > c$, $a + c > b$, $b + c > a$. Sebenarnya, cukup memeriksa yang "paling ketat": jika $c$ adalah sisi terpanjang, cukup periksa $a + b > c$—dua kondisi lainnya pasti otomatis terpenuhi.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> Bayangkan tiga sedotan dengan panjang $2$, $3$, dan $7$. Jika Anda mencoba menyusunnya menjadi segitiga, sisi $2$ dan $3$ tidak cukup panjang untuk "menjangkau" ujung sisi $7$—mereka akan jatuh di tengah dan tidak bertemu.</p>
+ </div>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$(3, 4, 5)$: $3 + 4 = 7 > 5$ → dapat membentuk segitiga. ✓</li>
+  <li>$(2, 3, 7)$: $2 + 3 = 5 < 7$ → tidak dapat membentuk segitiga. ✗</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Hubungan Sisi dan Sudut</p>
+ <p class="lesson-text">Dalam setiap segitiga berlaku: <strong>sisi yang lebih panjang berhadapan dengan sudut yang lebih besar</strong>, dan sebaliknya. Konsekuensi langsungnya:</p>
+ <ul>
+  <li>Jika ketiga sisi sama panjang, ketiga sudut sama besar (sama sisi → sama sudut).</li>
+  <li>Jika dua sisi sama panjang, dua sudut di hadapannya sama besar (sama kaki → dua sudut alas sama).</li>
+  <li>Sisi terpanjang berhadapan dengan sudut terbesar; sisi terpendek berhadapan dengan sudut terkecil.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Teorema Pythagoras</h3>
+ <p class="lesson-text">Setelah memahami sifat-sifat umum segitiga, kita masuk ke teorema paling terkenal dalam geometri—yang secara khusus berlaku untuk segitiga siku-siku.</p>
+
+ <p class="lesson-subheading">A. Pernyataan Teorema</p>
+ <p class="lesson-text"><strong>Teorema Pythagoras</strong> menyatakan: dalam setiap segitiga siku-siku, kuadrat panjang hipotenusa sama dengan jumlah kuadrat panjang kedua kakinya. Jika $a$ dan $b$ adalah panjang kedua kaki (sisi yang saling tegak lurus) dan $c$ adalah panjang hipotenusa, maka:</p>
+ <p class="lesson-text">$$a^2 + b^2 = c^2$$</p>
+ <p class="lesson-text">Teorema ini dinamai menurut matematikawan Yunani kuno <strong>Pythagoras</strong> (sekitar 570&ndash;495 SM), meskipun bukti arkeologis menunjukkan bahwa bangsa Babilonia sudah mengetahui hubungan ini <em>lebih dari 1000 tahun sebelumnya</em>. Pythagoras dikreditkan karena (menurut tradisi) ia adalah orang pertama yang membuktikannya secara formal.</p>
+
+ <p class="lesson-subheading">B. Pembuktian Teorema Pythagoras</p>
+ <p class="lesson-text">Ada lebih dari 350 cara membuktikan Teorema Pythagoras. Salah satu yang paling elegan adalah <strong>pembuktian dengan penataan ulang empat segitiga</strong>. Bayangkan sebuah persegi besar dengan panjang sisi $(a+b)$. Di dalamnya, kita susun empat segitiga siku-siku identik (dengan kaki $a$ dan $b$, serta hipotenusa $c$) di keempat sudutnya—sedemikian rupa sehingga sisa ruang di tengah membentuk sebuah persegi kecil.</p>
+ <ul>
+  <li>Luas persegi besar: $(a+b)^2$.</li>
+  <li>Luas keempat segitiga: $4 \cdot \tfrac{1}{2}ab = 2ab$.</li>
+  <li>Luas persegi kecil di tengah: $c^2$.</li>
+ </ul>
+ <p class="lesson-text">Karena luas persegi besar sama dengan jumlah luas keempat segitiga ditambah luas persegi kecil di tengah: $(a+b)^2 = 4 \cdot \tfrac{1}{2}ab + c^2$. Jabarkan ruas kiri: $a^2 + 2ab + b^2 = 2ab + c^2$. Kurangi kedua ruas dengan $2ab$: $a^2 + b^2 = c^2$. Terbukti. ∎</p>
+ <figure>
+ <svg viewBox="0 0 420 420" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Persegi luar -->
+  <rect x="40" y="40" width="320" height="320" fill="none" stroke="#e8e8e8" stroke-width="1.5" />
+  
+  <!-- Empat segitiga siku-siku identik -->
+  <polygon points="40,360 40,240 240,360" fill="#daa520" fill-opacity="0.22" stroke="#daa520" stroke-width="1.5" />
+  <polygon points="360,360 240,360 360,160" fill="#5dade2" fill-opacity="0.22" stroke="#5dade2" stroke-width="1.5" />
+  <polygon points="360,40 360,160 160,40" fill="#daa520" fill-opacity="0.22" stroke="#daa520" stroke-width="1.5" />
+  <polygon points="40,40 160,40 40,240" fill="#5dade2" fill-opacity="0.22" stroke="#5dade2" stroke-width="1.5" />
+  
+  <!-- Persegi dalam (hipotenusa) -->
+  <polygon points="40,240 240,360 360,160 160,40" fill="none" stroke="#daa520" stroke-width="2.5" />
+  
+  <!-- Label -->
+  <text x="200" y="212" font-size="20" fill="#daa520" font-style="italic" text-anchor="middle">c²</text>
+  <text x="53" y="306" font-size="15" fill="#e8e8e8" font-style="italic">a</text>
+  <text x="133" y="352" font-size="15" fill="#e8e8e8" font-style="italic">b</text>
+  <text x="200" y="28" font-size="13" fill="#b8b8b8" font-style="italic" text-anchor="middle">a + b</text>
+  <text x="395" y="205" font-size="13" fill="#b8b8b8" font-style="italic" text-anchor="middle">a + b</text>
+ </svg>
+ <figcaption class="visual-caption">Pembuktian Teorema Pythagoras. Empat segitiga siku-siku identik (warna keemasan dan biru) disusun di dalam persegi bersisi $(a+b)$, menyisakan persegi berisi $c^2$ di tengah.</figcaption>
+</figure>
+ <p class="lesson-subheading">C. Triple Pythagoras</p>
+ <p class="lesson-text"><strong>Triple Pythagoras</strong> adalah tiga bilangan bulat positif $(a, b, c)$ yang memenuhi $a^2 + b^2 = c^2$. Triple ini sangat berguna karena memungkinkan kita menyelesaikan soal Pythagoras tanpa kalkulator. Dari sebuah triple dasar, kita dapat menghasilkan tak hingga banyak triple lainnya dengan mengalikan ketiga bilangan dengan faktor yang sama. Misalnya dari $(3, 4, 5)$: kalikan $2$ → $(6, 8, 10)$; kalikan $3$ → $(9, 12, 15)$; kalikan $10$ → $(30, 40, 50)$.</p>
+ <p class="lesson-text">Triple dasar yang tidak dapat disederhanakan lagi (FPB-nya 1) disebut <em>triple primitif</em>. Semua triple non-primitif adalah kelipatan dari salah satu triple primitif&mdash;sehingga kita tidak perlu menghafal tak hingga banyaknya, cukup mengenali yang primitif. Berikut beberapa yang sering muncul:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$a$</th>
+     <th>$b$</th>
+     <th>$c$</th>
+     <th>Verifikasi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>3</td><td>4</td><td>5</td><td>$9 + 16 = 25$</td></tr>
+    <tr><td>5</td><td>12</td><td>13</td><td>$25 + 144 = 169$</td></tr>
+    <tr><td>8</td><td>15</td><td>17</td><td>$64 + 225 = 289$</td></tr>
+    <tr><td>7</td><td>24</td><td>25</td><td>$49 + 576 = 625$</td></tr>
+    <tr><td>20</td><td>21</td><td>29</td><td>$400 + 441 = 841$</td></tr>
+    <tr><td>9</td><td>40</td><td>41</td><td>$81 + 1600 = 1681$</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">D. Kebalikan Teorema Pythagoras</p>
+ <p class="lesson-text">Teorema Pythagoras juga berlaku dalam arah sebaliknya: jika dalam sebuah segitiga dengan sisi $a$, $b$, dan $c$ (dengan $c$ sebagai sisi terpanjang) berlaku $a^2 + b^2 = c^2$, maka segitiga tersebut <strong>pasti siku-siku</strong>—dengan sudut siku-siku di hadapan sisi $c$. Kebalikan ini sangat berguna untuk memeriksa apakah suatu segitiga siku-siku berdasarkan panjang sisinya, tanpa perlu mengukur sudut.</p>
+ <p class="lesson-text">Selain itu, kita juga dapat menentukan jenis segitiga berdasarkan perbandingan $a^2 + b^2$ dengan $c^2$:</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Kondisi ($c$ sisi terpanjang)</th>
+     <th>Jenis Segitiga</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$a^2 + b^2 = c^2$</td><td>Siku-siku</td></tr>
+    <tr><td>$a^2 + b^2 > c^2$</td><td>Lancip</td></tr>
+    <tr><td>$a^2 + b^2 < c^2$</td><td>Tumpul</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Tentukan jenis segitiga dengan sisi $6$, $8$, dan $10$. Sisi terpanjang $c = 10$. Hitung $6^2 + 8^2 = 36 + 64 = 100 = 10^2$. Karena $a^2 + b^2 = c^2$, maka segitiga ini adalah <strong>segitiga siku-siku</strong>.</p>
+
+ <p class="lesson-subheading">E. Penerapan Teorema Pythagoras</p>
+ <p class="lesson-text">Teorema Pythagoras sering digunakan untuk menghitung jarak yang tidak dapat diukur secara langsung:</p>
+ <ul>
+  <li><strong>Diagonal persegi panjang</strong>: persegi panjang dengan panjang $p$ dan lebar $l$ memiliki diagonal $d = \sqrt{p^2 + l^2}$.</li>
+  <li><strong>Tinggi segitiga sama kaki</strong>: jika sisi sama kaki $s$ dan alas $a$, maka tinggi $t = \sqrt{s^2 - (a/2)^2}$.</li>
+  <li><strong>Jarak dua titik pada bidang koordinat</strong>: jarak antara $(x_1, y_1)$ dan $(x_2, y_2)$ adalah $\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$.</li>
+  <li><strong>Panjang tangga yang diperlukan</strong>: jika tangga bersandar pada dinding dengan ketinggian $h$ dan jarak dasar tangga dari dinding $d$, panjang tangga adalah $\sqrt{h^2 + d^2}$.</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh perhitungan:</p>
+ <p class="lesson-text">Sebuah tangga bersandar pada dinding. Ketinggian ujung atas tangga dari tanah adalah $6$ m, dan jarak dasar tangga dari dinding adalah $8$ m. Berapa panjang tangga? Panjang tangga $= \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$ m.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Kongruensi Segitiga</h3>
+ <p class="lesson-text">Setelah memahami sifat-sifat segitiga dan Teorema Pythagoras, kita masuk ke konsep yang memungkinkan kita membandingkan dua segitiga: kongruensi.</p>
+
+ <p class="lesson-subheading">A. Pengertian Kongruensi</p>
+ <p class="lesson-text">Dua segitiga disebut <strong>kongruen</strong> jika keduanya memiliki <strong>bentuk yang sama</strong> dan <strong>ukuran yang sama</strong>. Artinya, semua sisi yang bersesuaian sama panjang, dan semua sudut yang bersesuaian sama besar. Jika kedua segitiga ditumpuk, keduanya akan saling menutupi dengan sempurna.</p>
+ <p class="lesson-text">Kongruensi dilambangkan dengan $\cong$. Jika $\triangle ABC$ kongruen dengan $\triangle DEF$, kita tulis $\triangle ABC \cong \triangle DEF$. Urutan huruf sangat penting: $\triangle ABC \cong \triangle DEF$ berarti $A$ bersesuaian dengan $D$, $B$ bersesuaian dengan $E$, dan $C$ bersesuaian dengan $F$. Jadi $AB = DE$, $BC = EF$, $CA = FD$, $\angle A = \angle D$, $\angle B = \angle E$, dan $\angle C = \angle F$.</p>
+
+ <p class="lesson-subheading">B. Empat Kriteria Kongruensi</p>
+ <p class="lesson-text">Untuk memastikan dua segitiga kongruen, kita tidak perlu memeriksa keenam unsur (tiga sisi dan tiga sudut) satu per satu. Ada kriteria minimal yang cukup. Berikut empat kriteria utama:</p>
+ <figure>
+ <svg viewBox="0 0 900 720" style="display:block; margin:0 auto; max-width:100%; height:auto; width:900px;" xmlns="http://www.w3.org/2000/svg">
+ 
+  <!-- ============ BARIS 1: SSS, SAS ============ -->
+  
+  <!-- SSS -->
+  <g>
+   <text x="225" y="30" fill="#daa520" font-size="18" font-weight="700" text-anchor="middle">SSS</text>
+   <text x="225" y="54" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">tiga sisi sama panjang</text>
+   <polygon points="70,310 380,310 200,100" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+   <circle cx="70" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="380" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="200" cy="100" r="3.5" fill="#daa520" />
+   <!-- AB: 1 tick -->
+   <line x1="129.1" y1="201.3" x2="140.9" y2="208.7" stroke="#daa520" stroke-width="2.6" />
+   <!-- BC: 2 tick -->
+   <line x1="218" y1="304" x2="218" y2="316" stroke="#daa520" stroke-width="2.6" />
+   <line x1="232" y1="304" x2="232" y2="316" stroke="#daa520" stroke-width="2.6" />
+   <!-- CA: 3 tick -->
+   <line x1="291.2" y1="217.2" x2="301.8" y2="208.0" stroke="#daa520" stroke-width="2.6" />
+   <line x1="284.7" y1="209.6" x2="295.3" y2="200.4" stroke="#daa520" stroke-width="2.6" />
+   <line x1="278.2" y1="202.0" x2="288.8" y2="192.8" stroke="#daa520" stroke-width="2.6" />
+  </g>
+  
+  <!-- SAS -->
+  <g transform="translate(450, 0)">
+   <text x="225" y="30" fill="#5dade2" font-size="18" font-weight="700" text-anchor="middle">SAS</text>
+   <text x="225" y="54" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">sisi-sudut-sisi</text>
+   <polygon points="70,310 380,310 200,100" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+   <circle cx="70" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="380" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="200" cy="100" r="3.5" fill="#daa520" />
+   <!-- AB: 1 tick (sisi apit) -->
+   <line x1="129.1" y1="201.3" x2="140.9" y2="208.7" stroke="#daa520" stroke-width="2.6" />
+   <!-- BC: 2 tick (sisi apit) -->
+   <line x1="218" y1="304" x2="218" y2="316" stroke="#daa520" stroke-width="2.6" />
+   <line x1="232" y1="304" x2="232" y2="316" stroke="#daa520" stroke-width="2.6" />
+   <!-- Sudut B (sudut apit) -->
+   <path d="M 105 310 A 35 35 0 0 0 88.4 280.3" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+  </g>
+  
+  <!-- ============ BARIS 2: ASA, AAS ============ -->
+  
+  <!-- ASA -->
+  <g transform="translate(0, 360)">
+   <text x="225" y="30" fill="#daa520" font-size="18" font-weight="700" text-anchor="middle">ASA</text>
+   <text x="225" y="54" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">sudut-sisi-sudut</text>
+   <polygon points="70,310 380,310 200,100" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+   <circle cx="70" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="380" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="200" cy="100" r="3.5" fill="#daa520" />
+   <!-- AB: 1 tick (sisi apit) -->
+   <line x1="129.1" y1="201.3" x2="140.9" y2="208.7" stroke="#daa520" stroke-width="2.6" />
+   <!-- Sudut A -->
+   <path d="M 181.6 129.8 A 35 35 0 0 1 222.8 126.6" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+   <!-- Sudut B -->
+   <path d="M 105 310 A 35 35 0 0 0 88.4 280.3" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+  </g>
+  
+  <!-- AAS -->
+  <g transform="translate(450, 360)">
+   <text x="225" y="30" fill="#5dade2" font-size="18" font-weight="700" text-anchor="middle">AAS</text>
+   <text x="225" y="54" fill="#b8b8b8" font-size="12" text-anchor="middle" font-style="italic">sudut-sudut-sisi</text>
+   <polygon points="70,310 380,310 200,100" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+   <circle cx="70" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="380" cy="310" r="3.5" fill="#daa520" />
+   <circle cx="200" cy="100" r="3.5" fill="#daa520" />
+   <!-- BC: 2 tick (bukan sisi apit) -->
+   <line x1="218" y1="304" x2="218" y2="316" stroke="#daa520" stroke-width="2.6" />
+   <line x1="232" y1="304" x2="232" y2="316" stroke="#daa520" stroke-width="2.6" />
+   <!-- Sudut A -->
+   <path d="M 181.6 129.8 A 35 35 0 0 1 222.8 126.6" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+   <!-- Sudut B -->
+   <path d="M 105 310 A 35 35 0 0 0 88.4 280.3" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+  </g>
+  
+  <!-- Keterangan bawah -->
+  <text x="450" y="712" text-anchor="middle" font-size="12" fill="#b8b8b8" font-style="italic">
+   Tanda garis (emas) = sisi yang sama panjang. Tanda busur (emas muda) = sudut yang sama besar.
+  </text>
+ </svg>
+ <figcaption class="visual-caption">Empat kriteria kongruensi segitiga: <strong>SSS</strong> (tiga sisi sama), <strong>SAS</strong> (dua sisi + sudut apit), <strong>ASA</strong> (dua sudut + sisi apit), <strong>AAS</strong> (dua sudut + sisi bukan apit).</figcaption>
+</figure>
+  <p class="lesson-text"><strong>SSS (Side-Side-Side).</strong> Jika ketiga sisi segitiga pertama sama panjang dengan ketiga sisi segitiga kedua (yang bersesuaian), maka kedua segitiga kongruen. Kriteria ini intuitif: jika ketiga sisi sudah ditentukan, bentuk segitiganya sudah "terkunci" secara unik.</p>
+ <p class="lesson-text"><strong>SAS (Side-Angle-Side).</strong> Jika dua sisi dan sudut yang <em>diapit</em> keduanya pada segitiga pertama sama dengan yang bersesuaian di segitiga kedua, maka kedua segitiga kongruen. Perhatikan: sudut harus <em>diapit</em> oleh kedua sisi tersebut (berada di antara kedua sisi itu).</p>
+ <p class="lesson-text"><strong>ASA (Angle-Side-Angle).</strong> Jika dua sudut dan sisi yang <em>diapit</em> keduanya pada segitiga pertama sama dengan yang bersesuaian di segitiga kedua, maka kedua segitiga kongruen.</p>
+ <p class="lesson-text"><strong>AAS (Angle-Angle-Side).</strong> Jika dua sudut dan satu sisi (yang bukan diapit kedua sudut itu) pada segitiga pertama sama dengan yang bersesuaian di segitiga kedua, maka kedua segitiga kongruen. AAS sebenarnya konsekuensi dari ASA: karena jika dua sudut sudah diketahui, sudut ketiga juga otomatis diketahui (jumlah sudut dalam $180^\circ$).</p>
+
+ <p class="lesson-subheading">C. Kriteria yang BUKAN Syarat Kongruensi</p>
+ <p class="lesson-text">Tidak semua kombinasi tiga unsur menjamin kongruensi. Dua kombinasi yang sering disalahpahami:</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>SSA (Side-Side-Angle)</strong>—<em>bukan</em> kriteria kongruensi. Jika dua sisi dan satu sudut yang <em>bukan</em> sudut apit diketahui, bisa terbentuk dua segitiga berbeda yang memenuhi syarat tersebut. Kasus ini disebut "kasus ambigu".</p>
+  <p class="lesson-text"><strong>AAA (Angle-Angle-Angle)</strong>—<em>bukan</em> kriteria kongruensi. Jika hanya sudut yang diketahui, segitiganya bisa diperbesar atau diperkecil tanpa mengubah sudut. Inilah yang disebut <strong>kesebangunan</strong>, bukan kongruensi.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Contoh Penerapan</p>
+ <figure>
+ <svg viewBox="0 0 720 400" style="display:block; margin:0 auto; max-width:100%; height:auto; width:720px;" xmlns="http://www.w3.org/2000/svg">
+ 
+  <!-- Segitiga ABC -->
+  <polygon points="60,300 235,300 122.5,191.7" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+  <circle cx="60" cy="300" r="4" fill="#daa520" />
+  <circle cx="235" cy="300" r="4" fill="#daa520" />
+  <circle cx="122.5" cy="191.7" r="4" fill="#daa520" />
+  
+  <!-- Tick AB (1) -->
+  <line x1="86.05" y1="242.85" x2="96.45" y2="248.85" stroke="#daa520" stroke-width="2.6" />
+  <!-- Tick BC (2) -->
+  <line x1="141.5" y1="294" x2="141.5" y2="306" stroke="#daa520" stroke-width="2.6" />
+  <line x1="153.5" y1="294" x2="153.5" y2="306" stroke="#daa520" stroke-width="2.6" />
+  <!-- Sudut B -->
+  <path d="M 90 300 A 30 30 0 0 0 75 274" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+  
+  <!-- Label titik A, B, C -->
+  <text x="122.5" y="184" font-size="14" fill="#e8e8e8" font-style="italic" text-anchor="middle">A</text>
+  <text x="46" y="320" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="240" y="320" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  
+  <!-- Label sisi -->
+  <text x="70" y="252" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="end">5 cm</text>
+  <text x="147.5" y="334" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">7 cm</text>
+  <text x="85" y="288" font-size="11" fill="#daa520" font-style="italic" text-anchor="middle">60°</text>
+  
+  <!-- Simbol kongruen -->
+  <text x="327" y="262" font-size="42" fill="#5dade2" text-anchor="middle">≅</text>
+  
+  <!-- Segitiga PQR -->
+  <polygon points="420,300 595,300 482.5,191.7" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+  <circle cx="420" cy="300" r="4" fill="#5dade2" />
+  <circle cx="595" cy="300" r="4" fill="#5dade2" />
+  <circle cx="482.5" cy="191.7" r="4" fill="#5dade2" />
+  
+  <!-- Tick PQ (1) -->
+  <line x1="446.05" y1="242.85" x2="456.45" y2="248.85" stroke="#daa520" stroke-width="2.6" />
+  <!-- Tick QR (2) -->
+  <line x1="501.5" y1="294" x2="501.5" y2="306" stroke="#daa520" stroke-width="2.6" />
+  <line x1="513.5" y1="294" x2="513.5" y2="306" stroke="#daa520" stroke-width="2.6" />
+  <!-- Sudut Q -->
+  <path d="M 450 300 A 30 30 0 0 0 435 274" fill="none" stroke="#f0c75e" stroke-width="2.8" />
+  
+  <!-- Label titik P, Q, R -->
+  <text x="482.5" y="184" font-size="14" fill="#e8e8e8" font-style="italic" text-anchor="middle">P</text>
+  <text x="406" y="320" font-size="14" fill="#e8e8e8" font-style="italic">Q</text>
+  <text x="600" y="320" font-size="14" fill="#e8e8e8" font-style="italic">R</text>
+  
+  <!-- Label sisi -->
+  <text x="430" y="252" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="end">5 cm</text>
+  <text x="507.5" y="334" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">7 cm</text>
+  <text x="445" y="288" font-size="11" fill="#daa520" font-style="italic" text-anchor="middle">60°</text>
+ </svg>
+ <figcaption class="visual-caption">Dua segitiga dengan $AB = PQ = 5$ cm (tanda 1 garis), $BC = QR = 7$ cm (tanda 2 garis), dan $\angle B = \angle Q = 60^\circ$ (busur keemasan sama besar). Sudut yang sama adalah <em>sudut apit</em> kedua sisi tersebut—memenuhi kriteria SAS, sehingga $\triangle ABC \cong \triangle PQR$.</figcaption>
+</figure>
+ <p class="lesson-text">Perhatikan dua segitiga $\triangle ABC$ dan $\triangle PQR$ dengan $AB = PQ = 5$ cm, $BC = QR = 7$ cm, dan $\angle B = \angle Q = 60^\circ$. Apakah kedua segitiga kongruen? Dua sisi yang sama adalah $AB$ dan $BC$ di segitiga pertama, serta $PQ$ dan $QR$ di segitiga kedua. Sudut yang sama ($\angle B$ dan $\angle Q$) adalah sudut yang <em>diapit</em> oleh kedua sisi tersebut. Jadi kita memiliki Sisi-Sudut-Sisi (SAS) → kedua segitiga <strong>kongruen</strong>. ∎</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Kesebangunan Segitiga</h3>
+ <p class="lesson-text">Jika kongruensi menuntut ukuran yang sama persis, kesebangunan lebih "longgar"—cukup bentuk yang sama, ukuran boleh berbeda.</p>
+
+ <p class="lesson-subheading">A. Pengertian Kesebangunan</p>
+ <p class="lesson-text">Dua segitiga disebut <strong>sebangun</strong> jika keduanya memiliki <strong>bentuk yang sama</strong> tetapi <strong>ukuran yang boleh berbeda</strong>. Artinya, semua sudut yang bersesuaian sama besar, dan semua sisi yang bersesuaian sebanding (memiliki rasio yang sama). Jika kedua segitiga sebangun, segitiga yang satu adalah "perbesaran" atau "pengecilan" dari yang lain.</p>
+ <p class="lesson-text">Kesebangunan dilambangkan dengan $\sim$. Jika $\triangle ABC$ sebangun dengan $\triangle DEF$, kita tulis $\triangle ABC \sim \triangle DEF$. Ini berarti $\angle A = \angle D$, $\angle B = \angle E$, $\angle C = \angle F$, dan $\dfrac{AB}{DE} = \dfrac{BC}{EF} = \dfrac{CA}{FD} = k$. Bilangan $k$ disebut <strong>faktor skala</strong>. Jika $k > 1$, segitiga kedua lebih besar; jika $k < 1$, segitiga kedua lebih kecil; jika $k = 1$, kedua segitiga kongruen.</p>
+
+ <p class="lesson-subheading">B. Tiga Kriteria Kesebangunan</p>
+ <p class="lesson-text">Karena jumlah sudut dalam segitiga selalu $180^\circ$, kesebangunan lebih "murah" untuk diperiksa daripada kongruensi. Berikut tiga kriteria utama:</p>
+ <ul>
+  <li><strong>AA (Angle-Angle).</strong> Jika <strong>dua sudut</strong> pada segitiga pertama sama besar dengan dua sudut pada segitiga kedua, maka kedua segitiga sebangun. Cukup dua sudut karena sudut ketiga otomatis sama—jumlah ketiganya harus $180^\circ$.</li>
+  <li><strong>SSS (Side-Side-Side).</strong> Jika <strong>ketiga sisi</strong> segitiga pertama sebanding dengan ketiga sisi segitiga kedua (dengan rasio yang sama), maka kedua segitiga sebangun.</li>
+  <li><strong>SAS (Side-Angle-Side).</strong> Jika <strong>dua sisi</strong> sebanding dan <strong>sudut yang diapit</strong> kedua sisi tersebut sama besar, maka kedua segitiga sebangun.</li>
+ </ul>
+
+ <figure>
+ <svg viewBox="0 0 650 400" style="max-width:100%; height:auto; width:650px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Segitiga kecil -->
+  <polygon points="100,100 60,220 180,220" fill="#daa520" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2"/>
+  <circle cx="100" cy="100" r="4" fill="#daa520"/>
+  <circle cx="60" cy="220" r="4" fill="#daa520"/>
+  <circle cx="180" cy="220" r="4" fill="#daa520"/>
+  <text x="105" y="92" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="42" y="238" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="185" y="238" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <path d="M 93.68 118.97 A 20 20 0 0 0 111.09 116.64" fill="none" stroke="#daa520" stroke-width="2.2"/>
+
+  <text x="90" y="262" font-size="13" fill="#b8b8b8" font-style="italic">△ABC (kecil)</text>
+
+  <!-- Segitiga besar -->
+  <polygon points="400,100 320,340 560,340" fill="#5dade2" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2"/>
+  <circle cx="400" cy="100" r="4" fill="#5dade2"/>
+  <circle cx="320" cy="340" r="4" fill="#5dade2"/>
+  <circle cx="560" cy="340" r="4" fill="#5dade2"/>
+  <text x="405" y="92" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  <text x="302" y="358" font-size="14" fill="#e8e8e8" font-style="italic">E</text>
+  <text x="565" y="358" font-size="14" fill="#e8e8e8" font-style="italic">F</text>
+  <path d="M 387.35 137.95 A 40 40 0 0 0 422.19 133.28" fill="none" stroke="#daa520" stroke-width="2.2"/>
+  <text x="455" y="362" font-size="13" fill="#b8b8b8" font-style="italic">△DEF (besar, k = 2)</text>
+
+  <!-- Panah k=2 -->
+  <line x1="230" y1="200" x2="290" y2="200" stroke="#f0c75e" stroke-width="2"/>
+  <polygon points="300,200 287,195 287,205" fill="#f0c75e"/>
+  <text x="265" y="188" fill="#f0c75e" font-size="12" font-style="italic" text-anchor="middle">k = 2</text>
+ </svg>
+ <figcaption class="visual-caption">Dua segitiga sebangun. Sudut di $A$ dan $D$ sama besar (ditandai busur keemasan) — itulah yang menjadikan keduanya sebangun menurut kriteria AA. Setiap sisi segitiga kedua tepat $2$ kali sisi yang bersesuaian, sehingga faktor skalanya $k = 2$.</figcaption>
+</figure>
+
+
+ <p class="lesson-subheading">C. Perbandingan Sisi, Keliling, dan Luas</p>
+ <p class="lesson-text">Jika $\triangle ABC \sim \triangle DEF$, maka berlaku $\dfrac{AB}{DE} = \dfrac{BC}{EF} = \dfrac{CA}{FD} = k$. Selain sisi, sifat-sifat lain juga sebanding dengan faktor $k$:</p>
+ <ul>
+  <li><strong>Perbandingan keliling</strong>: $\dfrac{K_{ABC}}{K_{DEF}} = k$—karena keliling adalah jumlah semua sisi, dan setiap sisi dikalikan dengan $k$, maka jumlahnya juga dikalikan dengan $k$.</li>
+  <li><strong>Perbandingan luas</strong>: $\dfrac{L_{ABC}}{L_{DEF}} = k^2$—karena luas melibatkan perkalian dua dimensi panjang, sehingga rasionya menjadi $k \cdot k = k^2$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Contoh Penerapan</p>
+ <p class="lesson-text">Dua segitiga sebangun memiliki panjang sisi bersesuaian $4$ cm dan $10$ cm. Jika luas segitiga kecil adalah $12$ cm$^2$, berapa luas segitiga besar? Faktor skala $k = 10/4 = 2{,}5$. Rasio luas adalah $k^2 = 2{,}5^2 = 6{,}25$. Jadi luas segitiga besar $= 12 \times 6{,}25 = 75$ cm$^2$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Perbedaan Kongruensi dan Kesebangunan</h3>
+ <p class="lesson-text">Kongruensi dan kesebangunan sering dianggap mirip karena keduanya berbicara tentang "kesamaan bentuk". Namun, ada perbedaan penting yang harus dipahami.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Kongruen ($\cong$)</th>
+     <th>Sebangun ($\sim$)</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Bentuk</td><td>Sama</td><td>Sama</td></tr>
+    <tr><td>Ukuran</td><td>Sama persis</td><td>Bisa berbeda (diperbesar/diperkecil)</td></tr>
+    <tr><td>Sudut yang bersesuaian</td><td>Sama besar</td><td>Sama besar</td></tr>
+    <tr><td>Sisi yang bersesuaian</td><td>Sama panjang</td><td>Sebanding (rasio $k$)</td></tr>
+    <tr><td>Rasio sisi $k$</td><td>$k = 1$</td><td>$k > 0$ (bisa $1$, tapi umumnya $\neq 1$)</td></tr>
+    <tr><td>Kriteria minimal</td><td>SSS, SAS, ASA, AAS</td><td>AA, SSS, SAS</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Setiap segitiga kongruen pasti sebangun, tetapi tidak setiap segitiga sebangun kongruen. Analogi sederhana: dua foto dari pemandangan yang sama dengan ukuran cetak berbeda adalah <em>sebangun</em>. Jika kedua foto itu dicetak dengan ukuran yang sama persis, maka keduanya <em>kongruen</em>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Penerapan Praktis</h3>
+ <p class="lesson-text">Segitiga bukan hanya objek geometris di atas kertas—ia muncul di mana-mana dalam kehidupan nyata dan menjadi fondasi dari banyak bidang terapan.</p>
+
+ <p class="lesson-subheading">A. Arsitektur dan Konstruksi</p>
+ <p class="lesson-text">Segitiga adalah bentuk paling stabil untuk struktur bangunan. Rangka atap rumah, menara transmisi listrik, dan jembatan baja banyak menggunakan konfigurasi segitiga karena sifatnya yang kaku—tidak mudah berubah bentuk meskipun diberi beban berat. Teorema Pythagoras digunakan oleh arsitek dan insinyur untuk memastikan bahwa sudut-sudut bangunan benar-benar siku-siku.</p>
+
+ <p class="lesson-subheading">B. Navigasi dan Pengukuran Tanah</p>
+ <p class="lesson-text">Dalam survei tanah dan navigasi, kesebangunan segitiga digunakan untuk mengukur jarak yang tidak dapat diakses langsung—seperti lebar sungai atau tinggi gunung. Dengan mengukur sudut dan jarak yang dapat dijangkau, kemudian menggunakan prinsip kesebangunan, kita dapat menghitung jarak yang tidak dapat diukur secara langsung. Teknik ini disebut <em>triangulasi</em>—dan menjadi dasar dari sistem GPS modern.</p>
+
+ <p class="lesson-subheading">C. Grafika Komputer dan Game</p>
+ <p class="lesson-text">Dalam grafika 3D, setiap permukaan objek dipecah menjadi ribuan segitiga kecil (<em>mesh</em>). Semakin banyak segitiga, semakin halus tampilan objek. Perhitungan pencahayaan dan bayangan pada permukaan objek bertumpu pada vektor normal setiap segitiga—yang dihitung menggunakan cross product dari dua sisinya. Tanpa segitiga, tidak akan ada rendering 3D modern.</p>
+
+ <p class="lesson-subheading">D. Trigonometri dan Astronomi</p>
+ <p class="lesson-text">Seluruh trigonometri lahir dari perbandingan sisi-sisi segitiga siku-siku. Sinus, kosinus, dan tangen didefinisikan melalui rasio antara sisi dan hipotenusa pada segitiga siku-siku. Para astronom kuno menggunakan segitiga untuk mengukur jarak Bumi–Bulan, dan astronom modern menggunakannya untuk mengukur jarak antar bintang.</p>
+ 
+ <p class="lesson-subheading">E. Kehidupan Sehari-hari</p>
+ <p class="lesson-text">Segitiga muncul di mana-mana&mdash;dari rambu lalu lintas berbentuk segitiga (sengaja dipilih karena bentuknya yang mencolok dan berbeda dari rambu lain), potongan pizza, hingga penggaris segitiga yang digunakan siswa. Bentuk segitiga yang kaku juga dimanfaatkan pada kursi lipat, tenda kemah, dan rangka sepeda.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap AAA sebagai kriteria kongruensi.</strong> AAA hanya menjamin kesebangunan, bukan kongruensi. Sudut yang sama besar tidak menjamin ukuran yang sama.</li>
+  <li><strong>Menganggap SSA sebagai kriteria kongruensi.</strong> Dua sisi dan satu sudut yang bukan sudut apit tidak menjamin kongruensi—bisa terbentuk dua segitiga berbeda (kasus ambigu).</li>
+  <li><strong>Tertukar antara "sudut apit" dan "sudut yang bukan apit".</strong> Pada kriteria SAS, sudut harus berada <em>di antara</em> kedua sisi. Jika sudutnya di luar, itu bukan SAS.</li>
+  <li><strong>Menganggap semua segitiga $90^\circ, 45^\circ, 45^\circ$ memiliki ukuran yang sama.</strong> Segitiga tersebut memang <em>selalu</em> sama kaki, tetapi ukurannya bisa berbeda-beda. Yang sama di antara semuanya adalah <em>perbandingan</em> sisinya ($1 : 1 : \sqrt{2}$), bukan panjang sisinya.</li>
+  <li><strong>Salah menerapkan Pythagoras pada segitiga bukan siku-siku.</strong> $a^2 + b^2 = c^2$ hanya berlaku jika salah satu sudutnya $90^\circ$. Untuk segitiga lancip atau tumpul, rumusnya berbeda (melibatkan aturan kosinus).</li>
+  <li><strong>Menganggap jumlah sudut dalam segitiga bisa lebih dari $180^\circ$.</strong> Dalam geometri Euclidean (bidang datar), jumlahnya <em>selalu</em> tepat $180^\circ$.</li>
+  <li><strong>Menganggap sisi terpanjang dalam segitiga selalu sisi miring.</strong> Istilah "sisi miring" (hipotenusa) hanya berlaku untuk segitiga siku-siku. Pada segitiga lain, sisi terpanjang hanyalah sisi terpanjang biasa.</li>
+  <li><strong>Mengabaikan urutan huruf dalam notasi kongruensi/sebangun.</strong> $\triangle ABC \cong \triangle DEF$ dan $\triangle ABC \cong \triangle EDF$ bermakna berbeda! Urutan huruf menentukan pasangan titik sudut yang bersesuaian.</li>
+  <li><strong>Menganggap rasio luas sama dengan rasio sisi pada segitiga sebangun.</strong> Rasio luas adalah <em>kuadrat</em> dari rasio sisi, bukan rasio sisi itu sendiri.</li>
+  <li><strong>Menghitung keliling atau luas tanpa memastikan satuan konsisten.</strong> Jika satu sisi dalam cm dan sisi lain dalam m, harus dikonversi dulu sebelum dihitung.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Segitiga</strong> adalah bangun datar dengan tiga sisi, tiga sudut, dan tiga titik sudut, dibentuk oleh tiga titik tidak kolinear.</li>
+  <li>Konvensi: sisi $a$ berhadapan dengan sudut $A$, sisi $b$ dengan sudut $B$, sisi $c$ dengan sudut $C$.</li>
+  <li><strong>Jenis berdasarkan sisi</strong>: sama sisi (tiga sisi sama, ketiga sudut $60^\circ$), sama kaki (dua sisi sama, dua sudut alas sama), sembarang (tiga sisi berbeda).</li>
+  <li><strong>Jenis berdasarkan sudut</strong>: lancip (semua sudut $< 90^\circ$), siku-siku (satu sudut $= 90^\circ$), tumpul (satu sudut $> 90^\circ$).</li>
+  <li><strong>Jumlah sudut dalam</strong> segitiga selalu $180^\circ$.</li>
+  <li><strong>Sudut luar</strong> segitiga sama dengan jumlah dua sudut dalam yang tidak berdekatan.</li>
+  <li><strong>Ketidaksamaan segitiga</strong>: tiga segmen dapat membentuk segitiga jika jumlah dua sisi terpendek lebih besar dari sisi terpanjang.</li>
+  <li><strong>Teorema Pythagoras</strong>: pada segitiga siku-siku, $a^2 + b^2 = c^2$—dengan $c$ hipotenusa.</li>
+  <li><strong>Triple Pythagoras</strong>: $(3,4,5)$, $(5,12,13)$, $(8,15,17)$, $(7,24,25)$, dan kelipatannya.</li>
+  <li><strong>Kebalikan Pythagoras</strong>: jika $a^2 + b^2 = c^2$ → siku-siku; jika $> c^2$ → lancip; jika $< c^2$ → tumpul.</li>
+  <li><strong>Kongruensi</strong> ($\cong$): bentuk dan ukuran sama. Kriteria: SSS, SAS, ASA, AAS. Bukan: AAA, SSA.</li>
+  <li><strong>Kesebangunan</strong> ($\sim$): bentuk sama, ukuran boleh berbeda. Kriteria: AA, SSS, SAS. Rasio sisi $k$, rasio keliling $k$, rasio luas $k^2$.</li>
+  <li>Setiap segitiga kongruen pasti sebangun, tetapi tidak sebaliknya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Segitiga adalah <strong>bangun datar paling sederhana, tetapi menyimpan kekayaan konsep yang luar biasa</strong>. Dari segitiga, kita belajar tentang sudut, panjang sisi, hubungan keduanya, hingga cara membandingkan bentuk melalui kongruensi dan kesebangunan. Yang membuatnya istimewa: <em>kekakuan strukturnya</em> menjadikannya fondasi konstruksi modern, <em>kesederhanaannya</em> menjadikannya fondasi geometri, dan <em>hubungan sudut-sisinya</em> menjadikannya pintu masuk ke trigonometri.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi bagi topik-topik berikutnya: <strong>Segiempat &amp; Poligon</strong>, <strong>Lingkaran</strong>, <strong>Geometri Analitik</strong>, <strong>Trigonometri</strong>, <strong>Irisan Kerucut</strong>, hingga <strong>Geometri Diferensial</strong>&mdash;semuanya bertumpu pada konsep-konsep segitiga yang baru saja dipelajari.</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama yang melibatkan identifikasi jenis segitiga, penerapan Teorema Pythagoras dalam konteks nyata, serta menentukan kongruensi atau kesebangunan dua segitiga. Kebiasaan memeriksa apakah kondisi Pythagoras terpenuhi (hanya berlaku di segitiga siku-siku), memperhatikan urutan huruf dalam notasi kongruensi/sebangun, dan konsisten dalam satuan akan menyelamatkan Anda dari kesalahan yang tidak perlu&mdash;terutama saat melangkah ke trigonometri dan geometri analitik.</p>
+</div>
+
+</div>
+</body>
+</html>

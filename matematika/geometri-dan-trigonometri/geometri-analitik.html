@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Geometri Analitik (Koordinat, Jarak, Persamaan Garis, Titik Tengah, Gradien)</title>
+ <meta name="description" content="Materi lengkap geometri analitik: sistem koordinat Kartesius, jarak dua titik, titik tengah, gradien, persamaan garis (bentuk umum, slope-intercept, titik-gradien, dua titik), serta hubungan dua garis (sejajar dan tegak lurus).">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Geometri Analitik (Koordinat, Jarak, Persamaan Garis, Titik Tengah, Gradien)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Segitiga</strong> — terutama Teorema Pythagoras, karena rumus jarak antara dua titik diturunkan langsung dari teorema ini.</li>
+   <li><strong>Aljabar Dasar</strong> — terutama manipulasi persamaan linear dan substitusi, karena menentukan persamaan garis dan memeriksa titik pada garis melibatkan aljabar dasar.</li>
+   <li><strong>Sistem Bilangan</strong> — khususnya bilangan real $\mathbb{R}$, karena koordinat Kartesius berada pada bidang $\mathbb{R}^2$.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Buka aplikasi peta di ponsel Anda. Setiap tempat memiliki posisi yang dapat ditentukan secara tepat, dan aplikasi itu bisa menghitung jarak, menentukan rute, serta memberi tahu "belok kiri 500 meter lagi". Semua itu bermuara pada satu ide sederhana: <strong>setiap tempat pada bidang dapat dinyatakan sebagai pasangan angka</strong>. Ide inilah inti dari <strong>geometri analitik</strong>&mdash;cabang matematika yang mempelajari geometri menggunakan sistem koordinat.</p>
+ <p class="lesson-text">Hingga titik ini, kita telah mempelajari geometri secara <strong>sintetis</strong>&mdash;menggunakan gambar, aksioma, dan pembuktian berdasarkan sifat bangun. Pendekatan itu berguna untuk memahami hakikat bentuk, tetapi kurang praktis untuk perhitungan. Geometri analitik melengkapinya dengan pendekatan <strong>aljabar</strong>: dari setiap bangun geometri, kita dapat menghasilkan persamaan&mdash;dan dari setiap persamaan, kita dapat menggambar bangun geometri. Jembatan dua arah inilah yang membuat komputer dapat "memahami" geometri&mdash;dan menjadi alasan mengapa GPS, game 3D, dan peta digital bisa bekerja.</p>
+ <p class="lesson-text">Materi ini akan memandu Anda melalui: sistem koordinat Kartesius, jarak dua titik, titik tengah, gradien, persamaan garis, hubungan dua garis, hingga penerapan praktis&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap rumus berlaku, bukan sekadar menghafalnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Sistem Koordinat Kartesius</h3>
+ <p class="lesson-subheading">A. Pengertian Sistem Koordinat</p>
+ <p class="lesson-text"><strong>Sistem koordinat Kartesius</strong> (dinamai menurut matematikawan Prancis René Descartes) adalah sistem yang memungkinkan kita menentukan posisi setiap titik pada bidang datar menggunakan <strong>dua bilangan</strong>. Sistem ini dibentuk oleh <strong>dua garis bilangan yang saling tegak lurus</strong>:</p>
+ <ul>
+  <li><strong>Sumbu-$X$</strong>: garis bilangan horizontal. Bilangan positif ke kanan, negatif ke kiri.</li>
+  <li><strong>Sumbu-$Y$</strong>: garis bilangan vertikal. Bilangan positif ke atas, negatif ke bawah.</li>
+ </ul>
+ <p class="lesson-text">Titik perpotongan kedua sumbu disebut <strong>titik asal</strong> (<em>origin</em>) dan diberi koordinat $(0, 0)$. Dengan dua sumbu ini, setiap titik pada bidang dapat dinyatakan sebagai pasangan terurut $(x, y)$, di mana $x$ adalah koordinat horizontal (disebut <em>absis</em>) dan $y$ adalah koordinat vertikal (disebut <em>ordinat</em>).</p>
+ <figure>
+ <svg viewBox="0 0 460 460" style="display:block; margin:0 auto; max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid tipis -->
+  <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.12">
+   <line x1="60" y1="60" x2="60" y2="400" />
+   <line x1="110" y1="60" x2="110" y2="400" />
+   <line x1="160" y1="60" x2="160" y2="400" />
+   <line x1="210" y1="60" x2="210" y2="400" />
+   <line x1="260" y1="60" x2="260" y2="400" />
+   <line x1="310" y1="60" x2="310" y2="400" />
+   <line x1="360" y1="60" x2="360" y2="400" />
+   <line x1="60" y1="80" x2="410" y2="80" />
+   <line x1="60" y1="130" x2="410" y2="130" />
+   <line x1="60" y1="180" x2="410" y2="180" />
+   <line x1="60" y1="230" x2="410" y2="230" />
+   <line x1="60" y1="280" x2="410" y2="280" />
+   <line x1="60" y1="330" x2="410" y2="330" />
+   <line x1="60" y1="380" x2="410" y2="380" />
+  </g>
+  
+  <!-- Sumbu X -->
+  <line x1="40" y1="230" x2="420" y2="230" stroke="#e8e8e8" stroke-width="2" />
+  <polygon points="430,230 418,224 418,236" fill="#e8e8e8" />
+  <text x="434" y="235" font-size="15" fill="#e8e8e8" font-style="italic">x</text>
+  
+  <!-- Sumbu Y -->
+  <line x1="210" y1="430" x2="210" y2="50" stroke="#e8e8e8" stroke-width="2" />
+  <polygon points="210,42 204,54 216,54" fill="#e8e8e8" />
+  <text x="220" y="36" font-size="15" fill="#e8e8e8" font-style="italic">y</text>
+  
+  <!-- Label sumbu -->
+  <text x="420" y="255" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="end">sumbu x</text>
+  <text x="195" y="30" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="end">sumbu y</text>
+  
+  <!-- Titik asal O -->
+  <circle cx="210" cy="230" r="5" fill="#daa520" />
+  <text x="195" y="250" font-size="14" fill="#daa520" font-style="italic">O (0, 0)</text>
+  
+  <line x1="360" y1="130" x2="360" y2="230" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3" opacity="0.6" />
+  <line x1="210" y1="130" x2="360" y2="130" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3" opacity="0.6" />
+  <circle cx="360" cy="130" r="5" fill="#daa520" />
+  <text x="368" y="125" font-size="13" fill="#daa520" font-style="italic">A (3, 2)</text>
+  
+  <line x1="110" y1="80" x2="110" y2="230" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3" opacity="0.6" />
+  <line x1="110" y1="80" x2="210" y2="80" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3" opacity="0.6" />
+  <circle cx="110" cy="80" r="5" fill="#5dade2" />
+  <text x="60" y="75" font-size="13" fill="#5dade2" font-style="italic">B (−2, 3)</text>
+  <circle cx="310" cy="380" r="5" fill="#f0c75e" />
+  <text x="318" y="397" font-size="13" fill="#f0c75e" font-style="italic">C (2, −3)</text>
+ </svg>
+ <figcaption class="visual-caption">Sistem koordinat Kartesius. Setiap titik pada bidang dinyatakan sebagai pasangan terurut $(x, y)$: $A(3, 2)$ berada $3$ satuan ke kanan dan $2$ satuan ke atas dari titik asal $O(0, 0)$; $B(-2, 3)$ berada $2$ satuan ke kiri dan $3$ satuan ke atas; $C(2, -3)$ berada $2$ satuan ke kanan dan $3$ satuan ke bawah.</figcaption>
+</figure>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa kita perlu sistem koordinat?</strong> Bayangkan jika Anda harus menjelaskan lokasi sebuah restoran tanpa koordinat—"dari sini lurus sedikit, lalu belok ke arah...". Deskripsi seperti itu ambigu dan tidak dapat dihitung. Dengan koordinat, "lokasi restoran adalah $(3, 5)$" menjadi informasi yang presisi, dapat dikomunikasikan tanpa gambar, dan dapat diolah komputer. Inilah kekuatan sistem koordinat: mengubah deskripsi kualitatif menjadi data kuantitatif.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Kuadran</p>
+ <p class="lesson-text">Kedua sumbu membagi bidang menjadi empat daerah yang disebut <strong>kuadran</strong>, diberi nomor dengan angka Romawi berlawanan arah jarum jam mulai dari kanan atas:</p>
+ <ul>
+  <li><strong>Kuadran I</strong> (kanan atas): $x > 0$, $y > 0$.</li>
+  <li><strong>Kuadran II</strong> (kiri atas): $x < 0$, $y > 0$.</li>
+  <li><strong>Kuadran III</strong> (kiri bawah): $x < 0$, $y < 0$.</li>
+  <li><strong>Kuadran IV</strong> (kanan bawah): $x > 0$, $y < 0$.</li>
+ </ul>
+ <p class="lesson-text">Titik yang terletak tepat pada sumbu—misalnya $(3, 0)$ atau $(0, -2)$—tidak termasuk dalam kuadran mana pun.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 360" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.15">
+    <line x1="75" y1="20" x2="75" y2="340"/>
+    <line x1="100" y1="20" x2="100" y2="340"/>
+    <line x1="125" y1="20" x2="125" y2="340"/>
+    <line x1="150" y1="20" x2="150" y2="340"/>
+    <line x1="175" y1="20" x2="175" y2="340"/>
+    <line x1="225" y1="20" x2="225" y2="340"/>
+    <line x1="250" y1="20" x2="250" y2="340"/>
+    <line x1="275" y1="20" x2="275" y2="340"/>
+    <line x1="300" y1="20" x2="300" y2="340"/>
+    <line x1="325" y1="20" x2="325" y2="340"/>
+    <line x1="20" y1="55" x2="380" y2="55"/>
+    <line x1="20" y1="80" x2="380" y2="80"/>
+    <line x1="20" y1="105" x2="380" y2="105"/>
+    <line x1="20" y1="130" x2="380" y2="130"/>
+    <line x1="20" y1="155" x2="380" y2="155"/>
+    <line x1="20" y1="205" x2="380" y2="205"/>
+    <line x1="20" y1="230" x2="380" y2="230"/>
+    <line x1="20" y1="255" x2="380" y2="255"/>
+    <line x1="20" y1="280" x2="380" y2="280"/>
+    <line x1="20" y1="305" x2="380" y2="305"/>
+   </g>
+   <line x1="20" y1="180" x2="378" y2="180" stroke="#e8e8e8" stroke-width="1.8"/>
+   <polygon points="380,180 370,175 370,185" fill="#e8e8e8"/>
+   <text x="384" y="184" font-size="14" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="200" y1="340" x2="200" y2="22" stroke="#e8e8e8" stroke-width="1.8"/>
+   <polygon points="200,20 195,30 205,30" fill="#e8e8e8"/>
+   <text x="206" y="18" font-size="14" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="200" cy="180" r="3.5" fill="#daa520"/>
+   <text x="185" y="196" font-size="12" fill="#daa520" font-style="italic">O</text>
+   <text x="265" y="100" font-size="12" fill="#b8b8b8" font-style="italic">Kuadran I (+, +)</text>
+   <text x="55" y="100" font-size="12" fill="#b8b8b8" font-style="italic">Kuadran II (−, +)</text>
+   <text x="50" y="270" font-size="12" fill="#b8b8b8" font-style="italic">Kuadran III (−, −)</text>
+   <text x="265" y="270" font-size="12" fill="#b8b8b8" font-style="italic">Kuadran IV (+, −)</text>
+   <circle cx="275" cy="130" r="4.5" fill="#daa520"/>
+   <text x="282" y="127" font-size="12" fill="#daa520" font-style="italic">A (3, 2)</text>
+   <circle cx="150" cy="80" r="4.5" fill="#5dade2"/>
+   <text x="118" y="76" font-size="12" fill="#5dade2" font-style="italic">B (−2, 4)</text>
+   <circle cx="125" cy="205" r="4.5" fill="#5dade2"/>
+   <text x="90" y="220" font-size="12" fill="#5dade2" font-style="italic">C (−3, −1)</text>
+   <circle cx="300" cy="255" r="4.5" fill="#daa520"/>
+   <text x="307" y="258" font-size="12" fill="#daa520" font-style="italic">D (4, −3)</text>
+  </svg>
+  <figcaption class="visual-caption">Sistem koordinat Kartesius dengan empat kuadran. Titik $A(3, 2)$ dan $D(4, -3)$ berada di kuadran I dan IV; titik $B(-2, 4)$ dan $C(-3, -1)$ berada di kuadran II dan III.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Notasi dan Konvensi</p>
+ <p class="lesson-text">Beberapa konvensi penting yang akan dipakai sepanjang materi:</p>
+ <ul>
+  <li>Titik ditulis dengan huruf kapital dan koordinatnya: $A(x_1, y_1)$, $B(x_2, y_2)$, dan seterusnya.</li>
+  <li>Angka pertama dalam tanda kurung adalah koordinat $x$ (absis), angka kedua adalah koordinat $y$ (ordinat).</li>
+  <li>Urutan angka penting: $(3, 5)$ dan $(5, 3)$ adalah dua titik yang berbeda.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Jarak Antara Dua Titik</h3>
+ <p class="lesson-subheading">A. Intuisi dari Teorema Pythagoras</p>
+ <p class="lesson-text">Bayangkan kita memiliki dua titik $A(x_1, y_1)$ dan $B(x_2, y_2)$ pada bidang koordinat. Bagaimana cara menghitung jarak antara keduanya? Ternyata jawabannya sudah kita miliki sejak materi segitiga—Teorema Pythagoras.</p>
+ <p class="lesson-text">Perhatikan gambar berikut. Jika kita menggambar garis dari $A$ ke $B$, kita bisa membentuk sebuah <strong>segitiga siku-siku</strong> dengan menarik garis horizontal dari $A$ dan garis vertikal dari $B$ (atau sebaliknya). Titik pertemuan kedua garis bantu ini, sebut saja $C$, akan memiliki koordinat $(x_2, y_1)$.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 400" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.12">
+    <line x1="50" y1="50" x2="50" y2="350"/>
+    <line x1="100" y1="50" x2="100" y2="350"/>
+    <line x1="150" y1="50" x2="150" y2="350"/>
+    <line x1="200" y1="50" x2="200" y2="350"/>
+    <line x1="250" y1="50" x2="250" y2="350"/>
+    <line x1="300" y1="50" x2="300" y2="350"/>
+    <line x1="50" y1="100" x2="350" y2="100"/>
+    <line x1="50" y1="150" x2="350" y2="150"/>
+    <line x1="50" y1="200" x2="350" y2="200"/>
+    <line x1="50" y1="250" x2="350" y2="250"/>
+    <line x1="50" y1="300" x2="350" y2="300"/>
+   </g>
+   <line x1="30" y1="350" x2="378" y2="350" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="380,350 370,345 370,355" fill="#e8e8e8"/>
+   <text x="384" y="354" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="50" y1="370" x2="50" y2="32" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="50,30 45,40 55,40" fill="#e8e8e8"/>
+   <text x="56" y="28" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <line x1="100" y1="300" x2="300" y2="300" stroke="#5dade2" stroke-width="2" stroke-dasharray="5,4"/>
+   <line x1="300" y1="300" x2="300" y2="150" stroke="#5dade2" stroke-width="2" stroke-dasharray="5,4"/>
+   <line x1="100" y1="300" x2="300" y2="150" stroke="#daa520" stroke-width="2.5"/>
+   <circle cx="100" cy="300" r="4.5" fill="#daa520"/>
+   <circle cx="300" cy="150" r="4.5" fill="#daa520"/>
+   <circle cx="300" cy="300" r="4" fill="#5dade2"/>
+   <text x="60" y="318" font-size="13" fill="#daa520" font-style="italic">A (1, 1)</text>
+   <text x="305" y="146" font-size="13" fill="#daa520" font-style="italic">B (5, 4)</text>
+   <text x="305" y="320" font-size="13" fill="#5dade2" font-style="italic">C (5, 1)</text>
+   <text x="195" y="320" font-size="12" fill="#5dade2" font-style="italic">Δx = 4</text>
+   <text x="308" y="230" font-size="12" fill="#5dade2" font-style="italic">Δy = 3</text>
+   <text x="160" y="215" font-size="13" fill="#f0c75e" font-style="italic">AB = ?</text>
+  </svg>
+  <figcaption class="visual-caption">Menghitung jarak $AB$ dengan membentuk segitiga siku-siku $ABC$. Sisi horizontal $AC$ panjangnya $\Delta x = 4$, sisi vertikal $BC$ panjangnya $\Delta y = 3$, sehingga $AB = \sqrt{4^2 + 3^2} = 5$.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Dari gambar di atas:</p>
+ <ul>
+  <li>Panjang $AC$ adalah <strong>selisih koordinat $x$</strong>: $AC = x_2 - x_1$.</li>
+  <li>Panjang $BC$ adalah <strong>selisih koordinat $y$</strong>: $BC = y_2 - y_1$.</li>
+  <li>Berdasarkan Teorema Pythagoras, $AB^2 = AC^2 + BC^2$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Rumus Jarak</p>
+ <p class="lesson-text">Dari uraian di atas, kita peroleh rumus jarak antara dua titik $A(x_1, y_1)$ dan $B(x_2, y_2)$:</p>
+ <p class="lesson-text">$$AB = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$</p>
+ <p class="lesson-text">Perhatikan bahwa urutan pengurangan tidak berpengaruh karena selisih dikuadratkan: $(x_2 - x_1)^2 = (x_1 - x_2)^2$. Jarak selalu bernilai <strong>non-negatif</strong>, dan bernilai nol hanya jika kedua titik berimpit.</p>
+
+ <p class="lesson-subheading">C. Contoh Perhitungan</p>
+ <p class="lesson-text">Hitung jarak antara titik $A(1, 1)$ dan $B(5, 4)$.</p>
+ <p class="lesson-text">$$AB = \sqrt{(5 - 1)^2 + (4 - 1)^2} = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan gambar:</strong> sesuai Gambar 2, segitiga siku-siku dengan kaki $4$ dan $3$ memiliki hipotenusa $5$. ✓</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Titik Tengah Segmen</h3>
+ <p class="lesson-subheading">A. Pengertian Titik Tengah</p>
+ <p class="lesson-text"><strong>Titik tengah</strong> dari segmen $AB$ adalah titik $M$ yang terletak tepat di tengah-tengah antara $A$ dan $B$—yakni titik yang membagi segmen $AB$ menjadi dua bagian yang sama panjang: $AM = MB$.</p>
+
+ <p class="lesson-subheading">B. Rumus Titik Tengah</p>
+ <p class="lesson-text">Jika $A(x_1, y_1)$ dan $B(x_2, y_2)$, maka titik tengah $M$ memiliki koordinat:</p>
+ <p class="lesson-text">$$M = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)$$</p>
+ <p class="lesson-text">Dengan kata lain, koordinat titik tengah adalah <strong>rata-rata</strong> dari koordinat kedua ujungnya.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa rata-rata?</strong> Perhatikan komponen $x$. Jika kita berjalan dari $x_1$ ke $x_2$, titik tengah pasti berada "setengah jalan" di antara keduanya—artinya jarak dari $x_1$ ke titik tengah sama dengan jarak dari titik tengah ke $x_2$. Misalkan koordinat $x$ titik tengah adalah $x_m$, maka $x_m - x_1 = x_2 - x_m$, sehingga $2x_m = x_1 + x_2$ dan $x_m = (x_1 + x_2)/2$. Penalaran yang sama berlaku untuk $y$.</p>
+ </div>
+
+ <figure>
+  <svg viewBox="0 0 400 400" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.12">
+    <line x1="50" y1="50" x2="50" y2="350"/>
+    <line x1="100" y1="50" x2="100" y2="350"/>
+    <line x1="150" y1="50" x2="150" y2="350"/>
+    <line x1="200" y1="50" x2="200" y2="350"/>
+    <line x1="250" y1="50" x2="250" y2="350"/>
+    <line x1="300" y1="50" x2="300" y2="350"/>
+    <line x1="50" y1="100" x2="350" y2="100"/>
+    <line x1="50" y1="150" x2="350" y2="150"/>
+    <line x1="50" y1="200" x2="350" y2="200"/>
+    <line x1="50" y1="250" x2="350" y2="250"/>
+    <line x1="50" y1="300" x2="350" y2="300"/>
+   </g>
+   <line x1="30" y1="350" x2="378" y2="350" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="380,350 370,345 370,355" fill="#e8e8e8"/>
+   <text x="384" y="354" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="50" y1="370" x2="50" y2="32" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="50,30 45,40 55,40" fill="#e8e8e8"/>
+   <text x="56" y="28" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <line x1="100" y1="300" x2="300" y2="100" stroke="#daa520" stroke-width="2.5"/>
+   <circle cx="100" cy="300" r="4.5" fill="#daa520"/>
+   <circle cx="300" cy="100" r="4.5" fill="#daa520"/>
+   <circle cx="200" cy="200" r="5.5" fill="#5dade2"/>
+   <text x="78" y="318" font-size="13" fill="#daa520" font-style="italic">A (1, 1)</text>
+   <text x="305" y="96" font-size="13" fill="#daa520" font-style="italic">B (5, 5)</text>
+   <text x="208" y="198" font-size="13" fill="#5dade2" font-style="italic">M (3, 3)</text>
+   <text x="125" y="225" font-size="11" fill="#b8b8b8" font-style="italic">AM = MB</text>
+  </svg>
+  <figcaption class="visual-caption">Titik tengah $M(3, 3)$ dari segmen $AB$ dengan $A(1, 1)$ dan $B(5, 5)$. Karena $M$ berada di tengah, $AM = MB$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">D. Contoh Perhitungan</p>
+ <p class="lesson-text">Tentukan titik tengah segmen antara $A(1, 1)$ dan $B(5, 5)$.</p>
+ <p class="lesson-text">$$M = \left( \frac{1 + 5}{2}, \frac{1 + 5}{2} \right) = \left( \frac{6}{2}, \frac{6}{2} \right) = (3, 3)$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> jarak $AM = \sqrt{(3-1)^2 + (3-1)^2} = \sqrt{8}$. Jarak $MB = \sqrt{(5-3)^2 + (5-3)^2} = \sqrt{8}$. Karena $AM = MB$, titik $M$ memang tepat di tengah. ✓</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Gradien (Kemiringan Garis)</h3>
+ <p class="lesson-subheading">A. Pengertian Gradien</p>
+ <p class="lesson-text"><strong>Gradien</strong> (atau <em>kemiringan</em>, <em>slope</em>) adalah bilangan yang menyatakan <strong>seberapa miring</strong> sebuah garis terhadap sumbu-$X$. Gradien biasanya dilambangkan dengan huruf $m$.</p>
+ <p class="lesson-text">Secara intuitif, gradien adalah ukuran "seberapa cepat garis naik atau turun" ketika kita bergerak ke kanan. Jika kita bergerak sejauh $\Delta x$ ke kanan dan garis naik sejauh $\Delta y$, maka gradiennya adalah $\Delta y / \Delta x$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa gradien penting?</strong> Gradien adalah ukuran "kemiringan" yang muncul di mana-mana: dari kemiringan atap rumah (yang menentukan aliran air hujan), kecepatan kendaraan di tanjakan, hingga tingkat pertumbuhan ekonomi dalam grafik. Bahkan dalam machine learning, algoritma <em>gradient descent</em> menggunakan konsep ini untuk "menuruni" bukit kesalahan—mencari nilai minimum dari fungsi biaya.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Rumus Gradien dari Dua Titik</p>
+ <p class="lesson-text">Jika sebuah garis melewati dua titik $A(x_1, y_1)$ dan $B(x_2, y_2)$, maka gradiennya adalah:</p>
+ <p class="lesson-text">$$m = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}$$</p>
+ <p class="lesson-text">Perhatikan: pada rumus gradien, urutan pengurangan pada pembilang <strong>harus sama dengan penyebut</strong>. Jika kita menukar urutan di kedua-duanya sekaligus, hasilnya tetap sama. Tetapi jika hanya salah satu yang ditukar, tandanya akan terbalik dan hasilnya salah.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 400" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.12">
+    <line x1="50" y1="50" x2="50" y2="350"/>
+    <line x1="100" y1="50" x2="100" y2="350"/>
+    <line x1="150" y1="50" x2="150" y2="350"/>
+    <line x1="200" y1="50" x2="200" y2="350"/>
+    <line x1="250" y1="50" x2="250" y2="350"/>
+    <line x1="300" y1="50" x2="300" y2="350"/>
+    <line x1="50" y1="100" x2="350" y2="100"/>
+    <line x1="50" y1="150" x2="350" y2="150"/>
+    <line x1="50" y1="200" x2="350" y2="200"/>
+    <line x1="50" y1="250" x2="350" y2="250"/>
+    <line x1="50" y1="300" x2="350" y2="300"/>
+   </g>
+   <line x1="30" y1="350" x2="378" y2="350" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="380,350 370,345 370,355" fill="#e8e8e8"/>
+   <text x="384" y="354" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="50" y1="370" x2="50" y2="32" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="50,30 45,40 55,40" fill="#e8e8e8"/>
+   <text x="56" y="28" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <line x1="20" y1="310" x2="360" y2="55" stroke="#daa520" stroke-width="2.5"/>
+   <line x1="100" y1="250" x2="300" y2="250" stroke="#5dade2" stroke-width="2" stroke-dasharray="5,4"/>
+   <line x1="300" y1="250" x2="300" y2="100" stroke="#5dade2" stroke-width="2" stroke-dasharray="5,4"/>
+   <circle cx="100" cy="250" r="4.5" fill="#daa520"/>
+   <circle cx="300" cy="100" r="4.5" fill="#daa520"/>
+   <text x="60" y="268" font-size="13" fill="#daa520" font-style="italic">A (1, 2)</text>
+   <text x="305" y="96" font-size="13" fill="#daa520" font-style="italic">B (5, 5)</text>
+   <text x="180" y="268" font-size="13" fill="#5dade2" font-style="italic">Δx = 4</text>
+   <text x="308" y="180" font-size="13" fill="#5dade2" font-style="italic">Δy = 3</text>
+   <text x="220" y="200" font-size="13" fill="#f0c75e" font-style="italic">m = 3/4</text>
+  </svg>
+  <figcaption class="visual-caption">Gradien garis yang melalui $A(1, 2)$ dan $B(5, 5)$. Selisih $x$ ($\Delta x$) adalah $4$ dan selisih $y$ ($\Delta y$) adalah $3$, sehingga gradiennya $m = \tfrac{3}{4}$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Jenis-Jenis Gradien</p>
+ <p class="lesson-text">Berdasarkan nilainya, gradien dapat diklasifikasikan menjadi empat jenis:</p>
+
+ <figure>
+  <svg viewBox="0 0 800 250" style="max-width:100%; height:auto; width:800px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="40" y1="200" x2="180" y2="80" stroke="#daa520" stroke-width="2.5"/>
+   <line x1="20" y1="200" x2="200" y2="200" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+   <text x="55" y="65" font-size="13" fill="#daa520" font-style="italic">m &gt; 0</text>
+   <text x="40" y="230" font-size="11" fill="#b8b8b8" font-style="italic">naik ke kanan</text>
+
+   <line x1="240" y1="80" x2="380" y2="200" stroke="#5dade2" stroke-width="2.5"/>
+   <line x1="220" y1="200" x2="400" y2="200" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+   <text x="270" y="65" font-size="13" fill="#5dade2" font-style="italic">m &lt; 0</text>
+   <text x="240" y="230" font-size="11" fill="#b8b8b8" font-style="italic">turun ke kanan</text>
+
+   <line x1="440" y1="140" x2="580" y2="140" stroke="#f0c75e" stroke-width="2.5"/>
+   <line x1="420" y1="140" x2="600" y2="140" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+   <text x="475" y="125" font-size="13" fill="#f0c75e" font-style="italic">m = 0</text>
+   <text x="440" y="170" font-size="11" fill="#b8b8b8" font-style="italic">horizontal</text>
+
+   <line x1="700" y1="60" x2="700" y2="200" stroke="#daa520" stroke-width="2.5"/>
+   <line x1="680" y1="130" x2="720" y2="130" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+   <text x="700" y="40" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle">m tak terdefinisi</text>
+   <text x="660" y="225" font-size="11" fill="#b8b8b8" font-style="italic">vertikal</text>
+  </svg>
+  <figcaption class="visual-caption">Empat jenis gradien: positif (garis naik ke kanan), negatif (garis turun ke kanan), nol (garis horizontal), dan tak terdefinisi (garis vertikal).</figcaption>
+ </figure>
+
+ <ul>
+  <li><strong>Gradien positif ($m > 0$)</strong>: garis naik dari kiri ke kanan. Semakin besar nilainya, semakin curam.</li>
+  <li><strong>Gradien negatif ($m < 0$)</strong>: garis turun dari kiri ke kanan. Semakin kecil nilainya (semakin negatif), semakin curam.</li>
+  <li><strong>Gradien nol ($m = 0$)</strong>: garis horizontal (sejajar sumbu-$X$). Tidak ada perubahan $y$ ketika $x$ berubah, sehingga $\Delta y = 0$.</li>
+  <li><strong>Gradien tak terdefinisi</strong>: garis vertikal (sejajar sumbu-$Y$). Tidak ada perubahan $x$, sehingga $\Delta x = 0$. Pembagian dengan nol tidak terdefinisi, jadi gradiennya tidak ada.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Contoh Perhitungan</p>
+ <p class="lesson-text">Hitung gradien garis yang melalui titik $A(1, 2)$ dan $B(5, 5)$.</p>
+ <p class="lesson-text">$$m = \frac{5 - 2}{5 - 1} = \frac{3}{4}$$</p>
+ <p class="lesson-text">Gradien positif, jadi garis naik ke kanan. Sesuai Gambar 4, "rise" $= 3$ dan "run" $= 4$, sehingga $m = 3/4$. ✓</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Persamaan Garis</h3>
+ <p class="lesson-subheading">A. Pengertian Persamaan Garis</p>
+ <p class="lesson-text"><strong>Persamaan garis</strong> adalah persamaan aljabar yang menghubungkan koordinat $x$ dan $y$ dari setiap titik pada garis tersebut. Persamaan ini memungkinkan kita untuk:</p>
+ <ul>
+  <li>Memeriksa apakah suatu titik berada pada garis tertentu (dengan substitusi).</li>
+  <li>Menentukan titik-titik lain yang berada pada garis tersebut.</li>
+  <li>Menganalisis sifat geometri garis (kemiringan, perpotongan dengan sumbu, dan sebagainya).</li>
+ </ul>
+ <figure>
+ <svg viewBox="0 0 480 460" style="display:block; margin:0 auto; max-width:100%; height:auto; width:480px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid -->
+  <g stroke="#e8e8e8" stroke-width="0.5" opacity="0.12">
+   <line x1="60" y1="40" x2="60" y2="420" />
+   <line x1="110" y1="40" x2="110" y2="420" />
+   <line x1="160" y1="40" x2="160" y2="420" />
+   <line x1="210" y1="40" x2="210" y2="420" />
+   <line x1="260" y1="40" x2="260" y2="420" />
+   <line x1="310" y1="40" x2="310" y2="420" />
+   <line x1="360" y1="40" x2="360" y2="420" />
+   <line x1="410" y1="40" x2="410" y2="420" />
+   <line x1="60" y1="80" x2="440" y2="80" />
+   <line x1="60" y1="130" x2="440" y2="130" />
+   <line x1="60" y1="180" x2="440" y2="180" />
+   <line x1="60" y1="230" x2="440" y2="230" />
+   <line x1="60" y1="280" x2="440" y2="280" />
+   <line x1="60" y1="330" x2="440" y2="330" />
+   <line x1="60" y1="380" x2="440" y2="380" />
+  </g>
+  
+  <!-- Sumbu X -->
+  <line x1="40" y1="230" x2="450" y2="230" stroke="#e8e8e8" stroke-width="2" />
+  <polygon points="458,230 448,225 448,235" fill="#e8e8e8" />
+  <text x="462" y="235" font-size="14" fill="#e8e8e8" font-style="italic">x</text>
+  
+  <!-- Sumbu Y -->
+  <line x1="210" y1="440" x2="210" y2="40" stroke="#e8e8e8" stroke-width="2" />
+  <polygon points="210,32 205,42 215,42" fill="#e8e8e8" />
+  <text x="220" y="30" font-size="14" fill="#e8e8e8" font-style="italic">y</text>
+  
+  <!-- Titik asal -->
+  <circle cx="210" cy="230" r="4" fill="#e8e8e8" />
+  <text x="196" y="248" font-size="12" fill="#b8b8b8" font-style="italic">O</text>
+  <line x1="160" y1="380" x2="340" y2="20" stroke="#daa520" stroke-width="2.5" />
+  
+  <!-- Titik potong sumbu Y: (0, -1) -->
+  <circle cx="210" cy="280" r="5" fill="#daa520" />
+  <text x="130" y="298" font-size="13" fill="#daa520" font-style="italic">(0, −1)</text>
+  
+  <!-- Titik (1, 1) -->
+  <circle cx="260" cy="180" r="5" fill="#daa520" />
+  <text x="268" y="172" font-size="13" fill="#daa520" font-style="italic">(1, 1)</text>
+  
+  <!-- Titik (2, 3) -->
+  <circle cx="310" cy="80" r="5" fill="#daa520" />
+  <text x="318" y="72" font-size="13" fill="#daa520" font-style="italic">(2, 3)</text>
+  
+  <!-- Δy dan Δx dari (0, -1) ke (1, 1) -->
+  <line x1="210" y1="280" x2="260" y2="280" stroke="#5dade2" stroke-width="1.8" stroke-dasharray="4,3" />
+  <line x1="260" y1="280" x2="260" y2="180" stroke="#5dade2" stroke-width="1.8" stroke-dasharray="4,3" />
+  <text x="230" y="297" font-size="12" fill="#5dade2" font-style="italic" text-anchor="middle">Δx = 1</text>
+  <text x="272" y="235" font-size="12" fill="#5dade2" font-style="italic">Δy = 2</text>
+  
+  <!-- Label garis -->
+  <text x="270" y="130" font-size="14" fill="#daa520" font-style="italic" font-weight="600">y = 2x − 1</text>
+ </svg>
+ <figcaption class="visual-caption">Garis $y = 2x - 1$. Persamaan ini menghubungkan setiap titik pada garis dengan pasangan $(x, y)$ yang memenuhi. Titik potong sumbu-$Y$ adalah $(0, -1)$, dan gradiennya $m = 2$&mdash;setiap kali $x$ bertambah $1$, $y$ bertambah $2$. Inilah sebabnya rumus $y = mx + c$ disebut bentuk <em>slope-intercept</em>.</figcaption>
+</figure>
+ <p class="lesson-subheading">B. Bentuk-Bentuk Persamaan Garis</p>
+ <p class="lesson-text">Ada beberapa bentuk penulisan persamaan garis yang umum dipakai. Masing-masing punya kegunaan sendiri, tergantung informasi yang tersedia.</p>
+
+ <p class="lesson-subheading-alt">1. Bentuk Umum</p>
+ <p class="lesson-text">$$Ax + By + C = 0$$</p>
+ <p class="lesson-text">dengan $A$, $B$, $C$ adalah konstanta, dan $A$ serta $B$ tidak keduanya nol. Ini adalah bentuk paling umum, dapat mewakili semua garis—termasuk garis vertikal yang tidak bisa diwakili bentuk lain.</p>
+
+ <p class="lesson-subheading-alt">2. Bentuk Slope-Intercept (Gradien-Titik Potong)</p>
+ <p class="lesson-text">$$y = mx + c$$</p>
+ <p class="lesson-text">dengan $m$ adalah gradien dan $c$ adalah koordinat $y$ titik potong garis dengan sumbu-$Y$ (yaitu titik $(0, c)$). Bentuk ini paling nyaman untuk menggambar garis dengan cepat: mulai dari titik $(0, c)$ pada sumbu-$Y$, lalu bergerak sesuai gradien.</p>
+
+ <p class="lesson-subheading-alt">3. Bentuk Titik-Gradien</p>
+ <p class="lesson-text">$$y - y_1 = m(x - x_1)$$</p>
+ <p class="lesson-text">dengan $(x_1, y_1)$ adalah satu titik yang diketahui pada garis dan $m$ adalah gradien. Bentuk ini paling praktis ketika kita mengetahui gradien dan satu titik pada garis.</p>
+ <p class="lesson-text"><strong>Mengapa rumus ini masuk akal?</strong> Misalkan $(x, y)$ adalah titik lain pada garis. Karena garis lurus memiliki gradien konstan, maka $m = \dfrac{y - y_1}{x - x_1}$. Kalikan kedua ruas dengan $(x - x_1)$: $y - y_1 = m(x - x_1)$. ∎</p>
+
+ <p class="lesson-subheading-alt">4. Bentuk Dua Titik</p>
+ <p class="lesson-text">Jika kita mengetahui dua titik $(x_1, y_1)$ dan $(x_2, y_2)$, kita dapat menentukan persamaan garis dengan terlebih dahulu menghitung gradiennya, lalu menggunakan bentuk titik-gradien:</p>
+ <p class="lesson-text">$$m = \frac{y_2 - y_1}{x_2 - x_1}, \quad \text{lalu} \quad y - y_1 = m(x - x_1)$$</p>
+
+ <p class="lesson-subheading">C. Menentukan Persamaan Garis dari Berbagai Informasi</p>
+ <p class="lesson-text">Berikut tiga kasus umum yang akan sering Anda temui.</p>
+
+ <p class="lesson-subheading-alt">Kasus 1: Diketahui gradien dan satu titik</p>
+ <p class="lesson-text">Gunakan bentuk titik-gradien. Contoh: tentukan persamaan garis dengan gradien $2$ yang melalui titik $(3, 5)$.</p>
+ <p class="lesson-text">$$y - 5 = 2(x - 3) \quad \Rightarrow \quad y - 5 = 2x - 6 \quad \Rightarrow \quad y = 2x - 1$$</p>
+ <p class="lesson-text">Jadi, persamaan garisnya adalah $y = 2x - 1$ atau $2x - y - 1 = 0$ dalam bentuk umum.</p>
+
+ <p class="lesson-subheading-alt">Kasus 2: Diketahui dua titik</p>
+ <p class="lesson-text">Hitung gradien dulu, lalu gunakan bentuk titik-gradien. Contoh: tentukan persamaan garis melalui $A(1, 2)$ dan $B(4, 8)$.</p>
+ <p class="lesson-text">$$m = \frac{8 - 2}{4 - 1} = \frac{6}{3} = 2$$</p>
+ <p class="lesson-text">$$y - 2 = 2(x - 1) \quad \Rightarrow \quad y - 2 = 2x - 2 \quad \Rightarrow \quad y = 2x$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> substitusi titik $B(4, 8)$: $8 = 2 \cdot 4 = 8$. ✓</p>
+
+ <p class="lesson-subheading-alt">Kasus 3: Diketahui gradien dan titik potong sumbu-$Y$</p>
+ <p class="lesson-text">Langsung gunakan bentuk slope-intercept $y = mx + c$. Contoh: tentukan persamaan garis dengan gradien $-3$ yang memotong sumbu-$Y$ di titik $(0, 4)$.</p>
+ <p class="lesson-text">$$y = -3x + 4$$</p>
+
+ <p class="lesson-subheading">D. Menggambar Garis dari Persamaannya</p>
+ <p class="lesson-text">Untuk menggambar garis dari persamaan, ada dua cara mudah:</p>
+ <ul>
+  <li><strong>Metode tabel:</strong> pilih dua nilai $x$ sembarang, hitung nilai $y$ yang bersesuaian, lalu gambar dua titik tersebut dan hubungkan.</li>
+  <li><strong>Metode gradien-titik potong:</strong> dari bentuk $y = mx + c$, gambar titik $(0, c)$, lalu gunakan gradien $m = \Delta y / \Delta x$ untuk bergerak ke titik berikutnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Hubungan Antara Dua Garis</h3>
+ <p class="lesson-text">Dua garis pada bidang dapat memiliki beberapa jenis hubungan. Yang paling penting adalah <strong>sejajar</strong> dan <strong>tegak lurus</strong>, karena keduanya dapat diperiksa hanya dengan melihat gradiennya.</p>
+
+ <p class="lesson-subheading">A. Garis Sejajar</p>
+ <p class="lesson-text">Dua garis disebut <strong>sejajar</strong> jika keduanya memiliki <strong>gradien yang sama</strong> dan tidak berimpit. Secara formal:</p>
+ <p class="lesson-text">$$m_1 = m_2$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Gradien mengukur "kemiringan" garis terhadap sumbu-$X$. Jika dua garis memiliki kemiringan yang sama, keduanya pasti "berjalan searah" dan tidak akan pernah berpotongan—kecuali jika keduanya identik.</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Garis $y = 2x + 1$ dan $y = 2x - 3$ sejajar karena keduanya memiliki gradien $m = 2$.</p>
+
+ <p class="lesson-subheading">B. Garis Tegak Lurus</p>
+ <p class="lesson-text">Dua garis disebut <strong>tegak lurus</strong> jika keduanya berpotongan membentuk sudut $90^\circ$. Syaratnya:</p>
+ <p class="lesson-text">$$m_1 \cdot m_2 = -1$$</p>
+ <p class="lesson-text">atau ekuivalen, $m_2 = -1 / m_1$ (dengan $m_1 \neq 0$).</p>
+ <p class="lesson-text">Dengan kata lain, gradien garis kedua adalah <strong>negatif kebalikan</strong> dari gradien garis pertama.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi mengapa $m_1 \cdot m_2 = -1$:</strong> bayangkan sebuah garis dengan gradien $m_1 = \tfrac{2}{1}$ (naik $2$ setiap kali bergerak ke kanan $1$). Garis yang tegak lurus harus "berbelok" tepat $90°$, yang berarti jika garis pertama naik $2$ ke kanan $1$, garis tegak lurusnya harus turun $1$ setiap kali bergerak ke kanan $2$—yaitu $m_2 = -\tfrac{1}{2}$. Hasil kali $m_1 \cdot m_2 = \tfrac{2}{1} \cdot (-\tfrac{1}{2}) = -1$. ✓</p>
+ </div>
+
+ <p class="lesson-text"><strong>Catatan penting:</strong> jika $m_1 = 0$ (garis horizontal), maka garis yang tegak lurus terhadapnya harus vertikal—yang gradiennya <em>tak terdefinisi</em>. Jadi syarat $m_1 \cdot m_2 = -1$ tidak dapat diterapkan pada kasus ini. Sebagai gantinya, kita tahu bahwa garis horizontal selalu tegak lurus terhadap garis vertikal.</p>
+
+ <figure>
+  <svg viewBox="0 0 800 340" style="max-width:100%; height:auto; width:800px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel 1: Sejajar -->
+   <text x="180" y="30" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Sejajar: m₁ = m₂</text>
+
+   <line x1="60" y1="290" x2="160" y2="90" stroke="#daa520" stroke-width="2.5"/>
+   <line x1="60" y1="320" x2="160" y2="120" stroke="#5dade2" stroke-width="2.5"/>
+
+   <text x="180" y="160" font-size="13" fill="#daa520" font-style="italic">m₁ = 2</text>
+   <text x="180" y="200" font-size="13" fill="#5dade2" font-style="italic">m₂ = 2</text>
+
+   <!-- Panel 2: Tegak lurus -->
+   <text x="580" y="30" font-size="13" fill="#f0c75e" font-style="italic" text-anchor="middle" font-weight="600">Tegak lurus: m₁ · m₂ = −1</text>
+
+   <line x1="420" y1="280" x2="520" y2="80" stroke="#daa520" stroke-width="2.5"/>
+   <line x1="400" y1="180" x2="680" y2="320" stroke="#5dade2" stroke-width="2.5"/>
+   <circle cx="456" cy="208" r="4.5" fill="#f0c75e"/>
+   <!-- Tanda siku-siku -->
+   <polyline points="451,218 456,208 466,213" fill="none" stroke="#f0c75e" stroke-width="1.8"/>
+   <text x="540" y="120" font-size="13" fill="#daa520" font-style="italic">m₁ = 2</text>
+   <text x="500" y="305" font-size="13" fill="#5dade2" font-style="italic">m₂ = −½</text>
+  </svg>
+  <figcaption class="visual-caption">Dua garis sejajar memiliki gradien sama (kiri). Dua garis tegak lurus memiliki hasil kali gradien $-1$ (kanan): jika $m_1 = 2$, maka $m_2 = -\tfrac{1}{2}$ agar $m_1 \cdot m_2 = -1$.</figcaption>
+ </figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Contoh Soal Gabungan</h3>
+ <p class="lesson-subheading">Contoh 1: Menentukan Persamaan Garis Sejajar</p>
+ <p class="lesson-text">Tentukan persamaan garis yang melalui titik $A(3, 7)$ dan sejajar dengan garis $y = 3x - 1$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Garis sejajar memiliki gradien yang sama, jadi $m = 3$. Gunakan bentuk titik-gradien:</p>
+ <p class="lesson-text">$$y - 7 = 3(x - 3) \quad \Rightarrow \quad y - 7 = 3x - 9 \quad \Rightarrow \quad y = 3x - 2$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> substitusi $A(3, 7)$: $7 = 3 \cdot 3 - 2 = 7$. ✓</p>
+
+ <p class="lesson-subheading">Contoh 2: Menentukan Persamaan Garis Tegak Lurus</p>
+ <p class="lesson-text">Tentukan persamaan garis yang melalui titik $B(4, 1)$ dan tegak lurus dengan garis $y = 2x + 3$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Gradien garis awal $m_1 = 2$. Maka gradien garis tegak lurus adalah $m_2 = -1/m_1 = -1/2$.</p>
+ <p class="lesson-text">Gunakan bentuk titik-gradien: $y - 1 = -\tfrac{1}{2}(x - 4)$.</p>
+ <p class="lesson-text">$y - 1 = -\tfrac{1}{2}x + 2 \Rightarrow y = -\tfrac{1}{2}x + 3$.</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $2 \cdot (-\tfrac{1}{2}) = -1$. ✓</p>
+
+ <p class="lesson-subheading">Contoh 3: Menentukan Titik Tengah dan Jarak</p>
+ <p class="lesson-text">Diketahui titik $P(1, 3)$ dan $Q(7, 11)$. Tentukan titik tengah $M$ dan jarak $PQ$.</p>
+ <p class="lesson-text"><strong>Titik tengah:</strong> $M = \left(\tfrac{1+7}{2}, \tfrac{3+11}{2}\right) = (4, 7)$.</p>
+ <p class="lesson-text"><strong>Jarak:</strong> $PQ = \sqrt{(7-1)^2 + (11-3)^2} = \sqrt{36 + 64} = \sqrt{100} = 10$.</p>
+
+ <p class="lesson-subheading">Contoh 4: Mencari Titik yang Terletak pada Garis</p>
+ <p class="lesson-text">Apakah titik $C(3, 7)$ terletak pada garis $y = 2x + 1$?</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Substitusi $x = 3$: $y = 2 \cdot 3 + 1 = 7$. Karena hasilnya tepat $7$, maka titik $C(3, 7)$ <strong>terletak pada</strong> garis tersebut. ✓</p>
+
+ <p class="lesson-subheading">Contoh 5: Menentukan Gradien dari Persamaan Umum</p>
+ <p class="lesson-text">Tentukan gradien dari garis $3x + 2y - 6 = 0$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Ubah ke bentuk slope-intercept dengan menyelesaikan untuk $y$:</p>
+ <p class="lesson-text">$$2y = -3x + 6 \quad \Rightarrow \quad y = -\frac{3}{2}x + 3$$</p>
+ <p class="lesson-text">Jadi, gradiennya $m = -3/2$.</p>
+
+ <p class="lesson-subheading">Contoh 6: Menentukan Persamaan Garis Melalui Dua Titik Tegak Lurus</p>
+ <p class="lesson-text">Titik $A(-1, 3)$, $B(2, 5)$, dan $C(4, 1)$ diberikan. Tentukan persamaan garis yang melalui $C$ dan tegak lurus terhadap garis $AB$.</p>
+ <p class="lesson-text"><strong>Langkah 1</strong>—hitung gradien $AB$: $m_{AB} = \dfrac{5 - 3}{2 - (-1)} = \dfrac{2}{3}$.</p>
+ <p class="lesson-text"><strong>Langkah 2</strong>—gradien garis tegak lurus: $m_{\perp} = -\dfrac{1}{m_{AB}} = -\dfrac{3}{2}$.</p>
+ <p class="lesson-text"><strong>Langkah 3</strong>—persamaan garis melalui $C(4, 1)$: $y - 1 = -\dfrac{3}{2}(x - 4) \Rightarrow y = -\dfrac{3}{2}x + 7$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Penerapan Praktis</h3>
+ <p class="lesson-text">Geometri analitik bukan hanya objek teoretis—ia menjadi fondasi dari banyak teknologi modern dan aplikasi sehari-hari.</p>
+
+ <p class="lesson-subheading">A. Sistem Navigasi dan GPS</p>
+ <p class="lesson-text">Setiap kali Anda menggunakan GPS di ponsel untuk mencari rute, sistem sedang melakukan perhitungan geometri analitik. Jarak antara posisi Anda dan tujuan dihitung menggunakan rumus jarak. Rute yang disarankan melibatkan garis-garis dan kemiringan (gradien) jalan. Titik tengah antara dua lokasi digunakan untuk menemukan tempat pertemuan yang adil.</p>
+
+ <p class="lesson-subheading">B. Grafika Komputer dan Game</p>
+ <p class="lesson-text">Dalam grafika komputer, setiap objek dibangun dari titik-titik yang dihubungkan oleh garis. Rumus jarak digunakan untuk <em>collision detection</em> (mendeteksi apakah dua objek bertabrakan). Gradien digunakan untuk <em>rendering</em> garis dan mengatur sudut pandang kamera. Persamaan garis digunakan untuk menggambar bayangan dan garis perspektif.</p>
+
+ <p class="lesson-subheading">C. Peta Digital dan Sistem Informasi Geografis</p>
+ <p class="lesson-text">Peta digital (Google Maps, Waze) menggunakan geometri analitik untuk menghitung jarak antar titik, menentukan arah mata angin, dan menganalisis pola pergerakan. Setiap jalan, sungai, atau batas wilayah direpresentasikan sebagai kumpulan titik dan garis pada sistem koordinat.</p>
+
+ <p class="lesson-subheading">D. Ekonomi dan Bisnis</p>
+ <p class="lesson-text">Dalam analisis ekonomi, kurva permintaan dan penawaran dapat didekati sebagai garis lurus pada rentang tertentu. Gradien kurva ini menunjukkan seberapa sensitif permintaan atau penawaran terhadap perubahan harga. Titik keseimbangan pasar adalah titik potong antara dua garis—dan menemukannya melibatkan penyelesaian sistem persamaan linear.</p>
+
+ <p class="lesson-subheading">E. Ilmu Komputer dan Machine Learning</p>
+ <p class="lesson-text">Banyak algoritma machine learning—terutama regresi linear—menggunakan konsep gradien untuk menemukan garis terbaik yang melewati sekumpulan data. Proses optimisasi seperti <em>gradient descent</em> secara iteratif menyesuaikan gradien garis untuk meminimalkan kesalahan prediksi.</p>
+
+ <p class="lesson-subheading">F. Robotika dan Kontrol Otomatis</p>
+ <p class="lesson-text">Robot menggunakan geometri analitik untuk merencanakan jalur pergerakan, menghindari rintangan, dan menentukan posisi relatif terhadap objek. Sistem kontrol otomatis menggunakan persamaan garis untuk memodelkan trayektori yang diinginkan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Tertukar urutan koordinat.</strong> Titik $(3, 5)$ berbeda dengan titik $(5, 3)$. Selalu baca sebagai $(x, y)$, bukan $(y, x)$.</li>
+  <li><strong>Salah menghitung jarak karena lupa mengkuadratkan.</strong> Rumus jarak adalah $\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$—kedua selisih harus dikuadratkan <em>sebelum</em> dijumlahkan, bukan setelah.</li>
+  <li><strong>Menganggap titik tengah selalu bernilai bulat.</strong> Titik tengah bisa memiliki koordinat pecahan, misalnya $(1{,}5;\ 2{,}5)$. Itu hasil yang sah.</li>
+  <li><strong>Tertukar antara absis dan ordinat dalam titik tengah.</strong> Rumus $(x_1+x_2)/2$ berlaku untuk komponen $x$, dan $(y_1+y_2)/2$ untuk komponen $y$. Jangan tertukar.</li>
+  <li><strong>Menghitung gradien dengan urutan yang salah.</strong> Rumus $m = \frac{y_2 - y_1}{x_2 - x_1}$ tidak boleh dicampur menjadi $\frac{y_2 - y_1}{x_1 - x_2}$—itu menghasilkan tanda yang salah.</li>
+  <li><strong>Lupa bahwa gradien garis vertikal tidak terdefinisi.</strong> Untuk garis vertikal, $\Delta x = 0$, sehingga pembagian dengan nol. Gradiennya bukan nol—melainkan <em>tidak ada</em>.</li>
+  <li><strong>Menganggap gradien nol sama dengan gradien tak terdefinisi.</strong> Gradien nol adalah garis horizontal. Gradien tak terdefinisi adalah garis vertikal. Keduanya sangat berbeda.</li>
+  <li><strong>Salah menerapkan syarat tegak lurus.</strong> Syaratnya $m_1 \cdot m_2 = -1$, bukan $m_1 = -m_2$ atau $m_1 = 1/m_2$. Kesalahan ini sering terjadi karena lupa tanda negatif.</li>
+  <li><strong>Menganggap dua garis dengan gradien sama pasti sejajar.</strong> Gradien sama <em>belum tentu</em> berarti sejajar. Jika gradien sama <strong>dan</strong> titik potong sumbu-$Y$ juga sama, maka kedua garis sebenarnya <strong>berimpit</strong> (identik), bukan sejajar. Garis sejajar punya gradien sama <em>tetapi</em> titik potong sumbu-$Y$ berbeda.</li>
+  <li><strong>Salah mengubah bentuk umum ke bentuk slope-intercept.</strong> Pastikan memindahkan suku-suku dengan benar. Contoh: dari $3x + 2y - 6 = 0$, kita memperoleh $y = -\tfrac{3}{2}x + 3$, bukan $y = \tfrac{3}{2}x + 3$—tanda negatifnya penting.</li>
+  <li><strong>Mengabaikan satuan saat menghitung jarak.</strong> Jarak memiliki satuan panjang yang sama dengan satuan koordinat. Jika $x$ dan $y$ dalam cm, maka jarak dalam cm—bukan cm$^2$.</li>
+  <li><strong>Menganggap titik yang tidak berada pada garis pasti jauh dari garis.</strong> Untuk memeriksa apakah titik berada pada garis, cukup substitusi koordinatnya. Jika memenuhi persamaan, titik ada di garis. Jika tidak, jaraknya bisa berapa saja. Soal "jarak titik ke garis" adalah konsep lanjutan yang berbeda.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Sistem koordinat Kartesius</strong> dibentuk oleh sumbu-$X$ (horizontal) dan sumbu-$Y$ (vertikal) yang berpotongan di titik asal $(0, 0)$. Bidang terbagi menjadi empat kuadran.</li>
+  <li><strong>Jarak dua titik</strong> $A(x_1, y_1)$ dan $B(x_2, y_2)$: $AB = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$—diturunkan dari Teorema Pythagoras.</li>
+  <li><strong>Titik tengah</strong> segmen $AB$: $M = \left(\dfrac{x_1+x_2}{2}, \dfrac{y_1+y_2}{2}\right)$—rata-rata koordinat kedua ujung.</li>
+  <li><strong>Gradien</strong> garis melalui $A$ dan $B$: $m = \dfrac{y_2-y_1}{x_2-x_1}$. Empat jenis: positif, negatif, nol (horizontal), dan tak terdefinisi (vertikal).</li>
+  <li><strong>Persamaan garis</strong> dapat ditulis dalam beberapa bentuk: $Ax + By + C = 0$ (umum), $y = mx + c$ (slope-intercept), $y - y_1 = m(x - x_1)$ (titik-gradien), atau diturunkan dari dua titik.</li>
+  <li><strong>Dua garis sejajar</strong> jika $m_1 = m_2$; <strong>tegak lurus</strong> jika $m_1 \cdot m_2 = -1$.</li>
+  <li>Untuk memeriksa apakah sebuah titik berada pada garis, substitusi koordinatnya ke persamaan garis.</li>
+  <li>Untuk mengubah bentuk umum ke bentuk slope-intercept, selesaikan persamaan untuk $y$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Geometri analitik adalah <strong>jembatan antara geometri dan aljabar</strong>. Dengan menempatkan bangun pada sistem koordinat, kita dapat mengubah pertanyaan geometri menjadi perhitungan aljabar yang sistematis dan dapat diperiksa. Empat pilar utamanya&mdash;jarak, titik tengah, gradien, dan persamaan garis&mdash;saling terhubung erat: jarak berasal dari Pythagoras, titik tengah dari rata-rata, gradien dari perbandingan selisih, dan persamaan garis menyatukan gradien dengan titik. Yang menarik, semua rumus ini dapat diturunkan dari konsep dasar yang sudah Anda kuasai sebelumnya&mdash;bukan kumpulan hafalan, melainkan jaringan konsep yang saling mendukung.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi bagi topik-topik berikutnya: <strong>Irisan Kerucut</strong> (lingkaran, parabola, elips, hiperbola), <strong>Trigonometri Dasar</strong> (lingkaran satuan dan koordinat), <strong>Kalkulus</strong> (gradien sebagai turunan), <strong>Aljabar Linear</strong> (vektor dan transformasi geometri), hingga <strong>Matematika untuk Machine Learning</strong> (regresi linear dan optimisasi gradien).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama yang menggabungkan beberapa konsep sekaligus. Kebiasaan memeriksa kewajaran hasil (apakah gradien cocok dengan arah garis pada gambar), konsisten dengan tanda positif dan negatif, serta memverifikasi jawaban dengan substitusi akan menyelamatkan Anda dari kesalahan yang tidak perlu&mdash;terutama saat melangkah ke kalkulus dan aljabar linear, di mana manipulasi koordinat dan persamaan menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

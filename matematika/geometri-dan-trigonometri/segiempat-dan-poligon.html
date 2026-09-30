@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Segiempat &amp; Poligon (Jajar Genjang, Trapesium, Poligon Beraturan)</title>
+ <meta name="description" content="Materi lengkap segiempat dan poligon: pengertian, unsur-unsur, jenis-jenis segiempat (persegi, persegi panjang, jajar genjang, belah ketupat, layang-layang, trapesium), sifat-sifat jajar genjang dan trapesium, serta poligon beraturan dengan rumus sudut dalam dan luar.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Segiempat &amp; Poligon (Jajar Genjang, Trapesium, Poligon Beraturan)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Titik, Garis, dan Sudut</strong> — terutama hubungan sudut pada garis sejajar (sudut dalam sepihak dan berseberangan), karena sifat-sifat jajar genjang dan trapesium bertumpu langsung pada hubungan ini.</li>
+   <li><strong>Segitiga</strong> — terutama jumlah sudut dalam ($180^\circ$), karena setiap poligon dapat diuraikan menjadi segitiga-segitiga, dan rumus jumlah sudut dalam poligon diturunkan dari sifat segitiga.</li>
+   <li><strong>Rasio &amp; Proporsi</strong> — membantu dalam perhitungan perbandingan sisi dan sudut pada segiempat, terutama saat menyelesaikan soal yang melibatkan kesebangunan bentuk.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Coba perhatikan ubin lantai sekitar Anda&mdash;hampir semuanya berbentuk <strong>persegi</strong>, tersusun rapi tanpa celah. Sarang lebah berbentuk <strong>segienam beraturan</strong>. Rambu stop berbentuk <strong>segidelapan beraturan</strong>. Ketiganya adalah contoh dari keluarga besar bangun datar yang disebut <strong>poligon</strong>&mdash;dan yang paling sederhana di antaranya adalah <strong>segiempat</strong>, poligon dengan empat sisi.</p>
+ <p class="lesson-text">Segiempat dan poligon penting karena penerapannya ada di mana-mana: denah rumah, ubin lantai, layar TV, rambu lalu lintas, kristal garam, hingga pola dekoratif keramik. Memahami sifat-sifatnya memungkinkan kita menghitung luas, keliling, dan sudut dengan tepat. Materi ini disusun bertahap: mulai dari pengertian segiempat dan unsur-unsurnya, jenis-jenisnya, pembahasan mendalam tentang <strong>jajar genjang</strong> dan <strong>trapesium</strong>, dilanjutkan <strong>poligon beraturan</strong> beserta rumus sudutnya, penerapan praktis, hingga kesalahan umum&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap sifat berlaku, bukan sekadar rumusnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Segiempat dan Unsur-Unsurnya</h3>
+ <p class="lesson-text">Kita mulai dari definisi dan komponen dasar—fondasi untuk seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Segiempat</p>
+ <p class="lesson-text"><strong>Segiempat</strong> adalah bangun datar yang dibentuk oleh <strong>empat titik</strong> (tidak ada tiga yang kolinear) dan <strong>empat segmen garis</strong> yang menghubungkan titik-titik tersebut secara berurutan, sehingga membentuk daerah tertutup. Segiempat juga dapat dipandang sebagai <strong>poligon dengan empat sisi</strong>.</p>
+ <p class="lesson-text">Segiempat dengan titik sudut $A$, $B$, $C$, dan $D$ (berurutan) ditulis $ABCD$. Urutan huruf sangat penting—huruf-huruf harus ditulis mengikuti urutan keliling bangun, baik searah jarum jam maupun berlawanan.</p>
+
+ <p class="lesson-subheading">B. Unsur-Unsur Segiempat</p>
+ <p class="lesson-text">Setiap segiempat $ABCD$ memiliki unsur-unsur berikut:</p>
+ <ul>
+  <li><strong>Empat titik sudut</strong>: $A$, $B$, $C$, dan $D$.</li>
+  <li><strong>Empat sisi</strong>: $AB$, $BC$, $CD$, dan $DA$.</li>
+  <li><strong>Empat sudut dalam</strong>: $\angle A$, $\angle B$, $\angle C$, dan $\angle D$.</li>
+  <li><strong>Dua diagonal</strong>: segmen yang menghubungkan dua titik sudut yang tidak berdekatan, yaitu $AC$ dan $BD$.</li>
+  <li><strong>Empat sudut luar</strong>: sudut yang dibentuk oleh perpanjangan salah satu sisi dengan sisi berikutnya.</li>
+ </ul>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,80 320,80 340,240 60,240" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="80" y1="80" x2="340" y2="240" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <line x1="320" y1="80" x2="60" y2="240" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <circle cx="80" cy="80" r="4.5" fill="#daa520"/>
+   <circle cx="320" cy="80" r="4.5" fill="#daa520"/>
+   <circle cx="340" cy="240" r="4.5" fill="#daa520"/>
+   <circle cx="60" cy="240" r="4.5" fill="#daa520"/>
+   <text x="68" y="72" font-size="15" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="324" y="72" font-size="15" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="346" y="258" font-size="15" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="48" y="258" font-size="15" fill="#e8e8e8" font-style="italic">D</text>
+   <text x="200" y="272" font-size="12" fill="#5dade2" font-style="italic">diagonal AC dan BD</text>
+  </svg>
+  <figcaption class="visual-caption">Segiempat $ABCD$ dengan titik sudut $A$, $B$, $C$, $D$; sisi $AB$, $BC$, $CD$, $DA$; dan diagonal $AC$, $BD$ (garis putus-putus biru).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Jumlah Sudut Dalam Segiempat adalah $360^\circ$</p>
+ <p class="lesson-text">Salah satu sifat fundamental segiempat: <strong>jumlah keempat sudut dalamnya selalu $360^\circ$</strong>. Sifat ini berlaku untuk semua segiempat, apa pun bentuknya.</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Setiap segiempat dapat dibagi menjadi <strong>dua segitiga</strong> dengan menarik salah satu diagonalnya. Misalnya, tarik diagonal $AC$ pada segiempat $ABCD$. Diagonal ini membagi segiempat menjadi $\triangle ABC$ dan $\triangle ACD$.</p>
+ <ul>
+  <li>Jumlah sudut dalam $\triangle ABC = \angle BAC + \angle ABC + \angle BCA = 180^\circ$.</li>
+  <li>Jumlah sudut dalam $\triangle ACD = \angle CAD + \angle ACD + \angle CDA = 180^\circ$.</li>
+ </ul>
+ <p class="lesson-text">Jika kedua jumlah ini dijumlahkan, kita mendapatkan:</p>
+ <p class="lesson-text">$$(\angle BAC + \angle CAD) + \angle ABC + (\angle BCA + \angle ACD) + \angle CDA = 360^\circ$$</p>
+ <p class="lesson-text">Perhatikan bahwa $\angle BAC + \angle CAD = \angle A$, dan $\angle BCA + \angle ACD = \angle C$. Sehingga:</p>
+ <p class="lesson-text">$$\angle A + \angle B + \angle C + \angle D = 360^\circ$$</p>
+ <p class="lesson-text">Terbukti. ∎</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Generalisasi:</strong> setiap poligon dengan $n$ sisi dapat dibagi menjadi $(n - 2)$ segitiga, sehingga jumlah sudut dalamnya adalah $(n - 2) \cdot 180^\circ$. Untuk segiempat ($n = 4$), hasilnya $2 \cdot 180^\circ = 360^\circ$. Pola ini akan kita pakai lagi saat membahas poligon beraturan di Bagian VI.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Jenis-Jenis Segiempat</h3>
+ <p class="lesson-text">Segiempat memiliki banyak jenis, masing-masing dengan sifat khusus. Berikut tujuh jenis segiempat yang paling umum.</p>
+
+ <p class="lesson-subheading">A. Persegi (Square)</p>
+ <p class="lesson-text"><strong>Persegi</strong> adalah segiempat yang <strong>keempat sisinya sama panjang</strong> dan <strong>keempat sudutnya siku-siku</strong> ($90^\circ$). Persegi memiliki simetri lipat $4$ buah dan simetri putar tingkat $4$.</p>
+ <p class="lesson-text"><strong>Sifat-sifat:</strong></p>
+ <ul>
+  <li>Keempat sisi sama panjang.</li>
+  <li>Keempat sudut $90^\circ$.</li>
+  <li>Kedua diagonal sama panjang, saling tegak lurus, dan saling membagi dua sama panjang.</li>
+  <li>Diagonal membagi setiap sudut menjadi $45^\circ$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Keliling dan luas:</strong> jika panjang sisi $s$, maka $K = 4s$ dan $L = s^2$.</p>
+
+ <figure>
+  <svg viewBox="0 0 300 250" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+   <rect x="70" y="60" width="140" height="140" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="70" cy="60" r="4.5" fill="#daa520"/>
+   <circle cx="210" cy="60" r="4.5" fill="#daa520"/>
+   <circle cx="210" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="70" cy="200" r="4.5" fill="#daa520"/>
+   <text x="58" y="52" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="214" y="52" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="214" y="218" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="58" y="218" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+   <polyline points="70,75 85,75 85,60" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="210,75 195,75 195,60" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="210,185 195,185 195,200" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="70,185 85,185 85,200" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <text x="128" y="136" font-size="14" fill="#5dade2" font-style="italic">s</text>
+  </svg>
+  <figcaption class="visual-caption">Persegi $ABCD$ dengan sisi $s$. Keempat sudutnya $90^\circ$ (ditandai persegi kecil), dan keempat sisi sama panjang.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Persegi Panjang (Rectangle)</p>
+ <p class="lesson-text"><strong>Persegi panjang</strong> adalah segiempat yang <strong>keempat sudutnya siku-siku</strong>, tetapi sisi-sisi yang berdekatan <strong>tidak harus sama panjang</strong>. Persegi panjang memiliki dua pasang sisi sejajar yang masing-masing sama panjang: sepasang sisi panjang (disebut <em>panjang</em>, $p$) dan sepasang sisi pendek (disebut <em>lebar</em>, $l$).</p>
+ <p class="lesson-text"><strong>Sifat-sifat:</strong></p>
+ <ul>
+  <li>Sisi-sisi yang berhadapan sejajar dan sama panjang.</li>
+  <li>Keempat sudut $90^\circ$.</li>
+  <li>Kedua diagonal sama panjang dan saling membagi dua sama panjang.</li>
+ </ul>
+ <p class="lesson-text"><strong>Keliling dan luas:</strong> jika panjang $p$ dan lebar $l$, maka $K = 2(p + l)$ dan $L = p \cdot l$.</p>
+ <p class="lesson-text"><strong>Hubungan dengan persegi:</strong> persegi adalah persegi panjang istimewa yang keempat sisinya sama panjang. Jadi, <em>setiap persegi adalah persegi panjang, tetapi tidak setiap persegi panjang adalah persegi.</em></p>
+
+ <figure>
+  <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+   <rect x="50" y="70" width="240" height="120" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="50" cy="70" r="4.5" fill="#daa520"/>
+   <circle cx="290" cy="70" r="4.5" fill="#daa520"/>
+   <circle cx="290" cy="190" r="4.5" fill="#daa520"/>
+   <circle cx="50" cy="190" r="4.5" fill="#daa520"/>
+   <text x="38" y="62" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="294" y="62" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="294" y="208" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="38" y="208" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+   <polyline points="50,85 65,85 65,70" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="290,85 275,85 275,70" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="290,175 275,175 275,190" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="50,175 65,175 65,190" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <text x="160" y="58" font-size="14" fill="#5dade2" font-style="italic">p</text>
+   <text x="300" y="135" font-size="14" fill="#5dade2" font-style="italic">l</text>
+  </svg>
+  <figcaption class="visual-caption">Persegi panjang $ABCD$ dengan panjang $p$ dan lebar $l$. Keempat sudutnya $90^\circ$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Jajar Genjang (Parallelogram)</p>
+ <p class="lesson-text"><strong>Jajar genjang</strong> adalah segiempat yang <strong>kedua pasang sisi berhadapannya sejajar</strong>. Karena sisi yang sejajar juga sama panjang, jajar genjang memiliki dua pasang sisi yang sejajar dan sama panjang. Sudut-sudutnya tidak harus siku-siku. Jajar genjang akan dibahas mendalam di Bagian III.</p>
+
+ <figure>
+ <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="60,190 220,190 290,80 130,80" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <circle cx="60" cy="190" r="4.5" fill="#daa520" />
+  <circle cx="220" cy="190" r="4.5" fill="#daa520" />
+  <circle cx="290" cy="80" r="4.5" fill="#daa520" />
+  <circle cx="130" cy="80" r="4.5" fill="#daa520" />
+  <text x="48" y="208" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="224" y="208" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="295" y="78" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="117" y="72" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  
+  <!-- AB & CD: 1 tanda (tegak lurus sisi, di tengah) -->
+  <line x1="140" y1="185" x2="140" y2="195" stroke="#daa520" stroke-width="2.2" />
+  <line x1="210" y1="75" x2="210" y2="85" stroke="#daa520" stroke-width="2.2" />
+  
+  <!-- BC & DA: 2 tanda (tegak lurus sisi, di tengah) -->
+  <line x1="250.28" y1="134.96" x2="257.04" y2="139.26" stroke="#5dade2" stroke-width="2" />
+  <line x1="252.96" y1="130.74" x2="259.72" y2="135.04" stroke="#5dade2" stroke-width="2" />
+  <line x1="90.28" y1="130.74" x2="97.04" y2="135.04" stroke="#5dade2" stroke-width="2" />
+  <line x1="92.96" y1="134.96" x2="99.72" y2="139.26" stroke="#5dade2" stroke-width="2" />
+ </svg>
+ <figcaption class="visual-caption">Jajar genjang $ABCD$. Sisi $AB \parallel CD$ dan $BC \parallel AD$. Tanda satu garis (emas) menunjukkan $AB = CD$; tanda dua garis (biru) menunjukkan $BC = AD$.</figcaption>
+</figure>
+
+ <p class="lesson-subheading">D. Belah Ketupat (Rhombus)</p>
+ <p class="lesson-text"><strong>Belah ketupat</strong> adalah segiempat yang <strong>keempat sisinya sama panjang</strong> tetapi <strong>sudutnya tidak siku-siku</strong> (jika siku-siku, maka itu persegi). Belah ketupat dapat dipandang sebagai jajar genjang istimewa yang keempat sisinya sama, atau sebagai persegi yang "dimiringkan".</p>
+ <p class="lesson-text"><strong>Sifat-sifat:</strong></p>
+ <ul>
+  <li>Keempat sisi sama panjang.</li>
+  <li>Sisi-sisi yang berhadapan sejajar.</li>
+  <li>Sudut-sudut yang berhadapan sama besar.</li>
+  <li>Kedua diagonal saling tegak lurus dan saling membagi dua sama panjang.</li>
+  <li>Diagonal membagi setiap sudut menjadi dua sama besar.</li>
+ </ul>
+ <p class="lesson-text"><strong>Keliling dan luas:</strong> jika sisi $s$, maka $K = 4s$. Jika diagonal $d_1$ dan $d_2$, maka $L = \tfrac{1}{2} \cdot d_1 \cdot d_2$.</p>
+ <p class="lesson-text"><strong>Mengapa diagonal membagi sudut menjadi dua sama besar?</strong> Karena belah ketupat adalah jajar genjang istimewa yang keempat sisinya sama panjang. Diagonal $AC$ membagi belah ketupat menjadi dua segitiga sama kaki yang kongruen ($\triangle ABC$ dan $\triangle ADC$), sehingga $\angle BAC = \angle DAC$ dan $\angle BCA = \angle DCA$. Hal serupa berlaku untuk diagonal $BD$.</p>
+ <figure>
+ <svg viewBox="0 0 300 250" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="150,40 220,125 150,210 80,125" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <line x1="150" y1="40" x2="150" y2="210" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <line x1="80" y1="125" x2="220" y2="125" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <circle cx="150" cy="40" r="4.5" fill="#daa520" />
+  <circle cx="220" cy="125" r="4.5" fill="#daa520" />
+  <circle cx="150" cy="210" r="4.5" fill="#daa520" />
+  <circle cx="80" cy="125" r="4.5" fill="#daa520" />
+  <circle cx="150" cy="125" r="3.5" fill="#daa520" />
+  <text x="145" y="32" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="225" y="128" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="145" y="228" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="66" y="128" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  <text x="155" y="122" font-size="12" fill="#daa520" font-style="italic">O</text>
+  
+  <!-- 4 tick marks: tegak lurus sisi, tepat di tengah -->
+  <line x1="181.14" y1="85.69" x2="188.86" y2="79.31" stroke="#daa520" stroke-width="2.2" />
+  <line x1="181.14" y1="164.31" x2="188.86" y2="170.69" stroke="#daa520" stroke-width="2.2" />
+  <line x1="111.14" y1="170.69" x2="118.86" y2="164.31" stroke="#daa520" stroke-width="2.2" />
+  <line x1="111.14" y1="79.31" x2="118.86" y2="85.69" stroke="#daa520" stroke-width="2.2" />
+  
+  <!-- penanda sudut siku-siku di O -->
+  <polyline points="150,125 165,125 165,110" fill="none" stroke="#daa520" stroke-width="1.4" />
+ </svg>
+ <figcaption class="visual-caption">Belah ketupat $ABCD$. Keempat sisi sama panjang&mdash;ditandai satu garis kecil di tengah setiap sisi. Kedua diagonal ($AC$ dan $BD$) saling tegak lurus di titik $O$ (ditandai persegi kecil).</figcaption>
+</figure>
+
+ <p class="lesson-subheading">E. Layang-Layang (Kite)</p>
+ <p class="lesson-text"><strong>Layang-layang</strong> adalah segiempat yang memiliki <strong>dua pasang sisi berdekatan yang sama panjang</strong>, tetapi sisi-sisi yang berhadapan tidak harus sama panjang. Bentuknya seperti layang-layang tradisional.</p>
+ <p class="lesson-text"><strong>Sifat-sifat:</strong></p>
+ <ul>
+  <li>Dua pasang sisi berdekatan sama panjang: $AB = AD$ dan $CB = CD$.</li>
+  <li>Salah satu diagonal (yang menghubungkan kedua titik sudut tempat bertemunya sisi-sisi yang sama panjang) menjadi sumbu simetri.</li>
+  <li>Kedua diagonal saling tegak lurus.</li>
+  <li>Sepasang sudut yang berhadapan sama besar (sudut di antara kedua sisi tidak sama panjang).</li>
+ </ul>
+ <p class="lesson-text"><strong>Keliling dan luas:</strong> jika sisi pendek $a$ dan sisi panjang $b$, maka $K = 2(a + b)$. Jika diagonal $d_1$ dan $d_2$, maka $L = \tfrac{1}{2} \cdot d_1 \cdot d_2$.</p>
+ <p class="lesson-text"><strong>Mengapa $L = \tfrac{1}{2} d_1 d_2$?</strong> Salah satu diagonal membagi layang-layang menjadi dua segitiga. Jika diagonal $d_1$ dijadikan alas bersama, tinggi masing-masing segitiga adalah setengah dari diagonal lainnya, yaitu $\tfrac{1}{2}d_2$. Luas total $= 2 \times \tfrac{1}{2} \cdot d_1 \cdot \tfrac{1}{2}d_2 = \tfrac{1}{2} d_1 d_2$.</p>
+ <figure>
+ <svg viewBox="0 0 300 250" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="150,40 230,125 150,220 70,125" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <line x1="150" y1="40" x2="150" y2="220" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <line x1="70" y1="125" x2="230" y2="125" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <circle cx="150" cy="40" r="4.5" fill="#daa520" />
+  <circle cx="230" cy="125" r="4.5" fill="#daa520" />
+  <circle cx="150" cy="220" r="4.5" fill="#daa520" />
+  <circle cx="70" cy="125" r="4.5" fill="#daa520" />
+  <circle cx="150" cy="125" r="3.5" fill="#daa520" />
+  <text x="145" y="32" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="235" y="128" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="145" y="238" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="56" y="128" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  
+  <!-- AB & AD: 1 tanda (tegak lurus sisi, di tengah) -->
+  <line x1="186.36" y1="85.93" x2="193.64" y2="79.07" stroke="#daa520" stroke-width="2.2" />
+  <line x1="106.36" y1="79.07" x2="113.64" y2="85.93" stroke="#daa520" stroke-width="2.2" />
+  
+  <!-- BC & CD: 2 tanda (tegak lurus sisi, di tengah) -->
+  <!-- BC: 2 tanda (tegak lurus sisi BC, di tengah) -->
+<line x1="186.09" y1="172.48" x2="190.69" y2="176.34" stroke="#5dade2" stroke-width="2" />
+<line x1="189.31" y1="168.66" x2="193.91" y2="172.52" stroke="#5dade2" stroke-width="2" />
+
+<!-- CD: 2 tanda (tegak lurus sisi CD, di tengah) -->
+<line x1="106.09" y1="172.52" x2="110.69" y2="168.66" stroke="#5dade2" stroke-width="2" />
+<line x1="109.31" y1="176.34" x2="113.91" y2="172.48" stroke="#5dade2" stroke-width="2" />
+ </svg>
+ <figcaption class="visual-caption">Layang-layang $ABCD$. Sisi $AB = AD$ (ditandai satu garis emas) dan $CB = CD$ (ditandai dua garis biru). Diagonal-diagonalnya saling tegak lurus.</figcaption>
+</figure>
+
+ <p class="lesson-subheading">F. Trapesium (Trapezoid)</p>
+ <p class="lesson-text"><strong>Trapesium</strong> adalah segiempat yang memiliki <strong>tepat satu pasang sisi sejajar</strong>. Sisi-sisi yang sejajar disebut <em>sisi sejajar</em> (biasanya disebut <em>alas</em> atas dan <em>alas</em> bawah), sedangkan sisi lainnya disebut <em>kaki</em>. Trapesium akan dibahas mendalam di Bagian IV.</p>
+
+ <figure>
+  <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="60,200 290,200 240,80 110,80" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="60" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="290" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="240" cy="80" r="4.5" fill="#daa520"/>
+   <circle cx="110" cy="80" r="4.5" fill="#daa520"/>
+   <text x="48" y="218" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="295" y="218" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="245" y="72" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="97" y="72" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+   <text x="160" y="220" font-size="12" fill="#5dade2" font-style="italic">alas bawah</text>
+   <text x="150" y="72" font-size="12" fill="#5dade2" font-style="italic">alas atas</text>
+  </svg>
+  <figcaption class="visual-caption">Trapesium $ABCD$ dengan $AB \parallel CD$. Sisi $AB$ disebut alas bawah, $CD$ disebut alas atas, dan $AD$, $BC$ disebut kaki.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">G. Segiempat Sembarang</p>
+ <p class="lesson-text"><strong>Segiempat sembarang</strong> adalah segiempat yang tidak memiliki sifat khusus apa pun—tidak ada sisi yang sejajar, tidak ada sisi yang sama panjang, tidak ada sudut yang siku-siku.</p>
+
+ <p class="lesson-subheading">H. Ringkasan Hubungan Antar Segiempat</p>
+ <p class="lesson-text">Banyak segiempat memiliki hubungan hierarkis. Berikut ringkasannya:</p>
+ <ul>
+  <li>Setiap <strong>persegi</strong> adalah <strong>persegi panjang</strong>, <strong>belah ketupat</strong>, dan <strong>jajar genjang</strong>.</li>
+  <li>Setiap <strong>persegi panjang</strong> adalah <strong>jajar genjang</strong>.</li>
+  <li>Setiap <strong>belah ketupat</strong> adalah <strong>jajar genjang</strong>.</li>
+  <li>Setiap <strong>layang-layang</strong> belum tentu jajar genjang (hanya jika kedua pasang sisi berdekatannya juga sejajar, yang berarti belah ketupat).</li>
+  <li>Setiap <strong>jajar genjang</strong> adalah <strong>trapesium</strong> jika kita menggunakan definisi trapesium "minimal satu pasang sisi sejajar"; namun dengan definisi "tepat satu pasang sisi sejajar", jajar genjang <em>bukan</em> trapesium.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Jajar Genjang Secara Mendalam</h3>
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Jajar genjang</strong> adalah segiempat yang <strong>kedua pasang sisi berhadapannya sejajar</strong>. Definisi ini secara otomatis membuat sisi-sisi yang sejajar juga sama panjang, karena sifat-sifat geometri yang berlaku.</p>
+
+ <p class="lesson-subheading">B. Sifat-Sifat Jajar Genjang</p>
+ <p class="lesson-text">Misalkan $ABCD$ adalah jajar genjang dengan $AB \parallel CD$ dan $AD \parallel BC$. Maka berlaku:</p>
+
+ <p class="lesson-subheading-alt">1. Sisi-sisi yang berhadapan sejajar dan sama panjang</p>
+ <p class="lesson-text">$AB \parallel CD$ dan $AB = CD$; $AD \parallel BC$ dan $AD = BC$.</p>
+
+ <p class="lesson-subheading-alt">2. Sudut-sudut yang berhadapan sama besar</p>
+ <p class="lesson-text">$\angle A = \angle C$ dan $\angle B = \angle D$.</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena $AB \parallel CD$, maka $\angle A$ dan $\angle D$ adalah sudut dalam sepihak, sehingga $\angle A + \angle D = 180^\circ$. Karena $AD \parallel BC$, maka $\angle A$ dan $\angle B$ juga sepihak, sehingga $\angle A + \angle B = 180^\circ$. Dari kedua persamaan ini, $\angle B = \angle D$. Dengan cara serupa, $\angle A = \angle C$.</p>
+
+ <p class="lesson-subheading-alt">3. Sudut-sudut yang berdekatan berjumlah $180^\circ$</p>
+ <p class="lesson-text">$\angle A + \angle B = 180^\circ$, $\angle B + \angle C = 180^\circ$, $\angle C + \angle D = 180^\circ$, $\angle D + \angle A = 180^\circ$. Ini konsekuensi langsung dari sifat sudut dalam sepihak pada garis sejajar.</p>
+
+ <p class="lesson-subheading-alt">4. Diagonal-diagonalnya saling membagi dua sama panjang</p>
+ <p class="lesson-text">Jika kedua diagonal $AC$ dan $BD$ berpotongan di titik $O$, maka $AO = OC$ dan $BO = OD$. Artinya, titik potong diagonal adalah titik tengah dari masing-masing diagonal.</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Perhatikan $\triangle AOB$ dan $\triangle COD$. Karena $AB \parallel CD$, maka $\angle OAB = \angle OCD$ (sudut dalam berseberangan) dan $\angle OBA = \angle ODC$ (sudut dalam berseberangan). Juga $AB = CD$ (sisi berhadapan). Maka $\triangle AOB \cong \triangle COD$ berdasarkan kriteria ASA, sehingga $AO = OC$ dan $BO = OD$.</p>
+
+ <figure>
+ <svg viewBox="0 0 400 280" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="70,220 250,220 330,80 150,80" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <line x1="70" y1="220" x2="330" y2="80" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <line x1="250" y1="220" x2="150" y2="80" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <circle cx="70" cy="220" r="4.5" fill="#daa520" />
+  <circle cx="250" cy="220" r="4.5" fill="#daa520" />
+  <circle cx="330" cy="80" r="4.5" fill="#daa520" />
+  <circle cx="150" cy="80" r="4.5" fill="#daa520" />
+  <circle cx="200" cy="150" r="4.5" fill="#daa520" />
+  <text x="58" y="238" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="252" y="238" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="335" y="78" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="137" y="72" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  <text x="207" y="148" font-size="13" fill="#daa520" font-style="italic">O</text>
+  
+  <!-- AO & OC: 1 tanda (tegak lurus AC, di tengah masing-masing segmen) -->
+  <line x1="132.66" y1="180.66" x2="137.34" y2="189.34" stroke="#daa520" stroke-width="2.2" />
+  <line x1="262.66" y1="110.66" x2="267.34" y2="119.34" stroke="#daa520" stroke-width="2.2" />
+  
+  <!-- BO & OD: 2 tanda (tegak lurus BD, di tengah masing-masing segmen) -->
+  <line x1="220.93" y1="187.91" x2="229.07" y2="182.09" stroke="#5dade2" stroke-width="2" />
+  <line x1="170.93" y1="117.91" x2="179.07" y2="112.09" stroke="#5dade2" stroke-width="2" />
+ </svg>
+ <figcaption class="visual-caption">Jajar genjang $ABCD$ dengan diagonal $AC$ dan $BD$ berpotongan di titik $O$. Tanda satu garis (emas) menunjukkan $AO = OC$; tanda dua garis (biru) menunjukkan $BO = OD$.</figcaption>
+</figure>
+
+ <p class="lesson-subheading">C. Keliling dan Luas Jajar Genjang</p>
+ <p class="lesson-text"><strong>Keliling:</strong> jumlah semua sisinya. Jika sisi-sisinya $a$ dan $b$, maka $K = 2(a + b)$.</p>
+ <p class="lesson-text"><strong>Luas:</strong> hasil kali alas dengan tinggi. Tinggi adalah jarak tegak lurus dari alas ke sisi sejajarnya yang berhadapan: $L = a \cdot t$—di mana $a$ adalah panjang alas dan $t$ adalah tinggi terhadap alas tersebut.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa $L = a \cdot t$?</strong> Jika kita potong segitiga siku-siku di salah satu ujung jajar genjang, lalu tempelkan ke ujung yang lain, jajar genjang akan berubah menjadi persegi panjang dengan panjang $a$ dan lebar $t$. Karena pemotongan dan penempelan tidak mengubah luas, maka luas jajar genjang sama dengan luas persegi panjang tersebut, yaitu $a \cdot t$.</p>
+ </div>
+
+ <figure>
+  <svg viewBox="0 0 450 280" style="max-width:100%; height:auto; width:450px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="60,220 260,220 340,90 140,90" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="140" y1="90" x2="140" y2="220" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <polyline points="140,205 155,205 155,220" fill="none" stroke="#5dade2" stroke-width="1.4"/>
+   <text x="105" y="160" font-size="14" fill="#5dade2" font-style="italic">t</text>
+   <text x="160" y="240" font-size="14" fill="#5dade2" font-style="italic">a</text>
+   <circle cx="60" cy="220" r="4.5" fill="#daa520"/>
+   <circle cx="260" cy="220" r="4.5" fill="#daa520"/>
+   <circle cx="340" cy="90" r="4.5" fill="#daa520"/>
+   <circle cx="140" cy="90" r="4.5" fill="#daa520"/>
+   <text x="48" y="238" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="262" y="238" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="345" y="88" font-size="13" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="128" y="82" font-size="13" fill="#e8e8e8" font-style="italic">D</text>
+  </svg>
+  <figcaption class="visual-caption">Jajar genjang dengan alas $a$ dan tinggi $t$. Tinggi adalah jarak tegak lurus dari alas ke sisi sejajarnya.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">D. Contoh Soal</p>
+ <p class="lesson-text">Sebuah jajar genjang memiliki panjang alas $12$ cm dan tinggi $8$ cm. Jika sisi miringnya $10$ cm, tentukan keliling dan luasnya.</p>
+ <p class="lesson-text"><strong>Keliling:</strong> $K = 2(a + b) = 2(12 + 10) = 2 \cdot 22 = 44$ cm.</p>
+ <p class="lesson-text"><strong>Luas:</strong> $L = a \cdot t = 12 \cdot 8 = 96$ cm$^2$. Perhatikan bahwa luas <em>tidak</em> memakai sisi miring—yang dipakai adalah tinggi, bukan sisi miring.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Trapesium Secara Mendalam</h3>
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text"><strong>Trapesium</strong> adalah segiempat yang memiliki <strong>tepat satu pasang sisi sejajar</strong>. Sisi-sisi yang sejajar disebut <em>sisi sejajar</em> atau <em>alas</em> (biasanya dibedakan menjadi alas atas dan alas bawah), sedangkan dua sisi lainnya disebut <em>kaki</em>.</p>
+
+ <p class="lesson-subheading">B. Jenis-Jenis Trapesium</p>
+
+ <p class="lesson-subheading-alt">1. Trapesium Sama Kaki</p>
+ <p class="lesson-text">Trapesium yang <strong>kedua kakinya sama panjang</strong>. Karena kedua kakinya sama panjang, maka kedua sudut yang menempel pada masing-masing alas juga sama besar. Trapesium sama kaki memiliki sumbu simetri.</p>
+
+ <figure>
+ <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="60,200 290,200 240,80 110,80" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <circle cx="60" cy="200" r="4.5" fill="#daa520" />
+  <circle cx="290" cy="200" r="4.5" fill="#daa520" />
+  <circle cx="240" cy="80" r="4.5" fill="#daa520" />
+  <circle cx="110" cy="80" r="4.5" fill="#daa520" />
+  <text x="48" y="218" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="295" y="218" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="245" y="72" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="97" y="72" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  
+  <!-- Tick pada kaki AD (tegak lurus sisi, di tengah) -->
+  <line x1="79.46" y1="137.69" x2="90.54" y2="142.31" stroke="#daa520" stroke-width="2.4" />
+  <!-- Tick pada kaki BC (tegak lurus sisi, di tengah) -->
+  <line x1="259.46" y1="142.31" x2="270.54" y2="137.69" stroke="#daa520" stroke-width="2.4" />
+  
+  <!-- Sumbu simetri vertikal (garis putus-putus) -->
+  <line x1="175" y1="200" x2="175" y2="80" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  <text x="180" y="145" font-size="12" fill="#5dade2" font-style="italic">sumbu simetri</text>
+ </svg>
+ <figcaption class="visual-caption">Trapesium sama kaki. Kedua kaki ($AD$ dan $BC$) sama panjang&mdash;ditandai satu garis kecil di tengah setiap kaki, tegak lurus terhadap kaki. Garis putus-putus biru adalah sumbu simetri vertikal.</figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">2. Trapesium Siku-Siku</p>
+ <p class="lesson-text">Trapesium yang <strong>salah satu kakinya tegak lurus terhadap kedua sisi sejajar</strong>. Akibatnya, trapesium ini memiliki dua sudut siku-siku yang berdekatan (berturut-turut pada kaki yang tegak lurus tersebut).</p>
+
+ <figure>
+  <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="70,200 280,200 280,80 130,80" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="70" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="280" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="280" cy="80" r="4.5" fill="#daa520"/>
+   <circle cx="130" cy="80" r="4.5" fill="#daa520"/>
+   <text x="58" y="218" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="285" y="218" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="285" y="72" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="117" y="72" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+   <polyline points="280,185 265,185 265,200" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <polyline points="280,95 265,95 265,80" fill="none" stroke="#daa520" stroke-width="1.6"/>
+  </svg>
+  <figcaption class="visual-caption">Trapesium siku-siku. Kaki $BC$ tegak lurus terhadap kedua sisi sejajar, sehingga $\angle B = \angle C = 90^\circ$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">3. Trapesium Sembarang</p>
+ <p class="lesson-text">Trapesium yang tidak memiliki sifat khusus apa pun—kedua kakinya tidak sama panjang dan tidak ada sudut yang siku-siku.</p>
+
+ <figure>
+  <svg viewBox="0 0 350 250" style="max-width:100%; height:auto; width:350px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="60,200 300,200 230,80 110,80" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="60" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="300" cy="200" r="4.5" fill="#daa520"/>
+   <circle cx="230" cy="80" r="4.5" fill="#daa520"/>
+   <circle cx="110" cy="80" r="4.5" fill="#daa520"/>
+   <text x="48" y="218" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="305" y="218" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="235" y="72" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="97" y="72" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  </svg>
+  <figcaption class="visual-caption">Trapesium sembarang. $AB \parallel CD$, tetapi kedua kakinya tidak sama panjang dan tidak tegak lurus.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Trapesium</p>
+ <p class="lesson-text">Untuk setiap trapesium $ABCD$ dengan $AB \parallel CD$:</p>
+ <ul>
+  <li>$\angle A + \angle D = 180^\circ$ dan $\angle B + \angle C = 180^\circ$ (sudut dalam sepihak pada garis sejajar).</li>
+  <li>Jumlah semua sudut dalamnya $360^\circ$ (seperti semua segiempat).</li>
+ </ul>
+ <p class="lesson-text"><strong>Khusus trapesium sama kaki</strong> (dengan $AD = BC$):</p>
+ <ul>
+  <li>$\angle A = \angle B$ dan $\angle C = \angle D$ (sudut-sudut alas sama besar).</li>
+  <li>Diagonal-diagonalnya sama panjang: $AC = BD$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Keliling dan Luas Trapesium</p>
+ <p class="lesson-text"><strong>Keliling:</strong> jumlah semua sisi. Jika sisi-sisinya $a$ (alas bawah), $b$ (alas atas), dan kedua kaki $c$ serta $d$, maka $K = a + b + c + d$.</p>
+ <p class="lesson-text"><strong>Luas:</strong> setengah kali jumlah sisi sejajar kali tinggi:</p>
+ <p class="lesson-text">$$L = \tfrac{1}{2}(a + b) \cdot t$$</p>
+ <p class="lesson-text">di mana $a$ dan $b$ adalah panjang kedua sisi sejajar, dan $t$ adalah tinggi (jarak tegak lurus antara kedua sisi sejajar tersebut).</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa $L = \tfrac{1}{2}(a+b) \cdot t$?</strong> Jika kita ambil dua trapesium identik dan menempelkannya sedemikian rupa sehingga membentuk jajar genjang, maka jajar genjang yang terbentuk memiliki alas $(a + b)$ dan tinggi $t$. Luas jajar genjang itu adalah $(a+b) \cdot t$. Karena kita menggunakan dua trapesium identik, luas satu trapesium adalah setengah dari luas jajar genjang tersebut.</p>
+ </div>
+
+ <figure>
+  <svg viewBox="0 0 450 280" style="max-width:100%; height:auto; width:450px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="60,220 280,220 230,90 120,90" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="120" y1="90" x2="120" y2="220" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <polyline points="120,205 135,205 135,220" fill="none" stroke="#5dade2" stroke-width="1.4"/>
+   <text x="85" y="160" font-size="14" fill="#5dade2" font-style="italic">t</text>
+   <text x="165" y="240" font-size="13" fill="#5dade2" font-style="italic">a (alas bawah)</text>
+   <text x="155" y="82" font-size="13" fill="#5dade2" font-style="italic">b (alas atas)</text>
+   <circle cx="60" cy="220" r="4.5" fill="#daa520"/>
+   <circle cx="280" cy="220" r="4.5" fill="#daa520"/>
+   <circle cx="230" cy="90" r="4.5" fill="#daa520"/>
+   <circle cx="120" cy="90" r="4.5" fill="#daa520"/>
+   <text x="48" y="238" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="285" y="238" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="235" y="82" font-size="13" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="107" y="82" font-size="13" fill="#e8e8e8" font-style="italic">D</text>
+  </svg>
+  <figcaption class="visual-caption">Trapesium dengan alas bawah $a$, alas atas $b$, dan tinggi $t$ (jarak tegak lurus antara kedua alas).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">E. Contoh Soal</p>
+ <p class="lesson-text">Sebuah trapesium memiliki panjang sisi sejajar $10$ cm dan $6$ cm, tinggi $4$ cm, serta kedua kakinya masing-masing $5$ cm. Tentukan keliling dan luasnya.</p>
+ <p class="lesson-text"><strong>Keliling:</strong> $K = 10 + 6 + 5 + 5 = 26$ cm.</p>
+ <p class="lesson-text"><strong>Luas:</strong> $L = \tfrac{1}{2}(10 + 6) \cdot 4 = \tfrac{1}{2}(16) \cdot 4 = 8 \cdot 4 = 32$ cm$^2$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Poligon Secara Umum</h3>
+ <p class="lesson-subheading">A. Pengertian Poligon</p>
+ <p class="lesson-text"><strong>Poligon</strong> (atau segi banyak) adalah bangun datar tertutup yang dibatasi oleh <strong>segmen-segmen garis lurus</strong> yang saling terhubung ujung ke ujung. Segmen-segmen tersebut disebut <strong>sisi</strong>, dan titik-titik pertemuannya disebut <strong>titik sudut</strong>. Segitiga ($3$ sisi) dan segiempat ($4$ sisi) yang sudah kita bahas adalah contoh poligon. Poligon dengan lebih banyak sisi juga sangat penting, misalnya segilima ($5$ sisi), segienam ($6$ sisi), segidelapan ($8$ sisi), dan seterusnya.</p>
+ <figure>
+ <svg viewBox="0 0 900 220" style="display:block; margin:0 auto; max-width:100%; height:auto; width:900px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Segitiga -->
+  <polygon points="50,160 130,160 90,60" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <text x="90" y="195" font-size="14" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segitiga</text>
+  
+  <!-- Segiempat -->
+  <rect x="220" y="60" width="100" height="100" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <text x="270" y="195" font-size="14" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segiempat</text>
+  
+  <!-- Segilima -->
+  <polygon points="450,60 500,100 480,160 420,160 400,100" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <text x="450" y="195" font-size="14" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segilima</text>
+  
+  <!-- Segienam -->
+  <polygon points="620,60 670,85 670,135 620,160 570,135 570,85" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <text x="620" y="195" font-size="14" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segienam</text>
+  
+  <!-- Segidelapan -->
+  <polygon points="810,60 845,75 860,110 845,145 810,160 775,145 760,110 775,75" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <text x="810" y="195" font-size="14" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segidelapan</text>
+ </svg>
+ <figcaption class="visual-caption">Contoh-contoh poligon: segitiga (3 sisi), segiempat (4 sisi), segilima (5 sisi), segienam (6 sisi), dan segidelapan (8 sisi). Setiap poligon adalah bangun datar tertutup yang dibatasi oleh segmen-segmen garis lurus.</figcaption>
+</figure>
+
+ <p class="lesson-subheading">B. Poligon Konveks dan Non-Konveks</p>
+ <p class="lesson-text">Sebuah poligon disebut <strong>konveks</strong> jika setiap segmen yang menghubungkan dua titik di dalam poligon seluruhnya terletak di dalam poligon. Sederhananya, poligon konveks "tidak cekung"—semua sudut dalamnya kurang dari $180^\circ$. Poligon yang tidak konveks disebut <strong>non-konveks</strong> atau <strong>cekung</strong>—memiliki setidaknya satu sudut dalam yang lebih dari $180^\circ$. Materi ini fokus pada poligon konveks.</p>
+
+ <p class="lesson-subheading">C. Penamaan Poligon Berdasarkan Jumlah Sisi</p>
+ <p class="lesson-text">Poligon diberi nama khusus sesuai jumlah sisinya. Berikut nama-nama yang paling umum:</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Jumlah Sisi</th>
+     <th>Nama Indonesia</th>
+     <th>Nama Yunani/Latin</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>3</td><td>Segitiga</td><td>Triangle</td></tr>
+    <tr><td>4</td><td>Segiempat</td><td>Quadrilateral</td></tr>
+    <tr><td>5</td><td>Segilima</td><td>Pentagon</td></tr>
+    <tr><td>6</td><td>Segienam</td><td>Hexagon</td></tr>
+    <tr><td>7</td><td>Segitujuh</td><td>Heptagon</td></tr>
+    <tr><td>8</td><td>Segidelapan</td><td>Octagon</td></tr>
+    <tr><td>9</td><td>Segisembilan</td><td>Nonagon</td></tr>
+    <tr><td>10</td><td>Segisepuluh</td><td>Decagon</td></tr>
+    <tr><td>12</td><td>Segiduabelas</td><td>Dodecagon</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Poligon Beraturan</h3>
+ <p class="lesson-subheading">A. Pengertian</p>
+ <p class="lesson-text"><strong>Poligon beraturan</strong> adalah poligon yang <strong>semua sisinya sama panjang</strong> dan <strong>semua sudutnya sama besar</strong>. Karena dua sifat ini, poligon beraturan memiliki simetri yang sangat tinggi—ia terlihat "seimbang" dari segala arah. Contoh paling sederhana: segitiga sama sisi (poligon beraturan dengan $3$ sisi), persegi (poligon beraturan dengan $4$ sisi), segilima beraturan ($5$ sisi), segienam beraturan ($6$ sisi), dan segidelapan beraturan ($8$ sisi).</p>
+
+ <p class="lesson-subheading">B. Jumlah Sudut Dalam Poligon</p>
+ <p class="lesson-text">Untuk setiap poligon konveks dengan $n$ sisi, jumlah sudut dalamnya adalah:</p>
+ <p class="lesson-text">$$\text{Jumlah sudut dalam} = (n - 2) \cdot 180^\circ$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Jika kita memilih satu titik sudut, lalu menarik diagonal ke semua titik sudut lain yang tidak berdekatan, kita membagi poligon menjadi $(n - 2)$ segitiga. Setiap segitiga memiliki jumlah sudut dalam $180^\circ$. Karena semua segitiga ini bersama-sama membentuk poligon, jumlah sudut dalam poligon adalah $(n - 2) \cdot 180^\circ$.</p>
+ <p class="lesson-subheading-alt">Verifikasi:</p>
+ <ul>
+  <li>Segitiga ($n=3$): $(3-2) \cdot 180^\circ = 180^\circ$. ✓</li>
+  <li>Segiempat ($n=4$): $(4-2) \cdot 180^\circ = 360^\circ$. ✓</li>
+  <li>Segilima ($n=5$): $(5-2) \cdot 180^\circ = 540^\circ$.</li>
+  <li>Segienam ($n=6$): $(6-2) \cdot 180^\circ = 720^\circ$.</li>
+ </ul>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="200,50 340,150 288,290 112,290 60,150" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="50" x2="288" y2="290" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <line x1="200" y1="50" x2="112" y2="290" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <circle cx="200" cy="50" r="4.5" fill="#daa520"/>
+   <circle cx="340" cy="150" r="4.5" fill="#daa520"/>
+   <circle cx="288" cy="290" r="4.5" fill="#daa520"/>
+   <circle cx="112" cy="290" r="4.5" fill="#daa520"/>
+   <circle cx="60" cy="150" r="4.5" fill="#daa520"/>
+   <text x="205" y="44" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="345" y="152" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="292" y="305" font-size="13" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="100" y="305" font-size="13" fill="#e8e8e8" font-style="italic">D</text>
+   <text x="46" y="152" font-size="13" fill="#e8e8e8" font-style="italic">E</text>
+   <text x="255" y="168" font-size="11" fill="#5dade2" font-style="italic">1</text>
+   <text x="196" y="222" font-size="11" fill="#5dade2" font-style="italic">2</text>
+   <text x="142" y="168" font-size="11" fill="#5dade2" font-style="italic">3</text>
+  </svg>
+  <figcaption class="visual-caption">Segilima $ABCDE$ dibagi menjadi $3$ segitiga oleh diagonal dari titik $A$. Karena $n = 5$, jumlah segitiganya $n - 2 = 3$, dan jumlah sudut dalamnya $3 \cdot 180^\circ = 540^\circ$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Besar Setiap Sudut Dalam Poligon Beraturan</p>
+ <p class="lesson-text">Karena semua sudut dalam poligon beraturan sama besar, maka besar setiap sudut dalamnya adalah jumlah sudut dalam dibagi $n$:</p>
+ <p class="lesson-text">$$\text{Sudut dalam} = \frac{(n - 2) \cdot 180^\circ}{n}$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>Segitiga sama sisi ($n=3$): $\dfrac{(3-2) \cdot 180^\circ}{3} = 60^\circ$. ✓</li>
+  <li>Persegi ($n=4$): $\dfrac{(4-2) \cdot 180^\circ}{4} = 90^\circ$. ✓</li>
+  <li>Segilima beraturan ($n=5$): $\dfrac{(5-2) \cdot 180^\circ}{5} = 108^\circ$.</li>
+  <li>Segienam beraturan ($n=6$): $\dfrac{(6-2) \cdot 180^\circ}{6} = 120^\circ$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Sudut Luar Poligon Beraturan</p>
+ <p class="lesson-text">Di setiap titik sudut poligon, sudut dalam dan sudut luar <strong>berpelurus</strong>—jumlahnya $180^\circ$. Karena setiap sudut dalam poligon beraturan besarnya $\dfrac{(n-2) \cdot 180^\circ}{n}$, maka setiap sudut luarnya adalah:</p>
+ <p class="lesson-text">$$\text{Sudut luar} = 180^\circ - \frac{(n-2) \cdot 180^\circ}{n} = \frac{180^\circ \cdot 2}{n} = \frac{360^\circ}{n}$$</p>
+ <p class="lesson-text">Jadi, sudut luar poligon beraturan dengan $n$ sisi adalah:</p>
+ <p class="lesson-text">$$\text{Sudut luar} = \frac{360^\circ}{n}$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Fakta penting:</strong> untuk <em>setiap</em> poligon konveks (beraturan maupun tidak), jumlah semua sudut luarnya selalu $360^\circ$. Mengapa? Bayangkan Anda berjalan mengelilingi poligon; pada setiap titik sudut, Anda "berbelok" sebesar sudut luar. Setelah kembali ke titik awal, total arah Anda telah berputar satu putaran penuh, yaitu $360^\circ$.</p>
+ </div>
+
+ <p class="lesson-subheading">E. Contoh Poligon Beraturan</p>
+
+ <p class="lesson-subheading-alt">1. Segilima Beraturan ($n = 5$)</p>
+ <ul>
+  <li>Sudut dalam: $\dfrac{(5-2) \cdot 180^\circ}{5} = 108^\circ$.</li>
+  <li>Sudut luar: $\dfrac{360^\circ}{5} = 72^\circ$.</li>
+  <li>Jumlah sudut dalam: $540^\circ$.</li>
+ </ul>
+
+ <figure>
+ <svg viewBox="0 0 300 280" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="150,40 236,102 203,203 97,203 64,102" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Busur sudut A: tepat di kedua sisi, radius 28 dari titik A -->
+  <path d="M 172.71 56.37 A 28 28 0 0 0 127.29 56.37" fill="none" stroke="#daa520" stroke-width="2.2" />
+  <text x="150" y="92" font-size="15" fill="#daa520" font-weight="600" font-style="italic" text-anchor="middle">108°</text>
+  
+  <circle cx="150" cy="40" r="4.5" fill="#daa520" />
+  <circle cx="236" cy="102" r="4.5" fill="#daa520" />
+  <circle cx="203" cy="203" r="4.5" fill="#daa520" />
+  <circle cx="97" cy="203" r="4.5" fill="#daa520" />
+  <circle cx="64" cy="102" r="4.5" fill="#daa520" />
+  <text x="155" y="34" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="241" y="100" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="207" y="218" font-size="13" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="85" y="218" font-size="13" fill="#e8e8e8" font-style="italic">D</text>
+  <text x="46" y="100" font-size="13" fill="#e8e8e8" font-style="italic">E</text>
+  <text x="150" y="262" font-size="13" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segilima beraturan</text>
+ </svg>
+ <figcaption class="visual-caption">Segilima beraturan. Setiap sudut dalamnya $108^\circ$ (ditandai busur di titik $A$) dan setiap sudut luarnya $72^\circ$.</figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">2. Segienam Beraturan ($n = 6$)</p>
+ <ul>
+  <li>Sudut dalam: $\dfrac{(6-2) \cdot 180^\circ}{6} = 120^\circ$.</li>
+  <li>Sudut luar: $\dfrac{360^\circ}{6} = 60^\circ$.</li>
+  <li>Jumlah sudut dalam: $720^\circ$.</li>
+ </ul>
+ <p class="lesson-text">Segienam beraturan sangat istimewa karena dapat dibagi menjadi <strong>$6$ segitiga sama sisi</strong> jika kita menghubungkan setiap titik sudut ke pusatnya. Itulah sebabnya segienam beraturan muncul di banyak tempat, seperti sarang lebah (heksagonal honeycomb), ubin lantai, dan struktur molekul karbon (grafit).</p>
+
+ <figure>
+  <svg viewBox="0 0 300 280" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="150,40 228,85 228,175 150,220 72,175 72,85" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="150" y1="130" x2="150" y2="40" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <line x1="150" y1="130" x2="228" y2="85" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <line x1="150" y1="130" x2="228" y2="175" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <line x1="150" y1="130" x2="150" y2="220" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <line x1="150" y1="130" x2="72" y2="175" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <line x1="150" y1="130" x2="72" y2="85" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+   <circle cx="150" cy="40" r="4" fill="#daa520"/>
+   <circle cx="228" cy="85" r="4" fill="#daa520"/>
+   <circle cx="228" cy="175" r="4" fill="#daa520"/>
+   <circle cx="150" cy="220" r="4" fill="#daa520"/>
+   <circle cx="72" cy="175" r="4" fill="#daa520"/>
+   <circle cx="72" cy="85" r="4" fill="#daa520"/>
+   <circle cx="150" cy="130" r="3.5" fill="#daa520"/>
+   <text x="155" y="128" font-size="11" fill="#daa520" font-style="italic">O</text>
+   <text x="125" y="260" font-size="13" fill="#b8b8b8" font-style="italic">Segienam beraturan</text>
+  </svg>
+  <figcaption class="visual-caption">Segienam beraturan dengan pusat $O$. Jika setiap titik sudut dihubungkan ke pusat, terbentuk $6$ segitiga sama sisi yang kongruen.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">3. Segidelapan Beraturan ($n = 8$)</p>
+ <ul>
+  <li>Sudut dalam: $\dfrac{(8-2) \cdot 180^\circ}{8} = 135^\circ$.</li>
+  <li>Sudut luar: $\dfrac{360^\circ}{8} = 45^\circ$.</li>
+  <li>Jumlah sudut dalam: $1080^\circ$.</li>
+ </ul>
+ <p class="lesson-text">Segidelapan beraturan sering muncul pada rambu stop (<em>stop sign</em>) dan ubin dekoratif.</p>
+
+ <figure>
+ <svg viewBox="0 0 300 280" style="max-width:100%; height:auto; width:300px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="150,40 213.64,66.36 240,130 213.64,193.64 150,220 86.36,193.64 60,130 86.36,66.36" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Busur sudut A: tepat di kedua sisi, radius 28 dari titik A -->
+  <path d="M 175.87 50.71 A 28 28 0 0 0 124.13 50.71" fill="none" stroke="#daa520" stroke-width="2.2" />
+  <text x="150" y="92" font-size="15" fill="#daa520" font-weight="600" font-style="italic" text-anchor="middle">135°</text>
+  
+  <circle cx="150" cy="40" r="4" fill="#daa520" />
+  <circle cx="213.64" cy="66.36" r="4" fill="#daa520" />
+  <circle cx="240" cy="130" r="4" fill="#daa520" />
+  <circle cx="213.64" cy="193.64" r="4" fill="#daa520" />
+  <circle cx="150" cy="220" r="4" fill="#daa520" />
+  <circle cx="86.36" cy="193.64" r="4" fill="#daa520" />
+  <circle cx="60" cy="130" r="4" fill="#daa520" />
+  <circle cx="86.36" cy="66.36" r="4" fill="#daa520" />
+  <text x="155" y="34" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="130" y="262" font-size="13" fill="#b8b8b8" font-style="italic" text-anchor="middle">Segidelapan beraturan</text>
+ </svg>
+ <figcaption class="visual-caption">Segidelapan beraturan. Setiap sudut dalamnya $135^\circ$ (ditandai busur di titik $A$) dan setiap sudut luarnya $45^\circ$.</figcaption>
+</figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Penerapan Praktis</h3>
+ <p class="lesson-text">Segiempat dan poligon bukan hanya objek geometris di atas kertas—mereka muncul di mana-mana dalam kehidupan nyata dan menjadi fondasi dari banyak bidang terapan.</p>
+
+ <p class="lesson-subheading">A. Arsitektur dan Konstruksi</p>
+ <p class="lesson-text">Persegi dan persegi panjang menjadi dasar dari hampir semua bangunan—dari denah lantai hingga kusen jendela. Ruangan berbentuk persegi panjang lebih mudah dimobili karena sisinya lurus dan sudutnya siku-siku. Atap rumah sering menggunakan bentuk trapesium atau segitiga untuk mengalirkan air hujan. Bahkan, ubin lantai yang sering kita lihat di dapur dan kamar mandi umumnya berbentuk persegi—dan pengubinan ini menjadi aplikasi langsung dari sifat geometri poligon.</p>
+
+ <p class="lesson-subheading">B. Sarang Lebah dan Struktur Heksagonal</p>
+ <p class="lesson-text">Sarang lebah berbentuk segienam beraturan karena struktur ini paling efisien—menggunakan lilin paling sedikit untuk menutupi area paling luas, sekaligus memberikan kekuatan struktural maksimum. Keajaiban alam ini adalah aplikasi langsung dari sifat-sifat segienam beraturan yang kita pelajari di materi ini.</p>
+
+ <p class="lesson-subheading">C. Rambu Lalu Lintas dan Desain Industri</p>
+ <p class="lesson-text">Rambu stop berbentuk segidelapan beraturan—dipilih karena bentuknya yang unik dan mudah dikenali dari jauh, bahkan dalam kondisi cuaca buruk. Rambu peringatan biasanya berbentuk segitiga, sedangkan rambu petunjuk berbentuk persegi panjang. Setiap bentuk dipilih dengan alasan geometris: bentuk yang berbeda menyampaikan jenis informasi yang berbeda.</p>
+
+ <p class="lesson-subheading">D. Desain Grafis dan Animasi</p>
+ <p class="lesson-text">Dalam desain grafis, segiempat dan poligon digunakan untuk menyusun tata letak, membuat ikon, dan merancang logo. Banyak logo perusahaan menggunakan bentuk-bentuk geometris sederhana—persegi, segienam, atau poligon lainnya—untuk menciptakan citra yang mudah diingat dan mudah dikenali. Dalam animasi 3D, poligon (biasanya segitiga dan segiempat) menjadi dasar pembentukan setiap permukaan objek.</p>
+
+ <p class="lesson-subheading">E. Kristalografi dan Ilmu Material</p>
+ <p class="lesson-text">Struktur kristal—seperti garam, kuarsa, dan berlian—dapat dideskripsikan melalui poligon dan polihedron. Natrium klorida (garam meja) memiliki struktur kubus, sedangkan berlian memiliki struktur tetrahedral. Memahami geometri kristal membantu ilmuwan merancang material baru dengan sifat yang diinginkan—mulai dari superkonduktor hingga panel surya.</p>
+
+ <p class="lesson-subheading">F. Pengubinan (Tessellation)</p>
+ <p class="lesson-text">Pengubinan adalah cara menyusun poligon untuk menutupi bidang tanpa celah dan tanpa tumpang tindih. Hanya tiga poligon beraturan yang dapat mengubini bidang secara sempurna: segitiga sama sisi, persegi, dan segienam beraturan.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa hanya tiga?</strong> Karena pada pertemuan di setiap titik, sudut-sudutnya harus berjumlah tepat $360^\circ$. Untuk segitiga: $60^\circ \times 6 = 360^\circ$. Untuk persegi: $90^\circ \times 4 = 360^\circ$. Untuk segienam: $120^\circ \times 3 = 360^\circ$. Ketiganya cocok. Sedangkan segilima ($108^\circ$) tidak bisa membagi $360^\circ$ dengan tepat—$108 \times 3 = 324°$, $108 \times 4 = 432°$. Ini adalah contoh indah bagaimana aritmetika sederhana menjelaskan keterbatasan geometris.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap semua segiempat adalah persegi atau persegi panjang.</strong> Persegi dan persegi panjang hanya dua dari banyak jenis segiempat. Jajar genjang, belah ketupat, layang-layang, dan trapesium juga segiempat yang sah.</li>
+  <li><strong>Menganggap jajar genjang selalu memiliki sudut siku-siku.</strong> Jajar genjang hanya memiliki sudut siku-siku jika ia juga merupakan persegi panjang. Secara umum, sudut jajar genjang tidak $90^\circ$.</li>
+  <li><strong>Menghitung luas jajar genjang dengan sisi miring.</strong> Luas jajar genjang adalah $a \cdot t$ (alas kali tinggi), bukan $a \cdot b$ (alas kali sisi miring). Tinggi adalah jarak tegak lurus, bukan panjang sisi miring.</li>
+  <li><strong>Menghitung luas trapesium dengan menggunakan kaki.</strong> Luas trapesium adalah $\tfrac{1}{2}(a+b) \cdot t$, di mana $t$ adalah tinggi (jarak tegak lurus antara kedua sisi sejajar), bukan panjang kaki.</li>
+  <li><strong>Menganggap trapesium memiliki dua pasang sisi sejajar.</strong> Trapesium hanya memiliki <em>tepat satu pasang</em> sisi sejajar. Jika kedua pasang sisi sejajar, itu jajar genjang—bukan trapesium (dengan definisi "tepat satu").</li>
+  <li><strong>Menganggap diagonal belah ketupat sama panjang.</strong> Diagonal belah ketupat saling tegak lurus, tetapi <em>tidak harus</em> sama panjang. Diagonal yang sama panjang hanya terjadi pada persegi (dan persegi panjang).</li>
+  <li><strong>Menganggap diagonal layang-layang selalu sama panjang.</strong> Diagonal layang-layang saling tegak lurus, tetapi panjangnya tidak sama secara umum. Hanya satu diagonal (yang menjadi sumbu simetri) yang membagi diagonal lainnya menjadi dua sama panjang.</li>
+  <li><strong>Menganggap jumlah sudut dalam semua poligon adalah $360^\circ$.</strong> Hanya segiempat yang jumlah sudut dalamnya $360^\circ$. Untuk segitiga jumlahnya $180^\circ$, segilima $540^\circ$, segienam $720^\circ$, dan seterusnya.</li>
+  <li><strong>Menganggap poligon beraturan dan poligon konveks adalah hal yang sama.</strong> Poligon konveks adalah poligon yang semua sudut dalamnya kurang dari $180^\circ$; poligon beraturan adalah poligon yang semua sisi dan sudutnya sama. Poligon beraturan pasti konveks, tetapi poligon konveks belum tentu beraturan.</li>
+  <li><strong>Salah menerapkan rumus sudut luar.</strong> Rumus sudut luar poligon beraturan $\dfrac{360^\circ}{n}$ hanya berlaku untuk poligon beraturan. Untuk poligon sembarang, jumlah semua sudut luarnya tetap $360^\circ$, tetapi besar masing-masingnya bisa berbeda.</li>
+  <li><strong>Menganggap titik potong diagonal jajar genjang tidak istimewa.</strong> Pada jajar genjang (dan juga persegi, persegi panjang, belah ketupat), kedua diagonal saling membagi dua sama panjang. Ini adalah sifat penting yang sering dipakai untuk menyelesaikan soal.</li>
+  <li><strong>Menganggap segienam beraturan tidak dapat dibagi menjadi segitiga sama sisi.</strong> Segienam beraturan <em>dapat</em> dibagi menjadi $6$ segitiga sama sisi jika dihubungkan ke pusatnya. Sifat ini sering dipakai untuk menghitung luas segienam beraturan dengan cepat.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Segiempat</strong> adalah poligon dengan $4$ sisi. Jumlah sudut dalamnya selalu $360^\circ$.</li>
+  <li><strong>Jenis segiempat</strong>: persegi, persegi panjang, jajar genjang, belah ketupat, layang-layang, trapesium, dan sembarang.</li>
+  <li><strong>Persegi</strong>: semua sisi sama, semua sudut $90^\circ$. $K = 4s$, $L = s^2$.</li>
+  <li><strong>Persegi panjang</strong>: semua sudut $90^\circ$, sisi berhadapan sama panjang. $K = 2(p+l)$, $L = p \cdot l$.</li>
+  <li><strong>Jajar genjang</strong>: dua pasang sisi sejajar dan sama panjang; sudut berhadapan sama; diagonal saling membagi dua sama panjang. $L = a \cdot t$.</li>
+  <li><strong>Belah ketupat</strong>: semua sisi sama, diagonal saling tegak lurus. $L = \tfrac{1}{2} d_1 d_2$.</li>
+  <li><strong>Layang-layang</strong>: dua pasang sisi berdekatan sama, salah satu diagonal sebagai sumbu simetri. $L = \tfrac{1}{2} d_1 d_2$.</li>
+  <li><strong>Trapesium</strong>: tepat satu pasang sisi sejajar. $L = \tfrac{1}{2}(a+b) \cdot t$. Jenis: sama kaki, siku-siku, sembarang.</li>
+  <li><strong>Poligon</strong> adalah bangun datar tertutup dengan $n$ sisi. Jumlah sudut dalamnya $(n-2) \cdot 180^\circ$.</li>
+  <li><strong>Poligon beraturan</strong>: semua sisi dan sudut sama. Sudut dalam $= \dfrac{(n-2) \cdot 180^\circ}{n}$; sudut luar $= \dfrac{360^\circ}{n}$.</li>
+  <li>Jumlah semua sudut luar poligon konveks (beraturan atau tidak) selalu $360^\circ$.</li>
+  <li>Segienam beraturan istimewa karena dapat dibagi menjadi $6$ segitiga sama sisi jika dihubungkan ke pusatnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Segiempat dan poligon adalah <strong>keluarga bangun datar yang sangat kaya</strong>&mdash;dari persegi yang simetris sempurna, hingga trapesium dengan satu pasang sisi sejajar. Yang menyatukan semuanya adalah konsep dasar tentang sisi, sudut, dan diagonal yang sudah kita pelajari sejak materi titik, garis, dan sudut. Jajar genjang dan trapesium mengajarkan tentang kesejajaran dan sudut sepihak; poligon beraturan menunjukkan bahwa aturan sederhana (semua sisi dan sudut sama) dapat menghasilkan bentuk-bentuk yang indah&mdash;seperti sarang lebah dan pola dekoratif. Fakta bahwa hanya tiga poligon beraturan yang dapat mengubini bidang secara sempurna menunjukkan bahwa matematika memiliki batasan alami yang elegan.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Lingkaran</strong>, <strong>Luas &amp; Volume</strong>, <strong>Geometri Analitik</strong>, <strong>Irisan Kerucut</strong>, hingga <strong>Transformasi Geometri</strong>&mdash;semuanya bertumpu pada konsep-konsep segiempat dan poligon yang baru saja dipelajari.</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama perhitungan luas dan keliling, identifikasi jenis segiempat, serta penerapan rumus sudut poligon. Kebiasaan membedakan "tinggi" dari "sisi miring" saat menghitung luas, konsisten dalam satuan, dan mengaitkan setiap rumus dengan alasan mengapa rumus itu berlaku akan menyelamatkan Anda dari kesalahan yang tidak perlu&mdash;terutama saat berpindah ke topik luas &amp; volume dan geometri analitik.</p>
+</div>
+
+</div>
+</body>
+</html>

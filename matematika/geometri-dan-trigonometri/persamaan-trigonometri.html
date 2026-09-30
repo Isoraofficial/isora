@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Persamaan Trigonometri (Penyelesaian Umum)</title>
+ <meta name="description" content="Materi lengkap persamaan trigonometri: pengertian, perbedaan identitas dan persamaan, penyelesaian umum sin x = sin α, cos x = cos α, tan x = tan α, persamaan kuadrat trigonometri, persamaan dengan sudut berbeda, dan penentuan solusi pada interval tertentu.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Persamaan Trigonometri (Penyelesaian Umum)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Trigonometri Dasar</strong> — identitas sudut berelasi ($\sin(\pi - \alpha) = \sin\alpha$, $\cos(-\alpha) = \cos\alpha$, $\tan(\alpha + \pi) = \tan\alpha$) dan nilai sudut istimewa adalah <em>jantung</em> dari seluruh pembahasan. Setiap rumus penyelesaian umum diturunkan langsung dari identitas-identitas ini—jadi tanpa menguasainya, rumus hanya akan terasa seperti hafalan tanpa makna.</li>
+   <li><strong>Fungsi Trigonometri</strong> — konsep <em>periode</em>, <em>range</em>, dan grafik dari materi sebelumnya dipakai terus-menerus di sini. Memahami mengapa $\sin x$ berulang setiap $2\pi$ tetapi $\tan x$ berulang setiap $\pi$ adalah kunci untuk memahami mengapa parameter penambahannya berbeda.</li>
+   <li><strong>Persamaan Kuadrat</strong> — banyak persamaan trigonometri dapat diubah menjadi bentuk kuadrat melalui substitusi (misalnya $u = \cos x$). Kemampuan memfaktorkan, menggunakan rumus abc, dan menafsirkan diskriminan sangat dibutuhkan.</li>
+   <li><strong>Sistem Bilangan</strong> — variabel $x$ bergerak di $\mathbb{R}$, sedangkan parameter $k$ terbatas pada $\mathbb{Z}$ (bilangan bulat). Memahami perbedaan domain keduanya mencegah kesalahan umum seperti menuliskan solusi dengan $k$ yang bukan bilangan bulat.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi <strong>Trigonometri Dasar</strong> dan <strong>Fungsi Trigonometri</strong>, kita telah mempelajari nilai trigonometri untuk sudut-sudut tertentu, identitas-identitas dasar, serta bentuk grafik fungsi sinus, kosinus, dan tangen. Kini saatnya membahas kebalikannya: <strong>diberikan nilai trigonometri, berapa sudut yang menghasilkannya?</strong> Inilah inti dari <strong>persamaan trigonometri</strong>&mdash;puncak dari rangkaian trigonometri dasar. Jika Trigonometri Dasar mengajarkan <em>bagaimana menghitung nilai</em>, dan Fungsi Trigonometri mengajarkan <em>bagaimana nilai berubah terhadap sudut</em>, maka Persamaan Trigonometri mengajarkan <em>bagaimana menemukan sudut dari nilai yang diketahui</em>.</p>
+ <p class="lesson-text">Sebagai contoh sederhana: jika $\sin x = \frac{1}{2}$, berapakah nilai $x$? Jawabannya <strong>tidak tunggal</strong>. Karena fungsi sinus bersifat periodik&mdash;berulang setiap $2\pi$&mdash;maka ada <strong>tak hingga banyak</strong> sudut $x$ yang memenuhi. Selain itu, dalam satu siklus, nilai sinus yang sama dapat muncul pada <strong>dua posisi berbeda</strong> (misalnya kuadran I dan II untuk nilai positif, atau kuadran III dan IV untuk nilai negatif). Karena itu, kita tidak cukup mencari satu jawaban saja&mdash;kita memerlukan <strong>penyelesaian umum</strong>: rumus yang mencakup <em>semua</em> solusi, biasanya dengan parameter $k \in \mathbb{Z}$ yang menyatakan bilangan bulat.</p>
+ <p class="lesson-text">Materi ini akan membahas: pengertian persamaan trigonometri dan perbedaannya dengan identitas, penyelesaian umum untuk $\sin x = \sin\alpha$, $\cos x = \cos\alpha$, dan $\tan x = \tan\alpha$, cara menyederhanakan persamaan yang lebih kompleks, penentuan solusi pada interval tertentu, serta kesalahan umum. Setiap rumus akan dijelaskan <em>mengapa</em> bentuknya seperti itu&mdash;bukan sekadar dihafal.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Persamaan Trigonometri</h3>
+ <p class="lesson-subheading">A. Definisi Persamaan Trigonometri</p>
+ <p class="lesson-text"><strong>Persamaan trigonometri</strong> adalah persamaan yang memuat variabel di dalam fungsi trigonometri (sinus, kosinus, tangen, atau kebalikannya), dan kita diminta untuk mencari nilai variabel yang membuat persamaan tersebut benar. Variabel biasanya dilambangkan dengan $x$, meskipun huruf lain seperti $\theta$ atau $t$ juga sering dipakai.</p>
+ <p class="lesson-text">Contoh-contoh persamaan trigonometri:</p>
+ <ul>
+  <li>$\sin x = \dfrac{1}{2}$ (persamaan sederhana).</li>
+  <li>$2\cos 2x - 1 = 0$ (dengan sudut ganda).</li>
+  <li>$\tan^2 x - 3\tan x + 2 = 0$ (berbentuk kuadrat).</li>
+  <li>$\sin x + \cos x = 1$ (melibatkan lebih dari satu fungsi).</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Perbedaan Persamaan dan Identitas</p>
+ <p class="lesson-text">Ada perbedaan penting antara <strong>persamaan trigonometri</strong> dan <strong>identitas trigonometri</strong>:</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Identitas Trigonometri</th>
+     <th>Persamaan Trigonometri</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Contoh</td>
+     <td>$\sin^2 x + \cos^2 x = 1$</td>
+     <td>$\sin x = \frac{1}{2}$</td>
+    </tr>
+    <tr>
+     <td>Kebenaran</td>
+     <td>Benar untuk <em>semua</em> nilai $x$</td>
+     <td>Benar hanya untuk <em>beberapa</em> nilai $x$</td>
+    </tr>
+    <tr>
+     <td>Jumlah solusi</td>
+     <td>Tak hingga (semua bilangan real)</td>
+     <td>Diskrit (berhingga dalam satu periode, tak hingga jika tanpa interval)</td>
+    </tr>
+    <tr>
+     <td>Tujuan</td>
+     <td>Menyederhanakan atau membuktikan</td>
+     <td>Mencari nilai variabel yang memenuhi</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">C. Mengapa Penyelesaian Umum Diperlukan?</p>
+ <p class="lesson-text">Karena fungsi trigonometri bersifat <strong>periodik</strong>, satu nilai trigonometri dapat dicapai oleh tak hingga banyak sudut. Contohnya, jika $\sin x = \frac{1}{2}$, maka $x = 30^\circ$, $150^\circ$, $390^\circ$, $510^\circ$, dan seterusnya—ke arah positif maupun negatif.</p>
+ <p class="lesson-text">Jadi, untuk menuliskan <em>semua</em> solusi dalam satu rumus, kita menggunakan <strong>penyelesaian umum</strong> yang memuat parameter $k \in \mathbb{Z}$ (bilangan bulat). Parameter $k$ memungkinkan kita "menelusuri" semua siklus: $k = 0$ memberi solusi dalam satu putaran dasar, $k = 1$ memberi satu putaran berikutnya, $k = -1$ memberi satu putaran sebelumnya, dan seterusnya.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Makna parameter $k$:</strong> pikirkan $k$ seperti tombol <em>next/prev</em> pada pemutar musik yang memindahkan lagu per putaran. $k$ tidak boleh berupa pecahan atau desimal—karena solusi trigonometri hanya berulang tepat pada setiap kelipatan periode. Menuliskan $k \in \mathbb{Z}$ di akhir solusi bukan formalitas, melainkan bagian tak terpisahkan dari jawaban.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Persamaan Dasar $\sin x = \sin\alpha$</h3>
+ <p class="lesson-subheading">A. Rumus Penyelesaian Umum</p>
+ <p class="lesson-text">Jika $\sin x = \sin\alpha$ (dengan $\alpha$ dalam derajat atau radian), maka solusi umumnya adalah:</p>
+ <p class="lesson-text">$$x = \alpha + 2k\pi \quad \text{atau} \quad x = (\pi - \alpha) + 2k\pi, \quad k \in \mathbb{Z}$$</p>
+ <p class="lesson-text">Jika menggunakan satuan derajat:</p>
+ <p class="lesson-text">$$x = \alpha + k \cdot 360^\circ \quad \text{atau} \quad x = (180^\circ - \alpha) + k \cdot 360^\circ, \quad k \in \mathbb{Z}$$</p>
+
+ <p class="lesson-subheading">B. Mengapa Dua Rumus?</p>
+ <p class="lesson-text">Fungsi sinus memiliki sifat khusus: untuk nilai $y$ tertentu (dengan $-1 \leq y \leq 1$), ada <strong>dua sudut</strong> dalam satu putaran $0 \leq x < 2\pi$ yang menghasilkan nilai sinus yang sama. Kedua sudut itu adalah:</p>
+ <ul>
+  <li>$\alpha$ (di kuadran I atau IV, tergantung tanda).</li>
+  <li>$\pi - \alpha$ (di kuadran II atau III).</li>
+ </ul>
+ <p class="lesson-text">Identitas sudut berelasi $\sin(\pi - \alpha) = \sin\alpha$ menjelaskan mengapa $\pi - \alpha$ juga merupakan solusi. Karena kedua sudut ini berjarak sama dari sumbu-$Y$, nilai sinusnya identik.</p>
+ <p class="lesson-text">Kemudian, karena sinus periodik dengan periode $2\pi$, kita tambahkan $2k\pi$ pada kedua solusi dasar tersebut untuk mencakup semua siklus.</p>
+
+ <figure>
+  <svg viewBox="0 0 500 500" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <g stroke="#e8e8e8" stroke-width="0.4" opacity="0.08">
+    <line x1="250" y1="50" x2="250" y2="450"/>
+    <line x1="50" y1="250" x2="450" y2="250"/>
+   </g>
+   <line x1="50" y1="250" x2="450" y2="250" stroke="#e8e8e8" stroke-width="1.5"/>
+   <line x1="250" y1="450" x2="250" y2="50" stroke="#e8e8e8" stroke-width="1.5"/>
+   <text x="455" y="254" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <text x="256" y="46" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <text x="230" y="266" font-size="12" fill="#e8e8e8" font-style="italic">O</text>
+   <circle cx="250" cy="250" r="150" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+
+   <line x1="80" y1="175" x2="420" y2="175" stroke="#f0c75e" stroke-width="1.4" stroke-dasharray="5,4"/>
+   <text x="423" y="180" font-size="11" fill="#f0c75e" font-style="italic">y = sin α</text>
+
+   <line x1="250" y1="250" x2="380" y2="175" stroke="#daa520" stroke-width="2"/>
+   <line x1="250" y1="250" x2="120" y2="175" stroke="#5dade2" stroke-width="2"/>
+
+   <circle cx="380" cy="175" r="5" fill="#daa520"/>
+   <circle cx="120" cy="175" r="5" fill="#5dade2"/>
+
+   <path d="M 295 250 A 45 45 0 0 0 288.97 227.5" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="300" y="240" font-size="13" fill="#daa520" font-style="italic" font-weight="600">α</text>
+   <path d="M 310 250 A 60 60 0 0 0 198.04 220" fill="none" stroke="#5dade2" stroke-width="2"/>
+   <text x="238" y="212" font-size="13" fill="#5dade2" font-style="italic" font-weight="600">π − α</text>
+
+   <text x="385" y="168" font-size="11" fill="#daa520" font-style="italic">P₁</text>
+   <text x="95" y="168" font-size="11" fill="#5dade2" font-style="italic">P₂</text>
+   <text x="115" y="470" font-size="12" fill="#b8b8b8" font-style="italic">P₁ dan P₂ memiliki ordinat (nilai sin) yang sama</text>
+  </svg>
+  <figcaption class="visual-caption">Gambar 1: Ilustrasi mengapa $\sin x = \sin\alpha$ memiliki dua solusi dasar. Titik $P_1$ (sudut $\alpha$) dan $P_2$ (sudut $\pi - \alpha$) memiliki ordinat yang sama, sehingga nilai sinusnya sama. Kedua busur sudut diukur dari acuan yang sama, yaitu sumbu-$X$ positif.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Contoh Perhitungan</p>
+ <p class="lesson-text">Selesaikan $\sin x = \dfrac{1}{2}$ untuk semua $x \in \mathbb{R}$.</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> Cari sudut acuan $\alpha$ sehingga $\sin\alpha = \frac{1}{2}$. Dari tabel sudut istimewa, $\alpha = \frac{\pi}{6}$ (atau $30^\circ$).</p>
+ <p class="lesson-text"><strong>Langkah 2:</strong> Gunakan rumus penyelesaian umum:</p>
+ <p class="lesson-text">$$x = \frac{\pi}{6} + 2k\pi \quad \text{atau} \quad x = \left(\pi - \frac{\pi}{6}\right) + 2k\pi = \frac{5\pi}{6} + 2k\pi, \quad k \in \mathbb{Z}$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong></p>
+ <ul>
+  <li>Untuk $k = 0$: $x = \frac{\pi}{6} = 30^\circ$ atau $x = \frac{5\pi}{6} = 150^\circ$. Keduanya memiliki $\sin = \frac{1}{2}$. ✓</li>
+  <li>Untuk $k = 1$: $x = \frac{13\pi}{6} = 390^\circ$ atau $x = \frac{17\pi}{6} = 510^\circ$. ✓</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Contoh dengan Nilai Negatif</p>
+ <p class="lesson-text">Selesaikan $\sin x = -\dfrac{1}{2}$.</p>
+ <p class="lesson-text">Karena nilai sinus negatif, sudut acuan berada di kuadran III atau IV. Kita dapat mengambil $\alpha = -\frac{\pi}{6}$ (atau setara dengan $\frac{11\pi}{6}$) karena $\sin(-\pi/6) = -1/2$.</p>
+ <p class="lesson-text">$$\sin x = \sin\left(-\frac{\pi}{6}\right)$$</p>
+ <p class="lesson-text">Solusi umum:</p>
+ <p class="lesson-text">$$x = -\frac{\pi}{6} + 2k\pi \quad \text{atau} \quad x = \pi - \left(-\frac{\pi}{6}\right) + 2k\pi = \frac{7\pi}{6} + 2k\pi$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Trik memilih $\alpha$ untuk nilai negatif:</strong> ambil $\alpha$ di kuadran IV (nilai negatif, mendekati $0$) agar angkanya kecil dan mudah. Untuk $\sin x = -\frac{1}{2}$, pilih $\alpha = -\pi/6$ alih-alih $7\pi/6$ atau $11\pi/6$. Hasilnya sama, tetapi perhitungan pada interval jadi lebih rapi.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Persamaan Dasar $\cos x = \cos\alpha$</h3>
+ <p class="lesson-subheading">A. Rumus Penyelesaian Umum</p>
+ <p class="lesson-text">Jika $\cos x = \cos\alpha$, maka solusi umumnya adalah:</p>
+ <p class="lesson-text">$$x = \alpha + 2k\pi \quad \text{atau} \quad x = -\alpha + 2k\pi, \quad k \in \mathbb{Z}$$</p>
+ <p class="lesson-text">Dalam derajat:</p>
+ <p class="lesson-text">$$x = \alpha + k \cdot 360^\circ \quad \text{atau} \quad x = -\alpha + k \cdot 360^\circ, \quad k \in \mathbb{Z}$$</p>
+
+ <p class="lesson-subheading">B. Mengapa Dua Rumus?</p>
+ <p class="lesson-text">Sama seperti sinus, fungsi kosinus juga memiliki <strong>dua sudut</strong> dalam satu putaran yang menghasilkan nilai kosinus yang sama, yaitu $\alpha$ dan $-\alpha$. Hal ini didasarkan pada identitas sudut berelasi $\cos(-\alpha) = \cos\alpha$ (kosinus adalah fungsi genap). Kedua sudut ini memiliki absis (koordinat $x$) yang sama pada lingkaran satuan.</p>
+
+ <figure>
+  <svg viewBox="0 0 500 500" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="50" y1="250" x2="450" y2="250" stroke="#e8e8e8" stroke-width="1.5"/>
+   <line x1="250" y1="450" x2="250" y2="50" stroke="#e8e8e8" stroke-width="1.5"/>
+   <text x="455" y="254" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <text x="256" y="46" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <text x="230" y="266" font-size="12" fill="#e8e8e8" font-style="italic">O</text>
+   <circle cx="250" cy="250" r="150" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+   <line x1="250" y1="250" x2="325" y2="120" stroke="#daa520" stroke-width="2"/>
+   <line x1="250" y1="250" x2="325" y2="380" stroke="#5dade2" stroke-width="2"/>
+   <line x1="325" y1="80" x2="325" y2="420" stroke="#f0c75e" stroke-width="1.4" stroke-dasharray="5,4"/>
+   <text x="329" y="95" font-size="11" fill="#f0c75e" font-style="italic">x = cos α</text>
+   <circle cx="325" cy="120" r="5" fill="#daa520"/>
+   <circle cx="325" cy="380" r="5" fill="#5dade2"/>
+   <path d="M 290 250 A 40 40 0 0 0 270 215" fill="none" stroke="#daa520" stroke-width="1.8"/>
+   <path d="M 290 250 A 40 40 0 0 1 270 285" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="272" y="232" font-size="13" fill="#daa520" font-style="italic">α</text>
+   <text x="272" y="278" font-size="13" fill="#5dade2" font-style="italic">−α</text>
+   <text x="330" y="115" font-size="11" fill="#daa520" font-style="italic">P₁</text>
+   <text x="330" y="398" font-size="11" fill="#5dade2" font-style="italic">P₂</text>
+   <text x="140" y="470" font-size="12" fill="#b8b8b8" font-style="italic">P₁ dan P₂ memiliki absis (nilai cos) yang sama</text>
+  </svg>
+  <figcaption class="visual-caption">Gambar 2: Ilustrasi mengapa $\cos x = \cos\alpha$ memiliki dua solusi dasar. Titik $P_1$ (sudut $\alpha$) dan $P_2$ (sudut $-\alpha$) memiliki absis yang sama, sehingga nilai kosinusnya sama.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Contoh Perhitungan</p>
+ <p class="lesson-text">Selesaikan $\cos x = \dfrac{\sqrt{3}}{2}$.</p>
+ <p class="lesson-text">Sudut acuan: $\cos\alpha = \frac{\sqrt{3}}{2}$, maka $\alpha = \frac{\pi}{6}$ (atau $30^\circ$).</p>
+ <p class="lesson-text">Solusi umum:</p>
+ <p class="lesson-text">$$x = \frac{\pi}{6} + 2k\pi \quad \text{atau} \quad x = -\frac{\pi}{6} + 2k\pi, \quad k \in \mathbb{Z}$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> untuk $k = 0$, $x = 30^\circ$ atau $x = -30^\circ$ (setara $330^\circ$). Keduanya memiliki $\cos = \frac{\sqrt{3}}{2}$. ✓</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perbedaan kunci sin vs cos:</strong> meskipun keduanya punya dua cabang, bentuk cabang keduanya <em>berbeda</em>. Sinus memakai $\pi - \alpha$ (pencerminan terhadap sumbu-$Y$), sedangkan kosinus memakai $-\alpha$ (pencerminan terhadap sumbu-$X$). Jangan tertukar! Kesalahan menuliskan $\cos x = \cos\alpha \Rightarrow x = \pi - \alpha + 2k\pi$ adalah salah satu kekeliruan paling umum.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Persamaan Dasar $\tan x = \tan\alpha$</h3>
+ <p class="lesson-subheading">A. Rumus Penyelesaian Umum</p>
+ <p class="lesson-text">Jika $\tan x = \tan\alpha$, maka solusi umumnya adalah:</p>
+ <p class="lesson-text">$$x = \alpha + k\pi, \quad k \in \mathbb{Z}$$</p>
+ <p class="lesson-text">Dalam derajat:</p>
+ <p class="lesson-text">$$x = \alpha + k \cdot 180^\circ, \quad k \in \mathbb{Z}$$</p>
+
+ <p class="lesson-subheading">B. Mengapa Hanya Satu Rumus?</p>
+ <p class="lesson-text">Berbeda dengan sinus dan kosinus yang memiliki dua solusi dasar, fungsi tangen hanya memiliki <strong>satu solusi dasar</strong> per periode. Alasannya: dalam satu periode $\pi$, fungsi tangen bersifat <em>monoton naik</em>—ia naik dari $-\infty$ ke $+\infty$ tanpa pernah turun. Akibatnya, setiap nilai tangen yang mungkin hanya dicapai oleh <em>satu</em> sudut per periode.</p>
+ <p class="lesson-text">Selain itu, periode tangen adalah $\pi$ (bukan $2\pi$), sehingga kita menambahkan $k\pi$ (bukan $2k\pi$). Ini mencerminkan fakta bahwa setiap kali kita menambahkan $\pi$, nilai tangen berulang.</p>
+
+ <figure>
+  <svg viewBox="0 0 500 500" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="50" y1="250" x2="450" y2="250" stroke="#e8e8e8" stroke-width="1.5"/>
+   <line x1="250" y1="450" x2="250" y2="50" stroke="#e8e8e8" stroke-width="1.5"/>
+   <text x="455" y="254" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <text x="256" y="46" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <text x="230" y="266" font-size="12" fill="#e8e8e8" font-style="italic">O</text>
+   <circle cx="250" cy="250" r="150" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+   <line x1="250" y1="250" x2="356" y2="144" stroke="#daa520" stroke-width="2"/>
+   <line x1="250" y1="250" x2="144" y2="356" stroke="#5dade2" stroke-width="2" stroke-dasharray="6,4"/>
+   <circle cx="356" cy="144" r="5" fill="#daa520"/>
+   <circle cx="144" cy="356" r="5" fill="#5dade2"/>
+   <path d="M 290 250 A 40 40 0 0 0 278 222" fill="none" stroke="#daa520" stroke-width="1.8"/>
+   <path d="M 315 250 A 65 65 0 0 0 204 296" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="295" y="228" font-size="13" fill="#daa520" font-style="italic">α</text>
+   <text x="240" y="305" font-size="13" fill="#5dade2" font-style="italic">α + π</text>
+   <text x="362" y="140" font-size="11" fill="#daa520" font-style="italic">P₁</text>
+   <text x="120" y="374" font-size="11" fill="#5dade2" font-style="italic">P₂</text>
+   <text x="100" y="470" font-size="12" fill="#b8b8b8" font-style="italic">Menambahkan π menghasilkan rasio sin/cos yang sama</text>
+  </svg>
+  <figcaption class="visual-caption">Gambar 3: Ilustrasi mengapa $\tan x = \tan\alpha$ hanya memiliki satu solusi dasar per periode $\pi$. Menambahkan $\pi$ ke sudut memindahkan titik ke seberang, tetapi $\tan x = \sin x / \cos x$ tetap sama karena kedua komponen berubah tanda.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Contoh Perhitungan</p>
+ <p class="lesson-text">Selesaikan $\tan x = 1$.</p>
+ <p class="lesson-text">Sudut acuan: $\tan\alpha = 1$, maka $\alpha = \frac{\pi}{4}$ (atau $45^\circ$).</p>
+ <p class="lesson-text">Solusi umum: $x = \frac{\pi}{4} + k\pi$, $k \in \mathbb{Z}$.</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> $k = 0 \to x = 45^\circ$; $k = 1 \to x = 225^\circ$; $k = -1 \to x = -135^\circ$. Semua memiliki $\tan = 1$. ✓</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Ringkasan Rumus Penyelesaian Umum</h3>
+ <p class="lesson-text">Berikut ringkasan ketiga rumus penyelesaian umum dalam satu tabel, baik dalam satuan radian maupun derajat.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Persamaan</th>
+     <th>Penyelesaian Umum (radian)</th>
+     <th>Penyelesaian Umum (derajat)</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\sin x = \sin\alpha$</td>
+     <td>$x = \alpha + 2k\pi$<br>$x = (\pi - \alpha) + 2k\pi$</td>
+     <td>$x = \alpha + k \cdot 360^\circ$<br>$x = (180^\circ - \alpha) + k \cdot 360^\circ$</td>
+    </tr>
+    <tr>
+     <td>$\cos x = \cos\alpha$</td>
+     <td>$x = \alpha + 2k\pi$<br>$x = -\alpha + 2k\pi$</td>
+     <td>$x = \alpha + k \cdot 360^\circ$<br>$x = -\alpha + k \cdot 360^\circ$</td>
+    </tr>
+    <tr>
+     <td>$\tan x = \tan\alpha$</td>
+     <td>$x = \alpha + k\pi$</td>
+     <td>$x = \alpha + k \cdot 180^\circ$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text">Semua rumus ini berlaku untuk $k \in \mathbb{Z}$ (bilangan bulat). Parameter $k$ inilah yang membuat solusi menjadi "umum"—mencakup semua kemungkinan.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pola pengingat:</strong> <em>sin</em> dan <em>cos</em> → dua cabang, tambah $2k\pi$. <em>tan</em> → satu cabang, tambah $k\pi$. Kalau lupa bentuk cabang kedua, ingat saja sifat simetri: sin cermin terhadap sumbu-$Y$ (jadi pakai $\pi - \alpha$), cos cermin terhadap sumbu-$X$ (jadi pakai $-\alpha$).</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Persamaan yang Perlu Disederhanakan Dulu</h3>
+ <p class="lesson-subheading">A. Mengubah ke Bentuk Dasar</p>
+ <p class="lesson-text">Tidak semua persamaan trigonometri langsung berbentuk $\sin x = \sin\alpha$. Sering kali, kita perlu menyederhanakan terlebih dahulu menggunakan identitas atau manipulasi aljabar.</p>
+
+ <p class="lesson-subheading-alt">Contoh 1: Persamaan Linear</p>
+ <p class="lesson-text">Selesaikan $2\sin x - 1 = 0$.</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> Isolasi fungsi trigonometri: $2\sin x = 1 \Rightarrow \sin x = \frac{1}{2}$.</p>
+ <p class="lesson-text"><strong>Langkah 2:</strong> Selesaikan seperti persamaan dasar: $x = \frac{\pi}{6} + 2k\pi$ atau $x = \frac{5\pi}{6} + 2k\pi$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2: Nilai Trigonometri Bukan Sudut Istimewa</p>
+ <p class="lesson-text">Selesaikan $\sin x = 0{,}6$.</p>
+ <p class="lesson-text">Karena $0{,}6$ bukan nilai sinus sudut istimewa, kita perlu menggunakan fungsi invers. Sudut acuannya adalah $\alpha = \arcsin(0{,}6) \approx 36{,}87^\circ$ (atau sekitar $0{,}6435$ radian).</p>
+ <p class="lesson-text">$$x \approx 0{,}6435 + 2k\pi \quad \text{atau} \quad x \approx 2{,}4981 + 2k\pi$$</p>
+ <p class="lesson-text">Jika soal meminta jawaban eksak: $x = \arcsin(0{,}6) + 2k\pi$ atau $x = \pi - \arcsin(0{,}6) + 2k\pi$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3: Menggunakan Identitas Pythagoras</p>
+ <p class="lesson-text">Selesaikan $2\sin^2 x - \cos x - 1 = 0$.</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> Ubah semua fungsi menjadi satu jenis. Gunakan identitas $\sin^2 x = 1 - \cos^2 x$:</p>
+ <p class="lesson-text">$$2(1 - \cos^2 x) - \cos x - 1 = 0$$ $$2 - 2\cos^2 x - \cos x - 1 = 0$$ $$-2\cos^2 x - \cos x + 1 = 0$$</p>
+ <p class="lesson-text">Kalikan dengan $-1$: $2\cos^2 x + \cos x - 1 = 0$.</p>
+
+ <p class="lesson-text"><strong>Langkah 2:</strong> Misalkan $u = \cos x$, sehingga persamaan menjadi kuadrat biasa: $2u^2 + u - 1 = 0$.</p>
+ <p class="lesson-text">Faktorkan: $(2u - 1)(u + 1) = 0$. Maka $u = \frac{1}{2}$ atau $u = -1$.</p>
+
+ <p class="lesson-text"><strong>Langkah 3:</strong> Kembalikan substitusi:</p>
+ <ul>
+  <li>$\cos x = \frac{1}{2}$ → $x = \pm\frac{\pi}{3} + 2k\pi$.</li>
+  <li>$\cos x = -1$ → $x = \pi + 2k\pi$.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Strategi mengubah ke satu fungsi:</strong> jika persamaan memuat lebih dari satu jenis fungsi trigonometri, gunakan identitas Pythagoras ($\sin^2 x + \cos^2 x = 1$) atau identitas turunannya untuk menyisakan satu fungsi saja. Ini mengubah persamaan menjadi bentuk kuadrat yang dapat diselesaikan dengan substitusi $u$.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Persamaan dengan Sudut Berbeda</h3>
+ <p class="lesson-subheading">A. Tantangan Tambahan</p>
+ <p class="lesson-text">Ketika persamaan trigonometri memiliki sudut yang berbeda—misalnya $\sin 2x = \sin x$—kita tidak dapat langsung menggunakan rumus dasar. Kita perlu memanipulasi terlebih dahulu agar semua sudut menjadi sama, atau menggunakan identitas sudut ganda.</p>
+
+ <p class="lesson-subheading-alt">Contoh 1: Menggunakan Rumus Sudut Ganda</p>
+ <p class="lesson-text">Selesaikan $\sin 2x = \sin x$.</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> Gunakan identitas $\sin 2x = 2\sin x \cos x$:</p>
+ <p class="lesson-text">$$2\sin x \cos x = \sin x$$</p>
+ <p class="lesson-text"><strong>Langkah 2:</strong> Pindahkan semua ke satu sisi dan faktorkan:</p>
+ <p class="lesson-text">$$2\sin x \cos x - \sin x = 0$$ $$\sin x (2\cos x - 1) = 0$$</p>
+ <p class="lesson-text"><strong>Langkah 3:</strong> Selesaikan masing-masing faktor:</p>
+ <ul>
+  <li><strong>Kasus 1:</strong> $\sin x = 0$ → $x = k\pi$.</li>
+  <li><strong>Kasus 2:</strong> $2\cos x - 1 = 0$ → $\cos x = \frac{1}{2}$ → $x = \pm\frac{\pi}{3} + 2k\pi$.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 2: Sudut Majemuk</p>
+ <p class="lesson-text">Selesaikan $\sin(2x) = \dfrac{1}{2}$.</p>
+ <p class="lesson-text">Kita dapat memandang $2x$ sebagai variabel tunggal. Misalkan $u = 2x$, maka $\sin u = \frac{1}{2}$, sehingga:</p>
+ <p class="lesson-text">$$u = \frac{\pi}{6} + 2k\pi \quad \text{atau} \quad u = \frac{5\pi}{6} + 2k\pi$$</p>
+ <p class="lesson-text">Karena $u = 2x$, maka $x = u/2$:</p>
+ <p class="lesson-text">$$x = \frac{\pi}{12} + k\pi \quad \text{atau} \quad x = \frac{5\pi}{12} + k\pi$$</p>
+ <p class="lesson-text">Perhatikan bahwa pembagian dengan $2$ juga mengubah $2k\pi$ menjadi $k\pi$. Ini karena ketika $u$ bernilai $2k\pi$, maka $x = k\pi$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3: Sudut dengan Pengurangan</p>
+ <p class="lesson-text">Selesaikan $\cos\left(x - \frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}$.</p>
+ <p class="lesson-text">Misalkan $u = x - \frac{\pi}{4}$. Maka $\cos u = \frac{\sqrt{2}}{2} = \cos\frac{\pi}{4}$, sehingga:</p>
+ <p class="lesson-text">$$u = \frac{\pi}{4} + 2k\pi \quad \text{atau} \quad u = -\frac{\pi}{4} + 2k\pi$$</p>
+ <p class="lesson-text">Kembalikan substitusi:</p>
+ <ul>
+  <li>$x - \frac{\pi}{4} = \frac{\pi}{4} + 2k\pi$ → $x = \frac{\pi}{2} + 2k\pi$.</li>
+  <li>$x - \frac{\pi}{4} = -\frac{\pi}{4} + 2k\pi$ → $x = 2k\pi$.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perangkap pembagian parameter:</strong> ketika menyelesaikan $\sin(Bx) = \sin\alpha$, langkah terakhir adalah membagi seluruh solusi dengan $B$—<em>termasuk</em> parameter $2k\pi$. Jadi $2k\pi / B$, bukan tetap $2k\pi$. Untuk $B = 2$, hasilnya adalah $k\pi$, bukan $2k\pi$. Kesalahan ini sering terjadi dan mengubah himpunan solusi secara signifikan.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Menentukan Solusi pada Interval Tertentu</h3>
+ <p class="lesson-subheading">A. Mengapa Interval Penting?</p>
+ <p class="lesson-text">Banyak soal persamaan trigonometri tidak meminta <em>semua</em> solusi (yang jumlahnya tak hingga), melainkan hanya solusi yang berada dalam <strong>interval tertentu</strong>, misalnya $0 \leq x < 2\pi$ atau $0^\circ \leq x \leq 360^\circ$. Ini membuat jawabannya menjadi berhingga dan lebih mudah diperiksa.</p>
+
+ <p class="lesson-subheading">B. Strategi Penyelesaian</p>
+ <ol>
+  <li>Selesaikan dulu untuk penyelesaian umum (dengan parameter $k$).</li>
+  <li>Substitusi nilai-nilai $k$ yang masuk akal (biasanya $k = -1, 0, 1, 2$) secara bergantian.</li>
+  <li>Periksa apakah nilai $x$ yang dihasilkan berada dalam interval yang diminta.</li>
+  <li>Kumpulkan semua nilai $x$ yang memenuhi.</li>
+ </ol>
+
+ <p class="lesson-subheading-alt">Contoh 1: Interval $0 \leq x < 2\pi$</p>
+ <p class="lesson-text">Tentukan solusi $\sin x = \dfrac{1}{2}$ untuk $0 \leq x < 2\pi$.</p>
+ <p class="lesson-text">Dari Bagian II, penyelesaian umumnya: $x = \frac{\pi}{6} + 2k\pi$ atau $x = \frac{5\pi}{6} + 2k\pi$.</p>
+ <ul>
+  <li>Cabang 1: $k = 0 \to x = \frac{\pi}{6}$ (✓); $k = 1 \to x = \frac{13\pi}{6} > 2\pi$ (✗).</li>
+  <li>Cabang 2: $k = 0 \to x = \frac{5\pi}{6}$ (✓); $k = 1$ di luar (✗).</li>
+ </ul>
+ <p class="lesson-text">Solusinya: $x = \frac{\pi}{6}$ dan $x = \frac{5\pi}{6}$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 2: Interval $0^\circ \leq x \leq 360^\circ$</p>
+ <p class="lesson-text">Tentukan solusi $\tan x = -1$ untuk $0^\circ \leq x \leq 360^\circ$.</p>
+ <p class="lesson-text">Sudut acuan: $\alpha = -45^\circ$. Penyelesaian umum: $x = -45^\circ + k \cdot 180^\circ$.</p>
+ <ul>
+  <li>$k = 0 \to x = -45^\circ$ (✗).</li>
+  <li>$k = 1 \to x = 135^\circ$ (✓).</li>
+  <li>$k = 2 \to x = 315^\circ$ (✓).</li>
+  <li>$k = 3 \to x = 495^\circ > 360^\circ$ (✗).</li>
+ </ul>
+ <p class="lesson-text">Solusinya: $x = 135^\circ$ dan $x = 315^\circ$.</p>
+
+ <p class="lesson-subheading-alt">Contoh 3: Interval dengan Sudut Berbeda</p>
+ <p class="lesson-text">Tentukan solusi $\sin 2x = \frac{1}{2}$ untuk $0 \leq x < 2\pi$.</p>
+ <p class="lesson-text">Penyelesaian umum: $x = \frac{\pi}{12} + k\pi$ atau $x = \frac{5\pi}{12} + k\pi$.</p>
+ <ul>
+  <li>Cabang 1: $k = 0 \to \frac{\pi}{12}$ (✓); $k = 1 \to \frac{13\pi}{12}$ (✓); $k = 2 \to \frac{25\pi}{12} > 2\pi$ (✗).</li>
+  <li>Cabang 2: $k = 0 \to \frac{5\pi}{12}$ (✓); $k = 1 \to \frac{17\pi}{12}$ (✓).</li>
+ </ul>
+ <p class="lesson-text">Solusinya: $x = \frac{\pi}{12}$, $\frac{5\pi}{12}$, $\frac{13\pi}{12}$, $\frac{17\pi}{12}$.</p>
+
+ <div class="lesson-note">
+ <p class="lesson-text"><strong>Cara cepat memeriksa jumlah solusi:</strong> dalam satu interval sepanjang satu periode penuh, persamaan $\sin x = c$ atau $\cos x = c$ memiliki:</p>
+ <ul>
+  <li><strong>2 solusi</strong> jika $|c| < 1$.</li>
+  <li><strong>1 solusi</strong> jika $|c| = 1$ (hanya di titik puncak atau lembah).</li>
+  <li><strong>Tidak ada solusi</strong> jika $|c| > 1$ (nilai sinus/kosinus tidak pernah melebihi $1$).</li>
+ </ul>
+ <p class="lesson-text">Untuk $\tan x = c$ (nilai $c$ berapa pun), selalu <strong>1 solusi</strong> per periode $\pi$. Jika interval lebih lebar (misalnya $[0, 4\pi]$), kalikan jumlah tersebut dengan banyak periode dalam interval. Ini membantu Anda mendeteksi solusi yang terlewat.</p>
+</div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Hanya menuliskan satu solusi dan melupakan yang lain.</strong> Persamaan $\sin x = \sin\alpha$ memiliki <em>dua</em> cabang solusi, bukan satu. Banyak siswa lupa cabang kedua ($\pi - \alpha$) dan kehilangan setengah dari solusi.</li>
+  <li><strong>Menggunakan $k\pi$ untuk sinus dan kosinus.</strong> Sinus dan kosinus memiliki periode $2\pi$, jadi parameter penambahannya adalah $2k\pi$, bukan $k\pi$. Hanya tangen yang menggunakan $k\pi$.</li>
+  <li><strong>Menggunakan $2k\pi$ untuk tangen.</strong> Ini kesalahan kebalikan dari di atas. Karena periode tangen adalah $\pi$, penambahan yang benar adalah $k\pi$.</li>
+  <li><strong>Menukar bentuk cabang sinus dan kosinus.</strong> Untuk $\cos x = \cos\alpha$, cabang kedua adalah $-\alpha + 2k\pi$, <em>bukan</em> $\pi - \alpha + 2k\pi$. Sebaliknya, untuk $\sin x = \sin\alpha$, cabang kedua adalah $\pi - \alpha + 2k\pi$, <em>bukan</em> $-\alpha + 2k\pi$.</li>
+  <li><strong>Salah memilih sudut acuan $\alpha$.</strong> Sudut acuan harus memenuhi persamaan trigonometri yang diberikan. Jika $\cos x = -\frac{1}{2}$, maka $\alpha$ harus bernilai $\frac{2\pi}{3}$ (atau $\frac{4\pi}{3}$), bukan $\frac{\pi}{3}$.</li>
+  <li><strong>Lupa memeriksa syarat domain fungsi tangen.</strong> Fungsi tangen tidak terdefinisi di $x = \pi/2 + k\pi$. Jika solusi Anda menghasilkan salah satu nilai ini, itu bukan solusi yang sah.</li>
+  <li><strong>Menganggap dua solusi harus berbeda secara numerik.</strong> Terkadang dua cabang solusi menghasilkan nilai $x$ yang sama. Dalam kasus seperti ini, cukup tuliskan sekali saja—jangan duplikasi.</li>
+  <li><strong>Membagi kedua ruas dengan $\sin x$ atau $\cos x$ tanpa memeriksa kemungkinan nilainya nol.</strong> Contoh: dari $\sin x \cos x = \sin x$, kita tidak boleh langsung membagi dengan $\sin x$. Cara yang benar: pindahkan ke satu sisi, faktorkan.</li>
+  <li><strong>Salah mengonversi derajat ke radian.</strong> Jika soal meminta jawaban dalam radian, jangan campur dengan derajat.</li>
+  <li><strong>Menganggap bahwa nilai trigonometri di luar $[-1, 1]$ memiliki solusi.</strong> Persamaan $\sin x = 2$ tidak memiliki solusi, karena nilai sinus tidak pernah melebihi $1$.</li>
+  <li><strong>Salah menerapkan aturan pembagian pada persamaan sudut majemuk.</strong> Jika $\sin 2x = \frac{1}{2}$, kita menulis $2x = \frac{\pi}{6} + 2k\pi$, sehingga $x = \frac{\pi}{12} + k\pi$. Perhatikan bahwa $2k\pi$ dibagi $2$ menjadi $k\pi$, bukan tetap $2k\pi$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Persamaan trigonometri</strong> adalah persamaan yang memuat fungsi trigonometri dan mencari nilai variabel yang memenuhinya. Berbeda dengan identitas yang benar untuk semua $x$, persamaan hanya benar untuk beberapa nilai $x$ tertentu.</li>
+  <li><strong>Penyelesaian umum</strong> adalah rumus yang mencakup semua solusi dengan menambahkan parameter $k \in \mathbb{Z}$.</li>
+  <li><strong>$\sin x = \sin\alpha$</strong>: $x = \alpha + 2k\pi$ atau $x = (\pi - \alpha) + 2k\pi$. Dua cabang karena sinus bernilai sama di dua sudut dalam satu putaran.</li>
+  <li><strong>$\cos x = \cos\alpha$</strong>: $x = \alpha + 2k\pi$ atau $x = -\alpha + 2k\pi$. Dua cabang karena kosinus bernilai sama di $\alpha$ dan $-\alpha$ (fungsi genap).</li>
+  <li><strong>$\tan x = \tan\alpha$</strong>: $x = \alpha + k\pi$. Satu cabang karena tangen monoton naik dalam satu periode, dan periodenya adalah $\pi$.</li>
+  <li><strong>Persamaan yang lebih kompleks</strong> perlu disederhanakan terlebih dahulu: isolasi fungsi trigonometri, gunakan identitas Pythagoras atau sudut ganda, substitusi variabel untuk mengubah ke persamaan kuadrat.</li>
+  <li><strong>Menentukan solusi pada interval tertentu</strong>: selesaikan dulu solusi umum, lalu substitusi nilai-nilai $k$ yang masuk akal dan periksa mana yang berada dalam interval.</li>
+  <li><strong>Verifikasi selalu penting.</strong> Substitusikan solusi yang diperoleh ke persamaan asli untuk memastikan kebenarannya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Persamaan trigonometri adalah salah satu topik yang paling kaya dalam matematika dasar. Ia memerlukan pemahaman yang kuat tentang identitas trigonometri, sifat-sifat fungsi, dan periode—sekaligus keterampilan aljabar yang baik dalam memanipulasi persamaan. Kunci utama untuk menguasainya adalah: <strong>kenali bentuk dasar</strong>, <strong>sederhanakan secara bertahap</strong>, dan <strong>jangan lupa parameter $k$</strong> dalam penyelesaian umum.</p>
+ <p class="lesson-text">Kemampuan menyelesaikan persamaan trigonometri sangat penting untuk banyak aplikasi lanjutan. Dalam fisika, persamaan gelombang dan osilasi sering memerlukan pencarian fase atau waktu di mana suatu besaran mencapai nilai tertentu. Dalam teknik, analisis sinyal dan kontrol otomatis menggunakan persamaan trigonometri untuk menentukan titik kritis. Dalam astronomi, penentuan posisi benda langit melibatkan penyelesaian persamaan yang melibatkan sudut.</p>
+ <p class="lesson-text">Pastikan Anda menguasai bukan hanya rumus penyelesaian umum, tetapi juga <em>mengapa</em> rumus itu berbentuk seperti itu—terutama mengapa sinus dan kosinus punya dua cabang sedangkan tangen hanya satu. Pemahaman ini akan membuat Anda lebih fleksibel dalam menghadapi variasi soal, sekaligus mempersiapkan Anda untuk materi trigonometri yang lebih lanjut, seperti <strong>aturan sinus dan kosinus</strong>, <strong>persamaan trigonometri lanjut</strong>, dan <strong>analisis Fourier</strong>.</p>
+</div>
+
+</div>
+</body>
+</html>

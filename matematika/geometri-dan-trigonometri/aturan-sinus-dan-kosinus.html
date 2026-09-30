@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Aturan Sinus dan Kosinus (Menyelesaikan Segitiga Sembarang)</title>
+ <meta name="description" content="Materi lengkap aturan sinus dan kosinus: notasi segitiga sembarang, pembuktian kedua aturan, penerapan pada berbagai kasus, luas segitiga dengan trigonometri, dan kaitannya dengan Teorema Pythagoras.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Aturan Sinus dan Kosinus (Menyelesaikan Segitiga Sembarang)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Trigonometri Dasar</strong> — definisi $\sin$, $\cos$, $\tan$ dari segitiga siku-siku, nilai sudut istimewa, identitas Pythagoras, dan rumus jumlah/selisih sudut adalah fondasi langsung dari kedua aturan ini. Tanpa menguasainya, rumus aturan sinus dan kosinus akan terasa seperti hafalan tanpa makna.</li>
+   <li><strong>Segitiga</strong> — terutama Teorema Pythagoras, sifat kesebangunan, dan sifat jumlah sudut dalam segitiga ($A + B + C = 180^\circ$), karena aturan kosinus adalah generalisasi dari Teorema Pythagoras, dan sifat jumlah sudut dipakai untuk mencari sudut ketiga.</li>
+   <li><strong>Aljabar Dasar</strong> — manipulasi pecahan, penyederhanaan bentuk akar, dan penyelesaian persamaan kuadrat akan sering muncul saat menerapkan aturan sinus dan kosinus pada soal konkret.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan seorang astronom Yunani kuno sekitar 2.000 tahun lalu yang ingin mengetahui <strong>jarak Bumi ke Bulan</strong>. Ia tidak punya roket atau satelit&mdash;yang ia punya hanyalah dua titik pengamatan di Bumi yang jaraknya sudah diketahui, dan alat sederhana untuk mengukur sudut. Dengan mengukur sudut ke Bulan dari dua titik berbeda pada waktu yang sama, astronom tersebut&mdash;Hipparchus namanya&mdash;berhasil membentuk <strong>segitiga raksasa</strong>: dua titik sudutnya di Bumi, satu di Bulan. Ia mengetahui satu sisi dan dua sudut. Mungkinkah menemukan sisi-sisi lain hanya dari informasi ini?</p>
+ <p class="lesson-text">Jawabannya <strong>ya</strong>&mdash;dan caranya adalah menggunakan dua alat yang akan kita pelajari di halaman ini: <strong>aturan sinus</strong> dan <strong>aturan kosinus</strong>. Keduanya memungkinkan kita menyelesaikan segitiga apa pun, bukan hanya segitiga siku-siku. Keduanya adalah <em>perpanjangan jangkauan</em> trigonometri dari segitiga siku-siku ke seluruh dunia segitiga. Yang membuatnya istimewa: aturan kosinus menyusut menjadi Teorema Pythagoras ketika sudut apitnya $90^\circ$&mdash;jadi kita tidak mempelajari sesuatu yang benar-benar baru, melainkan memperluas sesuatu yang sudah kita kenal.</p>
+ <p class="lesson-text">Materi ini akan memandu Anda melalui: notasi standar segitiga, aturan sinus dan pembuktiannya, aturan kosinus dan pembuktiannya, rumus luas segitiga dengan trigonometri, panduan memilih aturan yang tepat, penerapan praktis, hingga kesalahan umum&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap rumus berlaku, bukan sekadar menghafalnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Notasi Standar Segitiga Sembarang</h3>
+ <p class="lesson-text">Sebelum masuk ke rumus, kita perlu menyepakati notasi. Dalam seluruh materi ini, kita akan menggunakan <strong>notasi standar</strong> untuk segitiga sembarang.</p>
+
+ <p class="lesson-subheading">A. Notasi Standar</p>
+
+ <figure>
+  <svg viewBox="0 0 500 400" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,320 440,320 280,80" fill="#daa520" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Busur sudut A -->
+   <path d="M 115 320 A 35 35 0 0 0 102.4 293.1" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="115" y="308" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">A</text>
+
+   <!-- Busur sudut B -->
+   <path d="M 405 320 A 35 35 0 0 1 420.6 290.9" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="398" y="308" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">B</text>
+
+   <!-- Busur sudut C -->
+   <path d="M 257.6 106.9 A 35 35 0 0 0 299.4 109.1" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="272" y="122" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">C</text>
+
+   <!-- Titik sudut -->
+   <circle cx="80" cy="320" r="4.5" fill="#e8e8e8"/>
+   <circle cx="440" cy="320" r="4.5" fill="#e8e8e8"/>
+   <circle cx="280" cy="80" r="4.5" fill="#e8e8e8"/>
+
+   <!-- Label sisi -->
+   <text x="365" y="185" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">a</text>
+   <text x="172" y="180" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">b</text>
+   <text x="255" y="348" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">c</text>
+  </svg>
+  <figcaption class="visual-caption">Notasi standar segitiga sembarang: titik sudut dilambangkan $A$, $B$, $C$ (huruf kapital), sedangkan sisi di hadapan sudut tersebut dilambangkan dengan huruf kecil yang sama—$a$ di hadapan $A$, $b$ di hadapan $B$, $c$ di hadapan $C$.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Aturan notasi standar:</p>
+ <ul>
+  <li><strong>Titik sudut</strong> diberi nama dengan huruf kapital: $A$, $B$, $C$.</li>
+  <li><strong>Besar sudut</strong> juga dilambangkan dengan huruf yang sama: $A$ berarti besar sudut di titik $A$.</li>
+  <li><strong>Sisi di hadapan</strong> masing-masing sudut dilambangkan dengan huruf kecil yang sesuai: sisi $a$ berhadapan dengan sudut $A$, sisi $b$ berhadapan dengan sudut $B$, sisi $c$ berhadapan dengan sudut $C$.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Tips notasi:</strong> konsisten dengan huruf kapital untuk sudut dan huruf kecil untuk sisi yang berhadapan sangatlah penting. Kesalahan paling umum pemula adalah tertukar antara sisi $a$ dan sudut $A$—misalnya menuliskan $a = 60^\circ$ (seharusnya $A = 60^\circ$) atau $A = 5$ cm (seharusnya $a = 5$ cm). Selalu perhatikan huruf kapitalnya.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Jumlah Sudut dalam Segitiga</p>
+ <p class="lesson-text">Sifat fundamental yang akan terus kita pakai di halaman ini: <strong>jumlah ketiga sudut dalam segitiga selalu $180^\circ$</strong>, yaitu $A + B + C = 180^\circ$. Sifat ini berlaku untuk semua segitiga—lancip, siku-siku, tumpul, maupun sembarang. Pembuktiannya sudah dibahas di materi <strong>Segitiga</strong> (menggunakan sifat sudut dalam berseberangan pada garis sejajar).</p>
+ <p class="lesson-text">Dalam materi ini, sifat tersebut akan kita manfaatkan untuk dua hal:</p>
+ <ul>
+  <li><strong>Mencari sudut ketiga</strong> setelah dua sudut lain diketahui—langkah pertama pada kasus ASA dan AAS.</li>
+  <li><strong>Memverifikasi validitas</strong> solusi—terutama pada kasus ambigu SSA, di mana kita perlu memastikan bahwa jumlah sudut yang dihasilkan tidak melebihi $180^\circ$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Aturan Sinus</h3>
+ <p class="lesson-text">Aturan pertama yang kita pelajari menghubungkan <strong>setiap sisi</strong> dengan <strong>sinus sudut di hadapannya</strong>. Aturan ini berguna ketika kita mengetahui pasangan sisi-sudut yang berhadapan.</p>
+
+ <p class="lesson-subheading">A. Rumus</p>
+ <p class="lesson-text">Untuk segitiga sembarang dengan notasi standar:</p>
+ <p class="lesson-text">$$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$$</p>
+
+ <p class="lesson-text">Atau dibalik:</p>
+ <p class="lesson-text">$$\frac{\sin A}{a} = \frac{\sin B}{b} = \frac{\sin C}{c}$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Makna praktisnya:</strong> rasio antara panjang sisi dan sinus sudut di hadapannya <em>selalu sama</em> untuk ketiga sisi segitiga. Ini berlaku untuk semua segitiga—siku-siku maupun sembarang. Konstanta rasio ini bahkan memiliki makna geometris: nilainya sama dengan diameter lingkaran luar segitiga ($2R$). Jadi sesungguhnya $\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C} = 2R$.</p>
+ </div>
+
+ <p class="lesson-subheading">B. Mengapa Rumus Ini Benar?</p>
+ <p class="lesson-text">Pembuktiannya menggunakan <strong>garis tinggi</strong>. Misalkan kita tarik garis tinggi dari titik $C$ ke sisi $c$ (yaitu sisi $AB$), dan sebut titik potongnya $D$. Garis ini membagi segitiga menjadi dua segitiga siku-siku: $ACD$ dan $BCD$.</p>
+
+ <figure>
+  <svg viewBox="0 0 560 400" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,320 480,320 280,80" fill="#daa520" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="280" y1="80" x2="280" y2="320" stroke="#5dade2" stroke-width="1.8" stroke-dasharray="6,4"/>
+   <path d="M 280 305 L 295 305 L 295 320" fill="none" stroke="#5dade2" stroke-width="1.5"/>
+
+   <!-- Busur sudut A -->
+   <path d="M 115 320 A 35 35 0 0 0 102.4 293.1" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="120" y="308" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">A</text>
+
+   <!-- Busur sudut B -->
+   <path d="M 445 320 A 35 35 0 0 1 457.6 293.1" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="438" y="308" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">B</text>
+
+   <!-- Busur sudut C -->
+   <path d="M 257.6 106.9 A 35 35 0 0 0 302.4 106.9" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="272" y="122" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">C</text>
+
+   <!-- Titik sudut -->
+   <circle cx="80" cy="320" r="4.5" fill="#e8e8e8"/>
+   <circle cx="480" cy="320" r="4.5" fill="#e8e8e8"/>
+   <circle cx="280" cy="80" r="4.5" fill="#e8e8e8"/>
+   <circle cx="280" cy="320" r="4.5" fill="#5dade2"/>
+   <text x="288" y="342" font-size="13" fill="#5dade2" font-style="italic">D</text>
+
+   <!-- Label sisi -->
+   <text x="168" y="195" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">b</text>
+   <text x="385" y="195" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">a</text>
+   <text x="255" y="348" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">c</text>
+   <text x="290" y="215" font-size="13" fill="#5dade2" font-style="italic" font-weight="700">t</text>
+  </svg>
+  <figcaption class="visual-caption">Pembuktian aturan sinus menggunakan garis tinggi $CD$ dari titik $C$ ke sisi $c$. Garis tinggi ini membagi segitiga menjadi dua segitiga siku-siku—$ACD$ dan $BCD$—sehingga kita dapat menerapkan definisi sinus pada masing-masing segitiga.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Pada segitiga siku-siku $ACD$ (siku-siku di $D$), sudut di $A$ adalah sudut asli segitiga:</p>
+ <p class="lesson-text">$$\sin A = \frac{t}{b} \quad \Rightarrow \quad t = b \sin A$$</p>
+
+ <p class="lesson-text">Pada segitiga siku-siku $BCD$ (siku-siku di $D$), sudut di $B$ juga sudut asli segitiga:</p>
+ <p class="lesson-text">$$\sin B = \frac{t}{a} \quad \Rightarrow \quad t = a \sin B$$</p>
+
+ <p class="lesson-text">Karena kedua persamaan menyatakan tinggi $t$ yang sama, kita dapat menyamakannya:</p>
+ <p class="lesson-text">$$b \sin A = a \sin B$$</p>
+
+ <p class="lesson-text">Bagi kedua ruas dengan $\sin A \cdot \sin B$:</p>
+ <p class="lesson-text">$$\frac{a}{\sin A} = \frac{b}{\sin B}$$</p>
+
+ <p class="lesson-text">Dengan menarik garis tinggi dari titik lain (misalnya dari $A$ ke sisi $a$), kita akan memperoleh hasil serupa untuk $\dfrac{c}{\sin C}$. Dengan demikian, terbukti bahwa:</p>
+ <p class="lesson-text">$$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$$</p>
+
+ <p class="lesson-subheading">C. Kapan Menggunakan Aturan Sinus?</p>
+ <p class="lesson-text">Aturan sinus berguna ketika kita mengetahui <strong>satu pasang sisi-sudut yang berhadapan</strong>—artinya, kita tahu satu sisi dan sudut di hadapannya. Ada tiga kasus umum:</p>
+ <ul>
+  <li><strong>Kasus ASA (Angle-Side-Angle):</strong> diketahui dua sudut dan satu sisi di antara keduanya. Sudut ketiga dicari dari $A + B + C = 180^\circ$, lalu kita bisa mencari sisi lain.</li>
+  <li><strong>Kasus AAS (Angle-Angle-Side):</strong> diketahui dua sudut dan satu sisi bukan di antara keduanya. Cara penyelesaiannya mirip dengan ASA.</li>
+  <li><strong>Kasus SSA (Side-Side-Angle):</strong> diketahui dua sisi dan satu sudut di hadapan salah satu sisi tersebut. Ini yang paling rumit karena bisa memiliki dua solusi—dibahas di bawah.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 1: Kasus ASA</p>
+ <p class="lesson-text">Sebuah segitiga memiliki sudut $A = 40^\circ$, sudut $B = 60^\circ$, dan sisi $a = 8$ cm. Tentukan panjang sisi $b$.</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> Cari sudut $C$ menggunakan $A + B + C = 180^\circ$.</p>
+ <p class="lesson-text">$$C = 180^\circ - 40^\circ - 60^\circ = 80^\circ$$</p>
+ <p class="lesson-text"><strong>Langkah 2:</strong> Gunakan aturan sinus untuk mencari $b$:</p>
+ <p class="lesson-text">$$\frac{a}{\sin A} = \frac{b}{\sin B} \quad \Rightarrow \quad b = \frac{a \sin B}{\sin A}$$</p>
+ <p class="lesson-text">$$b = \frac{8 \cdot \sin 60^\circ}{\sin 40^\circ} = \frac{8 \cdot 0{,}866}{0{,}643} \approx 10{,}78 \text{ cm}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 2: Kasus SSA dengan Kasus Ambigu</p>
+ <p class="lesson-text">Sebuah segitiga memiliki sisi $a = 10$ cm, sisi $b = 8$ cm, dan sudut $A = 50^\circ$. Tentukan sudut $B$.</p>
+ <p class="lesson-text">Gunakan aturan sinus:</p>
+ <p class="lesson-text">$$\frac{\sin B}{b} = \frac{\sin A}{a} \quad \Rightarrow \quad \sin B = \frac{b \sin A}{a}$$</p>
+ <p class="lesson-text">$$\sin B = \frac{8 \cdot \sin 50^\circ}{10} = \frac{8 \cdot 0{,}766}{10} = 0{,}613$$</p>
+ <p class="lesson-text">$$B = \arcsin(0{,}613) \approx 37{,}8^\circ$$</p>
+ <p class="lesson-text">Namun—karena $\sin B = 0{,}613$, ada <strong>dua</strong> nilai $B$ yang mungkin: $B_1 \approx 37{,}8^\circ$ dan $B_2 \approx 180^\circ - 37{,}8^\circ = 142{,}2^\circ$.</p>
+ <p class="lesson-text">Untuk memutuskan mana yang valid, periksa $A + B < 180^\circ$:</p>
+ <ul>
+  <li>Jika $B = 37{,}8^\circ$: $A + B = 50^\circ + 37{,}8^\circ = 87{,}8^\circ < 180^\circ$ ✓</li>
+  <li>Jika $B = 142{,}2^\circ$: $A + B = 50^\circ + 142{,}2^\circ = 192{,}2^\circ > 180^\circ$ ✗ (tidak valid)</li>
+ </ul>
+ <p class="lesson-text">Jadi solusi yang valid adalah $B \approx 37{,}8^\circ$. Namun dalam kasus lain, kedua solusi bisa jadi valid—itulah yang disebut <strong>kasus ambigu</strong>.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Kasus ambigu SSA:</strong> ketika dua sisi dan satu sudut diketahui—tetapi sudut tersebut tidak diapit oleh kedua sisi—sering kali ada <em>dua</em> solusi segitiga yang mungkin. Ini terjadi karena $\sin B = \sin(180^\circ - B)$. Selalu periksa: setelah menemukan $B$, hitung $A + B$. Jika $A + B \geq 180^\circ$, solusi tersebut tidak valid dan harus ditolak. Dalam beberapa kasus, kedua solusi valid—artinya ada dua segitiga berbeda yang memenuhi informasi yang diberikan.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Aturan Kosinus</h3>
+ <p class="lesson-text">Aturan kedua—aturan kosinus—menghubungkan <strong>panjang satu sisi</strong> dengan <strong>dua sisi lain dan sudut yang diapitnya</strong>. Aturan ini adalah generalisasi dari Teorema Pythagoras, dan menjadi alat penting ketika kita tidak memiliki pasangan sisi-sudut yang berhadapan.</p>
+
+ <p class="lesson-subheading">A. Rumus</p>
+ <p class="lesson-text">Ada tiga bentuk aturan kosinus—bergantung sisi mana yang ingin dicari:</p>
+ <p class="lesson-text">$$a^2 = b^2 + c^2 - 2bc \cos A$$</p>
+ <p class="lesson-text">$$b^2 = a^2 + c^2 - 2ac \cos B$$</p>
+ <p class="lesson-text">$$c^2 = a^2 + b^2 - 2ab \cos C$$</p>
+
+ <p class="lesson-text">Perhatikan polanya: untuk mencari kuadrat satu sisi, jumlahkan kuadrat dua sisi lain, lalu kurangi dengan $2$ kali perkalian dua sisi tersebut dan kosinus sudut yang <em>diapit</em> olehnya.</p>
+
+ <p class="lesson-text">Jika kita ingin mencari <strong>sudut</strong> (bukan sisi), rumusnya dapat dibalik:</p>
+ <p class="lesson-text">$$\cos A = \frac{b^2 + c^2 - a^2}{2bc}$$</p>
+ <p class="lesson-text">$$\cos B = \frac{a^2 + c^2 - b^2}{2ac}$$</p>
+ <p class="lesson-text">$$\cos C = \frac{a^2 + b^2 - c^2}{2ab}$$</p>
+
+ <p class="lesson-subheading">B. Kaitannya dengan Teorema Pythagoras</p>
+ <p class="lesson-text">Jika sudut $C = 90^\circ$, maka $\cos 90^\circ = 0$, sehingga suku terakhir pada aturan kosinus menjadi nol. Rumusnya menyusut menjadi:</p>
+ <p class="lesson-text">$$c^2 = a^2 + b^2$$</p>
+ <p class="lesson-text">Ini persis Teorema Pythagoras! Jadi, aturan kosinus adalah <strong>generalisasi dari Teorema Pythagoras</strong>—berlaku untuk semua sudut, tidak hanya $90^\circ$. Suku tambahan $-2ab \cos C$ adalah "koreksi" yang memperhitungkan bahwa sudut apit tidak siku-siku.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi tanda:</strong> perhatikan bahwa $\cos C$ bisa positif, nol, atau negatif. Jika $C < 90^\circ$, maka $\cos C > 0$, sehingga sisi $c^2 < a^2 + b^2$ (lebih pendek dari Pythagoras). Jika $C = 90^\circ$, maka $c^2 = a^2 + b^2$. Jika $C > 90^\circ$, maka $\cos C < 0$, sehingga $-2ab\cos C > 0$, dan sisi $c^2 > a^2 + b^2$ (lebih panjang). Inilah mengapa segitiga tumpul memiliki sisi terpanjang yang lebih panjang daripada yang diprediksi Pythagoras.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Mengapa Rumus Ini Benar?</p>
+ <p class="lesson-text">Pembuktian aturan kosinus juga menggunakan garis tinggi. Misalkan kita tarik garis tinggi dari titik $B$ ke sisi $b$ (yaitu sisi $AC$), dengan titik potong $D$ pada sisi $b$. Untuk sementara, anggap sudut $A$ lancip (sudut tumpul dibahas sebagai catatan di akhir).</p>
+
+ <figure>
+  <svg viewBox="0 0 560 400" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="80,320 460,320 240,80" fill="#daa520" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="240" y1="80" x2="240" y2="320" stroke="#5dade2" stroke-width="1.8" stroke-dasharray="6,4"/>
+   <path d="M 240 305 L 255 305 L 255 320" fill="none" stroke="#5dade2" stroke-width="1.5"/>
+
+   <!-- Busur sudut A -->
+   <path d="M 99.4 290.9 A 35 35 0 0 1 115 320" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="105" y="308" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">A</text>
+
+   <!-- Busur sudut C -->
+   <path d="M 425 320 A 35 35 0 0 1 436.4 294.2" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="418" y="308" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">C</text>
+   <!-- Busur sudut B (apex) - busur kecil -->
+   <path d="M 257 98 A 20 20 0 0 0 223 98" fill="none" stroke="#5dade2" stroke-width="1.6" />
+   <text x="240" y="122" font-size="13" fill="#5dade2" font-style="italic" font-weight="700">B</text>
+
+   <!-- Titik sudut -->
+   <circle cx="80" cy="320" r="4.5" fill="#e8e8e8"/>
+   <circle cx="240" cy="80" r="4.5" fill="#e8e8e8"/>
+   <circle cx="460" cy="320" r="4.5" fill="#e8e8e8"/>
+   <circle cx="240" cy="320" r="4.5" fill="#5dade2"/>
+   <text x="248" y="342" font-size="13" fill="#5dade2" font-style="italic">D</text>
+
+   <!-- Label sisi -->
+   <text x="152" y="188" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">c</text>
+   <text x="358" y="188" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">a</text>
+   <text x="255" y="348" font-size="16" fill="#f0c75e" font-weight="700" font-style="italic">b</text>
+   <text x="130" y="308" font-size="11" fill="#f0c75e" font-style="italic">c · cos A</text>
+   <text x="330" y="345" font-size="11" fill="#f0c75e" font-style="italic">b − c · cos A</text>
+   <text x="248" y="205" font-size="13" fill="#5dade2" font-style="italic" font-weight="700">t</text>
+  </svg>
+  <figcaption class="visual-caption">Pembuktian aturan kosinus menggunakan garis tinggi $BD$ dari titik $B$ ke sisi $b$. Proyeksi $AD = c \cos A$ (dari segitiga siku-siku $ABD$), sehingga $DC = b - c \cos A$. Dengan menerapkan Pythagoras pada segitiga $BDC$, kita memperoleh aturan kosinus. Ketiga sudut $A$, $B$, $C$ ditandai dengan busur biru.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Langkah 1:</strong> Pada segitiga siku-siku $ABD$ (siku-siku di $D$), dengan sudut $A$ di titik $A$ dan hipotenusa $AB = c$:</p>
+ <ul>
+  <li>$\cos A = \dfrac{AD}{c} \quad \Rightarrow \quad AD = c \cos A$</li>
+  <li>$\sin A = \dfrac{t}{c} \quad \Rightarrow \quad t = c \sin A$</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Langkah 2:</strong> Karena $AC = b$ dan $AD = c \cos A$, maka panjang $DC$ adalah:</p>
+ <p class="lesson-text">$$DC = b - AD = b - c \cos A$$</p>
+
+ <p class="lesson-text"><strong>Langkah 3:</strong> Terapkan Teorema Pythagoras pada segitiga siku-siku $BDC$ (dengan hipotenusa $BC = a$):</p>
+ <p class="lesson-text">$$a^2 = t^2 + DC^2 = (c \sin A)^2 + (b - c \cos A)^2$$</p>
+
+ <p class="lesson-text"><strong>Langkah 4:</strong> Jabarkan:</p>
+ <p class="lesson-text">$$a^2 = c^2 \sin^2 A + b^2 - 2bc \cos A + c^2 \cos^2 A$$</p>
+
+ <p class="lesson-text">Kelompokkan suku dengan $c^2$:</p>
+ <p class="lesson-text">$$a^2 = b^2 + c^2(\sin^2 A + \cos^2 A) - 2bc \cos A$$</p>
+
+ <p class="lesson-text"><strong>Langkah 5:</strong> Karena $\sin^2 A + \cos^2 A = 1$ (identitas Pythagoras), maka:</p>
+ <p class="lesson-text">$$a^2 = b^2 + c^2 - 2bc \cos A$$</p>
+
+ <p class="lesson-text">Terbukti. Perhatikan bahwa pembuktian ini menyingkap <em>mengapa</em> rumusnya berbentuk seperti itu—suku $2bc \cos A$ muncul dari penjabaran $(b - c \cos A)^2$, dan identitas Pythagoras menghilangkan suku $c^2 \sin^2 A + c^2 \cos^2 A$ menjadi $c^2$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan untuk sudut tumpul:</strong> pembuktian di atas mengasumsikan sudut $A$ lancip, sehingga titik $D$ berada di antara $A$ dan $C$. Jika $A$ tumpul ($A > 90^\circ$), maka $\cos A < 0$, sehingga $AD = c \cos A$ bernilai negatif—artinya titik $D$ berada di luar segmen $AC$, di sisi yang berlawanan dengan $C$. Pembuktiannya bisa dimodifikasi dengan memperpanjang sisi $AC$ keluar dari $A$, dan hasil akhirnya tetap sama: $a^2 = b^2 + c^2 - 2bc\cos A$. Rumusnya universal.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Kapan Menggunakan Aturan Kosinus?</p>
+ <p class="lesson-text">Aturan kosinus berguna ketika kita <strong>tidak memiliki pasangan sisi-sudut berhadapan</strong>—yaitu ketika informasi yang diketahui tidak cukup untuk menggunakan aturan sinus. Ada dua kasus umum:</p>
+ <ul>
+  <li><strong>Kasus SAS (Side-Angle-Side):</strong> diketahui dua sisi dan sudut yang diapit oleh keduanya. Kita bisa langsung mencari sisi ketiga.</li>
+  <li><strong>Kasus SSS (Side-Side-Side):</strong> diketahui ketiga sisi segitiga. Kita bisa mencari setiap sudut dengan bentuk kosinus yang sudah disusun ulang.</li>
+ </ul>
+
+ <p class="lesson-subheading-alt">Contoh 3: Kasus SAS</p>
+ <p class="lesson-text">Sebuah segitiga memiliki sisi $b = 5$ cm, sisi $c = 7$ cm, dan sudut apit $A = 60^\circ$. Tentukan panjang sisi $a$.</p>
+ <p class="lesson-text">Gunakan aturan kosinus dengan bentuk $a^2 = b^2 + c^2 - 2bc \cos A$:</p>
+ <p class="lesson-text">$$a^2 = 5^2 + 7^2 - 2 \cdot 5 \cdot 7 \cdot \cos 60^\circ$$</p>
+ <p class="lesson-text">$$a^2 = 25 + 49 - 70 \cdot 0{,}5 = 74 - 35 = 39$$</p>
+ <p class="lesson-text">$$a = \sqrt{39} \approx 6{,}24 \text{ cm}$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 4: Kasus SSS</p>
+ <p class="lesson-text">Sebuah segitiga memiliki sisi $a = 8$ cm, $b = 6$ cm, $c = 5$ cm. Tentukan besar sudut $C$.</p>
+ <p class="lesson-text">Gunakan bentuk kosinus untuk sudut $C$:</p>
+ <p class="lesson-text">$$\cos C = \frac{a^2 + b^2 - c^2}{2ab} = \frac{64 + 36 - 25}{2 \cdot 8 \cdot 6} = \frac{75}{96} = 0{,}78125$$</p>
+ <p class="lesson-text">$$C = \arccos(0{,}78125) \approx 38{,}6^\circ$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Memilih antara aturan sinus dan kosinus:</strong> tanyakan dulu, "apakah saya punya pasangan sisi-sudut berhadapan?" Jika ya → aturan sinus. Jika tidak (hanya punya tiga sisi, atau dua sisi dengan sudut apit) → aturan kosinus. Aturan kosinus juga dipakai sebagai langkah pertama dalam kasus SSS untuk mencari satu sudut, setelah itu aturan sinus bisa dipakai untuk sudut berikutnya—sehingga kedua aturan sering dipakai bergantian dalam satu soal.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Luas Segitiga dengan Trigonometri</h3>
+ <p class="lesson-text">Selain menyelesaikan sisi dan sudut, aturan sinus dan kosinus juga membantu kita menghitung <strong>luas segitiga sembarang</strong>—bahkan tanpa mengetahui tingginya. Ini sangat berguna dalam survei dan navigasi, di mana mengukur tinggi langsung sering tidak praktis.</p>
+
+ <p class="lesson-subheading">A. Rumus Luas Standar</p>
+ <p class="lesson-text">Dari pelajaran Geometri, kita tahu rumus luas segitiga:</p>
+ <p class="lesson-text">$$L = \frac{1}{2} \cdot \text{alas} \cdot \text{tinggi}$$</p>
+ <p class="lesson-text">Jika kita pilih sisi $c$ sebagai alas, dan tarik garis tinggi $t$ dari titik $C$ (seperti pada pembuktian aturan sinus), maka dari segitiga siku-siku $ACD$:</p>
+ <p class="lesson-text">$$t = b \sin A$$</p>
+ <p class="lesson-text">Substitusi ke rumus luas:</p>
+ <p class="lesson-text">$$L = \frac{1}{2} \cdot c \cdot b \sin A = \frac{1}{2}bc \sin A$$</p>
+
+ <p class="lesson-text">Dengan cara yang sama (memilih sisi lain sebagai alas), kita memperoleh tiga bentuk rumus luas:</p>
+ <p class="lesson-text">$$L = \frac{1}{2}ab \sin C = \frac{1}{2}bc \sin A = \frac{1}{2}ac \sin B$$</p>
+
+ <p class="lesson-text">Ketiga bentuk ini <strong>setara</strong>—hasilnya sama. Pilihan bentuk disesuaikan dengan informasi yang diketahui.</p>
+
+ <p class="lesson-subheading-alt">Contoh 5: Luas dengan Dua Sisi dan Sudut Apit</p>
+ <p class="lesson-text">Tentukan luas segitiga dengan sisi $b = 6$ cm, $c = 8$ cm, dan sudut apit $A = 45^\circ$.</p>
+ <p class="lesson-text">$$L = \frac{1}{2} \cdot b \cdot c \cdot \sin A = \frac{1}{2} \cdot 6 \cdot 8 \cdot \sin 45^\circ = 24 \cdot \frac{\sqrt{2}}{2} = 12\sqrt{2} \approx 16{,}97 \text{ cm}^2$$</p>
+
+ <p class="lesson-subheading">B. Rumus Heron: Luas dari Ketiga Sisi</p>
+ <p class="lesson-text">Bagaimana jika yang diketahui hanya ketiga sisinya, tanpa sudut sama sekali? Kita bisa menggunakan <strong>rumus Heron</strong>. Misalkan $s$ adalah setengah keliling segitiga:</p>
+ <p class="lesson-text">$$s = \frac{a + b + c}{2}$$</p>
+ <p class="lesson-text">Maka luas segitiga adalah:</p>
+ <p class="lesson-text">$$L = \sqrt{s(s - a)(s - b)(s - c)}$$</p>
+ <p class="lesson-text">Rumus ini tidak memerlukan sudut sama sekali—cukup ketiga sisi.</p>
+ <p class="lesson-text">Rumus ini tampak "muncul begitu saja", tetapi sesungguhnya dapat diturunkan dari rumus luas $L = \frac{1}{2}ab\sin C$ dengan menggunakan aturan kosinus untuk menyatakan $\cos C$ dalam $a$, $b$, $c$, lalu mengganti $\sin C$ dengan $\sqrt{1 - \cos^2 C}$. Hasil akhirnya&mdash;setelah disederhanakan&mdash;adalah rumus Heron. Kita tidak akan menurunkan langkah demi langkah di sini, tetapi perlu diketahui bahwa rumus ini bukan definisi terpisah&mdash;melainkan <em>konsekuensi</em> dari alat-alat yang sudah kita kuasai.</p>
+ <p class="lesson-subheading-alt">Contoh 6: Luas dengan Rumus Heron</p>
+ <p class="lesson-text">Tentukan luas segitiga dengan sisi $a = 5$ cm, $b = 6$ cm, $c = 7$ cm.</p>
+ <p class="lesson-text"><strong>Langkah 1:</strong> Hitung setengah keliling:</p>
+ <p class="lesson-text">$$s = \frac{5 + 6 + 7}{2} = 9 \text{ cm}$$</p>
+ <p class="lesson-text"><strong>Langkah 2:</strong> Terapkan rumus Heron:</p>
+ <p class="lesson-text">$$L = \sqrt{9(9 - 5)(9 - 6)(9 - 7)} = \sqrt{9 \cdot 4 \cdot 3 \cdot 2} = \sqrt{216} = 6\sqrt{6} \approx 14{,}70 \text{ cm}^2$$</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Panduan Memilih Aturan yang Tepat</h3>
+ <p class="lesson-text">Salah satu keterampilan paling penting dalam menyelesaikan segitiga adalah <strong>memilih aturan yang tepat</strong> sesuai informasi yang diketahui.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Informasi yang Diketahui</th>
+     <th>Aturan yang Dipakai</th>
+     <th>Langkah Pertama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>ASA</strong> — dua sudut, satu sisi di antara keduanya</td>
+     <td>Aturan Sinus</td>
+     <td>Cari sudut ketiga ($A+B+C=180^\circ$), lalu gunakan aturan sinus.</td>
+    </tr>
+    <tr>
+     <td><strong>AAS</strong> — dua sudut, satu sisi bukan di antara keduanya</td>
+     <td>Aturan Sinus</td>
+     <td>Cari sudut ketiga, lalu gunakan aturan sinus.</td>
+    </tr>
+    <tr>
+     <td><strong>SSA</strong> — dua sisi, satu sudut di hadapan salah satu sisi</td>
+     <td>Aturan Sinus</td>
+     <td>Cari sudut yang berhadapan dengan sisi lainnya. Waspadai kasus ambigu!</td>
+    </tr>
+    <tr>
+     <td><strong>SAS</strong> — dua sisi, sudut di antara keduanya</td>
+     <td>Aturan Kosinus</td>
+     <td>Cari sisi ketiga dengan aturan kosinus, lalu lanjutkan dengan aturan sinus.</td>
+    </tr>
+    <tr>
+     <td><strong>SSS</strong> — ketiga sisi</td>
+     <td>Aturan Kosinus</td>
+     <td>Cari salah satu sudut dengan bentuk kosinus, lalu lanjutkan dengan aturan sinus untuk sudut lainnya.</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-text"><strong>Pola umumnya:</strong> jika informasi yang diketahui melibatkan pasangan sisi-sudut <em>berhadapan</em>, gunakan aturan sinus. Jika tidak—yaitu hanya tiga sisi, atau dua sisi dengan sudut apit—gunakan aturan kosinus.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Kasus ambigu SSA:</strong> ketika dua sisi dan satu sudut diketahui—tetapi sudut tersebut tidak diapit oleh kedua sisi—sering kali ada <em>dua</em> solusi segitiga yang mungkin. Ini terjadi karena $\sin B = \sin(180^\circ - B)$. Selalu periksa: setelah menemukan $B$, hitung $A + B$. Jika $A + B \geq 180^\circ$, solusi tersebut tidak valid dan harus ditolak.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Penerapan Praktis</h3>
+ <p class="lesson-text">Aturan sinus dan kosinus adalah alat utama dalam berbagai bidang yang melibatkan pengukuran jarak atau sudut yang tidak dapat diakses langsung.</p>
+
+ <p class="lesson-subheading">A. Navigasi dan Survei</p>
+ <p class="lesson-text">Surveyor mengukur jarak antara dua titik di darat, lalu mengukur sudut dari masing-masing titik ke sebuah puncak gunung. Dengan aturan sinus, mereka bisa menghitung <em>tinggi</em> gunung tanpa perlu mendakinya. Prinsip yang sama dipakai dalam navigasi kapal—menentukan posisi kapal di laut dengan mengukur sudut ke dua titik referensi di darat.</p>
+
+ <p class="lesson-subheading">B. Astronomi</p>
+ <p class="lesson-text">Sejarah trigonometri dimulai dari kebutuhan astronom menghitung jarak Bumi–Bulan dan Bumi–Matahari. Dengan mengukur sudut antara dua lokasi di Bumi ke Bulan pada saat bersamaan, astronom kuno dapat menggunakan aturan sinus untuk memperkirakan jaraknya. Metode ini disebut <em>parallax</em> dan masih dipakai hingga sekarang.</p>
+
+ <p class="lesson-subheading">C. Teknik dan Arsitektur</p>
+ <p class="lesson-text">Dalam perancangan struktur rangka (seperti jembatan atau atap), setiap batang memiliki panjang dan sudut yang harus dihitung presisi agar struktur kuat dan stabil. Aturan kosinus dan sinus memungkinkan perhitungan ini tanpa perlu mengukur langsung setiap sambungan.</p>
+
+ <p class="lesson-subheading">D. Grafika Komputer dan Game</p>
+ <p class="lesson-text">Menghitung sudut antar objek, lintasan proyektil, atau arah hadap karakter dalam game 3D sering membutuhkan aturan kosinus—terutama untuk deteksi tabrakan (collision detection) dan interpolasi rotasi.</p>
+
+ <p class="lesson-subheading">E. Fisika: Resultan Gaya dan Vektor</p>
+<p class="lesson-text">Ketika dua vektor (misalnya dua gaya) digabungkan, besar vektor resultannya dihitung menggunakan <strong>sudut antara kedua vektor</strong>&mdash;bukan sudut interior segitiga. Jika $\vec{F_1}$ dan $\vec{F_2}$ memiliki sudut $\theta$ <em>di antara keduanya</em>, maka besar resultannya:</p>
+<p class="lesson-text">$$|\vec{F}_1 + \vec{F}_2| = \sqrt{F_1^2 + F_2^2 + 2F_1F_2\cos\theta}$$</p>
+<p class="lesson-text">Perhatikan tanda <strong>$+$</strong> di depan $2F_1F_2\cos\theta$&mdash;berbeda dari aturan kosinus yang bertanda $-$. Ini karena $\theta$ di sini adalah sudut <em>antara kedua vektor</em>, bukan sudut apit dalam segitiga. Jika kedua vektor digambar berdampingan (ekor ke ekor) dan sudut antar-vektornya $\theta$, maka secara geometris segitiga yang terbentuk memiliki sudut apit $180^\circ - \theta$, sehingga tanda pada aturan kosinus berubah menjadi $+$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Kesalahan Umum</h3>
+ <p class="lesson-text">Berikut kesalahan-kesalahan yang paling sering terjadi saat menerapkan aturan sinus dan kosinus.</p>
+
+ <p class="lesson-subheading">Kesalahan Terkait Penerapan Rumus</p>
+ <ul>
+  <li><strong>Menukar sisi dan sudut pada aturan sinus.</strong> Aturan sinus menghubungkan sisi dengan sinus sudut <em>di hadapannya</em>—bukan sudut yang berdekatan. Kesalahan ini akan menghasilkan rasio yang salah.</li>
+  <li><strong>Menggunakan aturan sinus untuk kasus SSS atau SAS.</strong> Aturan sinus hanya bisa dipakai jika ada pasangan sisi-sudut berhadapan. Untuk kasus SSS dan SAS, gunakan aturan kosinus.</li>
+  <li><strong>Salah menentukan sudut apit pada aturan kosinus.</strong> Sudut pada suku $-2bc\cos A$ haruslah sudut yang <em>diapit</em> oleh kedua sisi $b$ dan $c$. Jika bukan, rumusnya tidak berlaku.</li>
+  <li><strong>Menggunakan derajat saat kalkulator di mode radian.</strong> Selalu periksa mode kalkulator sebelum menghitung. Kesalahan ini sering terjadi dan menghasilkan jawaban yang jauh berbeda.</li>
+ </ul>
+
+ <p class="lesson-subheading">Kesalahan Terkait Kasus Ambigu</p>
+ <ul>
+  <li><strong>Lupa bahwa $\sin B = k$ memiliki dua solusi.</strong> Untuk $0 < k < 1$, ada dua sudut antara $0^\circ$ dan $180^\circ$ yang memiliki nilai sinus $k$—yaitu $B$ dan $180^\circ - B$. Selalu periksa apakah kedua solusi konsisten dengan $A + B < 180^\circ$.</li>
+  <li><strong>Langsung memilih solusi dengan arcsin.</strong> Kalkulator hanya mengembalikan satu solusi (biasanya yang lancip). Solusi kedua harus dicari secara manual: $B' = 180^\circ - B$.</li>
+  <li><strong>Tidak memeriksa apakah segitiga yang dihasilkan valid.</strong> Setelah menentukan semua sudut, periksa bahwa jumlahnya $180^\circ$. Jika tidak, ada solusi yang salah.</li>
+ </ul>
+
+ <p class="lesson-subheading">Kesalahan Terkait Aritmetika dan Pembulatan</p>
+ <ul>
+  <li><strong>Membulatkan terlalu awal di tengah perhitungan.</strong> Simpan nilai penuh di kalkulator, bulatkan hanya di akhir. Membulatkan $\sin 40^\circ$ menjadi $0{,}64$ di tengah-tengah bisa menghasilkan kesalahan yang signifikan.</li>
+  <li><strong>Menukar satuan derajat dan radian pada hasil akhir.</strong> Jika soal meminta jawaban dalam derajat, pastikan hasil akhirnya derajat—bukan radian.</li>
+  <li><strong>Menganggap hasil arccos atau arcsin bisa di luar rentang $[-1, 1]$.</strong> Nilai $\cos$ dan $\sin$ selalu berada di antara $-1$ dan $1$. Jika perhitungan menghasilkan nilai di luar rentang ini, ada kesalahan sebelum langkah arccos/arcsin.</li>
+ </ul>
+
+ <p class="lesson-subheading">Kesalahan Konseptual</p>
+ <ul>
+  <li><strong>Menganggap aturan kosinus hanya berlaku untuk segitiga siku-siku.</strong> Justru sebaliknya—aturan kosinus berlaku untuk <em>semua</em> segitiga, dan Teorema Pythagoras hanyalah kasus khususnya saat $C = 90^\circ$.</li>
+  <li><strong>Menganggap luas segitiga harus melibatkan tinggi.</strong> Rumus $L = \frac{1}{2}ab\sin C$ dan rumus Heron memungkinkan perhitungan luas tanpa perlu menghitung tinggi sama sekali.</li>
+  <li><strong>Menganggap hasil aturan sinus dan kosinus selalu unik.</strong> Pada kasus SSA, bisa ada dua solusi segitiga yang valid.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Ringkasan</h3>
+ <ul>
+  <li><strong>Notasi standar</strong>: titik sudut $A$, $B$, $C$ (huruf kapital) dan sisi di hadapannya $a$, $b$, $c$ (huruf kecil).</li>
+  <li><strong>Jumlah sudut</strong>: $A + B + C = 180^\circ$ — sifat dasar segitiga yang sudah dibahas di materi <strong>Segitiga</strong>, dan di sini dimanfaatkan untuk mencari sudut ketiga.</li>
+  <li><strong>Aturan Sinus</strong>: $\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}$. Berguna saat mengetahui pasangan sisi-sudut berhadapan (kasus ASA, AAS, SSA).</li>
+  <li><strong>Aturan Kosinus</strong>: $a^2 = b^2 + c^2 - 2bc\cos A$ (dan dua bentuk serupa). Berguna saat tidak ada pasangan sisi-sudut berhadapan (kasus SAS, SSS).</li>
+  <li><strong>Kaitan dengan Pythagoras</strong>: aturan kosinus adalah generalisasi dari Teorema Pythagoras—jika sudut apit $90^\circ$, aturan kosinus menyusut menjadi $c^2 = a^2 + b^2$.</li>
+  <li><strong>Luas segitiga</strong>: $L = \frac{1}{2}ab\sin C$ (dua sisi dan sudut apit), atau $L = \sqrt{s(s-a)(s-b)(s-c)}$ dengan $s = \frac{a+b+c}{2}$ (rumus Heron, dari ketiga sisi).</li>
+  <li><strong>Panduan memilih aturan</strong>: ada pasangan sisi-sudut berhadapan → aturan sinus. Tidak ada → aturan kosinus.</li>
+  <li><strong>Kasus ambigu SSA</strong>: ketika dua sisi dan satu sudut (bukan sudut apit) diketahui, bisa ada dua segitiga valid. Periksa dengan $A + B < 180^\circ$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Aturan sinus dan kosinus adalah <strong>jembatan yang memperluas trigonometri dari segitiga siku-siku ke segitiga sembarang</strong>. Jika Trigonometri Dasar mengajarkan cara menghitung nilai fungsi trigonometri, maka aturan sinus dan kosinus mengajarkan cara <em>menggunakannya</em> untuk menyelesaikan masalah nyata—mengukur jarak yang tidak dapat diakses, menentukan tinggi bangunan, atau menghitung resultan gaya.</p>
+ <p class="lesson-text">Yang membuat kedua aturan ini istimewa adalah <strong>sifatnya sebagai generalisasi</strong>. Aturan kosinus mencakup Teorema Pythagoras sebagai kasus khusus. Aturan sinus memperlihatkan simetri yang elegan antara sisi dan sudut. Memahami kedua aturan ini bukan sekadar menghafal rumus—melainkan memahami bahwa geometri segitiga memiliki struktur yang koheren, dan trigonometri adalah bahasa yang paling tepat untuk mengungkapkannya.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik-topik berikutnya: <strong>Fungsi Trigonometri</strong>, <strong>Persamaan Trigonometri</strong>, <strong>Kalkulus</strong> (yang memerlukan aturan sinus dan kosinus dalam integral trigonometri), dan <strong>Kalkulus Vektor</strong> (yang menggunakan aturan kosinus untuk menghitung sudut antar vektor). Latihlah diri Anda dengan berbagai variasi soal—terutama yang melibatkan kasus ambigu SSA dan kombinasi aturan sinus-kosinus. Kebiasaan memeriksa validitas solusi dengan $A + B + C = 180^\circ$ dan konsisten dalam notasi akan menyelamatkan Anda dari kesalahan yang tidak perlu.</p>
+</div>
+
+</div>
+</body>
+</html>

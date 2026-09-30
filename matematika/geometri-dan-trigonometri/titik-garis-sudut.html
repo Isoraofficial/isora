@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Titik, Garis, dan Sudut (Definisi Dasar, Jenis Sudut)</title>
+ <meta name="description" content="Materi dasar geometri: pengertian titik, garis (garis lurus, segmen, sinar), sudut, satuan sudut, jenis-jenis sudut, serta hubungan antar sudut seperti berpelurus, berpenyiku, bertolak belakang, dan sudut pada garis sejajar.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Titik, Garis, dan Sudut (Definisi Dasar, Jenis Sudut)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Sistem Bilangan</strong> — terutama bilangan real $\mathbb{R}$, karena pengukuran panjang segmen dan besar sudut dinyatakan sebagai bilangan real—dan operasi pada bilangan real mendasari seluruh perhitungan geometri.</li>
+   <li><strong>Notasi &amp; Bahasa Matematika</strong> — karena geometri menggunakan banyak simbol khusus ($\angle$, $\overline{AB}$, $\overrightarrow{AB}$, $\overleftrightarrow{AB}$, $\parallel$, $\perp$) yang perlu dibaca dan dituliskan dengan tepat agar tidak menimbulkan ambiguitas.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Geometri adalah cabang matematika yang mempelajari bentuk, ukuran, posisi, dan sifat ruang. Segala sesuatu yang kita lihat di sekitar—mulai dari ubin di lantai, jendela rumah, rambu lalu lintas, hingga orbit planet—pada dasarnya dapat dijelaskan melalui bahasa geometri. Kemampuan mendeskripsikan bentuk secara matematis adalah salah satu keterampilan paling mendasar yang membedakan matematika dari sekadar "berhitung".</p>
+ <p class="lesson-text">Namun, sebelum melangkah ke bangun-bangun yang rumit seperti segitiga, lingkaran, atau kubus, kita harus terlebih dahulu memahami tiga konsep paling dasar yang menjadi fondasi seluruh geometri: <strong>titik</strong>, <strong>garis</strong>, dan <strong>sudut</strong>.</p>
+ <p class="lesson-text">Menariknya, dalam sistem aksiomatik geometri, <strong>titik</strong> dan <strong>garis</strong> termasuk kategori <em>undefined terms</em> (istilah tak terdefinisi)&mdash;keduanya tidak didefinisikan menggunakan istilah lain yang lebih dasar, melainkan dijelaskan melalui intuisi dan sifat-sifat yang tampak jelas. <strong>Sudut</strong>, meskipun juga sangat mendasar, sebenarnya dapat didefinisikan dari kedua konsep tersebut&mdash;yakni sebagai gabungan dua sinar garis dengan titik pangkal yang sama.</p>
+ <div class="lesson-note">
+ <p class="lesson-text"><strong>Analogi:</strong> bayangkan Anda membuka kamus untuk mencari arti sebuah kata. Kata itu dijelaskan dengan kata-kata lain&mdash;lalu kata-kata lain itu Anda cari lagi artinya, dan dijelaskan lagi dengan kata-kata lain&mdash;begitu seterusnya. Jika setiap kata harus dijelaskan oleh kata lain, pencarian ini tidak akan pernah selesai: kita akan berputar-putar tanpa pernah mencapai dasar. Karena itu, setiap kamus pasti berhenti di suatu titik&mdash;ada kata-kata yang <em>tidak</em> didefinisikan dengan kata lain, melainkan langsung dipahami melalui pengalaman sehari-hari. Coba jelaskan arti kata &ldquo;warna&rdquo; atau &ldquo;rasa&rdquo; tanpa mengucapkan kata itu sendiri&mdash;Anda akan kesulitan, karena keduanya hanya bisa ditunjuk, dirasakan, atau dialami. 
+  Dalam geometri, <strong>titik</strong> dan <strong>garis</strong> berada di posisi seperti itu: keduanya adalah &ldquo;kata-kata dasar&rdquo; yang tidak didefinisikan lewat istilah lain yang lebih sederhana, melainkan dipahami lewat intuisi. Dari keduanya, konsep-konsep berikutnya&mdash;seperti segmen garis, sinar garis, sudut, segitiga, dan seterusnya&mdash;baru dapat didefinisikan.</p>
+</div>
+ <p class="lesson-text">Materi ini disusun bertahap: definisi intuitif titik, garis (dengan tiga variasinya), sudut beserta bagian-bagiannya, satuan sudut (derajat dan radian), jenis-jenis sudut, hubungan antar sudut, penerapan praktis, dan kesalahan umum. Setiap konsep dijelaskan dengan <em>alasan mengapa</em>—bukan hanya definisinya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Titik</h3>
+ <p class="lesson-text">Kita mulai dari objek geometri yang paling dasar—titik.</p>
+
+ <p class="lesson-subheading">A. Pengertian Titik</p>
+ <p class="lesson-text">Dalam geometri, <strong>titik</strong> adalah objek paling dasar yang menunjukkan sebuah <em>posisi</em> atau <em>lokasi</em> tertentu di ruang. Titik tidak memiliki ukuran: tidak memiliki panjang, lebar, maupun tinggi. Karena tidak memiliki dimensi, titik sering disebut sebagai objek <strong>berdimensi nol</strong>.</p>
+ <p class="lesson-text">Karena tidak memiliki ukuran, titik sebenarnya tidak dapat dilihat secara fisik. Ketika kita menggambar "titik" di kertas atau di layar, yang kita lihat sesungguhnya adalah representasi visual—berupa noktah kecil—dari titik tersebut. Noktah itu hanyalah simbol agar posisinya dapat ditunjukkan; jika diperbesar, ia tetap "mewakili" satu titik yang sama.</p>
+ <p class="lesson-text"><strong>Analogi:</strong> bayangkan Anda menunjukkan lokasi di peta dengan ujung jari. Jari Anda memiliki ukuran, tetapi tempat yang ditunjuk sesungguhnya hanyalah satu koordinat—satu titik—tanpa luas, tanpa lebar. Itulah esensi titik: ia hanya "ada di suatu tempat", bukan "memakan ruang".</p>
+
+ <p class="lesson-subheading">B. Penamaan Titik</p>
+ <p class="lesson-text">Titik diberi nama menggunakan <strong>huruf kapital</strong>, misalnya $A$, $B$, $C$, $P$, $Q$, atau $R$. Penamaan ini hanya untuk memudahkan komunikasi—yang penting adalah posisinya, bukan namanya.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 100" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <circle cx="100" cy="50" r="5" fill="#daa520"/>
+   <text x="112" y="45" font-size="16" fill="#e8e8e8" font-style="italic">A</text>
+   <circle cx="200" cy="50" r="5" fill="#daa520"/>
+   <text x="212" y="45" font-size="16" fill="#e8e8e8" font-style="italic">B</text>
+   <circle cx="300" cy="50" r="5" fill="#daa520"/>
+   <text x="312" y="45" font-size="16" fill="#e8e8e8" font-style="italic">C</text>
+  </svg>
+  <figcaption class="visual-caption">Tiga titik berbeda, yaitu $A$, $B$, dan $C$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Titik</p>
+ <ul>
+  <li><strong>Tidak memiliki ukuran.</strong> Titik tidak dapat diukur panjang, lebar, maupun tingginya.</li>
+  <li><strong>Hanya menunjukkan posisi.</strong> Titik tidak memiliki arah maupun bentuk.</li>
+  <li><strong>Dua titik berbeda menempati posisi yang berbeda.</strong> Jika dua titik berada di posisi yang sama, maka keduanya sesungguhnya adalah titik yang sama.</li>
+  <li><strong>Melalui satu titik, dapat dibuat tak hingga banyak garis.</strong> Bayangkan satu titik di tengah kertas—Anda dapat menarik garis ke segala arah melewati titik itu.</li>
+  <li><strong>Melalui dua titik yang berbeda, hanya dapat dibuat tepat satu garis lurus.</strong> Inilah salah satu aksioma paling penting dalam geometri—dan menjadi dasar mengapa kita dapat menyebut sebuah garis hanya dengan dua titiknya.</li>
+ </ul>
+
+ <figure>
+ <svg viewBox="0 0 600 290" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- KIRI: melalui 1 titik -->
+  <line x1="30" y1="115" x2="270" y2="115" stroke="#e8e8e8" stroke-width="1.3" opacity="0.7" />
+  <line x1="150" y1="20" x2="150" y2="210" stroke="#e8e8e8" stroke-width="1.3" opacity="0.7" />
+  <line x1="45" y1="20" x2="255" y2="210" stroke="#e8e8e8" stroke-width="1.3" opacity="0.7" />
+  <line x1="45" y1="210" x2="255" y2="20" stroke="#e8e8e8" stroke-width="1.3" opacity="0.7" />
+  <line x1="30" y1="60" x2="270" y2="170" stroke="#e8e8e8" stroke-width="1.3" opacity="0.7" />
+  <line x1="30" y1="170" x2="270" y2="60" stroke="#e8e8e8" stroke-width="1.3" opacity="0.7" />
+  <circle cx="150" cy="115" r="6" fill="#daa520" />
+  <text x="162" y="140" font-size="16" fill="#daa520" font-style="italic">P</text>
+  <text x="150" y="245" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">Melalui 1 titik: tak hingga garis</text>
+  
+  <!-- KANAN: melalui 2 titik -->
+  <line x1="330" y1="115" x2="570" y2="115" stroke="#e8e8e8" stroke-width="2" />
+  <circle cx="380" cy="115" r="5" fill="#daa520" />
+  <circle cx="520" cy="115" r="5" fill="#daa520" />
+  <text x="372" y="140" font-size="16" fill="#daa520" font-style="italic">A</text>
+  <text x="512" y="140" font-size="16" fill="#daa520" font-style="italic">B</text>
+  <text x="450" y="245" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">Melalui 2 titik: tepat 1 garis</text>
+ </svg>
+ <figcaption class="visual-caption">Perbandingan: melalui satu titik dapat dibuat tak hingga garis, tetapi melalui dua titik hanya dapat dibuat tepat satu garis.</figcaption>
+</figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Garis</h3>
+ <p class="lesson-text">Setelah memahami titik, kita masuk ke objek berikutnya: garis. Ada tiga variasi objek yang perlu dibedakan dengan jelas—garis, segmen garis, dan sinar garis.</p>
+
+ <p class="lesson-subheading">A. Pengertian Garis Lurus</p>
+ <p class="lesson-text"><strong>Garis lurus</strong> (sering disebut hanya "garis") adalah himpunan titik-titik yang tersusun memanjang tanpa batas ke dua arah yang berlawanan. Garis tidak memiliki ketebalan, dan panjangnya tidak terbatas&mdash;ia tidak memiliki titik ujung.</p>
+ <p class="lesson-text"><strong>Mengapa garis tidak memiliki ujung?</strong> Karena jika garis memiliki ujung, maka ujung itu adalah sebuah titik. Ketika kita berada di titik ujung tersebut, kita masih bisa melanjutkan garis lebih jauh lagi—dan seterusnya, tanpa batas. Inilah sebabnya garis dianggap tidak memiliki ujung.</p>
+ <p class="lesson-text">Garis biasanya dinamai dengan <strong>huruf kecil</strong> seperti $l$, $m$, atau $n$. Garis juga dapat dinamai berdasarkan dua titik yang terletak padanya, misalnya "garis $AB$" yang ditulis $\overleftrightarrow{AB}$. Tanda panah di kedua ujung menunjukkan bahwa garis memanjang tanpa batas ke dua arah.</p>
+
+ <p class="lesson-subheading">B. Segmen Garis</p>
+ <p class="lesson-text"><strong>Segmen garis</strong> (atau ruas garis) adalah bagian dari garis yang dibatasi oleh <strong>dua titik ujung</strong>. Berbeda dengan garis, segmen garis memiliki panjang yang dapat diukur karena kedua ujungnya jelas.</p>
+ <p class="lesson-text">Segmen garis dengan titik ujung $A$ dan $B$ ditulis $\overline{AB}$. Panjang segmen garis $AB$ ditulis $AB$ (tanpa garis di atas). <strong>Perhatikan perbedaan notasi ini:</strong> $\overline{AB}$ merujuk pada <em>objek</em> segmen garisnya, sedangkan $AB$ merujuk pada <em>bilangan</em> yang menyatakan panjangnya.</p>
+
+ <p class="lesson-subheading">C. Sinar Garis</p>
+ <p class="lesson-text"><strong>Sinar garis</strong> adalah bagian dari garis yang memiliki <strong>satu titik pangkal</strong> dan memanjang tanpa batas ke <strong>satu arah</strong>. Titik pangkal adalah ujung tetap sinar, sedangkan ujung lainnya tidak terbatas. Jadi, sinar garis "berada di antara" segmen garis (yang memiliki dua ujung) dan garis (yang tidak memiliki ujung).</p>
+ <p class="lesson-text">Sinar garis dengan pangkal $A$ dan melewati titik $B$ ditulis $\overrightarrow{AB}$. <strong>Urutan huruf penting:</strong> $\overrightarrow{AB}$ berbeda dengan $\overrightarrow{BA}$—karena titik pangkal dan arahnya berbeda.</p>
+
+ <p class="lesson-subheading">D. Perbandingan Visual Garis, Segmen, dan Sinar</p>
+ <p class="lesson-text">Perhatikan ketiganya berdampingan agar perbedaannya tampak jelas:</p>
+
+ <figure>
+  <svg viewBox="0 0 620 280" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-line-full" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#e8e8e8"/>
+    </marker>
+    <marker id="arrow-line-start" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#e8e8e8"/>
+    </marker>
+    <marker id="arrow-ray-end" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#e8e8e8"/>
+    </marker>
+   </defs>
+
+   <!-- GARIS -->
+   <text x="20" y="40" fill="#5dade2" font-size="14" font-weight="700">Garis</text>
+   <text x="20" y="58" fill="#b8b8b8" font-size="11" font-style="italic">tak terbatas 2 arah</text>
+   <line x1="140" y1="45" x2="580" y2="45" stroke="#e8e8e8" stroke-width="2"
+         marker-start="url(#arrow-line-start)" marker-end="url(#arrow-line-full)"/>
+   <circle cx="260" cy="45" r="4" fill="#daa520"/>
+   <circle cx="460" cy="45" r="4" fill="#daa520"/>
+   <text x="250" y="35" fill="#daa520" font-size="13" font-style="italic">A</text>
+   <text x="450" y="35" fill="#daa520" font-size="13" font-style="italic">B</text>
+   <text x="600" y="50" fill="#5dade2" font-size="13" font-style="italic">l</text>
+
+   <!-- SEGMEN -->
+   <text x="20" y="130" fill="#5dade2" font-size="14" font-weight="700">Segmen Garis</text>
+   <text x="20" y="148" fill="#b8b8b8" font-size="11" font-style="italic">dua titik ujung</text>
+   <line x1="190" y1="135" x2="530" y2="135" stroke="#e8e8e8" stroke-width="2.5"/>
+   <circle cx="190" cy="135" r="5" fill="#daa520"/>
+   <circle cx="530" cy="135" r="5" fill="#daa520"/>
+   <text x="178" y="160" fill="#daa520" font-size="13" font-style="italic">A</text>
+   <text x="520" y="160" fill="#daa520" font-size="13" font-style="italic">B</text>
+   <text x="355" y="125" fill="#e8e8e8" font-size="12" font-style="italic" text-anchor="middle">AB</text>
+
+   <!-- SINAR -->
+   <text x="20" y="225" fill="#5dade2" font-size="14" font-weight="700">Sinar Garis</text>
+   <text x="20" y="243" fill="#b8b8b8" font-size="11" font-style="italic">satu pangkal, satu arah</text>
+   <line x1="190" y1="230" x2="580" y2="230" stroke="#e8e8e8" stroke-width="2.5"
+         marker-end="url(#arrow-ray-end)"/>
+   <circle cx="190" cy="230" r="5.5" fill="#daa520"/>
+   <circle cx="360" cy="230" r="4" fill="#daa520"/>
+   <text x="178" y="255" fill="#daa520" font-size="13" font-style="italic">A</text>
+   <text x="350" y="255" fill="#daa520" font-size="13" font-style="italic">B</text>
+  </svg>
+  <figcaption class="visual-caption">Perbandingan tiga objek: <strong>garis</strong> (panah di dua ujung), <strong>segmen garis</strong> (tanpa panah, dengan dua titik ujung), dan <strong>sinar garis</strong> (satu panah, satu pangkal).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">E. Ringkasan Perbedaan</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Objek</th>
+     <th>Titik Ujung/Pangkal</th>
+     <th>Panjang</th>
+     <th>Notasi</th>
+     <th>Analogi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Garis</td>
+     <td>Tidak ada</td>
+     <td>Tak terhingga</td>
+     <td>$\overleftrightarrow{AB}$ atau $l$</td>
+     <td>Jalan tol tanpa ujung</td>
+    </tr>
+    <tr>
+     <td>Segmen garis</td>
+     <td>Dua titik ujung</td>
+     <td>Terbatas, terukur</td>
+     <td>$\overline{AB}$</td>
+     <td>Jembatan dengan dua pilar</td>
+    </tr>
+    <tr>
+     <td>Sinar garis</td>
+     <td>Satu titik pangkal</td>
+     <td>Tak terhingga (satu arah)</td>
+     <td>$\overrightarrow{AB}$</td>
+     <td>Sinar lampu senter</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Sudut</h3>
+ <p class="lesson-text">Setelah memahami titik dan garis, kita dapat mendefinisikan objek berikutnya—sudut—yang merupakan gabungan dari dua sinar garis.</p>
+
+ <p class="lesson-subheading">A. Definisi Sudut</p>
+ <p class="lesson-text"><strong>Sudut</strong> adalah gabungan <strong>dua sinar garis</strong> yang memiliki <strong>titik pangkal yang sama</strong>. Titik pangkal bersama tersebut disebut <strong>titik sudut</strong> (vertex), sedangkan kedua sinar garis pembentuknya disebut <strong>kaki sudut</strong>. Wilayah di antara kedua kaki sudut disebut <strong>daerah sudut</strong>.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa harus sinar, bukan segmen atau garis?</strong> Karena sudut melibatkan "arah" dan "bukaan". Sinar garis adalah objek yang tepat—ia memiliki titik pangkal (yang menjadi titik sudut) dan arah yang jelas (yang menentukan besar bukaan).</p>
+ </div>
+ <p class="lesson-text">Besar sudut <strong>tidak bergantung pada panjang kaki sudut</strong>, melainkan pada besar rotasi dari satu kaki ke kaki lainnya. Jadi, sudut yang sama dapat digambar dengan kaki yang panjang atau pendek—besar sudutnya tetap sama.</p>
+
+ <figure>
+ <svg viewBox="0 0 500 260" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <marker id="arrow-sudut" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#e8e8e8" />
+   </marker>
+  </defs>
+  
+  <line x1="100" y1="190" x2="410" y2="190" stroke="#e8e8e8" stroke-width="2" marker-end="url(#arrow-sudut)" />
+  <line x1="100" y1="190" x2="280" y2="30" stroke="#e8e8e8" stroke-width="2" marker-end="url(#arrow-sudut)" />
+  <circle cx="100" cy="190" r="5" fill="#daa520" />
+  <path d="M 155 190 A 55 55 0 0 0 141.1 153.5" fill="none" stroke="#daa520" stroke-width="2.2" />
+  <text x="135" y="179" font-size="16" fill="#daa520" font-style="italic">θ</text>
+  <text x="86" y="214" font-size="15" fill="#daa520" font-style="italic">B</text>
+  <text x="270" y="24" font-size="15" fill="#daa520" font-style="italic">A</text>
+  <text x="415" y="196" font-size="15" fill="#daa520" font-style="italic">C</text>
+ </svg>
+ <figcaption class="visual-caption">Sudut $\angle ABC$ dengan titik sudut $B$ dan kaki sudut $\overrightarrow{BA}$ serta $\overrightarrow{BC}$. Busur keemasan menunjukkan besar bukaan sudut.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Bagian-Bagian Sudut</p>
+ <ul>
+  <li><strong>Titik sudut (vertex)</strong>: titik pangkal bersama kedua sinar—pada gambar di atas adalah titik $B$.</li>
+  <li><strong>Kaki sudut</strong>: dua sinar garis pembentuk sudut, yaitu $\overrightarrow{BA}$ dan $\overrightarrow{BC}$.</li>
+  <li><strong>Daerah sudut</strong>: wilayah di antara kedua kaki sudut—biasanya ditandai dengan busur.</li>
+  <li><strong>Besar sudut</strong>: ukuran rotasi dari satu kaki ke kaki lainnya—dinyatakan dalam derajat atau radian.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Penamaan Sudut</p>
+ <p class="lesson-text">Sudut dapat diberi nama dengan beberapa cara. Pemilihan cara biasanya bergantung pada konteks dan kerumitan gambar.</p>
+ <ol>
+  <li><strong>Tiga huruf</strong>—dengan huruf tengah sebagai titik sudut. Contoh: $\angle ABC$ atau $\angle CBA$—keduanya merujuk sudut yang sama. Huruf tengah ($B$) harus berada di tengah penulisan, karena itulah titik sudutnya.</li>
+  <li><strong>Satu huruf titik sudut</strong>—jika tidak menimbulkan kebingungan. Contoh: $\angle B$. Cara ini hanya aman jika di titik $B$ hanya ada satu sudut.</li>
+  <li><strong>Huruf Yunani</strong>—seperti $\alpha$ (alpha), $\beta$ (beta), $\gamma$ (gamma), atau $\theta$ (theta). Sangat berguna ketika gambar memiliki banyak sudut.</li>
+  <li><strong>Angka</strong>—seperti $\angle 1$, $\angle 2$, dan seterusnya.</li>
+ </ol>
+ <p class="lesson-text">Perlu diperhatikan: pada penamaan tiga huruf, urutan huruf pertama dan ketiga tidak memengaruhi sudut yang dimaksud ($\angle ABC = \angle CBA$), tetapi posisi huruf tengah sangat penting karena menunjukkan titik sudut.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Satuan Sudut</h3>
+ <p class="lesson-text">Setelah memahami definisi sudut, kita perlu mengetahui cara mengukur besar sudut. Ada dua satuan utama: derajat dan radian.</p>
+
+ <p class="lesson-subheading">A. Derajat</p>
+ <figure>
+ <svg viewBox="0 0 500 500" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lingkaran putaran penuh 360° -->
+  <circle cx="250" cy="250" r="170" fill="none" stroke="#e8e8e8" stroke-width="1.5" opacity="0.45" />
+  
+  <!-- Garis radial tiap 30° -->
+  <g stroke="#e8e8e8" stroke-width="1.2" opacity="0.3">
+   <line x1="250" y1="250" x2="420" y2="250" />
+   <line x1="250" y1="250" x2="397.2" y2="165" />
+   <line x1="250" y1="250" x2="335" y2="102.8" />
+   <line x1="250" y1="250" x2="250" y2="80" />
+   <line x1="250" y1="250" x2="165" y2="102.8" />
+   <line x1="250" y1="250" x2="102.8" y2="165" />
+   <line x1="250" y1="250" x2="80" y2="250" />
+   <line x1="250" y1="250" x2="102.8" y2="335" />
+   <line x1="250" y1="250" x2="165" y2="397.2" />
+   <line x1="250" y1="250" x2="250" y2="420" />
+   <line x1="250" y1="250" x2="335" y2="397.2" />
+   <line x1="250" y1="250" x2="397.2" y2="335" />
+  </g>
+  
+  <!-- Titik penanda di tepi lingkaran -->
+  <g fill="#daa520">
+   <circle cx="420" cy="250" r="3" />
+   <circle cx="397.2" cy="165" r="3" />
+   <circle cx="335" cy="102.8" r="3" />
+   <circle cx="250" cy="80" r="3" />
+   <circle cx="165" cy="102.8" r="3" />
+   <circle cx="102.8" cy="165" r="3" />
+   <circle cx="80" cy="250" r="3" />
+   <circle cx="102.8" cy="335" r="3" />
+   <circle cx="165" cy="397.2" r="3" />
+   <circle cx="250" cy="420" r="3" />
+   <circle cx="335" cy="397.2" r="3" />
+   <circle cx="397.2" cy="335" r="3" />
+  </g>
+  
+  <!-- Titik pusat -->
+  <circle cx="250" cy="250" r="5" fill="#daa520" />
+  
+  <!-- Label sudut utama -->
+  <g font-size="13" fill="#daa520" font-style="italic" text-anchor="middle">
+   <text x="460" y="254">0° / 360°</text>
+   <text x="432" y="149">30°</text>
+   <text x="355" y="72">60°</text>
+   <text x="250" y="44">90°</text>
+   <text x="145" y="72">120°</text>
+   <text x="68" y="149">150°</text>
+   <text x="40" y="254">180°</text>
+   <text x="68" y="359">210°</text>
+   <text x="145" y="436">240°</text>
+   <text x="250" y="464">270°</text>
+   <text x="355" y="436">300°</text>
+   <text x="432" y="359">330°</text>
+  </g>
+  
+  <!-- Indikator arah putaran (berlawanan arah jarum jam) -->
+  <path d="M 280 250 A 30 30 0 0 0 250 220" fill="none" stroke="#daa520" stroke-width="1.8" />
+  <polygon points="250,220 256,216 256,224" fill="#daa520" />
+ </svg>
+ <figcaption class="visual-caption">Satu putaran penuh $= 360^\circ$, terbagi menjadi dua belas bagian sama besar yang masing-masing berukuran $30^\circ$.</figcaption>
+</figure>
+ <p class="lesson-text">Satuan sudut yang paling umum digunakan sehari-hari adalah <strong>derajat</strong>—disimbolkan dengan tanda $^\circ$. Satu putaran penuh dibagi menjadi $360$ bagian yang sama, sehingga:</p>
+ <p class="lesson-text">$$1 \text{ putaran penuh} = 360^\circ$$</p>
+ <p class="lesson-text"><strong>Mengapa $360$?</strong> Angka ini merupakan warisan dari peradaban Babilonia kuno, yang menggunakan sistem bilangan berbasis $60$. Angka $360$ dipilih karena mudah dibagi oleh banyak bilangan ($2, 3, 4, 5, 6, 8, 9, 10, 12, \dots$), sehingga memudahkan perhitungan praktis. Sampai hari ini, $360^\circ$ tetap menjadi standar meskipun alasan historisnya sudah tidak terlalu relevan.</p>
+ <p class="lesson-text">Derajat dapat dibagi lagi menjadi satuan yang lebih kecil, mirip seperti jam:</p>
+ <ul>
+  <li>$1^\circ = 60'$ (menit, dibaca "menit busur")</li>
+  <li>$1' = 60''$ (detik, dibaca "detik busur")</li>
+ </ul>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Sudut $45^\circ 30' 15''$ berarti $45$ derajat, $30$ menit, dan $15$ detik. Untuk mengubahnya ke bentuk desimal: $45 + 30/60 + 15/3600 = 45 + 0{,}5 + 0{,}00417 \approx 45{,}50417^\circ$.</p>
+
+ <p class="lesson-subheading">B. Radian</p>
+ <p class="lesson-text"><strong>Radian</strong> adalah satuan sudut yang lebih "alami" dalam matematika tingkat lanjut. Berbeda dengan derajat yang berbasis angka historis $360$, radian lahir langsung dari sifat geometri lingkaran.</p>
+ <p class="lesson-text"><strong>Definisi:</strong> satu radian adalah besar sudut pusat lingkaran yang panjang busurnya sama dengan jari-jari lingkaran. Dengan kata lain, jika kita "membengkokkan" jari-jari lingkaran sehingga menempel pada keliling, sudut pusat yang dibentuk oleh busur tersebut adalah $1$ radian.</p>
+
+ <figure>
+ <svg viewBox="0 0 520 340" style="max-width:100%; height:auto; width:520px;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <marker id="arrow-rad" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#daa520" />
+   </marker>
+  </defs>
+  
+  <!-- Lingkaran penuh (tipis) -->
+  <circle cx="180" cy="180" r="120" fill="none" stroke="#e8e8e8" stroke-width="1.4" opacity="0.4" />
+  
+  <!-- Dua jari-jari (biru) -->
+  <line x1="180" y1="180" x2="300" y2="180" stroke="#5dade2" stroke-width="2" />
+  <line x1="180" y1="180" x2="244.8" y2="79" stroke="#5dade2" stroke-width="2" />
+  
+  <!-- Busur keemasan sepanjang r -->
+  <path d="M 300 180 A 120 120 0 0 0 244.8 79" fill="none" stroke="#daa520" stroke-width="4" stroke-linecap="round" />
+  
+  <!-- Busur kecil penanda sudut pusat 1 radian -->
+  <path d="M 225 180 A 45 45 0 0 0 204.3 142.1" fill="none" stroke="#daa520" stroke-width="1.8" marker-end="url(#arrow-rad)" />
+  
+  <!-- Titik pusat dan ujung -->
+  <circle cx="180" cy="180" r="5" fill="#daa520" />
+  <circle cx="300" cy="180" r="5" fill="#daa520" />
+  <circle cx="244.8" cy="79" r="5" fill="#daa520" />
+  
+  <!-- Label -->
+  <text x="205" y="152" font-size="15" fill="#daa520" font-style="italic">1 rad</text>
+  <text x="240" y="200" font-size="14" fill="#5dade2" font-style="italic">r</text>
+  <text x="200" y="120" font-size="14" fill="#5dade2" font-style="italic">r</text>
+  <text x="310" y="112" font-size="13" fill="#daa520" font-style="italic">busur = r</text>
+  <text x="162" y="204" font-size="14" fill="#e8e8e8" font-style="italic">O</text>
+  <text x="310" y="204" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="252" y="70" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+ </svg>
+ <figcaption class="visual-caption">Definisi satu radian: panjang busur $AB$ (keemasan) sama dengan panjang jari-jari $OA$ (biru). Sudut pusat $\angle AOB$ yang dibentuk adalah tepat $1$ radian.</figcaption>
+</figure>
+
+ <p class="lesson-text">Sekarang, mari kita hitung berapa radian untuk satu putaran penuh. Keliling lingkaran dengan jari-jari $r$ adalah $2\pi r$. Karena $1$ radian "memakan" busur sepanjang $r$, maka banyaknya radian dalam satu putaran penuh adalah:</p>
+ <p class="lesson-text">$$\frac{\text{keliling}}{\text{jari-jari}} = \frac{2\pi r}{r} = 2\pi$$</p>
+ <p class="lesson-text">Jadi, satu putaran penuh sama dengan $2\pi$ radian—dan karena satu putaran penuh juga sama dengan $360^\circ$, kita memperoleh hubungan penting:</p>
+ <p class="lesson-text">$$2\pi \text{ radian} = 360^\circ \quad \Longrightarrow \quad \pi \text{ radian} = 180^\circ$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Rumus konversi:</strong> derajat → radian—kalikan dengan $\dfrac{\pi}{180}$. Radian → derajat—kalikan dengan $\dfrac{180}{\pi}$.</p>
+ </div>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$$90^\circ = 90 \times \frac{\pi}{180} = \frac{\pi}{2} \text{ radian}$$ $$\frac{\pi}{3} \text{ radian} = \frac{\pi}{3} \times \frac{180}{\pi} = 60^\circ$$</p>
+ <p class="lesson-text">Satuan radian sering kali tidak ditulis secara eksplisit; misalnya "sudut $\pi/4$" berarti $\pi/4$ radian. Ini karena radian adalah satuan "tanpa dimensi"—ia adalah rasio dua panjang (busur dibagi jari-jari), sehingga secara matematis tidak butuh simbol satuan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Jenis-Jenis Sudut</h3>
+ <p class="lesson-text">Berdasarkan besar sudutnya, sudut dapat diklasifikasikan menjadi tujuh jenis. Klasifikasi ini didasarkan pada perbandingan besar sudut dengan sudut siku-siku ($90^\circ$) dan sudut lurus ($180^\circ$). Setiap jenis akan dibahas satu per satu&mdash;mulai dari yang paling kecil&mdash;disertai visual dan penjelasannya.</p>
+
+ <!-- ============ 1. SUDUT NOL ============ -->
+ <p class="lesson-subheading">1. Sudut Nol ($\theta = 0^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 420 240" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-nol" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#e8e8e8"/>
+    </marker>
+   </defs>
+   <line x1="80" y1="150" x2="370" y2="150" stroke="#e8e8e8" stroke-width="2" marker-end="url(#arrow-nol)"/>
+   <circle cx="80" cy="150" r="5" fill="#daa520"/>
+   <text x="135" y="135" font-size="16" fill="#daa520" font-style="italic">0°</text>
+   <text x="225" y="205" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">kedua kaki sudut berimpit pada sinar yang sama</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut nol: kedua kaki sudut berimpit, tidak ada bukaan yang terbentuk.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut nol terbentuk ketika kedua kaki sudut berimpit&mdash;menunjuk ke arah yang sama. Besarnya $0^\circ$ karena tidak ada rotasi yang terjadi. Secara teknis ini adalah kasus batas&mdash;beberapa buku tidak menganggapnya sebagai sudut sesungguhnya, karena tidak ada "bukaan" yang terbentuk.</p>
+
+ <!-- ============ 2. SUDUT LANCIP ============ -->
+ <p class="lesson-subheading">2. Sudut Lancip ($0^\circ < \theta < 90^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 420 300" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="80" y1="250" x2="300" y2="250" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="80" y1="250" x2="195.7" y2="112.1" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="80" cy="250" r="5" fill="#daa520"/>
+   <path d="M 150 250 A 70 70 0 0 0 125 196.4" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="128" y="228" font-size="15" fill="#daa520" font-style="italic" text-anchor="middle">θ</text>
+   <text x="200" y="205" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">50°</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut lancip: contoh $50^\circ$&mdash;lebih kecil dari sudut siku-siku.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut lancip adalah sudut yang besarnya lebih dari $0^\circ$ dan kurang dari $90^\circ$. Disebut "lancip" karena bentuknya runcing atau tajam&mdash;seperti ujung pensil atau ujung jarum. Contoh: sudut atap rumah, sudut bukaan gunting yang sedikit terbuka.</p>
+
+ <!-- ============ 3. SUDUT SIKU-SIKU ============ -->
+ <p class="lesson-subheading">3. Sudut Siku-siku ($\theta = 90^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 420 300" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="80" y1="250" x2="300" y2="250" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="80" y1="250" x2="80" y2="40" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="80" cy="250" r="5" fill="#daa520"/>
+   <polyline points="80,225 105,225 105,250" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="160" y="205" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">90°</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut siku-siku: kedua kaki saling tegak lurus, ditandai dengan persegi kecil di titik sudut&mdash;membentuk seperti huruf <strong>L</strong>.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut siku-siku adalah sudut yang besarnya tepat $90^\circ$. Kedua kaki sudutnya saling tegak lurus. Pada gambar, sudut siku-siku biasanya ditandai dengan <strong>persegi kecil</strong> di titik sudut, bukan busur. Contoh: sudut antara dinding dan lantai, sudut pertemuan dua jalan yang tegak lurus.</p>
+
+ <!-- ============ 4. SUDUT TUMPUL ============ -->
+ <p class="lesson-subheading">4. Sudut Tumpul ($90^\circ < \theta < 180^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 440 320" style="display:block; margin:0 auto; max-width:100%; height:auto; width:440px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="240" y1="260" x2="420" y2="260" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="240" y1="260" x2="124.3" y2="122.1" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="240" cy="260" r="5" fill="#daa520"/>
+   <path d="M 310 260 A 70 70 0 0 0 195 206.4" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="261" y="222" font-size="15" fill="#daa520" font-style="italic" text-anchor="middle">θ</text>
+   <text x="295" y="160" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">130°</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut tumpul: contoh $130^\circ$&mdash;lebih besar dari sudut siku-siku tetapi kurang dari sudut lurus.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut tumpul adalah sudut yang besarnya lebih dari $90^\circ$ dan kurang dari $180^\circ$. Bentuknya lebih "terbuka" daripada siku-siku. Contoh: sudut yang dibentuk jarum jam pada pukul 4 ($120^\circ$), sudut kursi santai yang direbahkan.</p>
+
+ <!-- ============ 5. SUDUT LURUS ============ -->
+ <p class="lesson-subheading">5. Sudut Lurus ($\theta = 180^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 420 280" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="40" y1="200" x2="380" y2="200" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="210" cy="200" r="5" fill="#daa520"/>
+   <path d="M 280 200 A 70 70 0 0 0 140 200" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="210" y="105" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">180°</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut lurus: kedua kaki membentuk satu garis lurus yang berlawanan arah.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut lurus adalah sudut yang besarnya tepat $180^\circ$. Kedua kaki sudut membentuk garis lurus&mdash;berlawanan arah. Sudut ini sering disebut <em>sudut pelurus</em>.</p>
+
+ <!-- ============ 6. SUDUT REFLEKS ============ -->
+ <p class="lesson-subheading">6. Sudut Refleks ($180^\circ < \theta < 360^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 420 380" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="160" y1="140" x2="360" y2="140" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="160" y1="140" x2="160" y2="340" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="160" cy="140" r="5" fill="#daa520"/>
+   <path d="M 230 140 A 70 70 0 1 0 160 210" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="125" y="105" font-size="15" fill="#daa520" font-style="italic" text-anchor="middle">θ</text>
+   <text x="85" y="62" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">270°</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut refleks: contoh $270^\circ$&mdash;lebih besar dari sudut lurus dan kurang dari satu putaran penuh.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut refleks adalah sudut yang besarnya lebih dari $180^\circ$ tetapi kurang dari $360^\circ$. Sudut jenis ini biasanya muncul dalam konteks rotasi&mdash;misalnya ketika sebuah objek diputar melewati sudut lurus. Jika Anda memiliki sudut tumpul $135^\circ$, maka sudut refleks yang melengkapinya adalah $360^\circ - 135^\circ = 225^\circ$.</p>
+
+ <!-- ============ 7. SUDUT PENUH ============ -->
+ <p class="lesson-subheading">7. Sudut Penuh ($\theta = 360^\circ$)</p>
+ <figure>
+  <svg viewBox="0 0 420 280" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="210" y1="180" x2="380" y2="180" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="210" cy="180" r="55" fill="none" stroke="#daa520" stroke-width="2"/>
+   <circle cx="210" cy="180" r="5" fill="#daa520"/>
+   <polygon points="200,125 214,118 214,132" fill="#daa520"/>
+   <text x="210" y="95" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">360°</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut penuh: satu putaran penuh sehingga kedua kaki kembali berimpit dengan posisi awal.</figcaption>
+ </figure>
+ <p class="lesson-text">Sudut penuh adalah sudut yang terbentuk dari satu putaran penuh&mdash;sehingga kedua kaki sudut kembali berimpit dengan posisi awal. Besarnya $360^\circ$ atau $2\pi$ radian.</p>
+
+ <!-- ============ RINGKASAN ============ -->
+ <p class="lesson-subheading">Ringkasan Klasifikasi</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Jenis Sudut</th>
+     <th>Besar Sudut</th>
+     <th>Contoh</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Nol</td><td>$\theta = 0^\circ$</td><td>Dua kaki berimpit</td></tr>
+    <tr><td>Lancip</td><td>$0^\circ < \theta < 90^\circ$</td><td>$30^\circ$, $45^\circ$, $60^\circ$</td></tr>
+    <tr><td>Siku-siku</td><td>$\theta = 90^\circ$</td><td>Sudut dinding dan lantai</td></tr>
+    <tr><td>Tumpul</td><td>$90^\circ < \theta < 180^\circ$</td><td>$120^\circ$, $135^\circ$</td></tr>
+    <tr><td>Lurus</td><td>$\theta = 180^\circ$</td><td>Garis lurus</td></tr>
+    <tr><td>Refleks</td><td>$180^\circ < \theta < 360^\circ$</td><td>$225^\circ$, $270^\circ$</td></tr>
+    <tr><td>Penuh</td><td>$\theta = 360^\circ$</td><td>Satu putaran jarum jam</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Hubungan Antar Sudut</h3>
+ <p class="lesson-text">Dalam geometri, beberapa sudut yang berbeda dapat memiliki hubungan khusus berdasarkan posisi atau jumlah besarnya. Memahami hubungan ini sangat penting untuk menyelesaikan berbagai persoalan geometri—mulai dari menghitung sudut yang tidak diketahui hingga membuktikan sifat-sifat bangun datar.</p>
+
+ <p class="lesson-subheading">A. Sudut Berpelurus (Supplementary)</p>
+ <p class="lesson-text">Dua sudut disebut <strong>berpelurus</strong> jika jumlah besar keduanya sama dengan $180^\circ$. Kedua sudut tersebut saling <em>melengkapi</em> untuk membentuk sudut lurus.</p>
+ <p class="lesson-text"><strong>Mengapa jumlahnya $180^\circ$?</strong> Karena kedua sudut tersebut bersama-sama membentuk sudut lurus—yaitu sudut yang terbentuk ketika dua kaki sudut berada pada satu garis lurus. Sudut lurus besarnya $180^\circ$, sehingga jika satu sudut $\alpha$ dan sudut lainnya $\beta$ bersama-sama mengisi sudut lurus tersebut, maka $\alpha + \beta = 180^\circ$.</p>
+
+ <figure>
+ <svg viewBox="0 0 480 300" style="display:block; margin:0 auto; max-width:100%; height:auto; width:480px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Garis lurus AB -->
+  <line x1="40" y1="220" x2="440" y2="220" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Sinar PC -->
+  <line x1="220" y1="220" x2="330" y2="29.5" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Titik P -->
+  <circle cx="220" cy="220" r="5" fill="#daa520" />
+  
+  <!-- Busur α (antara PA dan PC) -->
+  <path d="M 145 220 A 75 75 0 0 1 257.5 155" fill="none" stroke="#daa520" stroke-width="2.2" />
+  
+  <!-- Busur β (antara PC dan PB) -->
+  <path d="M 257.5 155 A 75 75 0 0 1 295 220" fill="none" stroke="#5dade2" stroke-width="2.2" />
+  
+  <!-- Label α dan β -->
+  <text x="196" y="197" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">α</text>
+  <text x="262" y="197" font-size="16" fill="#5dade2" font-style="italic" text-anchor="middle">β</text>
+  
+  <!-- Label titik -->
+  <text x="20" y="244" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="205" y="246" font-size="14" fill="#e8e8e8" font-style="italic">P</text>
+  <text x="442" y="244" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="336" y="26" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+ </svg>
+ <figcaption class="visual-caption">Sudut berpelurus: $\alpha + \beta = 180^\circ$. Titik $P$ terletak pada garis $\overleftrightarrow{AB}$, dan sinar $\overrightarrow{PC}$ membagi sudut lurus menjadi dua bagian.</figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">Contoh penerapan:</p>
+ <p class="lesson-text">Jika $\alpha = 65^\circ$, maka $\beta = 180^\circ - 65^\circ = 115^\circ$.</p>
+
+ <p class="lesson-subheading">B. Sudut Berpenyiku (Complementary)</p>
+ <p class="lesson-text">Dua sudut disebut <strong>berpenyiku</strong> jika jumlah besar keduanya sama dengan $90^\circ$. Kedua sudut tersebut saling melengkapi untuk membentuk sudut siku-siku.</p>
+ <p class="lesson-text">Logikanya sama dengan sudut berpelurus: jika dua sudut bersama-sama membentuk sudut siku-siku (yang besarnya $90^\circ$), maka jumlah keduanya haruslah $90^\circ$.</p>
+
+ <figure>
+  <svg viewBox="0 0 480 340" style="display:block; margin:0 auto; max-width:100%; height:auto; width:480px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Kaki-kaki sudut -->
+   <line x1="140" y1="280" x2="400" y2="280" stroke="#e8e8e8" stroke-width="2" />
+   <line x1="140" y1="280" x2="140" y2="20" stroke="#e8e8e8" stroke-width="2" />
+   <line x1="140" y1="280" x2="324" y2="96" stroke="#e8e8e8" stroke-width="2" />
+  
+   <!-- Titik sudut O -->
+   <circle cx="140" cy="280" r="5" fill="#daa520" />
+  
+   <!-- Busur α (antara OA dan OC) -->
+   <path d="M 200 280 A 60 60 0 0 0 182.4 237.6" fill="none" stroke="#daa520" stroke-width="2.2" />
+  
+   <!-- Busur β (antara OC dan OB) -->
+   <path d="M 182.4 237.6 A 60 60 0 0 0 140 220" fill="none" stroke="#5dade2" stroke-width="2.2" />
+  
+   <!-- Label α dan β -->
+  <text x="175" y="268" font-size="16" fill="#daa520" font-style="italic" text-anchor="middle">α</text>
+  <text x="155" y="252" font-size="16" fill="#5dade2" font-style="italic" text-anchor="middle">β</text>
+  
+   <!-- Label titik -->
+   <text x="124" y="302" font-size="14" fill="#e8e8e8" font-style="italic">O</text>
+   <text x="406" y="285" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="132" y="14" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="330" y="90" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   </svg>
+  <figcaption class="visual-caption">Sudut berpenyiku: $\alpha + \beta = 90^\circ$. Sinar $\overrightarrow{OC}$ membagi sudut siku-siku menjadi dua bagian.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading-alt">Contoh penerapan:</p>
+ <p class="lesson-text">Jika $\alpha = 37^\circ$, maka $\beta = 90^\circ - 37^\circ = 53^\circ$.</p>
+
+ <p class="lesson-subheading">C. Sudut Bertolak Belakang</p>
+ <p class="lesson-text">Ketika dua garis berpotongan, terbentuk empat sudut. Dua sudut yang saling berhadapan (tidak bersebelahan) disebut <strong>sudut bertolak belakang</strong>. Sifat penting: <strong>sudut bertolak belakang selalu sama besar</strong>.</p>
+ <p class="lesson-text"><strong>Mengapa sama besar?</strong> Perhatikan gambar berikut. Sudut $\angle 1$ dan $\angle 2$ berpelurus—sehingga $\angle 1 + \angle 2 = 180^\circ$. Demikian pula $\angle 2$ dan $\angle 3$ berpelurus—sehingga $\angle 2 + \angle 3 = 180^\circ$. Dari kedua persamaan ini:</p>
+ <p class="lesson-text">$$\angle 1 + \angle 2 = 180^\circ \quad \text{dan} \quad \angle 3 + \angle 2 = 180^\circ$$</p>
+ <p class="lesson-text">Kurangkan kedua persamaan: $\angle 1 - \angle 3 = 0$, sehingga $\angle 1 = \angle 3$. Dengan cara yang sama, $\angle 2 = \angle 4$.</p>
+
+ <figure>
+  <svg viewBox="0 0 480 320" style="display:block; margin:0 auto; max-width:100%; height:auto; width:480px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Dua garis berpotongan -->
+   <line x1="60" y1="70" x2="420" y2="250" stroke="#e8e8e8" stroke-width="2" />
+   <line x1="60" y1="250" x2="420" y2="70" stroke="#e8e8e8" stroke-width="2" />
+  
+   <!-- Titik potong -->
+   <circle cx="240" cy="160" r="5" fill="#daa520" />
+   
+   <!-- Label angka di tengah tiap sektor -->
+   <text x="240" y="115" font-size="20" fill="#daa520" font-weight="700" font-style="italic" text-anchor="middle">1</text>
+   <text x="300" y="160" font-size="20" fill="#5dade2" font-weight="700" font-style="italic" text-anchor="middle" dominant-baseline="middle">2</text>
+   <text x="240" y="215" font-size="20" fill="#daa520" font-weight="700" font-style="italic" text-anchor="middle">3</text>
+   <text x="180" y="160" font-size="20" fill="#5dade2" font-weight="700" font-style="italic" text-anchor="middle" dominant-baseline="middle">4</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut bertolak belakang: $\angle 1 = \angle 3$ (warna emas) dan $\angle 2 = \angle 4$ (warna biru).</figcaption>
+ </figure>
+
+ <p class="lesson-text">Pada gambar di atas, $\angle 1$ bertolak belakang dengan $\angle 3$—sehingga $\angle 1 = \angle 3$. Demikian pula $\angle 2$ bertolak belakang dengan $\angle 4$—sehingga $\angle 2 = \angle 4$. Perhatikan juga bahwa $\angle 1 + \angle 2 = 180^\circ$ (berpelurus), karena keduanya bersama-sama membentuk sudut lurus di sisi kanan perpotongan.</p>
+
+ <p class="lesson-subheading">D. Sudut pada Dua Garis Sejajar yang Dipotong Transversal</p>
+ <p class="lesson-text">Ketika dua garis sejajar dipotong oleh sebuah garis ketiga (disebut <strong>transversal</strong>), terbentuk delapan sudut dengan hubungan-hubungan khusus yang sangat penting dalam geometri. Hubungan ini muncul karena kedua garis yang sejajar memiliki "kemiringan" yang sama—sehingga sudut-sudut yang bersesuaian akan sama besar.</p>
+
+ <figure>
+  <svg viewBox="0 0 560 380" style="display:block; margin:0 auto; max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Garis sejajar L1 dan L2 -->
+  <line x1="60" y1="100" x2="500" y2="100" stroke="#e8e8e8" stroke-width="2" />
+  <line x1="60" y1="280" x2="500" y2="280" stroke="#e8e8e8" stroke-width="2" />
+ 
+  <!-- Transversal -->
+  <line x1="150" y1="20" x2="410" y2="360" stroke="#5dade2" stroke-width="2" />
+ 
+  <!-- Titik potong -->
+  <circle cx="210" cy="100" r="4" fill="#daa520" />
+  <circle cx="350" cy="280" r="4" fill="#daa520" />
+ 
+  <!-- Kelompok sudut sama besar: {1,4,5,8} emas -->
+  <text x="185" y="90" font-size="14" fill="#daa520" font-weight="700" font-style="italic">1</text>
+  <text x="230" y="125" font-size="14" fill="#daa520" font-weight="700" font-style="italic">4</text>
+  <text x="325" y="270" font-size="14" fill="#daa520" font-weight="700" font-style="italic">5</text>
+  <text x="370" y="305" font-size="14" fill="#daa520" font-weight="700" font-style="italic">8</text>
+ 
+  <!-- Kelompok sudut sama besar: {2,3,6,7} biru -->
+  <text x="230" y="90" font-size="14" fill="#5dade2" font-weight="700" font-style="italic">2</text>
+  <text x="185" y="125" font-size="14" fill="#5dade2" font-weight="700" font-style="italic">3</text>
+  <text x="370" y="270" font-size="14" fill="#5dade2" font-weight="700" font-style="italic">6</text>
+  <text x="325" y="305" font-size="14" fill="#5dade2" font-weight="700" font-style="italic">7</text>
+ 
+  <!-- Label garis -->
+  <text x="40" y="95" font-size="12" fill="#b8b8b8" font-style="italic">L₁</text>
+  <text x="40" y="275" font-size="12" fill="#b8b8b8" font-style="italic">L₂</text>
+  <text x="415" y="360" font-size="12" fill="#5dade2" font-style="italic">transversal</text>
+ 
+  <!-- Keterangan bawah -->
+  <text x="280" y="370" font-size="11" fill="#b8b8b8"  text-anchor="middle" font-style="italic">Garis sejajar L₁ ∥ L₂ dipotong oleh transversal</text>
+  </svg>
+  <figcaption class="visual-caption">Delapan sudut yang terbentuk ketika dua garis sejajar dipotong oleh transversal. Sudut-sudut dengan warna yang sama memiliki besar yang sama: $\angle 1 = \angle 4 = \angle 5 = \angle 8$ (emas) dan $\angle 2 = \angle 3 = \angle 6 = \angle 7$ (biru).</figcaption>
+ </figure>
+
+ <p class="lesson-text">Dengan garis $L_1 \parallel L_2$ dipotong transversal, berlaku hubungan berikut:</p>
+ <ul>
+  <li><strong>Sudut sehadap</strong>: sudut-sudut yang menghadap arah yang sama pada kedua perpotongan. Karena $L_1$ dan $L_2$ sejajar, sudut-sudut ini sama besar: $\angle 1 = \angle 5$, $\angle 2 = \angle 6$, $\angle 3 = \angle 7$, $\angle 4 = \angle 8$.</li>
+  <li><strong>Sudut dalam berseberangan</strong>: sudut-sudut yang berada di antara kedua garis sejajar tetapi berseberangan terhadap transversal: $\angle 3 = \angle 6$, $\angle 4 = \angle 5$.</li>
+  <li><strong>Sudut luar berseberangan</strong>: sudut-sudut yang berada di luar kedua garis sejajar dan berseberangan terhadap transversal: $\angle 1 = \angle 8$, $\angle 2 = \angle 7$.</li>
+  <li><strong>Sudut dalam sepihak</strong>: sudut-sudut yang berada di antara kedua garis sejajar dan berada di sisi yang sama terhadap transversal. Sudut-sudut ini berjumlah $180^\circ$: $\angle 3 + \angle 5 = 180^\circ$, $\angle 4 + \angle 6 = 180^\circ$.</li>
+  <li><strong>Sudut luar sepihak</strong>: sudut-sudut yang berada di luar kedua garis sejajar dan berada di sisi yang sama terhadap transversal. Sudut-sudut ini juga berjumlah $180^\circ$: $\angle 1 + \angle 7 = 180^\circ$, $\angle 2 + \angle 8 = 180^\circ$.</li>
+ </ul>
+ <p class="lesson-text">Selain itu, di setiap perpotongan berlaku pula hubungan lokal: sudut bertolak belakang sama besar, dan sudut berpelurus berjumlah $180^\circ$. Misalnya di perpotongan atas, $\angle 1 = \angle 4$ (bertolak belakang) dan $\angle 1 + \angle 2 = 180^\circ$ (berpelurus).</p>
+
+ <p class="lesson-subheading-alt">Contoh penerapan:</p>
+ <p class="lesson-text">Jika $\angle 3 = 70^\circ$, maka:</p>
+ <ul>
+  <li>$\angle 6 = 70^\circ$ (sudut dalam berseberangan)</li>
+  <li>$\angle 2 = 70^\circ$ (sudut sehadap dengan $\angle 6$, atau bertolak belakang dengan $\angle 3$)</li>
+  <li>$\angle 5 = 180^\circ - 70^\circ = 110^\circ$ (sudut dalam sepihak dengan $\angle 3$)</li>
+  <li>$\angle 1 = 180^\circ - 70^\circ = 110^\circ$ (berpelurus dengan $\angle 3$)</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Penerapan Praktis</h3>
+ <p class="lesson-text">Titik, garis, dan sudut bukan hanya konsep abstrak—mereka muncul di mana-mana dalam kehidupan sehari-hari dan menjadi fondasi dari banyak bidang terapan.</p>
+
+ <p class="lesson-subheading">A. Arsitektur dan Konstruksi</p>
+ <p class="lesson-text">Arsitek dan insinyur sipil menggunakan konsep sudut untuk merancang bangunan. Atap rumah biasanya dibuat dengan sudut tertentu agar air hujan mengalir dengan baik—sudut yang terlalu kecil membuat air menggenang, sedangkan sudut yang terlalu besar membuat atap tidak efisien secara material. Sudut siku-siku ($90^\circ$) menjadi standar untuk memastikan dinding tegak lurus terhadap lantai.</p>
+
+ <p class="lesson-subheading">B. Navigasi dan Pemetaan</p>
+ <p class="lesson-text">Peta menggunakan sudut untuk menentukan arah—utara, timur, selatan, dan barat masing-masing dipisahkan oleh $90^\circ$. Sistem navigasi GPS menghitung sudut antara arah kendaraan dan arah tujuan untuk memberikan panduan belok—"belok kanan $45^\circ$" atau "lurus terus".</p>
+
+ <p class="lesson-subheading">C. Grafika Komputer dan Animasi</p>
+ <p class="lesson-text">Setiap rotasi objek 3D dalam game atau film animasi didefinisikan oleh sudut. Ketika karakter berputar, sistem grafika menghitung rotasi berdasarkan sudut—yang sering dinyatakan dalam radian karena lebih alami untuk perhitungan trigonometri.</p>
+
+ <p class="lesson-subheading">D. Desain dan Seni</p>
+ <p class="lesson-text">Pelukis dan desainer menggunakan prinsip sudut untuk menciptakan komposisi visual yang menarik. Sudut perspektif—sudut di mana objek digambar—menentukan kedalaman dan kesan tiga dimensi pada gambar dua dimensi.</p>
+
+ <p class="lesson-subheading">E. Astronomi dan Kalender</p>
+ <p class="lesson-text">Revolusi Bumi mengelilingi Matahari dapat dideskripsikan sebagai perubahan sudut posisi Bumi terhadap Matahari. Dalam satu tahun, Bumi menempuh sekitar $360^\circ$ pada orbitnya&mdash;rata-rata sekitar $0{,}9856^\circ$ per hari. Kalender Gregorian yang kita gunakan hari ini disusun berdasarkan pengamatan panjang <em>tahun tropis</em>, yaitu waktu yang dibutuhkan Bumi untuk kembali ke posisi yang sama relatif terhadap Matahari.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap garis memiliki ujung.</strong> Garis memanjang tanpa batas ke dua arah. Jika ada ujung, itu bukan garis—melainkan segmen garis atau sinar garis. Perhatikan notasi panah di kedua ujung: itulah penandanya.</li>
+  <li><strong>Menganggap panjang kaki sudut mempengaruhi besar sudut.</strong> Besar sudut hanya bergantung pada besarnya bukaan antara kedua kaki, bukan pada seberapa panjang kaki tersebut digambar. Dua sudut dengan kaki pendek dan kaki panjang bisa memiliki besar yang sama.</li>
+  <li><strong>Tertukar antara $\overrightarrow{AB}$ dan $\overrightarrow{BA}$.</strong> Sinar garis sangat bergantung pada urutan huruf karena titik pangkalnya berbeda. $\overrightarrow{AB}$ berpangkal di $A$, sedangkan $\overrightarrow{BA}$ berpangkal di $B$. Keduanya adalah objek yang berbeda.</li>
+  <li><strong>Tertukar antara garis, segmen, dan sinar.</strong> Gunakan notasi yang tepat: $\overleftrightarrow{AB}$ untuk garis, $\overline{AB}$ untuk segmen, dan $\overrightarrow{AB}$ untuk sinar. Perbedaan notasi ini bukan sekadar gaya penulisan—ia menunjukkan objek geometri yang berbeda.</li>
+  <li><strong>Menganggap sudut $0^\circ$ dan $360^\circ$ sama persis.</strong> Keduanya memang menghasilkan posisi kaki sudut yang sama, tetapi secara konsep berbeda: $0^\circ$ berarti tidak ada rotasi, sedangkan $360^\circ$ berarti satu putaran penuh. Perbedaannya seperti "tidak berjalan" versus "berjalan mengelilingi lapangan dan kembali ke titik awal".</li>
+  <li><strong>Salah membaca penamaan sudut $\angle ABC$.</strong> Huruf tengah ($B$) adalah titik sudut—bukan huruf pertama atau terakhir. Kesalahan ini sering terjadi ketika gambar memiliki banyak titik.</li>
+  <li><strong>Menganggap sudut bertolak belakang berjumlah $180^\circ$.</strong> Sudut bertolak belakang <em>sama besar</em>—bukan berpelurus. Yang berjumlah $180^\circ$ adalah sudut-sudut yang bersebelahan pada garis lurus (berpelurus).</li>
+  <li><strong>Mencampur satuan derajat dan radian.</strong> Pastikan satuan konsisten sebelum melakukan perhitungan. $\pi/2$ berarti $\pi/2$ radian $= 90^\circ$—bukan $\pi/2$ derajat. Jika ragu, ubah dulu ke satuan yang sama.</li>
+  <li><strong>Menganggap sudut refleks selalu salah atau tidak valid.</strong> Sudut refleks ($180^\circ < \theta < 360^\circ$) adalah sudut yang sah dan sering muncul dalam konteks rotasi, navigasi, dan grafika komputer.</li>
+  <li><strong>Mengabaikan konvensi tanda sudut siku-siku.</strong> Sudut siku-siku ditandai dengan persegi kecil—bukan busur. Jika Anda melihat persegi kecil di titik sudut, langsung pahami bahwa itu $90^\circ$ tanpa perlu tulisan angka.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Titik</strong> adalah objek geometri tanpa ukuran yang hanya menunjukkan posisi. Dinamai dengan huruf kapital. Melalui satu titik dapat dibuat tak hingga garis, tetapi melalui dua titik hanya dapat dibuat tepat satu garis lurus.</li>
+  <li><strong>Garis</strong> memanjang tak terbatas ke dua arah ($\overleftrightarrow{AB}$). <strong>Segmen garis</strong> memiliki dua titik ujung dan panjang terukur ($\overline{AB}$). <strong>Sinar garis</strong> memiliki satu pangkal dan memanjang ke satu arah ($\overrightarrow{AB}$).</li>
+  <li><strong>Sudut</strong> dibentuk oleh dua sinar garis dengan titik pangkal yang sama. Titik pangkal disebut titik sudut (vertex), kedua sinar disebut kaki sudut. Besar sudut tidak bergantung pada panjang kaki sudut.</li>
+  <li><strong>Satuan sudut</strong>: derajat ($^\circ$) dan radian (rad). Hubungan: $180^\circ = \pi$ radian, satu putaran penuh $= 360^\circ = 2\pi$ radian. Konversi: kalikan dengan $\pi/180$ untuk derajat ke radian, dan $180/\pi$ untuk radian ke derajat.</li>
+  <li><strong>Jenis-jenis sudut</strong>: nol ($0^\circ$), lancip ($0^\circ < \theta < 90^\circ$), siku-siku ($90^\circ$), tumpul ($90^\circ < \theta < 180^\circ$), lurus ($180^\circ$), refleks ($180^\circ < \theta < 360^\circ$), penuh ($360^\circ$).</li>
+  <li><strong>Hubungan antar sudut</strong>: berpelurus (jumlah $180^\circ$), berpenyiku (jumlah $90^\circ$), bertolak belakang (sama besar), serta berbagai hubungan pada garis sejajar yang dipotong transversal (sehadap, berseberangan, sepihak).</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Titik, garis, dan sudut adalah <strong>tiga pilar paling dasar dalam geometri</strong>. Meskipun tampak sederhana, ketiganya akan terus dipakai dan dikembangkan dalam materi-materi selanjutnya&mdash;seperti segitiga, segiempat, lingkaran, geometri analitik, hingga trigonometri. Yang perlu ditekankan: konsep-konsep ini bukan sekadar definisi untuk dihafal, melainkan <strong>alat untuk berpikir</strong>. Setiap kali Anda memperhatikan sudut atap rumah, sudut jarum jam, atau tikungan jalan, Anda sedang melihat penerapan langsung dari apa yang baru saja dipelajari.</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama yang melibatkan <strong>penulisan notasi dengan tepat</strong> (garis vs segmen vs sinar), <strong>konversi derajat&ndash;radian</strong>, dan <strong>perhitungan sudut</strong> berdasarkan hubungan antar sudut. Kebiasaan memeriksa notasi, konsisten dalam satuan, dan mengaitkan konsep dengan gambar akan sangat menolong&mdash;terutama saat melangkah ke topik segitiga dan geometri analitik, di mana manipulasi titik, garis, dan sudut menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Trigonometri Dasar (sin, cos, tan, Identitas Dasar, Rumus Jumlah/Selisih Sudut, Sudut Ganda)</title>
+ <meta name="description" content="Materi lengkap trigonometri dasar: definisi sin, cos, tan dari segitiga siku-siku dan lingkaran satuan, sudut istimewa, identitas dasar (Pythagoras, kebalikan, rasio), rumus jumlah dan selisih sudut, serta rumus sudut ganda.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Trigonometri Dasar (sin, cos, tan, Identitas Dasar, Rumus Jumlah/Selisih Sudut, Sudut Ganda)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Segitiga</strong> — terutama Teorema Pythagoras dan konsep kesebangunan, karena definisi awal sin, cos, tan bertumpu pada segitiga siku-siku, dan nilai sudut istimewa diturunkan dari segitiga $45$-$45$-$90$ serta $30$-$60$-$90$.</li>
+   <li><strong>Aljabar Dasar</strong> — terutama manipulasi pecahan dan penyederhanaan bentuk akar, karena hampir semua perhitungan trigonometri melibatkan operasi aljabar pada bentuk akar dan pecahan.</li>
+   <li><strong>Geometri Analitik</strong> — terutama rumus jarak dua titik pada bidang, karena pembuktian salah satu rumus jumlah sudut menggunakan konsep ini.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Bayangkan Anda berdiri di tepi sungai dan ingin tahu seberapa lebarnya&mdash;tetapi tidak ada cara untuk menyeberang atau menarik meteran ke seberang. Ternyata cukup dengan mengukur <strong>sudut</strong> dan <strong>satu jarak</strong> di sisi Anda, lebar sungai dapat dihitung. Inilah kekuatan trigonometri: ia mengubah informasi tentang <em>sudut</em> menjadi informasi tentang <em>jarak</em>, dan sebaliknya.</p>
+ <p class="lesson-text">Kata <strong>trigonometri</strong> berasal dari bahasa Yunani: <em>trigonon</em> (segitiga) dan <em>metron</em> (mengukur)&mdash;secara harfiah "mengukur segitiga". Namun seiring waktu, trigonometri berkembang jauh melampaui pengukuran segitiga: fungsi sinus, kosinus, dan tangen kini muncul di hampir setiap cabang sains&mdash;dari gelombang suara dan cahaya, arus listrik bolak-balik, hingga pemrosesan sinyal dan grafika komputer.</p>
+ <p class="lesson-text">Materi ini bergerak dari yang paling konkret ke yang paling abstrak: dimulai dari <strong>definisi trigonometri dari segitiga siku-siku</strong> (cara paling intuitif), diperluas ke <strong>definisi dari lingkaran satuan</strong> (untuk semua sudut), dilanjutkan <strong>nilai sudut istimewa</strong> dan <strong>identitas dasar</strong>, lalu <strong>rumus jumlah dan selisih sudut</strong>, dan diakhiri <strong>rumus sudut ganda</strong>. Setiap bab akan dibuka dengan alasan <em>mengapa</em> kita memerlukannya, baru <em>bagaimana</em> menggunakannya&mdash;agar trigonometri terasa sebagai jaringan konsep yang saling terhubung, bukan kumpulan rumus acak.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Definisi Trigonometri dari Segitiga Siku-Siku</h3>
+ <p class="lesson-text">Kita mulai dari objek yang paling konkret: <strong>segitiga siku-siku</strong>. Dari sini, kita bisa mendefinisikan sin, cos, dan tan tanpa perlu alat bantu apa pun—cukup dengan melihat perbandingan sisi-sisinya.</p>
+
+ <p class="lesson-subheading">A. Tiga Perbandingan Dasar</p>
+ <p class="lesson-text">Pilih salah satu sudut lancip pada segitiga siku-siku (selain sudut $90^\circ$), sebut saja $\theta$ (dibaca "theta").</p>
+
+ <figure>
+ <svg viewBox="0 0 500 340" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="80,270 80,60 380,270" fill="#daa520" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Sudut siku-siku di C: polygon 4 titik -->
+  <polygon points="80,250 100,250 100,270 80,270" fill="none" stroke="#daa520" stroke-width="1.8" />
+  <!-- Busur θ di B — sweep=1 agar busur pendek di dalam sudut -->
+  <path d="M 340 270 A 40 40 0 0 1 347 247" fill="none" stroke="#5dade2" stroke-width="2" />
+  <text x="325" y="248" font-size="15" fill="#5dade2" font-style="italic">θ</text>
+  <circle cx="80" cy="60" r="4" fill="#daa520" />
+  <circle cx="80" cy="270" r="4" fill="#daa520" />
+  <circle cx="380" cy="270" r="4" fill="#daa520" />
+  <text x="65" y="55" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="65" y="288" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="385" y="288" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="210" y="165" font-size="13" fill="#5dade2" font-style="italic">sisi miring</text>
+  <text x="115" y="170" font-size="13" fill="#f0c75e" font-style="italic">sisi</text>
+  <text x="115" y="187" font-size="13" fill="#f0c75e" font-style="italic">depan</text>
+  <text x="180" y="292" font-size="13" fill="#daa520" font-style="italic">sisi samping</text>
+ </svg>
+ <figcaption class="visual-caption">Segitiga siku-siku $ABC$ dengan sudut siku-siku di $C$. Dilihat dari sudut $\theta$ di $B$: sisi $AC$ adalah sisi depan, sisi $BC$ adalah sisi samping, dan sisi $AB$ adalah sisi miring (hipotenusa).</figcaption>
+</figure>
+
+ <p class="lesson-text">Dari sudut $\theta$ tersebut, kita dapat mengidentifikasi tiga sisi yang berbeda perannya:</p>
+ <ul>
+  <li><strong>Sisi miring (hipotenusa)</strong>: sisi terpanjang, berada tepat di hadapan sudut siku-siku. Sisi ini tidak pernah berubah perannya—dari sudut mana pun, sisi miring tetap sisi miring.</li>
+  <li><strong>Sisi depan</strong> (<em>opposite</em>): sisi yang berada tepat di hadapan sudut $\theta$. Bayangkan sisi ini "berhadapan langsung" dengan sudut $\theta$.</li>
+  <li><strong>Sisi samping</strong> (<em>adjacent</em>): sisi yang menyentuh sudut $\theta$ tetapi bukan sisi miring. Sisi ini "menempel" pada sudut $\theta$.</li>
+ </ul>
+ <p class="lesson-text">Dari ketiga sisi ini, kita definisikan tiga perbandingan dasar—inilah jantung dari trigonometri:</p>
+ <p class="lesson-text">
+ $$
+ \begin{aligned}
+ \sin\theta &= \frac{\text{sisi depan}}{\text{sisi miring}} \\[6pt]
+ \cos\theta &= \frac{\text{sisi samping}}{\text{sisi miring}} \\[6pt]
+ \tan\theta &= \frac{\text{sisi depan}}{\text{sisi samping}}
+ \end{aligned}
+ $$
+</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Cara mengingat:</strong> gunakan singkatan <em>Sindemi–Kosami–Tandesa</em> (Sin = Depan/Miring, Cos = Samping/Miring, Tan = Depan/Samping). Dalam bahasa Inggris dikenal dengan <em>SOH-CAH-TOA</em>.</p>
+ </div>
+ <p class="lesson-text">Mengapa justru tiga perbandingan ini yang penting? Karena dari enam kemungkinan perbandingan sisi, hanya tiga yang menghasilkan informasi berbeda—tiga lainnya hanyalah kebalikannya.</p>
+
+ <p class="lesson-subheading">B. Contoh Perhitungan dan Mengapa Perbandingan, Bukan Panjang Absolut</p>
+ <p class="lesson-text">Mari kita lihat contoh konkret. Perhatikan segitiga siku-siku dengan sisi depan $3$, sisi samping $4$, dan sisi miring $5$—ini adalah <em>tripel Pythagoras</em> yang sudah kita kenal dari materi segitiga. Perhatikan bahwa segitiga ini <strong>tidak sama kaki</strong>: sisi depan lebih pendek dari sisi samping, sesuai dengan perbandingan $3 : 4$.</p>
+
+ <figure>
+ <svg viewBox="0 0 460 340" style="max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Segitiga siku-siku dengan tripel 3:4:5 — skala 60 px/satuan -->
+  <!-- AC = 180 (depan, vertikal), CB = 240 (samping, horizontal), AB = 300 (miring) -->
+  <polygon points="110,50 110,230 350,230" fill="#daa520" fill-opacity="0.08" stroke="none" />
+  
+  <!-- Sisi depan AC -->
+  <line x1="110" y1="50" x2="110" y2="230" stroke="#f0c75e" stroke-width="3.2" />
+  <!-- Sisi samping CB -->
+  <line x1="110" y1="230" x2="350" y2="230" stroke="#daa520" stroke-width="3.2" />
+  <!-- Sisi miring AB -->
+  <line x1="110" y1="50" x2="350" y2="230" stroke="#5dade2" stroke-width="3.2" />
+  
+  <!-- Sudut siku-siku di C: polygon 4 titik -->
+  <polygon points="110,210 130,210 130,230 110,230" fill="none" stroke="#e8e8e8" stroke-width="1.6" />
+  
+  <!-- Busur θ di B — sweep=1 agar busur pendek di dalam sudut -->
+  <path d="M 310 230 A 40 40 0 0 1 318 206" fill="none" stroke="#5dade2" stroke-width="2.2" />
+  <text x="325" y="212" font-size="16" fill="#5dade2" font-style="italic" font-weight="700">θ</text>
+  
+  <!-- Titik sudut -->
+  <circle cx="110" cy="50" r="4.5" fill="#daa520" />
+  <circle cx="110" cy="230" r="4.5" fill="#daa520" />
+  <circle cx="350" cy="230" r="4.5" fill="#daa520" />
+  
+  <!-- Label titik sudut -->
+  <text x="94" y="46" font-size="15" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="94" y="248" font-size="15" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="356" y="248" font-size="15" fill="#e8e8e8" font-style="italic">B</text>
+  
+  <!-- Label sisi dengan nilai -->
+  <text x="78" y="140" font-size="18" fill="#f0c75e" font-weight="700" text-anchor="middle">3</text>
+  <text x="78" y="158" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">depan</text>
+  
+  <text x="230" y="252" font-size="18" fill="#daa520" font-weight="700" text-anchor="middle">4</text>
+  <text x="230" y="268" font-size="10" fill="#daa520" font-style="italic" text-anchor="middle">samping</text>
+  
+  <text x="222" y="132" font-size="18" fill="#5dade2" font-weight="700" text-anchor="middle">5</text>
+  <text x="222" y="148" font-size="10" fill="#5dade2" font-style="italic" text-anchor="middle">miring</text>
+ </svg>
+ <figcaption class="visual-caption">Segitiga siku-siku dengan tripel Pythagoras $3$–$4$–$5$. Dilihat dari sudut $\theta$: sisi depan $= 3$ (pendek), sisi samping $= 4$ (panjang), sisi miring $= 5$. Skala visual menjaga proporsi $3 : 4 : 5$ secara tepat—sisi depan memang tampak $3/4$ dari sisi samping.</figcaption>
+</figure>
+
+ <p class="lesson-text">Untuk sudut $\theta$ yang berada di hadapan sisi $3$:</p>
+ <ul>
+  <li>$\sin\theta = \dfrac{3}{5} = 0{,}6$.</li>
+  <li>$\cos\theta = \dfrac{4}{5} = 0{,}8$.</li>
+  <li>$\tan\theta = \dfrac{3}{4} = 0{,}75$.</li>
+ </ul>
+ <p class="lesson-text">Sebagai pemeriksaan cepat: $\sin\theta$ dan $\cos\theta$ harus selalu berada di antara $0$ dan $1$ (karena sisi depan dan sisi samping selalu lebih pendek dari sisi miring). Nilai $\tan\theta$ bisa bernilai berapa saja—bisa sangat besar jika sisi samping sangat pendek.</p>
+
+ <p class="lesson-text">Sekarang, pertanyaan penting: bagaimana jika segitiganya diperbesar? Misalnya semua sisi dikali dua menjadi $6$–$8$–$10$. Apakah nilai sinusnya berubah?</p>
+ <ul>
+  <li>Pada $3$–$4$–$5$: $\sin\theta = \dfrac{3}{5} = 0{,}6$.</li>
+  <li>Pada $6$–$8$–$10$: $\sin\theta = \dfrac{6}{10} = 0{,}6$.</li>
+ </ul>
+ <p class="lesson-text">Nilainya identik. Mengapa? Karena ketika segitiga diperbesar, <strong>pembilang dan penyebut sama-sama dikalikan dengan faktor yang sama</strong>—sehingga rasionya tidak berubah. Ini bukan kebetulan: $3/5$ dan $6/10$ adalah pecahan yang setara.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> sifat ini berasal dari <strong>kesebangunan segitiga</strong>. Dua segitiga siku-siku dengan sudut lancip yang sama pasti sebangun—bentuknya identik, hanya ukurannya berbeda. Karena itu perbandingan sisi-sisinya selalu sama. Inilah yang membuat fungsi trigonometri <em>hanya bergantung pada sudut</em>, bukan pada besar segitiga.</p>
+ </div>
+ <p class="lesson-text">Implikasi praktisnya penting: nilai $\sin\theta$ adalah <strong>sidik jari dari sudut $\theta$</strong>. Jika $\sin\theta = 0{,}6$, sudutnya sudah tertentu—entah segitiganya digambar di kertas A4 atau diukur di lapangan sepak bola, entah sisinya $3$–$4$–$5$ atau $30$–$40$–$50$, semua menghasilkan nilai sinus yang sama.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Definisi Trigonometri dari Lingkaran Satuan</h3>
+ <p class="lesson-text">Di Bab I, kita sudah punya definisi trigonometri yang intuitif. Tetapi definisi tersebut memiliki satu keterbatasan besar—dan di bab ini, kita akan mengatasinya.</p>
+
+ <p class="lesson-subheading">A. Keterbatasan Definisi Segitiga Siku-Siku</p>
+ <p class="lesson-text">Definisi dari segitiga siku-siku hanya berlaku untuk sudut lancip ($0^\circ < \theta < 90^\circ$). Mengapa? Karena segitiga siku-siku <em>harus</em> memiliki sudut $90^\circ$, sehingga dua sudut lainnya pasti lancip—jumlah ketiga sudut harus $180^\circ$.</p>
+ <p class="lesson-text">Namun dalam banyak aplikasi (terutama fisika dan kalkulus), kita justru perlu mendefinisikan fungsi trigonometri untuk <strong>semua sudut</strong>—termasuk sudut tumpul (lebih dari $90^\circ$), sudut refleks (lebih dari $180^\circ$), bahkan sudut negatif. Contohnya, saat menganalisis gerak melingkar atau arus listrik bolak-balik, sudut bisa terus bertambah melewati $360^\circ$ berulang kali.</p>
+ <p class="lesson-text">Untuk itu, kita memerlukan definisi yang lebih umum—yang berasal dari <strong>lingkaran satuan</strong>. Definisi baru ini harus <em>konsisten</em> dengan definisi lama saat diterapkan pada sudut lancip, tetapi juga berlaku untuk sudut apa pun.</p>
+
+ <p class="lesson-subheading">B. Lingkaran Satuan dan Definisi yang Lebih Umum</p>
+ <p class="lesson-text"><strong>Lingkaran satuan</strong> (<em>unit circle</em>) adalah lingkaran dengan jari-jari $1$ yang berpusat di titik asal $O(0, 0)$. Persamaannya adalah $x^2 + y^2 = 1$.</p>
+ <p class="lesson-text">Mengapa jari-jarinya harus $1$? Karena dengan $r = 1$, panjang segmen $OP$ menjadi $1$—sehingga koordinat titik $P$ <em>langsung</em> menyatakan nilai sinus dan kosinus. Jika $r$ bukan $1$, kita harus membagi koordinat dengan $r$ untuk mendapatkan nilai sinus dan kosinus.</p>
+ <p class="lesson-text">Misalkan kita memiliki titik $P(x, y)$ pada lingkaran satuan. Sudut $\theta$ diukur dari sumbu-$X$ positif, diputar berlawanan arah jarum jam hingga mencapai segmen $OP$. Sudut positif berarti berlawanan arah jarum jam, sedangkan sudut negatif berarti searah jarum jam.</p>
+
+ <figure>
+ <svg viewBox="0 0 520 460" style="max-width:100%; height:auto; width:520px;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <marker id="arrowCCW" markerWidth="8" markerHeight="8" viewBox="0 0 8 8" refX="7" refY="4" orient="auto">
+    <polygon points="0,0 8,4 0,8" fill="#22d3ee" />
+   </marker>
+  </defs>
+  <g stroke="#e8e8e8" stroke-width="0.4" opacity="0.08">
+   <line x1="250" y1="40" x2="250" y2="420" />
+   <line x1="40" y1="230" x2="460" y2="230" />
+  </g>
+  <circle cx="250" cy="230" r="150" fill="none" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="40" y1="230" x2="480" y2="230" stroke="#e8e8e8" stroke-width="1.5" />
+  <polygon points="482,230 472,225 472,235" fill="#e8e8e8" />
+  <line x1="250" y1="420" x2="250" y2="30" stroke="#e8e8e8" stroke-width="1.5" />
+  <polygon points="250,27 245,37 255,37" fill="#e8e8e8" />
+  <text x="486" y="234" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="256" y="26" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+  <text x="228" y="246" font-size="13" fill="#e8e8e8" font-style="italic">O</text>
+  <line x1="250" y1="230" x2="325" y2="100" stroke="#daa520" stroke-width="2.4" />
+  <line x1="325" y1="100" x2="325" y2="230" stroke="#5dade2" stroke-width="1.4" stroke-dasharray="5,4" />
+  <line x1="325" y1="100" x2="250" y2="100" stroke="#f0c75e" stroke-width="1.4" stroke-dasharray="5,4" />
+  <line x1="250" y1="230" x2="325" y2="230" stroke="#5dade2" stroke-width="3" />
+  <line x1="250" y1="230" x2="250" y2="100" stroke="#f0c75e" stroke-width="3" />
+  <path d="M 290 230 A 40 40 0 0 0 270 195" fill="none" stroke="#5dade2" stroke-width="2" />
+  <text x="284" y="212" font-size="15" fill="#5dade2" font-style="italic" font-weight="700">θ</text>
+  <!-- Arc penanda arah berlawanan jarum jam, tepat di tepi lingkaran r=150 -->
+  <!-- Titik awal di sudut 0° = (400, 230), titik akhir di sudut 60° = (325, 100) -->
+  <path d="M 380 230 A 130 130 0 0 0 315 118" fill="none" stroke="#22d3ee" stroke-width="1.4" stroke-dasharray="3,3" opacity="0.75" marker-end="url(#arrowCCW)" />
+  <text x="390" y="150" font-size="10.5" fill="#22d3ee" font-style="italic">berlawanan</text>
+  <text x="390" y="163" font-size="10.5" fill="#22d3ee" font-style="italic">arah jarum jam</text>
+  <circle cx="325" cy="100" r="5.5" fill="#f0c75e" />
+  <text x="336" y="96" font-size="13" fill="#f0c75e" font-style="italic" font-weight="700">P(x, y)</text>
+  <text x="285" y="160" font-size="11.5" fill="#daa520" font-style="italic">r = 1</text>
+  <text x="325" y="252" font-size="12" fill="#5dade2" text-anchor="middle" font-weight="700">x</text>
+  <text x="325" y="266" font-size="10" fill="#5dade2" text-anchor="middle" font-style="italic">= cos θ</text>
+  <text x="238" y="104" font-size="12" fill="#f0c75e" text-anchor="end" font-weight="700">y</text>
+  <text x="238" y="118" font-size="10" fill="#f0c75e" text-anchor="end" font-style="italic">= sin θ</text>
+  <circle cx="250" cy="230" r="3.5" fill="#e8e8e8" />
+ </svg>
+ <figcaption class="visual-caption">Titik $P(x, y)$ pada lingkaran satuan dengan sudut $\theta$ diukur dari sumbu-$X$ positif, berlawanan arah jarum jam. Koordinat $x$ sama dengan $\cos\theta$, dan koordinat $y$ sama dengan $\sin\theta$. Dengan demikian $P$ dapat dituliskan sebagai $(\cos\theta,\ \sin\theta)$.</figcaption>
+</figure>
+
+ <p class="lesson-text">Dengan definisi ini, kita tetapkan:</p>
+ <p class="lesson-text">$$\sin\theta = y, \quad \cos\theta = x, \quad \tan\theta = \frac{y}{x}$$</p>
+ <p class="lesson-text">Dengan kata lain, <strong>kosinus adalah koordinat $x$ dari titik pada lingkaran satuan</strong>, dan <strong>sinus adalah koordinat $y$</strong>. Definisi ini sangat elegan: kedua fungsi trigonometri hanyalah koordinat titik pada lingkaran.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Identitas Pythagoras muncul secara alami.</strong> Karena titik $P$ selalu berada pada lingkaran $x^2 + y^2 = 1$, dan kita tahu $x = \cos\theta$, $y = \sin\theta$, maka substitusi langsung menghasilkan $\sin^2\theta + \cos^2\theta = 1$. Identitas ini bukan rumus yang perlu dihafal—ia <em>tumbuh</em> dari definisi.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Tanda Fungsi Trigonometri di Setiap Kuadran</p>
+ <p class="lesson-text">Karena titik $P$ dapat berada di kuadran mana pun, tanda $\sin\theta$ dan $\cos\theta$ bergantung pada tanda koordinat $x$ dan $y$. Ini konsekuensi langsung dari definisi: $\cos\theta = x$ dan $\sin\theta = y$.</p>
+
+ <figure>
+ <svg viewBox="0 0 560 560" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="280" x2="525" y2="280" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="527,280 517,275 517,285" fill="#e8e8e8"/>
+  <text x="534" y="284" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="280" y1="525" x2="280" y2="35" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="280,33 275,43 285,43" fill="#e8e8e8"/>
+  <text x="290" y="32" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <circle cx="280" cy="280" r="180" fill="none" stroke="#5dade2" stroke-width="1.4" opacity="0.55"/>
+  <text x="466" y="300" font-size="11" fill="#888" font-style="italic">0°</text>
+  <text x="285" y="92" font-size="11" fill="#888" font-style="italic">90°</text>
+  <text x="62" y="300" font-size="11" fill="#888" font-style="italic">180°</text>
+  <text x="285" y="478" font-size="11" fill="#888" font-style="italic">270°</text>
+  <text x="370" y="175" font-size="28" font-weight="700" text-anchor="middle" fill="#f0c75e">A</text>
+  <text x="370" y="200" font-size="11" text-anchor="middle">
+    <tspan fill="#f0c75e">sin +</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#f0c75e">cos +</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#f0c75e">tan +</tspan>
+  </text>
+  <text x="190" y="175" font-size="28" font-weight="700" text-anchor="middle" fill="#f0c75e">S</text>
+  <text x="190" y="200" font-size="11" text-anchor="middle">
+    <tspan fill="#f0c75e">sin +</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#888">cos −</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#888">tan −</tspan>
+  </text>
+  <text x="190" y="365" font-size="28" font-weight="700" text-anchor="middle" fill="#f0c75e">T</text>
+  <text x="190" y="390" font-size="11" text-anchor="middle">
+    <tspan fill="#888">sin −</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#888">cos −</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#f0c75e">tan +</tspan>
+  </text>
+  <text x="370" y="365" font-size="28" font-weight="700" text-anchor="middle" fill="#f0c75e">C</text>
+  <text x="370" y="390" font-size="11" text-anchor="middle">
+    <tspan fill="#888">sin −</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#f0c75e">cos +</tspan>
+    <tspan fill="#555"> · </tspan>
+    <tspan fill="#888">tan −</tspan>
+  </text>
+  <circle cx="280" cy="280" r="4" fill="#e8e8e8"/>
+  <text x="266" y="300" font-size="13" fill="#e8e8e8" font-style="italic">O</text>
+  <text x="280" y="536" font-size="11" fill="#888" font-style="italic" text-anchor="middle">A = All (semua positif) · S = Sin · T = Tan · C = Cos</text>
+ </svg>
+ <figcaption class="visual-caption">Tanda fungsi trigonometri di setiap kuadran. Huruf besar menandakan fungsi yang <em>positif</em>; fungsi lain di kuadran tersebut bernilai negatif. Warna emas menandai nilai positif, warna abu-abu menandai nilai negatif.</figcaption>
+</figure>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr>
+    <th>Kuadran</th>
+    <th>Rentang $\theta$</th>
+    <th>$\sin\theta$</th>
+    <th>$\cos\theta$</th>
+    <th>$\tan\theta$</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr><td>I</td><td>$0°$ – $90°$</td><td>$+$</td><td>$+$</td><td>$+$</td></tr>
+   <tr><td>II</td><td>$90°$ – $180°$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+   <tr><td>III</td><td>$180°$ – $270°$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+   <tr><td>IV</td><td>$270°$ – $360°$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr>
+  </tbody>
+ </table>
+</div>
+
+<p class="lesson-text">Cara mengingatnya: gunakan akronim bahasa Inggris <strong>"All Students Take Calculus"</strong> — di kuadran I <em>semua</em> fungsi positif, di kuadran II hanya <em>sinus</em> yang positif, di kuadran III hanya <em>tangen</em> yang positif, dan di kuadran IV hanya <em>kosinus</em> yang positif.</p>
+
+<p class="lesson-text"><strong>Mengapa perlu menghafal tanda per kuadran?</strong> Karena dalam banyak soal, hanya nilai $\sin\theta$ yang diberikan, dan kita perlu mencari $\cos\theta$. Tanpa memperhatikan kuadran, akan ada dua kemungkinan jawaban (positif atau negatif)—dan hanya satu yang benar sesuai konteks.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Nilai Sudut Istimewa</h3>
+ <p class="lesson-text">Di Bab I dan II, kita sudah punya definisi umum. Sekarang, kita butuh <em>nilai-nilai konkret</em> untuk sudut-sudut tertentu—agar kita bisa menghitung tanpa perlu menggambar segitiga setiap kali.</p>
+ <p class="lesson-text">Dari sekian banyak sudut, mengapa hanya $0^\circ, 30^\circ, 45^\circ, 60^\circ$, dan $90^\circ$ yang disebut "istimewa"? Karena kelima sudut inilah yang nilai trigonometrinya dapat dihitung secara <strong>eksak</strong>—bukan sebagai desimal pendekatan, melainkan sebagai bentuk aljabar yang presisi seperti $\sqrt{2}/2$ atau $\sqrt{3}/2$.</p>
+
+ <p class="lesson-subheading">A. Sudut $45^\circ$: dari Segitiga Siku-Siku Sama Kaki</p>
+ <p class="lesson-text">Ambil segitiga siku-siku sama kaki dengan kedua kaki panjangnya $1$. Karena kedua kakinya sama, kedua sudut lancipnya juga sama—dan karena jumlahnya harus $90^\circ$, masing-masing adalah $45^\circ$. Sisi miringnya, berdasarkan Teorema Pythagoras, adalah $\sqrt{1^2 + 1^2} = \sqrt{2}$.</p>
+
+ <figure>
+ <svg viewBox="0 0 400 340" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="100,280 100,100 280,280" fill="#daa520" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Sudut siku-siku di C -->
+  <polygon points="100,260 120,260 120,280 100,280" fill="none" stroke="#daa520" stroke-width="1.6" />
+  <!-- Busur 45° di A — sweep=1 -->
+  <path d="M 100 130 A 30 30 0 0 1 121.2 121.2" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <text x="100" y="118" font-size="12" fill="#5dade2" font-style="italic" text-anchor="middle">45°</text>
+  <!-- Busur 45° di B — sweep=1 -->
+  <path d="M 250 280 A 30 30 0 0 1 258.8 258.8" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <text x="245" y="270" font-size="12" fill="#5dade2" font-style="italic" text-anchor="end">45°</text>
+  <circle cx="100" cy="100" r="3.5" fill="#e8e8e8" />
+  <circle cx="100" cy="280" r="3.5" fill="#e8e8e8" />
+  <circle cx="280" cy="280" r="3.5" fill="#e8e8e8" />
+  <text x="82" y="195" font-size="14" fill="#f0c75e" font-style="italic" font-weight="700">1</text>
+  <text x="185" y="298" font-size="14" fill="#f0c75e" font-style="italic" font-weight="700">1</text>
+  <text x="205" y="175" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">√2</text>
+ </svg>
+ <figcaption class="visual-caption">Segitiga siku-siku sama kaki dengan kedua kaki $1$. Kedua sudut lancipnya $45^\circ$; sisi miringnya $\sqrt{2}$ berdasarkan Teorema Pythagoras.</figcaption>
+</figure>
+
+ <p class="lesson-text">Dengan perbandingan ini, nilai trigonometri untuk $45^\circ$ menjadi:</p>
+ <p class="lesson-text">$$\sin 45^\circ = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}, \quad \cos 45^\circ = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2}, \quad \tan 45^\circ = \frac{1}{1} = 1$$</p>
+ <p class="lesson-text">Perhatikan bahwa $\sin 45^\circ = \cos 45^\circ$—ini masuk akal karena pada segitiga siku-siku sama kaki, sisi depan dan sisi samping sama panjang.</p>
+
+ <p class="lesson-subheading">B. Sudut $30^\circ$ dan $60^\circ$: dari Segitiga Sama Sisi yang Dipotong</p>
+ <p class="lesson-text">Ambil segitiga sama sisi dengan sisi $2$, lalu potong menjadi dua bagian yang sama dengan garis tinggi. Setiap setengah segitiga ini adalah segitiga siku-siku dengan:</p>
+ <ul>
+  <li>Hipotenusa $2$ (sisi asli segitiga sama sisi),</li>
+  <li>Alas $1$ (setengah dari sisi asli),</li>
+  <li>Tinggi $\sqrt{2^2 - 1^2} = \sqrt{3}$ (dari Pythagoras).</li>
+ </ul>
+
+ <figure>
+ <svg viewBox="0 0 420 340" style="max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="80,280 80,150 300,280" fill="#5dade2" fill-opacity="0.08" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Sudut siku-siku di C -->
+  <polygon points="80,260 100,260 100,280 80,280" fill="none" stroke="#daa520" stroke-width="1.6" />
+  <!-- Busur 60° di A — sweep=1, radius 30 -->
+  <path d="M 80 180 A 30 30 0 0 1 106 165" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <!-- Text 60° dipindah lebih ke kiri agar tidak bertabrakan busur -->
+  <text x="62" y="185" font-size="12" fill="#5dade2" font-style="italic" text-anchor="end">60°</text>
+  <!-- Busur 30° di B — sweep=1, radius 30 -->
+  <path d="M 270 280 A 30 30 0 0 1 279 265" fill="none" stroke="#daa520" stroke-width="1.8" />
+  <text x="258" y="272" font-size="12" fill="#daa520" font-style="italic" text-anchor="end">30°</text>
+  <circle cx="80" cy="150" r="3.5" fill="#e8e8e8" />
+  <circle cx="80" cy="280" r="3.5" fill="#e8e8e8" />
+  <circle cx="300" cy="280" r="3.5" fill="#e8e8e8" />
+  <text x="62" y="220" font-size="14" fill="#f0c75e" font-style="italic" font-weight="700">1</text>
+  <text x="188" y="298" font-size="14" fill="#f0c75e" font-style="italic" font-weight="700">√3</text>
+  <text x="210" y="205" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">2</text>
+ </svg>
+ <figcaption class="visual-caption">Setengah dari segitiga sama sisi berisi $30^\circ$–$60^\circ$–$90^\circ$. Sisi terpendek $1$ berhadapan dengan $30^\circ$, sisi sedang $\sqrt{3}$ berhadapan dengan $60^\circ$, dan hipotenusa $2$.</figcaption>
+</figure>
+
+ <p class="lesson-text">Sudut-sudut segitiga ini adalah $30^\circ$ (di puncak yang dipotong), $60^\circ$ (di alas), dan $90^\circ$. Yang menarik, dari satu segitiga saja kita memperoleh nilai untuk <em>dua</em> sudut istimewa—karena $30^\circ$ dan $60^\circ$ bersifat komplementer (jumlahnya $90^\circ$).</p>
+ <p class="lesson-text">Untuk sudut $30^\circ$ (di hadapan sisi $1$):</p>
+ <p class="lesson-text">$$\sin 30^\circ = \frac{1}{2}, \quad \cos 30^\circ = \frac{\sqrt{3}}{2}, \quad \tan 30^\circ = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}$$</p>
+ <p class="lesson-text">Untuk sudut $60^\circ$ (di hadapan sisi $\sqrt{3}$):</p>
+ <p class="lesson-text">$$\sin 60^\circ = \frac{\sqrt{3}}{2}, \quad \cos 60^\circ = \frac{1}{2}, \quad \tan 60^\circ = \sqrt{3}$$</p>
+ <p class="lesson-text">Perhatikan simetri yang indah: $\sin 30^\circ = \cos 60^\circ$ dan $\cos 30^\circ = \sin 60^\circ$. Ini adalah contoh dari identitas komplementer $\sin\theta = \cos(90^\circ - \theta)$ yang akan kita bahas di Bagian IV.</p>
+
+ <p class="lesson-subheading">C. Sudut $0^\circ$ dan $90^\circ$: Kasus Batas</p>
+ <p class="lesson-text">Kedua sudut ini bukan sudut lancip, tetapi dapat dipahami dengan mudah melalui definisi lingkaran satuan:</p>
+ <ul>
+  <li><strong>$\theta = 0^\circ$:</strong> titik $P$ berada di posisi paling kanan lingkaran, yaitu $(1, 0)$. Maka $\sin 0^\circ = 0$, $\cos 0^\circ = 1$, dan $\tan 0^\circ = 0/1 = 0$.</li>
+  <li><strong>$\theta = 90^\circ$:</strong> titik $P$ berada di posisi paling atas lingkaran, yaitu $(0, 1)$. Maka $\sin 90^\circ = 1$, $\cos 90^\circ = 0$, dan $\tan 90^\circ = 1/0$—<strong>tidak terdefinisi</strong> karena pembagian dengan nol.</li>
+ </ul>
+ <p class="lesson-text">Mengapa $\tan 90^\circ$ tidak terdefinisi? Bukan karena tak hingga, tetapi karena operasi $1/0$ secara matematis tidak memiliki nilai. Konsep "tak terdefinisi" ini penting—banyak kesalahan mahasiswa karena menganggap $\tan 90^\circ = \infty$, padahal jawaban yang benar adalah "tidak terdefinisi".</p>
+
+ <p class="lesson-subheading">D. Tabel Ringkasan Sudut Istimewa</p>
+ <p class="lesson-text">Berikut rangkuman nilai-nilai sudut istimewa. Tabel ini <em>sangat dianjurkan</em> untuk dihafal, karena akan terus muncul di seluruh materi trigonometri dan kalkulus.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sudut $\theta$</th>
+     <th>$0^\circ$</th>
+     <th>$30^\circ$</th>
+     <th>$45^\circ$</th>
+     <th>$60^\circ$</th>
+     <th>$90^\circ$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\sin\theta$</td>
+     <td>$0$</td>
+     <td>$\dfrac{1}{2}$</td>
+     <td>$\dfrac{\sqrt{2}}{2}$</td>
+     <td>$\dfrac{\sqrt{3}}{2}$</td>
+     <td>$1$</td>
+    </tr>
+    <tr>
+     <td>$\cos\theta$</td>
+     <td>$1$</td>
+     <td>$\dfrac{\sqrt{3}}{2}$</td>
+     <td>$\dfrac{\sqrt{2}}{2}$</td>
+     <td>$\dfrac{1}{2}$</td>
+     <td>$0$</td>
+    </tr>
+    <tr>
+     <td>$\tan\theta$</td>
+     <td>$0$</td>
+     <td>$\dfrac{\sqrt{3}}{3}$</td>
+     <td>$1$</td>
+     <td>$\sqrt{3}$</td>
+     <td>tak terdefinisi</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pola mudah diingat:</strong> nilai $\sin$ untuk $0^\circ, 30^\circ, 45^\circ, 60^\circ, 90^\circ$ membentuk pola akar yang sangat elegan: $\dfrac{\sqrt{0}}{2}, \dfrac{\sqrt{1}}{2}, \dfrac{\sqrt{2}}{2}, \dfrac{\sqrt{3}}{2}, \dfrac{\sqrt{4}}{2}$—yaitu $0, \tfrac{1}{2}, \tfrac{\sqrt{2}}{2}, \tfrac{\sqrt{3}}{2}, 1$. Nilai $\cos$ adalah kebalikan urutannya. Nilai $\tan$ diperoleh dengan membagi $\sin$ dengan $\cos$. Pola ini jauh lebih mudah diingat daripada menghafal sebelas angka secara terpisah.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Identitas Dasar Trigonometri</h3>
+ <p class="lesson-text">Di Bab II, kita sudah melihat sekilas bahwa $\sin^2\theta + \cos^2\theta = 1$ muncul alami dari lingkaran satuan. Sekarang kita akan membahas <strong>identitas trigonometri</strong> secara formal—yaitu persamaan yang berlaku untuk <em>semua</em> nilai sudut. Berbeda dengan persamaan trigonometri yang hanya benar untuk sudut tertentu, identitas selalu benar—dan menjadi alat manipulasi utama untuk menyederhanakan ekspresi trigonometri.</p>
+
+ <p class="lesson-subheading">A. Identitas Pythagoras</p>
+ <p class="lesson-text">Identitas paling fundamental dalam trigonometri adalah:</p>
+ <p class="lesson-text">$$\sin^2\theta + \cos^2\theta = 1$$</p>
+ <p class="lesson-text"><strong>Mengapa ini benar?</strong> Seperti yang sudah kita lihat di Bab II, titik $P(\cos\theta, \sin\theta)$ selalu berada pada lingkaran $x^2 + y^2 = 1$. Substitusi $x = \cos\theta$ dan $y = \sin\theta$ langsung menghasilkan identitas ini. Dengan kata lain, <strong>identitas Pythagoras adalah versi trigonometri dari Teorema Pythagoras</strong>.</p>
+ <p class="lesson-text">Mengapa identitas ini begitu penting? Karena ia menghubungkan $\sin$ dan $\cos$ sedemikian rupa sehingga jika kita mengetahui salah satunya, kita dapat menghitung yang lain. Identitas ini adalah alat manipulasi paling dasar dalam seluruh trigonometri.</p>
+
+ <p class="lesson-subheading">B. Identitas Kebalikan (Fungsi Sekan, Kosekan, Kotangen)</p>
+ <p class="lesson-text">Sebelum melangkah lebih jauh, kita perlu memperkenalkan tiga fungsi <em>kebalikan</em> (<em>reciprocal</em>)—yaitu $1$ dibagi fungsi aslinya. Perhatikan bahwa "kebalikan" di sini berbeda dengan "fungsi invers" ($\sin^{-1}$):</p>
+ <ul>
+  <li>$\csc\theta = \dfrac{1}{\sin\theta}$ — disebut <strong>kosekan</strong> (<em>cosecant</em>).</li>
+  <li>$\sec\theta = \dfrac{1}{\cos\theta}$ — disebut <strong>sekan</strong> (<em>secant</em>).</li>
+  <li>$\cot\theta = \dfrac{1}{\tan\theta} = \dfrac{\cos\theta}{\sin\theta}$ — disebut <strong>kotangen</strong> (<em>cotangent</em>).</li>
+ </ul>
+ <p class="lesson-text">Ketiga fungsi ini jarang dipakai di tingkat SMA, tetapi menjadi penting di kalkulus—terutama saat mengintegralkan fungsi trigonometri. Secara historis, sebelum kalkulator ada, tabel trigonometri memuat keenam fungsi untuk mempermudah perhitungan.</p>
+
+ <p class="lesson-subheading">C. Identitas Rasio (Kuosien)</p>
+ <p class="lesson-text">Dari definisi segitiga siku-siku, kita juga memiliki hubungan antara tangen dengan sinus dan kosinus:</p>
+ <p class="lesson-text">$$\tan\theta = \frac{\sin\theta}{\cos\theta}, \quad \cot\theta = \frac{\cos\theta}{\sin\theta}$$</p>
+ <p class="lesson-text"><strong>Mengapa $\tan\theta = \sin\theta / \cos\theta$?</strong> Substitusi definisi dari segitiga siku-siku:</p>
+ <p class="lesson-text">$$\frac{\sin\theta}{\cos\theta} = \frac{\text{depan}/\text{miring}}{\text{samping}/\text{miring}} = \frac{\text{depan}}{\text{samping}} = \tan\theta$$</p>
+ <p class="lesson-text">Perhatikan bagaimana "sisi miring" saling menghapus—sehingga rasio sinus/kosinus menyederhana menjadi rasio depan/samping.</p>
+
+ <p class="lesson-subheading">D. Identitas Pythagoras Turunan</p>
+ <p class="lesson-text">Dari identitas Pythagoras $\sin^2\theta + \cos^2\theta = 1$, kita dapat menurunkan dua identitas penting dengan membagi kedua ruas:</p>
+ <ul>
+  <li><strong>Bagi dengan $\cos^2\theta$</strong> — untuk memperoleh identitas yang melibatkan $\tan$ dan $\sec$:</li>
+ </ul>
+ <p class="lesson-text">$$\frac{\sin^2\theta}{\cos^2\theta} + \frac{\cos^2\theta}{\cos^2\theta} = \frac{1}{\cos^2\theta} \quad \Rightarrow \quad \tan^2\theta + 1 = \sec^2\theta$$</p>
+ <ul>
+  <li><strong>Bagi dengan $\sin^2\theta$</strong> — untuk memperoleh identitas yang melibatkan $\cot$ dan $\csc$:</li>
+ </ul>
+ <p class="lesson-text">$$\frac{\sin^2\theta}{\sin^2\theta} + \frac{\cos^2\theta}{\sin^2\theta} = \frac{1}{\sin^2\theta} \quad \Rightarrow \quad 1 + \cot^2\theta = \csc^2\theta$$</p>
+ <p class="lesson-text">Kedua identitas ini adalah "sepupu" dari identitas Pythagoras—bentuknya sama, hanya berbeda fungsi yang terlibat.</p>
+
+ <p class="lesson-subheading">E. Identitas Sudut Negatif</p>
+ <p class="lesson-text">Dari simetri lingkaran satuan, kita dapat menurunkan identitas untuk sudut negatif:</p>
+ <ul>
+  <li>$\sin(-\theta) = -\sin\theta$ — sinus adalah fungsi <strong>ganjil</strong> (simetris terhadap titik asal).</li>
+  <li>$\cos(-\theta) = \cos\theta$ — kosinus adalah fungsi <strong>genap</strong> (simetris terhadap sumbu-$Y$).</li>
+  <li>$\tan(-\theta) = -\tan\theta$ — tangen juga fungsi ganjil.</li>
+ </ul>
+ <p class="lesson-text">Sifat <strong>ganjil</strong> dan <strong>genap</strong> ini akan terlihat jelas ketika kita mempelajari grafik fungsi trigonometri di materi <strong>Fungsi Trigonometri</strong>—di mana grafik $\sin$ simetris terhadap titik asal, dan grafik $\cos$ simetris terhadap sumbu-$Y$.</p>
+
+ <p class="lesson-subheading">F. Identitas Sudut Berelasi</p>
+ <p class="lesson-text">Sudut-sudut yang berelasi dengan $\theta$ melalui kelipatan $90^\circ$ atau $180^\circ$ memiliki pola tetap. Yang perlu diperhatikan: <strong>geser sebesar kelipatan $90^\circ$, lalu periksa kuadran hasilnya</strong>. Jika kuadran berubah, fungsi bisa berganti (sin ↔ cos) atau hanya berubah tanda.</p>
+ <ul>
+  <li><strong>Komplementer ($90^\circ - \theta$):</strong> $\sin(90^\circ - \theta) = \cos\theta$ dan $\cos(90^\circ - \theta) = \sin\theta$ — fungsi berganti.</li>
+  <li><strong>Suplemen ($180^\circ - \theta$):</strong> $\sin(180^\circ - \theta) = \sin\theta$ dan $\cos(180^\circ - \theta) = -\cos\theta$ — fungsi tetap, tanda cos berubah.</li>
+  <li><strong>Penambahan $180^\circ$:</strong> $\sin(180^\circ + \theta) = -\sin\theta$ dan $\cos(180^\circ + \theta) = -\cos\theta$ — kedua tanda berubah.</li>
+  <li><strong>Sudut penuh ($360^\circ - \theta$):</strong> $\sin(360^\circ - \theta) = -\sin\theta$ dan $\cos(360^\circ - \theta) = \cos\theta$ — hanya sin yang berubah tanda.</li>
+ </ul>
+
+ <p class="lesson-subheading">G. Ringkasan Identitas Dasar</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Kategori</th>
+     <th>Identitas</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Pythagoras</td>
+     <td>$\sin^2\theta + \cos^2\theta = 1$</td>
+    </tr>
+    <tr>
+     <td>Pythagoras turunan</td>
+     <td>$1 + \tan^2\theta = \sec^2\theta$</td>
+    </tr>
+    <tr>
+     <td>Pythagoras turunan</td>
+     <td>$1 + \cot^2\theta = \csc^2\theta$</td>
+    </tr>
+    <tr>
+     <td>Rasio</td>
+     <td>$\tan\theta = \dfrac{\sin\theta}{\cos\theta}$, &nbsp; $\cot\theta = \dfrac{\cos\theta}{\sin\theta}$</td>
+    </tr>
+    <tr>
+     <td>Kebalikan</td>
+     <td>$\csc\theta = \dfrac{1}{\sin\theta}$, &nbsp; $\sec\theta = \dfrac{1}{\cos\theta}$, &nbsp; $\cot\theta = \dfrac{1}{\tan\theta}$</td>
+    </tr>
+    <tr>
+     <td>Sudut negatif</td>
+     <td>$\sin(-\theta) = -\sin\theta$, &nbsp; $\cos(-\theta) = \cos\theta$, &nbsp; $\tan(-\theta) = -\tan\theta$</td>
+    </tr>
+    <tr>
+     <td>Komplementer</td>
+     <td>$\sin(90^\circ - \theta) = \cos\theta$, &nbsp; $\cos(90^\circ - \theta) = \sin\theta$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Rumus Jumlah dan Selisih Sudut</h3>
+ <p class="lesson-text">Sejauh ini, kita hanya bisa menghitung nilai trigonometri untuk <strong>sudut istimewa</strong> ($30^\circ, 45^\circ, 60^\circ$) dan sudut-sudut batasnya. Tetapi bagaimana dengan sudut seperti $75^\circ$ atau $15^\circ$ yang bukan sudut istimewa?</p>
+ <p class="lesson-text">Ternyata, kita dapat menghitung nilainya dengan <strong>memecah sudut tersebut menjadi jumlah atau selisih dua sudut istimewa</strong>:</p>
+ <ul>
+  <li>$75^\circ = 45^\circ + 30^\circ$</li>
+  <li>$15^\circ = 45^\circ - 30^\circ$</li>
+ </ul>
+ <p class="lesson-text">Rumus-rumus di bab ini memberikan cara untuk melakukannya.</p>
+
+ <p class="lesson-subheading">A. Empat Rumus Dasar</p>
+ <p class="lesson-text">Untuk sinus dan kosinus, kita memiliki empat rumus:</p>
+ <p class="lesson-text">$$\sin(A + B) = \sin A \cos B + \cos A \sin B$$</p>
+ <p class="lesson-text">$$\sin(A - B) = \sin A \cos B - \cos A \sin B$$</p>
+ <p class="lesson-text">$$\cos(A + B) = \cos A \cos B - \sin A \sin B$$</p>
+ <p class="lesson-text">$$\cos(A - B) = \cos A \cos B + \sin A \sin B$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perhatikan pola tandanya:</strong> untuk $\sin$, tanda mengikuti tanda di dalam tanda kurung ($+$ dengan $+$, $-$ dengan $-$). Tetapi untuk $\cos$, tanda <strong>terbalik</strong> ($+$ di dalam kurung berpasangan dengan $-$ di rumus, dan sebaliknya). Keunikan tanda "terbalik" ini sering menjadi sumber kesalahan—jadi perhatikan dengan cermat. Cara mengingat: "sinus <em>setuju</em> dengan tandanya, kosinus <em>berbeda pendapat</em>".</p>
+ </div>
+
+ <p class="lesson-subheading">B. Rumus untuk Tangen</p>
+ <p class="lesson-text">Dari rumus sinus dan kosinus di atas, kita dapat menurunkan rumus tangen. Caranya: gunakan identitas $\tan\theta = \sin\theta/\cos\theta$, lalu bagi pembilang dan penyebut dengan $\cos A \cos B$. Hasilnya:</p>
+ <p class="lesson-text">$$\tan(A + B) = \frac{\tan A + \tan B}{1 - \tan A \tan B}$$</p>
+ <p class="lesson-text">$$\tan(A - B) = \frac{\tan A - \tan B}{1 + \tan A \tan B}$$</p>
+ <p class="lesson-text">Perhatikan pola tanda yang sama: pada $\tan$, tanda di dalam kurung <em>sama</em> dengan tanda di pembilang, tetapi <em>terbalik</em> pada penyebut.</p>
+
+ <p class="lesson-subheading">C. Contoh Penerapan</p>
+ <p class="lesson-text">Mari kita gunakan rumus ini untuk menghitung nilai $\sin 75^\circ$ dan $\cos 15^\circ$.</p>
+
+ <p class="lesson-text"><strong>Untuk $\sin 75^\circ$:</strong> gunakan $\sin(45^\circ + 30^\circ)$.</p>
+ <p class="lesson-text">$$\sin 75^\circ = \sin 45^\circ \cos 30^\circ + \cos 45^\circ \sin 30^\circ$$</p>
+ <p class="lesson-text">$$= \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2} \cdot \frac{1}{2} = \frac{\sqrt{6}}{4} + \frac{\sqrt{2}}{4} = \frac{\sqrt{6} + \sqrt{2}}{4}$$</p>
+
+ <p class="lesson-text"><strong>Untuk $\cos 15^\circ$:</strong> gunakan $\cos(45^\circ - 30^\circ)$.</p>
+ <p class="lesson-text">$$\cos 15^\circ = \cos 45^\circ \cos 30^\circ + \sin 45^\circ \sin 30^\circ$$</p>
+ <p class="lesson-text">$$= \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2} \cdot \frac{1}{2} = \frac{\sqrt{6} + \sqrt{2}}{4}$$</p>
+
+ <p class="lesson-text"><strong>Verifikasi:</strong> perhatikan bahwa $\sin 75^\circ = \cos 15^\circ$, yang sesuai dengan identitas komplementer $\sin\theta = \cos(90^\circ - \theta)$ dengan $\theta = 75^\circ$. Keduanya menghasilkan nilai yang sama—sebuah pemeriksaan yang bagus bahwa perhitungan kita konsisten. ✓</p>
+
+ <p class="lesson-subheading">D. Catatan: Mengapa Rumus Ini Benar?</p>
+ <p class="lesson-text">Bagi yang penasaran, rumus $\cos(A - B)$ dapat dibuktikan dengan geometri lingkaran satuan—menggunakan rumus jarak dua titik (dari Geometri Analitik) dan identitas Pythagoras. Pembuktiannya cukup panjang dan bukan syarat untuk memahami materi ini, tetapi menunjukkan bahwa rumus jumlah-selisih sudut <em>diturunkan</em> dari geometri, bukan sekadar didefinisikan.</p>
+ <p class="lesson-text">Ide intinya: ambil dua titik $P$ dan $Q$ pada lingkaran satuan dengan sudut $A$ dan $B$. Hitung jarak $PQ$ dengan dua cara berbeda—(1) rumus jarak dari koordinat, dan (2) aturan kosinus pada segitiga $OPQ$. Karena hasilnya harus sama, kita memperoleh $\cos(A - B) = \cos A \cos B + \sin A \sin B$.</p>
+ <figure>
+ <svg viewBox="0 0 500 500" style="display:block; margin:0 auto; max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sumbu -->
+  <line x1="40" y1="250" x2="470" y2="250" stroke="#e8e8e8" stroke-width="1.2" />
+  <line x1="250" y1="470" x2="250" y2="40" stroke="#e8e8e8" stroke-width="1.2" />
+  <text x="475" y="253" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="256" y="38" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+  
+  <!-- Lingkaran satuan -->
+  <circle cx="250" cy="250" r="150" fill="none" stroke="#e8e8e8" stroke-width="1.5" opacity="0.7" />
+  
+  <!-- Titik P pada sudut A=60°: (250 + 150cos60°, 250 - 150sin60°) = (325, 120) -->
+  <line x1="250" y1="250" x2="325" y2="120" stroke="#daa520" stroke-width="2" />
+  <circle cx="325" cy="120" r="5" fill="#daa520" />
+  <text x="335" y="116" font-size="14" fill="#daa520" font-style="italic" font-weight="700">P (cos A, sin A)</text>
+  
+  <!-- Titik Q pada sudut B=20°: (250 + 150cos20°, 250 - 150sin20°) = (391, 199) -->
+  <line x1="250" y1="250" x2="391" y2="199" stroke="#5dade2" stroke-width="2" />
+  <circle cx="391" cy="199" r="5" fill="#5dade2" />
+  <text x="400" y="204" font-size="14" fill="#5dade2" font-style="italic" font-weight="700">Q (cos B, sin B)</text>
+  
+  <!-- Busur A: radius 55, dari 0° ke 60° -->
+<path d="M 305 250 A 55 55 0 0 0 277.5 202.4" fill="none" stroke="#daa520" stroke-width="2" />
+<text x="295" y="228" font-size="13" fill="#daa520" font-style="italic">A</text>
+
+<!-- Busur B: radius 75, dari 0° ke 20° -->
+<path d="M 325 250 A 75 75 0 0 0 320.5 224.4" fill="none" stroke="#5dade2" stroke-width="2" />
+<text x="332" y="242" font-size="13" fill="#5dade2" font-style="italic">B</text>
+  
+  <!-- Garis PQ -->
+  <line x1="325" y1="120" x2="391" y2="199" stroke="#f0c75e" stroke-width="2.5" />
+  
+<path d="M 339.3 217.5 A 95 95 0 0 0 297.5 167.7" fill="none" stroke="#f0c75e" stroke-width="2.2" />
+<text x="330" y="185" font-size="13" fill="#f0c75e" font-style="italic" font-weight="700">A − B</text>
+  
+  <!-- Pusat O -->
+  <circle cx="250" cy="250" r="4" fill="#e8e8e8" />
+  <text x="236" y="270" font-size="13" fill="#e8e8e8" font-style="italic">O</text>
+  
+  <!-- Label jarak PQ di tengah -->
+  <text x="358" y="168" font-size="12" fill="#f0c75e" font-style="italic">PQ</text>
+ </svg>
+ <figcaption class="visual-caption">Penurunan rumus $\cos(A - B)$ menggunakan lingkaran satuan. Dua titik $P(\cos A, \sin A)$ dan $Q(\cos B, \sin B)$ pada lingkaran satuan. Jarak $PQ$ dapat dihitung dengan dua cara: (1) rumus jarak dari koordinat, dan (2) aturan kosinus pada segitiga $OPQ$ dengan sudut $A - B$ di $O$. Kedua cara menghasilkan $\cos(A - B) = \cos A \cos B + \sin A \sin B$.</figcaption>
+</figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Rumus Sudut Ganda</h3>
+ <p class="lesson-text">Dalam banyak aplikasi—terutama fisika (gerak gelombang), teknik (analisis sinyal), dan kalkulus (integral trigonometri)—kita sering menemui sudut yang berbentuk $2A$, yaitu dua kali suatu sudut. Bagaimana menghitung nilai trigonometrinya?</p>
+ <p class="lesson-text">Jawabannya: cukup gunakan rumus jumlah sudut dengan mensubstitusi $B = A$. Karena hasilnya akan sangat sering muncul, kita beri nama khusus: <strong>rumus sudut ganda</strong>.</p>
+
+ <p class="lesson-subheading">A. Tiga Rumus Sudut Ganda</p>
+ <p class="lesson-text"><strong>Untuk $\sin 2A$:</strong> substitusi $A = B$ ke $\sin(A + B)$:</p>
+ <p class="lesson-text">$$\sin 2A = \sin A \cos A + \cos A \sin A = 2 \sin A \cos A$$</p>
+
+ <p class="lesson-text"><strong>Untuk $\cos 2A$:</strong> substitusi $A = B$ ke $\cos(A + B)$:</p>
+ <p class="lesson-text">$$\cos 2A = \cos A \cos A - \sin A \sin A = \cos^2 A - \sin^2 A$$</p>
+
+ <p class="lesson-text"><strong>Untuk $\tan 2A$:</strong> substitusi $A = B$ ke $\tan(A + B)$:</p>
+ <p class="lesson-text">$$\tan 2A = \frac{\tan A + \tan A}{1 - \tan A \cdot \tan A} = \frac{2\tan A}{1 - \tan^2 A}$$</p>
+
+ <p class="lesson-subheading">B. Tiga Bentuk untuk $\cos 2A$</p>
+ <p class="lesson-text">Bentuk $\cos 2A = \cos^2 A - \sin^2 A$ dapat ditulis ulang dalam dua bentuk alternatif menggunakan identitas Pythagoras $\sin^2 A + \cos^2 A = 1$:</p>
+ <ul>
+  <li><strong>Bentuk cos saja:</strong> substitusi $\sin^2 A = 1 - \cos^2 A$, sehingga $\cos 2A = 2\cos^2 A - 1$.</li>
+  <li><strong>Bentuk sin saja:</strong> substitusi $\cos^2 A = 1 - \sin^2 A$, sehingga $\cos 2A = 1 - 2\sin^2 A$.</li>
+ </ul>
+ <p class="lesson-text">Ketiga bentuk ini setara dan dipilih sesuai kebutuhan soal:</p>
+ <p class="lesson-text">$$\cos 2A = \cos^2 A - \sin^2 A = 2\cos^2 A - 1 = 1 - 2\sin^2 A$$</p>
+ <p class="lesson-text">Kapan menggunakan bentuk yang mana? Jika soal memberikan nilai $\sin A$, gunakan bentuk $1 - 2\sin^2 A$. Jika memberikan $\cos A$, gunakan $2\cos^2 A - 1$.</p>
+ <figure>
+ <svg viewBox="0 0 920 340" style="display:block; margin:0 auto; max-width:100%; height:auto; width:920px;" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <marker id="arrow-form" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e" />
+   </marker>
+  </defs>
+  
+  <!-- Kotak 1: cos²A − sin²A -->
+  <rect x="30" y="100" width="220" height="120" rx="10" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="2" />
+  <text x="140" y="150" font-size="20" fill="#5dade2" font-style="italic" text-anchor="middle" font-weight="700">cos²A − sin²A</text>
+  <text x="140" y="185" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">bentuk asli (dari jumlah sudut)</text>
+  
+  <!-- Panah ke kotak 2 -->
+  <line x1="260" y1="140" x2="330" y2="110" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-form)" />
+  <line x1="260" y1="180" x2="330" y2="210" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-form)" />
+  <text x="295" y="150" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">substitusi</text>
+  <text x="295" y="163" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">sin²A = 1 − cos²A</text>
+  <text x="295" y="200" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">substitusi</text>
+  <text x="295" y="213" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">cos²A = 1 − sin²A</text>
+  
+  <!-- Kotak 2: 2cos²A − 1 -->
+  <rect x="350" y="40" width="220" height="100" rx="10" fill="#f0c75e" fill-opacity="0.12" stroke="#f0c75e" stroke-width="2" />
+  <text x="460" y="80" font-size="20" fill="#f0c75e" font-style="italic" text-anchor="middle" font-weight="700">2cos²A − 1</text>
+  <text x="460" y="110" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">berguna jika cos A diketahui</text>
+  
+  <!-- Kotak 3: 1 − 2sin²A -->
+  <rect x="350" y="180" width="220" height="100" rx="10" fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="2" />
+  <text x="460" y="220" font-size="20" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="700">1 − 2sin²A</text>
+  <text x="460" y="250" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">berguna jika sin A diketahui</text>
+  
+  <!-- Tanda sama dengan -->
+  <text x="610" y="120" font-size="32" fill="#e8e8e8" text-anchor="middle">=</text>
+  <text x="610" y="240" font-size="32" fill="#e8e8e8" text-anchor="middle">=</text>
+  
+  <!-- Penjelasan akhir -->
+  <rect x="660" y="100" width="230" height="120" rx="10" fill="none" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="4,3" />
+  <text x="775" y="140" font-size="13" fill="#e8e8e8" font-style="italic" text-anchor="middle">Ketiga bentuk setara —</text>
+  <text x="775" y="162" font-size="13" fill="#e8e8e8" font-style="italic" text-anchor="middle">pilih yang paling sesuai</text>
+  <text x="775" y="184" font-size="13" fill="#e8e8e8" font-style="italic" text-anchor="middle">dengan data yang</text>
+  <text x="775" y="206" font-size="13" fill="#e8e8e8" font-style="italic" text-anchor="middle">diberikan soal</text>
+  
+  <!-- Judul -->
+  <text x="460" y="20" font-size="15" fill="#e8e8e8" font-weight="600" text-anchor="middle" font-style="italic">Tiga bentuk cos 2A berasal dari identitas Pythagoras</text>
+ </svg>
+ <figcaption class="visual-caption">Ketiga bentuk $\cos 2A$ setara secara aljabar. Dari bentuk asli $\cos^2 A - \sin^2 A$ (yang langsung diturunkan dari rumus jumlah sudut), substitusi identitas Pythagoras $\sin^2 A + \cos^2 A = 1$ menghasilkan dua bentuk alternatif. Pilihan bentuk bergantung pada data yang diberikan soal.</figcaption>
+</figure>
+
+ <p class="lesson-subheading">C. Rumus Sudut Setengah</p>
+ <p class="lesson-text">Dari ketiga bentuk $\cos 2A$, kita juga dapat menurunkan rumus untuk <strong>sudut setengah</strong>. Caranya: ganti $2A = \theta$ sehingga $A = \theta/2$, lalu selesaikan untuk $\sin(\theta/2)$ atau $\cos(\theta/2)$:</p>
+ <p class="lesson-text">$$\sin\frac{\theta}{2} = \pm\sqrt{\frac{1 - \cos\theta}{2}}$$</p>
+ <p class="lesson-text">$$\cos\frac{\theta}{2} = \pm\sqrt{\frac{1 + \cos\theta}{2}}$$</p>
+ <p class="lesson-text">Tanda $\pm$ dipilih berdasarkan kuadran tempat $\theta/2$ berada—bukan kuadran $\theta$. Misalnya, jika $\theta = 240^\circ$ (kuadran III), maka $\theta/2 = 120^\circ$ (kuadran II), sehingga $\sin(\theta/2) > 0$ dan $\cos(\theta/2) < 0$.</p>
+
+ <p class="lesson-subheading">D. Ringkasan Rumus Sudut Ganda</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Fungsi</th>
+     <th>Rumus Sudut Ganda</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\sin 2A$</td>
+     <td>$2 \sin A \cos A$</td>
+    </tr>
+    <tr>
+     <td>$\cos 2A$</td>
+     <td>$\cos^2 A - \sin^2 A = 2\cos^2 A - 1 = 1 - 2\sin^2 A$</td>
+    </tr>
+    <tr>
+     <td>$\tan 2A$</td>
+     <td>$\dfrac{2\tan A}{1 - \tan^2 A}$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">E. Contoh Penerapan</p>
+ <p class="lesson-text">Jika $\sin\theta = \dfrac{3}{5}$ dan $\theta$ berada di kuadran I, hitung $\sin 2\theta$ dan $\cos 2\theta$.</p>
+ <p class="lesson-text">Pertama, kita perlu mencari $\cos\theta$. Karena $\theta$ berada di kuadran I, semua nilai trigonometrinya positif, sehingga:</p>
+ <p class="lesson-text">$$\cos\theta = +\sqrt{1 - \sin^2\theta} = \sqrt{1 - \left(\tfrac{3}{5}\right)^2} = \sqrt{1 - \tfrac{9}{25}} = \sqrt{\tfrac{16}{25}} = \frac{4}{5}$$</p>
+ <p class="lesson-text">Sekarang kita dapat menerapkan rumus sudut ganda:</p>
+ <p class="lesson-text">$$\sin 2\theta = 2 \sin\theta \cos\theta = 2 \cdot \frac{3}{5} \cdot \frac{4}{5} = \frac{24}{25}$$</p>
+ <p class="lesson-text">$$\cos 2\theta = 1 - 2\sin^2\theta = 1 - 2 \cdot \frac{9}{25} = 1 - \frac{18}{25} = \frac{7}{25}$$</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> hasilnya harus memenuhi identitas Pythagoras, $\sin^2 2\theta + \cos^2 2\theta = 1$:</p>
+ <p class="lesson-text">$$\frac{576}{625} + \frac{49}{625} = \frac{625}{625} = 1 \quad ✓$$</p>
+ <p class="lesson-text">Verifikasi ini penting karena kesalahan tanda atau aritmetika sering muncul di perhitungan seperti ini.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Penerapan Praktis</h3>
+ <p class="lesson-text">Trigonometri bukan hanya alat untuk memecahkan segitiga—ia menjadi bahasa universal untuk mendeskripsikan fenomena periodik dan hubungan sudut-jarak di hampir semua bidang sains dan teknologi.</p>
+
+ <p class="lesson-subheading">A. Navigasi, Survei, dan Astronomi</p>
+ <p class="lesson-text">Trigonometri awalnya dikembangkan untuk menghitung jarak yang tidak dapat diukur secara langsung—tinggi gunung, lebar sungai, atau posisi kapal di laut. Prinsip <strong>triangulasi</strong> yang sama mendasari pemetaan wilayah dan penentuan posisi. Trigonometri bola—versi tiga dimensinya—digunakan untuk menghitung posisi bintang, orbit planet, dan navigasi langit; sistem GPS modern pun bertumpu pada prinsip serupa.</p>
+
+ <p class="lesson-subheading">B. Fisika: Gelombang dan Osilasi</p>
+ <p class="lesson-text">Gelombang suara, cahaya, arus listrik bolak-balik, dan gerak pendulum semuanya dideskripsikan dengan fungsi sinus dan kosinus. Persamaan $y = A\sin(\omega t + \phi)$ adalah model dasar untuk osilasi apa pun—dari senar gitar hingga gelombang radio.</p>
+
+ <p class="lesson-subheading">C. Grafika Komputer dan Game</p>
+ <p class="lesson-text">Setiap rotasi objek 3D, animasi kamera, dan pemetaan tekstur melibatkan perhitungan sudut. Lintasan proyektil, sistem pencahayaan, dan bayangan pada rendering 3D juga bertumpu pada operasi trigonometri.</p>
+
+ <p class="lesson-subheading">D. Pemrosesan Sinyal dan Analisis Fourier</p>
+ <p class="lesson-text">Kontribusi paling mendalam trigonometri adalah <strong>analisis Fourier</strong>—yang menguraikan sinyal sembarang menjadi gelombang sinus dan kosinus. Turunannya, DCT dan FFT, menjadi dasar kompresi JPEG, MP3, dan komunikasi digital modern seperti OFDM pada 4G/5G.</p>
+
+ <p class="lesson-subheading">E. Machine Learning</p>
+ <p class="lesson-text">Positional encoding pada model Transformer (GPT, BERT) menggunakan sinus dan kosinus untuk menyandikan posisi kata—sehingga model tahu urutan tanpa memprosesnya secara berurutan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <p class="lesson-text">Berikut kesalahan yang paling sering terjadi saat mempelajari trigonometri. Mengenalinya lebih awal akan menyelamatkan Anda dari perhitungan yang salah.</p>
+
+ <p class="lesson-subheading">Kesalahan Terkait Rumus Jumlah/Selisih Sudut</p>
+ <ul>
+  <li><strong>Menganggap $\sin(A + B) = \sin A + \sin B$.</strong> Ini kesalahan paling klasik dan paling fatal. Fungsi trigonometri <em>bukan</em> fungsi linear. Contoh: $\sin(30^\circ + 60^\circ) = \sin 90^\circ = 1$, sedangkan $\sin 30^\circ + \sin 60^\circ \approx 1{,}366$. Jelas berbeda.</li>
+  <li><strong>Menganggap $\cos(A + B) = \cos A + \cos B$.</strong> Sama seperti di atas, harus menggunakan rumus $\cos A \cos B - \sin A \sin B$.</li>
+  <li><strong>Salah tanda pada rumus $\cos(A \pm B)$.</strong> Ingat: $\cos(A + B) = \cos A \cos B - \sin A \sin B$ (tanda <em>terbalik</em> dari tanda di dalam kurung). Berbeda dari $\sin$ yang tandanya "sama".</li>
+ </ul>
+
+ <p class="lesson-subheading">Kesalahan Terkait Sudut Ganda</p>
+ <ul>
+  <li><strong>Menganggap $2\sin\theta = \sin 2\theta$.</strong> Ini salah! $\sin 2\theta = 2\sin\theta\cos\theta$, bukan $2\sin\theta$.</li>
+  <li><strong>Menganggap $\tan 2A = 2\tan A$.</strong> Sama, $\tan 2A = \dfrac{2\tan A}{1 - \tan^2 A}$, bukan $2\tan A$.</li>
+  <li><strong>Salah memilih tanda pada rumus sudut setengah.</strong> Tanda $\pm$ bergantung pada kuadran $\theta/2$, bukan $\theta$.</li>
+ </ul>
+
+ <p class="lesson-subheading">Kesalahan Terkait Domain dan Nilai</p>
+ <ul>
+  <li><strong>Lupa bahwa $\tan\theta$ tidak terdefinisi saat $\cos\theta = 0$.</strong> Saat $\theta = 90^\circ, 270^\circ, \ldots$, $\tan\theta$ tidak terdefinisi—bukan nol atau tak hingga.</li>
+  <li><strong>Lupa bahwa $\sin$ dan $\cos$ memiliki rentang $-1$ sampai $1$.</strong> Tidak mungkin ada sudut dengan $\sin\theta = 2$. Jika hasil perhitungan di luar rentang ini, ada yang salah.</li>
+  <li><strong>Mengabaikan kuadran saat menghitung nilai trigonometri.</strong> Jika hanya diketahui $\sin\theta$, ada dua kemungkinan $\cos\theta$ (positif atau negatif). Selalu periksa kuadran.</li>
+ </ul>
+
+ <p class="lesson-subheading">Kesalahan Terkait Notasi dan Nilai Sudut Istimewa</p>
+ <ul>
+  <li><strong>Menganggap $\sin^2\theta$ berarti $\sin(\theta^2)$.</strong> Notasi $\sin^2\theta$ adalah singkatan dari $(\sin\theta)^2$.</li>
+  <li><strong>Menukar nilai $\sin 30^\circ$ dan $\sin 60^\circ$.</strong> $\sin 30^\circ = 1/2$ (lebih kecil), $\sin 60^\circ = \sqrt{3}/2$ (lebih besar). Sebaliknya untuk $\cos$.</li>
+  <li><strong>Menukar posisi "sisi depan" dan "sisi samping".</strong> Keduanya bergantung pada <em>sudut mana</em> yang menjadi acuan.</li>
+  <li><strong>Menganggap identitas Pythagoras hanya berlaku untuk sudut lancip.</strong> Identitas $\sin^2\theta + \cos^2\theta = 1$ berlaku untuk <em>semua</em> sudut.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Definisi dasar</strong> (dari segitiga siku-siku): $\sin\theta = \dfrac{\text{depan}}{\text{miring}}$, $\cos\theta = \dfrac{\text{samping}}{\text{miring}}$, $\tan\theta = \dfrac{\text{depan}}{\text{samping}}$. Hanya berlaku untuk sudut lancip.</li>
+  <li><strong>Definisi lingkaran satuan</strong>: untuk titik $P$ pada lingkaran $x^2 + y^2 = 1$ dengan sudut $\theta$ dari sumbu-$X$ positif, $\cos\theta = x$ dan $\sin\theta = y$. Berlaku untuk <em>semua</em> sudut.</li>
+  <li><strong>Tanda per kuadran</strong>: "All Students Take Calculus" — di kuadran I semua positif, II hanya Sin, III hanya Tan, IV hanya Cos.</li>
+  <li><strong>Sudut istimewa</strong>: $0^\circ, 30^\circ, 45^\circ, 60^\circ, 90^\circ$ dengan pola $\frac{\sqrt{0}}{2}, \frac{\sqrt{1}}{2}, \frac{\sqrt{2}}{2}, \frac{\sqrt{3}}{2}, \frac{\sqrt{4}}{2}$ untuk $\sin$, dan urutan terbalik untuk $\cos$.</li>
+  <li><strong>Identitas Pythagoras</strong>: $\sin^2\theta + \cos^2\theta = 1$—versi trigonometri dari Teorema Pythagoras.</li>
+  <li><strong>Identitas rasio</strong>: $\tan\theta = \dfrac{\sin\theta}{\cos\theta}$, $\cot\theta = \dfrac{\cos\theta}{\sin\theta}$.</li>
+  <li><strong>Identitas kebalikan</strong>: $\csc\theta = 1/\sin\theta$, $\sec\theta = 1/\cos\theta$, $\cot\theta = 1/\tan\theta$.</li>
+  <li><strong>Rumus jumlah/selisih sudut</strong>: $\sin(A \pm B) = \sin A \cos B \pm \cos A \sin B$; $\cos(A \pm B) = \cos A \cos B \mp \sin A \sin B$; $\tan(A \pm B) = \dfrac{\tan A \pm \tan B}{1 \mp \tan A \tan B}$.</li>
+  <li><strong>Rumus sudut ganda</strong>: $\sin 2A = 2\sin A \cos A$; $\cos 2A = \cos^2 A - \sin^2 A = 2\cos^2 A - 1 = 1 - 2\sin^2 A$; $\tan 2A = \dfrac{2\tan A}{1 - \tan^2 A}$.</li>
+  <li><strong>Rumus sudut setengah</strong>: $\sin\frac{\theta}{2} = \pm\sqrt{\dfrac{1-\cos\theta}{2}}$, $\cos\frac{\theta}{2} = \pm\sqrt{\dfrac{1+\cos\theta}{2}}$. Tanda $\pm$ mengikuti kuadran $\theta/2$.</li>
+  <li><strong>Peringatan penting:</strong> fungsi trigonometri bukan fungsi linear. $\sin(A+B) \neq \sin A + \sin B$, dan $2\sin\theta \neq \sin 2\theta$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Trigonometri adalah alat universal yang menghubungkan sudut dengan panjang, dan gerak melingkar dengan gerak gelombang. Ia muncul di mana-mana—dari fisika (gelombang, osilasi, medan elektromagnetik) dan teknik (analisis sinyal, kontrol), hingga astronomi dan grafika komputer. Kekuatannya terletak pada kemampuannya menangkap <strong>hubungan periodik</strong>: pola yang berulang secara teratur. Inilah dasar dari analisis Fourier—alat yang memungkinkan MP3, JPEG, WiFi, dan ponsel.</p>
+ <p class="lesson-text">Di atas semua aplikasinya, trigonometri juga indah sebagai struktur. Rumus-rumusnya tidak berdiri sendiri: identitas Pythagoras mengalir dari definisi lingkaran satuan, rumus jumlah sudut diturunkan dari rumus jarak, rumus sudut ganda hanyalah kasus khusus dari rumus jumlah sudut. Memahami jaringan ini jauh lebih bernilai daripada menghafal rumus satu per satu.</p>
+ <p class="lesson-text">Kuasai identitas dasar dan rumus sudut dengan baik—keduanya akan terus muncul di <strong>fungsi trigonometri</strong>, <strong>persamaan trigonometri</strong>, <strong>aturan sinus dan kosinus</strong>, <strong>kalkulus</strong>, hingga <strong>analisis Fourier</strong>. Latihlah diri dengan banyak soal, terutama pada rumus jumlah/selisih dan sudut ganda—di sanalah kesalahan paling sering terjadi. Kebiasaan memeriksa hasil dengan identitas Pythagoras dan memperhatikan tanda di setiap kuadran akan menyelamatkan Anda dari kesalahan yang tidak perlu.</p>
+</div>
+
+</div>
+</body>
+</html>

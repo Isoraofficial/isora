@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Luas &amp; Volume (Aplikasi Gabungan, Dekomposisi Bangun Majemuk)</title>
+ <meta name="description" content="Materi lengkap luas dan volume bangun majemuk: prinsip dekomposisi dan komposisi, strategi penyelesaian bertahap, penerapan pada bangun datar majemuk (rumah, L-shape, lingkaran dalam persegi, setengah lingkaran) dan bangun ruang majemuk (kapsul, menara, roket, bangun berlubang).">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Luas &amp; Volume (Aplikasi Gabungan, Dekomposisi Bangun Majemuk)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Segitiga</strong> — terutama rumus luas segitiga ($\tfrac{1}{2} \times \text{alas} \times \text{tinggi}$), karena banyak bangun majemuk mengandung komponen segitiga atau limas.</li>
+   <li><strong>Segiempat &amp; Poligon</strong> — terutama rumus luas persegi, persegi panjang, jajar genjang, dan trapesium, karena bangun-bangun ini menjadi komponen paling umum dalam dekomposisi.</li>
+   <li><strong>Lingkaran</strong> — terutama rumus luas lingkaran ($\pi r^2$) dan kelilingnya, karena banyak bangun majemuk mengandung komponen setengah lingkaran, juring, atau tabung.</li>
+   <li><strong>Bangun Ruang</strong> — terutama rumus volume kubus, balok, prisma, limas, bola, dan kerucut, karena seluruh perhitungan volume majemuk bertumpu pada rumus-rumus ini.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Perhatikan <strong>botol minuman</strong> dengan badan tabung dan ujung membulat, <strong>atap rumah</strong> yang merupakan gabungan persegi panjang dan segitiga, atau <strong>menara masjid</strong> dengan badan balok dan kubah setengah bola. Tidak ada satu pun yang benar-benar berbentuk kubus, bola, atau kerucut sempurna. Sebagian besar benda nyata adalah <strong>gabungan dari beberapa bentuk dasar</strong>&mdash;dan gabungan itulah yang disebut <strong>bangun majemuk</strong>.</p>
+ <p class="lesson-text">Menghitung luas atau volume bangun majemuk secara langsung sering tidak mungkin. Tetapi ada satu strategi yang selalu berhasil: <strong>dekomposisi</strong>&mdash;memecah bangun rumit menjadi bangun-bangun sederhana yang sudah kita kenal, lalu menjumlahkan atau mengurangkan hasilnya. Strategi ini bukan sekadar trik matematika; ia adalah <strong>cara berpikir yang berharga</strong>&mdash;memecah masalah besar menjadi bagian-bagian kecil yang dapat diselesaikan satu per satu.</p>
+ <p class="lesson-text">Materi ini akan memandu Anda melalui: prinsip dasar dekomposisi, strategi umum menyelesaikan soal, aplikasi pada bangun datar dan bangun ruang majemuk, bangun berlubang, hingga penerapan praktis&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap langkah berlaku.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Prinsip Dasar Dekomposisi dan Komposisi</h3>
+ <p class="lesson-subheading">A. Dekomposisi: Memecah Menjadi Bagian Sederhana</p>
+ <p class="lesson-text"><strong>Dekomposisi</strong> adalah proses memecah bangun majemuk menjadi bangun-bangun sederhana yang sudah kita kenali. Tujuannya jelas: daripada menghitung luas atau volume bangun kompleks secara langsung—yang sering kali tidak mungkin tanpa kalkulus—kita cukup menghitung bagian-bagiannya lalu menjumlahkan.</p>
+ <p class="lesson-text">Kunci dekomposisi adalah <strong>membayangkan garis-garis bantu</strong> yang membagi bangun majemuk menjadi bagian-bagian sederhana. Garis-garis bantu ini biasanya berupa garis horizontal atau vertikal yang memisahkan bagian-bagian, garis yang menghubungkan dua titik sudut yang sudah ada, atau garis yang dibuat sedemikian rupa sehingga menghasilkan bangun yang sudah dikenal (persegi panjang, segitiga, lingkaran, dan seterusnya).</p>
+
+ <p class="lesson-subheading">B. Dua Operasi Utama: Penjumlahan dan Pengurangan</p>
+ <p class="lesson-text">Setelah bangun dipecah, ada dua cara untuk menggabungkan kembali hasil perhitungan:</p>
+ <ul>
+  <li><strong>Penjumlahan (komposisi aditif)</strong>: jika bangun majemuk adalah gabungan dari beberapa bangun yang <em>saling menempel tanpa tumpang tindih</em>, maka luas atau volume total adalah <strong>jumlah</strong> dari luas atau volume setiap bagian.</li>
+  <li><strong>Pengurangan (komposisi subtraktif)</strong>: jika bangun majemuk adalah bangun besar dengan bagian tertentu yang <em>dihilangkan</em> (misalnya lubang atau rongga), maka luas atau volume total adalah bangun besar <strong>dikurangi</strong> bagian yang hilang.</li>
+ </ul>
+ <p class="lesson-text">Kedua operasi ini sering dikombinasikan. Sebuah bangun majemuk bisa memiliki beberapa bagian yang ditambahkan, sekaligus satu atau dua bagian yang dikurangkan.</p>
+
+ <p class="lesson-subheading">C. Mengapa Prinsip Ini Berlaku?</p>
+ <p class="lesson-text">Prinsip ini berlaku karena dua sifat dasar ukuran (luas dan volume):</p>
+ <ul>
+  <li><strong>Aditivitas</strong>: jika dua bangun tidak saling tumpang tindih, luas gabungannya adalah jumlah luas masing-masing. Sifat ini berlaku juga untuk volume.</li>
+  <li><strong>Kekekalan ukuran</strong>: memindahkan atau memutar suatu bangun tidak mengubah luas atau volumenya. Jadi, dekomposisi dapat dilakukan dengan cara apa pun—selama tidak ada bagian yang hilang atau dihitung dua kali.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> bayangkan sebuah bangun majemuk seperti <em>Lego</em> yang terbuat dari beberapa balok sederhana. Jika kita bisa membongkar Lego itu menjadi balok-balok penyusunnya, maka untuk menghitung "isinya" kita cukup menghitung isi setiap balok, lalu menjumlahkannya. Tidak ada sihir—hanya konservasi ukuran.</p>
+ </div>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 900 420" style="max-width:100%; height:auto; width:900px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- ============ PANEL KIRI: Rumah utuh ============ -->
+  <text x="180" y="40" font-size="14" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Bangun majemuk</text>
+  <text x="180" y="60" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">(rumah utuh)</text>
+  
+  <!-- Badan rumah -->
+  <rect x="80" y="220" width="200" height="130" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2" />
+  <!-- Atap rumah -->
+  <polygon points="80,220 280,220 180,100" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2" />
+  
+  <!-- Titik sudut -->
+  <circle cx="80" cy="220" r="4" fill="#5dade2" />
+  <circle cx="280" cy="220" r="4" fill="#5dade2" />
+  <circle cx="80" cy="350" r="4" fill="#5dade2" />
+  <circle cx="280" cy="350" r="4" fill="#5dade2" />
+  <circle cx="180" cy="100" r="4" fill="#daa520" />
+  
+  <text x="180" y="395" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Rumah = 1 bangun utuh</text>
+  
+  <!-- ============ PANAH TENGAH ============ -->
+  <line x1="330" y1="240" x2="400" y2="240" stroke="#f0c75e" stroke-width="2.5" />
+  <polygon points="412,240 398,234 398,246" fill="#f0c75e" />
+  <text x="370" y="225" font-size="12" fill="#f0c75e" font-style="italic" text-anchor="middle">dipecah</text>
+  <text x="370" y="265" font-size="12" fill="#f0c75e" font-style="italic" text-anchor="middle">(dekomposisi)</text>
+  
+  <!-- ============ PANEL KANAN: Rumah dipecah ============ -->
+  <text x="660" y="40" font-size="14" fill="#5dade2" font-style="italic" text-anchor="middle" font-weight="600">Komponen penyusun</text>
+  <text x="660" y="60" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">(rumah setelah dipecah)</text>
+  
+  <!-- Atap terangkat ke atas -->
+  <polygon points="560,150 760,150 660,30" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2" />
+  <circle cx="560" cy="150" r="4" fill="#daa520" />
+  <circle cx="760" cy="150" r="4" fill="#daa520" />
+  <circle cx="660" cy="30" r="4" fill="#daa520" />
+  <text x="660" y="105" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle">Segitiga</text>
+  
+  <!-- Badan rumah di bawah (posisi tetap) -->
+  <rect x="560" y="220" width="200" height="130" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2" />
+  <circle cx="560" cy="220" r="4" fill="#5dade2" />
+  <circle cx="760" cy="220" r="4" fill="#5dade2" />
+  <circle cx="560" cy="350" r="4" fill="#5dade2" />
+  <circle cx="760" cy="350" r="4" fill="#5dade2" />
+  <text x="660" y="290" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle">Persegi panjang</text>
+  
+  <!-- Gap indicator -->
+  <line x1="525" y1="150" x2="525" y2="220" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3" />
+  <line x1="520" y1="150" x2="530" y2="150" stroke="#b8b8b8" stroke-width="1" />
+  <line x1="520" y1="220" x2="530" y2="220" stroke="#b8b8b8" stroke-width="1" />
+  
+  <text x="660" y="395" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Rumah = Segitiga + Persegi panjang</text>
+ </svg>
+ <figcaption class="visual-caption">Ilustrasi dekomposisi. Bangun majemuk&mdash;rumah&mdash;dipecah menjadi dua komponen penyusunnya: <strong>segitiga</strong> (atap) dan <strong>persegi panjang</strong> (badan). Kedua komponen dapat dihitung luasnya secara terpisah, lalu dijumlahkan untuk mendapatkan luas total.</figcaption>
+</figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Strategi Umum Menyelesaikan Soal Bangun Majemuk</h3>
+ <p class="lesson-text">Untuk menyelesaikan soal bangun majemuk dengan sistematis, ikuti lima langkah berikut.</p>
+ 
+ <p class="lesson-subheading">Langkah 1: Identifikasi Bangun Pembentuk</p>
+ <p class="lesson-text">Perhatikan gambar dengan cermat. Tanyakan pada diri sendiri: "bangun-bangun sederhana apa saja yang membentuk bangun ini?" Bisa jadi itu gabungan persegi panjang dan segitiga, atau tabung dan kerucut, atau kombinasi yang lebih rumit. Menuliskan daftar komponen di awal sangat menolong&mdash;sekecil apa pun bangunnya, pastikan tidak ada yang terlewat.</p>
+ 
+ <p class="lesson-subheading">Langkah 2: Tentukan Ukuran yang Dibutuhkan</p>
+ <p class="lesson-text">Setelah mengidentifikasi bagian-bagiannya, tentukan ukuran apa yang dibutuhkan untuk menghitung luas atau volume masing-masing bagian. Ukuran ini bisa sudah diberikan langsung di soal, atau harus dihitung dulu menggunakan sifat-sifat bangun&mdash;misalnya Teorema Pythagoras untuk mencari tinggi segitiga, atau hubungan antara jari-jari dan diameter.</p>
+ 
+ <p class="lesson-subheading">Langkah 3: Hitung Setiap Bagian Secara Terpisah</p>
+ <p class="lesson-text">Hitung luas atau volume setiap bagian menggunakan rumus yang sesuai. Jangan langsung menjumlahkan sebelum semua bagian dihitung&mdash;karena sering kali kita perlu memeriksa kembali perhitungan sebelum menggabungkan hasilnya. Menuliskan setiap hasil secara terpisah juga memudahkan pengecekan jika terjadi kesalahan.</p>
+ 
+ <p class="lesson-subheading">Langkah 4: Gabungkan Hasil (Tambah atau Kurang)</p>
+ <p class="lesson-text">Jika bangun majemuk adalah gabungan dari beberapa bagian yang menempel, <strong>jumlahkan</strong> hasil-hasilnya. Jika bangun majemuk adalah bangun besar dengan bagian yang dihilangkan, <strong>kurangkan</strong> bagian yang hilang dari bangun besarnya.</p>
+ 
+ <p class="lesson-subheading">Langkah 5: Periksa Kewajaran Hasil</p>
+ <p class="lesson-text">Sebelum menuliskan jawaban akhir, periksa apakah hasilnya masuk akal. Misalnya, jika sebuah bangun majemuk memiliki luas $100$ cm$^2$ tetapi bagian-bagiannya saja sudah lebih dari $200$ cm$^2$, ada yang salah. Periksa juga satuan: luas harus dalam satuan persegi, volume dalam satuan kubik.</p>
+ 
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 1100 400" style="max-width:100%; height:auto; width:1100px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <marker id="arrow-steps" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+     <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e" />
+    </marker>
+   </defs>
+   
+   <!-- ============ PANEL 1: Identifikasi ============ -->
+   <g transform="translate(0, 0)">
+    <circle cx="100" cy="40" r="20" fill="#daa520" />
+    <text x="100" y="46" font-size="16" fill="#1a1a1a" font-weight="700" text-anchor="middle">1</text>
+    <text x="100" y="85" font-size="13" fill="#daa520" font-weight="600" text-anchor="middle">Identifikasi</text>
+    
+    <!-- Rumah dengan garis pemisah -->
+    <polygon points="30,240 170,240 100,160" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="1.8" />
+    <rect x="30" y="240" width="140" height="90" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="1.8" />
+    <line x1="20" y1="240" x2="180" y2="240" stroke="#f0c75e" stroke-width="1.5" stroke-dasharray="4,3" />
+    <text x="100" y="365" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Bangun sederhana</text>
+    <text x="100" y="382" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">apa saja?</text>
+   </g>
+   
+   <!-- Panah 1→2 -->
+   <line x1="205" y1="40" x2="220" y2="40" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-steps)" />
+   
+   <!-- ============ PANEL 2: Tentukan ukuran ============ -->
+   <g transform="translate(240, 0)">
+    <circle cx="100" cy="40" r="20" fill="#daa520" />
+    <text x="100" y="46" font-size="16" fill="#1a1a1a" font-weight="700" text-anchor="middle">2</text>
+    <text x="100" y="85" font-size="13" fill="#daa520" font-weight="600" text-anchor="middle">Tentukan ukuran</text>
+    
+    <!-- Rumah dengan dimensi -->
+    <polygon points="30,240 170,240 100,160" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="1.8" />
+    <rect x="30" y="240" width="140" height="90" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="1.8" />
+    <!-- Tanda ukuran -->
+    <line x1="35" y1="330" x2="165" y2="330" stroke="#f0c75e" stroke-width="1.2" />
+    <text x="100" y="348" font-size="11" fill="#f0c75e" font-style="italic" text-anchor="middle">lebar</text>
+    <line x1="100" y1="200" x2="100" y2="240" stroke="#f0c75e" stroke-width="1.2" stroke-dasharray="3,3" />
+    <text x="115" y="225" font-size="10" fill="#f0c75e" font-style="italic">t? r?</text>
+    <text x="100" y="365" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Ukuran apa yang</text>
+    <text x="100" y="382" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">dibutuhkan?</text>
+   </g>
+   
+   <!-- Panah 2→3 -->
+   <line x1="445" y1="40" x2="460" y2="40" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-steps)" />
+   
+   <!-- ============ PANEL 3: Hitung ============ -->
+   <g transform="translate(480, 0)">
+    <circle cx="100" cy="40" r="20" fill="#daa520" />
+    <text x="100" y="46" font-size="16" fill="#1a1a1a" font-weight="700" text-anchor="middle">3</text>
+    <text x="100" y="85" font-size="13" fill="#daa520" font-weight="600" text-anchor="middle">Hitung</text>
+    
+    <!-- Dua bangun terpisah -->
+    <polygon points="20,200 100,200 60,140" fill="#daa520" fill-opacity="0.2" stroke="#daa520" stroke-width="1.8" />
+    <text x="60" y="180" font-size="10" fill="#daa520" font-style="italic" text-anchor="middle">L₁</text>
+    <rect x="110" y="170" width="80" height="60" fill="#5dade2" fill-opacity="0.2" stroke="#5dade2" stroke-width="1.8" />
+    <text x="150" y="205" font-size="10" fill="#5dade2" font-style="italic" text-anchor="middle">L₂</text>
+    <text x="100" y="365" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Hitung masing-</text>
+    <text x="100" y="382" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">masing bagian</text>
+   </g>
+   
+   <!-- Panah 3→4 -->
+   <line x1="685" y1="40" x2="700" y2="40" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-steps)" />
+   
+   <!-- ============ PANEL 4: Gabungkan ============ -->
+   <g transform="translate(720, 0)">
+    <circle cx="100" cy="40" r="20" fill="#daa520" />
+    <text x="100" y="46" font-size="16" fill="#1a1a1a" font-weight="700" text-anchor="middle">4</text>
+    <text x="100" y="85" font-size="13" fill="#daa520" font-weight="600" text-anchor="middle">Gabungkan</text>
+    
+    <text x="100" y="195" font-size="24" fill="#e8e8e8" font-style="italic" text-anchor="middle">L₁ + L₂</text>
+    <text x="100" y="240" font-size="20" fill="#f0c75e" font-style="italic" text-anchor="middle">atau</text>
+    <text x="100" y="285" font-size="24" fill="#e8e8e8" font-style="italic" text-anchor="middle">L − L₀</text>
+    <text x="100" y="365" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Tambah atau</text>
+    <text x="100" y="382" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">kurangkan</text>
+   </g>
+   
+   <!-- Panah 4→5 -->
+   <line x1="925" y1="40" x2="940" y2="40" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrow-steps)" />
+   
+   <!-- ============ PANEL 5: Periksa ============ -->
+   <g transform="translate(960, 0)">
+    <circle cx="100" cy="40" r="20" fill="#daa520" />
+    <text x="100" y="46" font-size="16" fill="#1a1a1a" font-weight="700" text-anchor="middle">5</text>
+    <text x="100" y="85" font-size="13" fill="#daa520" font-weight="600" text-anchor="middle">Periksa</text>
+    
+    <!-- Centang besar -->
+    <polyline points="50,230 85,275 155,195" fill="none" stroke="#4ade80" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="100" y="365" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Apakah hasilnya</text>
+    <text x="100" y="382" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">wajar?</text>
+   </g>
+  </svg>
+  <figcaption class="visual-caption">Lima langkah strategi umum menyelesaikan soal bangun majemuk. Setiap langkah dikerjakan secara berurutan, mulai dari <strong>identifikasi</strong> komponen bangun sampai <strong>memeriksa kewajaran</strong> hasil akhir. Pelaksanaan langkah yang tertib mengurangi risiko kesalahan dan memudahkan pengecekan.</figcaption>
+ </figure>
+ 
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Tips tambahan:</strong> cari <em>simetri</em> dan <em>pengulangan</em>. Sering kali bangun majemuk memiliki simetri atau bagian yang berulang. Jika ada dua segitiga identik, cukup hitung satu dan kalikan dua. Jika ada bagian yang simetris, dekomposisi bisa disederhanakan. Ini menghemat waktu dan mengurangi risiko kesalahan.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Aplikasi Luas pada Bangun Datar Majemuk</h3>
+ <p class="lesson-subheading">A. Contoh 1: Bangun "Rumah" (Persegi Panjang + Segitiga)</p>
+ <p class="lesson-text">Bangun "rumah" adalah gabungan dari <strong>persegi panjang</strong> (badan rumah) dan <strong>segitiga</strong> (atap). Perhatikan gambar berikut.</p>
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 480 400" style="max-width:100%; height:auto; width:480px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Badan rumah: lebar 160px, tinggi 140px -->
+  <rect x="100" y="180" width="280" height="140" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2" />
+  <!-- Atap: segitiga dengan tinggi 90px -->
+  <polygon points="100,180 380,180 240,90" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2" />
+  
+  <!-- Garis tinggi atap (tegak lurus alas) -->
+  <line x1="240" y1="90" x2="240" y2="180" stroke="#daa520" stroke-width="1.4" stroke-dasharray="4,3" />
+  <!-- Penanda sudut siku-siku di titik tinggi -->
+  <polyline points="240,165 255,165 255,180" fill="none" stroke="#daa520" stroke-width="1.4" />
+  <text x="255" y="130" font-size="13" fill="#daa520" font-style="italic">5 m</text>
+  
+  <!-- Label lebar -->
+  <text x="240" y="345" font-size="14" fill="#5dade2" font-style="italic" text-anchor="middle">12 m</text>
+  <!-- Label tinggi badan -->
+  <line x1="400" y1="180" x2="400" y2="320" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="3,3" />
+  <line x1="395" y1="180" x2="405" y2="180" stroke="#5dade2" stroke-width="1.2" />
+  <line x1="395" y1="320" x2="405" y2="320" stroke="#5dade2" stroke-width="1.2" />
+  <text x="418" y="255" font-size="14" fill="#5dade2" font-style="italic">8 m</text>
+  
+  <!-- Titik sudut -->
+  <circle cx="100" cy="180" r="3.5" fill="#e8e8e8" />
+  <circle cx="380" cy="180" r="3.5" fill="#e8e8e8" />
+  <circle cx="100" cy="320" r="3.5" fill="#e8e8e8" />
+  <circle cx="380" cy="320" r="3.5" fill="#e8e8e8" />
+  <circle cx="240" cy="90" r="3.5" fill="#daa520" />
+ </svg>
+ <figcaption class="visual-caption">Bangun "rumah" tersusun dari persegi panjang (badan) dan segitiga (atap). Keduanya berbagi alas yang sama, yaitu $12$ m. Garis $5$ m adalah <strong>tinggi</strong> segitiga&mdash;jadi tegak lurus terhadap alas, seperti ditandai persegi kecil.</figcaption>
+</figure>
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah bangun berbentuk "rumah" memiliki badan persegi panjang dengan panjang $12$ m dan tinggi $8$ m, serta atap segitiga dengan tinggi $5$ m. Hitung luas totalnya.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>Luas persegi panjang $= 12 \times 8 = 96$ m$^2$.</li>
+  <li>Luas segitiga $= \tfrac{1}{2} \times 12 \times 5 = 30$ m$^2$.</li>
+  <li>Luas total $= 96 + 30 = 126$ m$^2$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Contoh 2: Bangun Berbentuk L</p>
+ <p class="lesson-text">Bangun berbentuk L adalah salah satu bangun majemuk yang paling sering muncul. Ia bisa dipecah menjadi dua persegi panjang dengan beberapa cara berbeda—dan semua cara harus menghasilkan luas total yang sama.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 980 400" style="max-width:100%; height:auto; width:980px;" xmlns="http://www.w3.org/2000/svg">
+   <text x="160" y="30" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Bangun L</text>
+   <polygon points="60,360 60,60 180,60 180,180 260,180 260,360" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <text x="120" y="230" font-size="12" fill="#e8e8e8" font-style="italic" text-anchor="middle">6 m</text>
+   <text x="220" y="290" font-size="12" fill="#e8e8e8" font-style="italic" text-anchor="middle">4 m</text>
+   <text x="160" y="390" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">lebar total = 10 m</text>
+   <text x="35" y="215" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle" transform="rotate(-90 35 215)">tinggi total = 15 m</text>
+   <!-- Penanda potongan (kotak yang "hilang") di sudut kanan-atas -->
+<rect x="180" y="60" width="80" height="120" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.7" />
+<line x1="180" y1="60" x2="260" y2="180" stroke="#e74c3c" stroke-width="1" opacity="0.5" />
+<text x="220" y="46" font-size="11" fill="#e74c3c" font-style="italic" text-anchor="middle">potongan 4×6</text>
+
+   <text x="540" y="30" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle" font-weight="600">Dekomposisi 1: A + B</text>
+   <rect x="400" y="60" width="120" height="300" fill="#5dade2" fill-opacity="0.2" stroke="#5dade2" stroke-width="2"/>
+   <rect x="520" y="180" width="80" height="180" fill="#f0c75e" fill-opacity="0.2" stroke="#f0c75e" stroke-width="2"/>
+   <text x="460" y="218" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle">A = 6×15</text>
+   <text x="560" y="275" font-size="13" fill="#f0c75e" font-style="italic" text-anchor="middle">B = 4×9</text>
+
+   <text x="830" y="30" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Dekomposisi 2: D − C</text>
+   <rect x="700" y="60" width="200" height="300" fill="#daa520" fill-opacity="0.08" stroke="#daa520" stroke-width="1.5" stroke-dasharray="5,4"/>
+   <rect x="820" y="60" width="80" height="120" fill="#e74c3c" fill-opacity="0.2" stroke="#e74c3c" stroke-width="2"/>
+   <text x="750" y="218" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">D = 10×15</text>
+   <text x="860" y="127" font-size="11" fill="#e74c3c" font-style="italic" text-anchor="middle">C = 4×6</text>
+   <text x="860" y="144" font-size="11" fill="#e74c3c" font-style="italic" text-anchor="middle">(dikurangi)</text>
+  </svg>
+  <figcaption class="visual-caption">Bangun L (kiri) dapat dipecah dengan dua cara berbeda. <strong>Dekomposisi 1</strong> (tengah): jumlahkan kolom kiri A ($6 \times 15$) dengan bagian bawah-kanan B ($4 \times 9$). <strong>Dekomposisi 2</strong> (kanan): kurangkan potongan C ($4 \times 6$) dari persegi besar D ($10 \times 15$). Kedua cara menghasilkan luas total yang sama.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah bangun L memiliki lebar keseluruhan $10$ m dan tinggi keseluruhan $15$ m. Salah satu sudut (kanan atas) dipotong dengan ukuran $4$ m $\times$ $6$ m. Hitung luas totalnya.</p>
+
+ <p class="lesson-text"><strong>Cara 1 (penjumlahan):</strong> Bagi menjadi dua persegi panjang.</p>
+ <ul>
+  <li>Kolom kiri: $6 \times 15 = 90$ m$^2$.</li>
+  <li>Bagian bawah-kanan: $4 \times 9 = 36$ m$^2$.</li>
+  <li>Luas total $= 90 + 36 = 126$ m$^2$.</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Cara 2 (pengurangan):</strong> Ambil persegi besar, lalu kurangkan potongannya.</p>
+ <ul>
+  <li>Persegi besar: $10 \times 15 = 150$ m$^2$.</li>
+  <li>Potongan (cut-out): $4 \times 6 = 24$ m$^2$.</li>
+  <li>Luas total $= 150 - 24 = 126$ m$^2$. ✓</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pelajaran penting:</strong> kedua cara menghasilkan <strong>hasil yang sama</strong>—yaitu $126$ m$^2$. Ini menunjukkan bahwa cara dekomposisi boleh berbeda-beda, asalkan tidak ada bagian yang hilang atau dihitung dua kali. Cara 1 lebih intuitif (menjumlahkan bagian yang ada), sedangkan cara 2 lebih cepat jika bentuk bangun memiliki potongan yang jelas.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Contoh 3: Lingkaran di Dalam Persegi (Pengurangan)</p>
+ <p class="lesson-text">Ketika sebuah lingkaran berada di dalam persegi dan saling bersinggungan, kita dapat menghitung luas daerah <strong>di luar lingkaran tetapi di dalam persegi</strong> dengan cara mengurangi luas lingkaran dari luas persegi.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 400 340" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <rect x="70" y="60" width="240" height="240" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+   <circle cx="190" cy="180" r="120" fill="#daa520" fill-opacity="0.2" stroke="#daa520" stroke-width="2"/>
+   <line x1="70" y1="180" x2="310" y2="180" stroke="#daa520" stroke-width="1.3" stroke-dasharray="4,3"/>
+   <text x="170" y="172" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle">d = 14</text>
+   <text x="170" y="320" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle">s = 14</text>
+   <circle cx="190" cy="180" r="3.5" fill="#daa520"/>
+  </svg>
+  <figcaption class="visual-caption">Lingkaran di dalam persegi. Diameter lingkaran sama dengan sisi persegi ($d = s = 14$). Daerah di luar lingkaran tetapi di dalam persegi dihitung dengan mengurangkan luas lingkaran dari luas persegi.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah lingkaran berada di dalam persegi dengan sisi $14$ cm. Lingkaran tersebut menyinggung keempat sisi persegi. Hitung luas daerah persegi yang <em>tidak</em> tertutup lingkaran (gunakan $\pi \approx \tfrac{22}{7}$).</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <p class="lesson-text">Karena lingkaran menyinggung keempat sisi, diameternya sama dengan sisi persegi: $d = 14$ cm, sehingga $r = 7$ cm.</p>
+ <ul>
+  <li>Luas persegi $= 14 \times 14 = 196$ cm$^2$.</li>
+  <li>Luas lingkaran $= \pi r^2 = \tfrac{22}{7} \times 7^2 = 154$ cm$^2$.</li>
+  <li>Luas daerah yang dicari $= 196 - 154 = 42$ cm$^2$.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Contoh 4: Persegi Panjang + Setengah Lingkaran</p>
+ <p class="lesson-text">Bangun ini menggabungkan bangun datar bersisi lurus dengan bangun datar berlengkung. Salah satu aplikasi paling terkenal adalah bentuk lapangan atau jendela dengan bagian atas melengkung.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 450 350" style="max-width:100%; height:auto; width:450px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Persegi panjang 320×128 px (skala 16 px/m → 20m × 8m) -->
+   <rect x="60" y="180" width="320" height="128" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+   <!-- Setengah lingkaran dengan jari-jari 160px (10m) di atas -->
+   <path d="M 60 180 A 160 160 0 0 1 380 180 Z" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+   <!-- Label lebar -->
+   <text x="220" y="334" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle">20 m</text>
+   <!-- Label tinggi -->
+   <line x1="410" y1="180" x2="410" y2="308" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="3,3"/>
+   <line x1="405" y1="180" x2="415" y2="180" stroke="#5dade2" stroke-width="1.2"/>
+   <line x1="405" y1="308" x2="415" y2="308" stroke="#5dade2" stroke-width="1.2"/>
+   <text x="424" y="248" font-size="12" fill="#5dade2" font-style="italic">8 m</text>
+   <!-- Label jari-jari -->
+   <text x="195" y="115" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">r = 10 m</text>
+   <!-- Titik sudut -->
+   <circle cx="60" cy="180" r="3.5" fill="#e8e8e8"/>
+   <circle cx="380" cy="180" r="3.5" fill="#e8e8e8"/>
+   <circle cx="60" cy="308" r="3.5" fill="#e8e8e8"/>
+   <circle cx="380" cy="308" r="3.5" fill="#e8e8e8"/>
+  </svg>
+  <figcaption class="visual-caption">Bangun majemuk dari persegi panjang dan setengah lingkaran di atasnya. Diameter setengah lingkaran sama dengan lebar persegi panjang ($20$ m), sehingga $r = 10$ m.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah bangun terdiri dari persegi panjang dengan panjang $20$ m dan tinggi $8$ m, serta setengah lingkaran di atasnya yang diameternya sama dengan panjang persegi panjang. Hitung luas totalnya (gunakan $\pi \approx 3{,}14$).</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>Luas persegi panjang $= 20 \times 8 = 160$ m$^2$.</li>
+  <li>Diameter setengah lingkaran $= 20$ m, sehingga $r = 10$ m.</li>
+  <li>Luas setengah lingkaran $= \tfrac{1}{2} \times \pi r^2 = \tfrac{1}{2} \times 3{,}14 \times 100 = 157$ m$^2$.</li>
+  <li>Luas total $= 160 + 157 = 317$ m$^2$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Aplikasi Volume pada Bangun Ruang Majemuk</h3>
+ <p class="lesson-subheading">A. Contoh 1: Kapsul (Tabung + Dua Setengah Bola)</p>
+ <p class="lesson-text">Bangun "kapsul" adalah gabungan <strong>tabung</strong> dengan <strong>dua setengah bola</strong> di kedua ujungnya. Bentuk ini muncul pada kapsul obat, tangki bahan bakar berbentuk tabung dengan ujung membulat, dan beberapa bentuk bangunan modern.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 500 280" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <path d="M 160 70 A 60 60 0 0 0 160 190 Z" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+   <rect x="160" y="70" width="200" height="120" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+   <path d="M 360 70 A 60 60 0 0 1 360 190 Z" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+   <text x="260" y="138" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle">tabung</text>
+   <text x="115" y="132" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">½ bola</text>
+   <text x="405" y="132" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">½ bola</text>
+   <line x1="140" y1="70" x2="140" y2="190" stroke="#f0c75e" stroke-width="1.5"/>
+   <line x1="135" y1="70" x2="145" y2="70" stroke="#f0c75e" stroke-width="1.5"/>
+   <line x1="135" y1="190" x2="145" y2="190" stroke="#f0c75e" stroke-width="1.5"/>
+   <text x="122" y="220" font-size="12" fill="#f0c75e" font-style="italic" text-anchor="middle">2r</text>
+   <line x1="160" y1="220" x2="360" y2="220" stroke="#5dade2" stroke-width="1.3" stroke-dasharray="3,3"/>
+   <line x1="160" y1="215" x2="160" y2="225" stroke="#5dade2" stroke-width="1.3"/>
+   <line x1="360" y1="215" x2="360" y2="225" stroke="#5dade2" stroke-width="1.3"/>
+   <text x="260" y="242" font-size="12" fill="#5dade2" font-style="italic" text-anchor="middle">t</text>
+  </svg>
+  <figcaption class="visual-caption">Bangun kapsul. Terdiri dari tabung (tengah) dan dua setengah bola (kiri dan kanan). Jika kedua setengah bola disatukan, mereka membentuk satu bola penuh dengan jari-jari $r$.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah kapsul memiliki jari-jari $3$ cm dan panjang bagian tabungnya $10$ cm. Hitung volume total kapsul (gunakan $\pi \approx 3{,}14$).</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>Volume tabung $= \pi r^2 t = 3{,}14 \times 3^2 \times 10 = 282{,}6$ cm$^3$.</li>
+  <li>Volume dua setengah bola $=$ satu bola penuh $= \tfrac{4}{3} \pi r^3 = \tfrac{4}{3} \times 3{,}14 \times 27 = 113{,}04$ cm$^3$.</li>
+  <li>Volume total $= 282{,}6 + 113{,}04 = 395{,}64$ cm$^3$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Contoh 2: Menara (Balok + Limas)</p>
+ <p class="lesson-text">Bentuk menara adalah gabungan <strong>balok</strong> (badan menara) dan <strong>limas</strong> (atap menara). Kombinasi ini sering muncul pada bangunan masjid, menara air, atau miniatur monumen.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 440 500" style="max-width:100%; height:auto; width:440px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Top diamond: A=(90,170), B=(225,110), C=(360,170), D=(225,230) -->
+   <!-- Limas: apex at (225, 90), t1 = 80px. Balok height 200px (y 170-370) -->
+   <!-- Sisi belakang limas -->
+   <polygon points="90,170 225,110 225,90" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.5"/>
+   <polygon points="360,170 225,110 225,90" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.5"/>
+   <!-- Sisi depan limas -->
+   <polygon points="90,170 225,230 225,90" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+   <polygon points="360,170 225,230 225,90" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+
+   <!-- Balok: front-left face -->
+   <polygon points="90,170 225,230 225,430 90,370" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+   <!-- Balok: front-right face -->
+   <polygon points="225,230 360,170 360,370 225,430" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="2"/>
+   <!-- Top edge dashed back -->
+   <polygon points="90,170 225,110 360,170 225,230" fill="none" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+
+   <!-- Titik sudut -->
+   <circle cx="225" cy="90" r="4" fill="#daa520"/>
+   <circle cx="90" cy="170" r="3.5" fill="#5dade2"/>
+   <circle cx="360" cy="170" r="3.5" fill="#5dade2"/>
+   <circle cx="225" cy="110" r="3.5" fill="#5dade2"/>
+   <circle cx="225" cy="430" r="3.5" fill="#5dade2"/>
+   <circle cx="225" cy="230" r="3.5" fill="#5dade2"/>
+   <circle cx="90" cy="370" r="3.5" fill="#5dade2"/>
+   <circle cx="360" cy="370" r="3.5" fill="#5dade2"/>
+
+   <!-- Label -->
+   <text x="380" y="130" font-size="13" fill="#daa520" font-style="italic">limas</text>
+   <text x="380" y="300" font-size="13" fill="#5dade2" font-style="italic">balok</text>
+
+   <!-- Tinggi limas -->
+   <line x1="225" y1="90" x2="225" y2="170" stroke="#f0c75e" stroke-width="1.3" stroke-dasharray="4,3"/>
+   <text x="233" y="135" font-size="12" fill="#f0c75e" font-style="italic">t₁</text>
+   <!-- Tinggi balok -->
+   <line x1="78" y1="170" x2="78" y2="370" stroke="#5dade2" stroke-width="1.3" stroke-dasharray="4,3"/>
+   <text x="50" y="275" font-size="12" fill="#5dade2" font-style="italic">t₂</text>
+  </svg>
+  <figcaption class="visual-caption">Bangun menara. Bagian bawah adalah balok (badan), bagian atas adalah limas (atap). Keduanya berbagi sisi alas yang sama. Tinggi limas adalah $t_1$, tinggi balok adalah $t_2$.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah menara miniatur terdiri dari balok dengan panjang $6$ cm, lebar $6$ cm, tinggi $10$ cm, dan limas di atasnya dengan alas $6 \times 6$ cm serta tinggi $4$ cm. Hitung volume totalnya.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>$V_{\text{balok}} = 6 \times 6 \times 10 = 360$ cm$^3$.</li>
+  <li>$V_{\text{limas}} = \tfrac{1}{3} \times (6 \times 6) \times 4 = 48$ cm$^3$.</li>
+  <li>$V_{\text{total}} = 360 + 48 = 408$ cm$^3$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Contoh 3: Roket (Tabung + Kerucut)</p>
+ <p class="lesson-text">Bentuk roket adalah gabungan <strong>tabung</strong> (badan roket) dan <strong>kerucut</strong> (kepala roket). Kombinasi ini juga muncul pada beberapa jenis tenda, botol, atau menara dengan atap meruncing.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 400 460" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <polygon points="175,60 125,180 225,180" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+   <rect x="125" y="180" width="100" height="200" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+   <ellipse cx="175" cy="380" rx="50" ry="9" fill="none" stroke="#5dade2" stroke-width="1.5"/>
+   <ellipse cx="175" cy="180" rx="50" ry="9" fill="none" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+   <text x="255" y="125" font-size="13" fill="#daa520" font-style="italic">kerucut</text>
+   <text x="255" y="285" font-size="13" fill="#5dade2" font-style="italic">tabung</text>
+   <line x1="80" y1="60" x2="80" y2="180" stroke="#f0c75e" stroke-width="1.3"/>
+   <line x1="75" y1="60" x2="85" y2="60" stroke="#f0c75e" stroke-width="1.3"/>
+   <line x1="75" y1="180" x2="85" y2="180" stroke="#f0c75e" stroke-width="1.3"/>
+   <text x="55" y="125" font-size="12" fill="#f0c75e" font-style="italic">t₁</text>
+   <line x1="80" y1="180" x2="80" y2="380" stroke="#5dade2" stroke-width="1.3"/>
+   <line x1="75" y1="380" x2="85" y2="380" stroke="#5dade2" stroke-width="1.3"/>
+   <text x="55" y="285" font-size="12" fill="#5dade2" font-style="italic">t₂</text>
+   <line x1="175" y1="405" x2="225" y2="405" stroke="#daa520" stroke-width="1.2" stroke-dasharray="3,3" />
+<line x1="175" y1="400" x2="175" y2="410" stroke="#daa520" stroke-width="1.2" />
+<line x1="225" y1="400" x2="225" y2="410" stroke="#daa520" stroke-width="1.2" />
+   <text x="175" y="425" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">r</text>
+  </svg>
+  <figcaption class="visual-caption">Bangun roket. Bagian atas adalah kerucut, bagian bawah adalah tabung. Keduanya memiliki jari-jari alas yang sama.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah model roket terdiri dari tabung dengan jari-jari $5$ cm dan tinggi $20$ cm, serta kerucut dengan jari-jari alas $5$ cm dan tinggi $12$ cm. Hitung volume totalnya (gunakan $\pi \approx 3{,}14$).</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>$V_{\text{tabung}} = \pi r^2 t = 3{,}14 \times 25 \times 20 = 1570$ cm$^3$.</li>
+  <li>$V_{\text{kerucut}} = \tfrac{1}{3} \pi r^2 t = \tfrac{1}{3} \times 3{,}14 \times 25 \times 12 = 314$ cm$^3$.</li>
+  <li>$V_{\text{total}} = 1570 + 314 = 1884$ cm$^3$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Bangun Majemuk dengan Pengurangan (Bangun Berlubang)</h3>
+ <p class="lesson-text">Tidak semua bangun majemuk dibentuk dengan menambahkan bagian. Beberapa di antaranya adalah <strong>bangun besar yang dilubangi</strong>—baik lubang tembus maupun rongga di dalamnya. Untuk kasus seperti ini, kita menggunakan prinsip pengurangan.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Dua jenis "lubang":</strong></p>
+  <ul>
+   <li><strong>Lubang tembus</strong>: lubang yang menembus dari satu sisi ke sisi seberang—misalnya tabung yang dilubangi. Volume yang hilang = volume tabung yang menembus.</li>
+   <li><strong>Rongga tertutup</strong>: rongga di dalam bangun, seperti bola yang tertanam di dalam kubus. Volume yang hilang = volume bola.</li>
+  </ul>
+  <p class="lesson-text">Prinsip perhitungannya sama: kurangi volume bagian yang hilang dari volume bangun besar.</p>
+ </div>
+
+ <p class="lesson-subheading">A. Contoh 1: Kubus yang Dilubangi Tabung</p>
+ <p class="lesson-text">Bayangkan sebuah kubus yang ditembus oleh tabung yang berjalan dari satu sisi ke sisi seberangnya. Volume yang tersisa adalah volume kubus dikurangi volume tabung (bagian yang hilang).</p>
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 440 360" style="max-width:100%; height:auto; width:440px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Kubus -->
+  <polygon points="100,240 280,240 280,80 100,80" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <polygon points="100,80 280,80 320,50 140,50" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <polygon points="280,240 320,210 320,50 280,80" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Rusuk tersembunyi -->
+  <line x1="140" y1="210" x2="140" y2="50" stroke="#e8e8e8" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6" />
+  <line x1="140" y1="210" x2="100" y2="240" stroke="#e8e8e8" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6" />
+  <line x1="140" y1="210" x2="320" y2="210" stroke="#e8e8e8" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6" />
+  
+  <!-- Lubang tabung depan (elips besar) -->
+  <ellipse cx="190" cy="160" rx="45" ry="45" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="2" />
+  <!-- Lubang tabung belakang (elips tersembunyi) -->
+  <ellipse cx="230" cy="130" rx="45" ry="45" fill="none" stroke="#daa520" stroke-width="1.3" stroke-dasharray="3,3" opacity="0.6" />
+  
+  <!-- Sumbu lubang: garis dari pusat lubang depan ke pusat lubang belakang -->
+  <line x1="190" y1="160" x2="230" y2="130" stroke="#f0c75e" stroke-width="2" stroke-dasharray="5,3" />
+  <!-- Panah arah tembus -->
+  <line x1="260" y1="205" x2="290" y2="182" stroke="#f0c75e" stroke-width="2" />
+  <polygon points="295,178 283,180 288,188" fill="#f0c75e" />
+  <text x="310" y="200" font-size="12" fill="#f0c75e" font-style="italic">arah tembus</text>
+  
+  <!-- Label lubang -->
+  <text x="190" y="163" font-size="11" fill="#daa520" font-style="italic" text-anchor="middle">d=6</text>
+  <text x="230" y="133" font-size="10" fill="#daa520" font-style="italic" text-anchor="middle">d=6</text>
+  
+  <text x="220" y="300" font-size="12" fill="#b8b8b8" font-style="italic" text-anchor="middle">Kubus berlubang tabung (menembus dari depan ke belakang)</text>
+ </svg>
+ <figcaption class="visual-caption">Kubus yang ditembus lubang berbentuk tabung. Lubang masuk dari sisi depan (lingkaran emas besar) dan keluar di sisi belakang (lingkaran putus-putus). Garis putus-putus kuning menunjukkan sumbu tembus lubang. Volume yang tersisa dihitung dengan mengurangi volume tabung dari volume kubus.</figcaption>
+</figure>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah kubus dengan rusuk $10$ cm ditembus lubang berbentuk tabung dengan jari-jari $3$ cm yang berjalan dari sisi depan ke sisi belakang. Hitung volume kubus yang tersisa (gunakan $\pi \approx 3{,}14$).</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>Volume kubus $= 10^3 = 1000$ cm$^3$.</li>
+  <li>Volume lubang tabung $= \pi r^2 \times \text{panjang} = 3{,}14 \times 9 \times 10 = 282{,}6$ cm$^3$.</li>
+  <li>Volume tersisa $= 1000 - 282{,}6 = 717{,}4$ cm$^3$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Contoh 2: Kubus dengan Rongga Bola di Dalam</p>
+ <p class="lesson-text">Kasus lain yang sering muncul adalah bola yang <strong>tertanam seluruhnya</strong> di dalam kubus. Volume ruang kosong di dalam kubus dihitung dengan mengurangi volume bola dari volume kubus.</p>
+
+ <p class="lesson-text"><strong>Soal:</strong> Sebuah kubus dengan rusuk $12$ cm memuat bola dengan diameter $12$ cm yang menyinggung keenam sisi kubus dari dalam. Hitung volume ruang kosong di dalam kubus (gunakan $\pi \approx 3{,}14$).</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <ul>
+  <li>Diameter bola $= 12$ cm, sehingga $r = 6$ cm.</li>
+  <li>Volume kubus $= 12^3 = 1728$ cm$^3$.</li>
+  <li>Volume bola $= \tfrac{4}{3} \pi r^3 = \tfrac{4}{3} \times 3{,}14 \times 216 = 904{,}32$ cm$^3$.</li>
+  <li>Volume ruang kosong $= 1728 - 904{,}32 = 823{,}68$ cm$^3$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Kapan Menggunakan Penjumlahan vs Pengurangan?</p>
+ <p class="lesson-text">Secara umum:</p>
+ <ul>
+  <li>Gunakan <strong>penjumlahan</strong> jika bangun majemuk adalah gabungan dari beberapa bangun yang menempel, tanpa ada bagian yang hilang. Contoh: kapsul, menara, roket, rumah, L-shape.</li>
+  <li>Gunakan <strong>pengurangan</strong> jika bangun majemuk adalah bangun besar dengan bagian tertentu yang dihilangkan. Contoh: kubus berlubang, daerah di luar lingkaran tetapi di dalam persegi, bola di dalam kubus.</li>
+  <li>Gunakan <strong>kombinasi keduanya</strong> jika bangun majemuk memiliki bagian yang ditambahkan sekaligus bagian yang dihilangkan. Contoh: tabung yang ditutup dua setengah bola tetapi memiliki lubang silinder di tengahnya.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Ringkasan Jenis Bangun Majemuk</h3>
+ <p class="lesson-text">Berikut ringkasan berbagai jenis bangun majemuk yang sudah kita bahas beserta rumus dan pendekatannya.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Bangun Majemuk</th>
+     <th>Komponen</th>
+     <th>Pendekatan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Rumah</td><td>Persegi panjang + segitiga</td><td>Jumlahkan luas</td></tr>
+    <tr><td>L-shape</td><td>Dua persegi panjang (atau persegi besar minus potongan)</td><td>Jumlahkan atau kurangkan luas</td></tr>
+    <tr><td>Lingkaran dalam persegi</td><td>Persegi dikurangi lingkaran</td><td>Kurangkan luas</td></tr>
+    <tr><td>Persegi panjang + setengah lingkaran</td><td>Persegi panjang + setengah lingkaran</td><td>Jumlahkan luas</td></tr>
+    <tr><td>Kapsul</td><td>Tabung + bola (dari dua setengah bola)</td><td>Jumlahkan volume</td></tr>
+    <tr><td>Menara</td><td>Balok + limas</td><td>Jumlahkan volume</td></tr>
+    <tr><td>Roket</td><td>Tabung + kerucut</td><td>Jumlahkan volume</td></tr>
+    <tr><td>Kubus berlubang tabung</td><td>Kubus dikurangi tabung</td><td>Kurangkan volume</td></tr>
+    <tr><td>Kubus dengan bola di dalam</td><td>Kubus dikurangi bola</td><td>Kurangkan volume</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Penerapan Praktis</h3>
+ <p class="lesson-text">Keterampilan dekomposisi bangun majemuk bukan hanya soal matematika di atas kertas—ia menjadi fondasi dari banyak bidang terapan dalam kehidupan nyata.</p>
+
+ <p class="lesson-subheading">A. Arsitektur dan Konstruksi</p>
+ <p class="lesson-text">Setiap bangunan dirancang sebagai bangun majemuk. Atap rumah bisa berupa kombinasi prisma dan limas; kubah masjid bisa berupa setengah bola; menara bisa berupa gabungan balok dan limas. Arsitek menggunakan dekomposisi untuk menghitung volume beton yang dibutuhkan, luas atap yang perlu ditutup, dan jumlah cat yang diperlukan—dengan memecah bangunan menjadi bagian-bagian sederhana.</p>
+
+ <p class="lesson-subheading">B. Desain Kemasan dan Manufaktur</p>
+ <p class="lesson-text">Botol minuman, kotak makanan, dan kaleng sarden sering berbentuk gabungan dari beberapa bangun ruang. Desainer kemasan menggunakan dekomposisi untuk menghitung volume isi (agar sesuai dengan kapasitas yang diinginkan) dan luas permukaan (untuk menentukan berapa bahan kemasan yang dibutuhkan). Semakin efisien dekomposisinya, semakin hemat bahan dan biaya produksi.</p>
+
+ <p class="lesson-subheading">C. Analisis Struktur dan Sipil</p>
+ <p class="lesson-text">Insinyur sipil menghitung volume fondasi, kolom, dan balok pada bangunan atau jembatan dengan mendekomposisi struktur menjadi bangun-bangun sederhana. Misalnya, sebuah fondasi bisa terdiri dari beberapa balok beton yang disusun bertingkat, dan volume totalnya dihitung dengan menjumlahkan volume masing-masing balok.</p>
+
+ <p class="lesson-subheading">D. Desain Produk dan Industri</p>
+ <p class="lesson-text">Setiap produk manufaktur—dari kursi hingga mobil—memiliki volume dan luas permukaan yang perlu dihitung. Desainer produk menggunakan dekomposisi untuk menghitung berapa banyak material yang dibutuhkan, memperkirakan berat produk, dan memastikan produk memenuhi spesifikasi teknis.</p>
+
+ <p class="lesson-subheading">E. Astronomi dan Fisika</p>
+ <p class="lesson-text">Bentuk-bentuk di alam sering kali merupakan gabungan dari beberapa bangun. Sebuah planet bisa dimodelkan sebagai bola dengan beberapa tonjolan; sebuah asteroid bisa berupa gabungan beberapa ellipsoid. Astronom menggunakan dekomposisi untuk memperkirakan volume dan massa benda langit. Fisikawan juga menggunakan dekomposisi untuk menghitung momen inersia benda yang bentuknya tidak beraturan.</p>
+
+ <p class="lesson-subheading">F. Kedokteran dan Biologi</p>
+ <p class="lesson-text">Volume organ tubuh—seperti jantung, ginjal, atau paru-paru—dapat diperkirakan dengan memodelkan organ sebagai bangun majemuk. Misalnya, jantung dapat didekati sebagai gabungan beberapa kerucut dan bola; ginjal dapat dimodelkan sebagai ellipsoid dengan beberapa lekukan. Estimasi volume ini penting untuk diagnosis dan perencanaan pengobatan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menghitung satu bagian dua kali (double counting).</strong> Ini bisa terjadi dalam dua bentuk: (a) bagian yang sama dihitung lebih dari sekali karena garis bantu yang tumpang tindih, atau (b) bagian yang seharusnya dihilangkan (misalnya lubang) malah ikut dijumlahkan. Selalu periksa: total luas/volume harus konsisten dengan apakah bagian tersebut ditambahkan atau dikurangkan.</li>
+  <li><strong>Mengabaikan konsistensi satuan.</strong> Jika sebagian ukuran dalam cm dan sebagian dalam m, konversi dulu sebelum menghitung. Ingat: $1$ m $= 100$ cm, $1$ m$^2 = 10\,000$ cm$^2$, $1$ m$^3 = 1\,000\,000$ cm$^3$.</li>
+  <li><strong>Menganggap bangun majemuk selalu dihitung dengan penjumlahan.</strong> Ada kalanya pengurangan lebih efisien—misalnya pada bangun L, lebih mudah menghitung persegi besar dikurangi potongan sudut, tergantung ukuran yang diberikan.</li>
+  <li><strong>Menggunakan tinggi yang salah untuk limas atau kerucut.</strong> Tinggi limas/kerucut adalah jarak tegak lurus dari puncak ke <em>pusat</em> alas, bukan ke tepi alas. Garis pelukis (untuk kerucut) berbeda dari tinggi.</li>
+  <li><strong>Menganggap "dua setengah bola" selalu sama dengan "satu bola".</strong> Ini benar jika kedua setengah bola memiliki jari-jari yang sama. Jika jari-jarinya berbeda—misalnya kapsul dengan ujung yang tidak simetris—harus dihitung terpisah.</li>
+  <li><strong>Lupa faktor $\tfrac{1}{3}$ pada limas dan kerucut.</strong> Ini kesalahan klasik. Volume limas dan kerucut selalu sepertiga dari volume prisma atau tabung dengan alas dan tinggi yang sama.</li>
+  <li><strong>Tidak memeriksa kewajaran hasil.</strong> Jika volume bangun majemuk lebih kecil dari volume salah satu komponennya (pada kasus penjumlahan), ada yang salah. Bandingkan hasil akhir dengan estimasi kasar untuk memastikan kewajaran.</li>
+  <li><strong>Mengabaikan bagian yang tersembunyi.</strong> Pada gambar bangun ruang 3D, beberapa rusuk atau sisi mungkin tersembunyi di belakang. Pastikan Anda mengidentifikasi seluruh komponen, bukan hanya yang tampak.</li>
+  <li><strong>Salah mengidentifikasi diameter dan jari-jari pada bangun gabungan.</strong> Ketika sebuah setengah lingkaran berada di atas persegi panjang, diameternya sama dengan lebar persegi panjang, sehingga jari-jarinya adalah setengah dari lebar tersebut. Kesalahan pada langkah ini akan merambat ke seluruh perhitungan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Bangun majemuk</strong> adalah bangun yang tersusun dari gabungan atau pengurangan beberapa bangun sederhana.</li>
+  <li><strong>Dekomposisi</strong> adalah proses memecah bangun majemuk menjadi bangun-bangun sederhana melalui garis bantu.</li>
+  <li>Ada dua operasi dasar: <strong>penjumlahan</strong> (untuk bangun gabungan) dan <strong>pengurangan</strong> (untuk bangun berlubang).</li>
+  <li>Strategi umum: identifikasi bagian, tentukan ukuran, hitung masing-masing, gabungkan, periksa kewajaran.</li>
+  <li>Bangun datar majemuk yang umum: "rumah" (persegi panjang + segitiga), L-shape (dua persegi panjang atau persegi besar minus potongan), lingkaran dalam persegi (pengurangan), persegi panjang + setengah lingkaran.</li>
+  <li>Bangun ruang majemuk yang umum: kapsul (tabung + dua setengah bola), menara (balok + limas), roket (tabung + kerucut), kubus berlubang tabung, kubus dengan bola di dalam.</li>
+  <li>Dekomposisi dapat dilakukan dengan berbagai cara; hasil akhirnya harus sama selama tidak ada bagian yang hilang atau terhitung dua kali.</li>
+  <li>Selalu periksa satuan, kewajaran hasil, dan konsistensi ukuran untuk menghindari kesalahan.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Bangun majemuk adalah <strong>jembatan antara geometri murni dan dunia nyata</strong>. Di alam, hampir tidak ada benda yang persis berbentuk kubus atau bola sempurna&mdash;sebagian besar benda adalah kombinasi dari beberapa bentuk. Pensil adalah silinder dengan ujung kerucut. Botol adalah tabung dengan leher silinder dan ujung melengkung. Gedung adalah susunan balok dengan atap limas atau prisma. Keterampilan dekomposisi memungkinkan kita menghitung luas dan volume semua benda itu dengan memecahnya menjadi bangun-bangun sederhana.</p>
+ <p class="lesson-text">Lebih dari sekadar trik matematika, dekomposisi adalah <strong>cara berpikir yang berharga</strong>: memecah masalah besar menjadi bagian-bagian kecil yang dapat diselesaikan satu per satu. Keterampilan ini berlaku di banyak bidang&mdash;desain teknik, perencanaan proyek, arsitektur, analisis data, hingga machine learning (di mana dekomposisi matriks memainkan peran serupa). Ketika Anda menghadapi masalah kompleks, bertanya "apa saja bagian-bagiannya?" adalah langkah pertama yang selalu berguna.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik berikutnya: <strong>Geometri Analitik</strong> (koordinat Kartesius), <strong>Irisan Kerucut</strong> (elips, parabola, hiperbola), hingga <strong>Kalkulus Multivariabel</strong> (integral lipat untuk volume bangun yang tidak dapat didekomposisi). Latihlah diri Anda dengan banyak soal&mdash;terutama yang menggabungkan beberapa bangun sekaligus. Kebiasaan memeriksa konsistensi satuan, memastikan tidak ada bagian yang dihitung dua kali, dan mengingat faktor $\tfrac{1}{3}$ pada limas serta kerucut akan menyelamatkan Anda dari kesalahan yang tidak perlu.</p>
+</div>
+
+</div>
+</body>
+</html>

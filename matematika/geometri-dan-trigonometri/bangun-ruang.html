@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Bangun Ruang (Kubus, Balok, Prisma, Limas, Tabung, Bola, Kerucut)</title>
+ <meta name="description" content="Materi lengkap bangun ruang: unsur-unsur (sisi, rusuk, titik sudut, diagonal), kubus, balok, prisma, limas, tabung, bola, dan kerucut beserta sifat, jaring-jaring, rumus luas permukaan dan volume.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Bangun Ruang (Kubus, Balok, Prisma, Limas, Tabung, Bola, Kerucut)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Segitiga</strong> — terutama Teorema Pythagoras, karena rumus diagonal sisi dan diagonal ruang pada kubus serta balok diturunkan langsung dari teorema ini.</li>
+   <li><strong>Segiempat &amp; Poligon</strong> — terutama sifat persegi dan persegi panjang, karena sisi-sisi kubus dan balok adalah persegi dan persegi panjang, dan prisma segi-$n$ memerlukan pemahaman tentang poligon sebagai alas.</li>
+   <li><strong>Lingkaran</strong> — terutama keliling dan luas lingkaran ($2\pi r$ dan $\pi r^2$), karena bola dan kerucut bertumpu sepenuhnya pada rumus-rumus lingkaran.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Perhatikan benda-benda di sekitar Anda: kotak sepatu, kaleng minuman, bola basket, dan corong dapur. Keempatnya <strong>menempati ruang tiga dimensi</strong>&mdash;tetapi bentuk dan sifatnya berbeda. Kotak sepatu bersudut tajam; bola basket mulus tanpa sudut; kaleng memiliki sisi lurus dan melengkung sekaligus. Perbedaan inilah yang mendorong lahirnya konsep <strong>bangun ruang</strong>.</p>
+ <p class="lesson-text">Sebelumnya kita telah mempelajari <strong>bangun datar</strong>&mdash;objek dua dimensi yang hanya memiliki panjang dan lebar. Kini kita melangkah ke <strong>bangun ruang</strong>&mdash;objek tiga dimensi dengan panjang, lebar, <em>dan</em> tinggi. Inilah konsep yang paling dekat dengan dunia nyata, karena hampir semua benda fisik di sekitar kita adalah bangun ruang. Bangun ruang dibagi menjadi dua keluarga besar: <strong>sisi datar</strong> (kubus, balok, prisma, limas) dan <strong>sisi lengkung</strong> (tabung, bola, kerucut)&mdash;perbedaan ini menentukan bagaimana luas permukaan dan volume dihitung.</p>
+ <p class="lesson-text">Yang membuat materi ini istimewa adalah <strong>keterkaitan antar rumusnya</strong>. Rumus volume limas dan kerucut sama-sama berfaktor $\tfrac{1}{3}$ karena keduanya adalah "versi meruncing" dari prisma dan tabung. Rumus diagonal kubus dan balok adalah aplikasi langsung Teorema Pythagoras. Rumus luas permukaan bola adalah empat kali luas lingkaran besar. Materi ini akan membahas setiap bangun beserta sifat, jaring-jaring, dan rumusnya&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap rumus berlaku, bukan sekadar menghafalnya.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Unsur-Unsur Bangun Ruang</h3>
+ <p class="lesson-text">Sebelum membahas jenis-jenisnya, kita perlu memahami istilah-istilah yang akan terus dipakai. Perhatikan gambar kubus berikut yang memperlihatkan semua unsur pentingnya.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 480 400" style="max-width:100%; height:auto; width:480px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hidden edges (rusuk tersembunyi) -->
+  <line x1="90" y1="320" x2="160" y2="240" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4" />
+  <line x1="160" y1="240" x2="320" y2="240" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4" />
+  <line x1="160" y1="240" x2="160" y2="80" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4" />
+  
+  <!-- Diagonal ruang BH (dari B ke H) -->
+  <line x1="250" y1="320" x2="160" y2="80" stroke="#5dade2" stroke-width="1.8" stroke-dasharray="6,4" />
+  
+  <!-- Diagonal sisi BG (pada sisi BCGF) -->
+  <line x1="250" y1="320" x2="320" y2="80" stroke="#daa520" stroke-width="1.8" stroke-dasharray="6,4" />
+  
+  <!-- Front face ABCD -->
+  <polygon points="90,320 250,320 250,160 90,160" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Top face DCGH -->
+  <polygon points="90,160 250,160 320,80 160,80" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  <!-- Right face BCGF -->
+  <polygon points="250,320 320,240 320,80 250,160" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Titik sudut -->
+  <circle cx="90" cy="320" r="4" fill="#daa520" />
+  <circle cx="250" cy="320" r="4" fill="#daa520" />
+  <circle cx="250" cy="160" r="4" fill="#daa520" />
+  <circle cx="90" cy="160" r="4" fill="#daa520" />
+  <circle cx="160" cy="240" r="4" fill="#b8b8b8" />
+  <circle cx="320" cy="240" r="4" fill="#daa520" />
+  <circle cx="320" cy="80" r="4" fill="#daa520" />
+  <circle cx="160" cy="80" r="4" fill="#daa520" />
+  
+  <!-- Label titik sudut -->
+  <text x="76" y="340" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="256" y="340" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="258" y="156" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="76" y="156" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  <text x="146" y="260" font-size="14" fill="#b8b8b8" font-style="italic">E</text>
+  <text x="326" y="256" font-size="14" fill="#e8e8e8" font-style="italic">F</text>
+  <text x="326" y="76" font-size="14" fill="#e8e8e8" font-style="italic">G</text>
+  <text x="146" y="76" font-size="14" fill="#e8e8e8" font-style="italic">H</text>
+  
+  <!-- Legend -->
+  <line x1="30" y1="380" x2="60" y2="380" stroke="#daa520" stroke-width="2" stroke-dasharray="6,4" />
+  <text x="68" y="384" font-size="12" fill="#daa520" font-style="italic">diagonal sisi (BG)</text>
+  <line x1="230" y1="380" x2="260" y2="380" stroke="#5dade2" stroke-width="2" stroke-dasharray="6,4" />
+  <text x="268" y="384" font-size="12" fill="#5dade2" font-style="italic">diagonal ruang (BH)</text>
+  <line x1="410" y1="380" x2="440" y2="380" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4" />
+  <text x="448" y="384" font-size="12" fill="#b8b8b8" font-style="italic">tersembunyi</text>
+ </svg>
+ <figcaption class="visual-caption">Kubus $ABCD.EFGH$ dengan unsur-unsurnya. <strong>Sisi</strong> adalah bidang datar pembatas (contoh: $ABCD$). <strong>Rusuk</strong> adalah garis pertemuan dua sisi (contoh: $AB$). <strong>Titik sudut</strong> adalah titik pertemuan tiga rusuk (contoh: $A$). <strong>Diagonal sisi</strong> menghubungkan dua titik sudut pada satu sisi (contoh: $BG$ pada sisi $BCGF$). <strong>Diagonal ruang</strong> menghubungkan dua titik sudut berseberangan di dalam ruang (contoh: $BH$). Rusuk $AE$, $EF$, dan $EH$ digambar putus-putus karena tersembunyi di belakang kubus.</figcaption>
+</figure>
+
+ <ul>
+  <li><strong>Sisi (bidang)</strong>: bidang datar atau lengkung yang membatasi bangun ruang. Kubus memiliki $6$ sisi datar; bola hanya memiliki $1$ sisi lengkung.</li>
+  <li><strong>Rusuk</strong>: garis pertemuan antara dua sisi. Kubus memiliki $12$ rusuk yang sama panjang.</li>
+  <li><strong>Titik sudut</strong>: titik pertemuan tiga rusuk atau lebih. Kubus memiliki $8$ titik sudut.</li>
+  <li><strong>Diagonal sisi</strong>: segmen yang menghubungkan dua titik sudut pada satu sisi, tetapi bukan rusuk. Contoh: $BG$ pada sisi $BCGF$.</li>
+  <li><strong>Diagonal ruang</strong>: segmen yang menghubungkan dua titik sudut yang tidak berada pada satu sisi. Contoh: $BH$.</li>
+  <li><strong>Bidang diagonal</strong>: bidang yang dibentuk oleh dua rusuk berhadapan dan dua diagonal sisi sejajar. Contoh: bidang $ACGE$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Kubus</h3>
+ <p class="lesson-subheading">A. Pengertian dan Sifat</p>
+ <p class="lesson-text"><strong>Kubus</strong> adalah bangun ruang yang dibatasi oleh <strong>enam sisi berbentuk persegi</strong> yang kongruen. Kubus adalah kasus istimewa dari balok (semua rusuknya sama panjang) dan juga istimewa dari prisma segiempat beraturan.</p>
+ <p class="lesson-text">Jika panjang rusuk kubus adalah $s$, maka sifat-sifatnya:</p>
+ <ul>
+  <li><strong>Banyak sisi</strong>: $6$—semuanya persegi dengan sisi $s$.</li>
+  <li><strong>Banyak rusuk</strong>: $12$—semuanya panjangnya $s$.</li>
+  <li><strong>Banyak titik sudut</strong>: $8$.</li>
+  <li><strong>Banyak diagonal sisi</strong>: $12$, masing-masing panjangnya $s\sqrt{2}$.</li>
+  <li><strong>Banyak diagonal ruang</strong>: $4$, masing-masing panjangnya $s\sqrt{3}$.</li>
+  <li><strong>Banyak bidang diagonal</strong>: $6$, semuanya persegi panjang berukuran $s \times s\sqrt{2}$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Mengapa Diagonal Sisi $s\sqrt{2}$ dan Diagonal Ruang $s\sqrt{3}$?</p>
+ <p class="lesson-text">Kedua nilai ini diturunkan dari <strong>Teorema Pythagoras</strong>.</p>
+ <p class="lesson-text"><strong>Diagonal sisi</strong>: perhatikan persegi $ABCD$ dengan sisi $s$. Diagonal $AC$ membentuk segitiga siku-siku $ABC$ dengan kaki $AB = s$ dan $BC = s$. Maka $AC = \sqrt{s^2 + s^2} = \sqrt{2s^2} = s\sqrt{2}$.</p>
+ <p class="lesson-text"><strong>Diagonal ruang</strong>: perhatikan segitiga siku-siku $ACG$—dengan $AC = s\sqrt{2}$ sebagai alas dan $CG = s$ sebagai kaki tegak. Maka $AG = \sqrt{(s\sqrt{2})^2 + s^2} = \sqrt{3s^2} = s\sqrt{3}$.</p>
+
+ <p class="lesson-subheading">C. Luas Permukaan Kubus</p>
+ <p class="lesson-text">Kubus memiliki $6$ sisi berbentuk persegi dengan luas masing-masing $s^2$. Maka:</p>
+ <p class="lesson-text">$$LP = 6s^2$$</p>
+
+ <p class="lesson-subheading">D. Volume Kubus</p>
+ <p class="lesson-text">Volume kubus adalah hasil kali panjang, lebar, dan tinggi. Karena ketiganya sama dengan $s$:</p>
+ <p class="lesson-text">$$V = s \cdot s \cdot s = s^3$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> jika $s = 3$ cm, kubus dapat diisi dengan $3 \times 3 \times 3 = 27$ kubus kecil berukuran $1$ cm$^3$. Secara umum, volume mengukur berapa banyak kubus satuan yang dapat mengisi bangun tersebut.</p>
+ </div>
+
+ <p class="lesson-subheading">E. Jaring-Jaring Kubus</p>
+ <p class="lesson-text">Jika kubus dibuka dan dibentangkan pada bidang datar, kita mendapat <strong>jaring-jaring</strong> yang terdiri dari $6$ persegi. Kubus memiliki <strong>$11$ bentuk jaring-jaring berbeda</strong>, meskipun semuanya tersusun dari $6$ persegi yang sama.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 400 280" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <rect x="160" y="20" width="60" height="60" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="2"/>
+   <rect x="100" y="80" width="60" height="60" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="2"/>
+   <rect x="160" y="80" width="60" height="60" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="2"/>
+   <rect x="220" y="80" width="60" height="60" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="2"/>
+   <rect x="280" y="80" width="60" height="60" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="2"/>
+   <rect x="160" y="140" width="60" height="60" fill="#daa520" fill-opacity="0.1" stroke="#daa520" stroke-width="2"/>
+   <text x="130" y="250" font-size="12" fill="#b8b8b8" font-style="italic">Salah satu dari 11 jaring-jaring kubus</text>
+  </svg>
+  <figcaption class="visual-caption">Salah satu contoh dari $11$ jaring-jaring kubus yang berbeda. Semuanya tersusun dari $6$ persegi.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">F. Contoh Soal</p>
+ <p class="lesson-text">Sebuah kubus memiliki panjang rusuk $5$ cm. Hitung luas permukaan, volume, panjang diagonal sisi, dan panjang diagonal ruangnya.</p>
+ <ul>
+  <li>Luas permukaan: $LP = 6 \cdot 5^2 = 150$ cm$^2$.</li>
+  <li>Volume: $V = 5^3 = 125$ cm$^3$.</li>
+  <li>Diagonal sisi: $5\sqrt{2} \approx 7{,}07$ cm.</li>
+  <li>Diagonal ruang: $5\sqrt{3} \approx 8{,}66$ cm.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Balok</h3>
+ <p class="lesson-subheading">A. Pengertian dan Sifat</p>
+ <p class="lesson-text"><strong>Balok</strong> adalah bangun ruang yang dibatasi oleh <strong>enam sisi berbentuk persegi panjang</strong>, dengan tiga pasang sisi berhadapan yang kongruen. Berbeda dengan kubus, panjang, lebar, dan tinggi balok <strong>tidak harus sama</strong>.</p>
+ <p class="lesson-text">Jika balok memiliki panjang $p$, lebar $l$, dan tinggi $t$, maka sifat-sifatnya:</p>
+ <ul>
+  <li><strong>Banyak sisi</strong>: $6$—tiga pasang persegi panjang kongruen.</li>
+  <li><strong>Banyak rusuk</strong>: $12$—terdiri dari $4$ rusuk panjang $p$, $4$ rusuk lebar $l$, dan $4$ rusuk tinggi $t$.</li>
+  <li><strong>Banyak titik sudut</strong>: $8$.</li>
+  <li><strong>Banyak diagonal sisi</strong>: $12$—tiga kelompok panjang berbeda.</li>
+  <li><strong>Banyak diagonal ruang</strong>: $4$, masing-masing panjangnya $\sqrt{p^2 + l^2 + t^2}$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Hubungan dengan kubus:</strong> kubus adalah balok istimewa yang ketiga dimensinya sama ($p = l = t = s$). Jadi <em>setiap kubus adalah balok, tetapi tidak setiap balok adalah kubus</em>.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 500 380" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Hidden edges -->
+   <line x1="80" y1="300" x2="180" y2="240" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+   <line x1="180" y1="240" x2="380" y2="240" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+   <line x1="180" y1="240" x2="180" y2="120" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+   <!-- Front face ABCD -->
+   <polygon points="80,300 280,300 280,180 80,180" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <!-- Top face DCGH -->
+   <polygon points="80,180 280,180 380,120 180,120" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <!-- Right face BCGF -->
+   <polygon points="280,300 380,240 380,120 280,180" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Titik sudut -->
+   <circle cx="80" cy="300" r="4" fill="#daa520"/>
+   <circle cx="280" cy="300" r="4" fill="#daa520"/>
+   <circle cx="280" cy="180" r="4" fill="#daa520"/>
+   <circle cx="80" cy="180" r="4" fill="#daa520"/>
+   <circle cx="180" cy="240" r="4" fill="#b8b8b8"/>
+   <circle cx="380" cy="240" r="4" fill="#daa520"/>
+   <circle cx="380" cy="120" r="4" fill="#daa520"/>
+   <circle cx="180" cy="120" r="4" fill="#daa520"/>
+
+   <!-- Label -->
+   <text x="66" y="320" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="286" y="320" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="288" y="176" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="66" y="176" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+   <text x="166" y="260" font-size="14" fill="#b8b8b8" font-style="italic">E</text>
+   <text x="386" y="256" font-size="14" fill="#e8e8e8" font-style="italic">F</text>
+   <text x="386" y="116" font-size="14" fill="#e8e8e8" font-style="italic">G</text>
+   <text x="166" y="116" font-size="14" fill="#e8e8e8" font-style="italic">H</text>
+
+   <!-- Label dimensi -->
+   <text x="170" y="322" font-size="15" fill="#5dade2" font-style="italic">p</text>
+   <text x="296" y="260" font-size="15" fill="#5dade2" font-style="italic">t</text>
+   <text x="120" y="230" font-size="15" fill="#5dade2" font-style="italic">l</text>
+  </svg>
+  <figcaption class="visual-caption">Balok $ABCD.EFGH$ dengan panjang $p$, lebar $l$, dan tinggi $t$. Ketiga dimensi ini tidak harus sama—jika ketiganya sama, bangun tersebut menjadi kubus. Rusuk $AE$, $EF$, dan $EH$ digambar putus-putus karena tersembunyi di belakang.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Luas Permukaan Balok</p>
+ <p class="lesson-text">Balok memiliki $6$ sisi yang terdiri dari tiga pasang persegi panjang kongruen: sepasang sisi depan-belakang dengan luas $p \cdot t$, sepasang sisi atas-bawah dengan luas $p \cdot l$, dan sepasang sisi kiri-kanan dengan luas $l \cdot t$. Maka:</p>
+ <p class="lesson-text">$$LP = 2(pt + pl + lt)$$</p>
+
+ <p class="lesson-subheading">C. Volume Balok</p>
+ <p class="lesson-text">Volume balok adalah hasil kali ketiga dimensinya: $V = p \cdot l \cdot t$.</p>
+ <div class="lesson-note">
+ <p class="lesson-text"><strong>Intuisi:</strong> sama seperti kubus, balok dapat diisi dengan kubus-kubus satuan. Jika $p = 4$ cm, $l = 3$ cm, dan $t = 2$ cm, dibutuhkan $4 \times 3 \times 2 = 24$ kubus satuan berukuran $1$ cm$^3$. Secara umum, volume balok adalah banyaknya kubus satuan yang dapat mengisi ruang tersebut.</p>
+</div>
+ <p class="lesson-subheading">D. Diagonal Ruang Balok</p>
+ <p class="lesson-text">Dengan penalaran serupa seperti pada kubus—menerapkan Teorema Pythagoras dua kali—diperoleh:</p>
+ <p class="lesson-text">$$d = \sqrt{p^2 + l^2 + t^2}$$</p>
+
+ <p class="lesson-subheading">E. Contoh Soal</p>
+ <p class="lesson-text">Sebuah balok memiliki panjang $8$ cm, lebar $6$ cm, dan tinggi $4$ cm. Hitung luas permukaan, volume, dan diagonal ruangnya.</p>
+ <ul>
+  <li>$LP = 2(8 \cdot 4 + 8 \cdot 6 + 6 \cdot 4) = 2(32 + 48 + 24) = 208$ cm$^2$.</li>
+  <li>$V = 8 \cdot 6 \cdot 4 = 192$ cm$^3$.</li>
+  <li>$d = \sqrt{64 + 36 + 16} = \sqrt{116} \approx 10{,}77$ cm.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Prisma</h3>
+ <p class="lesson-subheading">A. Pengertian Prisma</p>
+ <p class="lesson-text"><strong>Prisma</strong> adalah bangun ruang yang dibatasi oleh <strong>dua sisi sejajar dan kongruen</strong> (disebut <em>alas</em> dan <em>atas</em>) serta beberapa <strong>sisi tegak berbentuk persegi panjang</strong>. Sisi-sisi tegak ini tegak lurus terhadap alas pada prisma tegak, atau miring pada prisma miring.</p>
+ <p class="lesson-text">Prisma diberi nama berdasarkan bentuk alasnya:</p>
+ <ul>
+  <li><strong>Prisma segitiga</strong>: alasnya segitiga—$5$ sisi, $9$ rusuk, $6$ titik sudut.</li>
+  <li><strong>Prisma segiempat</strong>: alasnya segiempat—$6$ sisi, $12$ rusuk, $8$ titik sudut. Kubus dan balok adalah prisma segiempat istimewa.</li>
+  <li>Secara umum, <strong>prisma segi-$n$</strong> memiliki $(n+2)$ sisi, $3n$ rusuk, dan $2n$ titik sudut.</li>
+ </ul>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 460 360" style="max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Hidden edge CA (dari C ke A) -->
+   <line x1="240" y1="240" x2="100" y2="290" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+   <!-- Front face ABED -->
+   <line x1="100" y1="290" x2="340" y2="290" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="340" y1="290" x2="340" y2="150" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="340" y1="150" x2="100" y2="150" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="100" y1="150" x2="100" y2="290" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Top face DEF -->
+   <line x1="340" y1="150" x2="240" y2="110" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="240" y1="110" x2="100" y2="150" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Right face BCEF -->
+   <line x1="340" y1="290" x2="240" y2="240" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="240" y1="240" x2="240" y2="110" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Titik sudut -->
+   <circle cx="100" cy="290" r="4" fill="#daa520"/>
+   <circle cx="340" cy="290" r="4" fill="#daa520"/>
+   <circle cx="240" cy="240" r="4" fill="#daa520"/>
+   <circle cx="100" cy="150" r="4" fill="#daa520"/>
+   <circle cx="340" cy="150" r="4" fill="#daa520"/>
+   <circle cx="240" cy="110" r="4" fill="#daa520"/>
+
+   <!-- Label -->
+   <text x="86" y="312" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="346" y="312" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="248" y="262" font-size="13" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="86" y="146" font-size="13" fill="#e8e8e8" font-style="italic">D</text>
+   <text x="346" y="146" font-size="13" fill="#e8e8e8" font-style="italic">E</text>
+   <text x="248" y="106" font-size="13" fill="#e8e8e8" font-style="italic">F</text>
+
+   <text x="165" y="340" font-size="12" fill="#b8b8b8" font-style="italic">Prisma segitiga ABC.DEF</text>
+  </svg>
+  <figcaption class="visual-caption">Prisma segitiga $ABC.DEF$. Sisi depan $ABED$, sisi kanan $BCEF$, dan sisi atas $DEF$ terlihat. Rusuk $CA$ digambar putus-putus karena tersembunyi di belakang.</figcaption>
+ </figure>
+ <p class="lesson-text"><em>Catatan:</em> materi ini fokus pada <strong>prisma tegak</strong>—prisma yang sisi tegaknya tegak lurus alas. Rumus luas permukaan dan volume pada bagian berikut berlaku untuk prisma tegak. Untuk prisma miring, rumus volumenya tetap $V = L_{\text{alas}} \cdot t$, tetapi luas sisi tegaknya harus dihitung secara terpisah.</p>
+ <p class="lesson-subheading">B. Luas Permukaan Prisma</p>
+ <p class="lesson-text">Luas permukaan prisma adalah jumlah dari luas dua sisi sejajar (alas dan atas) ditambah luas semua sisi tegak. Sisi-sisi tegak dapat "dibentangkan" menjadi satu persegi panjang besar dengan lebar sama dengan keliling alas ($K_{\text{alas}}$) dan panjang sama dengan tinggi prisma ($t$). Sehingga:</p>
+ <p class="lesson-text">$$LP = 2 \cdot L_{\text{alas}} + K_{\text{alas}} \cdot t$$</p>
+
+ <p class="lesson-subheading">C. Volume Prisma</p>
+ <p class="lesson-text">Volume prisma adalah luas alas dikali tinggi:</p>
+ <p class="lesson-text">$$V = L_{\text{alas}} \cdot t$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> bayangkan kita menumpuk banyak "irisan" tipis berbentuk alas prisma, satu di atas yang lain, hingga mencapai ketinggian $t$. Jumlah "isi" total adalah luas satu irisan dikali banyaknya irisan (tinggi $t$). Konsep ini berlaku untuk semua prisma, apa pun bentuk alasnya.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Contoh Soal</p>
+ <p class="lesson-text">Sebuah prisma segitiga memiliki alas berupa segitiga siku-siku dengan kaki $6$ cm dan $8$ cm, serta tinggi prisma $10$ cm. Hitung luas permukaan dan volumenya.</p>
+ <p class="lesson-text">Sisi miring alas (hipotenusa): $\sqrt{6^2 + 8^2} = \sqrt{100} = 10$ cm.</p>
+ <ul>
+  <li>$L_{\text{alas}} = \tfrac{1}{2} \cdot 6 \cdot 8 = 24$ cm$^2$.</li>
+  <li>$K_{\text{alas}} = 6 + 8 + 10 = 24$ cm.</li>
+  <li>$LP = 2 \cdot 24 + 24 \cdot 10 = 288$ cm$^2$.</li>
+  <li>$V = 24 \cdot 10 = 240$ cm$^3$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Limas</h3>
+ <p class="lesson-subheading">A. Pengertian Limas</p>
+ <p class="lesson-text"><strong>Limas</strong> adalah bangun ruang yang dibatasi oleh <strong>satu sisi alas berbentuk segi-$n$</strong> dan <strong>sisi-sisi tegak berbentuk segitiga</strong> yang bertemu di satu titik puncak. Titik pertemuan sisi-sisi tegak disebut <strong>titik puncak</strong> limas.</p>
+ <p class="lesson-text">Limas diberi nama berdasarkan bentuk alasnya:</p>
+ <ul>
+  <li><strong>Limas segitiga</strong> (tetrahedron): $4$ sisi, $6$ rusuk, $4$ titik sudut.</li>
+  <li><strong>Limas segiempat</strong>: $5$ sisi, $8$ rusuk, $5$ titik sudut.</li>
+  <li>Secara umum, <strong>limas segi-$n$</strong> memiliki $(n+1)$ sisi, $2n$ rusuk, dan $(n+1)$ titik sudut.</li>
+ </ul>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 460 380" style="max-width:100%; height:auto; width:460px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Hidden edges: TA (dari T ke A belakang), alas AD, CD, DT -->
+   <line x1="200" y1="80" x2="60" y2="250" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+   <line x1="290" y1="250" x2="60" y2="250" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+   <line x1="60" y1="250" x2="110" y2="310" stroke="#b8b8b8" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+   <!-- Visible edges: alas AB, BC, dan rusuk tegak TA... -->
+   <!-- A=(110,310), B=(340,310), C=(290,250), D=(60,250) -->
+   <line x1="110" y1="310" x2="340" y2="310" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="340" y1="310" x2="290" y2="250" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="80" x2="110" y2="310" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="80" x2="340" y2="310" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="80" x2="290" y2="250" stroke="#e8e8e8" stroke-width="2"/>
+
+   <!-- Tinggi limas dari T ke O (pusat alas) -->
+   <line x1="200" y1="80" x2="200" y2="280" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="5,4"/>
+   <circle cx="200" cy="280" r="3.5" fill="#5dade2"/>
+   <polyline points="200,265 215,265 215,280" fill="none" stroke="#5dade2" stroke-width="1.4"/>
+   <text x="207" y="278" font-size="12" fill="#5dade2" font-style="italic">O</text>
+   <text x="207" y="190" font-size="13" fill="#5dade2" font-style="italic">t</text>
+
+   <!-- Titik sudut -->
+   <circle cx="200" cy="80" r="4.5" fill="#daa520"/>
+   <circle cx="110" cy="310" r="4" fill="#daa520"/>
+   <circle cx="340" cy="310" r="4" fill="#daa520"/>
+   <circle cx="290" cy="250" r="4" fill="#daa520"/>
+   <circle cx="60" cy="250" r="4" fill="#daa520"/>
+
+   <!-- Label -->
+   <text x="205" y="72" font-size="14" fill="#e8e8e8" font-style="italic">T</text>
+   <text x="96" y="332" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="346" y="332" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="296" y="246" font-size="13" fill="#e8e8e8" font-style="italic">C</text>
+   <text x="46" y="246" font-size="13" fill="#e8e8e8" font-style="italic">D</text>
+
+   <text x="180" y="360" font-size="12" fill="#b8b8b8" font-style="italic">Limas segiempat T.ABCD</text>
+  </svg>
+  <figcaption class="visual-caption">Limas segiempat $T.ABCD$. Sisi $TAB$ dan $TBC$ adalah sisi tegak yang terlihat; sisi $TCD$ dan $TDA$ tersembunyi. Rusuk $TA$, $AD$, $CD$, dan $DT$ digambar putus-putus karena tersembunyi. Tinggi limas ($t$) adalah jarak tegak lurus dari $T$ ke pusat alas $O$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Luas Permukaan Limas</p>
+ <p class="lesson-text">Luas permukaan limas adalah jumlah dari luas alas dan luas semua sisi tegak:</p>
+ <p class="lesson-text">$$LP = L_{\text{alas}} + \text{jumlah luas sisi tegak}$$</p>
+
+ <p class="lesson-subheading">C. Volume Limas</p>
+ <p class="lesson-text">Volume limas adalah sepertiga dari luas alas dikali tinggi:</p>
+ <p class="lesson-text">$$V = \tfrac{1}{3} \cdot L_{\text{alas}} \cdot t$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa sepertiga?</strong> Jika kita memiliki prisma dan limas dengan alas dan tinggi yang sama, volume limas <em>tepat sepertiga</em> dari volume prisma. Ini dapat dibuktikan dengan mengisi limas berisi air dan menuangkannya ke prisma yang sesuai—dibutuhkan tepat tiga kali penuangan untuk memenuhi prisma. Fakta geometri yang indah ini berlaku untuk limas apa pun, apa pun bentuk alasnya.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Contoh Soal</p>
+ <p class="lesson-text">Sebuah limas segiempat memiliki alas berbentuk persegi dengan sisi $12$ cm dan tinggi $8$ cm. Tentukan volumenya.</p>
+ <p class="lesson-text">$V = \tfrac{1}{3} \cdot 12^2 \cdot 8 = \tfrac{1}{3} \cdot 144 \cdot 8 = 384$ cm$^3$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Tabung</h3>
+ <p class="lesson-subheading">A. Pengertian Tabung</p>
+ <p class="lesson-text"><strong>Tabung</strong> (atau silinder) adalah bangun ruang yang dibatasi oleh <strong>dua sisi sejajar berbentuk lingkaran</strong> (alas dan atas) dan <strong>satu sisi lengkung</strong> (selimut tabung) yang menghubungkan keduanya. Tabung dapat dipandang sebagai prisma istimewa dengan alas berupa lingkaran.</p>
+ <p class="lesson-text">Unsur-unsur tabung: jari-jari alas ($r$), tinggi ($t$), dan selimut lengkung yang jika dibentangkan menjadi persegi panjang dengan panjang $2\pi r$ (keliling alas) dan lebar $t$.</p>
+ <figure style="margin: 24px 0; text-align: center;">
+ <svg viewBox="0 0 420 340" style="max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Selimut tabung -->
+  <rect x="80" y="80" width="260" height="180" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Elips atas -->
+  <ellipse cx="210" cy="80" rx="130" ry="35" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Elips bawah -->
+  <ellipse cx="210" cy="260" rx="130" ry="35" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Jari-jari -->
+  <line x1="210" y1="260" x2="340" y2="260" stroke="#daa520" stroke-width="1.6" />
+  <text x="270" y="255" font-size="14" fill="#daa520" font-style="italic">r</text>
+  
+  <!-- Tinggi -->
+  <line x1="210" y1="80" x2="210" y2="260" stroke="#5dade2" stroke-width="1.6" stroke-dasharray="5,4" />
+  <text x="218" y="175" font-size="14" fill="#5dade2" font-style="italic">t</text>
+  
+  <!-- Titik pusat -->
+  <circle cx="210" cy="80" r="3.5" fill="#daa520" />
+  <circle cx="210" cy="260" r="3.5" fill="#daa520" />
+  <text x="196" y="76" font-size="12" fill="#daa520" font-style="italic">O₁</text>
+  <text x="196" y="284" font-size="12" fill="#daa520" font-style="italic">O₂</text>
+ </svg>
+ <figcaption class="visual-caption">Tabung dengan jari-jari $r$ dan tinggi $t$. Sisi atas dan bawah berbentuk lingkaran kongruen; sisi lengkung di antaranya adalah selimut tabung. Jika selimut dibentangkan, ia menjadi persegi panjang berukuran $2\pi r \times t$.</figcaption>
+</figure>
+ <p class="lesson-subheading">B. Luas Permukaan Tabung</p>
+ <p class="lesson-text">Luas permukaan tabung terdiri dari dua lingkaran (alas dan atas) dan satu selimut persegi panjang:</p>
+ <p class="lesson-text">$$LP = 2\pi r^2 + 2\pi r t = 2\pi r (r + t)$$</p>
+ 
+ <p class="lesson-subheading">C. Volume Tabung</p>
+ <p class="lesson-text">Volume tabung adalah luas alas dikali tinggi—sama seperti prisma:</p>
+ <p class="lesson-text">$$V = \pi r^2 t$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Hubungan dengan kerucut dan bola:</strong> jika sebuah tabung memiliki jari-jari $r$ dan tinggi $2r$ (cukup untuk membungkus bola berjari-jari $r$), maka volume tabung itu $2\pi r^3$. Volume bola di dalamnya adalah $\tfrac{2}{3}$ dari tabung, dan volume kerucut yang tingginya $2r$ adalah $\tfrac{1}{3}$ dari tabung. Fakta inilah yang menjadikan tabung sebagai "patokan" untuk menurunkan rumus kerucut dan bola.</p>
+ </div>
+ 
+ <p class="lesson-subheading">D. Contoh Soal</p>
+ <p class="lesson-text">Sebuah tabung memiliki jari-jari alas $7$ cm dan tinggi $10$ cm. Hitung luas permukaan dan volumenya (gunakan $\pi \approx \tfrac{22}{7}$).</p>
+ <ul>
+  <li>$LP = 2 \cdot \tfrac{22}{7} \cdot 7 \cdot (7 + 10) = 748$ cm$^2$.</li>
+  <li>$V = \tfrac{22}{7} \cdot 7^2 \cdot 10 = 1540$ cm$^3$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Bola</h3>
+ <p class="lesson-subheading">A. Pengertian Bola</p>
+ <p class="lesson-text"><strong>Bola</strong> adalah bangun ruang yang dibentuk oleh himpunan semua titik yang berjarak tidak lebih dari $r$ dari sebuah titik pusat $O$. Permukaannya (kulit bola) adalah himpunan titik yang berjarak <em>tepat</em> $r$ dari $O$. Sederhananya, bola adalah versi tiga dimensi dari lingkaran—seperti lingkaran yang "diputar" ke segala arah.</p>
+ <p class="lesson-text">Jarak dari pusat ke permukaan bola disebut <strong>jari-jari</strong> ($r$), sedangkan jarak antara dua titik terjauh pada permukaan bola disebut <strong>diameter</strong> ($d = 2r$). Bola hanya memiliki <strong>satu sisi lengkung</strong> dan <strong>tidak memiliki rusuk maupun titik sudut</strong>—ini yang membedakannya dari semua bangun ruang yang sudah kita bahas.</p>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 400 340" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <defs>
+    <radialGradient id="bolaGrad" cx="35%" cy="30%" r="75%">
+     <stop offset="0%" stop-color="#4a4a4a"/>
+     <stop offset="55%" stop-color="#2f2f2f"/>
+     <stop offset="100%" stop-color="#1a1a1a"/>
+    </radialGradient>
+   </defs>
+   <circle cx="200" cy="170" r="130" fill="url(#bolaGrad)" stroke="#e8e8e8" stroke-width="2"/>
+   <ellipse cx="200" cy="170" rx="130" ry="30" fill="none" stroke="#e8e8e8" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+   <circle cx="200" cy="170" r="4.5" fill="#daa520"/>
+   <text x="207" y="168" font-size="14" fill="#daa520" font-style="italic">O</text>
+   <line x1="200" y1="170" x2="330" y2="170" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="260" y="164" font-size="14" fill="#5dade2" font-style="italic">r</text>
+   <line x1="70" y1="170" x2="330" y2="170" stroke="#daa520" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+   <text x="105" y="192" font-size="12" fill="#daa520" font-style="italic">d = 2r</text>
+  </svg>
+  <figcaption class="visual-caption">Bola dengan pusat $O$ dan jari-jari $r$. Setiap titik pada permukaan bola berjarak tepat $r$ dari $O$. Diameter $d = 2r$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Luas Permukaan Bola</p>
+ <p class="lesson-text">Luas permukaan bola adalah:</p>
+ <p class="lesson-text">$$LP = 4\pi r^2$$</p>
+ <p class="lesson-text">Menarik: luas permukaan bola <strong>tepat empat kali</strong> luas lingkaran besar (lingkaran dengan jari-jari $r$). Fakta ini pertama kali dibuktikan oleh Archimedes, yang sangat bangga dengan penemuannya sehingga meminta gambar bola dan tabung terukir di batu nisannya.</p>
+
+ <p class="lesson-subheading">C. Volume Bola</p>
+ <p class="lesson-text">Volume bola adalah:</p>
+ <p class="lesson-text">$$V = \frac{4}{3}\pi r^3$$</p>
+ <p class="lesson-text">Rumus ini dapat diturunkan dengan kalkulus (integral) atau dengan metode "irisan" Archimedes. Secara intuitif, jika kita membandingkan bola dengan tabung yang "membungkusnya" (tabung dengan jari-jari $r$ dan tinggi $2r$), volume bola adalah $\tfrac{2}{3}$ dari volume tabung tersebut. Karena volume tabung itu $\pi r^2 \cdot 2r = 2\pi r^3$, maka volume bola adalah $\tfrac{2}{3} \cdot 2\pi r^3 = \tfrac{4}{3}\pi r^3$. ✓</p>
+
+ <p class="lesson-subheading">D. Contoh Soal</p>
+ <p class="lesson-text">Sebuah bola memiliki jari-jari $7$ cm. Hitung luas permukaan dan volumenya (gunakan $\pi \approx \tfrac{22}{7}$).</p>
+ <ul>
+  <li>$LP = 4 \cdot \tfrac{22}{7} \cdot 7^2 = 616$ cm$^2$.</li>
+  <li>$V = \tfrac{4}{3} \cdot \tfrac{22}{7} \cdot 7^3 = \tfrac{4312}{3} \approx 1437{,}33$ cm$^3$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kerucut</h3>
+ <p class="lesson-subheading">A. Pengertian Kerucut</p>
+ <p class="lesson-text"><strong>Kerucut</strong> adalah bangun ruang yang dibatasi oleh <strong>satu sisi alas berbentuk lingkaran</strong> dan <strong>satu sisi lengkung</strong> (disebut <em>selimut kerucut</em>) yang meruncing ke satu titik puncak. Kerucut dapat dipandang sebagai limas istimewa dengan alas berupa lingkaran.</p>
+ <p class="lesson-text">Unsur-unsur kerucut:</p>
+ <ul>
+  <li><strong>Jari-jari alas</strong> ($r$): jarak dari pusat lingkaran alas ke tepinya.</li>
+  <li><strong>Tinggi</strong> ($t$): jarak tegak lurus dari titik puncak ke pusat alas.</li>
+  <li><strong>Garis pelukis</strong> ($s$): jarak dari titik puncak ke tepi alas, yaitu garis pada selimut kerucut. Berdasarkan Pythagoras, $s = \sqrt{r^2 + t^2}$.</li>
+ </ul>
+
+ <figure style="margin: 24px 0; text-align: center;">
+  <svg viewBox="0 0 400 340" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <ellipse cx="200" cy="260" rx="120" ry="35" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <circle cx="200" cy="60" r="4.5" fill="#daa520"/>
+   <text x="207" y="56" font-size="14" fill="#e8e8e8" font-style="italic">T</text>
+   <line x1="200" y1="60" x2="80" y2="260" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="60" x2="320" y2="260" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="60" x2="200" y2="260" stroke="#5dade2" stroke-width="1.6" stroke-dasharray="5,4"/>
+   <text x="207" y="165" font-size="14" fill="#5dade2" font-style="italic">t</text>
+   <line x1="200" y1="260" x2="320" y2="260" stroke="#daa520" stroke-width="1.6"/>
+   <text x="260" y="255" font-size="14" fill="#daa520" font-style="italic">r</text>
+   <text x="140" y="155" font-size="14" fill="#f0c75e" font-style="italic">s</text>
+   <circle cx="200" cy="260" r="3.5" fill="#daa520"/>
+   <polyline points="200,245 215,245 215,260" fill="none" stroke="#daa520" stroke-width="1.4"/>
+   <text x="186" y="280" font-size="12" fill="#daa520" font-style="italic">O</text>
+  </svg>
+  <figcaption class="visual-caption">Kerucut dengan titik puncak $T$, pusat alas $O$, jari-jari $r$, tinggi $t$, dan garis pelukis $s$. Hubungan ketiganya: $s = \sqrt{r^2 + t^2}$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Luas Permukaan Kerucut</p>
+ <p class="lesson-text">Luas permukaan kerucut terdiri dari dua bagian:</p>
+ <ul>
+  <li><strong>Luas alas</strong>: lingkaran dengan jari-jari $r$, yaitu $\pi r^2$.</li>
+  <li><strong>Luas selimut</strong>: jika selimut kerucut "digunting" sepanjang garis pelukis dan dibentangkan, ia akan membentuk sebuah <em>juring lingkaran</em> dengan jari-jari $s$ dan panjang busur $2\pi r$ (keliling alas). Luas juring ini adalah $\pi r s$.</li>
+ </ul>
+ <p class="lesson-text">Sehingga luas permukaan kerucut:</p>
+ <p class="lesson-text">$$LP = \pi r^2 + \pi r s = \pi r (r + s)$$</p>
+
+ <p class="lesson-subheading">C. Volume Kerucut</p>
+ <p class="lesson-text">Volume kerucut adalah sepertiga dari volume tabung dengan jari-jari dan tinggi yang sama:</p>
+ <p class="lesson-text">$$V = \tfrac{1}{3} \pi r^2 t$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa sepertiga?</strong> Sama seperti limas terhadap prisma, kerucut terhadap tabung memiliki perbandingan volume $1 : 3$. Jika kita mengisi kerucut dengan air dan menuangkannya ke tabung yang sesuai (jari-jari dan tinggi sama), dibutuhkan tepat tiga kali penuangan untuk memenuhi tabung tersebut. Ini adalah fakta geometri yang indah dan konsisten dengan hubungan limas–prisma.</p>
+ </div>
+
+ <p class="lesson-subheading">D. Contoh Soal</p>
+ <p class="lesson-text">Sebuah kerucut memiliki jari-jari alas $7$ cm dan tinggi $24$ cm. Hitung garis pelukis, luas permukaan, dan volumenya (gunakan $\pi \approx \tfrac{22}{7}$).</p>
+ <p class="lesson-text">Garis pelukis: $s = \sqrt{7^2 + 24^2} = \sqrt{625} = 25$ cm.</p>
+ <ul>
+  <li>$LP = \tfrac{22}{7} \cdot 7 \cdot (7 + 25) = 704$ cm$^2$.</li>
+  <li>$V = \tfrac{1}{3} \cdot \tfrac{22}{7} \cdot 7^2 \cdot 24 = 1232$ cm$^3$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Perbandingan Rumus Antar Bangun Ruang</h3>
+ <p class="lesson-text">Salah satu cara memahami materi ini secara utuh adalah dengan melihat bagaimana rumus-rumus antar bangun ruang saling terhubung.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Bangun</th>
+     <th>Luas Permukaan</th>
+     <th>Volume</th>
+     <th>Catatan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Kubus</td><td>$6s^2$</td><td>$s^3$</td><td>Balok istimewa</td></tr>
+    <tr><td>Balok</td><td>$2(pl + pt + lt)$</td><td>$p \cdot l \cdot t$</td><td>Kasus umum kubus</td></tr>
+    <tr><td>Prisma</td><td>$2L_{\text{alas}} + K_{\text{alas}} \cdot t$</td><td>$L_{\text{alas}} \cdot t$</td><td>Termasuk kubus &amp; balok</td></tr>
+    <tr><td>Limas</td><td>$L_{\text{alas}} + \Sigma L_{\text{sisi tegak}}$</td><td>$\tfrac{1}{3} L_{\text{alas}} \cdot t$</td><td>Faktor $\tfrac{1}{3}$ dari prisma</td></tr>
+    <tr><td>Tabung</td><td>$2\pi r (r + t)$</td><td>$\pi r^2 t$</td><td>Prisma istimewa (alas lingkaran)</td></tr>
+    <tr><td>Bola</td><td>$4\pi r^2$</td><td>$\tfrac{4}{3}\pi r^3$</td><td>Tanpa rusuk/titik sudut</td></tr>
+    <tr><td>Kerucut</td><td>$\pi r (r + s)$</td><td>$\tfrac{1}{3}\pi r^2 t$</td><td>Faktor $\tfrac{1}{3}$ dari tabung</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pola penting:</strong> limas dan kerucut selalu memiliki faktor $\tfrac{1}{3}$ pada rumus volumenya—karena keduanya adalah "versi meruncing" dari prisma dan tabung. Sebaliknya, prisma dan tabung tidak memiliki faktor ini. Memahami pola ini membantu Anda mengingat rumus tanpa perlu menghafal satu per satu.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Penerapan Praktis</h3>
+ <p class="lesson-text">Bangun ruang bukan hanya objek geometris di atas kertas—ia muncul di mana-mana dalam kehidupan nyata dan menjadi fondasi dari banyak bidang terapan.</p>
+
+ <p class="lesson-subheading">A. Pengemasan dan Logistik</p>
+ <p class="lesson-text">Kotak kemasan hampir selalu berbentuk balok atau kubus karena mudah ditumpuk, disusun, dan disimpan. Volume kotak menentukan berapa banyak barang yang dapat ditampung, sedangkan luas permukaannya menentukan berapa banyak bahan karton yang dibutuhkan. Dalam industri logistik, efisiensi pengemasan bertumpu langsung pada perhitungan bangun ruang.</p>
+
+ <p class="lesson-subheading">B. Arsitektur dan Konstruksi</p>
+ <p class="lesson-text">Piramida di Mesir adalah limas segiempat raksasa. Kubah masjid sering berbentuk setengah bola. Menara dan tugu sering menggunakan kombinasi prisma dan limas. Arsitek menggunakan perhitungan volume untuk menentukan jumlah material yang dibutuhkan, dan perhitungan luas permukaan untuk menentukan biaya pengecatan atau pelapisan.</p>
+
+ <p class="lesson-subheading">C. Industri Makanan dan Minuman</p>
+ <p class="lesson-text">Kaleng minuman berbentuk tabung; cone es krim berbentuk kerucut; kotak pizza berbentuk balok tipis. Produsen makanan dan minuman menggunakan perhitungan bangun ruang untuk merancang kemasan yang efisien—meminimalkan bahan namun memaksimalkan volume yang dapat ditampung.</p>
+
+ <p class="lesson-subheading">D. Kedokteran dan Biologi</p>
+ <p class="lesson-text">Volume bola digunakan untuk menghitung volume sel atau organ tubuh yang berbentuk mendekati bola—seperti sel darah merah atau bola mata. Volume kerucut digunakan untuk menghitung volume bilik jantung. Perhitungan ini penting untuk diagnosis dan perencanaan pengobatan.</p>
+
+ <p class="lesson-subheading">E. Astronomi dan Geografi</p>
+ <p class="lesson-text">Bumi dan planet-planet lain berbentuk mendekati bola—volume dan luas permukaan Bumi dihitung menggunakan rumus bola. Bahkan, konsep bola muncul dalam perhitungan volume bintang, galaksi, dan struktur kosmik lainnya. Para astronom menggunakan rumus bola untuk mengukur massa jenis bintang dari volume dan massanya.</p>
+
+ <p class="lesson-subheading">F. Teknologi dan Komputasi</p>
+ <p class="lesson-text">Dalam grafika komputer 3D, semua objek dibentuk dari kumpulan poligon (biasanya segitiga). Bola dan kerucut direpresentasikan sebagai ribuan segitiga kecil yang membentuk permukaan melengkung. Perhitungan volume dan luas permukaan menjadi penting untuk simulasi fisika, seperti tumbukan dan rotasi benda.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">XI. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Tertukar antara rumus volume limas/kerucut dan prisma/tabung.</strong> Limas dan kerucut memiliki faktor $\tfrac{1}{3}$ dalam rumus volumenya; prisma dan tabung tidak. Lupa faktor ini akan membuat volume menjadi tiga kali lipat dari yang seharusnya.</li>
+  <li><strong>Tertukar antara luas permukaan dan volume.</strong> Luas permukaan dinyatakan dalam satuan persegi (cm$^2$, m$^2$), sedangkan volume dalam satuan kubik (cm$^3$, m$^3$). Jika satuan hasilnya salah, itu tanda rumus yang dipakai keliru.</li>
+  <li><strong>Menganggap semua sisi kubus adalah persegi panjang.</strong> Sisi kubus adalah <em>persegi</em>—keempat sisinya sama panjang. Ini penting ketika membedakan kubus dari balok.</li>
+  <li><strong>Salah mengidentifikasi "tinggi" pada limas atau kerucut.</strong> Tinggi limas/kerucut adalah jarak tegak lurus dari titik puncak ke <em>pusat</em> alas, bukan ke tepi alas. Untuk kerucut, garis pelukis ($s$) berbeda dari tinggi ($t$).</li>
+  <li><strong>Menganggap garis pelukis kerucut sama dengan tinggi kerucut.</strong> Garis pelukis selalu lebih panjang dari tinggi karena $s = \sqrt{r^2 + t^2}$.</li>
+  <li><strong>Menghitung luas permukaan bola sebagai $\pi r^2$ atau $2\pi r^2$.</strong> Luas permukaan bola adalah $4\pi r^2$—yaitu <em>empat kali</em> luas lingkaran besar, bukan satu atau dua kali.</li>
+  <li><strong>Menghitung diagonal ruang balok dengan $p\sqrt{3}$.</strong> Rumus $s\sqrt{3}$ hanya berlaku untuk kubus (di mana semua rusuk sama). Untuk balok, gunakan $\sqrt{p^2 + l^2 + t^2}$.</li>
+  <li><strong>Menganggap prisma selalu memiliki alas segitiga.</strong> Prisma dapat memiliki alas berbentuk segi-$n$ apa pun: segitiga, segiempat, segilima, dan seterusnya.</li>
+  <li><strong>Menganggap jaring-jaring kubus hanya ada satu.</strong> Kubus memiliki <strong>11 jaring-jaring berbeda</strong>, meskipun semuanya terdiri dari $6$ persegi.</li>
+  <li><strong>Mengabaikan satuan saat menghitung.</strong> Jika panjang dalam cm dan lebar dalam m, harus dikonversi dulu sebelum dikalikan.</li>
+  <li><strong>Menganggap kerucut dan limas memiliki rumus luas permukaan yang sama.</strong> Meskipun keduanya memiliki faktor $\tfrac{1}{3}$ pada volume, luas permukaannya berbeda: limas menggunakan luas segitiga-segitiga sisi tegak, sedangkan kerucut menggunakan luas juring selimut $\pi r s$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">XII. Ringkasan</h3>
+ <ul>
+  <li><strong>Unsur bangun ruang</strong>: sisi (bidang pembatas), rusuk (pertemuan dua sisi), titik sudut, diagonal sisi, diagonal ruang, bidang diagonal.</li>
+  <li><strong>Kubus</strong> (rusuk $s$): $LP = 6s^2$, $V = s^3$, diagonal sisi $= s\sqrt{2}$, diagonal ruang $= s\sqrt{3}$.</li>
+  <li><strong>Balok</strong> ($p, l, t$): $LP = 2(pl + pt + lt)$, $V = p \cdot l \cdot t$, diagonal ruang $= \sqrt{p^2 + l^2 + t^2}$.</li>
+  <li><strong>Prisma</strong>: $LP = 2 \cdot L_{\text{alas}} + K_{\text{alas}} \cdot t$, $V = L_{\text{alas}} \cdot t$.</li>
+  <li><strong>Limas</strong>: $LP = L_{\text{alas}} + \text{jumlah luas sisi tegak}$, $V = \tfrac{1}{3} \cdot L_{\text{alas}} \cdot t$.</li>
+  <li><strong>Bola</strong>: $LP = 4\pi r^2$, $V = \tfrac{4}{3}\pi r^3$.</li>
+  <li><strong>Kerucut</strong>: $LP = \pi r (r + s)$ dengan $s = \sqrt{r^2 + t^2}$, $V = \tfrac{1}{3}\pi r^2 t$.</li>
+  <li>Kubus adalah balok istimewa (semua rusuk sama); balok dan kubus adalah prisma segiempat istimewa.</li>
+  <li>Limas dan kerucut memiliki faktor $\tfrac{1}{3}$ pada volume karena perbandingan dengan prisma/tabung yang setara adalah $1 : 3$.</li>
+  <li>Volume selalu dinyatakan dalam satuan kubik; luas permukaan dalam satuan persegi.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Bangun ruang memperluas dunia geometri dari bidang datar ke ruang tiga dimensi. Setiap bangun&mdash;kubus, balok, prisma, limas, tabung, bola, kerucut&mdash;memiliki karakteristik unik yang membuatnya cocok untuk berbagai keperluan: kubus dan balok mendominasi konstruksi dan pengemasan; prisma dan limas muncul pada bangunan ikonik; bola menjadi bentuk paling simetris dan efisien (planet, gelembung, bola olahraga); kerucut dipakai pada corong hingga <em>traffic cone</em>.</p>
+ <p class="lesson-text">Yang menarik, rumus-rumus bangun ruang <strong>saling terhubung</strong>. Volume limas dan kerucut sama-sama berfaktor $\tfrac{1}{3}$ karena keduanya adalah "versi meruncing" dari prisma dan tabung. Diagonal kubus dan balok berasal dari Teorema Pythagoras. Luas permukaan bola ($4\pi r^2$) adalah empat kali luas lingkaran besar. Memahami koneksi ini jauh lebih bernilai daripada menghafal rumus satu per satu.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik berikutnya: <strong>Luas &amp; Volume</strong> (bangun gabungan), <strong>Geometri Analitik</strong> (koordinat tiga dimensi), <strong>Irisan Kerucut</strong> (elips, parabola, hiperbola), hingga <strong>Kalkulus Multivariabel</strong> (integral lipat untuk volume bangun kompleks). Latihlah diri Anda dengan banyak soal&mdash;terutama yang melibatkan volume, luas permukaan, dan soal cerita gabungan. Kebiasaan membedakan "tinggi" dari "garis pelukis", memperhatikan satuan, dan mengingat bahwa limas/kerucut selalu berfaktor $\tfrac{1}{3}$ akan menyelamatkan Anda dari kesalahan yang tidak perlu.</p>
+</div>
+
+</div>
+</body>
+</html>

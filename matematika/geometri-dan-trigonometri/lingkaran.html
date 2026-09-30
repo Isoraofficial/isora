@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Lingkaran (Busur, Tali Busur, Sudut Pusat, Sudut Keliling)</title>
+ <meta name="description" content="Materi lengkap lingkaran: pengertian, unsur-unsur (pusat, jari-jari, diameter, busur, tali busur, juring, tembereng, apotema), busur minor/mayor, sifat tali busur, sudut pusat, sudut keliling, hubungan keduanya, sudut keliling menghadap diameter, dan segiempat tali busur.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Lingkaran (Busur, Tali Busur, Sudut Pusat, Sudut Keliling)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Titik, Garis, dan Sudut</strong> — terutama konsep sudut dan hubungan antar sudut, karena sudut pusat dan sudut keliling adalah aplikasi langsung dari konsep sudut.</li>
+   <li><strong>Segitiga</strong> — terutama sifat segitiga sama kaki dan sudut luar segitiga, karena pembuktian hubungan sudut pusat–sudut keliling bertumpu pada kedua sifat ini.</li>
+   <li><strong>Segiempat &amp; Poligon</strong> — terutama sifat segiempat dan jumlah sudut dalamnya, karena segiempat tali busur dibangun dari sifat-sifat segiempat.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Coba perhatikan roda kendaraan. Roda dibuat berbentuk <strong>lingkaran</strong>&mdash;dan bukan tanpa alasan. Bayangkan roda berbentuk persegi: setiap kali satu sudutnya menyentuh jalan, kendaraan akan "terangkat" sedikit, dan penumpangnya merasakan guncangan. Pada roda lingkaran, setiap titik pada kelilingnya berjarak sama dari porosnya, sehingga poros tetap pada ketinggian yang sama&mdash;dan kendaraan bergerak mulus.</p>
+ <p class="lesson-text">Sifat "semua titik berjarak sama dari pusat" inilah yang mendefinisikan lingkaran&mdash;dan sekaligus membedakannya dari semua bangun datar yang telah kita pelajari sebelumnya. Segitiga, segiempat, dan poligon dibatasi oleh garis-garis lurus; lingkaran dibatasi oleh <strong>kurva halus</strong> tanpa sudut maupun sisi. Karena sifat unik ini, lingkaran memiliki konsep-konsep baru: <strong>busur</strong> (bagian dari keliling), <strong>tali busur</strong> (garis lurus yang memotong lingkaran), <strong>sudut pusat</strong>, dan <strong>sudut keliling</strong>.</p>
+ <p class="lesson-text">Yang membuat materi ini istimewa adalah <strong>keindahan hubungan antar konsepnya</strong>. Salah satu teorema paling elegan dalam geometri&mdash;bahwa <em>sudut keliling sama dengan setengah sudut pusat yang menghadap busur yang sama</em>&mdash;bukan hasil hafalan, melainkan dapat diturunkan dari sifat dasar segitiga sama kaki yang sudah Anda kuasai. Ini menunjukkan bahwa geometri adalah satu kesatuan yang saling terhubung, bukan kumpulan fakta yang terpisah-pisah. Materi ini akan membawa Anda menyusuri hubungan-hubungan tersebut, mulai dari definisi dan unsur-unsur lingkaran, busur, tali busur, sudut pusat, sudut keliling beserta empat sifat pentingnya, contoh soal, penerapan praktis, hingga kesalahan umum&mdash;dengan penekanan pada <em>alasan mengapa</em> setiap sifat berlaku.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Lingkaran dan Unsur-Unsurnya</h3>
+ <p class="lesson-text">Kita mulai dari definisi dan komponen dasar—fondasi untuk seluruh pembahasan selanjutnya.</p>
+
+ <p class="lesson-subheading">A. Definisi Lingkaran</p>
+ <p class="lesson-text"><strong>Lingkaran</strong> adalah himpunan semua titik pada bidang datar yang berjarak sama dari sebuah titik tetap. Titik tetap tersebut disebut <strong>pusat lingkaran</strong>, dan jarak yang sama tersebut disebut <strong>jari-jari</strong> (radius).</p>
+ <p class="lesson-text">Perhatikan kata "semua titik"—ini penting. Lingkaran bukanlah "daerah di dalam" kurva, melainkan hanya <em>kurva itu sendiri</em>. Daerah yang dibatasi oleh lingkaran (termasuk bagian dalamnya) disebut <strong>bidang lingkaran</strong> atau <strong>cakram</strong> (<em>disk</em>). Dalam matematika, "lingkaran" dan "cakram" adalah dua objek yang berbeda, meskipun dalam percakapan sehari-hari keduanya sering disebut "lingkaran".</p>
+ <p class="lesson-text">Sebuah lingkaran dengan pusat $O$ dan jari-jari $r$ ditulis sebagai "lingkaran $O$" atau "lingkaran dengan pusat $O$".</p>
+
+ <p class="lesson-subheading">B. Unsur-Unsur Lingkaran</p>
+ <p class="lesson-text">Lingkaran memiliki beberapa unsur penting yang perlu kita pahami. Perhatikan gambar berikut.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 380" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Lingkaran dengan pusat O=(200,180), r=130 -->
+   <circle cx="200" cy="180" r="130" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <!-- Diameter AB (horizontal): A=(70,180), B=(330,180) -->
+   <line x1="70" y1="180" x2="330" y2="180" stroke="#e8e8e8" stroke-width="1.8"/>
+   <line x1="97.53" y1="100" x2="302.47" y2="100" stroke="#5dade2" stroke-width="1.8"/>
+   <line x1="200" y1="180" x2="200" y2="100" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4"/>
+   <path d="M 70 180 A 130 130 0 0 0 330 180" fill="none" stroke="#daa520" stroke-width="3"/>
+   <path d="M 200 180 L 97.53 100 A 130 130 0 0 1 302.47 100 Z" fill="#daa520" fill-opacity="0.12" stroke="none"/>
+   <!-- Garis jari-jari OC -->
+   <line x1="200" y1="180" x2="97.53" y2="100" stroke="#e8e8e8" stroke-width="1.4"/>
+   <!-- Titik-titik -->
+   <circle cx="200" cy="180" r="4.5" fill="#daa520"/>
+   <circle cx="70" cy="180" r="4.5" fill="#e8e8e8"/>
+   <circle cx="330" cy="180" r="4.5" fill="#e8e8e8"/>
+   <circle cx="97.53" cy="100" r="4.5" fill="#5dade2"/>
+   <circle cx="302.47" cy="100" r="4.5" fill="#5dade2"/>
+   <circle cx="200" cy="100" r="3.5" fill="#5dade2"/>
+   <!-- Label -->
+   <text x="205" y="178" font-size="14" fill="#daa520" font-style="italic">O</text>
+   <text x="55" y="184" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="336" y="184" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="85" y="96" font-size="14" fill="#5dade2" font-style="italic">C</text>
+   <text x="308" y="96" font-size="14" fill="#5dade2" font-style="italic">D</text>
+   <text x="205" y="96" font-size="11" fill="#5dade2" font-style="italic">P</text>
+   <text x="128" y="128" font-size="11" fill="#b8b8b8" font-style="italic">r</text>
+   <text x="180" y="340" font-size="12" fill="#daa520" font-style="italic">busur AB</text>
+  </svg>
+  <figcaption class="visual-caption">Lingkaran dengan pusat $O$ beserta unsur-unsurnya. Garis keemasan tebal adalah busur $AB$; segmen biru $CD$ adalah tali busur; garis putus-putus biru dari $O$ ke titik tengah $CD$ adalah apotema; dan daerah keemasan transparan adalah juring $COD$.</figcaption>
+ </figure>
+
+ <p class="lesson-text">Unsur-unsur lingkaran di atas dapat dijelaskan sebagai berikut:</p>
+ <ul>
+  <li><strong>Pusat lingkaran ($O$)</strong>: titik tetap yang menjadi acuan jarak semua titik pada lingkaran.</li>
+  <li><strong>Jari-jari ($r$)</strong>: segmen dari pusat ke titik mana pun pada lingkaran, misalnya $OC$. Panjang jari-jari sama untuk semua arah.</li>
+  <li><strong>Diameter ($d$)</strong>: segmen yang menghubungkan dua titik pada lingkaran dan melewati pusat, misalnya $AB$. Diameter adalah tali busur terpanjang, dan panjangnya $d = 2r$.</li>
+  <li><strong>Busur</strong>: bagian dari keliling lingkaran, yaitu kurva yang menghubungkan dua titik pada lingkaran, misalnya busur $AB$.</li>
+  <li><strong>Tali busur</strong>: segmen garis lurus yang menghubungkan dua titik pada lingkaran, misalnya $CD$. Tali busur tidak melalui pusat (kecuali jika ia adalah diameter).</li>
+  <li><strong>Apotema</strong>: jarak tegak lurus dari pusat lingkaran ke tali busur, misalnya $OP$ pada gambar. Apotema selalu tegak lurus terhadap tali busurnya.</li>
+  <li><strong>Juring (sektor)</strong>: daerah di dalam lingkaran yang dibatasi oleh dua jari-jari dan busur di antara keduanya. Pada gambar, daerah keemasan transparan adalah juring $COD$.</li>
+  <li><strong>Tembereng (segmen)</strong>: daerah di dalam lingkaran yang dibatasi oleh tali busur dan busur. Tembereng adalah bagian dari juring setelah dikurangi segitiga yang dibentuk oleh dua jari-jari dan tali busurnya.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Hubungan Diameter dan Jari-Jari</p>
+ <p class="lesson-text">Diameter adalah dua kali jari-jari:</p>
+ <p class="lesson-text">$$d = 2r \quad \text{atau} \quad r = \frac{d}{2}$$</p>
+ <p class="lesson-text">Oleh karena itu, jika Anda mengetahui salah satu dari $r$ atau $d$, Anda otomatis mengetahui yang lain.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Busur</h3>
+ <p class="lesson-subheading">A. Pengertian Busur</p>
+ <p class="lesson-text"><strong>Busur</strong> adalah bagian dari keliling lingkaran, yaitu kurva yang menghubungkan dua titik pada lingkaran. Busur dari titik $A$ ke titik $B$ ditulis $\overset{\frown}{AB}$. Panjang busur diukur sepanjang keliling lingkaran, bukan sebagai garis lurus antara $A$ dan $B$ (garis lurus itu adalah tali busur, bukan busur).</p>
+
+ <p class="lesson-subheading">B. Jenis-Jenis Busur</p>
+ <p class="lesson-text">Setiap dua titik pada lingkaran membagi lingkaran menjadi <strong>dua busur</strong>. Busur yang lebih pendek disebut <strong>busur minor</strong>, dan busur yang lebih panjang disebut <strong>busur mayor</strong>.</p>
+
+ <figure>
+  <svg viewBox="0 0 900 260" style="max-width:100%; height:auto; width:900px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Gambar 1: Busur minor -->
+   <circle cx="150" cy="130" r="90" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+   <path d="M 72.06 85 A 90 90 0 0 1 227.94 85" fill="none" stroke="#daa520" stroke-width="3"/>
+   <circle cx="72.06" cy="85" r="4" fill="#daa520"/>
+   <circle cx="227.94" cy="85" r="4" fill="#daa520"/>
+   <text x="58" y="80" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="232" y="80" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="95" y="240" font-size="12" fill="#daa520" font-style="italic">Busur minor (&lt; 180°)</text>
+
+   <!-- Gambar 2: Busur mayor -->
+   <circle cx="450" cy="130" r="90" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+   <!-- A=(372.06, 85), B=(527.94, 85) -->
+   <path d="M 372.06 85 A 90 90 0 0 1 527.94 85" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+   <!-- Busur mayor: sweep=0 -->
+   <path d="M 372.06 85 A 90 90 0 1 0 527.94 85" fill="none" stroke="#5dade2" stroke-width="3"/>
+   <circle cx="372.06" cy="85" r="4" fill="#5dade2"/>
+   <circle cx="527.94" cy="85" r="4" fill="#5dade2"/>
+   <text x="358" y="80" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="532" y="80" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="395" y="240" font-size="12" fill="#5dade2" font-style="italic">Busur mayor (&gt; 180°)</text>
+
+   <!-- Gambar 3: Setengah lingkaran -->
+   <circle cx="750" cy="130" r="90" fill="none" stroke="#e8e8e8" stroke-width="1.5"/>
+   <path d="M 660 130 A 90 90 0 0 1 840 130" fill="none" stroke="#daa520" stroke-width="3"/>
+   <line x1="660" y1="130" x2="840" y2="130" stroke="#e8e8e8" stroke-width="1.5"/>
+   <circle cx="660" cy="130" r="4" fill="#daa520"/>
+   <circle cx="840" cy="130" r="4" fill="#daa520"/>
+   <text x="645" y="135" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="845" y="135" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="698" y="240" font-size="12" fill="#daa520" font-style="italic">Setengah lingkaran (= 180°)</text>
+  </svg>
+  <figcaption class="visual-caption">Tiga jenis busur. Busur minor lebih pendek dari setengah lingkaran; busur mayor lebih panjang; dan setengah lingkaran tepat setengah keliling.</figcaption>
+ </figure>
+
+ <ul>
+  <li><strong>Busur minor</strong>: busur yang panjangnya kurang dari setengah keliling lingkaran. Ukuran sudutnya kurang dari $180^\circ$.</li>
+  <li><strong>Busur mayor</strong>: busur yang panjangnya lebih dari setengah keliling lingkaran. Ukuran sudutnya lebih dari $180^\circ$.</li>
+  <li><strong>Setengah lingkaran</strong>: busur yang panjangnya tepat setengah keliling lingkaran. Ukuran sudutnya tepat $180^\circ$—dan kedua titik ujungnya dihubungkan oleh diameter.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Panjang Busur</p>
+ <p class="lesson-text">Panjang busur bergantung pada <strong>besar sudut pusat</strong> yang menghadapnya. Karena satu putaran penuh ($360^\circ$) sepadan dengan seluruh keliling lingkaran ($2\pi r$), maka busur dengan sudut pusat $\theta$ memiliki panjang:</p>
+ <p class="lesson-text">$$\text{Panjang busur} = \frac{\theta}{360^\circ} \times 2\pi r$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Intuisi:</strong> rumus ini hanyalah perbandingan senilai. Sudut $\theta$ terhadap $360^\circ$ sama dengan panjang busur terhadap keliling lingkaran. Jadi kita tinggal "mengambil sebagian" dari keliling, sebanding dengan sebagian sudut yang diambil dari sudut penuh.</p>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Tali Busur</h3>
+ <p class="lesson-subheading">A. Pengertian Tali Busur</p>
+ <p class="lesson-text"><strong>Tali busur</strong> adalah segmen garis lurus yang menghubungkan dua titik pada lingkaran. Berbeda dengan busur yang melengkung mengikuti keliling, tali busur adalah garis lurus yang "memotong" bagian dalam lingkaran.</p>
+ <p class="lesson-text">Tali busur yang melewati pusat lingkaran adalah <strong>diameter</strong>—tali busur terpanjang yang mungkin. Setiap diameter adalah tali busur, tetapi tidak setiap tali busur adalah diameter.</p>
+
+ <p class="lesson-subheading">B. Apotema</p>
+ <p class="lesson-text"><strong>Apotema</strong> adalah jarak tegak lurus dari pusat lingkaran ke tali busur. Karena jarak terpendek dari sebuah titik ke sebuah garis adalah jarak tegak lurus, apotema selalu tegak lurus terhadap tali busurnya, dan mengenai tali busur tepat di titik tengahnya.</p>
+ <p class="lesson-text"><strong>Sifat penting:</strong> apotema yang tegak lurus terhadap tali busur akan <strong>membagi tali busur menjadi dua bagian sama panjang</strong>.</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Perhatikan $\triangle OCP$ dan $\triangle ODP$. Keduanya memiliki $OC = OD = r$ (jari-jari), $OP = OP$ (berimpit), dan $\angle OPC = \angle OPD = 90^\circ$. Berdasarkan kriteria kekongruenan segitiga siku-siku (hipotenusa-sisi), kedua segitiga ini kongruen. Akibatnya, $CP = PD$. ∎</p>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Lingkaran pusat O=(200,160), r=120 -->
+   <circle cx="200" cy="160" r="120" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="110.56" y1="80" x2="289.44" y2="80" stroke="#5dade2" stroke-width="2"/>
+   <!-- Apotema dari O ke midpoint CD=(200,80) -->
+   <line x1="200" y1="160" x2="200" y2="80" stroke="#5dade2" stroke-width="1.6" stroke-dasharray="6,4"/>
+   <!-- Jari-jari OC dan OD -->
+   <line x1="200" y1="160" x2="110.56" y2="80" stroke="#e8e8e8" stroke-width="1.4"/>
+   <line x1="200" y1="160" x2="289.44" y2="80" stroke="#e8e8e8" stroke-width="1.4"/>
+   <polyline points="200,90 210,90 210,80" fill="none" stroke="#5dade2" stroke-width="1.4"/>
+   <!-- Titik -->
+   <circle cx="200" cy="160" r="4.5" fill="#daa520"/>
+   <circle cx="110.56" cy="80" r="4.5" fill="#5dade2"/>
+   <circle cx="289.44" cy="80" r="4.5" fill="#5dade2"/>
+   <circle cx="200" cy="80" r="3.5" fill="#5dade2"/>
+   <!-- Label -->
+   <text x="205" y="158" font-size="14" fill="#daa520" font-style="italic">O</text>
+   <text x="98" y="76" font-size="14" fill="#5dade2" font-style="italic">C</text>
+   <text x="295" y="76" font-size="14" fill="#5dade2" font-style="italic">D</text>
+   <text x="205" y="76" font-size="11" fill="#5dade2" font-style="italic">P</text>
+   <text x="255" y="118" font-size="11" fill="#b8b8b8" font-style="italic">r</text>
+   <text x="180" y="128" font-size="11" fill="#5dade2" font-style="italic">apotema</text>
+  </svg>
+  <figcaption class="visual-caption">Apotema $OP$ dari pusat $O$ ke tali busur $CD$, tegak lurus di titik tengah $P$. Karena $OP \perp CD$ dan $OC = OD = r$, maka $CP = PD$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Tali Busur</p>
+ <ul>
+  <li><strong>Tali busur yang sama panjang memiliki apotema yang sama panjang.</strong> Jika dua tali busur sama panjang, jarak keduanya dari pusat juga sama. Sebaliknya, jika dua tali busur berjarak sama dari pusat, maka keduanya sama panjang.</li>
+  <li><strong>Tali busur yang lebih panjang memiliki apotema yang lebih pendek.</strong> Tali busur terpanjang (diameter) memiliki apotema $0$ karena melewati pusat.</li>
+  <li><strong>Tali busur yang sama panjang menghadap busur yang sama panjang.</strong> Dua tali busur dengan panjang sama akan memotong busur-busur dengan ukuran yang sama pula.</li>
+  <li><strong>Tali busur sejajar memotong busur-busur yang sama besar di antara keduanya.</strong> Jika dua tali busur sejajar, busur-busur yang terletak di antara keduanya memiliki panjang yang sama.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Sudut Pusat</h3>
+ <p class="lesson-subheading">A. Pengertian Sudut Pusat</p>
+ <p class="lesson-text"><strong>Sudut pusat</strong> adalah sudut yang <strong>titik sudutnya berada di pusat lingkaran</strong>, dan kedua kakinya adalah jari-jari yang menghubungkan pusat ke dua titik pada lingkaran. Sudut pusat yang dibentuk oleh jari-jari $OA$ dan $OB$ ditulis $\angle AOB$.</p>
+ <p class="lesson-text">Sudut pusat menghadap busur di depannya. Misalnya, $\angle AOB$ menghadap busur $AB$ (busur minor jika $\angle AOB < 180^\circ$, atau busur mayor jika sebaliknya).</p>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Lingkaran pusat O=(200,160), r=120 -->
+   <circle cx="200" cy="160" r="120" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="200" y1="160" x2="96.08" y2="100" stroke="#e8e8e8" stroke-width="1.8"/>
+   <line x1="200" y1="160" x2="303.92" y2="100" stroke="#e8e8e8" stroke-width="1.8"/>
+   <path d="M 156.7 135 A 50 50 0 0 1 243.3 135" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="192" y="148" font-size="14" fill="#daa520" font-style="italic">θ</text>
+   <path d="M 96.08 100 A 120 120 0 0 1 303.92 100" fill="none" stroke="#daa520" stroke-width="3"/>
+   <!-- Titik -->
+   <circle cx="200" cy="160" r="4.5" fill="#daa520"/>
+   <circle cx="96.08" cy="100" r="4.5" fill="#e8e8e8"/>
+   <circle cx="303.92" cy="100" r="4.5" fill="#e8e8e8"/>
+   <!-- Label -->
+   <text x="205" y="158" font-size="14" fill="#daa520" font-style="italic">O</text>
+   <text x="82" y="96" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="310" y="96" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="180" y="45" font-size="12" fill="#daa520" font-style="italic">busur AB</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut pusat $\angle AOB = \theta$ dengan titik sudut di pusat $O$. Kedua kaki sudut adalah jari-jari $OA$ dan $OB$. Sudut ini menghadap busur $AB$ (garis keemasan tebal).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Hubungan Sudut Pusat dengan Panjang Busur</p>
+ <p class="lesson-text">Besar sudut pusat <strong>berbanding lurus</strong> dengan panjang busur yang dihadapinya. Artinya, jika sudut pusat diperbesar dua kali, panjang busur yang dihadapinya juga menjadi dua kali (asalkan jari-jarinya tetap).</p>
+ <p class="lesson-text">$$\text{panjang busur } AB = \frac{\angle AOB}{360^\circ} \times 2\pi r$$</p>
+
+ <p class="lesson-subheading">C. Hubungan Sudut Pusat dengan Luas Juring</p>
+ <p class="lesson-text">Dengan cara yang sama, besar sudut pusat juga <strong>berbanding lurus</strong> dengan luas juring yang dibentuknya:</p>
+ <p class="lesson-text">$$\text{luas juring } AOB = \frac{\angle AOB}{360^\circ} \times \pi r^2$$</p>
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">Sebuah lingkaran dengan jari-jari $14$ cm memiliki sudut pusat $\angle AOB = 90^\circ$. Tentukan panjang busur $AB$ dan luas juring $AOB$.</p>
+ <p class="lesson-text">Panjang busur $= \dfrac{90^\circ}{360^\circ} \times 2 \cdot \dfrac{22}{7} \cdot 14 = \dfrac{1}{4} \cdot 88 = 22$ cm.</p>
+ <p class="lesson-text">Luas juring $= \dfrac{90^\circ}{360^\circ} \times \dfrac{22}{7} \cdot 14^2 = \dfrac{1}{4} \cdot 616 = 154$ cm$^2$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Sudut Keliling</h3>
+ <p class="lesson-subheading">A. Pengertian Sudut Keliling</p>
+ <p class="lesson-text"><strong>Sudut keliling</strong> adalah sudut yang <strong>titik sudutnya berada pada lingkaran</strong>, dan kedua kakinya adalah tali busur yang menghubungkan titik sudut tersebut ke dua titik lain pada lingkaran. Sudut keliling dengan titik sudut $C$ dan kaki $CA$ serta $CB$ ditulis $\angle ACB$.</p>
+ <p class="lesson-text">Sudut keliling juga menghadap busur di depannya. Jika $A$ dan $B$ berada pada lingkaran dan $C$ juga, maka $\angle ACB$ menghadap busur $AB$ (busur yang tidak memuat titik $C$).</p>
+
+ <figure>
+  <svg viewBox="0 0 400 320" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Lingkaran pusat O=(200,160), r=120 -->
+   <circle cx="200" cy="160" r="120" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <line x1="303.92" y1="220" x2="96.08" y2="220" stroke="#e8e8e8" stroke-width="1.8"/>
+   <line x1="303.92" y1="220" x2="200" y2="40" stroke="#e8e8e8" stroke-width="1.8"/>
+   <path d="M 258.92 220 A 45 45 0 0 1 281.42 181.03" fill="none" stroke="#daa520" stroke-width="2"/>
+   <text x="272" y="200" font-size="14" fill="#daa520" font-style="italic">θ</text>
+   <!-- Busur AB (busur yang dihadap, minor di atas lewat titik B) -->
+   <!-- Busur AB (busur yang dihadap, minor melewati barat-utara) -->
+   <path d="M 96.08 220 A 120 120 0 0 1 200 40" fill="none" stroke="#daa520" stroke-width="3" />
+   <!-- Titik -->
+   <circle cx="96.08" cy="220" r="4.5" fill="#5dade2"/>
+   <circle cx="200" cy="40" r="4.5" fill="#5dade2"/>
+   <circle cx="303.92" cy="220" r="4.5" fill="#5dade2"/>
+   <!-- Label -->
+   <text x="82" y="236" font-size="14" fill="#5dade2" font-style="italic">A</text>
+   <text x="205" y="34" font-size="14" fill="#5dade2" font-style="italic">B</text>
+   <text x="310" y="236" font-size="14" fill="#5dade2" font-style="italic">C</text>
+   <text x="235" y="135" font-size="12" fill="#daa520" font-style="italic">busur AB</text>
+  </svg>
+  <figcaption class="visual-caption">Sudut keliling $\angle ACB = \theta$ dengan titik sudut di $C$ pada lingkaran. Kedua kaki sudutnya adalah tali busur $CA$ dan $CB$. Sudut ini menghadap busur $AB$ (garis keemasan tebal) yang tidak memuat titik $C$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">B. Sifat 1: Sudut Keliling = Setengah Sudut Pusat</p>
+ <p class="lesson-text">Ini adalah sifat paling fundamental dari sudut keliling: <strong>jika sudut keliling dan sudut pusat menghadap busur yang sama, maka besar sudut keliling sama dengan setengah besar sudut pusat.</strong></p>
+ <p class="lesson-text">$$\angle \text{keliling} = \tfrac{1}{2} \times \angle \text{pusat}$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Bagaimana membuktikannya?</strong> Misalkan $O$ adalah pusat lingkaran, dan $A$, $B$, $C$ terletak pada lingkaran sehingga $\angle ACB$ adalah sudut keliling untuk busur $AB$ dan $\angle AOB$ adalah sudut pusatnya. Tarik garis dari $C$ melalui $O$, memotong lingkaran di titik $D$ (jadi $CD$ adalah diameter). Perhatikan $\triangle AOC$—karena $OA = OC = r$, segitiga ini sama kaki, sehingga $\angle OAC = \angle OCA = x$. Sudut $\angle AOD$ adalah sudut luar $\triangle AOC$, sehingga $\angle AOD = 2x$. Dengan cara yang sama untuk $\triangle BOC$—karena $OB = OC = r$, segitiga ini juga sama kaki dengan $\angle OBC = \angle OCB = y$—diperoleh $\angle BOD = 2y$. Jadi $\angle AOB = 2x + 2y = 2(x+y)$, sedangkan $\angle ACB = x + y$. Karena itu $\angle AOB = 2 \cdot \angle ACB$. ∎</p>
+ </div>
+
+ <figure>
+ <svg viewBox="0 0 400 340" style="display:block; margin:0 auto; max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="170" r="130" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Diameter C-O-D -->
+  <line x1="200" y1="40" x2="200" y2="300" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="6,4" />
+  
+  <!-- Jari-jari OA dan OB -->
+  <line x1="200" y1="170" x2="87.42" y2="235" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="200" y1="170" x2="312.58" y2="235" stroke="#e8e8e8" stroke-width="1.5" />
+  
+  <!-- Tali busur CA dan CB -->
+  <line x1="200" y1="40" x2="87.42" y2="235" stroke="#e8e8e8" stroke-width="1.5" />
+  <line x1="200" y1="40" x2="312.58" y2="235" stroke="#e8e8e8" stroke-width="1.5" />
+  
+  <!-- Busur AB minor (yang dihadap, di bawah) -->
+  <path d="M 87.42 235 A 130 130 0 0 1 312.58 235" fill="none" stroke="#daa520" stroke-width="3" />
+  
+  <!-- Busur sudut pusat 2θ di O (emas) -->
+  <path d="M 152.37 197.5 A 55 55 0 0 0 247.63 197.5" fill="none" stroke="#daa520" stroke-width="2.2" />
+  <text x="200" y="220" font-size="14" fill="#daa520" font-style="italic" text-anchor="middle">2θ</text>
+  
+  <!-- Busur sudut keliling θ di C (biru) - titik ujung tepat di CA dan CB -->
+  <path d="M 177.5 78.97 A 45 45 0 0 0 222.5 78.97" fill="none" stroke="#5dade2" stroke-width="2.2" />
+  <text x="200" y="105" font-size="14" fill="#5dade2" font-style="italic" text-anchor="middle">θ</text>
+  
+  <!-- Titik -->
+  <circle cx="200" cy="170" r="4.5" fill="#daa520" />
+  <circle cx="87.42" cy="235" r="4.5" fill="#e8e8e8" />
+  <circle cx="312.58" cy="235" r="4.5" fill="#e8e8e8" />
+  <circle cx="200" cy="40" r="4.5" fill="#5dade2" />
+  <circle cx="200" cy="300" r="3.5" fill="#5dade2" />
+  
+  <!-- Label titik -->
+  <text x="205" y="168" font-size="14" fill="#daa520" font-style="italic">O</text>
+  <text x="74" y="250" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="318" y="250" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="203" y="34" font-size="13" fill="#5dade2" font-style="italic">C</text>
+  <text x="203" y="316" font-size="13" fill="#5dade2" font-style="italic">D</text>
+  
+  <!-- Label busur -->
+  <text x="200" y="330" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">busur AB</text>
+ </svg>
+ <figcaption class="visual-caption">Pembuktian hubungan $\angle ACB = \tfrac{1}{2} \angle AOB$. Garis $CD$ melewati pusat $O$ (diameter), membagi sudut pusat $2\theta$ menjadi dua bagian dan sudut keliling $\theta$ menjadi dua bagian. Karena $\angle AOD$ dan $\angle BOD$ masing-masing $2x$ dan $2y$, maka $\angle AOB = 2(x+y)$ dan $\angle ACB = x+y$.</figcaption>
+</figure>
+
+ <p class="lesson-subheading">C. Sifat 2: Sudut Keliling yang Menghadap Busur Sama</p>
+ <p class="lesson-text"><strong>Semua sudut keliling yang menghadap busur yang sama memiliki besar yang sama.</strong></p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena setiap sudut keliling yang menghadap busur tertentu sama dengan setengah sudut pusat yang menghadap busur yang sama. Sudut pusat untuk busur tertentu hanya ada satu (ukurannya tetap), sehingga semua sudut keliling untuk busur yang sama juga sama besar.</p>
+
+ <figure>
+ <svg viewBox="0 0 400 360" style="display:block; margin:0 auto; max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="200" cy="170" r="130" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Busur AB minor (yang dihadap, di bawah) -->
+  <path d="M 87.42 235 A 130 130 0 0 1 312.58 235" fill="none" stroke="#daa520" stroke-width="3" />
+  
+  <!-- Sudut keliling dari C=(200, 40) (atas) -->
+  <line x1="200" y1="40" x2="87.42" y2="235" stroke="#e8e8e8" stroke-width="1.4" />
+  <line x1="200" y1="40" x2="312.58" y2="235" stroke="#e8e8e8" stroke-width="1.4" />
+  
+  <!-- Sudut keliling dari D di kanan atas: D=(265, 57.4) -->
+  <line x1="265" y1="57.4" x2="87.42" y2="235" stroke="#5dade2" stroke-width="1.4" />
+  <line x1="265" y1="57.4" x2="312.58" y2="235" stroke="#5dade2" stroke-width="1.4" />
+  
+  <!-- Busur sudut keliling θ di C (emas) - titik ujung tepat di CA dan CB -->
+  <path d="M 177.5 78.97 A 45 45 0 0 0 222.5 78.97" fill="none" stroke="#daa520" stroke-width="2.2" />
+  <text x="200" y="105" font-size="14" fill="#daa520" font-style="italic" text-anchor="middle">θ</text>
+  
+  <!-- Busur sudut keliling θ di D (biru) - titik ujung tepat di DA dan DB -->
+  <path d="M 233.18 89.22 A 45 45 0 0 0 276.65 100.87" fill="none" stroke="#5dade2" stroke-width="2.2" />
+  <text x="248" y="120" font-size="14" fill="#5dade2" font-style="italic" text-anchor="middle">θ</text>
+  
+  <!-- Titik -->
+  <circle cx="87.42" cy="235" r="4.5" fill="#e8e8e8" />
+  <circle cx="312.58" cy="235" r="4.5" fill="#e8e8e8" />
+  <circle cx="200" cy="40" r="4.5" fill="#daa520" />
+  <circle cx="265" cy="57.4" r="4.5" fill="#5dade2" />
+  
+  <!-- Label titik -->
+  <text x="74" y="250" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="318" y="250" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="203" y="34" font-size="13" fill="#daa520" font-style="italic">C</text>
+  <text x="272" y="52" font-size="13" fill="#5dade2" font-style="italic">D</text>
+  
+  <!-- Label busur -->
+  <text x="200" y="330" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">busur AB (yang dihadap)</text>
+ </svg>
+ <figcaption class="visual-caption">Dua sudut keliling $\angle ACB$ (emas) dan $\angle ADB$ (biru) menghadap busur minor $AB$ yang sama, sehingga keduanya sama besar ($\theta$).</figcaption>
+</figure>
+
+ <p class="lesson-subheading">D. Sifat 3: Sudut Keliling Menghadap Diameter</p>
+ <p class="lesson-text"><strong>Sudut keliling yang menghadap diameter selalu $90^\circ$</strong> (siku-siku).</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Jika $AB$ adalah diameter, maka busur $AB$ adalah setengah lingkaran, sehingga sudut pusat $\angle AOB = 180^\circ$ (sudut lurus). Menurut Sifat 1, sudut keliling yang menghadap busur yang sama sama dengan setengah sudut pusat, yaitu $\tfrac{1}{2} \times 180^\circ = 90^\circ$.</p>
+ <p class="lesson-text">Sifat ini dikenal sebagai <strong>Teorema Thales</strong>, dan sangat berguna untuk membuktikan bahwa suatu segitiga siku-siku atau untuk menemukan titik-titik yang membentuk sudut siku-siku pada lingkaran.</p>
+
+ <figure>
+  <svg viewBox="0 0 400 300" style="max-width:100%; height:auto; width:400px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Lingkaran pusat O=(200,160), r=120 -->
+   <circle cx="200" cy="160" r="120" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+   <!-- Diameter AB horizontal: A=(80,160), B=(320,160) -->
+   <line x1="80" y1="160" x2="320" y2="160" stroke="#e8e8e8" stroke-width="1.8"/>
+   <!-- Titik C di atas: (200, 40) -->
+   <line x1="200" y1="40" x2="80" y2="160" stroke="#e8e8e8" stroke-width="1.6"/>
+   <line x1="200" y1="40" x2="320" y2="160" stroke="#e8e8e8" stroke-width="1.6"/>
+   <polygon points="189.4,50.6 200,61.2 210.6,50.6 200,40" fill="none" stroke="#daa520" stroke-width="1.6"/>
+   <text x="222" y="72" font-size="13" fill="#daa520" font-style="italic">90°</text>
+   <!-- Titik -->
+   <circle cx="200" cy="160" r="4" fill="#daa520"/>
+   <circle cx="80" cy="160" r="4.5" fill="#e8e8e8"/>
+   <circle cx="320" cy="160" r="4.5" fill="#e8e8e8"/>
+   <circle cx="200" cy="40" r="4.5" fill="#5dade2"/>
+   <!-- Label -->
+   <text x="205" y="158" font-size="13" fill="#daa520" font-style="italic">O</text>
+   <text x="66" y="176" font-size="13" fill="#e8e8e8" font-style="italic">A</text>
+   <text x="326" y="176" font-size="13" fill="#e8e8e8" font-style="italic">B</text>
+   <text x="205" y="34" font-size="13" fill="#5dade2" font-style="italic">C</text>
+   <text x="230" y="176" font-size="11" fill="#b8b8b8" font-style="italic">diameter</text>
+  </svg>
+  <figcaption class="visual-caption">Teorema Thales. Jika $AB$ adalah diameter, maka setiap sudut keliling yang menghadap $AB$ (seperti $\angle ACB$) selalu $90^\circ$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">E. Sifat 4: Segiempat Tali busur</p>
+ <p class="lesson-text">Jika keempat titik sudut sebuah segiempat terletak pada lingkaran, segiempat tersebut disebut <strong>segiempat tali busur</strong> (<em>cyclic quadrilateral</em>).</p>
+ <p class="lesson-text"><strong>Sifat:</strong> jumlah sudut-sudut yang berhadapan pada segiempat tali busur adalah $180^\circ$:</p>
+ <p class="lesson-text">$$\angle A + \angle C = 180^\circ \quad \text{dan} \quad \angle B + \angle D = 180^\circ$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa?</strong> Sudut $\angle A$ menghadap busur $BCD$, sedangkan sudut $\angle C$ menghadap busur $BAD$. Kedua busur ini bersama-sama membentuk seluruh keliling lingkaran—total sudut pusatnya $360^\circ$. Karena setiap sudut keliling sama dengan setengah sudut pusat yang menghadap busur yang sama, maka $\angle A + \angle C = \tfrac{1}{2} \times 360^\circ = 180^\circ$.</p>
+ </div>
+
+ <figure>
+ <svg viewBox="0 0 420 360" style="display:block; margin:0 auto; max-width:100%; height:auto; width:420px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lingkaran pusat O=(200,170), r=130 -->
+  <circle cx="200" cy="170" r="130" fill="none" stroke="#e8e8e8" stroke-width="2" />
+  
+  <!-- Segiempat tali busur ABCD (titik sudut tidak simetris) -->
+  <polygon points="116.44,70.42 312.58,105 291.92,261.92 77.84,214.46" fill="none" stroke="#e8e8e8" stroke-width="1.8" />
+  
+  <!-- Titik sudut pada lingkaran -->
+  <circle cx="116.44" cy="70.42" r="4.5" fill="#e8e8e8" />
+  <circle cx="312.58" cy="105" r="4.5" fill="#e8e8e8" />
+  <circle cx="291.92" cy="261.92" r="4.5" fill="#e8e8e8" />
+  <circle cx="77.84" cy="214.46" r="4.5" fill="#e8e8e8" />
+  
+  <!-- Label titik sudut -->
+  <text x="100" y="60" font-size="14" fill="#e8e8e8" font-style="italic">A</text>
+  <text x="320" y="100" font-size="14" fill="#e8e8e8" font-style="italic">B</text>
+  <text x="302" y="282" font-size="14" fill="#e8e8e8" font-style="italic">C</text>
+  <text x="58" y="232" font-size="14" fill="#e8e8e8" font-style="italic">D</text>
+  
+  <!-- Label sudut dalam -->
+  <text x="146" y="102" font-size="15" fill="#5dade2" font-style="italic">α</text>
+  <text x="282" y="128" font-size="15" fill="#daa520" font-style="italic">β</text>
+  <text x="262" y="240" font-size="15" fill="#5dade2" font-style="italic">γ</text>
+  <text x="108" y="224" font-size="15" fill="#daa520" font-style="italic">δ</text>
+  
+  <!-- Persamaan sudut berhadapan di tengah -->
+  <text x="200" y="172" font-size="12" fill="#5dade2" font-style="italic" text-anchor="middle">α + γ = 180°</text>
+  <text x="200" y="192" font-size="12" fill="#daa520" font-style="italic" text-anchor="middle">β + δ = 180°</text>
+ </svg>
+ <figcaption class="visual-caption">Segiempat tali busur $ABCD$ dengan titik sudut pada lingkaran. Sudut-sudut yang berhadapan berjumlah $180^\circ$: $\alpha + \gamma = 180^\circ$ (sudut $A$ dan $C$) dan $\beta + \delta = 180^\circ$ (sudut $B$ dan $D$).</figcaption>
+</figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Contoh Soal</h3>
+ <p class="lesson-subheading">Contoh 1: Sudut Pusat dan Sudut Keliling</p>
+ <p class="lesson-text">Pada lingkaran dengan pusat $O$, diketahui $\angle AOB = 80^\circ$. Jika $C$ berada pada lingkaran (pada busur mayor $AB$), berapa besar $\angle ACB$?</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Sudut $\angle AOB$ dan $\angle ACB$ menghadap busur yang sama, yaitu busur minor $AB$. Berdasarkan Sifat 1:</p>
+ <p class="lesson-text">$$\angle ACB = \tfrac{1}{2} \cdot \angle AOB = \tfrac{1}{2} \cdot 80^\circ = 40^\circ$$</p>
+
+ <p class="lesson-subheading">Contoh 2: Sudut Keliling Menghadap Diameter</p>
+ <p class="lesson-text">Pada lingkaran dengan diameter $PQ$, titik $R$ terletak pada lingkaran. Jika $\angle RPQ = 30^\circ$, tentukan $\angle PQR$ dan $\angle PRQ$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Karena $PQ$ adalah diameter, sudut keliling $\angle PRQ$ yang menghadap diameter adalah $90^\circ$.</p>
+ <p class="lesson-text">Dalam $\triangle PQR$: $\angle RPQ + \angle PQR + \angle PRQ = 180^\circ$.</p>
+ <p class="lesson-text">$30^\circ + \angle PQR + 90^\circ = 180^\circ \Rightarrow \angle PQR = 180^\circ - 120^\circ = 60^\circ$.</p>
+
+ <p class="lesson-subheading">Contoh 3: Segiempat Tali busur</p>
+ <p class="lesson-text">Segiempat $ABCD$ terletak pada lingkaran. Jika $\angle A = 75^\circ$ dan $\angle B = 100^\circ$, tentukan $\angle C$ dan $\angle D$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Karena $ABCD$ adalah segiempat tali busur, sudut berhadapan berjumlah $180^\circ$:</p>
+ <p class="lesson-text">$\angle A + \angle C = 180^\circ \Rightarrow 75^\circ + \angle C = 180^\circ \Rightarrow \angle C = 105^\circ$.</p>
+ <p class="lesson-text">$\angle B + \angle D = 180^\circ \Rightarrow 100^\circ + \angle D = 180^\circ \Rightarrow \angle D = 80^\circ$.</p>
+
+ <p class="lesson-subheading">Contoh 4: Panjang Busur dan Luas Juring</p>
+ <p class="lesson-text">Sebuah lingkaran memiliki jari-jari $10$ cm. Tentukan panjang busur dan luas juring yang dibentuk oleh sudut pusat $72^\circ$ (gunakan $\pi \approx 3{,}14$).</p>
+ <p class="lesson-text"><strong>Panjang busur:</strong> $\dfrac{72^\circ}{360^\circ} \times 2 \times 3{,}14 \times 10 = 0{,}2 \times 62{,}8 = 12{,}56$ cm.</p>
+ <p class="lesson-text"><strong>Luas juring:</strong> $\dfrac{72^\circ}{360^\circ} \times 3{,}14 \times 10^2 = 0{,}2 \times 314 = 62{,}8$ cm$^2$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Penerapan Praktis</h3>
+ <p class="lesson-text">Lingkaran bukan hanya objek geometris di atas kertas—ia muncul di mana-mana dalam kehidupan nyata dan menjadi fondasi dari banyak bidang terapan.</p>
+
+ <p class="lesson-subheading">A. Roda Kendaraan</p>
+ <p class="lesson-text">Roda kendaraan dirancang berbentuk lingkaran karena bentuk ini memungkinkan kendaraan bergerak mulus tanpa guncangan—setiap titik pada keliling roda selalu berjarak sama dari porosnya, sehingga poros tidak "naik-turun" saat roda berputar. Konsep sudut pusat dan panjang busur juga digunakan untuk menghitung jarak yang ditempuh roda berdasarkan jumlah putarannya.</p>
+
+ <p class="lesson-subheading">B. Orbit Planet dan Satelit</p>
+ <p class="lesson-text">Orbit planet mengelilingi Matahari—dan orbit satelit mengelilingi Bumi—secara ideal berbentuk elips, tetapi sering didekati sebagai lingkaran untuk perhitungan sederhana. Sudut pusat digunakan untuk menentukan posisi planet atau satelit pada orbitnya pada waktu tertentu, sedangkan panjang busur menentukan jarak yang ditempuh sepanjang orbit.</p>
+
+ <p class="lesson-subheading">C. Jam Analog</p>
+ <p class="lesson-text">Jam analog adalah aplikasi langsung dari konsep sudut pusat. Jarum jam dan jarum menit bergerak mengelilingi pusat jam dengan kecepatan sudut tetap. Sudut antara dua jarum dapat dihitung dengan konsep sudut pusat—misalnya pada pukul 3:00, sudut antara jarum jam dan jarum menit adalah $90^\circ$.</p>
+
+ <p class="lesson-subheading">D. Olahraga dan Arena</p>
+ <p class="lesson-text">Lapangan sepak bola, basket, dan atletik memiliki elemen lingkaran—lingkaran tengah, busur tiga poin, dan lintasan lari. Panjang lintasan lari luar berbeda dengan lintasan lari dalam, karena jari-jarinya berbeda. Perbedaan panjang ini dihitung menggunakan rumus panjang busur.</p>
+
+ <p class="lesson-subheading">E. Arsitektur dan Desain</p>
+ <p class="lesson-text">Kubah masjid, jendela gereja, dan kolam air mancur sering menggunakan bentuk lingkaran atau setengah lingkaran. Lengkungan (<em>arch</em>) pada jembatan dan pintu juga menggunakan prinsip busur lingkaran untuk membagi beban secara merata. Desainer grafis menggunakan lingkaran untuk menciptakan komposisi yang seimbang dan harmonis.</p>
+
+ <p class="lesson-subheading">F. Trigonometri dan Navigasi</p>
+ <p class="lesson-text">Seluruh trigonometri lahir dari lingkaran satuan—lingkaran dengan jari-jari 1 yang digunakan untuk mendefinisikan sinus, kosinus, dan tangen. Dalam navigasi, sudut arah (<em>bearing</em>) diukur dari utara, dan perhitungan jarak antar titik di permukaan Bumi menggunakan prinsip-prinsip lingkaran besar.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Menganggap lingkaran adalah "daerah di dalam kurva".</strong> Lingkaran hanyalah kurva tertutupnya saja. Daerah di dalamnya disebut cakram (<em>disk</em>). Untuk rumus luas, kita sebenarnya menghitung luas daerah yang dibatasi oleh lingkaran.</li>
+  <li><strong>Tertukar antara busur dan tali busur.</strong> Busur adalah kurva lengkung mengikuti keliling; tali busur adalah garis lurus yang menghubungkan dua titik pada lingkaran. Keduanya menghubungkan dua titik yang sama, tetapi bentuknya berbeda.</li>
+  <li><strong>Menganggap sudut keliling selalu sama dengan setengah sudut pusat tanpa memeriksa busur yang dihadap.</strong> Sifat ini hanya berlaku jika sudut keliling dan sudut pusat menghadap <em>busur yang sama</em>.</li>
+  <li><strong>Menganggap sudut pusat selalu lebih kecil dari $180^\circ$.</strong> Sudut pusat bisa lebih dari $180^\circ$ (sudut refleks). Jika sudut pusat $> 180^\circ$, maka sudut keliling yang menghadap busur yang sama (busur mayor) juga akan menyesuaikan.</li>
+  <li><strong>Menganggap "sudut keliling yang menghadap diameter = 90°" berlaku untuk semua tali busur.</strong> Sifat ini hanya berlaku jika tali busurnya adalah <em>diameter</em>, bukan tali busur biasa.</li>
+  <li><strong>Menganggap semua segiempat yang titik sudutnya di lingkaran pasti persegi panjang.</strong> Segiempat tali busur bisa berbentuk apa saja, selama keempat titik sudutnya berada pada lingkaran. Yang pasti adalah sudut berhadapannya berjumlah $180^\circ$.</li>
+  <li><strong>Menganggap apotema sama dengan jari-jari.</strong> Apotema adalah jarak tegak lurus dari pusat ke tali busur, yang nilainya selalu $\leq r$. Apotema $= 0$ untuk diameter.</li>
+  <li><strong>Salah menghitung panjang busur atau luas juring.</strong> Pastikan sudut pusat dalam derajat dan gunakan perbandingan $\theta/360^\circ$—bukan $\theta/180^\circ$. Jangan lupa bahwa panjang busur menggunakan $2\pi r$, sedangkan luas juring menggunakan $\pi r^2$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Ringkasan</h3>
+ <ul>
+  <li><strong>Lingkaran</strong> adalah himpunan titik-titik yang berjarak sama ($r$) dari titik pusat $O$. Diameter $d = 2r$.</li>
+  <li><strong>Unsur-unsur</strong>: pusat, jari-jari, diameter, busur, tali busur, apotema, juring, tembereng.</li>
+  <li><strong>Busur</strong> adalah bagian dari keliling; jenisnya busur minor ($< 180^\circ$), busur mayor ($> 180^\circ$), dan setengah lingkaran ($= 180^\circ$). Panjang busur $= \dfrac{\theta}{360^\circ} \cdot 2\pi r$.</li>
+  <li><strong>Tali busur</strong> adalah segmen garis yang menghubungkan dua titik pada lingkaran. Diameter adalah tali busur terpanjang.</li>
+  <li><strong>Apotema</strong> adalah jarak tegak lurus dari pusat ke tali busur. Apotema selalu membagi tali busur menjadi dua bagian sama panjang.</li>
+  <li><strong>Sudut pusat</strong> adalah sudut dengan titik sudut di pusat. Panjang busur dan luas juring sebanding dengan besar sudut pusat.</li>
+  <li><strong>Sudut keliling</strong> adalah sudut dengan titik sudut pada lingkaran. Besarnya $= \tfrac{1}{2} \times$ sudut pusat yang menghadap busur yang sama.</li>
+  <li>Sudut keliling yang menghadap busur yang sama memiliki besar yang sama.</li>
+  <li>Sudut keliling yang menghadap diameter selalu $90^\circ$ (Teorema Thales).</li>
+  <li><strong>Segiempat tali busur</strong>: sudut-sudut yang berhadapan berjumlah $180^\circ$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Lingkaran adalah <strong>bangun datar yang unik</strong>&mdash;tidak memiliki sisi lurus maupun sudut, tetapi justru menyimpan hubungan-hubungan sudut yang sangat kaya. Konsep busur, tali busur, sudut pusat, dan sudut keliling saling terkait erat, dan hubungan $\angle\text{keliling} = \tfrac{1}{2}\,\angle\text{pusat}$ adalah salah satu teorema paling fundamental dalam geometri. Yang menarik: teorema ini bukan hasil hafalan, melainkan dapat diturunkan dari sifat dasar segitiga sama kaki dan sudut luar segitiga&mdash;konsep yang sudah Anda kuasai sejak materi sebelumnya.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi bagi topik-topik berikutnya: <strong>Luas &amp; Volume</strong> (tabung, kerucut, bola), <strong>Geometri Analitik</strong> (persamaan lingkaran $(x-a)^2 + (y-b)^2 = r^2$), <strong>Irisan Kerucut</strong> (lingkaran sebagai kasus khusus elips), hingga <strong>Trigonometri Dasar</strong> (yang mendefinisikan sinus, kosinus, dan tangen lewat lingkaran satuan).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama yang melibatkan hubungan sudut pusat&ndash;sudut keliling, segiempat tali busur, dan perhitungan panjang busur serta luas juring. Kebiasaan memeriksa apakah kedua sudut menghadap busur yang <em>sama</em>, mengingat bahwa Teorema Thales hanya berlaku untuk diameter, dan konsisten dalam satuan derajat akan menyelamatkan Anda dari kesalahan yang tidak perlu&mdash;terutama saat melangkah ke trigonometri dan geometri analitik.</p>
+</div>
+
+</div>
+</body>
+</html>

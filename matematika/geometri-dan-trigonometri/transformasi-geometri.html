@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Transformasi Geometri (Translasi, Refleksi, Rotasi, Dilatasi)</title>
+ <meta name="description" content="Materi lengkap transformasi geometri: translasi, rotasi, refleksi,  dilatasi, sifat-sifat, komposisi, dan penerapannya dalam kehidupan sehari-hari.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Transformasi Geometri (Translasi, Refleksi, Rotasi, Dilatasi)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Geometri Analitik</strong> — terutama sistem koordinat Kartesius dan jarak dua titik, karena seluruh transformasi dinyatakan sebagai perubahan koordinat $(x, y)$.</li>
+   <li><strong>Trigonometri Dasar</strong> — terutama nilai $\sin$ dan $\cos$ pada sudut istimewa, karena rumus rotasi umum melibatkan fungsi trigonometri.</li>
+   <li><strong>Aljabar Dasar</strong> — terutama manipulasi persamaan dan substitusi, karena rumus-rumus transformasi adalah persamaan aljabar yang perlu diselesaikan.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Perhatikan empat aktivitas sederhana berikut: <strong>menggeser</strong> jendela aplikasi di layar ponsel, <strong>bercermin</strong> di depan kaca, <strong>memutar</strong> jarum jam dari pukul 12 ke pukul 3, dan <strong>mencubit</strong> layar untuk memperbesar foto. Keempat aktivitas ini adalah empat contoh <strong>transformasi geometri</strong> yang berbeda: translasi (menggeser), refleksi (mencerminkan), rotasi (memutar), dan dilatasi (memperbesar/memperkecil).</p>
+ <p class="lesson-text">Selama ini kita mempelajari bangun-bangun geometri sebagai objek yang <em>tetap</em> pada posisinya. Namun dalam banyak situasi&mdash;dari animasi film hingga navigasi GPS, dari desain grafis hingga robotika&mdash;kita perlu memindahkan, memutar, mencerminkan, atau mengubah ukuran bangun. Transformasi geometri memberikan cara sistematis untuk melakukannya. Setiap transformasi dinyatakan sebagai rumus yang mengubah koordinat $(x, y)$ sebuah titik menjadi koordinat baru $(x', y')$&mdash;dan inilah yang memungkinkan komputer "memahami" dan memanipulasi gambar, animasi, serta peta digital.</p>
+ <p class="lesson-text">Materi ini disusun bertahap: pengertian transformasi, lalu empat jenis transformasi dasar&mdash;<strong>translasi</strong>, <strong>refleksi</strong>, <strong>rotasi</strong>, dan <strong>dilatasi</strong>&mdash;beserta rumus dan sifatnya, dilanjutkan dengan perbandingan keempatnya, komposisi transformasi, penerapan praktis, dan kesalahan umum.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Transformasi</h3>
+ <p class="lesson-subheading">A. Definisi Transformasi Geometri</p>
+ <p class="lesson-text"><strong>Transformasi geometri</strong> adalah suatu operasi yang memetakan setiap titik pada bidang ke titik lain pada bidang yang sama (atau bidang yang berbeda), menurut aturan tertentu. Titik asal disebut <strong>prapeta</strong> (<em>preimage</em>), sedangkan titik hasilnya disebut <strong>peta</strong> (<em>image</em>).</p>
+ <p class="lesson-text">Jika titik $P(x, y)$ ditransformasi menjadi $P'(x', y')$, kita katakan bahwa transformasi $T$ memetakan $P$ ke $P'$, ditulis $T: P(x, y) \to P'(x', y')$.</p>
+ <figure>
+ <svg viewBox="0 0 620 380" style="display:block; margin:0 auto; max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Grid tipis untuk latar koordinat -->
+  <g stroke="#e8e8e8" stroke-width="0.4" opacity="0.10">
+   <line x1="60" y1="40" x2="60" y2="340" />
+   <line x1="120" y1="40" x2="120" y2="340" />
+   <line x1="180" y1="40" x2="180" y2="340" />
+   <line x1="240" y1="40" x2="240" y2="340" />
+   <line x1="300" y1="40" x2="300" y2="340" />
+   <line x1="360" y1="40" x2="360" y2="340" />
+   <line x1="420" y1="40" x2="420" y2="340" />
+   <line x1="480" y1="40" x2="480" y2="340" />
+   <line x1="540" y1="40" x2="540" y2="340" />
+   <line x1="60" y1="40" x2="580" y2="40" />
+   <line x1="60" y1="100" x2="580" y2="100" />
+   <line x1="60" y1="160" x2="580" y2="160" />
+   <line x1="60" y1="220" x2="580" y2="220" />
+   <line x1="60" y1="280" x2="580" y2="280" />
+  </g>
+  
+  <!-- Sumbu koordinat -->
+  <line x1="30" y1="280" x2="590" y2="280" stroke="#e8e8e8" stroke-width="1.4" />
+  <polygon points="592,280 582,275 582,285" fill="#e8e8e8" />
+  <text x="596" y="284" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="60" y1="360" x2="60" y2="30" stroke="#e8e8e8" stroke-width="1.4" />
+  <polygon points="60,28 55,38 65,38" fill="#e8e8e8" />
+  <text x="66" y="26" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+  
+  <!-- Label prapeta & peta -->
+  <text x="140" y="30" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle" font-weight="600">Prapeta (bangun asal)</text>
+  <text x="440" y="30" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Peta (bangun hasil)</text>
+  
+  <!-- Bangun asal: segitiga di kuadran I -->
+  <!-- P = (1, 1) → (120, 220); Q = (1, 3) → (120, 100); R = (3, 1) → (240, 220) -->
+  <polygon points="120,220 120,100 240,220" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2.2" />
+  <circle cx="120" cy="220" r="4.5" fill="#5dade2" />
+  <circle cx="120" cy="100" r="4.5" fill="#5dade2" />
+  <circle cx="240" cy="220" r="4.5" fill="#5dade2" />
+  <text x="105" y="238" font-size="12" fill="#5dade2" font-style="italic" font-weight="700">P</text>
+  <text x="105" y="96" font-size="12" fill="#5dade2" font-style="italic" font-weight="700">Q</text>
+  <text x="246" y="238" font-size="12" fill="#5dade2" font-style="italic" font-weight="700">R</text>
+  <text x="180" y="255" font-size="11" fill="#5dade2" font-style="italic" text-anchor="middle">Segitiga PQR</text>
+  
+  <!-- Panah transformasi -->
+  <path d="M 290 160 Q 320 130 350 160" fill="none" stroke="#f0c75e" stroke-width="2.4" />
+  <polygon points="355,163 345,155 344,165" fill="#f0c75e" />
+  <text x="322" y="128" font-size="13" fill="#f0c75e" font-style="italic" text-anchor="middle" font-weight="700">T</text>
+  <text x="322" y="186" font-size="11" fill="#f0c75e" font-style="italic" text-anchor="middle">transformasi</text>
+  
+  <!-- Bangun hasil: segitiga di kuadran II (refleksi sumbu-Y + translasi) -->
+  <!-- P' = (-3, 1) → (360, 220); Q' = (-3, 3) → (360, 100); R' = (-5, 1) → (300, 220) -->
+  <polygon points="360,220 360,100 300,220" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2.2" />
+  <circle cx="360" cy="220" r="4.5" fill="#daa520" />
+  <circle cx="360" cy="100" r="4.5" fill="#daa520" />
+  <circle cx="300" cy="220" r="4.5" fill="#daa520" />
+  <text x="366" y="238" font-size="12" fill="#daa520" font-style="italic" font-weight="700">P'</text>
+  <text x="366" y="96" font-size="12" fill="#daa520" font-style="italic" font-weight="700">Q'</text>
+  <text x="270" y="238" font-size="12" fill="#daa520" font-style="italic" font-weight="700">R'</text>
+  <text x="330" y="255" font-size="11" fill="#daa520" font-style="italic" text-anchor="middle">Segitiga P'Q'R'</text>
+  
+  <!-- Keterangan tambahan -->
+  <text x="310" y="360" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Setiap titik dipetakan sesuai aturan T</text>
+ </svg>
+ <figcaption class="visual-caption">Setiap transformasi $T$ memetakan setiap titik pada bangun asal (<strong>prapeta</strong>) ke titik baru pada bangun hasil (<strong>peta</strong>). Dalam contoh ini, segitiga $PQR$ ditransformasi menjadi segitiga $P'Q'R'$&mdash;dengan posisi yang berbeda, tetapi bentuknya tetap sama (kongruen). Bentuk transformasinya bisa berupa translasi, refleksi, rotasi, atau dilatasi&mdash;sesuai aturan $T$.</figcaption>
+</figure>
+ <p class="lesson-subheading">B. Klasifikasi Transformasi</p>
+ <p class="lesson-text">Berdasarkan sifatnya, transformasi dapat dibagi menjadi beberapa kategori:</p>
+ <ul>
+  <li><strong>Isometri</strong>: transformasi yang <em>mempertahankan jarak</em> (panjang segmen). Bangun hasil memiliki bentuk dan ukuran yang sama dengan bangun asal. Contoh: translasi, refleksi, rotasi.</li>
+  <li><strong>Non-isometri</strong>: transformasi yang <em>mengubah ukuran</em>. Bangun hasil bisa lebih besar atau lebih kecil. Contoh: dilatasi.</li>
+  <li><strong>Transformasi langsung</strong> (<em>orientation-preserving</em>): arah putaran tetap. Contoh: translasi, rotasi.</li>
+  <li><strong>Transformasi berlawanan</strong> (<em>orientation-reversing</em>): arah putaran terbalik. Contoh: refleksi.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Empat Jenis Transformasi Dasar</p>
+ <ul>
+  <li><strong>Translasi</strong>: menggeser bangun tanpa mengubah bentuk, ukuran, atau orientasinya.</li>
+  <li><strong>Refleksi</strong>: mencerminkan bangun terhadap sebuah garis atau titik.</li>
+  <li><strong>Rotasi</strong>: memutar bangun terhadap sebuah titik pusat dengan sudut tertentu.</li>
+  <li><strong>Dilatasi</strong>: memperbesar atau memperkecil bangun dengan faktor skala tertentu.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Translasi (Pergeseran)</h3>
+ <p class="lesson-subheading">A. Pengertian Translasi</p>
+ <p class="lesson-text"><strong>Translasi</strong> (pergeseran) adalah transformasi yang <strong>memindahkan setiap titik pada bangun sejauh jarak dan searah tertentu</strong>. Semua titik digeser dengan vektor yang sama, sehingga bentuk, ukuran, dan orientasi bangun tetap sama persis—hanya posisinya yang berubah. Analogi mudah: bayangkan Anda menggeser kertas bergambar di atas meja.</p>
+
+ <p class="lesson-subheading">B. Rumus Translasi</p>
+ <p class="lesson-text">Translasi dilambangkan dengan vektor $\binom{a}{b}$—di mana $a$ adalah pergeseran horizontal (positif ke kanan) dan $b$ adalah pergeseran vertikal (positif ke atas). Jika titik $P(x, y)$ ditranslasi oleh $\binom{a}{b}$, maka peta $P'(x', y')$ adalah:</p>
+ <p class="lesson-text">$$P'(x + a, \ y + b)$$</p>
+ <p class="lesson-text">Atau dalam notasi vektor: $\binom{x'}{y'} = \binom{x}{y} + \binom{a}{b}$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa rumusnya sesederhana ini?</strong> Karena translasi hanya menggeser titik tanpa mengubah arah. Komponen $x$ hanya digeser sejauh $a$, dan komponen $y$ hanya digeser sejauh $b$. Tidak ada interaksi antar komponen—berbeda dengan rotasi yang akan kita bahas nanti, di mana koordinat $x$ dan $y$ saling memengaruhi.</p>
+ </div>
+
+ <figure>
+  <svg viewBox="0 0 500 340" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="40" y1="280" x2="460" y2="280" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="462,280 452,275 452,285" fill="#e8e8e8"/>
+   <text x="466" y="284" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="120" y1="320" x2="120" y2="25" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="120,22 115,32 125,32" fill="#e8e8e8"/>
+   <text x="126" y="20" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="120" cy="280" r="2.5" fill="#e8e8e8"/>
+
+   <polygon points="150,190 150,250 210,250" fill="#5dade2" fill-opacity="0.18" stroke="#5dade2" stroke-width="2"/>
+   <circle cx="150" cy="190" r="4" fill="#5dade2"/>
+   <circle cx="150" cy="250" r="4" fill="#5dade2"/>
+   <circle cx="210" cy="250" r="4" fill="#5dade2"/>
+   <text x="132" y="186" font-size="12" fill="#5dade2" font-style="italic">A (1, 3)</text>
+   <text x="112" y="268" font-size="12" fill="#5dade2" font-style="italic">B (1, 1)</text>
+   <text x="215" y="266" font-size="12" fill="#5dade2" font-style="italic">C (3, 1)</text>
+
+   <polygon points="240,130 240,190 300,190" fill="#daa520" fill-opacity="0.18" stroke="#daa520" stroke-width="2"/>
+   <circle cx="240" cy="130" r="4" fill="#daa520"/>
+   <circle cx="240" cy="190" r="4" fill="#daa520"/>
+   <circle cx="300" cy="190" r="4" fill="#daa520"/>
+   <text x="245" y="126" font-size="12" fill="#daa520" font-style="italic">A' (4, 5)</text>
+   <text x="245" y="210" font-size="12" fill="#daa520" font-style="italic">B' (4, 3)</text>
+   <text x="305" y="206" font-size="12" fill="#daa520" font-style="italic">C' (6, 3)</text>
+
+   <line x1="150" y1="250" x2="240" y2="190" stroke="#f0c75e" stroke-width="1.8" stroke-dasharray="5,4"/>
+   <polygon points="240,190 230,191 233,199" fill="#f0c75e"/>
+   <text x="185" y="215" font-size="13" fill="#f0c75e" font-style="italic">(3, 2)</text>
+  </svg>
+  <figcaption class="visual-caption">Translasi segitiga $ABC$ oleh vektor $\binom{3}{2}$. Setiap titik bergeser 3 satuan ke kanan dan 2 satuan ke atas: $A(1,3) \to A'(4,5)$, $B(1,1) \to B'(4,3)$, $C(3,1) \to C'(6,3)$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Translasi</p>
+ <ul>
+  <li><strong>Isometri</strong>: panjang segmen tetap. Jika $AB = 5$, maka $A'B' = 5$.</li>
+  <li><strong>Sudut tetap</strong>: besar sudut tidak berubah.</li>
+  <li><strong>Bentuk dan ukuran tetap</strong>: bangun hasil kongruen dengan bangun asal.</li>
+  <li><strong>Orientasi tetap</strong>: tidak ada pencerminan, arah tetap sama.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Contoh Perhitungan</p>
+ <p class="lesson-text">Titik $P(-3, 5)$ ditranslasi oleh $\binom{4}{-2}$. Maka $P' = (-3 + 4, \ 5 + (-2)) = (1, 3)$.</p>
+ <p class="lesson-text">Jika sebuah segitiga memiliki titik sudut $A(1, 1)$, $B(4, 2)$, $C(2, 5)$ dan ditranslasi oleh $\binom{-2}{3}$, maka $A' = (-1, 4)$, $B' = (2, 5)$, dan $C' = (0, 8)$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Refleksi (Pencerminan)</h3>
+ <p class="lesson-subheading">A. Pengertian Refleksi</p>
+ <p class="lesson-text"><strong>Refleksi</strong> (pencerminan) adalah transformasi yang <strong>mencerminkan setiap titik terhadap sebuah garis atau titik tertentu</strong>. Garis atau titik ini disebut <strong>sumbu refleksi</strong> (cermin). Hasil refleksi adalah bayangan cermin dari bangun asal. Jarak titik ke cermin sama dengan jarak bayangannya ke cermin, tetapi sisi kiri dan kanan tertukar.</p>
+
+ <p class="lesson-subheading">B. Rumus Refleksi untuk Berbagai Sumbu</p>
+ <p class="lesson-subheading-alt">1. Refleksi terhadap sumbu-$X$</p>
+ <p class="lesson-text">Sumbu-$X$ adalah garis $y = 0$ (horizontal). Rumusnya: $(x, y) \to (x, -y)$.</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Jarak titik ke sumbu-$X$ adalah $|y|$. Setelah refleksi, titik berada pada jarak $|y|$ di sisi berlawanan, sehingga koordinat $y$ menjadi $-y$. Koordinat $x$ tidak berubah karena titik bergeser tegak lurus terhadap sumbu-$X$.</p>
+
+ <p class="lesson-subheading-alt">2. Refleksi terhadap sumbu-$Y$</p>
+ <p class="lesson-text">$(x, y) \to (-x, y)$.</p>
+
+ <p class="lesson-subheading-alt">3. Refleksi terhadap titik asal $O(0, 0)$</p>
+ <p class="lesson-text">$(x, y) \to (-x, -y)$. Ini setara dengan rotasi $180^\circ$ terhadap titik asal.</p>
+
+ <p class="lesson-subheading-alt">4. Refleksi terhadap garis $y = x$</p>
+ <p class="lesson-text">$(x, y) \to (y, x)$—koordinat $x$ dan $y$ ditukar.</p>
+
+ <p class="lesson-subheading-alt">5. Refleksi terhadap garis $y = -x$</p>
+ <p class="lesson-text">$(x, y) \to (-y, -x)$.</p>
+
+ <p class="lesson-subheading-alt">6. Refleksi terhadap garis $x = h$ (garis vertikal)</p>
+ <p class="lesson-text">$(x, y) \to (2h - x, \ y)$. Jarak titik ke garis $x = h$ adalah $|x - h|$. Setelah refleksi, titik berada pada jarak yang sama di sisi berlawanan, sehingga $x' = h + (h - x) = 2h - x$.</p>
+
+ <p class="lesson-subheading-alt">7. Refleksi terhadap garis $y = k$ (garis horizontal)</p>
+ <p class="lesson-text">$(x, y) \to (x, \ 2k - y)$.</p>
+
+ <figure>
+  <svg viewBox="0 0 700 300" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel 1: Refleksi sumbu-X -->
+   <text x="80" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Refleksi sumbu-X</text>
+   <line x1="20" y1="170" x2="220" y2="170" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="222" y="174" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="60" y1="30" x2="60" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="65" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="60" cy="170" r="2.5" fill="#e8e8e8"/>
+   <circle cx="150" cy="110" r="4.5" fill="#5dade2"/>
+   <text x="120" y="105" font-size="11" fill="#5dade2" font-style="italic">A (3, 2)</text>
+   <circle cx="150" cy="230" r="4.5" fill="#daa520"/>
+   <text x="120" y="252" font-size="11" fill="#daa520" font-style="italic">A' (3, −2)</text>
+   <line x1="150" y1="110" x2="150" y2="230" stroke="#f0c75e" stroke-width="1.3" stroke-dasharray="4,3"/>
+
+   <!-- Panel 2: Refleksi sumbu-Y -->
+   <text x="400" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Refleksi sumbu-Y</text>
+   <line x1="340" y1="170" x2="540" y2="170" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="542" y="174" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="380" y1="30" x2="380" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="385" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="380" cy="170" r="2.5" fill="#e8e8e8"/>
+   <circle cx="470" cy="110" r="4.5" fill="#5dade2"/>
+   <text x="475" y="105" font-size="11" fill="#5dade2" font-style="italic">B (3, 2)</text>
+   <circle cx="290" cy="110" r="4.5" fill="#daa520"/>
+   <text x="240" y="105" font-size="11" fill="#daa520" font-style="italic">B' (−3, 2)</text>
+   <line x1="290" y1="110" x2="470" y2="110" stroke="#f0c75e" stroke-width="1.3" stroke-dasharray="4,3"/>
+
+   <!-- Panel 3: Refleksi y=x -->
+   <text x="620" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Refleksi y = x</text>
+   <line x1="560" y1="170" x2="690" y2="170" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="692" y="174" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="620" y1="30" x2="620" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="625" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <line x1="560" y1="230" x2="690" y2="100" stroke="#f0c75e" stroke-width="1.4" stroke-dasharray="5,4"/>
+   <circle cx="620" cy="170" r="2.5" fill="#e8e8e8"/>
+   <circle cx="680" cy="150" r="4.5" fill="#5dade2"/>
+   <text x="640" y="148" font-size="11" fill="#5dade2" font-style="italic">C (3, 1)</text>
+   <circle cx="640" cy="110" r="4.5" fill="#daa520"/>
+   <text x="600" y="105" font-size="11" fill="#daa520" font-style="italic">C' (1, 3)</text>
+  </svg>
+  <figcaption class="visual-caption">Tiga contoh refleksi. Refleksi terhadap sumbu-$X$ membalik koordinat $y$; refleksi terhadap sumbu-$Y$ membalik koordinat $x$; refleksi terhadap $y = x$ menukar koordinat $x$ dan $y$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Sifat-Sifat Refleksi</p>
+ <ul>
+  <li><strong>Isometri</strong>: panjang segmen tetap.</li>
+  <li><strong>Sudut tetap</strong>: besar sudut tidak berubah.</li>
+  <li><strong>Bentuk dan ukuran tetap</strong>: bangun hasil kongruen dengan bangun asal.</li>
+  <li><strong>Orientasi terbalik</strong>: refleksi membalik arah.</li>
+  <li><strong>Jarak ke cermin tetap</strong>: jarak titik ke garis cermin sama dengan jarak bayangannya ke garis cermin.</li>
+  <li><strong>Garis penghubung tegak lurus cermin</strong>: segmen yang menghubungkan titik asal dan bayangannya selalu tegak lurus terhadap garis cermin.</li>
+ </ul>
+
+ <p class="lesson-subheading">D. Contoh Perhitungan</p>
+ <p class="lesson-text">Titik $P(3, -4)$ direfleksikan terhadap:</p>
+ <ul>
+  <li>Sumbu-$X$: $P' = (3, 4)$.</li>
+  <li>Sumbu-$Y$: $P' = (-3, -4)$.</li>
+  <li>Titik asal $O$: $P' = (-3, 4)$.</li>
+  <li>Garis $y = x$: $P' = (-4, 3)$.</li>
+  <li>Garis $y = -x$: $P' = (4, -3)$.</li>
+  <li>Garis $x = 2$: $P' = (2 \cdot 2 - 3, \ -4) = (1, -4)$.</li>
+  <li>Garis $y = 1$: $P' = (3, \ 2 \cdot 1 - (-4)) = (3, 6)$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Rotasi (Perputaran)</h3>
+ <p class="lesson-subheading">A. Pengertian Rotasi</p>
+ <p class="lesson-text"><strong>Rotasi</strong> (perputaran) adalah transformasi yang <strong>memutar setiap titik pada bangun terhadap sebuah titik pusat dengan sudut dan arah tertentu</strong>. Titik pusat rotasi bisa berada di titik asal $O(0, 0)$ atau di titik lain. Rotasi ditentukan oleh tiga hal: <strong>pusat rotasi</strong>, <strong>sudut rotasi</strong>, dan <strong>arah rotasi</strong> (searah jarum jam = negatif; berlawanan jarum jam = positif).</p>
+
+ <p class="lesson-subheading">B. Rumus Rotasi terhadap Titik Asal $O(0, 0)$</p>
+ <p class="lesson-text">Untuk rotasi dengan pusat di titik asal $O(0, 0)$ dan sudut $\theta$ (berlawanan jarum jam), peta dari titik $P(x, y)$ dapat dihitung dengan rumus:</p>
+ <p class="lesson-text">$$x' = x \cos\theta - y \sin\theta$$ $$y' = x \sin\theta + y \cos\theta$$</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Dari mana rumus ini?</strong> Rumus ini berasal dari <strong>identitas trigonometri</strong> untuk penjumlahan sudut. Jika titik $P$ berjarak $r$ dari pusat dengan sudut $\alpha$ terhadap sumbu-$X$, maka $x = r\cos\alpha$ dan $y = r\sin\alpha$. Setelah dirotasi sebesar $\theta$, sudut barunya menjadi $\alpha + \theta$. Dengan rumus jumlah sudut (dari materi Trigonometri Dasar): $\cos(\alpha + \theta) = \cos\alpha\cos\theta - \sin\alpha\sin\theta$. Substitusi $x = r\cos\alpha$ dan $y = r\sin\alpha$ menghasilkan rumus di atas. Jadi rumus rotasi bukanlah "aturan sembarang"—ia tumbuh langsung dari identitas trigonometri.</p>
+ </div>
+
+ <p class="lesson-subheading">C. Rumus Rotasi Khusus (Sudut Istimewa)</p>
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sudut Rotasi</th>
+     <th>Rumus</th>
+     <th>Contoh $(x, y) = (3, 1)$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>$90^\circ$ berlawanan jarum jam</td><td>$(-y, \ x)$</td><td>$(-1, 3)$</td></tr>
+    <tr><td>$180^\circ$</td><td>$(-x, \ -y)$</td><td>$(-3, -1)$</td></tr>
+    <tr><td>$270^\circ$ berlawanan jarum jam</td><td>$(y, \ -x)$</td><td>$(1, -3)$</td></tr>
+    <tr><td>$90^\circ$ searah jarum jam (atau $-90^\circ$)</td><td>$(y, \ -x)$</td><td>$(1, -3)$</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perhatikan bahwa rotasi $270^\circ$ berlawanan jarum jam sama dengan rotasi $90^\circ$ searah jarum jam—karena $270^\circ + 90^\circ = 360^\circ$, satu putaran penuh.</p>
+
+ <figure>
+  <svg viewBox="0 0 700 320" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel 1: Rotasi 90° CCW. Origin (110, 180), skala 1 unit = 25px -->
+   <text x="110" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Rotasi 90° CCW</text>
+   <line x1="30" y1="180" x2="200" y2="180" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="202" y="184" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="110" y1="30" x2="110" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="115" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="110" cy="180" r="2.5" fill="#e8e8e8"/>
+   <circle cx="160" cy="155" r="4.5" fill="#5dade2"/>
+   <text x="130" y="150" font-size="11" fill="#5dade2" font-style="italic">P (2, 1)</text>
+   <circle cx="85" cy="130" r="4.5" fill="#daa520"/>
+   <text x="45" y="128" font-size="11" fill="#daa520" font-style="italic">P' (−1, 2)</text>
+   <!-- Busur rotasi: dari P(160,155) ke P'(85,130). Radius ~56 (jarak dari origin 110,180) -->
+   <!-- Titik awal (160,155): sudut ≈ -26.57° dari origin -->
+   <!-- Titik akhir (85,130): sudut ≈ 135° dari origin -->
+   <!-- Arc radius 56, sweep=0 (CCW visual) -->
+   <path d="M 160 155 A 56 56 0 0 0 85 130" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+   <text x="118" y="140" font-size="10" fill="#f0c75e" font-style="italic">90°</text>
+
+   <!-- Panel 2: Rotasi 180°. Origin (360, 180), skala 1 unit = 25px -->
+   <text x="360" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Rotasi 180°</text>
+   <line x1="280" y1="180" x2="450" y2="180" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="452" y="184" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="360" y1="30" x2="360" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="365" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="360" cy="180" r="2.5" fill="#e8e8e8"/>
+   <circle cx="410" cy="155" r="4.5" fill="#5dade2"/>
+   <text x="415" y="150" font-size="11" fill="#5dade2" font-style="italic">P (2, 1)</text>
+   <circle cx="310" cy="205" r="4.5" fill="#daa520"/>
+   <text x="262" y="222" font-size="11" fill="#daa520" font-style="italic">P' (−2, −1)</text>
+   <path d="M 410 155 A 56 56 0 0 1 310 205" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+   <text x="345" y="200" font-size="10" fill="#f0c75e" font-style="italic">180°</text>
+
+   <!-- Panel 3: Rotasi 90° CW. Origin (610, 180), skala 1 unit = 25px -->
+   <text x="610" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Rotasi 90° CW</text>
+   <line x1="530" y1="180" x2="690" y2="180" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="692" y="184" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="610" y1="30" x2="610" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="615" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="610" cy="180" r="2.5" fill="#e8e8e8"/>
+   <circle cx="660" cy="155" r="4.5" fill="#5dade2"/>
+   <text x="665" y="152" font-size="11" fill="#5dade2" font-style="italic">P (2, 1)</text>
+   <circle cx="635" cy="230" r="4.5" fill="#daa520"/>
+   <text x="640" y="248" font-size="11" fill="#daa520" font-style="italic">P' (1, −2)</text>
+   <!-- Busur dari P(660,155) ke P'(635,230), radius ~56, sweep=1 (CW visual) -->
+   <path d="M 660 155 A 56 56 0 0 1 635 230" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+   <text x="626" y="200" font-size="10" fill="#f0c75e" font-style="italic">90°</text>
+  </svg>
+  <figcaption class="visual-caption">Tiga contoh rotasi terhadap titik asal. Rotasi $90^\circ$ berlawanan jarum jam (kiri), $180^\circ$ (tengah), dan $90^\circ$ searah jarum jam (kanan).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">D. Rumus Rotasi terhadap Titik $(a, b)$</p>
+ <p class="lesson-text">Jika pusat rotasi bukan di titik asal, tetapi di $(a, b)$, kita perlu sedikit modifikasi. Caranya: geser sementara pusat ke titik asal, lakukan rotasi, lalu geser kembali. Hasilnya:</p>
+ <p class="lesson-text">$$x' = a + (x - a)\cos\theta - (y - b)\sin\theta$$ $$y' = b + (x - a)\sin\theta + (y - b)\cos\theta$$</p>
+ <p class="lesson-text">Untuk sudut $180^\circ$ ($\cos 180^\circ = -1$, $\sin 180^\circ = 0$), rumus ini menjadi sangat sederhana: $(x, y) \to (2a - x, \ 2b - y)$.</p>
+
+ <p class="lesson-subheading">E. Sifat-Sifat Rotasi</p>
+ <ul>
+  <li><strong>Isometri</strong>: panjang segmen tetap.</li>
+  <li><strong>Sudut tetap</strong>: besar sudut tidak berubah.</li>
+  <li><strong>Bentuk dan ukuran tetap</strong>: bangun hasil kongruen dengan bangun asal.</li>
+  <li><strong>Orientasi tetap</strong>: rotasi tidak membalik orientasi.</li>
+  <li><strong>Pusat rotasi tidak berubah</strong>: titik pusat rotasi adalah titik tetap (tidak berpindah).</li>
+ </ul>
+
+ <p class="lesson-subheading">F. Contoh Perhitungan</p>
+ <p class="lesson-text">Titik $P(3, 1)$ dirotasi $90^\circ$ berlawanan jarum jam terhadap titik asal: $P' = (-y, x) = (-1, 3)$.</p>
+ <p class="lesson-text">Verifikasi dengan rumus umum: $\cos 90^\circ = 0$, $\sin 90^\circ = 1$. Maka $x' = 3 \cdot 0 - 1 \cdot 1 = -1$, $y' = 3 \cdot 1 + 1 \cdot 0 = 3$. ✓</p>
+ <p class="lesson-text">Titik $Q(2, 5)$ dirotasi $180^\circ$ terhadap titik $(1, 1)$: $Q' = (2 \cdot 1 - 2, \ 2 \cdot 1 - 5) = (0, -3)$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Dilatasi (Perkalian)</h3>
+ <p class="lesson-subheading">A. Pengertian Dilatasi</p>
+ <p class="lesson-text"><strong>Dilatasi</strong> (perkalian) adalah transformasi yang <strong>memperbesar atau memperkecil bangun</strong> dengan faktor skala tertentu terhadap sebuah titik pusat. Berbeda dengan translasi, refleksi, dan rotasi yang mempertahankan ukuran (isometri), dilatasi <strong>mengubah ukuran</strong> bangun. Dilatasi ditentukan oleh <strong>pusat dilatasi</strong> dan <strong>faktor skala</strong> ($k$).</p>
+
+ <p class="lesson-subheading">B. Pengaruh Nilai Faktor Skala $k$</p>
+ <ul>
+  <li>$k > 1$: bangun diperbesar (misalnya $k = 2$ berarti dua kali lipat).</li>
+  <li>$0 < k < 1$: bangun diperkecil (misalnya $k = 0{,}5$ berarti setengah ukuran).</li>
+  <li>$k = 1$: bangun tetap sama (transformasi identitas).</li>
+  <li>$k = 0$: bangun menyusut menjadi satu titik.</li>
+  <li>$k < 0$: bangun diperbesar/diperkecil <em>dan</em> diputar $180^\circ$ terhadap pusat.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Rumus Dilatasi terhadap Titik Asal $O(0, 0)$</p>
+ <p class="lesson-text">Jika titik $P(x, y)$ didilatasi dengan pusat $O(0, 0)$ dan faktor skala $k$, maka peta $P'(x', y')$ adalah:</p>
+ <p class="lesson-text">$$P'(kx, \ ky)$$</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Dilatasi terhadap titik asal berarti setiap titik "ditarik menjauh" (atau "didorong mendekat") dari titik asal dengan faktor $k$. Karena arah dari titik asal ke titik $P$ ditentukan oleh vektor $(x, y)$, maka memperbesar vektor ini dengan faktor $k$ menghasilkan $(kx, ky)$.</p>
+
+ <p class="lesson-subheading">D. Rumus Dilatasi terhadap Titik $(a, b)$</p>
+ <p class="lesson-text">Jika pusat dilatasi bukan di titik asal, tetapi di $(a, b)$:</p>
+ <p class="lesson-text">$$P'(a + k(x - a), \ b + k(y - b))$$</p>
+ <p class="lesson-text">Rumus ini dapat dipahami sebagai: geser titik sehingga pusat berada di titik asal (translasi oleh $\binom{-a}{-b}$), lakukan dilatasi terhadap titik asal (kalikan dengan $k$), lalu geser kembali (translasi oleh $\binom{a}{b}$).</p>
+
+ <figure>
+  <svg viewBox="0 0 700 300" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel 1: Dilatasi k=2. Origin (60, 220), skala 1 unit = 22px -->
+   <text x="70" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Dilatasi k = 2</text>
+   <line x1="20" y1="220" x2="200" y2="220" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="202" y="224" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="60" y1="30" x2="60" y2="280" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="65" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="60" cy="220" r="3" fill="#e8e8e8"/>
+   <text x="42" y="238" font-size="11" fill="#e8e8e8" font-style="italic">O</text>
+   <circle cx="126" cy="176" r="4.5" fill="#5dade2"/>
+   <text x="92" y="172" font-size="11" fill="#5dade2" font-style="italic">P (3, 2)</text>
+   <circle cx="192" cy="132" r="4.5" fill="#daa520"/>
+   <text x="196" y="128" font-size="11" fill="#daa520" font-style="italic">P' (6, 4)</text>
+   <line x1="60" y1="220" x2="126" y2="176" stroke="#5dade2" stroke-width="1.3" stroke-dasharray="3,3"/>
+   <line x1="60" y1="220" x2="192" y2="132" stroke="#daa520" stroke-width="1.3" stroke-dasharray="3,3"/>
+
+   <!-- Panel 2: Dilatasi k=1/2. Origin (320, 220), skala 1 unit = 22px -->
+   <text x="330" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Dilatasi k = ½</text>
+   <line x1="280" y1="220" x2="460" y2="220" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="462" y="224" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="320" y1="30" x2="320" y2="280" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="325" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="320" cy="220" r="3" fill="#e8e8e8"/>
+   <text x="302" y="238" font-size="11" fill="#e8e8e8" font-style="italic">O</text>
+   <circle cx="408" cy="176" r="4.5" fill="#5dade2"/>
+   <text x="412" y="172" font-size="11" fill="#5dade2" font-style="italic">P (4, 2)</text>
+   <circle cx="364" cy="198" r="4.5" fill="#daa520"/>
+   <text x="368" y="216" font-size="11" fill="#daa520" font-style="italic">P' (2, 1)</text>
+   <line x1="320" y1="220" x2="408" y2="176" stroke="#5dade2" stroke-width="1.3" stroke-dasharray="3,3"/>
+   <line x1="320" y1="220" x2="364" y2="198" stroke="#daa520" stroke-width="1.3" stroke-dasharray="3,3"/>
+
+   <!-- Panel 3: Dilatasi k=-1. Origin (600, 180), skala 1 unit = 22px -->
+   <text x="600" y="25" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Dilatasi k = −1</text>
+   <line x1="540" y1="180" x2="700" y2="180" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="702" y="184" font-size="11" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="600" y1="30" x2="600" y2="290" stroke="#e8e8e8" stroke-width="1.4"/>
+   <text x="605" y="28" font-size="11" fill="#e8e8e8" font-style="italic">y</text>
+   <circle cx="600" cy="180" r="3" fill="#e8e8e8"/>
+   <text x="582" y="198" font-size="11" fill="#e8e8e8" font-style="italic">O</text>
+   <circle cx="644" cy="158" r="4.5" fill="#5dade2"/>
+   <text x="648" y="154" font-size="11" fill="#5dade2" font-style="italic">P (2, 1)</text>
+   <circle cx="556" cy="202" r="4.5" fill="#daa520"/>
+   <text x="508" y="220" font-size="11" fill="#daa520" font-style="italic">P' (−2, −1)</text>
+   <line x1="600" y1="180" x2="644" y2="158" stroke="#5dade2" stroke-width="1.3" stroke-dasharray="3,3"/>
+   <line x1="600" y1="180" x2="556" y2="202" stroke="#daa520" stroke-width="1.3" stroke-dasharray="3,3"/>
+  </svg>
+  <figcaption class="visual-caption">Tiga contoh dilatasi terhadap titik asal. Faktor skala $k = 2$ memperbesar, $k = \tfrac{1}{2}$ memperkecil, dan $k = -1$ menghasilkan bayangan yang berputar $180^\circ$ (menembus pusat).</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">E. Sifat-Sifat Dilatasi</p>
+ <ul>
+  <li><strong>Bukan isometri</strong>: panjang segmen berubah dengan faktor $|k|$.</li>
+  <li><strong>Sudut tetap</strong>: besar sudut tidak berubah.</li>
+  <li><strong>Bentuk tetap</strong>: bangun hasil sebangun dengan bangun asal.</li>
+  <li><strong>Orientasi tetap</strong> jika $k > 0$; <strong>orientasi terbalik</strong> jika $k < 0$.</li>
+  <li><strong>Rasio luas</strong>: luas bangun hasil adalah $k^2$ kali luas bangun asal—karena luas melibatkan dua dimensi panjang.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa luas berubah $k^2$, bukan $k$?</strong> Karena luas adalah hasil kali dua panjang (misalnya panjang $\times$ lebar). Jika setiap panjang dikalikan dengan $k$, maka luas menjadi $(k \times \text{panjang}) \times (k \times \text{lebar}) = k^2 \times \text{luas asal}$. Aturan yang sama berlaku untuk volume: $k^3$ kali volume asal, karena volume melibatkan tiga dimensi.</p>
+ </div>
+
+ <p class="lesson-subheading">F. Contoh Perhitungan</p>
+ <p class="lesson-text">Titik $P(2, 3)$ didilatasi dengan pusat $O(0, 0)$ dan faktor skala $3$: $P' = (3 \cdot 2, \ 3 \cdot 3) = (6, 9)$.</p>
+ <p class="lesson-text">Titik $Q(4, 2)$ didilatasi dengan pusat $(1, 1)$ dan faktor skala $2$: $Q' = (1 + 2(4-1), \ 1 + 2(2-1)) = (7, 3)$.</p>
+ <p class="lesson-text"><strong>Verifikasi:</strong> jarak $Q$ ke pusat $(1,1)$ adalah $\sqrt{3^2 + 1^2} = \sqrt{10}$. Jarak $Q'$ ke pusat adalah $\sqrt{6^2 + 2^2} = \sqrt{40} = 2\sqrt{10}$. Benar dua kali lipat ($k = 2$). ✓</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Perbandingan Empat Transformasi</h3>
+ <p class="lesson-text">Berikut ringkasan perbandingan keempat transformasi dasar.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Translasi</th>
+     <th>Refleksi</th>
+     <th>Rotasi</th>
+     <th>Dilatasi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr><td>Bentuk</td><td>Tetap</td><td>Tetap</td><td>Tetap</td><td>Tetap (sebangun)</td></tr>
+    <tr><td>Ukuran</td><td>Tetap</td><td>Tetap</td><td>Tetap</td><td>Berubah ($\times |k|$)</td></tr>
+    <tr><td>Orientasi</td><td>Tetap</td><td>Terbalik</td><td>Tetap</td><td>Tetap jika $k>0$</td></tr>
+    <tr><td>Sifat</td><td>Isometri</td><td>Isometri</td><td>Isometri</td><td>Non-isometri</td></tr>
+    <tr><td>Penentu</td><td>Vektor translasi</td><td>Garis cermin</td><td>Pusat + sudut</td><td>Pusat + faktor skala</td></tr>
+    <tr><td>Titik tetap</td><td>Tidak ada</td><td>Garis cermin</td><td>Pusat rotasi</td><td>Pusat dilatasi</td></tr>
+   </tbody>
+  </table>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Komposisi Transformasi</h3>
+ <p class="lesson-subheading">A. Pengertian Komposisi</p>
+ <p class="lesson-text"><strong>Komposisi transformasi</strong> adalah penerapan dua atau lebih transformasi secara berurutan. Jika transformasi $T_1$ dilanjutkan dengan $T_2$, hasilnya ditulis $T_2 \circ T_1$ (dibaca "$T_2$ setelah $T_1$"). Urutan penting: $T_2 \circ T_1$ berarti $T_1$ dulu, baru $T_2$—<em>bukan</em> hal yang sama dengan $T_1 \circ T_2$ pada umumnya.</p>
+
+ <p class="lesson-subheading">B. Contoh Komposisi</p>
+ <p class="lesson-subheading-alt">Contoh 1: Translasi lalu translasi.</p>
+ <p class="lesson-text">Titik $P(1, 2)$ ditranslasi oleh $\binom{3}{1}$ kemudian oleh $\binom{-1}{4}$.</p>
+ <ul>
+  <li>Setelah translasi pertama: $P_1 = (1+3, \ 2+1) = (4, 3)$.</li>
+  <li>Setelah translasi kedua: $P_2 = (4-1, \ 3+4) = (3, 7)$.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa dua translasi berturut-turut setara dengan satu translasi oleh jumlah vektornya: $\binom{3}{1} + \binom{-1}{4} = \binom{2}{5}$. Memang $P(1,2) + \binom{2}{5} = (3, 7)$. ✓</p>
+
+ <p class="lesson-subheading-alt">Contoh 2: Refleksi lalu refleksi (sumbu tegak lurus).</p>
+ <p class="lesson-text">Titik $P(3, 5)$ direfleksikan terhadap sumbu-$X$, kemudian terhadap sumbu-$Y$.</p>
+ <ul>
+  <li>Refleksi sumbu-$X$: $P_1 = (3, -5)$.</li>
+  <li>Refleksi sumbu-$Y$: $P_2 = (-3, -5)$.</li>
+ </ul>
+ <p class="lesson-text">Hasil ini sama dengan refleksi terhadap titik asal: $(x, y) \to (-x, -y)$—yang setara dengan rotasi $180^\circ$. Fakta geometri penting: refleksi terhadap dua sumbu yang saling tegak lurus sama dengan rotasi $180^\circ$ terhadap titik potong kedua sumbu.</p>
+ <figure>
+ <svg viewBox="0 0 900 320" style="display:block; margin:0 auto; max-width:100%; height:auto; width:900px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- ================= Panel 1: Bangun awal ================= -->
+  <g transform="translate(0, 0)">
+   <text x="130" y="30" font-size="13" fill="#5dade2" font-style="italic" text-anchor="middle" font-weight="600">Bangun awal</text>
+   
+   <!-- Sumbu -->
+   <line x1="30" y1="180" x2="240" y2="180" stroke="#e8e8e8" stroke-width="1.2" />
+   <line x1="130" y1="60" x2="130" y2="280" stroke="#e8e8e8" stroke-width="1.2" />
+   <text x="243" y="184" font-size="10" fill="#b8b8b8" font-style="italic">x</text>
+   <text x="135" y="58" font-size="10" fill="#b8b8b8" font-style="italic">y</text>
+   
+   <!-- Segitiga awal di kuadran I -->
+   <!-- P=(2,1)→(170,160), Q=(2,3)→(170,100), R=(4,1)→(210,160) -->
+   <polygon points="170,160 170,100 210,160" fill="#5dade2" fill-opacity="0.2" stroke="#5dade2" stroke-width="2.2" />
+   <circle cx="170" cy="160" r="3.5" fill="#5dade2" />
+   <circle cx="170" cy="100" r="3.5" fill="#5dade2" />
+   <circle cx="210" cy="160" r="3.5" fill="#5dade2" />
+   <text x="160" y="174" font-size="10" fill="#5dade2" font-style="italic">P</text>
+   <text x="160" y="96" font-size="10" fill="#5dade2" font-style="italic">Q</text>
+   <text x="214" y="174" font-size="10" fill="#5dade2" font-style="italic">R</text>
+  </g>
+  
+  <!-- Panah 1 -->
+  <path d="M 260 160 L 300 160" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrowVII)" />
+  <text x="280" y="150" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">refleksi</text>
+  <text x="280" y="178" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">sumbu-X</text>
+  
+  <!-- ================= Panel 2: Setelah refleksi sumbu-X ================= -->
+  <g transform="translate(300, 0)">
+   <text x="130" y="30" font-size="13" fill="#f0c75e" font-style="italic" text-anchor="middle" font-weight="600">Setelah refleksi sumbu-X</text>
+   
+   <line x1="30" y1="180" x2="240" y2="180" stroke="#e8e8e8" stroke-width="1.2" />
+   <line x1="130" y1="60" x2="130" y2="280" stroke="#e8e8e8" stroke-width="1.2" />
+   <text x="243" y="184" font-size="10" fill="#b8b8b8" font-style="italic">x</text>
+   <text x="135" y="58" font-size="10" fill="#b8b8b8" font-style="italic">y</text>
+   
+   <!-- Segitiga setelah refleksi sumbu-X (di kuadran IV) -->
+   <!-- P₁=(2,-1)→(170,200), Q₁=(2,-3)→(170,260), R₁=(4,-1)→(210,200) -->
+   <polygon points="170,200 170,260 210,200" fill="#f0c75e" fill-opacity="0.2" stroke="#f0c75e" stroke-width="2.2" />
+   <circle cx="170" cy="200" r="3.5" fill="#f0c75e" />
+   <circle cx="170" cy="260" r="3.5" fill="#f0c75e" />
+   <circle cx="210" cy="200" r="3.5" fill="#f0c75e" />
+   <text x="160" y="196" font-size="10" fill="#f0c75e" font-style="italic">P₁</text>
+   <text x="155" y="274" font-size="10" fill="#f0c75e" font-style="italic">Q₁</text>
+   <text x="214" y="196" font-size="10" fill="#f0c75e" font-style="italic">R₁</text>
+  </g>
+  
+  <!-- Panah 2 -->
+  <path d="M 560 160 L 600 160" stroke="#f0c75e" stroke-width="2" marker-end="url(#arrowVII)" />
+  <text x="580" y="150" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">refleksi</text>
+  <text x="580" y="178" font-size="10" fill="#f0c75e" font-style="italic" text-anchor="middle">sumbu-Y</text>
+  
+  <!-- ================= Panel 3: Setelah refleksi sumbu-Y ================= -->
+  <g transform="translate(600, 0)">
+   <text x="130" y="30" font-size="13" fill="#daa520" font-style="italic" text-anchor="middle" font-weight="600">Setelah refleksi sumbu-Y</text>
+   
+   <line x1="30" y1="180" x2="240" y2="180" stroke="#e8e8e8" stroke-width="1.2" />
+   <line x1="130" y1="60" x2="130" y2="280" stroke="#e8e8e8" stroke-width="1.2" />
+   <text x="243" y="184" font-size="10" fill="#b8b8b8" font-style="italic">x</text>
+   <text x="135" y="58" font-size="10" fill="#b8b8b8" font-style="italic">y</text>
+   
+   <!-- Segitiga setelah refleksi sumbu-Y (di kuadran III) -->
+   <!-- P₂=(-2,-1)→(90,200), Q₂=(-2,-3)→(90,260), R₂=(-4,-1)→(50,200) -->
+   <polygon points="90,200 90,260 50,200" fill="#daa520" fill-opacity="0.2" stroke="#daa520" stroke-width="2.2" />
+   <circle cx="90" cy="200" r="3.5" fill="#daa520" />
+   <circle cx="90" cy="260" r="3.5" fill="#daa520" />
+   <circle cx="50" cy="200" r="3.5" fill="#daa520" />
+   <text x="94" y="196" font-size="10" fill="#daa520" font-style="italic">P₂</text>
+   <text x="60" y="274" font-size="10" fill="#daa520" font-style="italic">Q₂</text>
+   <text x="36" y="196" font-size="10" fill="#daa520" font-style="italic">R₂</text>
+  </g>
+  
+  <!-- Definisi marker -->
+  <defs>
+   <marker id="arrowVII" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c75e" />
+   </marker>
+  </defs>
+  
+  <!-- Keterangan bawah -->
+  <text x="450" y="310" font-size="11" fill="#b8b8b8" font-style="italic" text-anchor="middle">Hasil komposisi: $(x, y) \to (-x, -y)$ — sama dengan rotasi $180^\circ$ terhadap titik asal</text>
+ </svg>
+ <figcaption class="visual-caption">Komposisi dua refleksi terhadap sumbu tegak lurus. Bangun awal direfleksikan terhadap sumbu-$X$ (panel 2), lalu direfleksikan terhadap sumbu-$Y$ (panel 3). Hasil akhirnya sama persis dengan melakukan rotasi $180^\circ$ terhadap titik asal&mdash;sebuah identitas geometri yang menunjukkan bahwa komposisi transformasi dapat disederhanakan menjadi transformasi tunggal.</figcaption>
+</figure>
+
+ <p class="lesson-subheading-alt">Contoh 3: Refleksi lalu refleksi (sumbu sejajar).</p>
+ <p class="lesson-text">Titik $P(3, 5)$ direfleksikan terhadap garis $x = 1$, kemudian terhadap garis $x = 4$.</p>
+ <ul>
+  <li>Refleksi $x=1$: $P_1 = (2 \cdot 1 - 3, \ 5) = (-1, 5)$.</li>
+  <li>Refleksi $x=4$: $P_2 = (2 \cdot 4 - (-1), \ 5) = (9, 5)$.</li>
+ </ul>
+ <p class="lesson-text">Hasil ini setara dengan translasi horizontal sebesar $2 \times (4 - 1) = 6$ satuan. Fakta: refleksi terhadap dua garis sejajar berjarak $d$ sama dengan translasi sejauh $2d$ tegak lurus kedua garis.</p>
+
+ <p class="lesson-subheading">C. Sifat Komposisi</p>
+ <ul>
+  <li><strong>Komposisi dua isometri adalah isometri</strong>.</li>
+  <li><strong>Komposisi tidak komutatif secara umum</strong>: $T_1 \circ T_2 \neq T_2 \circ T_1$. Contohnya, refleksi sumbu-$X$ lalu rotasi $90^\circ$ tidak sama dengan rotasi $90^\circ$ lalu refleksi sumbu-$X$. Urutan selalu penting&mdash;kecuali pada kasus khusus (misalnya dua translasi berturut-turut, yang selalu komutatif).</li>
+  <li><strong>Asosiatif</strong>: $(T_3 \circ T_2) \circ T_1 = T_3 \circ (T_2 \circ T_1)$.</li>
+  <li><strong>Identitas</strong>: transformasi identitas berfungsi sebagai elemen netral.</li>
+  <li><strong>Invers</strong>: invers translasi $\binom{a}{b}$ adalah $\binom{-a}{-b}$; invers refleksi adalah refleksi itu sendiri; invers rotasi $\theta$ adalah rotasi $-\theta$; invers dilatasi $k$ adalah dilatasi $1/k$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Penerapan Praktis</h3>
+ <p class="lesson-text">Transformasi geometri bukan hanya objek matematika abstrak—ia menjadi fondasi dari banyak teknologi modern dan aplikasi sehari-hari.</p>
+
+ <p class="lesson-subheading">A. Grafika Komputer dan Animasi</p>
+ <p class="lesson-text">Setiap kali Anda bermain game, menonton film animasi, atau menggunakan aplikasi desain grafis, transformasi geometri sedang bekerja. Karakter yang bergerak, kamera yang berputar, objek yang diperbesar—semuanya direpresentasikan sebagai matriks transformasi yang diterapkan pada koordinat titik. Software 3D seperti Blender, Maya, atau Unity menggunakan konsep translasi, rotasi, dan dilatasi untuk memanipulasi objek di ruang 3D.</p>
+
+ <p class="lesson-subheading">B. Robotika dan Kontrol Otomatis</p>
+ <p class="lesson-text">Dalam robotika, setiap sambungan lengan robot memiliki sistem koordinat lokal yang dihubungkan ke sistem koordinat global melalui serangkaian translasi dan rotasi. Menentukan posisi ujung lengan robot (<em>forward kinematics</em>) melibatkan komposisi transformasi dari setiap sambungan. Sistem kontrol otomatis menggunakan prinsip yang sama untuk merencanakan gerakan.</p>
+
+ <p class="lesson-subheading">C. Computer Vision dan Pengolahan Citra</p>
+ <p class="lesson-text">Aplikasi pengenalan wajah, augmented reality, dan mobil otonom semuanya menggunakan transformasi geometri. Ketika sistem mendeteksi wajah pada sudut yang miring, ia harus melakukan rotasi dan normalisasi agar wajah dapat dikenali. Augmented reality "menempelkan" objek virtual pada dunia nyata dengan menerapkan transformasi yang sesuai dengan sudut pandang kamera.</p>
+
+ <p class="lesson-subheading">D. Desain dan Arsitektur</p>
+ <p class="lesson-text">Arsitek menggunakan simetri dan transformasi untuk merancang bangunan. Motif lantai keramik, pola ubin, dan ornamen bangunan sering dibuat dengan mengulang sebuah motif melalui translasi, refleksi, atau rotasi. Pola batik tradisional Indonesia memanfaatkan prinsip yang sama—motif kecil yang disusun berulang membentuk pola besar yang indah.</p>
+
+ <p class="lesson-subheading">E. Kristalografi dan Kimia</p>
+ <p class="lesson-text">Simetri kristal dideskripsikan melalui grup transformasi. Setiap kristal memiliki struktur atomik yang dapat dipetakan ke dirinya sendiri melalui operasi rotasi, refleksi, dan translasi tertentu. Sifat-sifat makroskopik kristal (seperti konduktivitas dan indeks bias) ditentukan oleh simetri mikroskopis ini.</p>
+
+ <p class="lesson-subheading">F. Navigasi dan GPS</p>
+ <p class="lesson-text">Dalam sistem navigasi, posisi kendaraan diperbarui setiap saat menggunakan transformasi translasi (berdasarkan kecepatan) dan rotasi (berdasarkan arah). Sistem GPS menghitung posisi saat ini dengan menerapkan komposisi transformasi yang melibatkan jarak, sudut, dan kecepatan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Tertukar urutan pada komposisi.</strong> $T_2 \circ T_1$ berarti $T_1$ dikerjakan lebih dulu, baru $T_2$. Banyak siswa keliru menganggapnya sebagai urutan sebaliknya.</li>
+  <li><strong>Menganggap refleksi terhadap sumbu-$X$ membalik koordinat $x$.</strong> Refleksi terhadap sumbu-$X$ (garis horizontal $y=0$) membalik koordinat <em>$y$</em>, bukan $x$. Rumusnya $(x, y) \to (x, -y)$.</li>
+  <li><strong>Menganggap refleksi terhadap sumbu-$Y$ membalik koordinat $y$.</strong> Kebalikan dari kesalahan sebelumnya: refleksi terhadap sumbu-$Y$ membalik koordinat $x$, bukan $y$.</li>
+  <li><strong>Salah membedakan rotasi $90^\circ$ searah dan berlawanan jarum jam.</strong> Rotasi $90^\circ$ berlawanan jarum jam: $(x, y) \to (-y, x)$. Rotasi $90^\circ$ searah jarum jam: $(x, y) \to (y, -x)$. Tanda sangat penting—tukar satu tanda saja akan menghasilkan titik di kuadran yang salah.</li>
+  <li><strong>Menganggap dilatasi mengubah bentuk bangun.</strong> Dilatasi hanya mengubah <em>ukuran</em>. Bentuknya tetap sama (sebangun). Sudut-sudutnya tidak berubah.</li>
+  <li><strong>Menghitung luas bangun hasil dilatasi tanpa mengkuadratkan faktor skala.</strong> Jika faktor skala $k$, luas bangun hasil adalah $k^2$ kali luas bangun asal—<em>bukan</em> $k$ kali. Karena luas melibatkan dua dimensi panjang, faktor skalanya harus dikalikan dua kali.</li>
+  <li><strong>Menganggap $k = -1$ pada dilatasi sama dengan $k = 1$.</strong> Dilatasi dengan $k = -1$ menghasilkan bayangan yang berputar $180^\circ$ terhadap pusat. Rumusnya: $(x, y) \to (-x, -y)$ terhadap titik asal.</li>
+  <li><strong>Lupa menggeser pusat pada dilatasi terhadap titik $(a, b)$.</strong> Rumusnya bukan sekadar $(kx, ky)$, tetapi $(a + k(x-a), \ b + k(y-b))$.</li>
+  <li><strong>Menganggap urutan titik pada refleksi terhadap $y = x$ tidak penting.</strong> Refleksi terhadap $y = x$ menukar $x$ dan $y$: $(x, y) \to (y, x)$. Refleksi terhadap $y = -x$ menukar <em>dan</em> memberi tanda negatif: $(x, y) \to (-y, -x)$. Keduanya sangat berbeda.</li>
+  <li><strong>Menganggap semua transformasi bersifat komutatif.</strong> Refleksi lalu rotasi tidak sama dengan rotasi lalu refleksi. Urutan selalu penting kecuali dalam kasus khusus (misalnya dua translasi).</li>
+  <li><strong>Mengabaikan pengaruh tanda pada faktor skala dilatasi.</strong> Faktor skala negatif berarti ada "pembalikan" (rotasi $180^\circ$) selain perubahan ukuran.</li>
+  <li><strong>Menganggap pusat rotasi selalu di titik asal.</strong> Rotasi dapat berpusat di mana saja—termasuk di titik $(a, b)$ yang bukan titik asal. Rumusnya berbeda.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Ringkasan</h3>
+ <ul>
+  <li><strong>Transformasi geometri</strong> adalah operasi yang memetakan titik ke titik lain pada bidang. Empat jenis dasar: translasi, refleksi, rotasi, dilatasi.</li>
+  <li><strong>Translasi</strong>: menggeser titik oleh vektor $\binom{a}{b}$. Rumus: $(x, y) \to (x+a, \ y+b)$. Isometri, orientasi tetap.</li>
+  <li><strong>Refleksi</strong>: mencerminkan titik terhadap garis atau titik. Rumus bervariasi:
+   <ul>
+    <li>Sumbu-$X$: $(x, y) \to (x, -y)$.</li>
+    <li>Sumbu-$Y$: $(x, y) \to (-x, y)$.</li>
+    <li>Titik asal: $(x, y) \to (-x, -y)$.</li>
+    <li>Garis $y = x$: $(x, y) \to (y, x)$.</li>
+    <li>Garis $y = -x$: $(x, y) \to (-y, -x)$.</li>
+    <li>Garis $x = h$: $(x, y) \to (2h - x, \ y)$.</li>
+    <li>Garis $y = k$: $(x, y) \to (x, \ 2k - y)$.</li>
+   </ul>
+   Isometri, orientasi terbalik.</li>
+  <li><strong>Rotasi</strong>: memutar titik terhadap pusat dengan sudut $\theta$. Rumus terhadap titik asal: $(x, y) \to (x\cos\theta - y\sin\theta, \ x\sin\theta + y\cos\theta)$. Sudut istimewa:
+   <ul>
+    <li>$90^\circ$ CCW: $(x, y) \to (-y, x)$.</li>
+    <li>$180^\circ$: $(x, y) \to (-x, -y)$.</li>
+    <li>$90^\circ$ CW: $(x, y) \to (y, -x)$.</li>
+   </ul>
+   Isometri, orientasi tetap.</li>
+  <li><strong>Dilatasi</strong>: memperbesar/memperkecil dengan faktor $k$ terhadap pusat. Rumus terhadap titik asal: $(x, y) \to (kx, ky)$. Rumus terhadap $(a, b)$: $(x, y) \to (a + k(x-a), \ b + k(y-b))$. Non-isometri.</li>
+  <li><strong>Komposisi transformasi</strong>: penerapan berurutan. Tidak komutatif pada umumnya, tetapi asosiatif.</li>
+  <li><strong>Rasio luas pada dilatasi</strong>: luas bangun hasil $= k^2 \times$ luas bangun asal.</li>
+  <li>Refleksi terhadap dua sumbu tegak lurus berturut-turut setara dengan rotasi $180^\circ$. Refleksi terhadap dua garis sejajar berjarak $d$ setara dengan translasi $2d$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Transformasi geometri adalah <strong>jembatan antara geometri statis dan geometri dinamis</strong>. Keempat transformasi dasar&mdash;translasi, refleksi, rotasi, dan dilatasi&mdash;memberikan cara sistematis untuk memahami bagaimana bangun dapat berubah posisi, orientasi, atau ukuran. Yang membuat materi ini istimewa adalah <strong>keterkaitan antar transformasi</strong>: refleksi terhadap dua sumbu tegak lurus sama dengan rotasi $180^\circ$; refleksi terhadap dua garis sejajar sama dengan translasi; dan komposisi semua jenis transformasi mengarah pada konsep <em>affine transformation</em> yang menjadi fondasi grafika komputer modern.</p>
+ <p class="lesson-text">Materi ini akan menjadi fondasi untuk topik berikutnya: <strong>Aljabar Linear</strong> (yang mempelajari matriks sebagai representasi transformasi), <strong>Kalkulus</strong> (yang menggunakan transformasi linear lokal untuk mempelajari turunan), <strong>Geometri Diferensial</strong>, dan <strong>Matematika untuk Machine Learning</strong> (di mana augmentasi data menggunakan rotasi, translasi, dan refleksi).</p>
+ <p class="lesson-text">Latihlah diri Anda dengan banyak soal&mdash;terutama yang melibatkan komposisi transformasi. Kebiasaan memeriksa posisi kuadran hasil transformasi, konsisten dalam menerapkan rumus, dan memahami <em>mengapa</em> setiap rumus berbentuk seperti itu akan menyelamatkan Anda dari kesalahan yang tidak perlu&mdash;terutama saat berpindah ke aljabar linear dan grafika komputer, di mana manipulasi matriks transformasi menjadi inti dari seluruh penyelesaian.</p>
+</div>
+
+</div>
+</body>
+</html>
