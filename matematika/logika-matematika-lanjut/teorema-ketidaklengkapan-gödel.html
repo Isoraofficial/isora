@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teorema Ketidaklengkapan Gödel (Keterbatasan Sistem Formal, Konsistensi)</title>
+<meta name="description" content="Materi Teorema Ketidaklengkapan Gödel: program Hilbert, sistem formal dan konsistensi, penomoran Gödel, konstruksi diagonal, Teorema Pertama dan Kedua, serta batas fundamental matematika.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Teorema Ketidaklengkapan Gödel (Keterbatasan Sistem Formal, Konsistensi)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Logika Predikat</strong> &mdash; rumus, kalimat, kuantor, serta perbedaan antara variabel bebas dan terikat. Teorema Gödel berbicara tentang kalimat-kalimat dalam bahasa formal, sehingga notasi dan strukturnya harus sudah dikuasai.</li>
+   <li><strong>Teori Model</strong> &mdash; struktur, penilaian, relasi $\models$, konsep model, dan perbedaan antara kebenaran sintaktis ($\vdash$) dan semantik ($\models$). Teorema Ketidaklengkapan bertumpu pada pemisahan kedua gagasan ini.</li>
+   <li><strong>Pembuktian Matematis</strong> &mdash; pembuktian dengan kontradiksi dan <em>argument diagonal</em> (seperti pada pembuktian Cantor bahwa $\mathbb{R}$ tidak terhitung). Teknik ini adalah inti dari konstruksi kalimat Gödel.</li>
+   <li><strong>Operasi Aritmetika Dasar</strong> &mdash; penjumlahan, perkalian, dan sifat bilangan asli. Penomoran Gödel mengubah simbol logika menjadi bilangan, sehingga kemampuan membaca operasi aritmetis sebagai objek formal diperlukan.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada awal abad ke-20, matematikawan David Hilbert mengajukan sebuah program ambisius: menyusun seluruh matematika dalam satu sistem formal yang lengkap dan konsisten, sedemikian sehingga setiap pernyataan matematis dapat diputuskan benar atau salah melalui pembuktian mekanis. Program ini tampak masuk akal, dan selama beberapa dekade menjadi arah utama penelitian fondasi matematika.</p>
+ <p class="lesson-text">Pada tahun 1931, Kurt Gödel menerbitkan sebuah hasil yang meruntuhkan program itu dari dalam. Ia membuktikan bahwa <em>setiap</em> sistem formal yang konsisten dan cukup kuat untuk memuat aritmetika pasti memiliki pernyataan yang benar tetapi tidak dapat dibuktikan di dalam sistem itu sendiri. Sistem seperti itu tidak dapat lengkap. Lebih jauh, sistem tersebut bahkan tidak dapat membuktikan konsistensinya sendiri.</p>
+ <p class="lesson-text">Materi ini akan menjelaskan kedua teorema tersebut, mulai dari latar belakang historisnya, alat teknis yang diperlukan (penomoran Gödel), dan konstruksi kalimat yang menjadi inti pembuktiannya. Di akhir materi, kita akan melihat mengapa hasil ini tidak menghancurkan matematika, melainkan justru menyingkap struktur mendalam dari keterbatasan formal itu sendiri.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Latar Belakang: Program Hilbert</h2>
+ <p class="lesson-text">Untuk memahami mengapa Teorema Gödel dianggap begitu penting, kita perlu memahami dulu apa yang sedang diusahakan oleh matematikawan pada masa itu.</p>
+
+ <h3 class="lesson-subheading">A. Krisis Fondasi</h3>
+ <p class="lesson-text">Pada akhir abad ke-19, matematika mengalami krisis fondasi. Penemuan geometri non-Euclidean (oleh Lobachevsky dan Bolyai) dan paradoks dalam teori himpunan naif (seperti paradoks Russell) menunjukkan bahwa intuisi matematis tidak dapat dipercaya begitu saja. Banyak konsep dasar&mdash;apa itu himpunan, apa itu bilangan, kapan dua struktur dianggap "sama"&mdash;memerlukan perumusan ulang yang lebih teliti.</p>
+ <p class="lesson-text">Situasi ini melahirkan tiga aliran besar dalam filsafat matematika: <em>logicisme</em> (Russell, Whitehead) yang berusaha mereduksi matematika ke logika, <em>intuisionisme</em> (Brouwer) yang menolak sebagian prinsip klasik, dan <em>formalism</em> (Hilbert) yang memandang matematika sebagai permainan simbol formal.</p>
+
+ <h3 class="lesson-subheading">B. Tiga Pertanyaan Hilbert</h3>
+ <p class="lesson-text">Dalam pidatonya di Kongres Internasional Matematikawan tahun 1900, Hilbert mengajukan 23 masalah yang ia pandang sebagai arah penelitian matematika abad ke-20. Dua di antaranya berkaitan langsung dengan fondasi:</p>
+ <ul>
+  <li><strong>Masalah 1: Hipotesis Kontinum</strong> &mdash; apakah ada kardinalitas di antara bilangan bulat dan bilangan real?</li>
+  <li><strong>Masalah 2: Konsistensi Aritmetika</strong> &mdash; dapatkah kita membuktikan, dengan metode yang benar-benar meyakinkan, bahwa aritmetika tidak mengandung kontradiksi?</li>
+ </ul>
+ <p class="lesson-text">Selain itu, Hilbert secara informal mengajukan sebuah cita-cita lebih besar: sebuah prosedur mekanis (disebut <em>Entscheidungsproblem</em>) yang, diberikan sebarang pernyataan matematis, dapat memutuskan benar atau salah dalam waktu berhingga. Cita-cita ini adalah puncak dari apa yang kemudian disebut <strong>program Hilbert</strong>.</p>
+
+ <h3 class="lesson-subheading">C. Cita-Cita yang Runtuh</h3>
+ <p class="lesson-text">Program Hilbert bertumpu pada asumsi bahwa matematika dapat "<em>dibungkus</em>" dalam sebuah sistem formal yang:</p>
+ <ul>
+  <li><strong>Konsisten</strong>: tidak membuktikan kontradiksi.</li>
+  <li><strong>Lengkap</strong>: setiap pernyataan atau negasinya dapat dibuktikan.</li>
+  <li><strong>Decidable</strong>: terdapat algoritma yang memutuskan apakah suatu pernyataan dapat dibuktikan.</li>
+ </ul>
+ <p class="lesson-text">Gödel menunjukkan bahwa tiga sifat ini tidak dapat dipenuhi sekaligus. Sistem formal yang konsisten dan cukup kuat untuk memuat aritmetika tidak mungkin lengkap. Ini adalah pukulan telak bagi program Hilbert, dan sekaligus menjadi tonggak yang mengubah arah fondasi matematika selamanya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Sistem Formal dan Konsistensi</h2>
+ <p class="lesson-text">Sebelum memasuki inti teorema, kita perlu memperjelas apa yang dimaksud dengan <em>sistem formal</em> dan apa arti <em>konsisten</em>. Tanpa definisi yang presisi, pernyataan Teorema Gödel akan terasa kabur.</p>
+
+ <h3 class="lesson-subheading">A. Anatomi Sistem Formal</h3>
+ <p class="lesson-text">Sebuah <strong>sistem formal</strong> $\mathcal{S}$ terdiri dari:</p>
+ <ul>
+  <li><strong>Bahasa</strong>: sekumpulan simbol dan aturan untuk menyusunnya menjadi rumus. Ini menentukan apa yang boleh "ditulis".</li>
+  <li><strong>Aksioma</strong>: sekumpulan rumus yang diterima tanpa pembuktian. Ini adalah titik awal penalaran.</li>
+  <li><strong>Aturan inferensi</strong>: aturan mekanis yang memungkinkan kita menurunkan rumus baru dari rumus-rumus yang sudah ada, misalnya <em>modus ponens</em> (dari $\varphi$ dan $\varphi \to \psi$, turunkan $\psi$).</li>
+ </ul>
+ <p class="lesson-text">Sebuah <strong>pembuktian</strong> dalam $\mathcal{S}$ adalah barisan berhingga rumus $\varphi_1, \varphi_2, \ldots, \varphi_n$ sedemikian sehingga setiap $\varphi_i$ adalah aksioma atau dapat diturunkan dari rumus-rumus sebelumnya melalui aturan inferensi. Rumus terakhir $\varphi_n$ disebut <strong>teorema</strong> dari $\mathcal{S}$, dan kita tulis:</p>
+ <p class="lesson-text">$$\mathcal{S} \vdash \varphi_n$$</p>
+ <p class="lesson-text">Perhatikan kata "berhingga". Pembuktian harus memiliki panjang berhingga; tidak ada ruang untuk argumen tak hingga di dalam sistem formal.</p>
+
+ <h3 class="lesson-subheading">B. Konsistensi</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Sistem formal $\mathcal{S}$ disebut <strong>konsisten</strong> jika tidak ada rumus $\varphi$ sedemikian sehingga baik $\varphi$ maupun $\neg \varphi$ dapat dibuktikan:</p>
+ <p class="lesson-text">$$\text{tidak ada } \varphi \text{ dengan } \mathcal{S} \vdash \varphi \text{ dan } \mathcal{S} \vdash \neg \varphi$$</p>
+ <p class="lesson-text">Jika sistem membuktikan keduanya, ia disebut <em>inkonsisten</em>. Sistem inkonsisten dianggap "rusak" karena&mdash;melalui prinsip <em>ex falso quodlibet</em> (dari kontradiksi, apa pun dapat disimpulkan)&mdash;ia dapat membuktikan <em>semua</em> pernyataan, termasuk pernyataan yang jelas salah.</p>
+
+ <h3 class="lesson-subheading">C. Kelengkapan</h3>
+ <p class="lesson-text">Kata "lengkap" dalam logika memiliki beberapa arti yang berbeda dan sering dicampur. Untuk keperluan materi ini, kita fokus pada satu pengertian:</p>
+ <p class="lesson-text"><strong>Kelengkapan (negasi).</strong> Sistem $\mathcal{S}$ disebut <strong>lengkap secara negasi</strong> jika untuk setiap kalimat $\varphi$ di bahasanya, entah $\varphi$ atau $\neg \varphi$ dapat dibuktikan:</p>
+ <p class="lesson-text">$$\text{untuk setiap } \varphi, \ \mathcal{S} \vdash \varphi \text{ atau } \mathcal{S} \vdash \neg \varphi$$</p>
+ <p class="lesson-text">Dengan kata lain, sistem tidak menyisakan "celah keputusan": setiap kalimat dapat diputuskan benar atau salah di dalam sistem. Inilah jenis kelengkapan yang akan dibantah oleh Teorema Gödel Pertama.</p>
+
+ <h3 class="lesson-subheading">D. Kelengkapan Semantik vs Kelengkapan Negasi</h3>
+ <p class="lesson-text">Penting dibedakan dari <strong>kelengkapan semantik</strong> yang telah dibahas di Teori Model: sifat yang menyatakan $\mathcal{S} \vdash \varphi$ jika dan hanya jika $\mathcal{S} \models \varphi$. Logika orde pertama <em>adalah</em> lengkap secara semantik (Teorema Kelengkapan G&ouml;del 1929). Namun, ini tidak berarti sistem formal <em>tertentu</em> yang memperluasnya&mdash;seperti aritmetika Peano&mdash;lengkap secara negasi.</p>
+ <p class="lesson-text">Perbedaan ini adalah salah satu sumber kebingungan paling umum. Teorema Ketidaklengkapan <em>tidak</em> membantah Teorema Kelengkapan. Keduanya berbicara tentang hal yang berbeda.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Istilah</th><th>Pernyataan</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Kelengkapan semantik</td><td>$\mathcal{S} \vdash \varphi \iff \mathcal{S} \models \varphi$</td><td>benar untuk logika orde pertama</td></tr>
+   <tr><td>Kelengkapan negasi</td><td>$\mathcal{S} \vdash \varphi$ atau $\mathcal{S} \vdash \neg\varphi$, untuk setiap $\varphi$</td><td>gagal untuk sistem yang memuat aritmetika</td></tr>
+   <tr><td>Konsistensi</td><td>tidak ada $\varphi$ dengan $\mathcal{S} \vdash \varphi$ dan $\mathcal{S} \vdash \neg\varphi$</td><td>asumsi untuk Teorema Gödel</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Penomoran Gödel: Mengubah Simbol Menjadi Bilangan</h2>
+ <p class="lesson-text">Langkah paling jenius dalam pembuktian Gödel adalah <strong>aritmetisasi</strong>: mengubah pernyataan <em>tentang</em> sistem formal menjadi pernyataan <em>di dalam</em> sistem itu sendiri. Caranya adalah dengan memberi setiap simbol sebuah bilangan, sehingga setiap rumus&mdash;dan setiap pembuktian&mdash;menjadi urutan bilangan yang dapat diperlakukan sebagai objek aritmetis.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Dasar</h3>
+ <p class="lesson-text">Setiap ekspresi formal&mdash;entah itu simbol, rumus, atau barisan rumus&mdash;adalah objek berhingga. Karena itu, setiap ekspresi dapat dikodekan menjadi sebuah bilangan asli tunggal, dengan cara yang <em>dapat dibalik secara mekanis</em>. Bilangan yang dihasilkan disebut <strong>nomor Gödel</strong> dari ekspresi tersebut.</p>
+ <p class="lesson-text">Kunci teknisnya: pengkodean harus memenuhi dua syarat:</p>
+ <ul>
+  <li><strong>Injektif</strong>: ekspresi berbeda menghasilkan nomor berbeda, sehingga kita dapat memulihkan ekspresi aslinya.</li>
+  <li><strong>Efektif</strong>: pemulihan dapat dilakukan melalui prosedur mekanis (algoritmik).</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Contoh Pengkodean Sederhana</h3>
+ <p class="lesson-text">Salah satu cara adalah menetapkan bilangan kepada setiap simbol dasar, lalu mengubah barisan simbol menjadi bilangan tunggal menggunakan bilangan prima. Misalkan kita tetapkan:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Simbol</th><th>Kode</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$0$</td><td>$1$</td></tr>
+   <tr><td>$s$ (fungsi penerus)</td><td>$2$</td></tr>
+   <tr><td>$+$</td><td>$3$</td></tr>
+   <tr><td>$\times$</td><td>$4$</td></tr>
+   <tr><td>$=$</td><td>$5$</td></tr>
+   <tr><td>$x$</td><td>$6$</td></tr>
+   <tr><td>$\neg$</td><td>$7$</td></tr>
+   <tr><td>$\forall$</td><td>$8$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Untuk mengkodekan rumus seperti $x + 0 = x$, kita tuliskan barisan kodenya: $[6, 3, 1, 5, 6]$. Nomor Gödel dari rumus ini adalah bilangan:</p>
+ <p class="lesson-text">$$2^6 \cdot 3^3 \cdot 5^1 \cdot 7^5 \cdot 11^6$$</p>
+ <p class="lesson-text">Karena setiap bilangan asli memiliki faktorisasi prima yang tunggal, urutan kode simbol dapat dipulihkan secara unik dari bilangan ini. Inilah yang membuat pengkodean bersifat injektif dan efektif.</p>
+
+ <h3 class="lesson-subheading">C. Predikat "Terbukti" sebagai Relasi Aritmetis</h3>
+ <p class="lesson-text">Dengan penomoran Gödel, fakta bahwa "barisan rumus $\pi$ adalah pembuktian dari rumus $\varphi$" menjadi sebuah pernyataan aritmetis murni: relasi antara dua bilangan. Relasi ini, sebut saja $\mathrm{Bukti}(p, g)$, dapat didefinisikan murni menggunakan operasi penjumlahan, perkalian, dan operasi aritmetis dasar lainnya.</p>
+ <p class="lesson-text">Yang lebih penting: karena $\mathrm{Bukti}$ dapat diperiksa secara mekanis, ia bersifat <strong>terekam secara aritmetis</strong>&mdash;artinya, ada rumus logika $\mathrm{Bukti}(x, y)$ yang benar jika dan hanya jika $x$ adalah nomor Gödel dari pembuktian terhadap rumus bernomor $y$.</p>
+ <p class="lesson-text">Dari sini kita dapat mendefinisikan predikat keterbuktian:</p>
+ <p class="lesson-text">$$\mathrm{Teorema}(y) := \exists x \, \mathrm{Bukti}(x, y)$$</p>
+ <p class="lesson-text">yang berarti "<em>ada suatu bilangan $x$ yang mengkodekan pembuktian untuk rumus bernomor $y$</em>". Dengan kata lain: "rumus bernomor $y$ adalah teorema dari sistem".</p>
+ <p class="lesson-text">Perhatikan: pernyataan "<em>$\varphi$ dapat dibuktikan</em>"&mdash;yang tadinya berbicara tentang sistem formal&mdash;sekarang menjadi sebuah <em>rumus aritmetis</em> biasa, yang ditulis dalam bahasa sistem itu sendiri. Inilah jembatan yang memungkinkan Gödel berbicara tentang sistem di dalam sistem.</p>
+
+ <figure>
+ <svg viewBox="0 0 640 360" style="max-width:100%; height:auto; width:640px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="320" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Aritmetisasi: dari meta-matematika ke aritmetika</text>
+
+  <!-- Tahap 1: Rumus -->
+  <rect x="40" y="55" width="180" height="70" rx="8" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="1.5"/>
+  <text x="130" y="80" font-size="13" fill="#5dade2" text-anchor="middle" font-style="italic">Rumus formal</text>
+  <text x="130" y="105" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">x + 0 = x</text>
+
+  <line x1="230" y1="90" x2="270" y2="90" stroke="#daa520" stroke-width="2"/>
+  <polygon points="276,90 266,84 266,96" fill="#daa520"/>
+  <text x="250" y="82" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">kode</text>
+
+  <!-- Tahap 2: Barisan kode -->
+  <rect x="290" y="55" width="180" height="70" rx="8" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.5"/>
+  <text x="380" y="80" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">Barisan kode</text>
+  <text x="380" y="105" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">[6, 3, 1, 5, 6]</text>
+
+  <line x1="480" y1="90" x2="520" y2="90" stroke="#f0c75e" stroke-width="2"/>
+  <polygon points="526,90 516,84 516,96" fill="#f0c75e"/>
+  <text x="500" y="82" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">bilangan prima</text>
+
+  <!-- Tahap 3: Nomor Gödel -->
+  <rect x="540" y="55" width="80" height="70" rx="8" fill="#f0c75e" fill-opacity="0.10" stroke="#f0c75e" stroke-width="1.5"/>
+  <text x="580" y="85" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">Nomor</text>
+  <text x="580" y="102" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">Gödel</text>
+
+  <!-- Panah balik -->
+  <line x1="580" y1="130" x2="580" y2="170" stroke="#e8e8e8" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <line x1="580" y1="170" x2="130" y2="170" stroke="#e8e8e8" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <line x1="130" y1="170" x2="130" y2="130" stroke="#e8e8e8" stroke-width="1.3" stroke-dasharray="4,3"/>
+  <polygon points="130,124 125,134 135,134" fill="#e8e8e8"/>
+  <text x="355" y="163" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">faktorisasi prima tunggal — dapat dibalik</text>
+
+  <!-- Bagian bawah: konsekuensi -->
+  <rect x="80" y="200" width="480" height="130" rx="10" fill="#5dade2" fill-opacity="0.06" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="320" y="228" font-size="13" fill="#5dade2" text-anchor="middle" font-style="italic">Pernyataan tentang sistem → rumus aritmetis</text>
+  <text x="320" y="262" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">"π adalah pembuktian dari φ"</text>
+  <text x="320" y="283" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">↕</text>
+  <text x="320" y="305" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">Bukti(p, g) — rumus aritmetis murni</text>
+ </svg>
+ <figcaption class="visual-caption">Proses aritmetisasi Gödel. Setiap rumus formal dikodekan menjadi barisan bilangan melalui kode simbol, lalu diubah menjadi satu bilangan tunggal melalui hasil kali bilangan prima. Karena faktorisasi prima bersifat tunggal, pengkodean ini dapat dibalik. Konsekuensinya: pernyataan meta-matematis tentang pembuktian berubah menjadi relasi aritmetis yang dapat dirumuskan di dalam sistem itu sendiri.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Konstruksi Kalimat Gödel</h2>
+ <p class="lesson-text">Dengan penomoran Gödel di tangan, kita dapat mengonstruksi kalimat yang menjadi inti teorema: sebuah kalimat yang secara tidak langsung menyatakan "<em>saya tidak dapat dibuktikan</em>". Konstruksinya menggunakan teknik diagonalisasi, sama seperti yang dipakai Cantor untuk membuktikan bahwa bilangan real tidak terhitung.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Diagonalisasi</h3>
+ <p class="lesson-text">Ingat kembali argumen diagonal Cantor: jika kita mendaftar semua bilangan real dalam sebuah tabel, kita dapat membangun bilangan baru yang berbeda dari setiap bilangan di daftar dengan mengubah digit ke-$n$ dari baris ke-$n$. Bilangan baru ini tidak ada dalam daftar, sehingga daftar tersebut tidak lengkap.</p>
+ <p class="lesson-text">Gödel menggunakan strategi serupa, tetapi dengan <em>kalimat</em> bukan bilangan. Ia mendaftar semua rumus dengan satu variabel bebas, lalu mengonstruksi sebuah kalimat yang "menunjuk pada dirinya sendiri" melalui penomoran.</p>
+
+ <h3 class="lesson-subheading">B. Langkah Konstruksi</h3>
+ <p class="lesson-text">Sketsa konstruksinya sebagai berikut:</p>
+ <ul>
+  <li><strong>Langkah 1.</strong> Definisikan predikat $\mathrm{Teorema}(y)$ seperti pada bagian sebelumnya: "<em>$y$ adalah nomor Gödel dari sebuah rumus yang dapat dibuktikan</em>".</li>
+  <li><strong>Langkah 2.</strong> Perhatikan rumus dengan satu variabel bebas $x$: $\neg \mathrm{Teorema}(x)$. Rumus ini, untuk nilai $x$ tertentu, menyatakan "objek bernomor $x$ bukan teorema".</li>
+  <li><strong>Langkah 3.</strong> Misalkan $n$ adalah nomor Gödel dari rumus ini. Sekarang substitusikan $n$ ke dalam rumus itu sendiri, menghasilkan kalimat:</li>
+ </ul>
+ <p class="lesson-text">$$G := \neg \mathrm{Teorema}(\overline{n})$$</p>
+ <p class="lesson-text">dengan $\overline{n}$ adalah simbol numeral yang menyatakan bilangan $n$ di dalam sistem. Melalui konstruksi ini, kalimat $G$&mdash;secara aritmetis&mdash;<em>menyatakan tentang dirinya sendiri</em> bahwa ia bukan teorema.</p>
+ <p class="lesson-text">Penomoran ini membuat $G$ berperan seperti kalimat "saya tidak dapat dibuktikan". Inilah inti dari konstruksi diagonal Gödel: sebuah kalimat yang, melalui kode, berbicara tentang status keterbuktian dirinya sendiri.</p>
+
+ <h3 class="lesson-subheading">C. Kalimat Gödel dalam Bahasa Sehari-hari</h3>
+ <p class="lesson-text">Jika kita terjemahkan kalimat $G$ ke bahasa informal, ia mengatakan:</p>
+ <p class="lesson-text"><em>"Kalimat ini tidak dapat dibuktikan dalam sistem $\mathcal{S}$."</em></p>
+ <p class="lesson-text">Perhatikan bahwa ini bukan kontradiksi. Kalimat ini tidak menyatakan "saya salah", yang akan melahirkan paradoks pembohong. Ia hanya menyatakan "saya tidak terbukti"&mdash;sebuah klaim yang mungkin benar atau salah, dan justru dari ambiguitas inilah Gödel menarik kesimpulan yang mendalam.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Dua kemungkinan status kalimat G</text>
+
+  <!-- Kasus 1: G dapat dibuktikan -->
+  <rect x="30" y="55" width="270" height="140" rx="10" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="1.5"/>
+  <text x="165" y="80" font-size="14" fill="#5dade2" text-anchor="middle" font-style="italic">Kasus 1: 𝒮 ⊢ G</text>
+  <text x="165" y="108" font-size="12" fill="#e8e8e8" text-anchor="middle">G menyatakan "saya tidak terbukti"</text>
+  <text x="165" y="128" font-size="12" fill="#e8e8e8" text-anchor="middle">Tapi faktanya G terbukti</text>
+  <text x="165" y="152" font-size="12" fill="#e8e8e8" text-anchor="middle">Jadi isi G salah</text>
+  <text x="165" y="172" font-size="12" fill="#e8e8e8" text-anchor="middle">Sistem membuktikan pernyataan salah</text>
+  <text x="165" y="192" font-size="12" fill="#e74c3c" text-anchor="middle" font-style="italic">→ melanggar keandalan</text>
+
+  <!-- Kasus 2: G tidak dapat dibuktikan -->
+  <rect x="320" y="55" width="270" height="140" rx="10" fill="#daa520" fill-opacity="0.08" stroke="#daa520" stroke-width="1.5"/>
+  <text x="455" y="80" font-size="14" fill="#daa520" text-anchor="middle" font-style="italic">Kasus 2: 𝒮 ⊬ G</text>
+  <text x="455" y="108" font-size="12" fill="#e8e8e8" text-anchor="middle">Maka G benar</text>
+  <text x="455" y="128" font-size="12" fill="#e8e8e8" text-anchor="middle">(klaimnya tepat terbukti)</text>
+  <text x="455" y="152" font-size="12" fill="#e8e8e8" text-anchor="middle">G adalah kalimat benar</text>
+  <text x="455" y="172" font-size="12" fill="#e8e8e8" text-anchor="middle">yang tidak terbukti</text>
+  <text x="455" y="192" font-size="12" fill="#f0c75e" text-anchor="middle" font-style="italic">→ sistem tidak lengkap</text>
+
+  <!-- Garis pemisah -->
+  <line x1="30" y1="215" x2="590" y2="215" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+
+  <!-- Kesimpulan -->
+  <rect x="100" y="235" width="420" height="150" rx="10" fill="#f0c75e" fill-opacity="0.08" stroke="#f0c75e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="262" font-size="13" fill="#f0c75e" text-anchor="middle" font-style="italic">Kesimpulan Gödel</text>
+  <text x="310" y="290" font-size="12" fill="#e8e8e8" text-anchor="middle">Jika 𝒮 konsisten, Kasus 1 tidak mungkin</text>
+  <text x="310" y="310" font-size="12" fill="#e8e8e8" text-anchor="middle">Karena itu Kasus 2 berlaku:</text>
+  <text x="310" y="335" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">G benar tetapi tidak dapat dibuktikan</text>
+  <text x="310" y="365" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">𝒮 tidak lengkap secara negasi</text>
+ </svg>
+ <figcaption class="visual-caption">Struktur pembuktian Teorema Ketidaklengkapan Pertama. Kalimat Gödel $G$ menyatakan dirinya tidak dapat dibuktikan. Jika $G$ dapat dibuktikan, terjadi kontradiksi (karena isinya salah). Karena sistem diasumsikan konsisten, $G$ tidak dapat dibuktikan&mdash;dan justru karena itu, $G$ benar. Sistem punya kalimat benar yang tidak dapat dibuktikan.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Teorema Ketidaklengkapan Pertama</h2>
+ <p class="lesson-text">Dengan konstruksi di atas, kita dapat merumuskan teorema pertama secara presisi.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema</h3>
+ <p class="lesson-text"><strong>Teorema (Gödel, 1931).</strong> Misalkan $\mathcal{S}$ adalah sistem formal yang:</p>
+ <ul>
+  <li>Konsisten (tidak membuktikan kontradiksi).</li>
+  <li>Efektif (aksioma dan aturan inferensinya dapat diperiksa secara mekanis).</li>
+  <li>Cukup kuat untuk memuat aritmetika dasar&mdash;setidaknya penjumlahan dan perkalian bilangan asli.</li>
+ </ul>
+ <p class="lesson-text">Maka $\mathcal{S}$ tidak lengkap secara negasi: terdapat kalimat $G$ di bahasanya sedemikian sehingga baik $G$ maupun $\neg G$ tidak dapat dibuktikan di dalam $\mathcal{S}$.</p>
+
+ <h3 class="lesson-subheading">B. Sketsa Pembuktian</h3>
+ <p class="lesson-text">Pembuktian penuh memerlukan puluhan halaman dan mengandalkan detail teknis dari penomoran Gödel. Namun, kerangka logisnya&mdash;seperti yang sudah kita lihat pada gambar di atas&mdash;adalah sebagai berikut:</p>
+ <ul>
+  <li>Konstruksi kalimat $G$ yang menyatakan "saya tidak dapat dibuktikan".</li>
+  <li>Andaikan $G$ dapat dibuktikan. Maka isi $G$ salah, karena ia mengklaim tidak dapat dibuktikan&mdash;sehingga sistem membuktikan pernyataan yang salah. Ini melanggar konsistensi (setelah diperkuat dengan argumen keandalan: sistem tidak membuktikan pernyataan salah).</li>
+  <li>Karena itu $G$ tidak dapat dibuktikan. Tapi justru inilah yang dikatakan $G$&mdash;sehingga $G$ benar.</li>
+  <li>Jika sebaliknya $\neg G$ dapat dibuktikan, maka sistem membuktikan "$G$ dapat dibuktikan", dan karena keterbuktian mengimplikasikan kebenaran (untuk sistem yang keandalan), $G$ benar. Tetapi $G$ dan $\neg G$ tidak dapat keduanya benar. Kontradiksi.</li>
+  <li>Kesimpulan: baik $G$ maupun $\neg G$ tidak dapat dibuktikan.</li>
+ </ul>
+ <p class="lesson-text">(Catatan teknis: sketsa ini menyederhanakan argumen. Pembuktian penuh memerlukan penanganan lebih hati-hati terhadap asumsi keandalan. Gödel aslinya memerlukan asumsi ω-konsistensi, yang kemudian diperkuat oleh Rosser menjadi cukup konsistensi biasa.)</p>
+ 
+ <h3 class="lesson-subheading">C. Konsekuensi: Batas antara Benar dan Terbuktikan</h3>
+ <p class="lesson-text">Teorema ini menyatakan hal yang mendalam: <em>kebenaran aritmetis tidak identik dengan keterbuktian formal</em>. Ada kalimat aritmetis yang benar&mdash;dalam arti berlaku di model standar $\mathbb{N}$&mdash;tetapi tidak memiliki pembuktian dalam sistem formal apa pun yang konsisten dan efektif.</p>
+ <p class="lesson-text">Secara semantik, kita dapat menuliskan konsekuensi ini dengan notasi Teori Model:</p>
+ <p class="lesson-text">$$\mathbb{N} \models G \quad \text{tetapi} \quad \mathcal{S} \nvdash G$$</p>
+ <p class="lesson-text">Kesenjangan antara $\models$ dan $\vdash$ inilah yang menjadi inti teorema. Selama ini, kita melihat Teorema Kelengkapan G&ouml;del (1929) yang menyatakan keduanya setara untuk logika orde pertama. Tetapi kesetaraan itu berlaku untuk <em>konsekuensi logis dari kumpulan kalimat apa pun</em>, bukan untuk <em>kebenaran di satu struktur tertentu</em> seperti $\mathbb{N}$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting.</strong> Kalimat $G$ bukanlah kalimat yang "misterius" atau "di luar jangkauan". Ia dapat dituliskan secara eksplisit, hanya saja sangat panjang dan secara teknis tidak praktis untuk ditampilkan. Yang menakjubkan bukan kalimatnya sendiri, melainkan <em>keberadaannya</em>&mdash;fakta bahwa setiap sistem formal dengan sifat-sifat tertentu pasti memiliki kalimat semacam itu.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Teorema Ketidaklengkapan Kedua</h2>
+ <p class="lesson-text">Teorema pertama menunjukkan bahwa sistem yang konsisten tidak lengkap. Teorema kedua melangkah lebih jauh: sistem seperti itu bahkan tidak dapat membuktikan <em>konsistensinya sendiri</em>.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema</h3>
+ <p class="lesson-text"><strong>Teorema (Gödel, 1931).</strong> Misalkan $\mathcal{S}$ adalah sistem formal yang konsisten, efektif, dan cukup kuat untuk memuat aritmetika dasar. Maka $\mathcal{S}$ tidak dapat membuktikan kalimat yang menyatakan konsistensi dirinya sendiri.</p>
+ <p class="lesson-text">Jika kita tuliskan $\mathrm{Konsisten}(\mathcal{S})$ untuk kalimat aritmetis yang menyatakan "sistem $\mathcal{S}$ tidak membuktikan kontradiksi", maka:</p>
+ <p class="lesson-text">$$\mathcal{S} \nvdash \mathrm{Konsisten}(\mathcal{S})$$</p>
+
+ <h3 class="lesson-subheading">B. Sketsa Pembuktian</h3>
+ <p class="lesson-text">Bukti teorema kedua menggunakan teorema pertama sebagai bahan. Gagasan intinya sebagai berikut:</p>
+ <ul>
+  <li>Dari teorema pertama, kita tahu implikasi: "<em>jika $\mathcal{S}$ konsisten, maka $G$ tidak dapat dibuktikan</em>".</li>
+  <li>Implikasi ini sendiri dapat diformalkan di dalam $\mathcal{S}$ menggunakan penomoran Gödel, menjadi kalimat: $\mathrm{Konsisten}(\mathcal{S}) \to G$.</li>
+  <li>Andaikan $\mathcal{S}$ dapat membuktikan $\mathrm{Konsisten}(\mathcal{S})$. Maka melalui <em>modus ponens</em>, $\mathcal{S}$ juga dapat membuktikan $G$.</li>
+  <li>Tetapi teorema pertama sudah menunjukkan bahwa $\mathcal{S}$ <em>tidak dapat</em> membuktikan $G$ (selama konsisten).</li>
+  <li>Kontradiksi. Karena itu $\mathcal{S}$ tidak dapat membuktikan $\mathrm{Konsisten}(\mathcal{S})$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">C. Konsekuensi bagi Program Hilbert</h3>
+ <p class="lesson-text">Masalah kedua Hilbert menanyakan apakah konsistensi aritmetika dapat dibuktikan melalui metode yang meyakinkan. Teorema kedua menjawabnya dengan tegas: <em>tidak</em>, jika metode itu sendiri harus diungkapkan di dalam sistem formal yang sama.</p>
+ <p class="lesson-text">Ini tidak berarti konsistensi aritmetika tidak dapat dibuktikan sama sekali. Konsistensi dapat dibuktikan di sistem yang lebih kuat&mdash;misalnya, Gentzen (1936) membuktikan konsistensi aritmetika Peano menggunakan induksi transfinit hingga $\varepsilon_0$. Tetapi bukti semacam itu menggunakan prinsip yang tidak dapat diturunkan dari aritmetika Peano sendiri, sehingga tetap tunduk pada semangat teorema Gödel: <em>untuk membuktikan konsistensi suatu sistem, kita perlu keluar dari sistem itu</em>.</p>
+
+ <h3 class="lesson-subheading">D. Hubungan dengan Teorema Pertama</h3>
+ <p class="lesson-text">Kedua teorema saling terkait erat. Secara informal:</p>
+ <ul>
+  <li><strong>Teorema Pertama</strong>: "Ada pernyataan yang benar tetapi tidak terbukti."</li>
+  <li><strong>Teorema Kedua</strong>: "Salah satu pernyataan itu adalah: sistem ini konsisten."</li>
+ </ul>
+ <p class="lesson-text">Dengan kata lain, teorema kedua menunjukkan bahwa ketidaklengkapan bukanlah kecelakaan yang bisa dihindari dengan menambahkan aksioma baru. Kalimat $G$ yang tidak terbukti <em>menyatakan</em> sesuatu yang penting: bahwa sistemnya sendiri tidak rusak. Justru karena sistem tidak dapat memverifikasi kesehatannya sendiri, ia tidak bisa sepenuhnya mengenal dirinya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Mengapa Teorema Ini Penting</h2>
+ <p class="lesson-text">Teorema Gödel sering dikutip di luar konteks, dan maknanya cenderung disalahpahami. Bab ini membahas mengapa hasil ini benar-benar penting&mdash;bukan hanya sebagai hasil teknis, melainkan sebagai pernyataan tentang sifat mendasar dari penalaran formal.</p>
+
+ <h3 class="lesson-subheading">A. Batas Fundamental Matematika</h3>
+ <p class="lesson-text">Sebelum Gödel, banyak matematikawan berharap bahwa setiap pertanyaan matematis pada akhirnya dapat dijawab: entah kita menemukan bukti, atau kita menemukan bukti ketidakmungkinannya. Teorema Gödel menunjukkan bahwa harapan ini, setidaknya untuk sistem formal yang efektif dan konsisten, tidak dapat diwujudkan.</p>
+ <p class="lesson-text">Sebagai contoh konkret, hipotesis kontinum&mdash;yang menjadi masalah pertama Hilbert&mdash;terbukti tidak dapat diputuskan dari aksioma ZFC (dibuktikan oleh Cohen, 1963). Ini adalah ilustrasi nyata dari apa yang Gödel ramalkan secara umum: ada pernyataan matematis penting yang tidak dapat dijangkau oleh sistem aksiomatik standar.</p>
+
+ <h3 class="lesson-subheading">B. Keterbatasan Sistem Formal, bukan Matematika</h3>
+ <p class="lesson-text">Teorema Gödel <em>tidak</em> menyatakan bahwa matematika itu cacat, atau bahwa manusia tidak dapat memahami matematika. Ia menyatakan sesuatu yang lebih spesifik dan lebih halus: bahwa <strong>tidak ada sistem formal tunggal yang dapat memuat semua kebenaran aritmetis</strong>. Setiap sistem formal, betapa pun kuatnya, meninggalkan kalimat benar di luar jangkauannya.</p>
+ <p class="lesson-text">Ini mirip dengan situasi dalam teori himpunan: kita selalu dapat menambahkan aksioma baru (seperti aksioma kardinal besar) untuk memperluas sistem, tetapi setiap perluasan baru pasti memiliki kalimatnya sendiri yang tidak dapat diputuskan. Proses ini tidak pernah selesai&mdash;dan inilah yang menjadikan matematika sebagai aktivitas yang tak berkesudahan, bukan sebagai kumpulan teorema yang lengkap.</p>
+
+ <h3 class="lesson-subheading">C. Kesalahpahaman Populer</h3>
+ <p class="lesson-text">Teorema Gödel sering dikutip dalam konteks yang tidak tepat. Beberapa kesalahpahaman umum:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Klaim populer</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>"Gödel membuktikan tidak ada kebenaran absolut."</td><td>salah&mdash;teorema berbicara tentang keterbuktian formal, bukan kebenaran</td></tr>
+   <tr><td>"Gödel membuktikan manusia lebih unggul dari komputer."</td><td>tidak langsung&mdash;teorema tidak berbicara tentang pikiran manusia</td></tr>
+   <tr><td>"Gödel membuktikan sains tidak dapat dipercaya."</td><td>salah&mdash;teorema hanya berlaku untuk sistem formal yang memuat aritmetika</td></tr>
+   <tr><td>"Karena itu matematika tidak konsisten."</td><td>salah&mdash;teorema justru mengasumsikan konsistensi</td></tr>
+   <tr><td>"Gödel menyatakan semua sistem sama-sama tidak lengkap."</td><td>menyesatkan&mdash;derajat ketidaklengkapan bergantung pada kekuatan sistem</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Salah satu sumber kesalahan paling umum adalah menyamakan kalimat Gödel dengan "paradoks pembohong" (<em>saya bohong</em>). Kalimat Gödel <em>tidak</em> menghasilkan paradoks: kalimat "saya tidak dapat dibuktikan" dapat saja benar, tanpa kontradiksi. Perbedaan ini penting dan bersifat teknis.</p>
+
+ <h3 class="lesson-subheading">D. Sumbangan bagi Logika dan Ilmu Komputer</h3>
+ <p class="lesson-text">Selain implikasi filosofisnya, Teorema Gödel memiliki dampak langsung pada cabang-cabang matematika dan ilmu komputer:</p>
+ <ul>
+  <li><strong>Teori komputabilitas</strong>: hasil Turing tentang masalah penghentian (halting problem) dan hasil Church tentang ketidakputusan <em>Entscheidungsproblem</em> diperoleh tak lama setelah Gödel, dan menggunakan teknik yang serupa.</li>
+  <li><strong>Teori kompleksitas</strong>: pertanyaan P vs NP, serta konsep kelas kompleksitas secara umum, melanjutkan tradisi pertanyaan tentang batas komputasi yang pertama kali diformalkan oleh Turing dan Post pada tahun 1936&mdash;terinspirasi oleh karya Gödel setahun sebelumnya.</li>
+  <li><strong>Verifikasi formal</strong>: sistem pembuktian otomatis untuk perangkat lunak dan perangkat keras memiliki batas teoretis yang berasal langsung dari Teorema Gödel&mdash;tidak ada satu sistem pun yang dapat membuktikan semua properti program.</li>
+  <li><strong>Filsafat matematika</strong>: gagasan bahwa matematika tidak dapat direduksi menjadi satu sistem formal tunggal membuka jalan bagi pandangan strukturalis dan pluralis tentang fondasi.</li>
+ </ul>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Alih-alih menghancurkan matematika, Teorema Gödel justru memperkaya pemahaman kita tentang apa artinya "membuktikan" dan "mengetahui". Ia menunjukkan bahwa matematika bukanlah mesin yang menghasilkan teorema secara mekanis, melainkan aktivitas kreatif yang selalu bisa melampaui sistem formal yang menampungnya. Setiap sistem yang kita bangun memiliki batas&mdash;dan kesadaran akan batas itu adalah bagian dari kedewasaan matematis.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap Teorema Gödel membantah Teorema Kelengkapan.</strong> Kedua hasil ini membicarakan hal yang berbeda. Teorema Kelengkapan G&ouml;del (1929) menyatakan bahwa logika orde pertama lengkap secara <em>semantik</em> (setiap kalimat valid memiliki pembuktian). Teorema Ketidaklengkapan (1931) menyatakan bahwa sistem formal tertentu tidak lengkap secara <em>negasi</em>. Tidak ada kontradiksi di antara keduanya.</li>
+  <li><strong>Menyamakan "tidak dapat dibuktikan" dengan "salah".</strong> Kalimat Gödel $G$ justru <em>benar</em> tetapi tidak dapat dibuktikan. Justru inilah kejutan utamanya: benar dan terbukti bukanlah hal yang sama.</li>
+  <li><strong>Menyamakan kalimat Gödel dengan paradoks pembohong.</strong> Kalimat "saya bohong" melahirkan kontradiksi. Kalimat "saya tidak dapat dibuktikan" tidak&mdash;ia dapat benar tanpa kerusakan sistem. Kesamaan strukturnya hanya di permukaan.</li>
+  <li><strong>Menganggap teorema berlaku untuk semua sistem formal.</strong> Teorema hanya berlaku untuk sistem yang konsisten, efektif, dan cukup kuat untuk memuat aritmetika. Logika proposisi, misalnya, lengkap dan konsisten&mdash;tidak tersentuh oleh teorema ini.</li>
+  <li><strong>Mengira konsistensi tidak dapat dibuktikan sama sekali.</strong> Konsistensi dapat dibuktikan di sistem yang lebih kuat. Yang gagal adalah pembuktian konsistensi <em>di dalam sistem itu sendiri</em>.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Penomoran Gödel</h3>
+ <ul>
+  <li><strong>Menganggap penomoran Gödel bersifat unik.</strong> Tidak ada skema penomoran tunggal. Yang penting adalah sifatnya: injektif, efektif, dan dapat diformalkan dalam aritmetika. Skema yang berbeda menghasilkan kalimat Gödel yang berbeda secara sintaktis, tetapi semua memiliki sifat yang sama.</li>
+  <li><strong>Menganggap kalimat Gödel adalah kalimat yang "misterius".</strong> Kalimat Gödel bersifat konkret: kita dapat, secara prinsip, menuliskannya. Ia hanya sangat panjang dan tidak praktis. Yang penting bukan kalimatnya sendiri, melainkan fakta bahwa sistem apa pun pasti memiliki kalimat seperti itu.</li>
+  <li><strong>Mengabaikan syarat efektivitas.</strong> Jika aksioma sistem tidak dapat diperiksa secara mekanis, aritmetisasi gagal, dan teorema tidak berlaku. Sebagai contoh, sistem yang memuat semua kebenaran aritmetis sebagai aksioma <em>adalah</em> lengkap&mdash;tetapi tidak efektif, sehingga tidak bertentangan dengan teorema Gödel.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Penafsiran</h3>
+ <ul>
+  <li><strong>Menganggap teorema berlaku pada pikiran manusia.</strong> Teorema ini berbicara tentang sistem formal. Apakah pikiran manusia adalah sistem formal adalah pertanyaan filosofis yang terpisah, dan Teorema Gödel sendiri tidak menjawabnya.</li>
+  <li><strong>Menggunakan teorema untuk membenarkan relativisme kebenaran.</strong> Teorema tidak menyatakan bahwa semua pandangan sama-sama benar. Ia menyatakan bahwa ada kebenaran yang tidak dapat dijangkau oleh sistem formal tertentu&mdash;yang justru menegaskan keberadaan kebenaran objektif di luar sistem itu.</li>
+  <li><strong>Menyimpulkan bahwa matematika tidak memiliki fondasi.</strong> Matematika memiliki fondasi yang kokoh dalam teori himpunan ZFC dan sistem-sistem lain. Yang Gödel tunjukkan adalah bahwa fondasi ini tidak dapat memutuskan <em>semua</em> pertanyaan&mdash;bukan bahwa fondasi itu tidak ada.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IX. Ringkasan</h2>
+ <ul>
+  <li><strong>Program Hilbert</strong> berharap membangun sistem formal tunggal yang konsisten, lengkap, dan dapat diputuskan untuk seluruh matematika.</li>
+  <li><strong>Sistem formal</strong> terdiri dari bahasa, aksioma, dan aturan inferensi. <strong>Konsisten</strong> berarti tidak membuktikan kontradiksi; <strong>lengkap secara negasi</strong> berarti setiap kalimat atau negasinya dapat dibuktikan.</li>
+  <li><strong>Penomoran Gödel</strong> mengubah setiap simbol, rumus, dan barisan rumus menjadi bilangan asli, sehingga pernyataan tentang pembuktian menjadi rumus aritmetis biasa yang dapat dirumuskan di dalam sistem itu sendiri.</li>
+  <li><strong>Kalimat Gödel</strong> $G$ adalah kalimat yang, melalui konstruksi diagonal, menyatakan tentang dirinya sendiri: "saya tidak dapat dibuktikan."</li>
+  <li><strong>Teorema Ketidaklengkapan Pertama</strong>: setiap sistem formal yang konsisten, efektif, dan cukup kuat untuk memuat aritmetika memiliki kalimat $G$ sedemikian sehingga baik $G$ maupun $\neg G$ tidak dapat dibuktikan. Sistemnya tidak lengkap.</li>
+  <li><strong>Teorema Ketidaklengkapan Kedua</strong>: sistem seperti itu juga tidak dapat membuktikan konsistensinya sendiri. Untuk membuktikan konsistensi, kita harus keluar dari sistem tersebut.</li>
+  <li><strong>Perbedaan kunci</strong>: benar ($\models$) tidak identik dengan terbukti ($\vdash$). Inilah yang diungkap oleh teorema ini, berbeda dari Teorema Kelengkapan G&ouml;del yang menyatakan keduanya setara dalam konteks konsekuensi logis.</li>
+  <li><strong>Implikasi</strong>: matematika bukanlah sistem formal tunggal yang lengkap, melainkan aktivitas yang selalu dapat melampaui sistem apa pun yang menampungnya.</li>
+  <li><strong>Kesalahpahaman umum</strong>: teorema tidak menyatakan matematika tidak konsisten, tidak membantah logika klasik, dan tidak berimplikasi langsung pada pikiran manusia. Ia berbicara secara spesifik tentang batas sistem formal untuk aritmetika.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Teorema Ketidaklengkapan Gödel adalah salah satu hasil paling mendalam dalam sejarah matematika. Ia tidak hanya menjawab pertanyaan teknis tentang sistem formal, tetapi juga mengubah cara kita memahami hubungan antara kebenaran, keterbuktian, dan pengetahuan matematis.</p>
+ <p class="lesson-text">Yang paling penting untuk diingat: teorema ini bukanlah pukulan terhadap matematika, melainkan pengungkapan struktur fundamental dari penalaran formal. Setiap sistem yang cukup kuat untuk berbicara tentang dirinya sendiri pasti memiliki batas&mdash;bukan karena cacat, tetapi karena sifat dasar dari bahasa dan logika itu sendiri.</p>
+ <p class="lesson-text">Dengan memahami kedua teorema ini, Anda menutup rangkaian materi Logika Matematika Lanjut dengan kerangka yang utuh: dari bahasa dan struktur (Teori Model), melalui semantik dan keterbuktian, hingga batas-batas yang tidak dapat dilampaui oleh sistem formal apa pun. Materi berikutnya dalam kategori Sejarah, Filsafat &amp; Rekreasi akan menempatkan hasil-hasil ini dalam konteks pemikiran matematika yang lebih luas.</p>
+</section>
+
+</main>
+</body>
+</html>

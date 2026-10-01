@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teori Model (Semantik Rumus Logika, Struktur, Model)</title>
+<meta name="description" content="Materi teori model: bahasa orde pertama, struktur dan interpretasi simbol, penilaian kebenaran rumus, relasi ⊨, konsep model dan countermodel, serta kaitannya dengan konsistensi dan kelengkapan sistem formal.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Teori Model (Semantik Rumus Logika, Struktur, Model)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Logika Predikat</strong> &mdash; kuantor universal dan eksistensial, variabel bebas dan terikat, serta aturan pembentukan rumus. Teori model adalah cabang yang mempelajari <em>makna</em> dari rumus-rumus ini, sehingga rumusnya sendiri harus sudah dikuasai.</li>
+   <li><strong>Himpunan, Relasi, dan Fungsi</strong> &mdash; struktur matematika dibangun dari himpunan tak kosong, relasi, dan fungsi. Tanpa kenyamanan membaca pasangan seperti $(\mathbb{N}, +, \times, <)$, istilah "struktur" akan sulit dipahami.</li>
+   <li><strong>Pembuktian Matematis</strong> &mdash; argumen dalam teori model bersifat formal dan sering melibatkan kontradiksi atau konstruksi eksplisit. Kemampuan menulis pembuktian yang rapi diperlukan untuk mengikuti bukti-bukti kecil di materi ini.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Dalam logika predikat, kita mempelajari <em>aturan</em> menyusun rumus: bagaimana kuantor dipasang, kapan tanda kurung diperlukan, dan kapan sebuah argumen sahih. Namun ada pertanyaan yang belum tersentuh: apa <em>makna</em> dari rumus-rumus itu? Kapan sebuah rumus seperti $\forall x \exists y (y > x)$ benar, dan di mana ia salah?</p>
+ <p class="lesson-text">Pertanyaan inilah yang dijawab oleh <strong>teori model</strong>. Ia memberi kerangka untuk menghubungkan bahasa formal (rumus) dengan dunia matematika tempat rumus itu ditafsirkan (struktur). Teori model adalah jembatan antara <em>sintaksis</em>&mdash;aturan menulis rumus&mdash;dan <em>semantik</em>&mdash;makna dari rumus tersebut.</p>
+ <p class="lesson-text">Materi ini disusun dalam tiga bagian. Pertama, kita merumuskan apa itu bahasa orde pertama dan struktur matematika. Kedua, kita mendefinisikan kapan sebuah rumus <em>benar</em> di suatu struktur. Ketiga, kita mempelajari konsep <strong>model</strong> dan relasinya dengan gagasan seperti validitas, konsekuensi logis, dan konsistensi&mdash;yang akan menjadi fondasi bagi Teorema Ketidaklengkapan G&ouml;del.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Bahasa, Struktur, dan Interpretasi</h2>
+ <p class="lesson-text">Sebelum dapat menilai kebenaran sebuah rumus, kita perlu mengetahui <em>dua hal</em>: bahasa tempat rumus itu ditulis, dan struktur tempat rumus itu ditafsirkan. Bab ini menjelaskan keduanya.</p>
+
+ <h3 class="lesson-subheading">A. Bahasa Orde Pertama</h3>
+ <p class="lesson-text">Sebuah <strong>bahasa orde pertama</strong> $\mathcal{L}$ ditentukan oleh sekumpulan <em>simbol non-logika</em>, yang terdiri dari tiga jenis:</p>
+ <ul>
+  <li><strong>Simbol konstanta</strong>: nama untuk objek tertentu, misalnya $0$ atau $e$.</li>
+  <li><strong>Simbol fungsi</strong>: nama untuk operasi yang memetakan beberapa objek ke satu objek, misalnya $+$ (aritas 2) atau $\sin$ (aritas 1).</li>
+  <li><strong>Simbol relasi</strong>: nama untuk hubungan antar objek, misalnya $<$ (aritas 2) atau $=$ (aritas 2, biasanya dianggap bawaan).</li>
+ </ul>
+ <p class="lesson-text">Selain itu, bahasa orde pertama memiliki <em>simbol logika</em> yang selalu tersedia: variabel ($x, y, z, \ldots$), konektif ($\neg, \wedge, \vee, \to, \leftrightarrow$), kuantor ($\forall, \exists$), dan tanda kurung. Setiap simbol non-logika memiliki <strong>aritas</strong>&mdash;jumlah argumen yang ia terima.</p>
+ <p class="lesson-text">Bahasa $\mathcal{L}$ tidak memiliki makna apa pun dengan sendirinya. Ia hanyalah kumpulan simbol dan aturan penyusunan. Makna baru muncul ketika kita menafsirkannya ke dalam sebuah struktur.</p>
+
+ <h3 class="lesson-subheading">B. Struktur Matematika</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Sebuah <strong>struktur</strong> $\mathcal{A}$ untuk bahasa $\mathcal{L}$ terdiri dari:</p>
+ <ul>
+  <li>Sebuah himpunan tak kosong $A$, disebut <strong>domain</strong> (atau <em>semesta</em>) struktur.</li>
+  <li>Untuk setiap simbol konstanta $c$ di $\mathcal{L}$, sebuah elemen $c^{\mathcal{A}} \in A$.</li>
+  <li>Untuk setiap simbol fungsi $f$ beraritas $n$, sebuah fungsi $f^{\mathcal{A}} : A^n \to A$.</li>
+  <li>Untuk setiap simbol relasi $R$ beraritas $n$, sebuah relasi $R^{\mathcal{A}} \subseteq A^n$.</li>
+ </ul>
+ <p class="lesson-text">Bagian kedua sampai keempat disebut <strong>interpretasi</strong> simbol-simbol $\mathcal{L}$ di dalam $\mathcal{A}$. Notasi $\mathcal{A} = (A, c^{\mathcal{A}}, f^{\mathcal{A}}, R^{\mathcal{A}})$ sering digunakan untuk menyatakan struktur secara lengkap.</p>
+
+ <h3 class="lesson-subheading">C. Contoh Struktur</h3>
+ <p class="lesson-text">Berikut beberapa struktur yang lazim dipakai.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Struktur</th><th>Domain</th><th>Interpretasi</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$\mathcal{N} = (\mathbb{N}, +, \times, <)$</td><td>bilangan asli</td><td>operasi dan relasi standar pada $\mathbb{N}$</td></tr>
+   <tr><td>$\mathcal{R} = (\mathbb{R}, +, \times, <)$</td><td>bilangan real</td><td>operasi dan relasi standar pada $\mathbb{R}$</td></tr>
+   <tr><td>$\mathcal{G} = (G, \cdot, e)$</td><td>himpunan elemen grup</td><td>operasi grup, elemen identitas</td></tr>
+   <tr><td>$\mathcal{Z} = (\mathbb{Z}, +, 0)$</td><td>bilangan bulat</td><td>penjumlahan dan nol</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Perhatikan bahwa simbol yang sama dapat diinterpretasikan berbeda di struktur yang berbeda. Simbol $+$ di $\mathcal{N}$ berarti penjumlahan bilangan asli, tetapi di $\mathcal{Z}$ berarti penjumlahan bilangan bulat&mdash;secara matematis keduanya berbeda meskipun notasinya sama. Inilah alasan mengapa kita perlu membedakan antara <em>simbol</em> (yang tertulis) dan <em>interpretasinya</em> (yang dimaksud).</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Panel kiri: Bahasa (sintaksis) -->
+  <rect x="30" y="30" width="240" height="280" rx="10" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="150" y="60" font-size="14" fill="#5dade2" text-anchor="middle" font-style="italic">Bahasa (Sintaksis)</text>
+  <text x="60" y="95" font-size="13" fill="#e8e8e8" font-style="italic">Simbol konstanta: 0, e</text>
+  <text x="60" y="125" font-size="13" fill="#e8e8e8" font-style="italic">Simbol fungsi: +, ×</text>
+  <text x="60" y="155" font-size="13" fill="#e8e8e8" font-style="italic">Simbol relasi: &lt;, =</text>
+  <text x="60" y="185" font-size="13" fill="#e8e8e8" font-style="italic">Variabel: x, y, z</text>
+  <text x="60" y="215" font-size="13" fill="#e8e8e8" font-style="italic">Konektif: ¬, ∧, ∨, →</text>
+  <text x="60" y="245" font-size="13" fill="#e8e8e8" font-style="italic">Kuantor: ∀, ∃</text>
+  <text x="150" y="290" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Rumus φ belum bermakna</text>
+
+  <!-- Panah interpretasi -->
+  <line x1="280" y1="170" x2="340" y2="170" stroke="#daa520" stroke-width="2"/>
+  <polygon points="346,170 336,164 336,176" fill="#daa520"/>
+  <text x="312" y="192" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">memetakan</text>
+  <text x="312" y="208" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">simbol ke makna</text>
+
+  <!-- Panel kanan: Struktur (semantik) -->
+  <rect x="350" y="30" width="240" height="280" rx="10" fill="#daa520" fill-opacity="0.08" stroke="#daa520" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="470" y="60" font-size="14" fill="#daa520" text-anchor="middle" font-style="italic">Struktur (Semantik)</text>
+  <text x="380" y="95" font-size="13" fill="#e8e8e8" font-style="italic">Domain: N, ℝ, G, …</text>
+  <text x="380" y="125" font-size="13" fill="#e8e8e8" font-style="italic">0ᴬ = nol, eᴬ = identitas</text>
+  <text x="380" y="155" font-size="13" fill="#e8e8e8" font-style="italic">+ᴬ = penjumlahan</text>
+  <text x="380" y="185" font-size="13" fill="#e8e8e8" font-style="italic">&lt;ᴬ = urutan</text>
+  <text x="380" y="215" font-size="13" fill="#e8e8e8" font-style="italic">Relasi: ⊆ A×A</text>
+  <text x="380" y="245" font-size="13" fill="#e8e8e8" font-style="italic">Fungsi: Aⁿ → A</text>
+  <text x="470" y="290" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Struktur 𝒜 memberi makna</text>
+ </svg>
+ <figcaption class="visual-caption">Hubungan antara bahasa dan struktur. Bahasa menetapkan simbol-simbol yang boleh dipakai; struktur menetapkan makna setiap simbol melalui domain, konstanta, fungsi, dan relasi. Sebuah rumus baru memiliki nilai kebenaran setelah ditafsirkan dalam suatu struktur.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Semantik Rumus: Kapan Rumus Benar di Suatu Struktur</h2>
+ <p class="lesson-text">Setelah kita memiliki bahasa dan struktur, langkah berikutnya adalah mendefinisikan kebenaran. Kapan sebuah rumus $\varphi$ dikatakan <em>benar</em> di dalam struktur $\mathcal{A}$? Jawabannya diberikan secara bertahap, mulai dari rumus paling sederhana.</p>
+
+ <h3 class="lesson-subheading">A. Penilaian Variabel</h3>
+ <p class="lesson-text">Rumus boleh mengandung variabel bebas, seperti $x$. Untuk menilai rumus seperti $x + 0 = x$, kita perlu menentukan nilai $x$ terlebih dahulu. Sebuah <strong>penilaian</strong> (valuation) adalah fungsi $s$ yang memetakan setiap variabel ke sebuah elemen di domain:</p>
+ <p class="lesson-text">$$s : \{\text{variabel}\} \to A$$</p>
+ <p class="lesson-text">Dengan penilaian $s$, setiap <em>term</em> (ekspresi yang dibangun dari variabel, konstanta, dan simbol fungsi) dapat dievaluasi menjadi sebuah elemen domain. Misalnya, term $x + 0$ dievaluasi menjadi $s(x) +^{\mathcal{A}} 0^{\mathcal{A}}$.</p>
+
+ <h3 class="lesson-subheading">B. Kebenaran Rumus Atomik</h3>
+ <p class="lesson-text">Rumus atomik adalah rumus paling sederhana: relasi yang diterapkan pada beberapa term, misalnya $t_1 = t_2$ atau $R(t_1, \ldots, t_n)$. Kebenarannya ditentukan langsung dari interpretasi:</p>
+ <p class="lesson-text">$$\mathcal{A} \models R(t_1, \ldots, t_n)[s] \iff (t_1^{\mathcal{A},s}, \ldots, t_n^{\mathcal{A},s}) \in R^{\mathcal{A}}$$</p>
+ <p class="lesson-text">Dengan kata lain: rumus atomik benar jika pasangan (atau tupel) nilai term-nya berada dalam relasi yang ditafsirkan.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Di struktur $\mathcal{N} = (\mathbb{N}, +, \times, <)$ dengan penilaian $s(x) = 3$, $s(y) = 5$, rumus $x < y$ benar karena $(3, 5) \in <^{\mathcal{N}}$, yaitu $3 < 5$ dalam pengertian biasa.</p>
+
+ <h3 class="lesson-subheading">C. Kebenaran Rumus dengan Konektif</h3>
+ <p class="lesson-text">Kebenaran rumus yang lebih kompleks ditentukan secara rekursif dari kebenaran komponennya. Sebagai contoh:</p>
+ <ul>
+  <li>$\mathcal{A} \models \neg \varphi[s]$ jika dan hanya jika tidak benar bahwa $\mathcal{A} \models \varphi[s]$.</li>
+  <li>$\mathcal{A} \models (\varphi \wedge \psi)[s]$ jika dan hanya jika $\mathcal{A} \models \varphi[s]$ dan $\mathcal{A} \models \psi[s]$.</li>
+  <li>$\mathcal{A} \models (\varphi \vee \psi)[s]$ jika dan hanya jika setidaknya satu di antara $\varphi$ dan $\psi$ benar.</li>
+  <li>$\mathcal{A} \models (\varphi \to \psi)[s]$ jika dan hanya jika setiap kali $\varphi$ benar maka $\psi$ juga benar.</li>
+ </ul>
+ <p class="lesson-text">Definisi ini konsisten dengan tabel kebenaran yang sudah dikenal dari logika proposisi. Perbedaannya: sekarang setiap rumus dievaluasi <em>relatif terhadap</em> sebuah struktur dan sebuah penilaian.</p>
+
+ <h3 class="lesson-subheading">D. Kebenaran Rumus Berkuantor</h3>
+ <p class="lesson-text">Kuantor adalah inti dari logika predikat, dan di sinilah semantiknya menjadi menarik. Definisi berikut menggunakan gagasan "variasi penilaian".</p>
+ <p class="lesson-text">Misalkan $s$ adalah penilaian dan $a \in A$ adalah elemen domain. Notasi $s[x \mapsto a]$ menyatakan penilaian yang sama dengan $s$, kecuali variabel $x$ dipetakan ke $a$.</p>
+ <p class="lesson-text"><strong>Kuantor universal.</strong> Rumus $\forall x \, \varphi$ benar di $\mathcal{A}$ dengan penilaian $s$ jika untuk <em>setiap</em> $a \in A$, rumus $\varphi$ benar dengan penilaian $s[x \mapsto a]$:</p>
+ <p class="lesson-text">$$\mathcal{A} \models \forall x \, \varphi[s] \iff \text{untuk setiap } a \in A, \ \mathcal{A} \models \varphi[s[x \mapsto a]]$$</p>
+ <p class="lesson-text"><strong>Kuantor eksistensial.</strong> Rumus $\exists x \, \varphi$ benar di $\mathcal{A}$ dengan penilaian $s$ jika <em>terdapat</em> $a \in A$ sedemikian sehingga $\varphi$ benar dengan penilaian $s[x \mapsto a]$:</p>
+ <p class="lesson-text">$$\mathcal{A} \models \exists x \, \varphi[s] \iff \text{terdapat } a \in A \text{ dengan } \mathcal{A} \models \varphi[s[x \mapsto a]]$$</p>
+ <p class="lesson-text">Definisi ini menjelaskan mengapa <em>domain</em> memainkan peran sentral. Kebenaran $\exists x \, \varphi$ bergantung pada elemen apa saja yang tersedia di domain. Jika domain diperkecil, rumus eksistensial yang tadinya benar bisa berubah menjadi salah.</p>
+
+ <h3 class="lesson-subheading">E. Kalimat dan Kebenaran Mutlak</h3>
+ <p class="lesson-text">Sebuah <strong>kalimat</strong> (sentence) adalah rumus yang semua variabelnya terikat oleh kuantor. Kalimat tidak memiliki variabel bebas, sehingga kebenarannya tidak bergantung pada penilaian $s$&mdash;hanya pada struktur $\mathcal{A}$. Karena itu, untuk kalimat kita dapat menulis singkat:</p>
+ <p class="lesson-text">$$\mathcal{A} \models \varphi$$</p>
+ <p class="lesson-text">dibaca "<em>$\mathcal{A}$ memenuhi $\varphi$</em>" atau "<em>$\mathcal{A}$ adalah model dari $\varphi$</em>". Sebaliknya, jika $\varphi$ bukan kalimat, kita wajib menyertakan penilaian, seperti $\mathcal{A} \models \varphi[s]$.</p>
+
+ <figure>
+ <svg viewBox="0 0 640 360" style="max-width:100%; height:auto; width:640px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="320" y="30" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Evaluasi kebenaran rumus ∀x ∃y (y &gt; x) pada struktur 𝒩 = (ℕ, +, ×, &lt;)</text>
+
+  <!-- Kotak rumus -->
+  <rect x="200" y="55" width="240" height="55" rx="8" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="1.5"/>
+  <text x="320" y="90" font-size="15" fill="#5dade2" text-anchor="middle" font-style="italic">∀x ∃y (y &gt; x)</text>
+
+  <!-- Panah ke ∀ -->
+  <line x1="320" y1="110" x2="320" y2="135" stroke="#e8e8e8" stroke-width="1.3"/>
+  <polygon points="320,141 315,131 325,131" fill="#e8e8e8"/>
+
+  <!-- Tahap ∀x -->
+  <rect x="80" y="145" width="480" height="55" rx="8" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.5"/>
+  <text x="320" y="170" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">Untuk setiap n ∈ ℕ, periksa ∃y (y &gt; n)</text>
+  <text x="320" y="190" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">n = 0, 1, 2, 3, …</text>
+
+  <!-- Panah ke ∃ -->
+  <line x1="320" y1="200" x2="320" y2="225" stroke="#e8e8e8" stroke-width="1.3"/>
+  <polygon points="320,231 315,221 325,221" fill="#e8e8e8"/>
+
+  <!-- Tahap ∃y -->
+  <rect x="80" y="235" width="480" height="55" rx="8" fill="#f0c75e" fill-opacity="0.10" stroke="#f0c75e" stroke-width="1.5"/>
+  <text x="320" y="260" font-size="13" fill="#f0c75e" text-anchor="middle" font-style="italic">Cari m ∈ ℕ dengan m &gt; n</text>
+  <text x="320" y="280" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Selalu ada: pilih m = n + 1</text>
+
+  <!-- Hasil -->
+  <text x="320" y="325" font-size="14" fill="#5dade2" text-anchor="middle" font-style="italic">𝒩 ⊨ ∀x ∃y (y &gt; x)  ✓</text>
+  <text x="320" y="348" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Rumus benar di 𝒩 karena domain ℕ tak terbatas ke atas</text>
+ </svg>
+ <figcaption class="visual-caption">Evaluasi bertahap kalimat berkuantor ganda. Kuantor universal diperiksa lebih dulu terhadap setiap elemen domain; untuk masing-masing, kuantor eksistensial diperiksa apakah ada elemen yang memenuhi. Hasil akhirnya bergantung sepenuhnya pada struktur domain yang digunakan.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Konsep Model dan Relasi $\models$</h2>
+ <p class="lesson-text">Kita sekarang memiliki semua bahan untuk merumuskan konsep sentral dari teori model: relasi pemenuhan (satisfaction) dan gagasan model.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Model</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $\varphi$ adalah sebuah kalimat pada bahasa $\mathcal{L}$, dan $\mathcal{A}$ adalah struktur untuk $\mathcal{L}$. Kita katakan <strong>$\mathcal{A}$ adalah model dari $\varphi$</strong>, ditulis</p>
+ <p class="lesson-text">$$\mathcal{A} \models \varphi$$</p>
+ <p class="lesson-text">jika $\varphi$ bernilai benar di $\mathcal{A}$ menurut definisi semantik pada bab sebelumnya. Sebaliknya, jika $\varphi$ salah di $\mathcal{A}$, kita tulis $\mathcal{A} \not\models \varphi$.</p>
+ <p class="lesson-text">Istilah <em>model</em> di sini tidak berarti "model" dalam pengertian sehari-hari (seperti maket atau contoh). Ia berarti: struktur yang <em>memenuhi</em> rumus tersebut.</p>
+
+ <h3 class="lesson-subheading">B. Teori dan Kumpulan Model</h3>
+ <p class="lesson-text">Definisi di atas dapat diperluas ke himpunan kalimat. Jika $T$ adalah himpunan kalimat, kita katakan $\mathcal{A}$ adalah model dari $T$ jika $\mathcal{A}$ memenuhi <em>setiap</em> kalimat di $T$:</p>
+ <p class="lesson-text">$$\mathcal{A} \models T \iff \mathcal{A} \models \varphi \text{ untuk setiap } \varphi \in T$$</p>
+ <p class="lesson-text">Himpunan $T$ seperti ini disebut <strong>teori</strong>. Kelas semua struktur yang memenuhi $T$ disebut <strong>kelas model</strong> dari $T$, sering dinotasikan $\mathrm{Mod}(T)$.</p>
+ <p class="lesson-text"><strong>Contoh paling klasik.</strong> Aksioma-aksioma grup&mdash;terdiri dari kalimat-kalimat yang menyatakan eksistensi identitas, eksistensi invers, dan asosiatif&mdash;membentuk sebuah teori $T_{\text{grup}}$. Model dari teori ini adalah semua grup: setiap grup $\mathcal{G}$ memenuhi $T_{\text{grup}}$, dan sebaliknya setiap model dari $T_{\text{grup}}$ adalah grup. Jadi teori ini <em>mendefinisikan</em> kelas semua grup secara aksiomatik.</p>
+
+ <h3 class="lesson-subheading">C. Kebenaran Relatif vs Kebenaran Mutlak</h3>
+ <p class="lesson-text">Salah satu pelajaran terpenting dari teori model adalah membedakan <strong>tiga jenis kebenaran</strong> yang berbeda:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Jenis</th><th>Notasi</th><th>Arti</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Benar di satu struktur</td><td>$\mathcal{A} \models \varphi$</td><td>$\varphi$ bernilai benar di struktur tertentu $\mathcal{A}$</td></tr>
+   <tr><td>Valid (benar di semua struktur)</td><td>$\models \varphi$</td><td>$\varphi$ benar di setiap struktur $\mathcal{A}$ untuk bahasa $\mathcal{L}$</td></tr>
+   <tr><td>Konsekuensi logis</td><td>$T \models \varphi$</td><td>setiap model dari $T$ juga memenuhi $\varphi$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Rumus $\forall x (x = x)$ adalah contoh kalimat <em>valid</em>: ia benar di semua struktur, apa pun domain dan interpretasinya, karena refleksivitas kesamaan bersifat logis, bukan faktual. Sebaliknya, rumus $\forall x \exists y (y > x)$ tidak valid&mdash;ia benar di $\mathcal{N}$, tetapi salah jika domainnya himpunan berhingga seperti $\{1, 2, 3\}$ dengan urutan biasa.</p>
+
+ <h3 class="lesson-subheading">D. Countermodel</h3>
+ <p class="lesson-text">Cara paling ampuh untuk menunjukkan bahwa suatu rumus <em>tidak</em> valid, atau bahwa suatu argumen <em>tidak</em> sahih, adalah dengan menyajikan <strong>countermodel</strong>&mdash;yaitu struktur yang membuat premis-premisnya benar tetapi kesimpulannya salah.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Misalkan kita ingin memeriksa apakah kalimat $\exists x P(x) \wedge \exists x Q(x)$ secara logis mengimplikasikan $\exists x (P(x) \wedge Q(x))$. Secara intuitif, dua keberadaan terpisah tidak menjamin keberadaan bersama. Countermodel-nya mudah dibangun: ambil domain $\{1, 2\}$, dengan $P^{\mathcal{A}} = \{1\}$ dan $Q^{\mathcal{A}} = \{2\}$. Maka kedua premis benar (ada elemen yang memenuhi $P$, dan ada elemen yang memenuhi $Q$), tetapi tidak ada elemen yang memenuhi keduanya sekaligus. Jadi implikasi tersebut <em>tidak valid</em>.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pola umum.</strong> Untuk membuktikan bahwa suatu rumus valid, kita perlu argumen yang berlaku untuk <em>semua</em> struktur. Untuk membuktikan bahwa suatu rumus tidak valid, cukup <em>satu</em> countermodel. Asimetri ini mirip dengan perbedaan antara membuktikan dan menyangkal&mdash;membuktikan memerlukan argumen umum, menyangkal cukup satu contoh.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Mengapa Teori Model Penting</h2>
+ <p class="lesson-text">Teori model bukan sekadar latihan formal. Ia memberi bahasa untuk merumuskan beberapa pertanyaan paling mendasar dalam matematika dan logika.</p>
+
+ <h3 class="lesson-subheading">A. Menyatukan Sintaksis dan Semantik</h3>
+ <p class="lesson-text">Dalam logika, terdapat dua konsep yang mirip tetapi berbeda secara mendasar:</p>
+ <ul>
+  <li><strong>Konsekuensi sintaktis</strong>, ditulis $T \vdash \varphi$: $\varphi$ dapat <em>diturunkan</em> dari $T$ menggunakan aturan inferensi formal, tanpa memperhatikan makna.</li>
+  <li><strong>Konsekuensi semantik</strong>, ditulis $T \models \varphi$: setiap model dari $T$ juga memenuhi $\varphi$.</li>
+ </ul>
+ <p class="lesson-text">Pertanyaan mendalamnya adalah: apakah kedua konsep ini <em>bertepatan</em>? Untuk logika orde pertama, jawabannya <strong>ya</strong>, dan ini adalah isi dari <strong>Teorema Kelengkapan G&ouml;del</strong> (1929). Teorema ini menyatakan:</p>
+ <p class="lesson-text">$$T \vdash \varphi \iff T \models \varphi$$</p>
+ <p class="lesson-text">Kesetaraan ini adalah jembatan antara pekerjaan <em>formal</em> (menggunakan aturan) dan pekerjaan <em>matematis</em> (memeriksa struktur). Ia memungkinkan kita memilih sudut pandang yang paling mudah: kapan pun pembuktian formal terasa rumit, kita bisa beralih ke argumen semantik melalui model.</p>
+
+ <h3 class="lesson-subheading">B. Konsistensi dan Keberadaan Model</h3>
+ <p class="lesson-text">Sebuah teori $T$ disebut <strong>konsisten</strong> jika ia tidak membuktikan kontradiksi, yaitu tidak ada $\varphi$ dengan $T \vdash \varphi$ dan $T \vdash \neg \varphi$. Pertanyaan alami: kapan sebuah teori konsisten?</p>
+ <p class="lesson-text">Teori model memberikan jawaban yang elegan. Teori $T$ konsisten jika dan hanya jika $T$ memiliki model. Arah "jika" jelas: jika $T$ punya model $\mathcal{A}$, maka tidak mungkin $T$ membuktikan $\varphi$ dan $\neg \varphi$ sekaligus, karena $\mathcal{A}$ pasti memenuhi salah satu saja. Arah "hanya jika" lebih dalam&mdash;inilah isi <strong>Teorema Keberadaan Model</strong>, konsekuensi dari Teorema Kelengkapan.</p>
+ <p class="lesson-text">Konsekuensinya sangat penting: kita dapat membuktikan bahwa suatu teori konsisten dengan cara <em>membangun modelnya</em>. Contoh: untuk menunjukkan bahwa geometri non-Euclidean konsisten, cukup mendeskripsikan sebuah model konkret (seperti bola atau bidang hiperbolik) di mana aksioma-aksiomanya berlaku. Inilah metode yang dipakai oleh Beltrami dan Poincar&eacute; untuk membebaskan geometri dari perdebatan filosofis.</p>
+
+ <h3 class="lesson-subheading">C. Model Non-Standar</h3>
+ <p class="lesson-text">Teori model juga mengungkapkan bahwa sistem aksiomatik sering memiliki model yang <em>tidak diharapkan</em>. Contoh klasiknya adalah aritmetika Peano.</p>
+ <p class="lesson-text">Aksioma-aksioma Peano dimaksudkan untuk mencirikan bilangan asli $\mathbb{N}$ secara unik. Namun, karena logika orde pertama tidak cukup kuat untuk menyatakan "induksi berlaku untuk semua himpunan bagian" (hanya untuk rumus-rumus orde pertama), teori ini memiliki <strong>model non-standar</strong>: struktur yang memuat $\mathbb{N}$ sebagai bagian awal, tetapi juga memiliki elemen-elemen tambahan "di luar" $\mathbb{N}$ yang berperilaku seperti bilangan asli tak hingga.</p>
+ <p class="lesson-text">Penemuan model non-standar ini menunjukkan bahwa aksiomatisasi orde pertama tidak dapat menangkap struktur yang dimaksud secara unik. Untuk mencirikan $\mathbb{N}$ secara kategoris, kita memerlukan logika orde kedua&mdash;yang memiliki kelemahan lain: kehilangan Teorema Kelengkapan. Inilah salah satu ketegangan fundamental antara <em>kekuatan ekspresif</em> dan <em>keterbuktian</em>.</p>
+
+ <h3 class="lesson-subheading">D. Jalan Menuju Teorema Ketidaklengkapan</h3>
+ <p class="lesson-text">Teori model menyiapkan peralatan yang akan dipakai oleh G&ouml;del untuk membuktikan <strong>Teorema Ketidaklengkapan Kedua</strong> (1931). Bunyinya: setiap sistem formal yang konsisten dan cukup kuat untuk memuat aritmetika tidak dapat membuktikan konsistensinya sendiri.</p>
+ <p class="lesson-text">Pembuktiannya bersifat semantik: G&ouml;del mengonstruksi sebuah kalimat yang, secara informal, menyatakan "saya tidak dapat dibuktikan". Kalimat ini dirancang melalui pengkodean aritmetis (penomoran G&ouml;del). Jika sistemnya konsisten dan kalimat itu dapat dibuktikan, maka sistemnya membuktikan sesuatu yang salah&mdash;kontradiksi. Jika kalimat itu tidak dapat dibuktikan, maka kalimat itu benar tetapi tidak terbukti&mdash;artinya sistemnya tidak lengkap.</p>
+ <p class="lesson-text">Konsep <em>model</em> memainkan peran kunci dalam argumen ini. Untuk memahami kalimat G&ouml;del, kita perlu memahami apa artinya sebuah kalimat <em>benar</em> tetapi <em>tidak terbukti</em>&mdash;dan makna ini didefinisikan melalui struktur dan relasi $\models$. Inilah sebabnya Teori Model muncul sebagai materi pertama dalam kategori Logika Matematika Lanjut, sebelum Teori Ketidaklengkapan.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Meskipun Teori Model tampak sangat abstrak, bahasa dan kerangkanya sesungguhnya menopang banyak cabang matematika lain. Dalam aljabar abstrak, grup dan ring adalah <em>model</em> dari aksioma-aksiomanya. Dalam teori himpunan, pertanyaan "apakah ZFC memiliki model?" menjadi pertanyaan sentral yang berkaitan dengan hipotesis kontinum. Dalam ilmu komputer, semantik bahasa pemrograman sering didefinisikan melalui model&mdash;sebuah program dipandang sebagai rumus yang diinterpretasikan pada domain nilai.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menyamakan $\models$ dengan $\vdash$.</strong> Simbol $\models$ menyatakan hubungan <em>semantik</em> (kebenaran di struktur), sedangkan $\vdash$ menyatakan hubungan <em>sintaktis</em> (keterbuktian). Keduanya baru setara setelah Teorema Kelengkapan, bukan menurut definisi.</li>
+  <li><strong>Menganggap "model" berarti contoh atau maket.</strong> Dalam teori model, sebuah model adalah <em>struktur</em> yang memenuhi rumus atau teori&mdash;yaitu objek matematis yang dilengkapi interpretasi. Bukan contoh ilustratif dalam pengertian sehari-hari.</li>
+  <li><strong>Menyamakan struktur dengan domainnya.</strong> Struktur $\mathcal{A}$ bukan hanya himpunan $A$. Ia mencakup seluruh interpretasi simbol-simbol bahasa. Dua struktur dengan domain sama tetapi interpretasi berbeda adalah struktur yang berbeda.</li>
+  <li><strong>Menganggap benar di satu model berarti benar di semua model.</strong> Kebenaran relatif terhadap satu struktur sangat berbeda dari validitas. Rumus $\forall x \exists y (y > x)$ benar di $\mathcal{N}$ tetapi salah di domain berhingga.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Definisi Semantik</h3>
+ <ul>
+  <li><strong>Mengabaikan peran penilaian.</strong> Untuk rumus yang mengandung variabel bebas, kebenarannya bergantung pada penilaian $s$. Menulis $\mathcal{A} \models x = 0$ tanpa menentukan $s$ adalah tidak lengkap&mdash;kecuali $x = 0$ dipahami sebagai singkatan dari kalimat tertutup $\forall x (x = 0)$, yang tentu saja berbeda.</li>
+  <li><strong>Menganggap kuantor bekerja sama untuk semua domain.</strong> Kebenaran $\exists x \, \varphi$ sangat bergantung pada domain. Memperluas atau mempersempit domain dapat mengubah nilai kebenaran&mdash;bahkan untuk kalimat tertutup.</li>
+  <li><strong>Salah membaca arah implikasi dalam definisi $\models$.</strong> Definisi $\mathcal{A} \models \varphi \to \psi$ adalah "setiap kali $\varphi$ benar, $\psi$ benar". Ini setara dengan "$\varphi$ salah, atau $\psi$ benar"&mdash;bukan berarti $\varphi$ harus selalu benar.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Countermodel</h3>
+ <ul>
+  <li><strong>Menganggap countermodel harus "rumit".</strong> Justru sebaliknya: countermodel yang baik biasanya sesederhana mungkin. Domain dengan dua elemen sering cukup untuk membantah klaim yang tampak meyakinkan.</li>
+  <li><strong>Menggunakan countermodel untuk membuktikan validitas.</strong> Countermodel hanya dapat <em>membantah</em> validitas. Untuk membuktikan validitas, kita memerlukan argumen yang berlaku untuk semua struktur, bukan sekadar contoh.</li>
+  <li><strong>Lupa memeriksa semua premis di countermodel.</strong> Sebuah countermodel yang sah harus membuat <em>semua</em> premis benar dan kesimpulan salah. Jika salah satu premis salah di model tersebut, ia bukan countermodel untuk implikasinya.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Ringkasan</h2>
+ <ul>
+  <li><strong>Bahasa orde pertama</strong> $\mathcal{L}$ terdiri dari simbol konstanta, fungsi, dan relasi (masing-masing beraritas tertentu), ditambah simbol logika yang selalu tersedia. Bahasa hanyalah sintaksis; ia belum memiliki makna.</li>
+  <li><strong>Struktur</strong> $\mathcal{A} = (A, \ldots)$ memberi makna pada bahasa: domain $A$ ditambah interpretasi setiap simbol non-logika.</li>
+  <li><strong>Penilaian</strong> $s$ memetakan variabel ke elemen domain, sehingga term dapat dievaluasi menjadi elemen domain.</li>
+  <li><strong>Kebenaran rumus</strong> didefinisikan secara rekursif: rumus atomik dari relasi; konektif dari tabel kebenaran; kuantor dari pemeriksaan seluruh domain ($\forall$) atau keberadaan satu elemen ($\exists$).</li>
+  <li><strong>Kalimat</strong> adalah rumus tanpa variabel bebas; kebenarannya tidak bergantung pada penilaian, sehingga dapat ditulis $\mathcal{A} \models \varphi$.</li>
+  <li><strong>Model</strong> dari teori $T$ adalah struktur yang memenuhi setiap kalimat di $T$. Kelas semua model $T$ dinotasikan $\mathrm{Mod}(T)$.</li>
+  <li><strong>Tiga jenis kebenaran</strong>: benar di satu struktur ($\mathcal{A} \models \varphi$), valid ($\models \varphi$), dan konsekuensi logis ($T \models \varphi$). Ketiganya berbeda dan tidak boleh dicampur.</li>
+  <li><strong>Countermodel</strong> adalah struktur yang membuat premis benar tetapi kesimpulan salah; ia membantah validitas atau kesahihan argumen.</li>
+  <li><strong>Teorema Kelengkapan G&ouml;del</strong> menyatakan $T \vdash \varphi \iff T \models \varphi$ untuk logika orde pertama. Ia menjembatani sintaksis dan semantik.</li>
+  <li><strong>Konsistensi dan keberadaan model</strong> saling terkait: teori konsisten jika dan hanya jika ia memiliki model. Ini memberi metode semantik untuk membuktikan konsistensi.</li>
+  <li><strong>Model non-standar</strong> menunjukkan bahwa aksiomatisasi orde pertama tidak dapat mencirikan struktur seperti $\mathbb{N}$ secara unik. Ini menjadi pintu masuk ke Teorema Ketidaklengkapan G&ouml;del.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Teori model mengubah logika dari sekadar permainan simbol menjadi <em>studi tentang makna</em>. Ia memberi kita cara untuk bertanya: di dunia matematika yang mana sebuah rumus benar? Apakah kebenaran itu berlaku di semua struktur, atau hanya di sebagian? Dan apa yang dapat kita simpulkan tentang suatu sistem formal dari struktur-struktur yang memenuhinya?</p>
+ <p class="lesson-text">Alat-alat yang dibangun di sini&mdash;struktur, penilaian, relasi $\models$, model, countermodel&mdash;akan terus dipakai di materi berikutnya. Teorema Ketidaklengkapan G&ouml;del, khususnya, bertumpu pada gagasan bahwa ada kalimat yang benar di semua model standar tetapi tidak dapat diturunkan dari aksioma. Tanpa kerangka teori model, pernyataan itu bahkan sulit dirumuskan.</p>
+ <p class="lesson-text">Pada akhirnya, teori model menunjukkan bahwa matematika bukan hanya tentang membuktikan, tetapi juga tentang <em>memahami</em>&mdash;memahami apa yang membuat suatu pernyataan benar, dan di struktur seperti apa kebenaran itu hidup.</p>
+</section>
+
+</main>
+</body>
+</html>
