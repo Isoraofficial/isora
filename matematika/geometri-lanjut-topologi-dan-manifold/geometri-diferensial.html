@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometri Diferensial (Kurva, Permukaan, Kelengkungan)</title>
+<meta name="description" content="Materi geometri diferensial: parameterisasi kurva, vektor singgung, panjang busur, kelengkungan kurva bidang dan ruang, frame Frenet-Serret, parameterisasi permukaan, bidang singgung, bentuk fundamental pertama, kelengkungan Gauss dan rata-rata, serta geometri intrinsik.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Geometri Diferensial (Kurva, Permukaan, Kelengkungan)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Turunan Fungsi</strong> &mdash; aturan turunan, turunan berantai, dan turunan fungsi vektor. Seluruh konsep geometri diferensial dibangun di atas gagasan turunan sebagai laju perubahan arah.</li>
+   <li><strong>Integral Tentu</strong> &mdash; rumus panjang busur dan luas permukaan diperoleh melalui integral tentu terhadap parameter. Notasi dan sifat dasar integral diperlukan untuk memaknai rumus-rumus ini.</li>
+   <li><strong>Fungsi Multivariabel</strong> &mdash; turunan parsial, gradien, dan fungsi bernilai vektor $\mathbf{r}(u, v)$. Permukaan dinyatakan sebagai fungsi dua variabel, sehingga kalkulus multivariabel menjadi bahasa wajib.</li>
+   <li><strong>Vektor</strong> &mdash; operasi vektor di $\mathbb{R}^2$ dan $\mathbb{R}^3$: penjumlahan, perkalian skalar, perkalian titik, dan perkalian silang. Vektor singgung, vektor normal, dan bidang singgung semuanya dinyatakan dalam notasi vektor.</li>
+   <li><strong>Trigonometri Dasar</strong> &mdash; identitas sinus dan kosinus, serta parameterisasi lingkaran. Kurva-kurva klasik (lingkaran, heliks, spiral) memerlukan manipulasi trigonometri yang lancar.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Geometri klasik mempelajari bentuk&mdash;segitiga, lingkaran, bola&mdash;melalui aksioma dan konstruksi. Namun pendekatan itu terbatas: bagaimana mendeskripsikan kurva yang berubah arah secara sembarang? Bagaimana mengukur "kelengkungan" sebuah permukaan dengan cara yang presisi? Pertanyaan-pertanyaan inilah yang mendorong lahirnya <strong>geometri diferensial</strong>.</p>
+ <p class="lesson-text">Geometri diferensial adalah cabang matematika yang mempelajari kurva dan permukaan menggunakan alat kalkulus. Ia mengubah pertanyaan geometris&mdash;"seberapa bengkok?", "seberapa melengkung?"&mdash;menjadi perhitungan turunan dan integral. Hasilnya bukan hanya bahasa baru untuk bentuk-bentuk lama, melainkan cara berpikir yang memungkinkan geometri masuk ke dalam fisika modern: relativitas umum, teori medan, dan teori string semuanya menggunakan kerangka geometri diferensial.</p>
+ <p class="lesson-text">Materi ini disusun dalam dua bagian besar. Bagian pertama membahas <strong>kurva</strong>: bagaimana mendeskripsikannya secara matematis, bagaimana mengukur panjangnya, dan bagaimana mengukur kelengkungannya. Bagian kedua membahas <strong>permukaan</strong>: bagaimana parameterisasi bekerja, bagaimana bidang singgung dan normal didefinisikan, serta bagaimana kelengkungan diukur dalam dua pengertian&mdash;<em>Gauss</em> dan <em>rata-rata</em>. Di akhir, kita akan melihat mengapa salah satu gagasan ini&mdash;kelengkungan Gauss&mdash;bersifat <em>intrinsik</em>, artinya dapat diukur tanpa mengacu pada ruang di luar permukaan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Kurva: Parameterisasi, Vektor Singgung, Panjang Busur</h2>
+ <p class="lesson-text">Sebuah kurva dapat dibayangkan sebagai jejak yang ditinggalkan oleh sebuah titik yang bergerak. Untuk mendeskripsikannya secara matematis, kita perlu menyatakan posisi titik itu sebagai fungsi dari suatu parameter&mdash;biasanya waktu.</p>
+
+ <h3 class="lesson-subheading">A. Parameterisasi Kurva</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Sebuah <strong>kurva terparameterisasi</strong> di $\mathbb{R}^n$ adalah fungsi mulus</p>
+ <p class="lesson-text">$$\gamma : I \to \mathbb{R}^n, \quad \gamma(t) = (x_1(t), x_2(t), \ldots, x_n(t))$$</p>
+ <p class="lesson-text">dengan $I$ adalah interval pada garis real. Variabel $t$ disebut <strong>parameter</strong>. Kurva disebut <em>halus</em> (smooth) jika setiap komponennya memiliki turunan kontinu dan $\gamma'(t) \neq \mathbf{0}$ untuk setiap $t$.</p>
+ <p class="lesson-text">Syarat $\gamma'(t) \neq \mathbf{0}$ memastikan bahwa kurva memiliki arah yang terdefinisi baik di setiap titik. Jika $\gamma'(t_0) = \mathbf{0}$, kurva bisa memiliki "ujung runcing" atau berhenti sesaat&mdash;perilaku yang ingin kita hindari dalam pembahasan kelengkungan.</p>
+
+ <p class="lesson-text">Beberapa contoh kurva klasik:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Kurva</th><th>Parameterisasi</th><th>Catatan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Garis lurus</td><td>$\gamma(t) = \mathbf{a} + t\mathbf{v}$</td><td>$\mathbf{a}$ titik awal, $\mathbf{v}$ arah</td></tr>
+   <tr><td>Lingkaran berjari-jari $R$</td><td>$\gamma(t) = (R\cos t, R\sin t)$</td><td>terletak di bidang $xy$</td></tr>
+   <tr><td>Heliks</td><td>$\gamma(t) = (R\cos t, R\sin t, ct)$</td><td>naik secara linear seiring $t$</td></tr>
+   <tr><td>Parabola</td><td>$\gamma(t) = (t, t^2)$</td><td>parameterisasi paling sederhana</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Perhatikan bahwa parameterisasi tidak tunggal. Lingkaran berjari-jari $R$ juga dapat ditulis $\gamma(t) = (R\cos 2t, R\sin 2t)$, atau dengan parameter apa pun yang bergerak dari $0$ ke $2\pi$. Kurva sebagai <em>himpunan titik</em> tetap sama; yang berbeda hanyalah <em>cara kita menelusurinya</em>.</p>
+
+ <h3 class="lesson-subheading">B. Vektor Singgung</h3>
+ <p class="lesson-text">Turunan $\gamma'(t)$ dari kurva terparameterisasi memiliki makna geometris yang jelas: ia adalah <strong>vektor singgung</strong> di titik $\gamma(t)$. Arahnya menunjukkan arah gerak sesaat; panjangnya menunjukkan seberapa cepat kurva ditelusuri.</p>
+ <p class="lesson-text">$$\gamma'(t) = \lim_{h \to 0} \frac{\gamma(t + h) - \gamma(t)}{h}$$</p>
+ <p class="lesson-text">Vektor ini juga disebut <strong>vektor kecepatan</strong> jika $t$ dipandang sebagai waktu. Panjangnya, $|\gamma'(t)|$, adalah <strong>laju</strong> (speed) penelusuran.</p>
+ <p class="lesson-text">Untuk banyak keperluan, kita lebih suka bekerja dengan vektor singgung yang panjangnya satu. Vektor <strong>singgung satuan</strong> didefinisikan sebagai:</p>
+ <p class="lesson-text">$$T(t) = \frac{\gamma'(t)}{|\gamma'(t)|}$$</p>
+ <p class="lesson-text">Vektor ini membuang informasi tentang "seberapa cepat" dan hanya menyimpan informasi tentang "ke arah mana"&mdash;inilah yang akan kita pakai untuk mengukur kelengkungan.</p>
+
+ <h3 class="lesson-subheading">C. Panjang Busur</h3>
+ <p class="lesson-text">Jika kurva $\gamma(t)$ ditelusuri dari $t = a$ sampai $t = b$, berapa panjang total jejaknya? Kita dapat mendekati kurva dengan segmen-segmen lurus kecil, lalu menjumlahkan panjangnya. Ketika segmennya sangat kecil, jumlah ini konvergen ke sebuah integral:</p>
+ <p class="lesson-text">$$L = \int_a^b |\gamma'(t)| \, dt$$</p>
+ <p class="lesson-text">Ini adalah rumus <strong>panjang busur</strong>. Secara intuitif, rumus ini menjumlahkan panjang vektor kecepatan sepanjang kurva&mdash;dengan kata lain, mengintegralkan laju.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk lingkaran $\gamma(t) = (R\cos t, R\sin t)$ dengan $t \in [0, 2\pi]$, kita hitung $\gamma'(t) = (-R\sin t, R\cos t)$, sehingga $|\gamma'(t)| = R$. Panjang busur adalah:</p>
+ <p class="lesson-text">$$L = \int_0^{2\pi} R \, dt = 2\pi R$$</p>
+ <p class="lesson-text">Hasil ini sesuai dengan rumus keliling lingkaran yang telah dikenal sejak sekolah dasar. Rumus integral tidak menggantikan geometri klasik&mdash;ia menggeneralisasinya.</p>
+
+ <h3 class="lesson-subheading">D. Parameterisasi Panjang Busur</h3>
+ <p class="lesson-text">Karena parameterisasi tidak tunggal, akan sangat membantu jika kita memilih satu parameterisasi "istimewa": parameterisasi yang bergerak dengan laju satu. Parameter seperti ini disebut <strong>parameter panjang busur</strong>, biasanya dinotasikan $s$.</p>
+ <p class="lesson-text">Parameter $s$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$s(t) = \int_a^t |\gamma'(u)| \, du$$</p>
+ <p class="lesson-text">Dengan pilihan ini, berlaku $|\gamma'(s)| = 1$ untuk setiap $s$. Keuntungannya: banyak rumus menjadi lebih sederhana. Sebagai contoh, panjang busur dari $s = a$ sampai $s = b$ hanya $b - a$&mdash;tanpa perlu integrasi.</p>
+ <p class="lesson-text">Meskipun parameterisasi panjang busur jarang dapat dihitung secara eksplisit untuk kurva yang rumit, ia sangat berguna dalam pembuktian teori, terutama untuk mendefinisikan kelengkungan secara konseptual.</p>
+ <figure>
+  <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Sumbu -->
+   <line x1="40" y1="280" x2="580" y2="280" stroke="#e8e8e8" stroke-width="1.3" />
+   <polygon points="582,280 572,275 572,285" fill="#e8e8e8" />
+   <text x="586" y="284" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+   <line x1="80" y1="310" x2="80" y2="40" stroke="#e8e8e8" stroke-width="1.3" />
+   <polygon points="80,37 75,47 85,47" fill="#e8e8e8" />
+   <text x="86" y="36" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+  
+   <!-- Kurva -->
+   <path d="M 100 250 Q 180 100 300 130 Q 420 160 540 90" fill="none" stroke="#5dade2" stroke-width="2.5" />
+   <text x="530" y="80" font-size="13" fill="#5dade2" font-style="italic">γ(t)</text>
+  
+   <!-- Titik pada kurva -->
+   <circle cx="230" cy="128" r="5.5" fill="#daa520" stroke="#f0c75e" stroke-width="1.5" />
+   <text x="205" y="145" font-size="12" fill="#daa520" font-style="italic">γ(t₀)</text>
+  
+   <!-- Vektor singgung -->
+   <line x1="230" y1="128" x2="330" y2="104" stroke="#f0c75e" stroke-width="2.5" />
+   <polygon points="336,102 326,100 330,110" fill="#f0c75e" />
+   <text x="342" y="98" font-size="12" fill="#f0c75e" font-style="italic">γ′(t₀)</text>
+  
+   <!-- Vektor singgung satuan -->
+   <line x1="230" y1="128" x2="290" y2="114" stroke="#daa520" stroke-width="2" />
+   <polygon points="296,112 286,110 290,120" fill="#daa520" />
+   <text x="262" y="106" font-size="12" fill="#daa520" font-style="italic">T(t₀)</text>
+  
+   <!-- Keterangan -->
+   <text x="80" y="325" font-size="12" fill="#b8b8b8" font-style="italic">Vektor singgung γ′(t₀) menyatakan arah dan laju sesaat</text>
+  </svg>
+  <figcaption class="visual-caption">Vektor singgung pada kurva terparameterisasi. Di titik $\gamma(t_0)$, vektor $\gamma'(t_0)$ menyatakan arah gerak sesaat sekaligus laju penelusuran kurva. Vektor singgung satuan $T(t_0)$ memiliki arah yang sama tetapi panjang satu; inilah yang dipakai untuk mengukur kelengkungan.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Kelengkungan Kurva</h2>
+ <p class="lesson-text">Vektor singgung memberi tahu kita <em>ke arah mana</em> kurva bergerak. Namun pertanyaan berikutnya lebih halus: seberapa cepat arah itu berubah? Jawabannya adalah <strong>kelengkungan</strong>&mdash;gagasan sentral dalam geometri kurva.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Kelengkungan</h3>
+ <p class="lesson-text">Misalkan $\gamma(s)$ adalah kurva yang diparameterisasi oleh panjang busur, dengan vektor singgung satuan $T(s)$. Karena $|T(s)| = 1$ untuk semua $s$, vektor $T$ hanya bisa berubah <em>arah</em>, bukan panjang. Laju perubahan arahnya mengukur seberapa "bengkok" kurva di titik tersebut.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Kelengkungan $\kappa(s)$ dari kurva di titik $s$ adalah panjang dari turunan vektor singgung satuan:</p>
+ <p class="lesson-text">$$\kappa(s) = \left| \frac{dT}{ds} \right|$$</p>
+ <p class="lesson-text">Kelengkungan selalu bernilai $\geq 0$. Nilai $\kappa = 0$ berarti kurva lurus di sekitar titik itu (arah tidak berubah); nilai $\kappa$ besar berarti kurva membelok dengan tajam.</p>
+ <p class="lesson-text">Karena $T$ diparameterisasi oleh panjang busur, definisi ini bersih dan tidak bergantung pada bagaimana kurva ditelusuri. Namun untuk perhitungan praktis, kita sering menggunakan parameter $t$ biasa, dengan rumus:</p>
+ <p class="lesson-text">$$\kappa(t) = \frac{|\gamma'(t) \times \gamma''(t)|}{|\gamma'(t)|^3} \quad \text{(kurva di } \mathbb{R}^3\text{)}$$</p>
+ <p class="lesson-text">dan untuk kurva bidang (yang dapat dipandang sebagai kurva di $\mathbb{R}^3$ dengan komponen $z = 0$):</p>
+ <p class="lesson-text">$$\kappa(t) = \frac{|x'y'' - y'x''|}{\big((x')^2 + (y')^2\big)^{3/2}}$$</p>
+
+ <h3 class="lesson-subheading">B. Kelengkungan Lingkaran dan Garis</h3>
+ <p class="lesson-text">Dua contoh paling sederhana memberi kita intuisinya.</p>
+ <ul>
+  <li><strong>Garis lurus</strong>: $\gamma(t) = \mathbf{a} + t\mathbf{v}$. Arah singgungnya konstan, sehingga $\kappa = 0$ di mana-mana. Ini sesuai intuisi: garis tidak "membelok".</li>
+  <li><strong>Lingkaran berjari-jari $R$</strong>: $\gamma(t) = (R\cos t, R\sin t)$. Perhitungan langsung menghasilkan $\kappa = 1/R$ di setiap titik. Semakin kecil jari-jarinya, semakin besar kelengkungannya&mdash;lingkaran kecil lebih "tajam" daripada lingkaran besar. Ini juga sesuai intuisi.</li>
+ </ul>
+ <p class="lesson-text">Nilai $\kappa = 1/R$ pada lingkaran mengilhami tafsiran umum: di setiap titik pada kurva, kita dapat mencari lingkaran yang paling "menempel" pada kurva di titik tersebut. Lingkaran ini disebut <strong>lingkaran oskulasi</strong>, dan jari-jarinya adalah $R = 1/\kappa$. Lingkaran inilah yang memberi interpretasi geometris konkret bagi konsep kelengkungan.</p>
+
+ <h3 class="lesson-subheading">C. Vektor Normal dan Binormal</h3>
+ <p class="lesson-text">Dari vektor singgung satuan $T$ dan turunannya, kita dapat membangun kerangka yang mengiringi kurva di setiap titik. Vektor <strong>normal satuan</strong> didefinisikan sebagai:</p>
+ <p class="lesson-text">$$N(s) = \frac{T'(s)}{|T'(s)|} = \frac{T'(s)}{\kappa(s)}$$</p>
+ <p class="lesson-text">untuk $\kappa(s) \neq 0$. Vektor ini menunjuk ke arah "pusat kelengkungan" kurva&mdash;yaitu ke arah tempat kurva membelok. Karena $|T| = 1$ konstan, $T'$ selalu tegak lurus $T$, sehingga $N \perp T$.</p>
+ <p class="lesson-text">Untuk kurva di ruang tiga dimensi, kita dapat melengkapi kedua vektor ini dengan vektor ketiga, disebut <strong>binormal</strong>:</p>
+ <p class="lesson-text">$$B(s) = T(s) \times N(s)$$</p>
+ <p class="lesson-text">Ketiga vektor $(T, N, B)$ membentuk <strong>frame Frenet-Serret</strong>: sebuah kerangka ortonormal yang bergerak bersama kurva. Frame ini memainkan peran yang mirip dengan sistem koordinat lokal pada setiap titik kurva.</p>
+
+ <h3 class="lesson-subheading">D. Rumus Frenet-Serret</h3>
+ <p class="lesson-text">Perubahan frame $(T, N, B)$ sepanjang kurva dinyatakan dalam rumus <strong>Frenet-Serret</strong>:</p>
+ <p class="lesson-text">$$\frac{dT}{ds} = \kappa N, \qquad \frac{dN}{ds} = -\kappa T + \tau B, \qquad \frac{dB}{ds} = -\tau N$$</p>
+ <p class="lesson-text">dengan $\kappa$ adalah kelengkungan dan $\tau$ adalah <strong>torsi</strong>&mdash;ukuran seberapa cepat kurva memutar keluar dari bidang oskulasinya. Untuk kurva bidang, $\tau = 0$ di mana-mana; kurva bidang adalah kurva yang sepenuhnya terletak pada satu bidang.</p>
+ <p class="lesson-text">Rumus Frenet-Serret adalah hasil fundamental dalam teori kurva: ia menyatakan bahwa bentuk kurva di $\mathbb{R}^3$ sepenuhnya ditentukan oleh dua fungsi skalar, $\kappa(s)$ dan $\tau(s)$. Jika kita tahu kedua fungsi ini sebagai fungsi panjang busur, kita dapat merekonstruksi kurva (hingga posisi dan orientasi awal).</p>
+ <figure>
+  <svg viewBox="0 0 620 360" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Sumbu -->
+   <line x1="40" y1="300" x2="580" y2="300" stroke="#e8e8e8" stroke-width="1.2" />
+   <line x1="300" y1="330" x2="300" y2="40" stroke="#e8e8e8" stroke-width="1.2" />
+  
+   <!-- Kurva membelok -->
+   <path d="M 100 240 Q 200 160 300 180 Q 400 200 500 100" fill="none" stroke="#5dade2" stroke-width="2.5" />
+   <text x="510" y="95" font-size="13" fill="#5dade2" font-style="italic">γ(s)</text>
+  
+   <!-- Titik pada kurva -->
+   <circle cx="300" cy="180" r="5" fill="#f0c75e" stroke="#daa520" stroke-width="1.5" />
+  
+   <!-- Vektor T -->
+   <line x1="300" y1="180" x2="360" y2="192" stroke="#f0c75e" stroke-width="2.5" />
+   <polygon points="366,194 355,190 356,202" fill="#f0c75e" />
+   <text x="370" y="200" font-size="12" fill="#f0c75e" font-style="italic">T</text>
+  
+   <!-- Vektor N -->
+   <line x1="300" y1="180" x2="308" y2="120" stroke="#daa520" stroke-width="2.5" />
+   <polygon points="310,114 302,122 312,125" fill="#daa520" />
+   <text x="318" y="115" font-size="12" fill="#daa520" font-style="italic">N</text>
+  
+   <!-- Lingkaran oskulasi -->
+   <circle cx="308" cy="130" r="50" fill="none" stroke="#b8b8b8" stroke-width="1.2" stroke-dasharray="4,3" />
+   <text x="230" y="85" font-size="11" fill="#b8b8b8" font-style="italic">lingkaran oskulasi</text>
+   <text x="230" y="100" font-size="11" fill="#b8b8b8" font-style="italic">(R = 1/κ)</text>
+  
+   <!-- Keterangan -->
+   <text x="80" y="335" font-size="12" fill="#b8b8b8" font-style="italic">Vektor T menyinggung kurva; N menunjuk ke pusat kelengkungan, tegak lurus T</text>
+  </svg>
+  <figcaption class="visual-caption">Vektor singgung $T$ dan vektor normal $N$ pada sebuah kurva. Vektor $N$ selalu tegak lurus $T$ dan menunjuk ke arah pusat kelengkungan&mdash;yaitu pusat lingkaran oskulasi, lingkaran yang paling menempel pada kurva di titik tersebut. Jari-jari lingkaran ini adalah $R = 1/\kappa$.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Permukaan: Parameterisasi, Bidang Singgung, Bentuk Fundamental</h2>
+ <p class="lesson-text">Setelah memahami kurva sebagai objek satu dimensi, kita beralih ke <strong>permukaan</strong>&mdash;objek dua dimensi yang tertanam di ruang tiga dimensi. Banyak intuisi dari kurva akan tetap berguna, tetapi dengan penyesuaian yang signifikan: permukaan memiliki dua arah singgung independen di setiap titik, bukan satu.</p>
+
+ <h3 class="lesson-subheading">A. Parameterisasi Permukaan</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Sebuah <strong>permukaan terparameterisasi</strong> di $\mathbb{R}^3$ adalah fungsi mulus</p>
+ <p class="lesson-text">$$\mathbf{r} : D \to \mathbb{R}^3, \quad \mathbf{r}(u, v) = (x(u, v), y(u, v), z(u, v))$$</p>
+ <p class="lesson-text">dengan $D$ adalah daerah di $\mathbb{R}^2$. Pasangan $(u, v)$ disebut <strong>koordinat permukaan</strong> atau <strong>parameter</strong>. Permukaan disebut <em>reguler</em> jika vektor-vektor turunan parsial</p>
+ <p class="lesson-text">$$\mathbf{r}_u = \frac{\partial \mathbf{r}}{\partial u}, \qquad \mathbf{r}_v = \frac{\partial \mathbf{r}}{\partial v}$$</p>
+ <p class="lesson-text">bebas linear di setiap titik&mdash;yaitu $\mathbf{r}_u \times \mathbf{r}_v \neq \mathbf{0}$.</p>
+
+ <p class="lesson-text">Beberapa contoh parameterisasi klasik:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Permukaan</th><th>Parameterisasi</th><th>Domain</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Bidang datar $z = 0$</td><td>$\mathbf{r}(u, v) = (u, v, 0)$</td><td>$(u, v) \in \mathbb{R}^2$</td></tr>
+   <tr><td>Bola berjari-jari $R$</td><td>$\mathbf{r}(\theta, \phi) = (R\sin\theta\cos\phi, R\sin\theta\sin\phi, R\cos\theta)$</td><td>$\theta \in [0, \pi], \phi \in [0, 2\pi]$</td></tr>
+   <tr><td>Torus</td><td>$\mathbf{r}(u, v) = ((R + r\cos v)\cos u, (R + r\cos v)\sin u, r\sin v)$</td><td>$u, v \in [0, 2\pi]$</td></tr>
+   <tr><td>Grafik $z = f(x, y)$</td><td>$\mathbf{r}(x, y) = (x, y, f(x, y))$</td><td>domain $f$</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">B. Bidang Singgung dan Vektor Normal</h3>
+ <p class="lesson-text">Di setiap titik $\mathbf{r}(u_0, v_0)$ pada permukaan, vektor $\mathbf{r}_u$ dan $\mathbf{r}_v$ menyinggung permukaan&mdash;masing-masing menunjukkan arah perubahan jika kita bergerak sepanjang koordinat $u$ atau $v$ saja. Keduanya merentang sebuah bidang dua dimensi, yang disebut <strong>bidang singgung</strong> di titik itu.</p>
+ <p class="lesson-text">Perkalian silang keduanya menghasilkan vektor yang tegak lurus terhadap permukaan:</p>
+ <p class="lesson-text">$$\mathbf{N} = \mathbf{r}_u \times \mathbf{r}_v$$</p>
+ <p class="lesson-text">Vektor ini disebut <strong>vektor normal</strong> (belum ternormalisasi). Panjangnya, $|\mathbf{r}_u \times \mathbf{r}_v|$, memiliki makna geometris penting: ia adalah faktor skala elemen luas. Artinya, daerah kecil berukuran $du \times dv$ di domain $D$ dipetakan menjadi elemen luas permukaan sebesar $|\mathbf{r}_u \times \mathbf{r}_v| \, du \, dv$.</p>
+ <p class="lesson-text">Vektor normal satuan diperoleh dengan menormalisasi:</p>
+ <p class="lesson-text">$$\hat{\mathbf{n}} = \frac{\mathbf{r}_u \times \mathbf{r}_v}{|\mathbf{r}_u \times \mathbf{r}_v|}$$</p>
+
+ <h3 class="lesson-subheading">C. Bentuk Fundamental Pertama</h3>
+ <p class="lesson-text">Untuk mengukur panjang, sudut, dan luas pada permukaan&mdash;tanpa harus kembali ke ruang $\mathbb{R}^3$ di sekitarnya&mdash;kita memerlukan tiga koefisien yang mengodekan informasi metrik permukaan. Ketiga koefisien ini didefinisikan dari hasil kali titik vektor singgung:</p>
+ <p class="lesson-text">$$E = \mathbf{r}_u \cdot \mathbf{r}_u, \qquad F = \mathbf{r}_u \cdot \mathbf{r}_v, \qquad G = \mathbf{r}_v \cdot \mathbf{r}_v$$</p>
+ <p class="lesson-text">Ketiganya secara kolektif disebut <strong>bentuk fundamental pertama</strong> permukaan. Notasi matriksnya adalah:</p>
+ <p class="lesson-text">$$\begin{pmatrix} E & F \\ F & G \end{pmatrix}$$</p>
+ <p class="lesson-text">Dengan koefisien-koefisien ini, kita dapat menghitung:</p>
+ <ul>
+  <li><strong>Panjang busur</strong> kurva pada permukaan: $ds^2 = E \, du^2 + 2F \, du \, dv + G \, dv^2$.</li>
+  <li><strong>Luas daerah</strong> pada permukaan: $A = \iint_D \sqrt{EG - F^2} \, du \, dv$.</li>
+  <li><strong>Sudut</strong> antara dua kurva yang berpotongan di permukaan.</li>
+ </ul>
+ <p class="lesson-text">Yang penting diperhatikan: bentuk fundamental pertama sepenuhnya ditentukan oleh <em>hasil kali titik</em> vektor singgung permukaan. Ia tidak memerlukan informasi tentang bagaimana permukaan melengkung di ruang sekitarnya&mdash;ia hanya mengukur "jarak di dalam permukaan". Inilah cikal bakal gagasan <em>geometri intrinsik</em> yang akan kita bahas di bab berikutnya.</p>
+
+ <figure>
+ <svg viewBox="0 0 640 380" style="max-width:100%; height:auto; width:640px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="320" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Permukaan, bidang singgung, dan vektor normal</text>
+
+  <!-- Permukaan bergelombang -->
+  <path d="M 80 240 Q 200 180 320 220 Q 440 260 560 200" fill="none" stroke="#5dade2" stroke-width="2"/>
+  <path d="M 80 280 Q 200 220 320 260 Q 440 300 560 240" fill="none" stroke="#5dade2" stroke-width="2"/>
+  <path d="M 80 320 Q 200 260 320 300 Q 440 340 560 280" fill="none" stroke="#5dade2" stroke-width="2"/>
+  <text x="565" y="245" font-size="13" fill="#5dade2" font-style="italic">S</text>
+
+  <!-- Bidang singgung (persegi miring) -->
+  <polygon points="240,200 400,180 460,240 300,260" fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="410" y="175" font-size="12" fill="#daa520" font-style="italic">bidang singgung</text>
+
+  <!-- Titik singgung -->
+  <circle cx="350" cy="220" r="5.5" fill="#f0c75e" stroke="#daa520" stroke-width="1.5"/>
+  <text x="355" y="240" font-size="12" fill="#f0c75e" font-style="italic">p</text>
+
+  <!-- Vektor r_u -->
+  <line x1="350" y1="220" x2="430" y2="205" stroke="#f0c75e" stroke-width="2.5"/>
+  <polygon points="436,204 425,199 426,210" fill="#f0c75e"/>
+  <text x="438" y="200" font-size="12" fill="#f0c75e" font-style="italic">r_u</text>
+
+  <!-- Vektor r_v -->
+  <line x1="350" y1="220" x2="380" y2="260" stroke="#f0c75e" stroke-width="2.5"/>
+  <polygon points="382,265 375,255 385,254" fill="#f0c75e"/>
+  <text x="385" y="278" font-size="12" fill="#f0c75e" font-style="italic">r_v</text>
+
+  <!-- Vektor normal -->
+  <line x1="350" y1="220" x2="330" y2="110" stroke="#daa520" stroke-width="2.5"/>
+  <polygon points="328,104 322,114 332,116" fill="#daa520"/>
+  <text x="315" y="100" font-size="12" fill="#daa520" font-style="italic">N = r_u × r_v</text>
+
+  <!-- Keterangan -->
+  <text x="80" y="365" font-size="12" fill="#b8b8b8" font-style="italic">Vektor r_u dan r_v merentang bidang singgung; hasil silangnya tegak lurus permukaan</text>
+ </svg>
+ <figcaption class="visual-caption">Bidang singgung dan vektor normal pada permukaan. Di titik $p$, turunan parsial $\mathbf{r}_u$ dan $\mathbf{r}_v$ menyinggung permukaan dan merentang bidang singgung. Hasil silang keduanya, $\mathbf{N} = \mathbf{r}_u \times \mathbf{r}_v$, tegak lurus terhadap permukaan dan menentukan arah normal. Panjang vektor ini mengukur faktor skala elemen luas.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Kelengkungan Permukaan: Gauss dan Rata-rata</h2>
+ <p class="lesson-text">Permukaan memiliki kelengkungan, tetapi konsepnya lebih kaya daripada kelengkungan kurva. Sebuah permukaan dapat membengkok dengan cara yang berbeda di arah yang berbeda&mdash;bayangkan pelana kuda: melengkung ke atas di satu arah, ke bawah di arah lain. Untuk menangkap keragaman ini, kita perlu dua ukuran kelengkungan yang saling melengkapi.</p>
+
+ <h3 class="lesson-subheading">A. Kelengkungan Normal</h3>
+ <p class="lesson-text">Di setiap titik $p$ pada permukaan, dan untuk setiap arah singgung $\mathbf{v}$ di bidang singgung, kita dapat memotong permukaan dengan bidang yang memuat $\mathbf{v}$ dan vektor normal $\hat{\mathbf{n}}$. Hasil potongannya adalah sebuah kurva bidang, dan kita dapat menghitung kelengkungan kurva itu di titik $p$.</p>
+ <p class="lesson-text">Nilai kelengkungan ini disebut <strong>kelengkungan normal</strong> dalam arah $\mathbf{v}$, biasanya dinotasikan $\kappa_n(\mathbf{v})$. Ia mengukur seberapa cepat permukaan membelok ketika kita bergerak dalam arah $\mathbf{v}$.</p>
+
+ <h3 class="lesson-subheading">B. Kelengkungan Utama</h3>
+ <p class="lesson-text">Ketika arah $\mathbf{v}$ diubah-ubah di bidang singgung, kelengkungan normal $\kappa_n$ berubah nilainya. Ternyata ada dua arah istimewa&mdash;disebut <strong>arah utama</strong>&mdash;di mana $\kappa_n$ mencapai nilai maksimum dan minimum. Kedua nilai ini disebut <strong>kelengkungan utama</strong>, dinotasikan $\kappa_1$ dan $\kappa_2$.</p>
+ <p class="lesson-text">Untuk bola berjari-jari $R$, setiap arah memiliki kelengkungan yang sama: $\kappa_1 = \kappa_2 = 1/R$. Untuk bidang datar, $\kappa_1 = \kappa_2 = 0$. Untuk silinder, satu arah lurus ($\kappa = 0$) dan arah melingkar memiliki $\kappa = 1/R$&mdash;sehingga $\kappa_1 = 1/R$ dan $\kappa_2 = 0$.</p>
+
+ <h3 class="lesson-subheading">C. Kelengkungan Gauss dan Rata-rata</h3>
+ <p class="lesson-text">Dua ukuran kelengkungan permukaan didefinisikan dari kelengkungan utama:</p>
+ <p class="lesson-text"><strong>Kelengkungan Gauss</strong> (produk):</p>
+ <p class="lesson-text">$$K = \kappa_1 \kappa_2$$</p>
+ <p class="lesson-text"><strong>Kelengkungan rata-rata</strong> (rerata):</p>
+ <p class="lesson-text">$$H = \frac{\kappa_1 + \kappa_2}{2}$$</p>
+ <p class="lesson-text">Kedua ukuran ini menjawab pertanyaan yang berbeda. Kelengkungan Gauss mengukur apakah permukaan secara lokal mirip bola (positif), pelana (negatif), atau silinder (nol). Kelengkungan rata-rata mengukur "tekanan" yang diperlukan untuk menahan bentuk permukaan, dan memainkan peran penting dalam fisika selaput tipis.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Permukaan</th><th>$\kappa_1$</th><th>$\kappa_2$</th><th>$K$</th><th>$H$</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Bidang datar</td><td>$0$</td><td>$0$</td><td>$0$</td><td>$0$</td></tr>
+   <tr><td>Bola jari-jari $R$</td><td>$1/R$</td><td>$1/R$</td><td>$1/R^2$</td><td>$1/R$</td></tr>
+   <tr><td>Silinder jari-jari $R$</td><td>$1/R$</td><td>$0$</td><td>$0$</td><td>$1/(2R)$</td></tr>
+   <tr><td>Pelana (saddle)</td><td>$k$</td><td>$-k$</td><td>$-k^2$</td><td>$0$</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Permukaan dengan $H = 0$ di mana-mana disebut <strong>permukaan minimal</strong>. Contoh klasiknya adalah bidang datar dan pelana katenoid (permukaan sabun yang terbentuk di antara dua cincin). Permukaan minimal muncul secara alami ketika kita mencari bentuk dengan luas terkecil untuk batas tertentu&mdash;itulah sebabnya sabun membentuk permukaan minimal.</p>
+
+ <h3 class="lesson-subheading">D. Theorema Egregium</h3>
+ <p class="lesson-text">Salah satu hasil paling menakjubkan dalam geometri diferensial adalah <strong>Theorema Egregium</strong> (Latin: "teorema yang luar biasa") yang dibuktikan oleh Carl Friedrich Gauss pada tahun 1827.</p>
+ <p class="lesson-text">Teorema ini menyatakan bahwa <strong>kelengkungan Gauss $K$ bersifat intrinsik</strong>&mdash;artinya, ia dapat dihitung sepenuhnya dari bentuk fundamental pertama permukaan, tanpa mengetahui bagaimana permukaan itu tertanam di ruang tiga dimensi.</p>
+ <p class="lesson-text">Untuk memahaminya, bayangkan seekor semut yang hidup di atas permukaan. Semut itu tidak dapat melihat ruang tiga dimensi di sekitarnya. Namun ia dapat mengukur panjang, sudut, dan luas di dalam permukaannya. Theorema Egregium menyatakan bahwa semut ini&mdash;dengan hanya informasi intrinsik&mdash;dapat menentukan kelengkungan Gauss di setiap titik.</p>
+ <p class="lesson-text">Sebagai ilustrasi, perhatikan bahwa kelengkungan rata-rata $H$ <em>tidak</em> intrinsik: silinder memiliki $H = 1/(2R)$, tetapi jika kita "membuka" silinder menjadi bidang datar tanpa merobek atau meregangkannya, kelengkungan rata-ratanya berubah menjadi $0$. Namun kelengkungan Gauss tetap $K = 0$ baik pada silinder maupun pada bidang datar&mdash;karena keduanya bisa saling diubah tanpa peregangan. Inilah tanda bahwa $K$ adalah properti intrinsik.</p>
+ <p class="lesson-text">Konsekuensi praktisnya: tidak mungkin membuat peta datar yang akurat untuk seluruh bola Bumi tanpa distorsi. Karena bola memiliki $K = 1/R^2 > 0$ sedangkan bidang datar memiliki $K = 0$, tidak ada cara untuk memetakan bola ke bidang tanpa mengubah jarak di dalamnya. Inilah dasar matematis mengapa setiap proyeksi peta pasti mengorbankan sesuatu&mdash;jarak, luas, atau sudut.</p>
+
+ <figure>
+ <svg viewBox="0 0 640 400" style="max-width:100%; height:auto; width:640px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="320" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Tiga tipe kelengkungan Gauss</text>
+
+  <!-- K > 0: bola -->
+  <ellipse cx="120" cy="150" rx="70" ry="70" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="1.8"/>
+  <ellipse cx="120" cy="150" rx="70" ry="20" fill="none" stroke="#5dade2" stroke-width="0.8" opacity="0.6"/>
+  <ellipse cx="120" cy="150" rx="20" ry="70" fill="none" stroke="#5dade2" stroke-width="0.8" opacity="0.6"/>
+  <text x="120" y="260" font-size="13" fill="#5dade2" text-anchor="middle" font-style="italic">K &gt; 0</text>
+  <text x="120" y="280" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">bola</text>
+  <text x="120" y="298" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">melengkung ke dalam</text>
+  <text x="120" y="316" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">di semua arah</text>
+
+  <!-- K = 0: silinder -->
+  <rect x="235" y="90" width="130" height="120" rx="8" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.8"/>
+  <ellipse cx="300" cy="90" rx="65" ry="15" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.5"/>
+  <ellipse cx="300" cy="210" rx="65" ry="15" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1.5"/>
+  <text x="300" y="260" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">K = 0</text>
+  <text x="300" y="280" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">silinder</text>
+  <text x="300" y="298" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">datar di satu arah</text>
+  <text x="300" y="316" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">melengkung di arah lain</text>
+
+  <!-- K < 0: pelana -->
+  <path d="M 440 90 Q 480 130 520 90 Q 520 150 480 190 Q 440 150 440 90 Z" fill="#f0c75e" fill-opacity="0.10" stroke="#f0c75e" stroke-width="1.8"/>
+  <path d="M 440 130 Q 480 170 520 130" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+  <path d="M 480 90 Q 480 130 480 190" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+  <path d="M 440 90 Q 480 90 520 90" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+  <path d="M 440 190 Q 480 190 520 190" fill="none" stroke="#f0c75e" stroke-width="1.5"/>
+  <path d="M 460 120 Q 480 130 500 120" fill="none" stroke="#f0c75e" stroke-width="1" opacity="0.7"/>
+  <text x="480" y="260" font-size="13" fill="#f0c75e" text-anchor="middle" font-style="italic">K &lt; 0</text>
+  <text x="480" y="280" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">pelana</text>
+  <text x="480" y="298" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">melengkung ke atas</text>
+  <text x="480" y="316" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">dan ke bawah</text>
+
+  <!-- Keterangan bawah -->
+  <text x="320" y="355" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Tanda K menunjukkan bentuk lokal permukaan</text>
+  <text x="320" y="378" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Menurut Theorema Egregium, K dapat diukur oleh "semut" di dalam permukaan</text>
+ </svg>
+ <figcaption class="visual-caption">Tiga tipe kelengkungan Gauss. $K > 0$ (permukaan seperti bola): permukaan melengkung ke arah yang sama di semua arah. $K = 0$ (permukaan seperti silinder atau bidang datar): permukaan datar di setidaknya satu arah. $K < 0$ (permukaan seperti pelana): permukaan melengkung ke arah berlawanan di dua arah utama. Theorema Egregium menyatakan bahwa $K$ dapat ditentukan dari pengukuran di dalam permukaan saja.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Mengapa Geometri Diferensial Penting</h2>
+ <p class="lesson-text">Geometri diferensial bukan hanya latihan abstrak. Ia menyediakan bahasa dan alat untuk banyak cabang matematika dan fisika modern. Bab ini membahas beberapa alasan mengapa materi ini penting&mdash;bukan hanya secara historis, tetapi juga sebagai fondasi aktif untuk penelitian masa kini.</p>
+
+ <h3 class="lesson-subheading">A. Relativitas Umum</h3>
+ <p class="lesson-text">Salah satu aplikasi paling terkenal dari geometri diferensial adalah <strong>teori relativitas umum</strong> Albert Einstein (1915). Dalam teori ini, gravitasi bukanlah gaya yang bekerja di ruang, melainkan manifestasi dari kelengkungan ruang-waktu empat dimensi.</p>
+ <p class="lesson-text">Ruang-waktu dimodelkan sebagai <em>manifold</em> berdimensi empat yang dilengkapi metrik Lorentz. Partikel bebas bergerak sepanjang <strong>geodesik</strong>&mdash;kurva yang meminimalkan panjang busur dalam metrik tersebut. Kelengkungan ruang-waktu dihubungkan dengan distribusi materi dan energi melalui <strong>persamaan medan Einstein</strong>:</p>
+ <p class="lesson-text">$$R_{\mu\nu} - \tfrac{1}{2} R \, g_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}$$</p>
+ <p class="lesson-text">Persamaan ini adalah persamaan diferensial parsial yang melibatkan tensor kelengkungan&mdash;konsep-konsep yang dibangun langsung dari geometri diferensial. Tanpa kerangka ini, tidak mungkin memahami lubang hitam, gelombang gravitasi, atau pemuaian alam semesta.</p>
+
+ <h3 class="lesson-subheading">B. Grafik Komputer dan Animasi</h3>
+ <p class="lesson-text">Setiap kali Anda melihat permukaan lengkung yang mulus dalam film animasi atau video game, geometri diferensial ada di belakangnya. Permukaan seperti itu tidak disimpan sebagai kumpulan titik individual&mdash;melainkan sebagai <em>kurva Bézier</em>, <em>spline</em>, atau <em>NURBS</em>, yang didefinisikan melalui parameterisasi matematis.</p>
+ <p class="lesson-text">Vektor normal, yang kita definisikan melalui $\mathbf{r}_u \times \mathbf{r}_v$, digunakan untuk menghitung pencahayaan pada permukaan. Kelengkungan permukaan menentukan bagaimana cahaya dipantulkan, menciptakan efek seperti kilau logam atau kelembutan kain. Tanpa alat-alat geometri diferensial, rendering realistik tidak mungkin dilakukan.</p>
+
+ <h3 class="lesson-subheading">C. Permukaan Minimal dan Fenomena Alam</h3>
+ <p class="lesson-text">Fenomena sederhana seperti gelembung sabun ternyata memiliki struktur matematika yang mendalam. Selaput sabun yang terbentuk di antara kerangka kawat selalu meminimalkan luas permukaannya&mdash;itulah sebabnya ia membentuk <em>permukaan minimal</em> dengan $H = 0$.</p>
+ <p class="lesson-text">Permukaan minimal memiliki kaitan mendalam dengan <em>persamaan Laplace</em> dan <em>fungsi harmonik</em>&mdash;dua konsep yang muncul berulang kali dalam fisika matematika. Beberapa contoh permukaan minimal yang paling indah, seperti helicoid dan catenoid, ditemukan melalui analisis geometri diferensial. Permukaan minimal juga muncul dalam biologi, misalnya dalam bentuk membran sel dan struktur jaringan.</p>
+
+ <h3 class="lesson-subheading">D. Teorema Gauss-Bonnet</h3>
+ <p class="lesson-text">Salah satu hasil paling mendalam dari geometri diferensial adalah <strong>Teorema Gauss-Bonnet</strong>, yang menghubungkan kelengkungan lokal permukaan dengan topologi globalnya:</p>
+ <p class="lesson-text">$$\iint_S K \, dA = 2\pi \chi(S)$$</p>
+ <p class="lesson-text">dengan $\chi(S)$ adalah <em>karakteristik Euler</em>&mdash;sebuah bilangan bulat yang hanya bergantung pada bentuk topologi permukaan, bukan pada bentuk geometrisnya.</p>
+ <p class="lesson-text">Teorema ini menyatakan bahwa tidak peduli bagaimana kita melengkungkan atau meregangkan permukaan&mdash;selama tidak merobek atau menempel&mdash;integral kelengkungan Gauss selalu sama. Untuk bola, $\chi = 2$ sehingga $\iint K \, dA = 4\pi$; untuk torus, $\chi = 0$ sehingga integralnya nol.</p>
+ <p class="lesson-text">Hasil ini menunjukkan adanya jembatan mendalam antara <em>geometri</em> (kelengkungan) dan <em>topologi</em> (jumlah lubang). Inilah sebabnya mengapa banyak matematikawan menganggap Teorema Gauss-Bonnet sebagai salah satu hasil paling indah dalam matematika&mdash;dan sekaligus sebagai titik masuk menuju <em>topologi diferensial</em>, yang akan dipelajari di materi berikutnya.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Geometri diferensial bukan hanya tentang ruang dua dan tiga dimensi. Konsep-konsep yang kita bangun di sini&mdash;kelengkungan, geodesik, koneksi&mdash;dapat digeneralisasi ke ruang berdimensi lebih tinggi, yang disebut <em>manifold Riemannian</em>. Generalisasi inilah yang dipakai dalam relativitas umum, teori string, dan teori informasi geometris. Materi ini adalah fondasi untuk semua itu.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap kurva dan parameterisasinya adalah hal yang sama.</strong> Kurva adalah himpunan titik; parameterisasi adalah cara kita menelusurinya. Lingkaran bisa diparameterisasi dengan $\cos t, \sin t$ maupun $\cos 2t, \sin 2t$&mdash;keduanya menggambarkan lingkaran yang sama, tetapi dengan kecepatan yang berbeda.</li>
+  <li><strong>Menganggap kelengkungan bergantung pada kecepatan penelusuran.</strong> Kelengkungan $\kappa$ adalah sifat geometris kurva, bukan sifat penelusurannya. Karena itu definisi formalnya menggunakan parameter panjang busur. Rumus dengan parameter $t$ biasa sudah menyertakan faktor koreksi $|\gamma'|^3$ di penyebut.</li>
+  <li><strong>Menganggap kelengkungan kurva di $\mathbb{R}^3$ dan di $\mathbb{R}^2$ sama konsepnya.</strong> Untuk kurva bidang, tanda kelengkungan ($+$ atau $-$) bermakna: menunjukkan arah belok. Untuk kurva ruang, kita kehilangan arah "kiri-kanan" yang alami, sehingga digunakan kelengkungan tak bertanda $\kappa \geq 0$ dan torsi $\tau$.</li>
+  <li><strong>Menganggap setiap parameterisasi adalah reguler.</strong> Syarat $\mathbf{r}_u \times \mathbf{r}_v \neq \mathbf{0}$ penting. Parameterisasi bola dengan $\theta = 0$ atau $\theta = \pi$ (di kutub) tidak reguler&mdash;di titik itu $\mathbf{r}_\phi = \mathbf{0}$, sehingga vektor normal tidak terdefinisi. Kesulitan ini dapat diatasi dengan memilih parameterisasi lain, atau dengan bekerja di <em>koordinat lokal</em>.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Kelengkungan Permukaan</h3>
+ <ul>
+  <li><strong>Menganggap $K$ positif berarti permukaan selalu "melengkung keluar".</strong> Tanda $K$ menunjukkan apakah kedua arah utama melengkung ke sisi yang sama (positif) atau berlawanan (negatif). Bola memiliki $K > 0$; pelana memiliki $K < 0$. Namun permukaan dengan $K > 0$ tidak harus berupa bola&mdash;elipsoid juga memiliki $K > 0$.</li>
+  <li><strong>Menyamakan kelengkungan Gauss dengan kelengkungan rata-rata.</strong> Keduanya mengukur hal yang berbeda. $K = \kappa_1 \kappa_2$ adalah produk; $H = (\kappa_1 + \kappa_2)/2$ adalah rerata. Bola memiliki $K = 1/R^2$ dan $H = 1/R$; silinder memiliki $K = 0$ tetapi $H = 1/(2R)$. Keduanya tidak dapat saling menggantikan.</li>
+  <li><strong>Mengira silinder adalah permukaan dengan kelengkungan nol.</strong> Silinder memiliki $K = 0$, tetapi $H \neq 0$. Satu arah utamanya (sepanjang sumbu) memiliki kelengkungan nol, tetapi arah melingkarnya memiliki kelengkungan $1/R$. Jadi silinder <em>melengkung</em>, tetapi produk kelengkungannya nol.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Intrinsik vs Ekstrinsik</h3>
+ <ul>
+  <li><strong>Menganggap semua kelengkungan permukaan bersifat ekstrinsik.</strong> Inilah kejutan utama Theorema Egregium: $K$ <em>intrinsik</em>, sedangkan $H$ <em>tidak</em>. Kesalahan ini menghasilkan kesimpulan yang salah tentang apa yang dapat diukur oleh "semut" di atas permukaan.</li>
+  <li><strong>Mengira kita selalu dapat memetakan bola ke bidang tanpa distorsi.</strong> Karena $K_{\text{bola}} = 1/R^2 \neq 0 = K_{\text{bidang}}$, dan karena $K$ intrinsik, tidak ada peta yang mempertahankan jarak di dalam permukaan. Setiap proyeksi peta pasti mendistorsi sesuatu.</li>
+  <li><strong>Menganggap "permukaan datar" identik dengan "kelengkungan nol".</strong> Permukaan datar di $\mathbb{R}^3$ memang memiliki $K = 0$, tetapi silinder juga memiliki $K = 0$&mdash;padahal keduanya jelas berbeda secara geometris. Yang sama adalah <em>geometri intrinsiknya</em>: keduanya dapat dipetakan satu sama lain tanpa peregangan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Kurva terparameterisasi</strong> adalah fungsi mulus $\gamma : I \to \mathbb{R}^n$. Vektor turunan $\gamma'(t)$ adalah vektor singgung yang menyatakan arah dan laju penelusuran.</li>
+  <li><strong>Panjang busur</strong> dihitung dengan $L = \int_a^b |\gamma'(t)| \, dt$. Parameterisasi panjang busur (dengan $|\gamma'| = 1$) menyederhanakan banyak rumus teori.</li>
+  <li><strong>Kelengkungan kurva</strong> didefinisikan sebagai $\kappa = |dT/ds|$, mengukur seberapa cepat arah singgung berubah. Untuk lingkaran berjari-jari $R$, $\kappa = 1/R$; untuk garis lurus, $\kappa = 0$.</li>
+  <li><strong>Frame Frenet-Serret</strong> $(T, N, B)$ membentuk kerangka ortonormal yang bergerak bersama kurva. Rumus Frenet-Serret menghubungkan perubahan frame dengan kelengkungan $\kappa$ dan torsi $\tau$.</li>
+  <li><strong>Permukaan terparameterisasi</strong> adalah fungsi mulus $\mathbf{r}(u, v)$ dengan vektor singgung parsial $\mathbf{r}_u, \mathbf{r}_v$ yang bebas linear.</li>
+  <li><strong>Bidang singgung</strong> direntang oleh $\mathbf{r}_u$ dan $\mathbf{r}_v$; vektor normal diberikan oleh $\mathbf{N} = \mathbf{r}_u \times \mathbf{r}_v$. Panjangnya adalah faktor skala elemen luas.</li>
+  <li><strong>Bentuk fundamental pertama</strong> dengan koefisien $E, F, G$ mengodekan metrik intrinsik permukaan&mdash;cukup untuk mengukur panjang, sudut, dan luas tanpa mengacu ke ruang sekitarnya.</li>
+  <li><strong>Kelengkungan Gauss</strong> $K = \kappa_1 \kappa_2$ dan <strong>kelengkungan rata-rata</strong> $H = (\kappa_1 + \kappa_2)/2$ mengukur kelengkungan permukaan dari dua sudut yang berbeda.</li>
+  <li><strong>Theorema Egregium</strong>: kelengkungan Gauss bersifat intrinsik&mdash;dapat dihitung dari bentuk fundamental pertama saja. Inilah dasar matematis mengapa peta bola ke bidang selalu mengalami distorsi.</li>
+  <li><strong>Teorema Gauss-Bonnet</strong> menghubungkan integral kelengkungan Gauss dengan karakteristik Euler permukaan: $\iint_S K \, dA = 2\pi\chi(S)$. Ini menjembatani geometri dan topologi.</li>
+  <li><strong>Aplikasi</strong>: relativitas umum, grafik komputer, permukaan minimal, serta fondasi menuju manifold dan topologi diferensial.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Geometri diferensial menyatukan dua dunia yang pada awalnya tampak terpisah: dunia bentuk dan ruang (geometri) dengan dunia perubahan dan laju (kalkulus). Melalui kurva dan permukaan, kita belajar bahwa bentuk dapat diukur dengan turunan dan integral&mdash;dan bahwa pengukuran itu mengungkapkan struktur yang lebih dalam daripada yang terlihat di permukaan.</p>
+ <p class="lesson-text">Yang paling menakjubkan adalah penemuan bahwa beberapa sifat geometris bersifat <em>intrinsik</em>&mdash;dapat dikenali dari dalam permukaan itu sendiri, tanpa perlu melihat ruang di sekitarnya. Theorema Egregium Gauss adalah puncak dari gagasan ini, dan menjadi pintu masuk menuju topologi dan teori manifold yang akan dipelajari di materi berikutnya.</p>
+ <p class="lesson-text">Materi ini menutup bagian pertama dari kategori Geometri Lanjut, Topologi &amp; Manifold. Dua materi berikutnya&mdash;<strong>Topologi</strong> dan <strong>Manifold</strong>&mdash;akan memperluas gagasan yang telah kita bangun di sini ke ruang yang jauh lebih umum: ruang yang secara lokal mirip ruang Euclidean, namun secara global bisa memiliki bentuk yang sangat rumit. Alat-alat yang sudah Anda kuasai&mdash;kelengkungan, geodesik, metrik&mdash;akan terus muncul dan berkembang di sana.</p>
+</section>
+
+</main>
+</body>
+</html>

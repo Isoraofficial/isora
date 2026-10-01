@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topologi (Ruang Topologi, Kontinuitas, Kekompakan)</title>
+<meta name="description" content="Materi topologi: definisi ruang topologi, basis dan subbasis, fungsi kontinu, homeomorfisme, aksioma pemisah, kekompakan dan teorema Heine-Borel, keterhubungan, serta kaitannya dengan analisis dan geometri.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Topologi (Ruang Topologi, Kontinuitas, Kekompakan)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Himpunan</strong> &mdash; operasi himpunan (union, irisan, komplemen), himpunan bagian, dan himpunan kuasa. Topologi didefinisikan sebagai kumpulan himpunan bagian dengan sifat tertentu, sehingga notasi dan operasi himpunan harus lancar.</li>
+   <li><strong>Logika Predikat</strong> &mdash; kuantor universal dan eksistensial, serta cara membaca pernyataan berlapis seperti "untuk setiap titik, ada lingkungan...". Hampir semua definisi topologi bersifat berlapis dan kuantitatif.</li>
+   <li><strong>Limit dan Kekontinuan</strong> &mdash; definisi $\varepsilon$-$\delta$ untuk limit dan kekontinuan fungsi real. Topologi adalah generalisasi dari konsep-konsep ini; tanpa contoh konkretnya di $\mathbb{R}$, definisi abstrak akan terasa hampa.</li>
+   <li><strong>Pembuktian Matematis</strong> &mdash; pembuktian langsung, kontradiksi, dan kontraposisi. Topologi adalah cabang yang sangat menekankan pembuktian; hampir semua pernyataan penting memerlukan argumen formal, bukan sekadar intuisi visual.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Dalam kalkulus, kita mempelajari kekontinuan fungsi real menggunakan definisi $\varepsilon$-$\delta$: fungsi kontinu jika perubahan kecil pada input menghasilkan perubahan kecil pada output. Namun definisi ini bergantung pada gagasan <em>jarak</em>&mdash;sesuatu yang hanya ada di ruang metrik seperti $\mathbb{R}$ atau $\mathbb{R}^n$. Apa yang terjadi jika kita ingin berbicara tentang "kedekatan" di ruang yang lebih umum, misalnya himpunan fungsi, ruang abstrak, atau ruang yang tidak memiliki jarak sama sekali?</p>
+ <p class="lesson-text">Jawabannya adalah <strong>topologi</strong>. Topologi adalah cabang matematika yang mempelajari sifat-sifat ruang yang <em>tidak berubah</em> ketika ruang tersebut diregangkan, dipelintir, atau dibengkokkan&mdash;asalkan tidak disobek atau direkatkan. Ia abstrak dari gagasan jarak, tetapi tetap mampu menangkap apa yang kita maksud dengan "dekat", "kontinu", dan "terhubung".</p>
+ <p class="lesson-text">Materi ini disusun dalam tiga bagian utama. Pertama, kita definisikan <strong>ruang topologi</strong> melalui aksioma-aksioma tentang himpunan terbuka. Kedua, kita definisikan <strong>kontinuitas</strong> dan <strong>homeomorfisme</strong>&mdash;konsep yang menggeneralisasi kekontinuan fungsi real. Ketiga, kita pelajari <strong>kekompakan</strong>, sebuah sifat yang&mdash;meskipun tampak teknis&mdash;merupakan kunci banyak teorema penting dalam analisis dan geometri.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Ruang Topologi</h2>
+ <p class="lesson-text">Untuk memahami mengapa topologi didefinisikan dengan cara tertentu, kita mulai dari contoh konkret: ruang Euclidean $\mathbb{R}$ dan himpunan terbukanya. Dari sana, kita abstraksi sifat-sifat pentingnya menjadi definisi umum.</p>
+
+ <h3 class="lesson-subheading">A. Himpunan Terbuka di $\mathbb{R}$</h3>
+ <p class="lesson-text">Dalam analisis real, himpunan $U \subseteq \mathbb{R}$ disebut <strong>terbuka</strong> jika untuk setiap $x \in U$ terdapat $\varepsilon > 0$ sedemikian sehingga interval $(x - \varepsilon, x + \varepsilon)$ seluruhnya termuat di dalam $U$. Dengan kata lain, setiap titik di $U$ memiliki "ruang bernapas" di sekitarnya yang masih di dalam $U$.</p>
+ <p class="lesson-text">Himpunan terbuka di $\mathbb{R}$ memiliki tiga sifat penting:</p>
+ <ul>
+  <li>Himpunan kosong $\varnothing$ dan seluruh $\mathbb{R}$ terbuka.</li>
+  <li>Irisan berhingga dari himpunan terbuka tetap terbuka.</li>
+  <li>Gabungan <em>sebarang</em> himpunan terbuka (termasuk tak hingga) tetap terbuka.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan asimetri di antara dua sifat terakhir: irisan boleh berhingga, tetapi gabungan boleh tak hingga. Contoh: irisan $\bigcap_{n=1}^\infty (-1/n, 1/n) = \{0\}$ bukan himpunan terbuka, meskipun setiap himpunan di irisannya terbuka. Inilah alasan mengapa aksioma topologi memisahkan kedua operasi ini.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Ruang Topologi</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Sebuah <strong>ruang topologi</strong> adalah pasangan $(X, \mathcal{T})$ dengan $X$ himpunan tak kosong dan $\mathcal{T}$ adalah keluarga himpunan bagian dari $X$&mdash;disebut <strong>topologi</strong> pada $X$&mdash;yang memenuhi tiga aksioma:</p>
+ <ul>
+  <li><strong>(T1)</strong> $\varnothing \in \mathcal{T}$ dan $X \in \mathcal{T}$.</li>
+  <li><strong>(T2)</strong> Jika $U_1, U_2, \ldots, U_n \in \mathcal{T}$, maka $\bigcap_{i=1}^n U_i \in \mathcal{T}$.</li>
+  <li><strong>(T3)</strong> Jika $\{U_\alpha\}_{\alpha \in A}$ adalah keluarga sebarang elemen $\mathcal{T}$, maka $\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}$.</li>
+ </ul>
+ <p class="lesson-text">Anggota-anggota $\mathcal{T}$ disebut <strong>himpunan terbuka</strong> dalam $(X, \mathcal{T})$. Komplemen dari himpunan terbuka disebut <strong>himpunan tertutup</strong>.</p>
+ <p class="lesson-text">Perhatikan bahwa "terbuka" dan "tertutup" <em>tidak</em> saling eksklusif. Dalam topologi apa pun, $\varnothing$ dan $X$ selalu keduanya terbuka <em>dan</em> tertutup. Sebuah himpunan bagian juga bisa keduanya, atau tidak keduanya sama sekali.</p>
+
+ <h3 class="lesson-subheading">C. Contoh-Contoh Topologi</h3>
+ <p class="lesson-text">Untuk melihat mengapa definisi ini berguna, mari kita lihat beberapa topologi yang berbeda pada himpunan yang sama.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Topologi</th><th>Definisi</th><th>Catatan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Topologi trivial</td><td>$\mathcal{T} = \{\varnothing, X\}$</td><td>paling sedikit himpunan terbuka yang mungkin</td></tr>
+   <tr><td>Topologi diskrit</td><td>$\mathcal{T} = \mathcal{P}(X)$ (semua himpunan bagian)</td><td>paling banyak himpunan terbuka yang mungkin</td></tr>
+   <tr><td>Topologi standar pada $\mathbb{R}$</td><td>semua gabungan interval terbuka</td><td>yang dipakai di kalkulus</td></tr>
+   <tr><td>Topologi kofinit pada $X$</td><td>$U$ terbuka jika $X \setminus U$ berhingga atau $U = \varnothing$</td><td>contoh topologi non-Hausdorff</td></tr>
+   <tr><td>Topologi Sierpiński</td><td>$X = \{0, 1\}$, $\mathcal{T} = \{\varnothing, \{1\}, \{0, 1\}\}$</td><td>ruang topologi paling sederhana yang nontrivial</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Perhatikan bahwa topologi trivial dan topologi diskrit adalah dua ekstrem: satu dengan sesedikit mungkin himpunan terbuka, yang lain dengan sebanyak mungkin. Topologi apa pun pada $X$ berada di antara keduanya dalam arti bahwa $\{\varnothing, X\} \subseteq \mathcal{T} \subseteq \mathcal{P}(X)$.</p>
+
+ <h3 class="lesson-subheading">D. Basis dan Subbasis</h3>
+ <p class="lesson-text">Mendefinisikan seluruh keluarga himpunan terbuka satu per satu sering tidak praktis. Karena itu, kita sering mendefinisikan topologi melalui <strong>basis</strong>&mdash;keluarga himpunan terbuka yang lebih kecil, dari mana semua himpunan terbuka lain dapat diperoleh sebagai gabungan.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Keluarga $\mathcal{B}$ himpunan bagian dari $X$ disebut <strong>basis</strong> untuk topologi $\mathcal{T}$ jika:</p>
+ <ul>
+  <li>Setiap $B \in \mathcal{B}$ adalah elemen $\mathcal{T}$.</li>
+  <li>Setiap $U \in \mathcal{T}$ dapat ditulis sebagai gabungan dari elemen-elemen $\mathcal{B}$.</li>
+ </ul>
+ <p class="lesson-text">Contoh: pada $\mathbb{R}$ dengan topologi standar, himpunan semua interval terbuka $(a, b)$ dengan $a < b$ adalah basis. Setiap himpunan terbuka di $\mathbb{R}$ adalah gabungan dari interval-interval terbuka.</p>
+ <p class="lesson-text">Sebuah <strong>subbasis</strong> bahkan lebih kecil: keluarga himpunan yang irisan berhingganya membentuk basis. Topologi yang dihasilkan oleh subbasis $\mathcal{S}$ adalah topologi terkecil yang memuat $\mathcal{S}$. Dengan kata lain, kita membiarkan subbasis "menghasilkan" semua himpunan terbuka lain melalui operasi gabungan dan irisan berhingga.</p>
+
+ <h3 class="lesson-subheading">E. Lingkungan dan Titik Interior</h3>
+ <p class="lesson-text">Dalam topologi, gagasan "dekat dengan titik $x$" dinyatakan melalui <strong>lingkungan</strong>. Sebuah himpunan $N \subseteq X$ disebut <strong>lingkungan</strong> dari titik $x$ jika terdapat himpunan terbuka $U$ dengan $x \in U \subseteq N$.</p>
+ <p class="lesson-text">Sebuah titik $x$ disebut <strong>titik interior</strong> dari himpunan $A \subseteq X$ jika terdapat himpunan terbuka $U$ dengan $x \in U \subseteq A$. Himpunan semua titik interior $A$ disebut <strong>interior</strong> dari $A$, dinotasikan $\mathrm{Int}(A)$ atau $A^\circ$.</p>
+ <p class="lesson-text">Sebagai contoh, pada $\mathbb{R}$ standar, interval $[0, 1]$ memiliki interior $(0, 1)$&mdash;titik $0$ dan $1$ tidak interior karena setiap lingkungan kecil di sekitarnya keluar dari $[0, 1]$. Sebaliknya, interval $(0, 1)$ adalah interior dari dirinya sendiri.</p>
+ <figure>
+  <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+   <text x="310" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Tiga topologi berbeda pada himpunan X = {a, b, c}</text>
+  
+   <!-- Topologi trivial -->
+   <text x="110" y="65" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">Trivial</text>
+   <ellipse cx="110" cy="170" rx="75" ry="80" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="1.5" />
+   <text x="110" y="100" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">X</text>
+   <text x="110" y="120" font-size="11" fill="#b8b8b8" text-anchor="middle">(terbuka)</text>
+   <circle cx="90" cy="180" r="4" fill="#e8e8e8" />
+   <circle cx="130" cy="180" r="4" fill="#e8e8e8" />
+   <circle cx="110" cy="210" r="4" fill="#e8e8e8" />
+   <text x="90" y="176" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">a</text>
+   <text x="130" y="176" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">b</text>
+   <text x="110" y="228" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">c</text>
+   <text x="110" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">𝒯 = {∅, X}</text>
+   <text x="110" y="312" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">hanya 2 himpunan terbuka</text>
+  
+   <!-- Topologi tiga-titik (mirip Sierpiński) -->
+   <text x="310" y="65" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">Topologi tiga-titik</text>
+   <ellipse cx="310" cy="170" rx="75" ry="80" fill="none" stroke="#daa520" stroke-width="1.5" />
+   <circle cx="295" cy="180" r="22" fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="1.5" />
+   <text x="310" y="90" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">X</text>
+   <text x="295" y="145" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">U = {a}</text>
+   <circle cx="295" cy="180" r="4" fill="#daa520" />
+   <circle cx="325" cy="180" r="4" fill="#e8e8e8" />
+   <circle cx="310" cy="210" r="4" fill="#e8e8e8" />
+   <text x="295" y="176" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">a</text>
+   <text x="325" y="176" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">b</text>
+   <text x="310" y="228" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">c</text>
+   <text x="310" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">𝒯 = {∅, {a}, X}</text>
+   <text x="310" y="312" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">titik b dan c tak terpisah</text>
+  
+  <!-- Topologi diskrit -->
+   <text x="510" y="65" font-size="12" fill="#f0c75e" text-anchor="middle" font-style="italic">Diskrit</text>
+   <ellipse cx="510" cy="170" rx="75" ry="80" fill="none" stroke="#f0c75e" stroke-width="1.5" />
+   <circle cx="480" cy="150" r="18" fill="#f0c75e" fill-opacity="0.10" stroke="#f0c75e" stroke-width="1.2" />
+   <circle cx="540" cy="150" r="18" fill="#f0c75e" fill-opacity="0.10" stroke="#f0c75e" stroke-width="1.2" />
+   <circle cx="510" cy="210" r="18" fill="#f0c75e" fill-opacity="0.10" stroke="#f0c75e" stroke-width="1.2" />
+   <text x="480" y="154" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">a</text>
+   <text x="540" y="154" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">b</text>
+   <text x="510" y="214" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">c</text>
+   <text x="510" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">𝒯 = 𝒫(X)</text>
+   <text x="510" y="312" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">semua titik terpisah</text>
+  </svg>
+  <figcaption class="visual-caption">Tiga topologi pada himpunan yang sama $X = \{a, b, c\}$. Topologi trivial hanya mengenali $\varnothing$ dan $X$ sebagai himpunan terbuka. Topologi tiga-titik mengenali juga $\{a\}$ sebagai himpunan terbuka&mdash;sehingga $b$ dan $c$ tidak dapat dipisahkan oleh himpunan terbuka. Topologi diskrit mengenali semua himpunan bagian sebagai terbuka&mdash;setiap titik dapat dipisahkan.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Kontinuitas dan Homeomorfisme</h2>
+ <p class="lesson-text">Setelah memiliki gagasan tentang himpunan terbuka, kita dapat mendefinisikan kontinuitas dalam kerangka yang jauh lebih umum daripada definisi $\varepsilon$-$\delta$. Hasilnya adalah konsep yang berlaku di setiap ruang topologi, bukan hanya di $\mathbb{R}$.</p>
+
+ <h3 class="lesson-subheading">A. Fungsi Kontinu</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $(X, \mathcal{T}_X)$ dan $(Y, \mathcal{T}_Y)$ adalah ruang topologi. Fungsi $f : X \to Y$ disebut <strong>kontinu</strong> jika untuk setiap himpunan terbuka $V \subseteq Y$, prapeta $f^{-1}(V)$ adalah himpunan terbuka di $X$.</p>
+ <p class="lesson-text">Definisi ini mungkin terasa aneh pada awalnya&mdash;mengapa menggunakan prapeta, bukan citra langsung? Jawabannya terletak pada kenyataan bahwa citra langsung dari himpunan terbuka tidak selalu terbuka, bahkan untuk fungsi yang intuitifnya kontinu. Sebagai contoh, fungsi konstan $f(x) = 0$ memetakan himpunan terbuka $(0, 1)$ ke $\{0\}$, yang <em>tidak</em> terbuka di $\mathbb{R}$. Sedangkan prapeta berperilaku lebih baik: prapeta mempertahankan operasi himpunan dengan cara yang cocok untuk topologi.</p>
+ <p class="lesson-text">Definisi ini setara dengan definisi $\varepsilon$-$\delta$ ketika $X = Y = \mathbb{R}$. Jika kita ambil $V = (L - \varepsilon, L + \varepsilon)$ sebagai himpunan terbuka di sekitar $L = f(a)$, maka $f^{-1}(V)$ memuat interval terbuka $(a - \delta, a + \delta)$ untuk suatu $\delta > 0$&mdash;persis kondisi $\varepsilon$-$\delta$.</p>
+
+ <h3 class="lesson-subheading">B. Sifat-Sifat Kontinuitas</h3>
+ <p class="lesson-text">Beberapa sifat dasar fungsi kontinu, yang berlaku di ruang topologi sebarang:</p>
+ <ul>
+  <li><strong>Komposisi.</strong> Jika $f : X \to Y$ dan $g : Y \to Z$ kontinu, maka $g \circ f : X \to Z$ juga kontinu.</li>
+  <li><strong>Fungsi identitas.</strong> Fungsi identitas $\mathrm{id}_X : X \to X$ kontinu terhadap topologi apa pun pada $X$.</li>
+  <li><strong>Fungsi konstan.</strong> Fungsi konstan $f(x) = y_0$ untuk semua $x$ kontinu, karena $f^{-1}(V)$ adalah $\varnothing$ atau $X$&mdash;keduanya selalu terbuka.</li>
+  <li><strong>Karakterisasi tertutup.</strong> $f$ kontinu jika dan hanya jika prapeta setiap himpunan tertutup adalah tertutup.</li>
+ </ul>
+ <p class="lesson-text">Sifat terakhir kadang lebih mudah diterapkan, terutama ketika kita sudah mengetahui struktur himpunan tertutup pada suatu ruang.</p>
+
+ <h3 class="lesson-subheading">C. Homeomorfisme</h3>
+ <p class="lesson-text">Dalam aljabar, dua grup yang isomorfik dianggap "sama". Dalam topologi, dua ruang yang <em>homeomorfik</em> memainkan peran serupa: mereka tidak dapat dibedakan secara topologis.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Sebuah fungsi $f : X \to Y$ disebut <strong>homeomorfisme</strong> jika:</p>
+ <ul>
+  <li>$f$ bijektif (satu-satu dan pada).</li>
+  <li>$f$ kontinu.</li>
+  <li>$f^{-1}$ juga kontinu.</li>
+ </ul>
+ <p class="lesson-text">Jika terdapat homeomorfisme antara $X$ dan $Y$, kita katakan $X$ dan $Y$ <strong>homeomorfik</strong>, ditulis $X \cong Y$. Secara informal: kita dapat "membentuk ulang" $X$ menjadi $Y$ melalui peregangan, pelenturan, dan pembengkokan&mdash;tetapi tanpa merobek atau merekatkan.</p>
+
+ <p class="lesson-text">Beberapa contoh homeomorfisme klasik:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Ruang $X$</th><th>Ruang $Y$</th><th>Homeomorfisme</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Interval $(0, 1)$</td><td>$\mathbb{R}$</td><td>$f(x) = \tan(\pi(x - 1/2))$</td></tr>
+   <tr><td>Cakram satuan</td><td>Persegi</td><td>pemetaan radial dari pusat</td></tr>
+   <tr><td>Bola padat</td><td>Kubus padat</td><td>"meleburkan" sudut-sudutnya</td></tr>
+   <tr><td>Permukaan bola</td><td>Permukaan ellipsoid</td><td>penskalaan sumbu-sumbu</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Sebaliknya, beberapa ruang <em>tidak</em> homeomorfik meskipun tampak serupa secara intuitif. Contoh paling sederhana: interval $[0, 1]$ tidak homeomorfik dengan $\mathbb{R}$. Alasannya: $[0, 1]$ kompak sedangkan $\mathbb{R}$ tidak&mdash;dan kita akan melihat bahwa kekompakan adalah sifat yang dipertahankan oleh homeomorfisme. Jadi perbedaan sifat topologis menjadi bukti ketidakhomeomorfikan.</p>
+
+ <h3 class="lesson-subheading">D. Sifat Topologis (Invarian)</h3>
+ <p class="lesson-text">Sebuah <strong>sifat topologis</strong> atau <strong>invarian topologis</strong> adalah sifat yang dipertahankan oleh homeomorfisme. Artinya: jika $X$ memiliki sifat tersebut dan $X \cong Y$, maka $Y$ juga memilikinya.</p>
+ <p class="lesson-text">Beberapa sifat topologis penting:</p>
+ <ul>
+  <li><strong>Kekompakan</strong> (akan dibahas di bab berikutnya).</li>
+  <li><strong>Keterhubungan</strong>: apakah ruang dapat dipecah menjadi dua himpunan terbuka tak kosong yang saling lepas?</li>
+  <li><strong>Keterhubungan jalur</strong>: apakah setiap dua titik dapat dihubungkan oleh kurva kontinu?</li>
+  <li><strong>Sifat Hausdorff</strong>: apakah setiap dua titik berbeda dapat dipisahkan oleh himpunan terbuka?</li>
+  <li><strong>Keterhitungan</strong>: apakah ruang memiliki basis yang terhitung?</li>
+ </ul>
+ <p class="lesson-text">Untuk membuktikan bahwa dua ruang tidak homeomorfik, kita cukup menemukan <em>satu</em> sifat topologis yang dimiliki satu ruang tetapi tidak oleh yang lain. Inilah metode utama dalam topologi: alih-alih mencari homeomorfisme secara langsung (yang seringkali sangat sulit), kita mencari invarian yang membedakan.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Homeomorfisme: membentuk ulang tanpa merobek atau merekatkan</text>
+
+  <!-- Cangkir -->
+  <text x="110" y="70" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">Cangkir kopi</text>
+  <path d="M 60 100 Q 55 200 70 230 Q 90 250 130 250 Q 170 250 190 230 Q 205 200 200 100 Z" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="1.8"/>
+  <path d="M 200 130 Q 240 130 240 170 Q 240 210 200 210" fill="none" stroke="#5dade2" stroke-width="1.8"/>
+  <text x="110" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">1 lubang (pegangan)</text>
+
+  <!-- Panah homeomorfisme -->
+  <line x1="255" y1="170" x2="355" y2="170" stroke="#daa520" stroke-width="2"/>
+  <polygon points="362,170 352,164 352,176" fill="#daa520"/>
+  <text x="308" y="155" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">homeomorfisme</text>
+  <text x="308" y="192" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">regangkan, bengkokkan</text>
+  <text x="308" y="208" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">tanpa merobek</text>
+
+  <!-- Donat -->
+  <text x="490" y="70" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">Donat</text>
+  <ellipse cx="490" cy="175" rx="90" ry="55" fill="#daa520" fill-opacity="0.12" stroke="#daa520" stroke-width="1.8"/>
+  <ellipse cx="490" cy="175" rx="35" ry="20" fill="#1a1a1a" stroke="#daa520" stroke-width="1.8"/>
+  <text x="490" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">1 lubang (torus)</text>
+
+  <!-- Keterangan bawah -->
+  <text x="310" y="320" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">Cangkir dan donat homeomorfik: keduanya memiliki tepat satu "lubang"</text>
+ </svg>
+ <figcaption class="visual-caption">Ilustrasi klasik homeomorfisme: cangkir kopi dan donat adalah ruang yang homeomorfik, karena keduanya memiliki tepat satu lubang. Kita dapat "membentuk ulang" cangkir menjadi donat melalui proses kontinu yang tidak merobek atau merekatkan. Jumlah lubang&mdash;secara formal disebut <em>genus</em>&mdash;adalah invarian topologis.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Kekompakan</h2>
+ <p class="lesson-text">Kekompakan adalah salah satu konsep paling penting&mdash;dan paling teknis&mdash;dalam topologi. Secara intuitif, ruang kompak adalah ruang yang "tidak terlalu besar" atau "tidak terlalu tersebar", sehingga banyak teorema analisis yang berlaku di dalamnya. Di bagian ini kita bangun definisinya secara bertahap.</p>
+
+ <h3 class="lesson-subheading">A. Penutup Terbuka dan Subpenutup</h3>
+ <p class="lesson-text">Misalkan $X$ adalah ruang topologi dan $A \subseteq X$. Sebuah <strong>penutup terbuka</strong> (open cover) dari $A$ adalah keluarga himpunan terbuka $\{U_\alpha\}_{\alpha \in A}$ sedemikian sehingga $A \subseteq \bigcup_\alpha U_\alpha$.</p>
+ <p class="lesson-text">Dengan kata lain, keluarga himpunan terbuka tersebut "menutupi" seluruh $A$. Sebuah <strong>subpenutup</strong> (subcover) adalah subkeluarga dari penutup yang masih menutupi $A$.</p>
+ <p class="lesson-text">Sebagai contoh, keluarga interval $\{(-n, n)\}_{n \in \mathbb{N}}$ adalah penutup terbuka dari $\mathbb{R}$, karena setiap bilangan real termuat dalam setidaknya satu dari interval tersebut.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Kekompakan</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Sebuah himpunan $A \subseteq X$ disebut <strong>kompak</strong> jika setiap penutup terbuka dari $A$ memiliki subpenutup berhingga. Dengan kata lain: jika $\{U_\alpha\}_{\alpha \in A}$ adalah penutup terbuka dari $A$, maka terdapat indeks berhingga $\alpha_1, \ldots, \alpha_n$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$A \subseteq U_{\alpha_1} \cup U_{\alpha_2} \cup \cdots \cup U_{\alpha_n}$$</p>
+ <p class="lesson-text">Definisi ini&mdash;meskipun tampak teknis&mdash;memiliki makna intuitif yang penting. Sebuah himpunan dikatakan kompak jika <em>tidak peduli bagaimana kita mencoba menutupinya dengan himpunan-himpunan terbuka</em>, kita selalu bisa menemukan subkeluarga berhingga yang sudah cukup.</p>
+ <p class="lesson-text">Konsep ini adalah generalisasi dari gagasan "tertutup dan terbatas" di $\mathbb{R}^n$, sebagaimana dinyatakan oleh teorema berikut.</p>
+
+ <h3 class="lesson-subheading">C. Teorema Heine-Borel</h3>
+ <p class="lesson-text"><strong>Teorema (Heine-Borel).</strong> Sebuah himpunan $A \subseteq \mathbb{R}^n$ (dengan topologi standar) kompak jika dan hanya jika $A$ <strong>tertutup</strong> dan <strong>terbatas</strong>.</p>
+ <p class="lesson-text">"Terbatas" berarti $A$ termuat dalam bola berjari-jari $R$ untuk suatu $R > 0$. "Tertutup" berarti komplemennya terbuka, atau ekuivalen: $A$ memuat semua titik limitnya.</p>
+ <p class="lesson-text">Dengan teorema ini, kita dapat memeriksa kekompakan himpunan di $\mathbb{R}^n$ hanya dengan dua syarat sederhana. Sebagai contoh:</p>
+ <ul>
+  <li>Interval $[0, 1]$ kompak: tertutup dan terbatas.</li>
+  <li>Interval $(0, 1)$ tidak kompak: terbatas, tetapi tidak tertutup.</li>
+  <li>Interval $[0, \infty)$ tidak kompak: tertutup, tetapi tidak terbatas.</li>
+  <li>Bola satuan tertutup $\{(x, y) : x^2 + y^2 \leq 1\}$ di $\mathbb{R}^2$ kompak: tertutup dan terbatas.</li>
+  <li>Grafik fungsi kontinu pada $[0, 1]$ sebagai himpunan di $\mathbb{R}^2$ kompak.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa Teorema Heine-Borel <em>tidak</em> berlaku di ruang topologi umum&mdash;di sana kekompakan jauh lebih rumit. Teorema ini adalah sifat khusus dari $\mathbb{R}^n$ dengan topologi standarnya.</p>
+
+ <h3 class="lesson-subheading">D. Sifat-Sifat Himpunan Kompak</h3>
+ <p class="lesson-text">Kekompakan memiliki banyak konsekuensi penting. Beberapa yang paling mendasar:</p>
+ <ul>
+  <li><strong>Himpunan bagian tertutup dari ruang kompak adalah kompak.</strong> Jika $X$ kompak dan $A \subseteq X$ tertutup, maka $A$ kompak.</li>
+  <li><strong>Citra kontinu dari himpunan kompak adalah kompak.</strong> Jika $f : X \to Y$ kontinu dan $X$ kompak, maka $f(X)$ kompak di $Y$. Ini adalah generalisasi dari fakta bahwa fungsi kontinu pada interval tertutup mencapai nilai maksimum dan minimumnya.</li>
+  <li><strong>Himpunan bagian kompak dari ruang Hausdorff adalah tertutup.</strong> Jika $X$ Hausdorff dan $A \subseteq X$ kompak, maka $A$ tertutup.</li>
+  <li><strong>Irisan dari keluarga bersarang himpunan kompak tak kosong adalah tidak kosong.</strong> Jika $K_1 \supseteq K_2 \supseteq K_3 \supseteq \cdots$ adalah barisan bersarang dari himpunan kompak tak kosong, maka $\bigcap_{n=1}^\infty K_n \neq \varnothing$. Sifat ini adalah dasar dari banyak argumen eksistensi dalam analisis.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">E. Kekompakan dan Teorema Penting</h3>
+ <p class="lesson-text">Kekompakan adalah kunci banyak teorema penting dalam analisis dan geometri. Berikut beberapa yang paling terkenal.</p>
+
+ <p class="lesson-text"><strong>Teorema Nilai Ekstrem.</strong> Jika $f : X \to \mathbb{R}$ kontinu dan $X$ kompak (dan tak kosong), maka $f$ mencapai nilai maksimum dan minimumnya. Ini adalah generalisasi dari teorema klasik di kalkulus untuk fungsi kontinu pada interval tertutup $[a, b]$.</p>
+
+ <p class="lesson-text"><strong>Kekontinuan Seragam.</strong> Fungsi kontinu pada himpunan kompak selalu kontinu seragam. Secara intuitif: pada himpunan kompak, "kekontinuan" dapat diukur dengan satu $\delta$ yang berlaku untuk seluruh domain&mdash;bukan hanya lokal di setiap titik.</p>
+
+ <p class="lesson-text"><strong>Kompaktifikasi.</strong> Setiap ruang topologi yang "wajar" (misalnya Hausdorff dan lokal kompak) dapat diperluas menjadi ruang kompak dengan menambahkan "titik tak hingga". Contoh paling sederhana: garis real $\mathbb{R}$ dapat dikompaktifikasi menjadi lingkaran $S^1$ dengan menambahkan satu titik di kedua ujungnya. Generalisasi ini memainkan peran penting dalam analisis dan geometri proyektif.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="28" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Kekompakan: setiap penutup terbuka memiliki subpenutup berhingga</text>
+
+  <!-- Panel kiri: penutup tak hingga -->
+  <text x="150" y="62" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">Penutup terbuka (tak hingga)</text>
+  <line x1="40" y1="180" x2="260" y2="180" stroke="#e8e8e8" stroke-width="1.5"/>
+  <line x1="40" y1="180" x2="40" y2="130" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="260" y1="180" x2="260" y2="130" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="40" y="200" font-size="11" fill="#b8b8b8" text-anchor="middle">0</text>
+  <text x="260" y="200" font-size="11" fill="#b8b8b8" text-anchor="middle">1</text>
+
+  <!-- Interval kecil-kecil -->
+  <rect x="42" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="64" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="86" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="108" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="130" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="152" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="174" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="196" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="218" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+  <rect x="240" y="140" width="20" height="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1"/>
+
+  <text x="150" y="240" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">{U₁, U₂, U₃, ...} tak hingga</text>
+  <text x="150" y="260" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">menutupi [0, 1]</text>
+
+  <!-- Panah -->
+  <line x1="285" y1="180" x2="335" y2="180" stroke="#daa520" stroke-width="2"/>
+  <polygon points="342,180 332,174 332,186" fill="#daa520"/>
+  <text x="310" y="168" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">kompak</text>
+
+  <!-- Panel kanan: subpenutup berhingga -->
+  <text x="460" y="62" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">Subpenutup berhingga</text>
+  <line x1="360" y1="180" x2="580" y2="180" stroke="#e8e8e8" stroke-width="1.5"/>
+  <line x1="360" y1="180" x2="360" y2="130" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="580" y1="180" x2="580" y2="130" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="360" y="200" font-size="11" fill="#b8b8b8" text-anchor="middle">0</text>
+  <text x="580" y="200" font-size="11" fill="#b8b8b8" text-anchor="middle">1</text>
+
+  <!-- Interval besar -->
+  <rect x="362" y="140" width="80" height="40" fill="#daa520" fill-opacity="0.20" stroke="#daa520" stroke-width="1.2"/>
+  <rect x="442" y="140" width="80" height="40" fill="#daa520" fill-opacity="0.20" stroke="#daa520" stroke-width="1.2"/>
+  <rect x="522" y="140" width="58" height="40" fill="#daa520" fill-opacity="0.20" stroke="#daa520" stroke-width="1.2"/>
+
+  <text x="460" y="240" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">{U₁, U₅, U₈} — hanya 3 himpunan</text>
+  <text x="460" y="260" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">tetap menutupi [0, 1]</text>
+
+  <!-- Kesimpulan -->
+  <text x="310" y="315" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">[0, 1] kompak: berapa pun penutup terbukanya, selalu ada subpenutup berhingga</text>
+ </svg>
+ <figcaption class="visual-caption">Intuisi kekompakan. Sebuah himpunan dikatakan kompak jika untuk setiap penutup terbuka&mdash;betapa pun banyaknya himpunan yang digunakan&mdash;selalu dapat ditemukan subkeluarga berhingga yang sudah cukup menutupi seluruh himpunan. Interval $[0, 1]$ memiliki sifat ini; interval $(0, 1)$ tidak.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Aksioma Pemisah dan Keterhubungan</h2>
+ <p class="lesson-text">Dua konsep tambahan melengkapi kerangka dasar topologi: aksioma pemisah, yang mengukur seberapa "halus" sebuah topologi dalam membedakan titik; dan keterhubungan, yang mengukur apakah ruang dapat dipecah menjadi bagian-bagian terpisah.</p>
+
+ <h3 class="lesson-subheading">A. Aksioma Pemisah: Hausdorff dan Lainnya</h3>
+ <p class="lesson-text">Tidak semua ruang topologi dapat membedakan titik-titiknya dengan baik. Dalam topologi trivial pada himpunan dengan lebih dari satu titik, misalnya, tidak ada cara untuk memisahkan dua titik dengan himpunan terbuka&mdash;karena satu-satunya himpunan terbuka non-kosong adalah seluruh ruang.</p>
+ <p class="lesson-text">Untuk mengecualikan situasi seperti ini, kita menggunakan <strong>aksioma pemisah</strong>. Yang paling penting adalah aksioma Hausdorff:</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Ruang topologi $X$ disebut <strong>Hausdorff</strong> (atau $T_2$) jika untuk setiap pasangan titik berbeda $x, y \in X$, terdapat himpunan terbuka $U$ dan $V$ sedemikian sehingga $x \in U$, $y \in V$, dan $U \cap V = \varnothing$.</p>
+ <p class="lesson-text">Hampir semua ruang yang muncul dalam praktik&mdash;$\mathbb{R}^n$, manifold, ruang metrik&mdash;bersifat Hausdorff. Sifat ini memastikan bahwa limit barisan (jika ada) bersifat tunggal, dan bahwa himpunan kompak bersifat tertutup.</p>
+ <p class="lesson-text">Selain Hausdorff, terdapat aksioma pemisah lain yang lebih lemah atau lebih kuat:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Aksioma</th><th>Kondisi</th><th>Hubungan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$T_1$</td><td>Setiap titik tunggal $\{x\}$ tertutup</td><td>lebih lemah dari $T_2$</td></tr>
+   <tr><td>$T_2$ (Hausdorff)</td><td>Dua titik dapat dipisahkan oleh himpunan terbuka lepas</td><td>standar untuk sebagian besar topologi</td></tr>
+   <tr><td>$T_3$ (regular)</td><td>Titik dan himpunan tertutup dapat dipisahkan</td><td>lebih kuat dari $T_2$</td></tr>
+   <tr><td>$T_4$ (normal)</td><td>Dua himpunan tertutup lepas dapat dipisahkan</td><td>menjamin keberadaan fungsi kontinu pemisah (Lemma Urysohn)</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">B. Keterhubungan</h3>
+ <p class="lesson-text">Sebuah ruang topologi disebut <strong>terhubung</strong> (connected) jika tidak dapat dinyatakan sebagai gabungan dari dua himpunan terbuka tak kosong yang saling lepas. Dengan kata lain, tidak ada pemisahan nontrivial dari $X$.</p>
+ <p class="lesson-text">Contoh:</p>
+ <ul>
+  <li>Interval $[0, 1]$ terhubung.</li>
+  <li>Gabungan $[0, 1] \cup [2, 3]$ <em>tidak</em> terhubung&mdash;kita dapat memisahkannya menjadi dua bagian terbuka yang tidak beririsan (dalam topologi subruang).</li>
+  <li>Ruang diskrit dengan lebih dari satu titik tidak terhubung&mdash;setiap titik adalah himpunan terbuka yang terpisah dari yang lain.</li>
+ </ul>
+ <p class="lesson-text">Keterhubungan memiliki konsekuensi yang kuat. Sebagai contoh, citra kontinu dari ruang terhubung adalah terhubung. Dari sini kita dapat menyimpulkan <strong>Teorema Nilai Antara</strong>: jika $f : [a, b] \to \mathbb{R}$ kontinu dan $f(a) < c < f(b)$, maka terdapat $x \in (a, b)$ dengan $f(x) = c$. Teorema ini adalah konsekuensi langsung dari fakta bahwa citra $f([a, b])$ terhubung di $\mathbb{R}$.</p>
+
+ <h3 class="lesson-subheading">C. Keterhubungan Jalur</h3>
+ <p class="lesson-text">Sebuah ruang disebut <strong>terhubung jalur</strong> (path-connected) jika setiap dua titik dapat dihubungkan oleh sebuah jalur kontinu&mdash;yaitu fungsi kontinu $\gamma : [0, 1] \to X$ dengan $\gamma(0) = x$ dan $\gamma(1) = y$.</p>
+ <p class="lesson-text">Setiap ruang terhubung jalur juga terhubung, tetapi sebaliknya tidak selalu benar. Contoh klasiknya adalah <em>kurva topologist sine</em>: grafik fungsi $y = \sin(1/x)$ untuk $x \in (0, 1]$, bersama titik-titik batasnya di $x = 0$. Himpunan ini terhubung tetapi tidak terhubung jalur&mdash;tidak ada jalur kontinu dari titik mana pun di kurva ke titik $(0, 0)$ karena osilasi tak terbatas.</p>
+ <p class="lesson-text">Contoh ini menunjukkan bahwa keterhubungan jalur adalah sifat yang lebih kuat, dan bahwa keterhubungan sendirian tidak selalu cukup untuk menjamin keberadaan jalur kontinu antar titik.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Bagi sebagian besar ruang yang muncul dalam praktik&mdash;$\mathbb{R}^n$, manifold, ruang metrik yang "wajar"&mdash;keterhubungan dan keterhubungan jalur bertepatan. Perbedaan muncul terutama pada ruang yang sangat patologis, seperti kurva topologist sine. Karena itu, dalam banyak konteks praktis, kedua konsep sering dianggap dapat saling menggantikan tanpa banyak kerugian.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Mengapa Topologi Penting</h2>
+ <p class="lesson-text">Topologi bukan sekadar abstraksi. Ia adalah bahasa yang menyatukan banyak cabang matematika dan memberikan kerangka untuk memahami sifat-sifat mendasar dari ruang, kontinuitas, dan limit. Bab ini membahas beberapa alasan mengapa materi ini penting.</p>
+
+ <h3 class="lesson-subheading">A. Topologi sebagai Fondasi Analisis</h3>
+ <p class="lesson-text">Banyak konsep dalam analisis real dan kompleks&mdash;limit, kekontinuan, kekonvergenan, kekompakan&mdash;memiliki makna yang jauh lebih bersih dalam kerangka topologi. Dengan mendefinisikan kekontinuan melalui prapeta himpunan terbuka, kita menghilangkan ketergantungan pada $\varepsilon$ dan $\delta$, dan sekaligus memperoleh definisi yang berlaku di ruang metrik apa pun, bahkan di ruang yang tidak memiliki jarak.</p>
+ <p class="lesson-text">Teorema-teorema besar dalam analisis, seperti <strong>Teorema Titik Tetap Brouwer</strong> dan <strong>Teorema Titik Tetap Banach</strong>, memerlukan bahasa topologi untuk dirumuskan dan dibuktikan. Demikian pula dengan konsep <em>kekompakan</em>&mdash;yang muncul di hampir setiap argumen eksistensi, dari persamaan diferensial hingga teori optimisasi.</p>
+
+ <h3 class="lesson-subheading">B. Topologi dalam Fisika Modern</h3>
+ <p class="lesson-text">Dalam fisika, topologi memberikan bahasa untuk sifat-sifat yang tidak berubah oleh deformasi kontinu. Contoh paling terkenal adalah <em>efek Hall kuantum</em>, di mana resistansi listrik terkuantisasi dalam kelipatan tetap. Kuantisasi ini dijelaskan melalui <strong>bilangan Chern</strong>&mdash;sebuah invarian topologis dari bundel vektor di atas ruang parameter.</p>
+ <p class="lesson-text">Topologi juga mendasari teori <em>fase topologis materi</em>, di mana material yang secara kimia sama dapat memiliki sifat listrik yang sama sekali berbeda tergantung pada struktur topologis dari fungsi gelombangnya. Bidang ini, yang dipelopori oleh Thouless, Haldane, dan Kosterlitz (peraih Nobel Fisika 2016), sepenuhnya bertumpu pada konsep-konsep yang dibahas di materi ini.</p>
+
+ <h3 class="lesson-subheading">C. Topologi Aljabar dan Homologi</h3>
+ <p class="lesson-text">Untuk membedakan ruang topologi secara sistematis, matematikawan mengembangkan <strong>topologi aljabar</strong>&mdash;sebuah cabang yang mengasosiasikan objek-objek aljabar (seperti grup dan ring) dengan ruang topologi, sedemikian sehingga ruang yang homeomorfik memiliki objek aljabar yang isomorfik.</p>
+ <p class="lesson-text">Contoh paling sederhana adalah <strong>grup fundamental</strong> $\pi_1(X)$: sebuah grup yang elemen-elemennya adalah kelas-kelas loop (kurva tertutup) di $X$, dengan komposisi sebagai operasi. Jika $\pi_1(X) \not\cong \pi_1(Y)$, maka $X$ dan $Y$ tidak homeomorfik. Ini memungkinkan kita membedakan ruang yang secara visual sulit dibedakan.</p>
+ <p class="lesson-text">Konsep ini generalisasi ke <strong>grup homologi</strong> dan <strong>kohomologi</strong>, yang menjadi alat utama dalam geometri, topologi, dan teori medan kuantum. Topologi aljabar adalah kelanjutan alami dari topologi dasar ini.</p>
+
+ <h3 class="lesson-subheading">D. Jembatan Menuju Manifold</h3>
+ <p class="lesson-text">Topologi adalah fondasi bagi <strong>manifold</strong>&mdash;ruang yang secara lokal mirip ruang Euclidean, tetapi secara global dapat memiliki bentuk yang rumit. Sebuah bola adalah manifold $2$ dimensi; permukaan Bumi juga; permukaan donat juga. Tetapi manifold bukan hanya soal bentuk: ia juga memerlukan struktur topologi agar konsep seperti <em>kontinuitas</em>, <em>kekompakan</em>, dan <em>dimensi</em> dapat didefinisikan dengan tepat.</p>
+ <p class="lesson-text">Materi berikutnya dalam kategori ini, <strong>Manifold</strong>, akan memperluas gagasan topologi dengan menambahkan struktur diferensial (peta-peta koordinat yang mulus). Kombinasi topologi dan kalkulus ini menghasilkan <em>manifold terdiferensiasi</em>, yang menjadi objek dasar dalam relativitas umum dan teori string.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Topologi sering dijuluki "geometri karet"&mdash;sebuah deskripsi yang menangkap intinya: kita tidak peduli pada bentuk persis suatu objek, hanya pada sifat-sifat yang bertahan di bawah deformasi kontinu. Namun justru karena kelenturannya, topologi menjadi bahasa universal untuk ruang. Dari jaringan saraf hingga ruang fase mekanika kuantum, dari kompresi data hingga kosmologi, topologi menyediakan kerangka untuk memahami struktur dalam bentuk yang paling umum.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap "terbuka" dan "tertutup" sebagai kebalikan.</strong> Dalam topologi umum, keduanya bukan kategori yang saling eksklusif. Himpunan $\varnothing$ dan $X$ selalu keduanya terbuka <em>dan</em> tertutup. Himpunan juga bisa keduanya, atau tidak keduanya. Ini berbeda dari intuisi sehari-hari di mana "pintu terbuka" dan "pintu tertutup" adalah keadaan yang saling meniadakan.</li>
+  <li><strong>Menganggap topologi harus berasal dari jarak.</strong> Tidak semua ruang topologi adalah ruang metrik. Topologi kofinit dan topologi Sierpiński adalah contoh topologi yang tidak dapat dihasilkan oleh metrik apa pun. Kekompakan dan kekontinuan tetap bermakna di ruang seperti ini, tetapi sifat-sifatnya bisa jauh berbeda dari yang kita kenal di $\mathbb{R}^n$.</li>
+  <li><strong>Menganggap homeomorfisme sama dengan "kesamaan bentuk".</strong> Homeomorfisme adalah kesamaan <em>topologis</em>, bukan kesamaan geometris. Bola sepak dan kubus adalah homeomorfik, meskipun bentuknya jelas berbeda secara geometris. Yang sama adalah struktur topologisnya&mdash;keduanya adalah bola topologis.</li>
+  <li><strong>Menganggap keterhubungan jalur dan keterhubungan selalu sama.</strong> Meskipun di banyak ruang "wajar" keduanya bertepatan, ada ruang (seperti kurva topologist sine) yang terhubung tetapi tidak terhubung jalur. Perbedaan ini penting dalam contoh-contoh patologis.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Kekompakan</h3>
+ <ul>
+  <li><strong>Menganggap kekompakan sama dengan "terbatas".</strong> Di $\mathbb{R}^n$, kekompakan setara dengan tertutup dan terbatas (Teorema Heine-Borel). Tetapi di ruang topologi umum, kekompakan tidak sama dengan keterbatasan&mdash;terutama karena "terbatas" itu sendiri tidak terdefinisi tanpa metrik. Kekompakan adalah konsep yang lebih mendasar.</li>
+  <li><strong>Menganggap citra kontinu dari himpunan terbuka selalu terbuka.</strong> Ini tidak benar. Fungsi kontinu belum tentu <em>terbuka</em>. Sebagai contoh, fungsi konstan memetakan himpunan terbuka ke titik tunggal, yang tidak terbuka. Yang benar adalah prapeta: prapeta dari himpunan terbuka adalah terbuka.</li>
+  <li><strong>Menganggap setiap ruang kompak juga tertutup di sembarang ruang.</strong> Ini hanya berlaku jika ruang induknya Hausdorff. Di ruang non-Hausdorff, himpunan kompak bisa tidak tertutup. Sifat Hausdorff memainkan peran penting di sini.</li>
+  <li><strong>Menganggap barisan bersarang dari himpunan tertutup selalu memiliki irisan tak kosong.</strong> Ini hanya berlaku jika himpunannya kompak. Contoh: himpunan bersarang $[n, \infty)$ untuk $n = 1, 2, 3, \ldots$ memiliki irisan kosong, padahal setiap himpunannya tertutup dan tak kosong&mdash;hanya saja tidak kompak.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Bukti Topologis</h3>
+ <ul>
+  <li><strong>Menggunakan intuisi visual tanpa pembuktian.</strong> Topologi memang memiliki reputasi visual, tetapi banyak contoh&mdash;seperti kurva topologist sine atau himpunan Cantor&mdash;menunjukkan bahwa intuisi visual dapat menyesatkan. Setiap pernyataan harus dibuktikan dari aksioma atau definisi.</li>
+  <li><strong>Menganggap sifat yang berlaku di $\mathbb{R}^n$ berlaku di semua ruang topologi.</strong> Banyak teorema&mdash;seperti Heine-Borel atau keterhubungan jalur&mdash;merupakan sifat khusus dari ruang Euclidean. Memindahkannya secara tidak kritis ke ruang topologi umum adalah sumber kesalahan umum.</li>
+  <li><strong>Mengabaikan asumsi pemisah.</strong> Banyak teorema topologi memerlukan asumsi Hausdorff atau $T_1$. Tanpa asumsi ini, kesimpulan bisa salah. Selalu periksa asumsi sebelum menerapkan teorema.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Ruang topologi</strong> adalah pasangan $(X, \mathcal{T})$ dengan $X$ himpunan dan $\mathcal{T}$ keluarga himpunan bagian yang memenuhi: memuat $\varnothing$ dan $X$; tertutup terhadap irisan berhingga; dan tertutup terhadap gabungan sebarang.</li>
+  <li><strong>Himpunan terbuka</strong> adalah elemen $\mathcal{T}$; <strong>himpunan tertutup</strong> adalah komplemennya. Keduanya tidak saling eksklusif.</li>
+  <li><strong>Basis</strong> adalah keluarga himpunan terbuka yang dapat menghasilkan semua himpunan terbuka lain melalui gabungan. <strong>Subbasis</strong> bahkan lebih kecil, irisan berhingganya membentuk basis.</li>
+  <li><strong>Fungsi kontinu</strong> $f : X \to Y$ adalah fungsi yang prapeta setiap himpunan terbuka di $Y$ adalah terbuka di $X$. Definisi ini generalisasi dari definisi $\varepsilon$-$\delta$ dan berlaku di semua ruang topologi.</li>
+  <li><strong>Homeomorfisme</strong> adalah fungsi bijektif yang kontinu dengan invers yang juga kontinu. Ruang yang homeomorfik dianggap "sama" secara topologis.</li>
+  <li><strong>Sifat topologis</strong> (invarian) adalah sifat yang dipertahankan oleh homeomorfisme: kekompakan, keterhubungan, sifat Hausdorff, dan lain-lain.</li>
+  <li><strong>Himpunan kompak</strong> adalah himpunan di mana setiap penutup terbuka memiliki subpenutup berhingga. Di $\mathbb{R}^n$, ini setara dengan tertutup dan terbatas (Teorema Heine-Borel).</li>
+  <li><strong>Citra kontinu dari himpunan kompak adalah kompak.</strong> Ini menggeneralisasi fakta bahwa fungsi kontinu pada interval tertutup mencapai nilai maksimum dan minimum.</li>
+  <li><strong>Ruang Hausdorff</strong> adalah ruang di mana dua titik berbeda dapat dipisahkan oleh himpunan terbuka yang lepas. Hampir semua ruang yang muncul dalam praktik bersifat Hausdorff.</li>
+  <li><strong>Ruang terhubung</strong> adalah ruang yang tidak dapat dipecah menjadi dua himpunan terbuka tak kosong yang lepas. <strong>Terhubung jalur</strong> berarti setiap dua titik dapat dihubungkan oleh jalur kontinu; sifat ini lebih kuat.</li>
+  <li><strong>Teorema Nilai Antara</strong> dan <strong>Teorema Nilai Ekstrem</strong> adalah konsekuensi dari keterhubungan dan kekompakan, bukan sebaliknya.</li>
+  <li><strong>Aplikasi</strong>: fondasi analisis, fisika modern (efek Hall kuantum, fase topologis), topologi aljabar, dan jembatan menuju manifold.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Topologi adalah salah satu cabang matematika yang paling abstrak sekaligus paling mendasar. Ia mengubah pertanyaan tentang <em>jarak</em> menjadi pertanyaan tentang <em>struktur</em>&mdash;apa yang membuat sebuah ruang dapat dikatakan "terhubung", "kompak", atau "kontinu". Dengan menghilangkan ketergantungan pada metrik, topologi membuka jalan bagi pemahaman sifat-sifat ruang yang jauh lebih umum dan mendalam.</p>
+ <p class="lesson-text">Yang paling penting untuk diingat: topologi bukan tentang bentuk spesifik, melainkan tentang <em>sifat yang bertahan</em> di bawah deformasi kontinu. Cangkir dan donat sama; bola dan kubus sama. Yang membedakan ruang adalah invarian topologisnya&mdash;jumlah lubang, keterhubungan, kekompakan, dan seterusnya. Membedakan ruang melalui invarian adalah inti dari topologi aljabar, yang akan terus berkembang di materi-materi lanjutan.</p>
+ <p class="lesson-text">Materi berikutnya dalam kategori ini, <strong>Manifold</strong>, akan memperluas kerangka topologi dengan menambahkan struktur diferensial. Kita akan mempelajari ruang yang secara lokal mirip $\mathbb{R}^n$&mdash;seperti permukaan bola, torus, atau ruang-waktu empat dimensi&mdash;dan melihat bagaimana kalkulus dapat dikembangkan di atasnya. Topologi yang telah Anda kuasai di sini akan menjadi fondasi yang kokoh untuk memahami struktur-struktur ini.</p>
+</section>
+
+</main>
+</body>
+</html>
