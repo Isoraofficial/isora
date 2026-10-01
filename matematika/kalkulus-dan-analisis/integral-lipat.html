@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integral Lipat (Integral Ganda, Integral Tiga)</title>
+<meta name="description" content="Materi integral lipat: integral ganda atas persegi panjang dan daerah umum, integral ganda dalam koordinat polar, serta integral lipat tiga beserta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Integral Lipat (Integral Ganda, Integral Tiga)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Integral Tentu</strong> &mdash; integral lipat dibangun dari gagasan jumlah Riemann yang sama dengan integral tentu satu variabel. Teorema Fundamental Kalkulus dan aturan pengintegralan tetap menjadi alat utama dalam perhitungan.</li>
+   <li><strong>Fungsi Multivariabel</strong> &mdash; integral lipat didefinisikan pada fungsi dua atau tiga variabel. Pemahaman tentang domain, grafik, dan kekontinuan fungsi multivariabel menjadi dasar.</li>
+   <li><strong>Teknik Pengintegralan</strong> &mdash; perhitungan integral lipat memerlukan integrasi berulang, yang banyak melibatkan substitusi dan manipulasi aljabar.</li>
+   <li><strong>Bangun Ruang dan Geometri Analitik</strong> &mdash; pemahaman tentang volume, permukaan, dan koordinat tiga dimensi sangat membantu dalam memvisualisasikan dan menyusun integral lipat.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi aplikasi integral, kita menghitung luas daerah dan volume benda putar menggunakan integral tentu satu variabel. Namun kedua besaran tersebut hanya kasus khusus dari masalah yang lebih umum. Bagaimana kita menghitung volume bangun ruang sembarang&mdash;bukan hanya benda putar? Bagaimana kita menghitung massa sebuah pelat logam yang kerapatannya berubah dari titik ke titik? Bagaimana kita menghitung muatan total dalam sebuah balok jika kerapatan muatannya bergantung pada posisi? Pertanyaan-pertanyaan ini memerlukan perluasan konsep integral ke fungsi dua atau tiga variabel, yang disebut <strong>integral lipat</strong>.</p>
+ <p class="lesson-text">Gagasan dasarnya sama seperti pada integral satu variabel. Iris daerah atau bangun yang hendak diukur menjadi elemen-elemen kecil yang bentuknya sederhana&mdash;persegi panjang untuk integral ganda, balok kecil untuk integral tiga. Rumuskan ukuran setiap elemen menggunakan fungsi yang diintegralkan. Jumlahkan seluruh elemen dan ambil limitnya ketika ukuran elemen menuju nol. Limit dari jumlah ini adalah integral lipat.</p>
+ <p class="lesson-text">Materi ini mencakup empat topik. Pertama, integral ganda atas persegi panjang&mdash;sebagai kasus paling sederhana dengan batas-batas konstan. Kedua, integral ganda atas daerah umum&mdash;dengan batas-batas yang mungkin bergantung pada variabel lain. Ketiga, integral ganda dalam koordinat polar&mdash;yang menyederhanakan perhitungan untuk daerah dengan simetri radial. Keempat, integral lipat tiga&mdash;untuk menghitung besaran pada bangun ruang tiga dimensi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Integral Ganda atas Persegi Panjang</h2>
+ <p class="lesson-text">Bab ini menyusun definisi integral ganda dari gagasan paling dasar: menghitung volume di bawah permukaan dengan pendekatan balok-balok kecil.</p>
+
+ <h3 class="lesson-subheading">A. Masalah Volume di Bawah Permukaan</h3>
+ <p class="lesson-text">Misalkan $f(x, y)$ adalah fungsi kontinu dan non-negatif pada persegi panjang $R = [a, b] \times [c, d]$ di bidang. Kita ingin menghitung volume bangun ruang yang dibatasi oleh:</p>
+ <ul>
+  <li>Permukaan $z = f(x, y)$ sebagai batas atas,</li>
+  <li>Bidang $z = 0$ (bidang $xy$) sebagai batas bawah,</li>
+  <li>Empat bidang vertikal $x = a$, $x = b$, $y = c$, dan $y = d$ sebagai batas samping.</li>
+ </ul>
+ <p class="lesson-text">Untuk daerah satu variabel, kita mendekati luas dengan persegi panjang tipis. Untuk volume, kita dekati bangun tersebut dengan <strong>balok-balok kecil</strong>. Idenya: bagi persegi panjang $R$ menjadi $m \times n$ sub-persegi panjang kecil, masing-masing dengan lebar $\Delta x = \dfrac{b - a}{m}$ dan panjang $\Delta y = \dfrac{d - c}{n}$. Luas setiap sub-persegi panjang adalah $\Delta A = \Delta x \cdot \Delta y$.</p>
+ <p class="lesson-text">Pada setiap sub-persegi panjang, ambil satu titik sampel $(x_{ij}^*, y_{ij}^*)$ dan bentuk balok dengan tinggi $f(x_{ij}^*, y_{ij}^*)$. Volume balok kecil adalah $f(x_{ij}^*, y_{ij}^*) \Delta A$. Jumlahkan seluruh balok:</p>
+ <p class="lesson-text">$$V_{mn} = \sum_{i=1}^{m} \sum_{j=1}^{n} f(x_{ij}^*, y_{ij}^*) \, \Delta A$$</p>
+ <p class="lesson-text">Jumlah ini disebut <strong>jumlah Riemann ganda</strong>. Ketika $m, n \to \infty$, jumlah ini menuju integral ganda.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Integral Ganda</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Integral ganda dari $f$ atas persegi panjang $R$ didefinisikan sebagai limit dari jumlah Riemann ganda:</p>
+ <p class="lesson-text">$$\iint_R f(x, y)\, dA = \lim_{m, n \to \infty} \sum_{i=1}^{m} \sum_{j=1}^{n} f(x_{ij}^*, y_{ij}^*) \, \Delta A$$</p>
+ <p class="lesson-text">asalkan limitnya ada dan tidak bergantung pada pemilihan titik sampel. Jika limitnya ada, $f$ dikatakan <strong>terintegralkan</strong> pada $R$.</p>
+ <p class="lesson-text">Sama seperti pada integral satu variabel, setiap fungsi kontinu pada persegi panjang tertutup pasti terintegralkan. Notasi $dA$ menyatakan elemen luas&mdash;dalam koordinat Kartesius, $dA = dx\, dy$ atau $dA = dy\, dx$.</p>
+
+ <h3 class="lesson-subheading">C. Teorema Fubini</h3>
+ <p class="lesson-text">Menghitung integral ganda melalui definisi limit jumlah Riemann akan sangat merepotkan. Untungnya, ada cara yang lebih praktis: <strong>teorema Fubini</strong> menyatakan bahwa integral ganda dapat dihitung sebagai dua integral satu variabel yang dikerjakan berurutan.</p>
+ <p class="lesson-text"><strong>Teorema (Fubini).</strong> Jika $f$ kontinu pada persegi panjang $R = [a, b] \times [c, d]$, maka:</p>
+ <p class="lesson-text">$$\iint_R f(x, y)\, dA = \int_a^b \left(\int_c^d f(x, y)\, dy\right) dx = \int_c^d \left(\int_a^b f(x, y)\, dx\right) dy$$</p>
+ <p class="lesson-text">Notasi $\displaystyle\int_a^b \int_c^d f(x, y)\, dy\, dx$ adalah cara ringkas untuk menuliskan integral berulang ini. Cara membacanya:</p>
+ <ul>
+  <li>Integral <em>dalam</em> (di sini terhadap $y$) dihitung terlebih dahulu, dengan $x$ diperlakukan sebagai konstanta.</li>
+  <li>Hasilnya adalah fungsi dari $x$, yang kemudian diintegralkan terhadap $x$ pada integral <em>luar</em>.</li>
+ </ul>
+ <p class="lesson-text">Salah satu keuntungan teorema Fubini adalah urutan integrasi dapat ditukar&mdash;hasilnya sama. Ini memberi kebebasan memilih urutan yang lebih mudah. Untuk fungsi yang simetris, kedua urutan sama sulitnya; namun untuk fungsi yang rumit, salah satu urutan sering jauh lebih mudah daripada yang lain.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Integral Ganda atas Persegi Panjang</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_R (x + 2y)\, dA$ dengan $R = [0, 2] \times [0, 1]$.</p>
+ <p class="lesson-text"><strong>Penyelesaian (urutan $dy\, dx$).</strong> Integral dalam terhadap $y$ dengan $x$ konstan:</p>
+ <p class="lesson-text">$$\int_0^1 (x + 2y)\, dy = \left[xy + y^2\right]_0^1 = x + 1$$</p>
+ <p class="lesson-text">Integral luar terhadap $x$:</p>
+ <p class="lesson-text">$$\int_0^2 (x + 1)\, dx = \left[\frac{x^2}{2} + x\right]_0^2 = (2 + 2) - 0 = 4$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan urutan $dx\, dy$.</strong> Integral dalam terhadap $x$:</p>
+ <p class="lesson-text">$$\int_0^2 (x + 2y)\, dx = \left[\frac{x^2}{2} + 2xy\right]_0^2 = 2 + 4y$$</p>
+ <p class="lesson-text">Integral luar terhadap $y$:</p>
+ <p class="lesson-text">$$\int_0^1 (2 + 4y)\, dy = \left[2y + 2y^2\right]_0^1 = 2 + 2 = 4$$</p>
+ <p class="lesson-text">Kedua urutan memberi hasil yang sama, yaitu $4$&mdash;sesuai dengan teorema Fubini.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="20" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Volume di bawah permukaan z = f(x, y) atas persegi panjang R</text>
+
+  <line x1="90" y1="300" x2="540" y2="300" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="542,300 532,295 532,305" fill="#e8e8e8"/>
+  <text x="546" y="304" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="110" y1="330" x2="110" y2="60" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="110,57 105,67 115,67" fill="#e8e8e8"/>
+  <text x="116" y="56" font-size="12" fill="#b8b8b8" font-style="italic">z</text>
+
+  <line x1="130" y1="290" x2="360" y2="230" stroke="#e8e8e8" stroke-width="1" opacity="0.5"/>
+  <line x1="360" y1="230" x2="500" y2="270" stroke="#e8e8e8" stroke-width="1" opacity="0.5"/>
+  <text x="495" y="286" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 130 200 Q 250 130 360 130 Q 440 130 500 180 L 500 270 Q 360 230 130 290 Z" fill="#5dade2" fill-opacity="0.18" stroke="#5dade2" stroke-width="2"/>
+  <path d="M 130 200 Q 250 130 360 130 Q 440 130 500 180" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <rect x="200" y="196" width="30" height="104" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1" />
+  <rect x="230" y="180" width="30" height="120" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1" />
+  <rect x="260" y="167" width="30" height="133" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1" />
+  <rect x="290" y="158" width="30" height="142" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1" />
+  <rect x="320" y="153" width="30" height="147" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1" />
+  <rect x="350" y="156" width="30" height="144" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1" />
+
+  <text x="200" y="130" font-size="12" fill="#5dade2" font-style="italic">z = f(x, y)</text>
+  <text x="200" y="115" font-size="11" fill="#b8b8b8" font-style="italic">permukaan</text>
+
+  <text x="320" y="80" font-size="12" fill="#daa520" font-style="italic">balok-balok pendekat</text>
+  <text x="320" y="96" font-size="11" fill="#b8b8b8" font-style="italic">volume → ∫∫ f dA</text>
+
+  <text x="530" y="310" font-size="12" fill="#e8e8e8" font-style="italic">R</text>
+  <text x="240" y="308" font-size="11" fill="#b8b8b8" font-style="italic">persegi panjang R = [a, b] × [c, d]</text>
+ </svg>
+ <figcaption class="visual-caption">Integral ganda $\iint_R f(x, y)\, dA$ sebagai volume di bawah permukaan $z = f(x, y)$ atas persegi panjang $R$. Setiap balok kecil memiliki alas $\Delta A = \Delta x \cdot \Delta y$ dan tinggi $f(x_{ij}^*, y_{ij}^*)$. Jumlah volume balok mendekati volume sebenarnya ketika jumlah balok bertambah.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Integral Ganda atas Daerah Umum</h2>
+ <p class="lesson-text">Persegi panjang adalah kasus paling sederhana. Namun banyak masalah nyata melibatkan daerah yang bentuknya sembarang&mdash;lingkaran, segitiga, atau daerah yang dibatasi oleh kurva. Bab ini membahas integral ganda atas daerah umum.</p>
+
+ <h3 class="lesson-subheading">A. Daerah Tipe I dan Tipe II</h3>
+ <p class="lesson-text">Untuk merumuskan integral ganda atas daerah sembarang $D$, ada dua cara mengklasifikasikan bentuk $D$ berdasarkan cara kita memandang batasnya.</p>
+ <p class="lesson-text"><strong>Daerah Tipe I.</strong> Daerah $D$ disebut tipe I jika dapat dituliskan sebagai:</p>
+ <p class="lesson-text">$$D = \{(x, y) : a \leq x \leq b, \, g_1(x) \leq y \leq g_2(x)\}$$</p>
+ <p class="lesson-text">Dengan kata lain, batas atas dan bawah daerah diberikan sebagai fungsi dari $x$. Secara geometris, ketika kita menyapu dari kiri ke kanan, bagian atas dan bawah batasnya mengikuti kurva.</p>
+ <p class="lesson-text"><strong>Daerah Tipe II.</strong> Daerah $D$ disebut tipe II jika dapat dituliskan sebagai:</p>
+ <p class="lesson-text">$$D = \{(x, y) : c \leq y \leq d, \, h_1(y) \leq x \leq h_2(y)\}$$</p>
+ <p class="lesson-text">Dalam hal ini, batas kiri dan kanan daerah diberikan sebagai fungsi dari $y$. Ketika kita menyapu dari bawah ke atas, batas kiri dan kanan mengikuti kurva.</p>
+ <p class="lesson-text">Beberapa daerah dapat dipandang sebagai tipe I maupun tipe II&mdash;pemilihannya bergantung pada mana yang lebih mudah dihitung.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="160" y="20" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Daerah Tipe I</text>
+  <line x1="40" y1="280" x2="290" y2="280" stroke="#e8e8e8" stroke-width="1.2"/>
+  <line x1="60" y1="300" x2="60" y2="50" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="296" y="284" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="66" y="46" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 100 260 Q 160 150 260 120" fill="none" stroke="#5dade2" stroke-width="2.5"/>
+  <path d="M 100 200 Q 160 220 260 230" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
+
+  <path d="M 100 260 Q 160 150 260 120 L 260 230 Q 160 220 100 200 Z" fill="#daa520" fill-opacity="0.20" stroke="none"/>
+
+  <line x1="100" y1="260" x2="100" y2="200" stroke="#daa520" stroke-width="2"/>
+  <line x1="260" y1="120" x2="260" y2="230" stroke="#daa520" stroke-width="2"/>
+
+  <line x1="180" y1="175" x2="180" y2="215" stroke="#daa520" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <circle cx="100" cy="230" r="3.5" fill="#e8e8e8"/>
+  <circle cx="260" cy="175" r="3.5" fill="#e8e8e8"/>
+  <text x="100" y="296" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">a</text>
+  <text x="260" y="296" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">b</text>
+  <text x="185" y="130" font-size="11" fill="#5dade2" font-style="italic">y = g₂(x)</text>
+  <text x="185" y="240" font-size="11" fill="#22d3ee" font-style="italic">y = g₁(x)</text>
+  <text x="185" y="200" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">irisan</text>
+  <text x="160" y="325" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">y dari g₁(x) sampai g₂(x), x dari a sampai b</text>
+  <text x="460" y="20" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Daerah Tipe II</text>
+  <line x1="340" y1="280" x2="590" y2="280" stroke="#e8e8e8" stroke-width="1.2"/>
+  <line x1="360" y1="300" x2="360" y2="50" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="596" y="284" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="366" y="46" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 440 100 Q 400 180 430 260" fill="none" stroke="#5dade2" stroke-width="2.5"/>
+  <path d="M 490 100 Q 520 180 500 260" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
+
+  <path d="M 440 100 Q 400 180 430 260 L 500 260 Q 520 180 490 100 Z" fill="#daa520" fill-opacity="0.20" stroke="none"/>
+
+  <line x1="440" y1="100" x2="490" y2="100" stroke="#daa520" stroke-width="2"/>
+  <line x1="430" y1="260" x2="500" y2="260" stroke="#daa520" stroke-width="2"/>
+  <line x1="432" y1="180" x2="500" y2="180" stroke="#daa520" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <text x="460" y="296" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">c</text>
+  <text x="460" y="90" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">d</text>
+
+  <text x="410" y="130" font-size="11" fill="#5dade2" font-style="italic">x = h₁(y)</text>
+  <text x="510" y="200" font-size="11" fill="#22d3ee" font-style="italic">x = h₂(y)</text>
+  <text x="465" y="170" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">irisan</text>
+
+  <text x="460" y="325" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">x dari h₁(y) sampai h₂(y), y dari c sampai d</text>
+ </svg>
+ <figcaption class="visual-caption">Dua cara memandang daerah integrasi. Kiri: tipe I&mdash;batas atas dan bawah adalah fungsi dari $x$. Kanan: tipe II&mdash;batas kiri dan kanan adalah fungsi dari $y$. Setiap daerah yang dapat dipandang sebagai tipe I juga dapat dipandang sebagai tipe II; pilih yang membuat integrasi lebih sederhana.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">B. Integral Ganda atas Daerah Umum</h3>
+ <p class="lesson-text">Jika $D$ adalah daerah tipe I, maka integral ganda dari $f$ atas $D$ adalah:</p>
+ <p class="lesson-text">$$\iint_D f(x, y)\, dA = \int_a^b \int_{g_1(x)}^{g_2(x)} f(x, y)\, dy\, dx$$</p>
+ <p class="lesson-text">Untuk daerah tipe II:</p>
+ <p class="lesson-text">$$\iint_D f(x, y)\, dA = \int_c^d \int_{h_1(y)}^{h_2(y)} f(x, y)\, dx\, dy$$</p>
+ <p class="lesson-text">Perhatikan bahwa urutan integrasi ditentukan oleh jenis daerahnya. Untuk tipe I, integral dalam terhadap $y$ (karena batas $y$ bergantung pada $x$), dan integral luar terhadap $x$. Untuk tipe II, sebaliknya.</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Daerah Tipe I</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_D (x + y)\, dA$ dengan $D$ adalah daerah yang dibatasi oleh $y = x^2$, garis $y = 2x$, dan $x$ dari $0$ sampai $2$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Tentukan titik potong.</strong> Setel $x^2 = 2x$, sehingga $x(x - 2) = 0$. Titik potong di $x = 0$ dan $x = 2$. Daerahnya berada di antara kurva $y = x^2$ (bawah) dan $y = 2x$ (atas), untuk $x$ dari $0$ sampai $2$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Susun integral berulang.</strong> Ini adalah daerah tipe I dengan $g_1(x) = x^2$ dan $g_2(x) = 2x$:</p>
+ <p class="lesson-text">$$\iint_D (x + y)\, dA = \int_0^2 \int_{x^2}^{2x} (x + y)\, dy\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral dalam.</strong></p>
+ <p class="lesson-text">$$\int_{x^2}^{2x} (x + y)\, dy = \left[xy + \frac{y^2}{2}\right]_{y = x^2}^{y = 2x}$$</p>
+ <p class="lesson-text">$$= \left(2x^2 + 2x^2\right) - \left(x \cdot x^2 + \frac{x^4}{2}\right) = 4x^2 - x^3 - \frac{x^4}{2}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Hitung integral luar.</strong></p>
+ <p class="lesson-text">$$\int_0^2 \left(4x^2 - x^3 - \frac{x^4}{2}\right) dx = \left[\frac{4x^3}{3} - \frac{x^4}{4} - \frac{x^5}{10}\right]_0^2$$</p>
+ <p class="lesson-text">$$= \frac{32}{3} - 4 - \frac{32}{10} = \frac{32}{3} - 4 - \frac{16}{5}$$</p>
+ <p class="lesson-text">Samakan penyebut (15): $\dfrac{160}{15} - \dfrac{60}{15} - \dfrac{48}{15} = \dfrac{52}{15}$.</p>
+ <p class="lesson-text">Jadi $\displaystyle\iint_D (x + y)\, dA = \dfrac{52}{15}$.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Daerah Tipe II</h3>
+ <p class="lesson-text">Beberapa integral lebih mudah dihitung jika kita memandang daerahnya sebagai tipe II.</p>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_D xy\, dA$ dengan $D$ dibatasi oleh garis $y = x - 1$ dan parabola $y^2 = 2x + 6$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Tentukan titik potong.</strong> Substitusi $x = y + 1$ (dari garis) ke parabola:</p>
+ <p class="lesson-text">$$y^2 = 2(y + 1) + 6 = 2y + 8 \quad \Rightarrow \quad y^2 - 2y - 8 = 0 \quad \Rightarrow \quad (y-4)(y+2) = 0$$</p>
+ <p class="lesson-text">Titik potong: $y = -2$ dan $y = 4$. Untuk setiap $y$ dalam interval ini, parabola $x = \dfrac{y^2 - 6}{2}$ berada di kiri, dan garis $x = y + 1$ berada di kanan&mdash;dapat diverifikasi dengan mengambil titik uji, misalnya $y = 0$: parabola di $x = -3$ dan garis di $x = 1$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Susun integral berulang.</strong> Ini adalah daerah tipe II:</p>
+ <p class="lesson-text">$$\iint_D xy\, dA = \int_{-2}^{4} \int_{(y^2 - 6)/2}^{y+1} xy\, dx\, dy$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral dalam.</strong></p>
+ <p class="lesson-text">$$\int_{(y^2 - 6)/2}^{y+1} xy\, dx = y \cdot \left[\frac{x^2}{2}\right]_{x = (y^2-6)/2}^{x = y+1} = \frac{y}{2}\left[(y+1)^2 - \left(\frac{y^2-6}{2}\right)^2\right]$$</p>
+ <p class="lesson-text">Kembangkan: $(y+1)^2 = y^2 + 2y + 1$ dan $\left(\dfrac{y^2-6}{2}\right)^2 = \dfrac{y^4 - 12y^2 + 36}{4}$.</p>
+ <p class="lesson-text">Selisihnya: $\dfrac{-y^4 + 16y^2 + 8y - 32}{4}$. Maka integran dalam menjadi $\dfrac{-y^5 + 16y^3 + 8y^2 - 32y}{8}$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Hitung integral luar.</strong></p>
+ <p class="lesson-text">$$\int_{-2}^{4} \frac{-y^5 + 16y^3 + 8y^2 - 32y}{8}\, dy = \frac{1}{8}\left[-\frac{y^6}{6} + 4y^4 + \frac{8y^3}{3} - 16y^2\right]_{-2}^{4}$$</p>
+ <p class="lesson-text">Di $y = 4$: $-\dfrac{4096}{6} + 1024 + \dfrac{512}{3} - 256 = 256$.</p>
+ <p class="lesson-text">Di $y = -2$: $-\dfrac{64}{6} + 64 - \dfrac{64}{3} - 64 = -32$.</p>
+ <p class="lesson-text">Selisihnya: $256 - (-32) = 288$. Maka $\displaystyle\iint_D xy\, dA = \frac{288}{8} = 36$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting.</strong> Contoh ini menunjukkan bahwa memilih tipe daerah yang sesuai dapat menyederhanakan perhitungan secara signifikan. Jika kita memandang daerah ini sebagai tipe I, kita harus memecahnya menjadi dua bagian karena batas atasnya berubah. Sebagai tipe II, cukup satu integral berulang.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Integral Ganda dalam Koordinat Polar</h2>
+ <p class="lesson-text">Beberapa daerah integrasi memiliki simetri radial&mdash;berbentuk lingkaran, cincin, atau bagian dari keduanya. Untuk daerah seperti ini, koordinat Kartesius bukan pilihan yang efisien karena batas-batasnya menjadi rumit. Koordinat polar menyederhanakan perhitungan secara signifikan.</p>
+
+ <h3 class="lesson-subheading">A. Koordinat Polar</h3>
+ <p class="lesson-text">Dalam koordinat polar, sebuah titik di bidang dinyatakan oleh $(r, \theta)$, dengan:</p>
+ <ul>
+  <li>$r$ adalah jarak dari titik asal ($r \geq 0$),</li>
+  <li>$\theta$ adalah sudut yang diukur dari sumbu-$X$ positif (berlawanan arah jarum jam).</li>
+ </ul>
+ <p class="lesson-text">Hubungan dengan koordinat Kartesius:</p>
+ <p class="lesson-text">$$x = r\cos\theta, \quad y = r\sin\theta, \quad x^2 + y^2 = r^2$$</p>
+
+ <h3 class="lesson-subheading">B. Elemen Luas dalam Koordinat Polar</h3>
+ <p class="lesson-text">Hal yang paling penting ketika berpindah ke koordinat polar adalah perubahan elemen luas. Dalam koordinat Kartesius, elemen luas adalah $dA = dx\, dy$. Dalam koordinat polar, elemen luasnya <em>tidak</em> sama dengan $dr\, d\theta$&mdash;melainkan:</p>
+ <p class="lesson-text">$$dA = r\, dr\, d\theta$$</p>
+ <p class="lesson-text"><strong>Mengapa ada faktor $r$?</strong> Bayangkan sebuah "persegi panjang" kecil dalam koordinat polar, yang dibatasi oleh dua lingkaran dengan jari-jari $r$ dan $r + dr$, serta dua sinar dengan sudut $\theta$ dan $\theta + d\theta$. Panjang sisi "horizontal" (sepanjang busur) adalah $r\, d\theta$, sedangkan panjang sisi "vertikal" (sepanjang jari-jari) adalah $dr$. Jadi luas elemen kecil ini adalah $(r\, d\theta) \cdot dr = r\, dr\, d\theta$.</p>
+ <p class="lesson-text">Faktor $r$ inilah yang membuat koordinat polar sangat cocok untuk daerah yang melibatkan lingkaran&mdash;karena elemen luasnya secara alami menyesuaikan dengan kelengkungan koordinat.</p>
+
+ <figure>
+  <svg viewBox="0 0 560 360" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="250" x2="520" y2="250" stroke="#e8e8e8" stroke-width="1" />
+  <line x1="130" y1="310" x2="130" y2="40" stroke="#e8e8e8" stroke-width="1" />
+  <text x="526" y="254" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="136" y="36" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+  <circle cx="130" cy="250" r="60" fill="none" stroke="#b8b8b8" stroke-width="0.7" stroke-dasharray="3,3" />
+  <circle cx="130" cy="250" r="90" fill="none" stroke="#b8b8b8" stroke-width="0.7" stroke-dasharray="3,3" />
+  <circle cx="130" cy="250" r="120" fill="none" stroke="#b8b8b8" stroke-width="0.7" stroke-dasharray="3,3" />
+  <line x1="130" y1="250" x2="490" y2="250" stroke="#b8b8b8" stroke-width="0.8" />
+  <line x1="130" y1="250" x2="373" y2="110" stroke="#b8b8b8" stroke-width="0.8" />
+  <path d="M 220 250 A 90 90 0 0 0 205 205" fill="none" stroke="#5dade2" stroke-width="1.5" />
+  <path d="M 250 250 A 120 120 0 0 0 232 190" fill="none" stroke="#5dade2" stroke-width="1.5" />
+  <line x1="130" y1="250" x2="250" y2="250" stroke="#5dade2" stroke-width="1.5" />
+  <line x1="130" y1="250" x2="232" y2="190" stroke="#5dade2" stroke-width="1.5" />
+  <path d="M 220 250 L 250 250 L 232 190 L 205 205 Z" fill="#daa520" fill-opacity="0.25" stroke="#daa520" stroke-width="1.5" />
+  <line x1="205" y1="205" x2="232" y2="190" stroke="#daa520" stroke-width="2.5" />
+  <text x="185" y="235" font-size="11" fill="#5dade2" font-style="italic">r</text>
+  <text x="165" y="275" font-size="11" fill="#e8e8e8" font-style="italic">θ</text>
+  <text x="240" y="185" font-size="11" fill="#daa520" font-style="italic">r dθ</text>
+  <text x="200" y="200" font-size="11" fill="#daa520" font-style="italic">dr</text>
+  <text x="300" y="60" font-size="13" fill="#daa520" font-weight="700" font-style="italic">Elemen luas polar: dA = r dr dθ</text>
+  <text x="300" y="78" font-size="11" fill="#b8b8b8" font-style="italic">faktor r muncul dari panjang busur r dθ</text>
+  <text x="280" y="340" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">Elemen kecil berbentuk "persegi panjang melengkung"</text>
+ </svg>
+ <figcaption class="visual-caption">Elemen luas dalam koordinat polar. Elemen kecil dibatasi oleh dua lingkaran dengan jari-jari $r$ dan $r + dr$, serta dua sinar dengan sudut $\theta$ dan $\theta + d\theta$. Panjang sisi melengkungnya adalah $r\, d\theta$, dan panjang sisi radialnya adalah $dr$. Jadi luasnya adalah $r\, dr\, d\theta$&mdash;faktor $r$ inilah yang muncul dalam integral polar.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">C. Rumus Integral Ganda dalam Koordinat Polar</h3>
+ <p class="lesson-text">Jika $D$ adalah daerah dalam koordinat polar yang dinyatakan sebagai:</p>
+ <p class="lesson-text">$$D = \{(r, \theta) : \alpha \leq \theta \leq \beta, \, r_1(\theta) \leq r \leq r_2(\theta)\}$$</p>
+ <p class="lesson-text">maka integral ganda dari $f$ atas $D$ adalah:</p>
+ <p class="lesson-text">$$\iint_D f(x, y)\, dA = \int_{\alpha}^{\beta} \int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta, r\sin\theta) \, r\, dr\, d\theta$$</p>
+ <p class="lesson-text">Perhatikan tiga komponen penting:</p>
+ <ul>
+  <li>$x$ dan $y$ diganti dengan $r\cos\theta$ dan $r\sin\theta$.</li>
+  <li>Elemen luas $dA$ diganti dengan $r\, dr\, d\theta$.</li>
+  <li>Batas integrasi disesuaikan dengan deskripsi polar daerahnya.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Contoh: Integral Ganda atas Cakram</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_D e^{-(x^2 + y^2)}\, dA$ dengan $D$ adalah cakram $x^2 + y^2 \leq 1$.</p>
+ <p class="lesson-text"><strong>Analisis awal.</strong> Jika dihitung dalam koordinat Kartesius, integran $e^{-x^2 - y^2}$ tidak memiliki anti-turunan elementer terhadap $x$ maupun $y$. Namun dalam koordinat polar, ia berubah menjadi $e^{-r^2}$, yang mudah diintegralkan karena faktor $r$ pada elemen luas memberi substitusi langsung.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah ke koordinat polar.</strong> Daerah $D$ dalam koordinat polar adalah $0 \leq r \leq 1$, $0 \leq \theta \leq 2\pi$. Integran berubah menjadi $e^{-r^2}$. Maka:</p>
+ <p class="lesson-text">$$\iint_D e^{-(x^2 + y^2)}\, dA = \int_0^{2\pi} \int_0^1 e^{-r^2} \, r\, dr\, d\theta$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral dalam.</strong> Gunakan substitusi $u = r^2$, sehingga $du = 2r\, dr$:</p>
+ <p class="lesson-text">$$\int_0^1 e^{-r^2} r\, dr = \frac{1}{2}\int_0^1 e^{-u}\, du = \frac{1}{2}\left[-e^{-u}\right]_0^1 = \frac{1}{2}(1 - e^{-1})$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral luar.</strong> Integran tidak bergantung pada $\theta$:</p>
+ <p class="lesson-text">$$\int_0^{2\pi} \frac{1}{2}(1 - e^{-1})\, d\theta = \frac{1}{2}(1 - e^{-1}) \cdot 2\pi = \pi(1 - e^{-1})$$</p>
+ <p class="lesson-text">Jadi $\displaystyle\iint_D e^{-(x^2 + y^2)}\, dA = \pi\left(1 - \frac{1}{e}\right) \approx 1{,}986$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan penting.</strong> Contoh ini menunjukkan kekuatan koordinat polar. Integral yang tampak tidak mungkin diselesaikan dalam koordinat Kartesius ternyata mudah dalam koordinat polar. Faktor $r$ pada elemen luas tidak hanya menyesuaikan skala&mdash;ia juga menyediakan faktor integrasi yang membuat anti-turunan $e^{-r^2}$ dapat dihitung. Integral ini muncul dalam teori probabilitas (untuk menghitung integral Gaussian) dan dalam banyak aplikasi fisika.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Contoh: Integral Ganda atas Cincin</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_D (x^2 + y^2)\, dA$ dengan $D$ adalah cincin $1 \leq x^2 + y^2 \leq 4$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Dalam koordinat polar, cincin ini adalah $1 \leq r \leq 2$ dan $0 \leq \theta \leq 2\pi$. Integran menjadi $r^2$. Maka:</p>
+ <p class="lesson-text">$$\iint_D (x^2 + y^2)\, dA = \int_0^{2\pi} \int_1^2 r^2 \cdot r\, dr\, d\theta = \int_0^{2\pi} \int_1^2 r^3\, dr\, d\theta$$</p>
+ <p class="lesson-text">Integral dalam: $\displaystyle\int_1^2 r^3\, dr = \left[\frac{r^4}{4}\right]_1^2 = \frac{16 - 1}{4} = \frac{15}{4}$.</p>
+ <p class="lesson-text">Integral luar: $\displaystyle\int_0^{2\pi} \frac{15}{4}\, d\theta = \frac{15}{4} \cdot 2\pi = \frac{15\pi}{2}$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Integral Lipat Tiga</h2>
+ <p class="lesson-text">Integral lipat tiga memperluas konsep integral ganda ke fungsi tiga variabel. Ia dipakai untuk menghitung besaran yang tersebar pada bangun ruang tiga dimensi&mdash;seperti massa, muatan listrik, atau momen inersia.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Integral Lipat Tiga</h3>
+ <p class="lesson-text">Misalkan $f(x, y, z)$ adalah fungsi kontinu pada kotak tiga dimensi $B = [a, b] \times [c, d] \times [p, q]$. Integral lipat tiga dari $f$ atas $B$ didefinisikan sebagai limit dari jumlah Riemann tiga dimensi:</p>
+ <p class="lesson-text">$$\iiint_B f(x, y, z)\, dV = \lim_{l, m, n \to \infty} \sum_{i=1}^{l} \sum_{j=1}^{m} \sum_{k=1}^{n} f(x_{ijk}^*, y_{ijk}^*, z_{ijk}^*) \, \Delta V$$</p>
+ <p class="lesson-text">dengan $\Delta V = \Delta x \cdot \Delta y \cdot \Delta z$. Sebagaimana pada integral ganda, jika $f$ kontinu pada kotak tertutup, integralnya pasti ada.</p>
+
+ <h3 class="lesson-subheading">B. Teorema Fubini untuk Integral Lipat Tiga</h3>
+ <p class="lesson-text">Teorema Fubini juga berlaku untuk integral lipat tiga. Jika $f$ kontinu pada kotak $B = [a, b] \times [c, d] \times [p, q]$, maka integral lipat tiga dapat dihitung sebagai tiga integral satu variabel yang dikerjakan berurutan, dan urutan integrasinya bebas:</p>
+ <p class="lesson-text">$$\iiint_B f(x, y, z)\, dV = \int_a^b \int_c^d \int_p^q f(x, y, z)\, dz\, dy\, dx$$</p>
+ <p class="lesson-text">Enam urutan integrasi yang mungkin semuanya memberikan hasil yang sama (selama fungsinya kontinu pada kotak). Pilih urutan yang paling mudah dihitung.</p>
+
+ <h3 class="lesson-subheading">C. Integral Lipat Tiga atas Daerah Umum</h3>
+ <p class="lesson-text">Untuk daerah tiga dimensi yang lebih umum $E$, integralnya disusun berdasarkan deskripsi batas-batasnya. Sebagai contoh, jika $E$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$E = \{(x, y, z) : (x, y) \in D, \, u_1(x, y) \leq z \leq u_2(x, y)\}$$</p>
+ <p class="lesson-text">dengan $D$ adalah proyeksi $E$ pada bidang $xy$, maka:</p>
+ <p class="lesson-text">$$\iiint_E f(x, y, z)\, dV = \iint_D \left(\int_{u_1(x, y)}^{u_2(x, y)} f(x, y, z)\, dz\right) dA$$</p>
+ <p class="lesson-text">Integral dalam terhadap $z$ menghasilkan fungsi dari $x$ dan $y$; hasilnya kemudian diintegralkan atas $D$ menggunakan teknik integral ganda.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="20" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Integral lipat tiga atas daerah E</text>
+
+  <line x1="80" y1="320" x2="520" y2="320" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="100" y1="340" x2="100" y2="80" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="526" y="324" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="106" y="76" font-size="11" fill="#b8b8b8" font-style="italic">z</text>
+
+  <line x1="180" y1="290" x2="440" y2="220" stroke="#e8e8e8" stroke-width="1" opacity="0.6"/>
+  <text x="446" y="218" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 150 260 L 350 200 L 480 250 L 280 310 Z" fill="#b8b8b8" fill-opacity="0.10" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="315" y="325" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">proyeksi D pada bidang xy</text>
+
+  <path d="M 200 220 L 200 140 L 320 100 L 320 180 Z" fill="#5dade2" fill-opacity="0.18" stroke="#5dade2" stroke-width="1.5"/>
+  <path d="M 320 100 L 440 140 L 440 220 L 320 180 Z" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="1.5"/>
+  <path d="M 320 180 L 440 220 L 440 140 L 320 100 Z" fill="none" stroke="#5dade2" stroke-width="1.5"/>
+  <path d="M 200 220 L 200 140 L 320 100 L 440 140 L 440 220 L 320 180 Z" fill="none" stroke="#5dade2" stroke-width="2"/>
+
+  <line x1="230" y1="200" x2="230" y2="160" stroke="#daa520" stroke-width="2"/>
+  <line x1="280" y1="185" x2="280" y2="130" stroke="#daa520" stroke-width="2"/>
+  <line x1="340" y1="175" x2="340" y2="120" stroke="#daa520" stroke-width="2"/>
+  <line x1="390" y1="190" x2="390" y2="135" stroke="#daa520" stroke-width="2"/>
+
+  <rect x="200" y="180" width="30" height="30" fill="#daa520" fill-opacity="0.4" stroke="#daa520" stroke-width="1"/>
+  <rect x="320" y="140" width="30" height="30" fill="#daa520" fill-opacity="0.4" stroke="#daa520" stroke-width="1"/>
+
+  <text x="380" y="80" font-size="12" fill="#5dade2" font-style="italic">daerah E di ruang 3D</text>
+
+  <text x="120" y="360" font-size="12" fill="#daa520" font-style="italic">dV = dx dy dz (atau r dr dθ dz untuk koordinat silinder)</text>
+
+  <text x="450" y="360" font-size="11" fill="#b8b8b8" text-anchor="end" font-style="italic">balok kecil volume ΔV</text>
+ </svg>
+ <figcaption class="visual-caption">Integral lipat tiga atas daerah $E$ di ruang tiga dimensi. Daerah diiris menjadi balok-balok kecil dengan volume $\Delta V = \Delta x \cdot \Delta y \cdot \Delta z$. Jumlah volume balok-balok ini&mdash;yang masing-masing berbobot $f(x, y, z)$&mdash;mendekati integral lipat tiga ketika jumlah balok bertambah.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Contoh: Integral Lipat Tiga atas Kotak</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iiint_B xyz\, dV$ dengan $B = [0, 1] \times [0, 2] \times [0, 3]$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Karena batas-batasnya konstan, kita dapat menghitung integral ini sebagai tiga integral berurutan dalam urutan apa pun. Ambil urutan $dz\, dy\, dx$:</p>
+ <p class="lesson-text">$$\iiint_B xyz\, dV = \int_0^1 \int_0^2 \int_0^3 xyz\, dz\, dy\, dx$$</p>
+ <p class="lesson-text"><strong>Integral dalam (terhadap $z$).</strong> Karena $x$ dan $y$ konstan terhadap $z$:</p>
+ <p class="lesson-text">$$\int_0^3 xyz\, dz = xy \cdot \left[\frac{z^2}{2}\right]_0^3 = \frac{9xy}{2}$$</p>
+ <p class="lesson-text"><strong>Integral tengah (terhadap $y$).</strong></p>
+ <p class="lesson-text">$$\int_0^2 \frac{9xy}{2}\, dy = \frac{9x}{2} \cdot \left[\frac{y^2}{2}\right]_0^2 = \frac{9x}{2} \cdot 2 = 9x$$</p>
+ <p class="lesson-text"><strong>Integral luar (terhadap $x$).</strong></p>
+ <p class="lesson-text">$$\int_0^1 9x\, dx = 9 \cdot \left[\frac{x^2}{2}\right]_0^1 = \frac{9}{2}$$</p>
+ <p class="lesson-text">Jadi $\displaystyle\iiint_B xyz\, dV = \dfrac{9}{2}$.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Integral Lipat Tiga atas Daerah Umum</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iiint_E z\, dV$ dengan $E$ adalah daerah yang dibatasi oleh bidang $z = 0$ di bawah, bidang $z = x + y$ di atas, dan bidang-bidang $x = 0$, $x = 1$, $y = 0$, $y = 1$ di samping.</p>
+ <p class="lesson-text"><strong>Langkah 1: Identifikasi batas-batas.</strong> Untuk setiap $(x, y)$ dalam persegi satuan $[0, 1] \times [0, 1]$, nilai $z$ bergerak dari $0$ sampai $x + y$:</p>
+ <p class="lesson-text">$$\iiint_E z\, dV = \int_0^1 \int_0^1 \int_0^{x+y} z\, dz\, dy\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Integral dalam.</strong></p>
+ <p class="lesson-text">$$\int_0^{x+y} z\, dz = \left[\frac{z^2}{2}\right]_0^{x+y} = \frac{(x+y)^2}{2}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Integral tengah (terhadap $y$).</strong></p>
+ <p class="lesson-text">$$\int_0^1 \frac{(x+y)^2}{2}\, dy = \frac{1}{2} \cdot \left[\frac{(x+y)^3}{3}\right]_0^1 = \frac{(x+1)^3 - x^3}{6}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Integral luar (terhadap $x$).</strong></p>
+ <p class="lesson-text">$$\int_0^1 \frac{(x+1)^3 - x^3}{6}\, dx = \frac{1}{6}\left[\frac{(x+1)^4}{4} - \frac{x^4}{4}\right]_0^1 = \frac{1}{6} \cdot \frac{(16 - 1) - 1}{4} = \frac{1}{6} \cdot \frac{14}{4} = \frac{7}{12}$$</p>
+ <p class="lesson-text">Jadi $\displaystyle\iiint_E z\, dV = \dfrac{7}{12}$.</p>
+
+ <h3 class="lesson-subheading">F. Koordinat Silinder dan Bola</h3>
+ <p class="lesson-text">Sebagaimana koordinat polar menyederhanakan integral ganda atas daerah radial, terdapat dua sistem koordinat tiga dimensi yang berguna untuk kasus khusus.</p>
+ <p class="lesson-text"><strong>Koordinat silinder</strong> $(r, \theta, z)$: perluasan langsung dari koordinat polar dengan tambahan sumbu $z$. Hubungan dengan Kartesius:</p>
+ <p class="lesson-text">$$x = r\cos\theta, \quad y = r\sin\theta, \quad z = z$$</p>
+ <p class="lesson-text">Elemen volume: $dV = r\, dr\, d\theta\, dz$.</p>
+ <p class="lesson-text"><strong>Koordinat bola</strong> $(\rho, \theta, \phi)$: digunakan untuk daerah dengan simetri bola. Hubungan dengan Kartesius:</p>
+ <p class="lesson-text">$$x = \rho\sin\phi\cos\theta, \quad y = \rho\sin\phi\sin\theta, \quad z = \rho\cos\phi$$</p>
+ <p class="lesson-text">dengan $\rho \geq 0$, $0 \leq \phi \leq \pi$, dan $0 \leq \theta \leq 2\pi$. Elemen volume: $dV = \rho^2 \sin\phi\, d\rho\, d\phi\, d\theta$.</p>
+ <p class="lesson-text">Koordinat-koordinat ini dipakai dalam fisika untuk masalah yang memiliki simetri tertentu&mdash;misalnya menghitung massa bola dengan kerapatan yang hanya bergantung pada jarak dari pusat, atau menghitung medan listrik dari distribusi muatan yang simetris.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan konsep-konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Integral Ganda atas Segitiga</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_D xy\, dA$ dengan $D$ adalah segitiga dengan titik sudut $(0, 0)$, $(1, 0)$, dan $(1, 1)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Segitiga ini dapat dipandang sebagai daerah tipe I dengan $0 \leq x \leq 1$ dan $0 \leq y \leq x$:</p>
+ <p class="lesson-text">$$\iint_D xy\, dA = \int_0^1 \int_0^x xy\, dy\, dx$$</p>
+ <p class="lesson-text">Integral dalam: $\displaystyle\int_0^x xy\, dy = x \cdot \left[\frac{y^2}{2}\right]_0^x = \frac{x^3}{2}$.</p>
+ <p class="lesson-text">Integral luar: $\displaystyle\int_0^1 \frac{x^3}{2}\, dx = \frac{1}{2} \cdot \frac{1}{4} = \frac{1}{8}$.</p>
+
+ <h3 class="lesson-subheading">B. Menukar Urutan Integrasi</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^1 \int_y^1 e^{x^2}\, dx\, dy$ dengan menukar urutan integrasinya.</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Jika dihitung langsung, integral $\displaystyle\int e^{x^2}\, dx$ tidak memiliki anti-turunan elementer. Namun dengan menukar urutan integrasi, kita bisa menghindari masalah ini.</p>
+ <p class="lesson-text"><strong>Langkah 1: Gambarkan daerahnya.</strong> Daerah integrasi adalah $D = \{(x, y) : 0 \leq y \leq 1, \, y \leq x \leq 1\}$, yaitu segitiga dengan titik sudut $(0, 0)$, $(1, 0)$, dan $(1, 1)$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Ubah menjadi daerah tipe I.</strong> Segitiga yang sama dapat dideskripsikan sebagai $0 \leq x \leq 1$, $0 \leq y \leq x$. Maka integralnya menjadi:</p>
+ <p class="lesson-text">$$\int_0^1 \int_y^1 e^{x^2}\, dx\, dy = \int_0^1 \int_0^x e^{x^2}\, dy\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral dalam.</strong> Karena $e^{x^2}$ konstan terhadap $y$:</p>
+ <p class="lesson-text">$$\int_0^x e^{x^2}\, dy = x e^{x^2}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Hitung integral luar.</strong> Gunakan substitusi $u = x^2$:</p>
+ <p class="lesson-text">$$\int_0^1 x e^{x^2}\, dx = \frac{1}{2}\left[e^{x^2}\right]_0^1 = \frac{1}{2}(e - 1)$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Kesimpulan penting.</strong> Contoh ini menunjukkan kekuatan menukar urutan integrasi. Integral yang tadinya tidak dapat dihitung menjadi mudah setelah urutannya ditukar. Keterampilan ini sangat berharga untuk menyelesaikan integral ganda yang tidak dapat dihitung dalam urutan aslinya.</p>
+ </div>
+
+ <h3 class="lesson-subheading">C. Integral Ganda dalam Koordinat Polar</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\iint_D \sqrt{x^2 + y^2}\, dA$ dengan $D$ adalah cakram $x^2 + y^2 \leq 4$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Dalam koordinat polar, cakram ini adalah $0 \leq r \leq 2$ dan $0 \leq \theta \leq 2\pi$, dan integran menjadi $r$. Maka:</p>
+ <p class="lesson-text">$$\iint_D \sqrt{x^2 + y^2}\, dA = \int_0^{2\pi} \int_0^2 r \cdot r\, dr\, d\theta = \int_0^{2\pi} \int_0^2 r^2\, dr\, d\theta$$</p>
+ <p class="lesson-text">$$= \int_0^{2\pi} \frac{8}{3}\, d\theta = \frac{8}{3} \cdot 2\pi = \frac{16\pi}{3}$$</p>
+
+ <h3 class="lesson-subheading">D. Penerapan: Massa Pelat dengan Kerapatan Variabel</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah pelat logam tipis menempati daerah $D$ yang dibatasi oleh $y = x^2$ dan $y = 4$. Kerapatan pelat pada titik $(x, y)$ adalah $\rho(x, y) = 1 + y$ gram per satuan luas. Tentukan massa total pelat.</p>
+ <p class="lesson-text"><strong>Model.</strong> Massa total adalah integral ganda dari kerapatan:</p>
+ <p class="lesson-text">$$m = \iint_D \rho(x, y)\, dA = \iint_D (1 + y)\, dA$$</p>
+ <p class="lesson-text"><strong>Langkah 1: Tentukan batas integrasi.</strong> Daerah $D$ dibatasi $y = x^2$ di bawah dan $y = 4$ di atas. Titik potong: $x^2 = 4 \Rightarrow x = \pm 2$. Jadi $-2 \leq x \leq 2$ dan $x^2 \leq y \leq 4$:</p>
+ <p class="lesson-text">$$m = \int_{-2}^{2} \int_{x^2}^{4} (1 + y)\, dy\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral dalam.</strong></p>
+ <p class="lesson-text">$$\int_{x^2}^{4} (1 + y)\, dy = \left[y + \frac{y^2}{2}\right]_{x^2}^{4} = \left(4 + 8\right) - \left(x^2 + \frac{x^4}{2}\right) = 12 - x^2 - \frac{x^4}{2}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral luar.</strong></p>
+ <p class="lesson-text">$$\int_{-2}^{2} \left(12 - x^2 - \frac{x^4}{2}\right) dx = 2\int_0^2 \left(12 - x^2 - \frac{x^4}{2}\right) dx$$</p>
+ <p class="lesson-text">(menggunakan simetri karena integran genap)</p>
+ <p class="lesson-text">$$= 2\left[12x - \frac{x^3}{3} - \frac{x^5}{10}\right]_0^2 = 2\left(24 - \frac{8}{3} - \frac{32}{10}\right)$$</p>
+ <p class="lesson-text">$$= 2\left(24 - \frac{8}{3} - \frac{16}{5}\right) = 2 \cdot \frac{360 - 40 - 48}{15} = 2 \cdot \frac{272}{15} = \frac{544}{15}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Massa total pelat adalah $\dfrac{544}{15} \approx 36{,}27$ satuan massa. Contoh ini menunjukkan bagaimana integral ganda dipakai untuk menghitung besaran fisik pada objek dua dimensi dengan kerapatan yang bervariasi. Konsep ini muncul dalam banyak aplikasi: massa pelat, muatan pada permukaan, momen inersia, dan pusat massa.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Penerapan: Massa Bola dengan Kerapatan Radial</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah bola berjari-jari $R$ memiliki kerapatan yang hanya bergantung pada jarak dari pusat. Misalkan kerapatannya adalah $\delta(\rho) = k\rho$ dengan $k$ konstanta positif (di sini $\rho$ menyatakan jarak dari pusat bola). Tentukan massa total bola.</p>
+ <p class="lesson-text"><strong>Model.</strong> Massa total adalah integral lipat tiga dari kerapatan atas bola. Karena kerapatannya hanya bergantung pada jarak dari pusat, koordinat bola paling sesuai. Dalam koordinat bola, elemen volume adalah $dV = \rho^2 \sin\phi\, d\rho\, d\phi\, d\theta$. Maka:</p>
+ <p class="lesson-text">$$m = \iiint_{B_R} \delta(\rho) \cdot dV = k \int_0^{2\pi} \int_0^{\pi} \int_0^R \rho \cdot \rho^2 \sin\phi\, d\rho\, d\phi\, d\theta = k \int_0^{2\pi} \int_0^{\pi} \int_0^R \rho^3 \sin\phi\, d\rho\, d\phi\, d\theta$$</p>
+ <p class="lesson-text"><strong>Langkah 1: Integral dalam (terhadap $\rho$).</strong></p>
+ <p class="lesson-text">$$\int_0^R \rho^3\, d\rho = \frac{R^4}{4}$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Integral tengah (terhadap $\phi$).</strong></p>
+ <p class="lesson-text">$$\int_0^{\pi} \sin\phi\, d\phi = \left[-\cos\phi\right]_0^{\pi} = -(-1) - (-1) = 2$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Integral luar (terhadap $\theta$).</strong></p>
+ <p class="lesson-text">$$\int_0^{2\pi} 1\, d\theta = 2\pi$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Kalikan semuanya.</strong></p>
+ <p class="lesson-text">$$m = k \cdot \frac{R^4}{4} \cdot 2 \cdot 2\pi = k\pi R^4$$</p>
+ <div class="lesson-note">
+   <p class="lesson-text"><strong>Interpretasi.</strong> Massa bola dengan kerapatan yang bertambah secara linear terhadap jarak dari pusat adalah $k\pi R^4$. Perhatikan bahwa jika kerapatannya konstan, massanya akan sebanding dengan volume $\frac{4}{3}\pi R^3$. Di sini, karena kerapatan bertambah dengan jarak, massanya tumbuh lebih cepat&mdash;yaitu sebanding dengan $R^4$. Contoh ini menggambarkan bagaimana koordinat bola sangat menyederhanakan perhitungan integral lipat tiga atas benda dengan simetri bola.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Integral Ganda</h3>
+ <ul>
+  <li><strong>Menukar urutan integrasi tanpa menyesuaikan batasnya.</strong> Ketika urutan integrasi ditukar, batas integrasi juga harus berubah. Batas $y$ yang semula fungsi dari $x$ menjadi batas $x$ yang merupakan fungsi dari $y$. Jika tidak disesuaikan, hasilnya salah.</li>
+  <li><strong>Menghitung integral dalam dengan variabel yang salah.</strong> Integral dalam harus dihitung terhadap variabel yang batasnya disebutkan lebih dulu. Jika ditulis $\int_a^b \int_c^d f\, dy\, dx$, maka integral dalam adalah terhadap $y$.</li>
+  <li><strong>Menganggap semua daerah adalah tipe I.</strong> Tidak semua daerah cocok sebagai tipe I. Beberapa daerah lebih mudah dihitung sebagai tipe II&mdash;terutama ketika batasnya secara alami diberikan sebagai fungsi dari $y$.</li>
+  <li><strong>Lupa bahwa integran harus dinyatakan dalam variabel integrasi.</strong> Ketika menghitung integral dalam, semua variabel kecuali variabel integrasi harus dianggap konstanta. Jika ini tidak dilakukan, hasilnya akan salah.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Koordinat Polar</h3>
+ <ul>
+  <li><strong>Lupa faktor $r$ pada elemen luas.</strong> Ini kesalahan yang paling sering terjadi. Elemen luas dalam koordinat polar adalah $r\, dr\, d\theta$, bukan $dr\, d\theta$. Tanpa faktor $r$, hasilnya akan salah secara signifikan.</li>
+  <li><strong>Salah mengubah integran ke koordinat polar.</strong> Integran $f(x, y)$ harus diganti dengan $f(r\cos\theta, r\sin\theta)$. Lupa melakukan substitusi ini juga menyebabkan kesalahan.</li>
+  <li><strong>Salah menentukan batas $\theta$.</strong> Batas $\theta$ bergantung pada daerahnya. Untuk cakram penuh, $\theta$ bergerak dari $0$ sampai $2\pi$. Untuk setengah cakram, dari $0$ sampai $\pi$. Untuk seperempat cakram, dari $0$ sampai $\pi/2$. Periksa dengan cermat.</li>
+  <li><strong>Menggunakan koordinat polar untuk daerah yang tidak simetris radial.</strong> Koordinat polar hanya menyederhanakan perhitungan untuk daerah yang memiliki simetri radial. Untuk daerah persegi atau segitiga, koordinat Kartesius biasanya lebih mudah.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Integral Lipat Tiga</h3>
+ <ul>
+  <li><strong>Salah menentukan batas $z$.</strong> Untuk daerah umum tiga dimensi, batas $z$ (atas dan bawah) sering bergantung pada $x$ dan $y$. Pastikan batas-batas ini ditentukan dengan benar sebelum menyusun integral.</li>
+  <li><strong>Menggunakan elemen volume yang salah pada koordinat khusus.</strong> Dalam koordinat silinder, $dV = r\, dr\, d\theta\, dz$. Dalam koordinat bola, $dV = \rho^2 \sin\phi\, d\rho\, d\phi\, d\theta$. Menggunakan $dV = d\rho\, d\phi\, d\theta$ tanpa faktor Jacobian adalah kesalahan yang sering terjadi.</li>
+  <li><strong>Salah mengurutkan tiga integral.</strong> Untuk integral lipat tiga atas kotak, urutan integrasi bebas. Untuk daerah umum, urutannya terbatas&mdash;biasanya yang paling luar adalah variabel yang batasnya berupa konstanta.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Integral ganda:</strong> $\displaystyle\iint_R f(x, y)\, dA = \lim \sum \sum f(x_{ij}^*, y_{ij}^*) \, \Delta A$&mdash;limit dari jumlah Riemann ganda.</li>
+  <li><strong>Teorema Fubini:</strong> integral ganda atas persegi panjang dapat dihitung sebagai dua integral satu variabel berurutan, dengan urutan yang bebas.</li>
+  <li><strong>Integral ganda atas daerah umum:</strong> disusun berdasarkan jenis daerahnya.</li>
+  <li><strong>Daerah tipe I:</strong> $D = \{(x, y) : a \leq x \leq b, g_1(x) \leq y \leq g_2(x)\}$. Integral: $\displaystyle\int_a^b \int_{g_1(x)}^{g_2(x)} f\, dy\, dx$.</li>
+  <li><strong>Daerah tipe II:</strong> $D = \{(x, y) : c \leq y \leq d, h_1(y) \leq x \leq h_2(y)\}$. Integral: $\displaystyle\int_c^d \int_{h_1(y)}^{h_2(y)} f\, dx\, dy$.</li>
+  <li><strong>Menukar urutan integrasi:</strong> teknik yang sangat berguna ketika salah satu urutan menghasilkan integral yang sulit. Batas-batasnya harus disesuaikan.</li>
+  <li><strong>Koordinat polar:</strong> $x = r\cos\theta$, $y = r\sin\theta$, $dA = r\, dr\, d\theta$.</li>
+  <li><strong>Integral ganda dalam polar:</strong> $\displaystyle\iint_D f(x,y)\, dA = \int_{\alpha}^{\beta} \int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta, r\sin\theta)\, r\, dr\, d\theta$.</li>
+  <li><strong>Integral lipat tiga:</strong> $\displaystyle\iiint_B f(x, y, z)\, dV = \lim \sum \sum \sum f \, \Delta V$.</li>
+  <li><strong>Teorema Fubini untuk tiga variabel:</strong> integral lipat tiga atas kotak dihitung sebagai tiga integral satu variabel berurutan.</li>
+  <li><strong>Koordinat silinder:</strong> $x = r\cos\theta$, $y = r\sin\theta$, $z = z$, $dV = r\, dr\, d\theta\, dz$.</li>
+  <li><strong>Koordinat bola:</strong> $x = \rho\sin\phi\cos\theta$, $y = \rho\sin\phi\sin\theta$, $z = \rho\cos\phi$, $dV = \rho^2 \sin\phi\, d\rho\, d\phi\, d\theta$.</li>
+  <li><strong>Penerapan:</strong> volume, massa benda dengan kerapatan variabel, muatan listrik pada distribusi tiga dimensi, momen inersia, pusat massa.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Integral lipat memperluas konsep integral tentu ke fungsi dua atau tiga variabel. Gagasan dasarnya tetap sama: bagi objek menjadi elemen-elemen kecil, rumuskan ukuran setiap elemen, lalu jumlahkan dan ambil limitnya. Yang berbeda adalah cara menghitungnya&mdash;integral lipat dihitung sebagai integral berulang, dan pemilihan sistem koordinat (Kartesius, polar, silinder, atau bola) dapat menyederhanakan perhitungan secara signifikan.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>kalkulus vektor</strong> akan memperluas konsep ini lebih lanjut ke medan vektor&mdash;yaitu fungsi yang memetakan setiap titik di ruang ke sebuah vektor. Di sana kita akan mempelajari integral garis, integral permukaan, serta teorema-teorema besar seperti teorema Green, Stokes, dan Divergensi, yang menghubungkan integral lipat dengan integral pada batasnya.</p>
+</section>
+
+</main>
+</body>
+</html>

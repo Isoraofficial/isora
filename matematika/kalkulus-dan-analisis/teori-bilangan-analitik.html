@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teori Bilangan Analitik (Fungsi Zeta, Distribusi Prima)</title>
+<meta name="description" content="Materi teori bilangan analitik: fungsi zeta Riemann, produk Euler, kelanjutan analitik, distribusi bilangan prima, Teorema Bilangan Prima, dan hipotesis Riemann.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Teori Bilangan Analitik (Fungsi Zeta, Distribusi Prima)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Analisis Kompleks</strong> &mdash; fungsi zeta didefinisikan pada bidang kompleks, dan sifat-sifatnya&mdash;kelanjutan analitik, persamaan fungsional, dan distribusi nol&mdash;memerlukan alat-alat dari analisis kompleks seperti deret Laurent, teorema residu, dan prinsip modulus maksimum.</li>
+   <li><strong>Deret</strong> &mdash; definisi dan kekonvergenan deret tak hingga, termasuk deret-p dan uji-uji kekonvergenan, menjadi dasar untuk memahami deret yang mendefinisikan fungsi zeta.</li>
+   <li><strong>Integral Tak Wajar</strong> &mdash; beberapa representasi alternatif dari fungsi zeta dan bukti-bukti dalam teori bilangan analitik menggunakan integral tak wajar, terutama integral dari fungsi bernilai kompleks.</li>
+   <li><strong>Kongruensi &amp; Modulo</strong> &mdash; pemahaman tentang bilangan prima, keterbagian, dan sifat dasar aritmetika sangat diperlukan karena seluruh teori ini bertujuan mempelajari distribusi bilangan prima.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Bilangan prima telah menarik perhatian matematikawan selama lebih dari dua ribu tahun, sejak Euclid membuktikan bahwa jumlahnya tak terhingga. Namun pertanyaan yang jauh lebih dalam&mdash;bagaimana bilangan prima terdistribusi di antara bilangan asli&mdash;baru mendapat jawaban yang memuaskan pada akhir abad ke-19, melalui alat-alat dari analisis kompleks. Cabang matematika yang mempelajari hal ini disebut <strong>teori bilangan analitik</strong>, dan tokoh sentralnya adalah fungsi <strong>zeta Riemann</strong>.</p>
+ <p class="lesson-text">Materi ini membahas fungsi zeta Riemann sebagai objek utama, produk Euler yang menghubungkannya dengan bilangan prima, kelanjutan analitiknya ke seluruh bidang kompleks, serta hubungan mendalam antara nol-nol fungsi zeta dengan distribusi bilangan prima&mdash;yang berpuncak pada Teorema Bilangan Prima dan Hipotesis Riemann, salah satu masalah terbuka paling terkenal dalam matematika.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Fungsi Zeta Riemann</h2>
+ <p class="lesson-text">Bab ini memperkenalkan fungsi zeta Riemann melalui deret tak hingga, mempelajari domain kekonvergenannya, dan menghitung beberapa nilai khususnya.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Fungsi Zeta</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi zeta Riemann $\zeta(s)$ didefinisikan untuk bilangan kompleks $s = \sigma + it$ dengan $\operatorname{Re}(s) > 1$ melalui deret:</p>
+ <p class="lesson-text">$$\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s}$$</p>
+ <p class="lesson-text">dengan $n^s = e^{s \ln n}$.</p>
+ <p class="lesson-text"><strong>Kekonvergenan.</strong> Deret ini konvergen mutlak ketika $\operatorname{Re}(s) > 1$. Untuk melihatnya, tulis $s = \sigma + it$ dengan $\sigma > 1$. Maka $|n^{-s}| = n^{-\sigma}$, dan deret $\sum n^{-\sigma}$ konvergen menurut uji deret-p. Karena deretnya konvergen mutlak, nilai $\zeta(s)$ tidak bergantung pada urutan penjumlahan&mdash;sebuah sifat yang akan sangat berguna ketika kita menurunkan produk Euler.</p>
+ <p class="lesson-text">Untuk $\operatorname{Re}(s) \leq 1$, deret $\sum n^{-s}$ divergen&mdash;tetapi kelanjutan analitik (dibahas di Bab III) akan memperluas definisi $\zeta$ ke seluruh bidang kompleks, kecuali di $s = 1$.</p>
+
+ <h3 class="lesson-subheading">B. Deret-P dan Nilai Zeta di Bilangan Bulat Positif</h3>
+ <p class="lesson-text">Jika $s$ adalah bilangan bulat positif $k$, fungsi zeta menjadi deret-p yang sudah kita kenal dari materi Deret:</p>
+ <p class="lesson-text">$$\zeta(k) = \sum_{n=1}^{\infty} \frac{1}{n^k}$$</p>
+ <p class="lesson-text">Beberapa nilai khusus yang terkenal:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>$s$</th><th>$\zeta(s)$</th><th>Penemu / Catatan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$2$</td><td>$\dfrac{\pi^2}{6} \approx 1{,}6449$</td><td>Euler (1735) &mdash; memecahkan masalah Basel</td></tr>
+   <tr><td>$3$</td><td>$\approx 1{,}2021$</td><td>Tidak memiliki bentuk tertutup elementer (konstanta Apéry)</td></tr>
+   <tr><td>$4$</td><td>$\dfrac{\pi^4}{90} \approx 1{,}0823$</td><td>Euler</td></tr>
+   <tr><td>$6$</td><td>$\dfrac{\pi^6}{945}$</td><td>Euler</td></tr>
+   <tr><td>$2n$</td><td>$\dfrac{(-1)^{n+1} B_{2n} (2\pi)^{2n}}{2(2n)!}$</td><td>Rumus umum dengan bilangan Bernoulli</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Secara umum, $\zeta(2n)$ selalu berbentuk rasional kelipatan $\pi^{2n}$, sedangkan untuk $s$ ganjil positif ($s \geq 3$), nilai $\zeta(s)$ tidak memiliki bentuk tertutup elementer yang diketahui&mdash;sebuah keanehan yang membuat fungsi zeta menjadi misterius bahkan di titik-titik yang tampaknya sederhana.</p>
+
+ <h3 class="lesson-subheading">C. Bukti Euler untuk $\zeta(2) = \pi^2/6$</h3>
+ <p class="lesson-text">Bukti asli Euler untuk $\zeta(2)$ menggunakan deret Maclaurin dari $\sin x$. Diketahui:</p>
+ <p class="lesson-text">$$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots$$</p>
+ <p class="lesson-text">Bagi kedua ruas dengan $x$, diperoleh:</p>
+ <p class="lesson-text">$$\frac{\sin x}{x} = 1 - \frac{x^2}{3!} + \frac{x^4}{5!} - \cdots$$</p>
+ <p class="lesson-text">Fungsi $\sin x / x$ memiliki akar di $x = \pm\pi, \pm 2\pi, \pm 3\pi, \ldots$. Dengan menganggap $\sin x / x$ sebagai "polinomial tak hingga" dengan akar-akar ini, Euler menuliskan faktorisasi:</p>
+ <p class="lesson-text">$$\frac{\sin x}{x} = \prod_{n=1}^{\infty}\left(1 - \frac{x^2}{n^2\pi^2}\right)$$</p>
+ <p class="lesson-text">Kembangkan produk ini dan samakan koefisien $x^2$ dengan $-1/6$ dari deret Maclaurin:</p>
+ <p class="lesson-text">$$-\sum_{n=1}^{\infty} \frac{1}{n^2\pi^2} = -\frac{1}{6}$$</p>
+ <p class="lesson-text">Sehingga:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$$</p>
+ <p class="lesson-text">Argumen ini tidak rigor menurut standar modern, tetapi Euler kemudian memberikan pembuktian yang rigor. Yang penting bagi kita: hasil $\zeta(2) = \pi^2/6$ menunjukkan bahwa fungsi zeta&mdash;yang didefinisikan melalui bilangan asli&mdash;ternyata terkait erat dengan konstanta geometris $\pi$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Produk Euler</h2>
+ <p class="lesson-text">Bab ini menyajikan hasil paling penting dari Euler yang menghubungkan fungsi zeta dengan bilangan prima&mdash;sebuah jembatan antara analisis dan aritmetika.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Produk Euler</h3>
+ <p class="lesson-text"><strong>Teorema (Produk Euler).</strong> Untuk $\operatorname{Re}(s) > 1$:</p>
+ <p class="lesson-text">$$\zeta(s) = \prod_{p \text{ prima}} \frac{1}{1 - p^{-s}} = \prod_{p \text{ prima}} \left(1 + \frac{1}{p^s} + \frac{1}{p^{2s}} + \frac{1}{p^{3s}} + \cdots\right)$$</p>
+ <p class="lesson-text">Produk diambil atas semua bilangan prima $p = 2, 3, 5, 7, 11, \ldots$</p>
+
+ <h3 class="lesson-subheading">B. Bukti Produk Euler</h3>
+ <p class="lesson-text">Buktinya elegan dan hanya menggunakan sifat dasar bilangan asli&mdash;yaitu bahwa setiap bilangan asli dapat dituliskan secara unik sebagai produk bilangan prima (Teorema Fundamental Aritmetika).</p>
+ <p class="lesson-text"><strong>Langkah 1: Kembangkan setiap faktor.</strong> Setiap faktor dapat dituliskan sebagai deret geometri:</p>
+ <p class="lesson-text">$$\frac{1}{1 - p^{-s}} = 1 + p^{-s} + p^{-2s} + p^{-3s} + \cdots$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Kalikan semua faktor.</strong> Ambil hasil kali untuk semua prima $p \leq N$:</p>
+ <p class="lesson-text">$$\prod_{p \leq N} \left(1 + p^{-s} + p^{-2s} + \cdots\right) = \sum_{n \in S_N} n^{-s}$$</p>
+ <p class="lesson-text">dengan $S_N$ adalah himpunan semua bilangan asli yang semua faktor primanya $\leq N$. Untuk setiap $n \in S_N$, suku $n^{-s}$ muncul tepat sekali&mdash;karena setiap bilangan asli memiliki dekomposisi prima yang unik.</p>
+ <p class="lesson-text"><strong>Langkah 3: Ambil limit $N \to \infty$.</strong> Ketika $N \to \infty$, himpunan $S_N$ mendekati seluruh bilangan asli. Maka:</p>
+ <p class="lesson-text">$$\lim_{N \to \infty} \prod_{p \leq N} \frac{1}{1 - p^{-s}} = \sum_{n=1}^{\infty} \frac{1}{n^s} = \zeta(s)$$</p>
+ <p class="lesson-text">$\blacksquare$</p>
+ <p class="lesson-text">Perhatikan bahwa kelengkapan argumen ini bergantung pada konvergensi mutlak dari $\zeta(s)$ untuk $\operatorname{Re}(s) > 1$&mdash;yang memungkinkan kita menukar urutan perkalian dan penjumlahan tanpa mengubah hasil.</p>
+
+ <h3 class="lesson-subheading">C. Konsekuensi Produk Euler</h3>
+ <p class="lesson-text">Produk Euler memiliki banyak konsekuensi penting. Berikut dua di antaranya yang paling terkenal.</p>
+
+ <p class="lesson-text"><strong>Konsekuensi 1: Bukti alternatif bahwa bilangan prima tak terhingga.</strong> Andaikan bilangan prima terhingga, katakan $p_1, \ldots, p_N$. Maka produk Euler menjadi hasil kali berhingga:</p>
+ <p class="lesson-text">$$\zeta(s) = \prod_{i=1}^{N} \frac{1}{1 - p_i^{-s}}$$</p>
+ <p class="lesson-text">Ruas kanan memiliki limit berhingga ketika $s \to 1^+$. Namun kita tahu bahwa deret harmonik $\zeta(1) = \sum 1/n$ divergen, sehingga $\zeta(s) \to \infty$ ketika $s \to 1^+$. Kontradiksi. Jadi bilangan prima harus tak terhingga.</p>
+ <p class="lesson-text">Bukti ini jauh berbeda dari bukti klasik Euclid, dan memperlihatkan bagaimana alat analisis dapat dipakai untuk membuktikan fakta aritmetika murni.</p>
+
+ <p class="lesson-text"><strong>Konsekuensi 2: Perilaku asimtotik jumlah timbal balik prima.</strong> Dengan menganalisis logaritma produk Euler, dapat diturunkan bahwa:</p>
+ <p class="lesson-text">$$\sum_{p \leq x} \frac{1}{p} \sim \ln \ln x$$</p>
+ <p class="lesson-text">Deret timbal balik bilangan prima <em>divergen</em>&mdash;tetapi sangat lambat, yaitu seperti $\ln \ln x$. Kontras dengan deret timbal balik bilangan asli ($\sum 1/n \sim \ln x$) memperlihatkan bahwa bilangan prima "jauh lebih jarang" daripada bilangan asli secara keseluruhan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Kelanjutan Analitik dan Persamaan Fungsional</h2>
+ <p class="lesson-text">Deret $\sum n^{-s}$ hanya konvergen untuk $\operatorname{Re}(s) > 1$. Namun fungsi zeta ternyata dapat diperluas ke hampir seluruh bidang kompleks melalui <strong>kelanjutan analitik</strong>.</p>
+
+ <h3 class="lesson-subheading">A. Kelanjutan Analitik</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ analitik pada domain terbuka $\Omega_1$. <strong>Kelanjutan analitik</strong> dari $f$ ke domain $\Omega_2 \supset \Omega_1$ adalah fungsi analitik $F$ pada $\Omega_2$ sedemikian sehingga $F = f$ pada $\Omega_1$.</p>
+ <p class="lesson-text"><strong>Teorema (Ketunggalan kelanjutan analitik).</strong> Jika kelanjutan analitik ada, ia tunggal.</p>
+ <p class="lesson-text">Sifat ketunggalan inilah yang memungkinkan kita membicarakan "fungsi zeta" sebagai objek tunggal di seluruh bidang kompleks&mdash;bukan sebagai sekumpulan definisi yang berbeda-beda di setiap domain.</p>
+
+ <p class="lesson-text"><strong>Bagaimana kelanjutan analitik $\zeta$ diperoleh.</strong> Ada beberapa cara. Salah satunya menggunakan representasi alternatif:</p>
+ <p class="lesson-text">$$\zeta(s) = \frac{1}{s - 1} + 1 - s\int_1^{\infty} \frac{\{x\}}{x^{s+1}}\, dx$$</p>
+ <p class="lesson-text">dengan $\{x\}$ menyatakan bagian pecahan dari $x$. Integral di ruas kanan konvergen untuk $\operatorname{Re}(s) > 0$, sehingga rumus ini memperluas definisi $\zeta$ ke setengah bidang $\operatorname{Re}(s) > 0$. Dengan metode yang lebih canggih, kelanjutan diperluas ke seluruh bidang kompleks, kecuali di $s = 1$ di mana $\zeta$ memiliki pole orde 1 dengan residu $1$.</p>
+
+ <p class="lesson-text"><strong>Nilai zeta pada bilangan bulat negatif.</strong> Kelanjutan analitik memberi nilai-nilai yang mengejutkan:</p>
+ <ul>
+  <li>$\zeta(0) = -\dfrac{1}{2}$.</li>
+  <li>$\zeta(-1) = -\dfrac{1}{12}$&mdash;nilai yang muncul dalam konteks "jumlah Ramanujan" $1 + 2 + 3 + 4 + \cdots = -\dfrac{1}{12}$ (dalam arti yang sangat khusus).</li>
+  <li>$\zeta(-2n) = 0$ untuk setiap $n = 1, 2, 3, \ldots$&mdash;disebut <strong>nol trivial</strong>.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Persamaan Fungsional</h3>
+ <p class="lesson-text">Salah satu hasil paling mendalam tentang fungsi zeta adalah <strong>persamaan fungsional</strong> yang menghubungkan nilai $\zeta(s)$ dengan $\zeta(1-s)$.</p>
+ <p class="lesson-text"><strong>Teorema (Persamaan Fungsional).</strong> Untuk setiap $s \in \mathbb{C}$:</p>
+ <p class="lesson-text">$$\zeta(s) = 2^s \pi^{s-1} \sin\left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$$</p>
+ <p class="lesson-text">dengan $\Gamma$ adalah fungsi gamma.</p>
+ <p class="lesson-text">Persamaan ini menunjukkan bahwa fungsi zeta memiliki simetri sempurna terhadap garis $\operatorname{Re}(s) = 1/2$. Jika kita mengetahui nilai $\zeta$ pada setengah bidang kanan, kita dapat memperoleh nilai di setengah bidang kiri&mdash;dan sebaliknya.</p>
+ <p class="lesson-text">Persamaan ini dibuktikan oleh Riemann pada tahun 1859 dalam makalahnya yang terkenal, "Über die Anzahl der Primzahlen unter einer gegebenen Größe" (<em>On the Number of Primes Less Than a Given Magnitude</em>)&mdash;sebuah makalah delapan halaman yang mengubah wajah teori bilangan selamanya.</p>
+ <p class="lesson-text">Bentuk simetris dari persamaan fungsional diperoleh dengan mendefinisikan <strong>fungsi zeta lengkap</strong>:</p>
+ <p class="lesson-text">$$\xi(s) = \frac{1}{2}s(s-1)\pi^{-s/2}\Gamma\left(\frac{s}{2}\right)\zeta(s)$$</p>
+ <p class="lesson-text">Dengan definisi ini, persamaan fungsional menjadi sangat sederhana:</p>
+ <p class="lesson-text">$$\xi(s) = \xi(1-s)$$</p>
+ <p class="lesson-text">Simetri $\xi(s) = \xi(1-s)$ terhadap garis $\operatorname{Re}(s) = 1/2$ inilah yang menjadikan garis tersebut&mdash;<strong>garis kritis</strong>&mdash;sebagai pusat perhatian dalam teori zeta.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Distribusi Bilangan Prima</h2>
+ <p class="lesson-text">Bab ini menghubungkan fungsi zeta dengan pertanyaan sentral teori bilangan: bagaimana bilangan prima terdistribusi di antara bilangan asli?</p>
+
+ <h3 class="lesson-subheading">A. Fungsi Penghitung Prima</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi penghitung prima $\pi(x)$ menyatakan jumlah bilangan prima yang tidak melebihi $x$:</p>
+ <p class="lesson-text">$$\pi(x) = \#\{p \text{ prima} : p \leq x\}$$</p>
+ <p class="lesson-text">Beberapa nilai konkret:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>$x$</th><th>$\pi(x)$</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$10$</td><td>$4$ (2, 3, 5, 7)</td></tr>
+   <tr><td>$100$</td><td>$25$</td></tr>
+   <tr><td>$1.000$</td><td>$168$</td></tr>
+   <tr><td>$10^6$</td><td>$78.498$</td></tr>
+   <tr><td>$10^9$</td><td>$50.847.534$</td></tr>
+   <tr><td>$10^{12}$</td><td>$37.607.912.018$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Pertanyaan pokok: bagaimana $\pi(x)$ berperilaku ketika $x$ menjadi besar?</p>
+
+ <h3 class="lesson-subheading">B. Konjektur Gauss dan Legendre</h3>
+ <p class="lesson-text">Pada akhir abad ke-18, Gauss (saat masih remaja) mengamati bahwa $\pi(x)$ tampak "dekat dengan" $x/\ln x$. Legendre mengusulkan pendekatan yang serupa. Hipotesis mereka&mdash;yang disebut <strong>Teorema Bilangan Prima</strong>&mdash;menyatakan:</p>
+ <p class="lesson-text">$$\pi(x) \sim \frac{x}{\ln x}$$</p>
+ <p class="lesson-text">dengan notasi $\sim$ berarti bahwa rasio kedua ekspresi menuju $1$ ketika $x \to \infty$. Ini bukan berarti $\pi(x) - x/\ln x$ menuju nol, tetapi bahwa perbedaannya relatif kecil dibandingkan dengan $x/\ln x$ sendiri.</p>
+ <p class="lesson-text"><strong>Verifikasi numerik kasar.</strong> Untuk $x = 10^9$:</p>
+ <ul>
+  <li>$\pi(10^9) = 50.847.534$.</li>
+  <li>$x/\ln x = 10^9 / \ln(10^9) = 10^9 / 20{,}7 \approx 48.254.942$.</li>
+ </ul>
+ <p class="lesson-text">Rasionya adalah $50.847.534 / 48.254.942 \approx 1{,}054$&mdash;cukup dekat dengan $1$, sesuai dengan PNT.</p>
+
+ <h3 class="lesson-subheading">C. Hubungan Zeta dengan Bilangan Prima</h3>
+ <p class="lesson-text">Bagaimana fungsi zeta berhubungan dengan $\pi(x)$? Hubungannya melalui <strong>fungsi Chebyshev</strong>.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi Chebyshev kedua didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\psi(x) = \sum_{p^k \leq x} \ln p$$</p>
+ <p class="lesson-text">dengan penjumlahan atas semua pangkat bilangan prima $p^k$ yang tidak melebihi $x$.</p>
+ <p class="lesson-text">Fungsi $\psi(x)$ lebih mudah dianalisis daripada $\pi(x)$, karena berbobot dengan $\ln p$. Hubungannya dengan $\pi(x)$ cukup erat: dapat dibuktikan bahwa $\pi(x) \sim x/\ln x$ jika dan hanya jika $\psi(x) \sim x$. Karena itu, kita dapat memfokuskan perhatian pada $\psi(x)$.</p>
+
+ <h3 class="lesson-subheading">D. Rumus Eksplisit von Mangoldt</h3>
+ <p class="lesson-text">Salah satu hasil paling mendalam dalam teori bilangan analitik adalah <strong>rumus eksplisit</strong> yang menghubungkan $\psi(x)$ dengan nol-nol fungsi zeta.</p>
+ <p class="lesson-text"><strong>Teorema (Rumus Eksplisit).</strong> Untuk $x > 1$:</p>
+ <p class="lesson-text">$$\psi(x) = x - \sum_{\rho} \frac{x^{\rho}}{\rho} - \ln(2\pi) - \frac{1}{2}\ln\left(1 - \frac{1}{x^2}\right)$$</p>
+ <p class="lesson-text">dengan $\rho$ berkisar pada semua <strong>nol nontrivial</strong> dari $\zeta(s)$&mdash;yaitu nol-nol yang bukan bilangan bulat negatif genap.</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Rumus ini menyatakan bahwa fungsi $\psi(x)$ dapat dituliskan sebagai $x$ (suku utama) ditambah koreksi-koreksi dari setiap nol nontrivial&mdash;ditambah kontribusi dari nol trivial dan pole. Dengan kata lain, <em>setiap nol fungsi zeta memberikan kontribusi terhadap fluktuasi distribusi bilangan prima</em>.</p>
+ <p class="lesson-text">Dari rumus ini, Teorema Bilangan Prima langsung mengikuti&mdash;asalkan kita dapat menunjukkan bahwa suku-suku koreksi $\sum_\rho x^\rho/\rho$ lebih kecil dari $x$. Hal ini memerlukan pengetahuan tentang letak nol-nol fungsi zeta.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Bidang kompleks fungsi zeta dan garis kritis</text>
+
+  <line x1="80" y1="200" x2="580" y2="200" stroke="#e8e8e8" stroke-width="1"/>
+  <polygon points="582,200 572,195 572,205" fill="#e8e8e8"/>
+  <text x="586" y="204" font-size="12" fill="#b8b8b8" font-style="italic">Re(s)</text>
+  <line x1="170" y1="340" x2="170" y2="60" stroke="#e8e8e8" stroke-width="1"/>
+  <polygon points="170,57 165,67 175,67" fill="#e8e8e8"/>
+  <text x="176" y="56" font-size="12" fill="#b8b8b8" font-style="italic">Im(s)</text>
+
+  <line x1="240" y1="60" x2="240" y2="340" stroke="#daa520" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="244" y="70" font-size="11" fill="#daa520" font-style="italic">Re(s) = 0</text>
+
+  <line x1="400" y1="60" x2="400" y2="340" stroke="#daa520" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="404" y="70" font-size="11" fill="#daa520" font-style="italic">Re(s) = 1</text>
+
+  <line x1="320" y1="60" x2="320" y2="340" stroke="#22d3ee" stroke-width="2"/>
+  <text x="324" y="70" font-size="11" fill="#22d3ee" font-style="italic">Re(s) = 1/2</text>
+
+  <text x="320" y="58" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">garis kritis</text>
+
+  <rect x="240" y="60" width="160" height="280" fill="#5dade2" fill-opacity="0.08"/>
+  <text x="320" y="380" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">strip kritis: 0 &lt; Re(s) &lt; 1</text>
+
+  <circle cx="180" cy="100" r="4" fill="#b8b8b8"/>
+  <circle cx="180" cy="160" r="4" fill="#b8b8b8"/>
+  <circle cx="180" cy="240" r="4" fill="#b8b8b8"/>
+  <circle cx="180" cy="300" r="4" fill="#b8b8b8"/>
+  <text x="166" y="100" font-size="10" fill="#b8b8b8" text-anchor="end" font-style="italic">trivial</text>
+
+  <circle cx="320" cy="100" r="4" fill="#daa520"/>
+  <circle cx="320" cy="140" r="4" fill="#daa520"/>
+  <circle cx="320" cy="180" r="4" fill="#daa520"/>
+  <circle cx="320" cy="220" r="4" fill="#daa520"/>
+  <circle cx="320" cy="260" r="4" fill="#daa520"/>
+  <circle cx="320" cy="300" r="4" fill="#daa520"/>
+
+  <text x="330" y="330" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">nol nontrivial</text>
+  <text x="330" y="345" font-size="10" fill="#b8b8b8" text-anchor="middle" font-style="italic">(hipotesis: semua di garis kritis)</text>
+
+  <circle cx="400" cy="200" r="5" fill="#f0c75e" stroke="#e8e8e8" stroke-width="1.2" />
+  <text x="408" y="204" font-size="10" fill="#f0c75e" font-style="italic">pole di s = 1</text>
+ </svg>
+ <figcaption class="visual-caption">Struktur nol dan pole fungsi zeta Riemann. Nol trivial berada di bilangan bulat negatif genap ($s = -2, -4, -6, \ldots$). Nol nontrivial berada di strip kritis $0 < \operatorname{Re}(s) < 1$. Hipotesis Riemann menyatakan bahwa semua nol nontrivial berada tepat di garis kritis $\operatorname{Re}(s) = 1/2$. Pole tunggal $\zeta$ berada di $s = 1$.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Teorema Bilangan Prima</h2>
+ <p class="lesson-text">Bab ini menyajikan Teorema Bilangan Prima&mdash;puncak dari teori bilangan analitik klasik&mdash;serta sketsa pembuktiannya.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema Bilangan Prima</h3>
+ <p class="lesson-text"><strong>Teorema (PNT).</strong> Fungsi penghitung prima $\pi(x)$ memenuhi:</p>
+ <p class="lesson-text">$$\lim_{x \to \infty} \frac{\pi(x)}{x/\ln x} = 1$$</p>
+ <p class="lesson-text">Dengan kata lain, $\pi(x) \sim \dfrac{x}{\ln x}$.</p>
+ <p class="lesson-text">Teorema ini dibuktikan secara independen oleh Jacques Hadamard dan Charles Jean de la Vallée Poussin pada tahun 1896, dengan menggunakan analisis kompleks&mdash;setelah sekitar satu abad menjadi konjektur yang diusulkan Gauss dan Legendre.</p>
+
+ <h3 class="lesson-subheading">B. Sketsa Pembuktian</h3>
+ <p class="lesson-text">Pembuktian penuh PNT berada di luar cakupan materi ini, tetapi gagasan utamanya dapat dijelaskan sebagai berikut:</p>
+ <p class="lesson-text"><strong>Langkah 1.</strong> Gunakan hubungan antara $\pi(x)$ dan fungsi Chebyshev $\psi(x)$: $\pi(x) \sim x/\ln x$ jika dan hanya jika $\psi(x) \sim x$.</p>
+ <p class="lesson-text"><strong>Langkah 2.</strong> Gunakan rumus eksplisit von Mangoldt:</p>
+ <p class="lesson-text">$$\psi(x) = x - \sum_\rho \frac{x^\rho}{\rho} - \ln(2\pi) + \cdots$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Tunjukkan jumlah koreksi lebih kecil dari $x$.</strong> Untuk setiap nol nontrivial $\rho = \beta + i\gamma$, suku $x^\rho/\rho$ memiliki modulus $|x^\rho|/|\rho| = x^\beta/|\rho|$. Jika $\beta < 1$, maka $x^\beta$ tumbuh lebih lambat daripada $x$, sehingga kontribusinya relatif kecil.</p>
+ <p class="lesson-text"><strong>Langkah 4: Tunjukkan $\zeta(s) \neq 0$ pada garis $\operatorname{Re}(s) = 1$.</strong> Ini adalah inti teknis dari pembuktian PNT. Pada tahun 1896, Hadamard dan de la Vallée Poussin masing-masing membuktikan bahwa $\zeta(1 + it) \neq 0$ untuk setiap $t \in \mathbb{R}$. Dari sifat ini, mereka dapat menyimpulkan bahwa semua nol nontrivial memiliki bagian riil $\beta < 1$, sehingga suku koreksi memang lebih kecil dari $x$.</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Dari uraian di atas, $\psi(x) \sim x$, dan karenanya $\pi(x) \sim x/\ln x$. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">C. Bentuk yang Lebih Akurat</h3>
+ <p class="lesson-text">Pendekatan $\pi(x) \sim x/\ln x$ dapat diperbaiki dengan menggunakan <strong>integral logaritma</strong>:</p>
+ <p class="lesson-text">$$\operatorname{Li}(x) = \int_2^x \frac{dt}{\ln t}$$</p>
+ <p class="lesson-text">Dapat ditunjukkan bahwa $\operatorname{Li}(x) \sim x/\ln x$, tetapi $\operatorname{Li}(x)$ memberi pendekatan yang jauh lebih akurat untuk $\pi(x)$&mdash;terutama untuk nilai $x$ moderat. Sebagai contoh, untuk $x = 10^9$:</p>
+ <ul>
+  <li>$\pi(10^9) = 50.847.534$.</li>
+  <li>$x/\ln x \approx 48.254.942$ (error sekitar $2,6$ juta).</li>
+  <li>$\operatorname{Li}(10^9) \approx 50.849.235$ (error sekitar $1.700$).</li>
+ </ul>
+ <p class="lesson-text">Jauh lebih akurat. Namun baik $x/\ln x$ maupun $\operatorname{Li}(x)$ secara asimtotik ekuivalen&mdash;perbedaannya hanya pada tingkat koreksi berikutnya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Hipotesis Riemann dan Zeros</h2>
+ <p class="lesson-text">Bab ini membahas hubungan antara letak nol fungsi zeta dan distribusi bilangan prima&mdash;serta Hipotesis Riemann, masalah terbuka paling terkenal dalam matematika.</p>
+
+ <h3 class="lesson-subheading">A. Nol Fungsi Zeta</h3>
+ <p class="lesson-text">Fungsi zeta memiliki dua jenis nol:</p>
+ <ul>
+  <li><strong>Nol trivial:</strong> $\zeta(-2n) = 0$ untuk setiap $n \geq 1$. Nama "trivial" diberikan karena mudah dibuktikan keberadaannya&mdash;mereka muncul langsung dari faktor $\sin(\pi s/2)$ dalam persamaan fungsional.</li>
+  <li><strong>Nol nontrivial:</strong> nol-nol lain dari $\zeta(s)$. Dari persamaan fungsional dan fakta bahwa $\zeta(s) \neq 0$ untuk $\operatorname{Re}(s) \geq 1$, dapat disimpulkan bahwa semua nol nontrivial berada di <strong>strip kritis</strong> $0 < \operatorname{Re}(s) < 1$.</li>
+ </ul>
+ <p class="lesson-text">Karena persamaan fungsional $\xi(s) = \xi(1-s)$ simetris terhadap garis $\operatorname{Re}(s) = 1/2$, nol-nol nontrivial juga simetris terhadap garis ini. Setiap nol $\rho$ memiliki pasangan $1 - \rho$ yang juga merupakan nol.</p>
+
+ <h3 class="lesson-subheading">B. Hipotesis Riemann</h3>
+ <p class="lesson-text"><strong>Hipotesis Riemann (RH).</strong> Semua nol nontrivial dari fungsi zeta Riemann memiliki bagian riil $\operatorname{Re}(s) = \dfrac{1}{2}$.</p>
+ <p class="lesson-text">Dirumuskan oleh Bernhard Riemann pada tahun 1859, hipotesis ini masih belum terbukti hingga hari ini&mdash;dan menjadi salah satu dari tujuh <strong>Masalah Milenium</strong> yang disorot oleh Clay Mathematics Institute, dengan hadiah $1 juta untuk pembuktiannya.</p>
+
+ <p class="lesson-text"><strong>Verifikasi numerik.</strong> Lebih dari $10^{13}$ nol pertama fungsi zeta telah diverifikasi memenuhi hipotesis. Nol nontrivial pertama berada di sekitar $s = 1/2 \pm 14{,}1347i$. Namun verifikasi untuk berhingga banyak nol tidak membuktikan hipotesis untuk <em>semua</em> nol&mdash;seperti halnya menguji bahwa banyak bilangan prima adalah ganjil tidak membuktikan bahwa semua bilangan prima ganjil.</p>
+
+ <h3 class="lesson-subheading">C. Konsekuensi Hipotesis Riemann</h3>
+ <p class="lesson-text">Jika hipotesis Riemann benar, maka:</p>
+ <ul>
+  <li><strong>Error PNT berkurang drastis.</strong> Tanpa RH, kita hanya tahu bahwa:</li>
+ </ul>
+ <p class="lesson-text">$$\pi(x) = \operatorname{Li}(x) + O\left(x e^{-c\sqrt{\ln x}}\right)$$</p>
+ <p class="lesson-text">Dengan RH, batas errornya menjadi jauh lebih ketat:</p>
+ <p class="lesson-text">$$\pi(x) = \operatorname{Li}(x) + O\left(\sqrt{x} \ln x\right)$$</p>
+ <p class="lesson-text">Ini bukan hanya perbaikan kosmetik&mdash;penurunan orde error dari subeksponensial menjadi $O(\sqrt{x})$ adalah perubahan kualitatif yang signifikan.</p>
+ <ul>
+  <li><strong>Kriptografi.</strong> Banyak algoritma kriptografi (termasuk RSA) bertumpu pada sulitnya memfaktorkan bilangan besar. RH memiliki implikasi tentang distribusi bilangan prima yang, jika benar, dapat memperbaiki algoritma uji primalitas seperti Miller-Rabin.</li>
+  <li><strong>Pertanyaan-pertanyaan lain dalam teori bilangan.</strong> Banyak hasil kondisional dalam teori bilangan dan geometri aritmetika bergantung pada kebenaran RH.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Mengapa Hipotesis Riemann Sulit</h3>
+ <p class="lesson-text">Hipotesis Riemann sangat sulit dibuktikan karena kita memiliki sedikit pemahaman tentang <em>mengapa</em> nol-nol fungsi zeta harus berada di garis kritis. Yang kita tahu:</p>
+ <ul>
+  <li>Nol-nol tersebut harus berada di strip kritis (dari analisis fungsi zeta pada garis $\operatorname{Re}(s) = 1$).</li>
+  <li>Nol-nol tersebut simetris terhadap garis $\operatorname{Re}(s) = 1/2$.</li>
+  <li>Ada tak berhingga banyak nol nontrivial, dan proporsi yang cukup besar terletak di garis kritis.</li>
+ </ul>
+ <p class="lesson-text">Yang belum kita ketahui adalah argumen mendalam yang akan memaksa <em>semua</em> nol berada tepat di garis kritis. Sebagian matematikawan menduga bahwa pembuktian RH&mdash;jika ditemukan&mdash;akan memerlukan alat-alat baru yang sangat berbeda dari yang ada saat ini, mungkin terkait dengan teori operator, geometri nonkomutatif, atau bidang matematika yang belum ditemukan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan konsep-konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menghitung Nilai Zeta dengan Produk Euler</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Gunakan produk Euler untuk menunjukkan bahwa $\zeta(s) > 0$ untuk semua $s > 1$ real.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Dari produk Euler, $\zeta(s) = \prod_p (1 - p^{-s})^{-1}$. Karena $s > 1$ dan $p \geq 2$, berlaku $0 < p^{-s} < 1$, sehingga $1 - p^{-s} > 0$ dan $(1 - p^{-s})^{-1} > 0$. Setiap faktor positif, dan produk tak hingga dari bilangan positif adalah positif. Jadi $\zeta(s) > 0$ untuk semua $s > 1$ real. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">B. Menggunakan Persamaan Fungsional</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\zeta(-1)$ menggunakan persamaan fungsional dan fakta bahwa $\zeta(2) = \pi^2/6$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Persamaan fungsional: $\zeta(s) = 2^s \pi^{s-1} \sin(\pi s/2) \Gamma(1-s) \zeta(1-s)$.</p>
+ <p class="lesson-text">Substitusi $s = -1$:</p>
+ <p class="lesson-text">$$\zeta(-1) = 2^{-1} \pi^{-2} \sin\left(-\frac{\pi}{2}\right) \Gamma(2) \zeta(2)$$</p>
+ <p class="lesson-text">Gunakan nilai-nilai: $2^{-1} = 1/2$, $\pi^{-2} = 1/\pi^2$, $\sin(-\pi/2) = -1$, $\Gamma(2) = 1! = 1$, dan $\zeta(2) = \pi^2/6$. Maka:</p>
+ <p class="lesson-text">$$\zeta(-1) = \frac{1}{2} \cdot \frac{1}{\pi^2} \cdot (-1) \cdot 1 \cdot \frac{\pi^2}{6} = -\frac{1}{12}$$</p>
+ <p class="lesson-text">Hasil ini sesuai dengan nilai yang sudah kita ketahui. Perhatikan bagaimana persamaan fungsional memungkinkan kita memperoleh nilai $\zeta$ di bilangan bulat negatif dari nilai di bilangan bulat positif&mdash;sesuatu yang tidak mungkin dilakukan dengan definisi deret asli.</p>
+
+ <h3 class="lesson-subheading">C. Estimasi Bilangan Prima Besar</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Gunakan Teorema Bilangan Prima untuk memperkirakan banyaknya bilangan prima yang kurang dari $10^{20}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> PNT: $\pi(x) \sim x/\ln x$. Maka:</p>
+ <p class="lesson-text">$$\pi(10^{20}) \approx \frac{10^{20}}{\ln(10^{20})} = \frac{10^{20}}{20 \ln 10} \approx \frac{10^{20}}{20 \cdot 2{,}3026} \approx \frac{10^{20}}{46{,}05} \approx 2{,}17 \times 10^{18}$$</p>
+ <p class="lesson-text">Perkiraan yang lebih akurat menggunakan $\operatorname{Li}(x)$ memberi nilai sekitar $2{,}22 \times 10^{18}$. Perbedaan sekitar $2\%$ merupakan ciri khas pendekatan asimtotik pada nilai $x$ yang besar.</p>
+
+ <h3 class="lesson-subheading">D. Penerapan: Kriptografi dan Uji Primalitas</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam kriptografi RSA, dibutuhkan bilangan prima besar dengan ratusan digit. Uji primalitas yang efisien sangat penting. Salah satu uji yang paling banyak dipakai adalah <strong>uji Miller-Rabin</strong>.</p>
+ <p class="lesson-text">Uji Miller-Rabin bekerja dengan prinsip: jika $n$ komposit, maka setidaknya $3/4$ dari bilangan $a \in \{2, 3, \ldots, n-1\}$ akan menjadi <em>saksi</em> bahwa $n$ komposit. Dengan melakukan beberapa putaran pengujian, probabilitas kesalahan dapat ditekan menjadi sangat kecil.</p>
+ <p class="lesson-text">Distribusi bilangan prima memainkan peran penting dalam algoritma ini: kita perlu memastikan bahwa bilangan prima cukup "padat" di antara bilangan besar agar kita dapat menemukannya dengan pencarian acak. PNT memberi kita jaminan ini&mdash;peluang menemukan bilangan prima di sekitar $x$ adalah sekitar $1/\ln x$, sehingga untuk bilangan dengan $1000$ digit ($x \approx 10^{1000}$), kita perlu memeriksa sekitar $2300$ bilangan acak sebelum menemukan bilangan prima.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Teori bilangan analitik bukan hanya cabang matematika abstrak&mdash;ia memiliki aplikasi konkret dalam keamanan digital modern. Fakta-fakta tentang distribusi bilangan prima yang dipelajari melalui fungsi zeta menjadi jaminan matematis bagi algoritma-algoritma yang melindungi komunikasi digital, transaksi keuangan, dan infrastruktur kritis.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Penerapan: Mengapa Bilangan Prima Terdistribusi Seperti Ini?</h3>
+ <p class="lesson-text"><strong>Pertanyaan mendalam.</strong> Mengapa bilangan prima terdistribusi mengikuti pola $x/\ln x$? Tidak ada alasan a priori mengapa bilangan prima harus memiliki kepadatan yang menurun secara logaritmis. Namun dari sudut pandang fungsi zeta, distribusi ini muncul sebagai konsekuensi dari struktur analitik fungsi zeta di sekitar pole $s = 1$.</p>
+ <p class="lesson-text"><strong>Gagasan intuitif.</strong> Bayangkan kita ingin "memfilter" bilangan asli untuk mendapatkan bilangan prima. Produk Euler memberi formula eksplisit untuk filter ini: setiap faktor $(1 - p^{-s})^{-1}$ "menghapus" kelipatan dari prima $p$. Perilaku fungsi zeta di sekitar $s = 1$&mdash;di mana ia memiliki pole&mdash;menentukan tingkat pertumbuhan "filter" ini, yang pada akhirnya menentukan kepadatan bilangan prima.</p>
+ <p class="lesson-text">Analogi: bilangan prima adalah "atom" dari bilangan asli, dan fungsi zeta adalah "spektroskop" yang mengungkap struktur mereka. Setiap nol dari $\zeta$ mewakili "frekuensi" dari fluktuasi dalam distribusi prima&mdash;seperti nada-nada berbeda yang membentuk harmoni. Hipotesis Riemann menyatakan bahwa semua nada ini berada tepat di garis kritis, yang berarti fluktuasi teratur dan tidak membesar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Fungsi Zeta</h3>
+ <ul>
+  <li><strong>Menganggap $\zeta(s)$ hanya terdefinisi untuk $s > 1$.</strong> Deret aslinya memang hanya konvergen untuk $\operatorname{Re}(s) > 1$, tetapi melalui kelanjutan analitik, $\zeta(s)$ terdefinisi di seluruh bidang kompleks kecuali di $s = 1$.</li>
+  <li><strong>Menganggap $\sum n = -1/12$ secara literal.</strong> Hubungan $\zeta(-1) = -1/12$ sering disalahartikan sebagai "jumlah dari $1 + 2 + 3 + 4 + \cdots = -1/12$". Ini bukan jumlah dalam arti biasa&mdash;deretnya divergen. Nilai $-1/12$ adalah nilai <em>kelanjutan analitik</em> dari fungsi zeta di titik $s = -1$, yang muncul dalam konteks tertentu dalam fisika teoretis tetapi bukan sebagai "jumlah" dalam arti konvensional.</li>
+  <li><strong>Menganggap $\zeta(0) = 1$.</strong> Meskipun deret $\sum 1/n^0 = \sum 1$ divergen, kelanjutan analitik memberi $\zeta(0) = -1/2$.</li>
+  <li><strong>Menganggap pole di $s = 1$ adalah nol.</strong> Di $s = 1$, fungsi zeta memiliki <em>pole</em> (menuju tak hingga), bukan nol. Residunya di titik ini adalah $1$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Produk Euler</h3>
+ <ul>
+  <li><strong>Menggunakan produk Euler di luar domain kekonvergenan.</strong> Produk Euler $\prod_p (1 - p^{-s})^{-1}$ hanya konvergen untuk $\operatorname{Re}(s) > 1$. Di luar domain ini, produk divergen dan tidak dapat digunakan secara langsung.</li>
+  <li><strong>Menganggap produk Euler adalah hasil kali berhingga.</strong> Karena ada tak berhingga banyak bilangan prima, produknya juga tak berhingga. Konvergensinya memerlukan analisis yang teliti.</li>
+  <li><strong>Menukar urutan operasi tanpa justifikasi.</strong> Penukaran urutan perkalian dan penjumlahan dalam menurunkan produk Euler bergantung pada konvergensi mutlak. Tanpa konvergensi mutlak, penukaran semacam ini bisa gagal.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Distribusi Prima</h3>
+ <ul>
+  <li><strong>Menganggap PNT berarti $\pi(x) = x/\ln x$.</strong> PNT menyatakan bahwa $\pi(x) \sim x/\ln x$&mdash;yaitu rasio keduanya menuju $1$. Selisih $\pi(x) - x/\ln x$ tetap menuju tak hingga, hanya saja tumbuh lebih lambat daripada $x/\ln x$.</li>
+  <li><strong>Menganggap PNT adalah hasil yang sudah lama diketahui.</strong> PNT baru dibuktikan pada tahun 1896&mdash;lebih dari satu abad setelah dikonjekturkan oleh Gauss. Ini adalah salah satu hasil paling penting dalam matematika abad ke-19.</li>
+  <li><strong>Menganggap RH sudah terbukti.</strong> Meskipun telah diverifikasi untuk nol-nol pertama, Hipotesis Riemann masih merupakan masalah terbuka. Klaim populer tentang "bukti RH" dari berbagai sumber biasanya mengandung kesalahan yang belum terdeteksi.</li>
+  <li><strong>Menganggap nol trivial berada di garis kritis.</strong> Nol trivial berada di bilangan bulat negatif genap ($-2, -4, -6, \ldots$), sedangkan garis kritis adalah $\operatorname{Re}(s) = 1/2$. Keduanya berbeda.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IX. Ringkasan</h2>
+ <ul>
+  <li><strong>Fungsi zeta Riemann:</strong> $\zeta(s) = \sum_{n=1}^{\infty} n^{-s}$ untuk $\operatorname{Re}(s) > 1$.</li>
+  <li><strong>Nilai khusus:</strong> $\zeta(2) = \pi^2/6$, $\zeta(4) = \pi^4/90$, $\zeta(2n)$ berbentuk rasional kelipatan $\pi^{2n}$.</li>
+  <li><strong>Produk Euler:</strong> $\zeta(s) = \prod_{p \text{ prima}} (1 - p^{-s})^{-1}$ untuk $\operatorname{Re}(s) > 1$. Menghubungkan fungsi zeta dengan bilangan prima.</li>
+  <li><strong>Bukti bilangan prima tak terhingga:</strong> jika prima terhingga, produk Euler akan bernilai berhingga di $s = 1$, kontradiksi dengan divergensi deret harmonik.</li>
+  <li><strong>Kelanjutan analitik:</strong> $\zeta$ diperluas ke seluruh bidang kompleks melalui kelanjutan analitik, kecuali pole orde 1 di $s = 1$ dengan residu 1.</li>
+  <li><strong>Nilai khusus:</strong> $\zeta(0) = -1/2$, $\zeta(-1) = -1/12$, $\zeta(-2n) = 0$ (nol trivial).</li>
+  <li><strong>Persamaan fungsional:</strong> $\zeta(s) = 2^s \pi^{s-1} \sin(\pi s/2) \Gamma(1-s) \zeta(1-s)$, dengan bentuk simetris $\xi(s) = \xi(1-s)$.</li>
+  <li><strong>Fungsi penghitung prima:</strong> $\pi(x) = \#\{p \leq x : p \text{ prima}\}$.</li>
+  <li><strong>Fungsi Chebyshev:</strong> $\psi(x) = \sum_{p^k \leq x} \ln p$.</li>
+  <li><strong>Rumus eksplisit von Mangoldt:</strong> $\psi(x) = x - \sum_\rho x^\rho/\rho - \ln(2\pi) - \cdots$, dengan penjumlahan atas nol nontrivial.</li>
+  <li><strong>Teorema Bilangan Prima:</strong> $\pi(x) \sim x/\ln x$, dibuktikan oleh Hadamard dan de la Vallée Poussin (1896).</li>
+  <li><strong>Nol fungsi zeta:</strong> nol trivial di $-2, -4, -6, \ldots$; nol nontrivial di strip kritis $0 < \operatorname{Re}(s) < 1$.</li>
+  <li><strong>Hipotesis Riemann:</strong> semua nol nontrivial berada di garis kritis $\operatorname{Re}(s) = 1/2$. Masih belum terbukti hingga hari ini.</li>
+  <li><strong>Konsekuensi RH:</strong> error PNT turun dari $O(x e^{-c\sqrt{\ln x}})$ menjadi $O(\sqrt{x} \ln x)$.</li>
+  <li><strong>Penerapan:</strong> kriptografi (uji primalitas), analisis algoritma, dan pemahaman mendasar tentang struktur bilangan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Teori bilangan analitik menunjukkan bahwa analisis kompleks dan aritmetika&mdash;dua cabang matematika yang tampak sangat jauh&mdash;ternyata terhubung secara mendalam. Fungsi zeta Riemann, yang lahir dari deret sederhana $\sum n^{-s}$, ternyata menyimpan informasi lengkap tentang distribusi bilangan prima. Produk Euler menghubungkannya dengan bilangan prima, persamaan fungsional mengungkap simetri tersembunyi, dan nol-nolnya mengatur fluktuasi dalam distribusi tersebut.</p>
+ <p class="lesson-text">Hipotesis Riemann&mdash;yang menyatakan bahwa semua nol nontrivial berada di garis kritis&mdash;tetap menjadi salah satu masalah terbuka paling penting dalam matematika, dengan implikasi yang melampaui teori bilangan itu sendiri. Materi berikutnya tentang <strong>Persamaan Diferensial Biasa</strong> dan <strong>Persamaan Diferensial Parsial</strong> akan mengalihkan fokus kita ke pemodelan perubahan dalam sistem dinamis, menggunakan alat-alat dari kalkulus dan analisis yang telah kita bangun.</p>
+</section>
+
+</main>
+</body>
+</html>

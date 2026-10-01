@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deret (Konvergensi, Uji Kekonvergenan, Deret Taylor, Deret Maclaurin)</title>
+<meta name="description" content="Materi deret: definisi deret dan jumlah parsial, uji-uji kekonvergenan (uji suku ke-n, deret geometri, deret p, uji integral, uji perbandingan, uji rasio, uji akar, deret bergantian), serta deret Taylor dan Maclaurin.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Deret (Konvergensi, Uji Kekonvergenan, Deret Taylor, Deret Maclaurin)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Barisan</strong> &mdash; deret dibangun dari barisan jumlah parsial. Konsep konvergensi barisan menjadi dasar untuk mendefinisikan konvergensi deret.</li>
+   <li><strong>Limit Barisan</strong> &mdash; deret konvergen jika limit jumlah parsialnya ada. Semua alat untuk menghitung limit barisan akan dipakai kembali di sini.</li>
+   <li><strong>Integral Tak Wajar</strong> &mdash; uji integral untuk kekonvergenan deret menggunakan integral tak wajar sebagai alat pembanding.</li>
+   <li><strong>Turunan Fungsi</strong> &mdash; deret Taylor dan Maclaurin dibangun dari turunan-turunan fungsi di suatu titik.</li>
+   <li><strong>Notasi Sigma</strong> &mdash; deret dituliskan menggunakan notasi $\Sigma$ untuk menyatakan jumlah tak hingga suku.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi barisan, kita mempelajari urutan bilangan yang tak berhingga banyaknya&mdash;misalnya $1, \dfrac{1}{2}, \dfrac{1}{3}, \dfrac{1}{4}, \ldots$ Namun barisan itu sendiri hanya menyajikan suku-sukunya satu per satu. Pertanyaan yang lebih menarik muncul ketika kita mencoba <em>menjumlahkan</em> seluruh sukunya. Berapa hasil dari $1 + \dfrac{1}{2} + \dfrac{1}{4} + \dfrac{1}{8} + \cdots$? Meskipun sukunya tak hingga banyak, ternyata jumlahnya bisa berhingga&mdash;yaitu $2$.</p>
+ <p class="lesson-text">Konsep penjumlahan tak hingga inilah yang disebut <strong>deret</strong>. Menentukan apakah jumlah tak hingga suku-suku ini <em>konvergen</em> (memiliki jumlah berhingga) atau <em>divergen</em> (jumlahnya membesar tanpa batas) menjadi inti dari materi ini. Untuk itu, kita memerlukan sekumpulan <strong>uji kekonvergenan</strong>&mdash;alat-alat yang dapat memberi kesimpulan tentang konvergensi tanpa harus menghitung jumlahnya secara eksplisit.</p>
+ <p class="lesson-text">Bagian kedua materi ini membahas <strong>deret Taylor dan Maclaurin</strong>&mdash;yaitu cara menyatakan fungsi sembarang sebagai deret tak hingga. Gagasan ini sangat kuat: fungsi seperti $e^x$, $\sin x$, dan $\cos x$ dapat dinyatakan sebagai jumlah tak hingga dari suku-suku pangkat. Akibatnya, perhitungan nilai fungsi, aproksimasi numerik, dan banyak teknik dalam fisika dan teknik menjadi jauh lebih mudah.</p>
+ <p class="lesson-text">Materi ini mencakup tiga topik. Pertama, definisi deret dan konvergensi melalui jumlah parsial. Kedua, uji-uji kekonvergenan yang paling sering dipakai. Ketiga, deret Taylor dan Maclaurin beserta contoh-contoh penguraian fungsi dasar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Deret dan Jumlah Parsial</h2>
+ <p class="lesson-text">Bab ini membangun definisi deret dari gagasan yang paling mendasar: menjumlahkan suku-suku barisan satu per satu dan mengamati perilakunya.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Deret</h3>
+ <p class="lesson-text">Misalkan $\{a_n\}$ adalah sebuah barisan. <strong>Deret</strong> yang dibentuk dari barisan ini adalah penjumlahan seluruh sukunya:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} a_n = a_1 + a_2 + a_3 + \cdots$$</p>
+ <p class="lesson-text">Masalahnya, penjumlahan tak hingga tidak dapat dilakukan secara langsung&mdash;tidak mungkin menjumlahkan satu per satu sampai selesai. Karena itu, kita perlu mendefinisikan apa artinya "jumlah tak hingga" ini.</p>
+
+ <h3 class="lesson-subheading">B. Jumlah Parsial</h3>
+ <p class="lesson-text">Gagasan kuncinya: jumlahkan dulu beberapa suku pertama, lalu amati bagaimana hasilnya berubah ketika jumlah suku yang dijumlahkan bertambah.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Jumlah parsial ke-$n$ dari deret $\sum a_n$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$S_n = a_1 + a_2 + a_3 + \cdots + a_n = \sum_{k=1}^{n} a_k$$</p>
+ <p class="lesson-text">Jumlah parsial ini membentuk <em>barisan baru</em> $\{S_1, S_2, S_3, \ldots\}$, yang disebut <strong>barisan jumlah parsial</strong>. Barisan ini akan menjadi kunci untuk mendefinisikan konvergensi deret.</p>
+
+ <h3 class="lesson-subheading">C. Konvergensi Deret</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Deret $\displaystyle\sum_{n=1}^{\infty} a_n$ dikatakan <strong>konvergen</strong> jika barisan jumlah parsialnya $\{S_n\}$ konvergen, yaitu jika limit:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} S_n = S$$</p>
+ <p class="lesson-text">ada dan berupa bilangan real. Bilangan $S$ ini disebut <strong>jumlah</strong> deret, dan kita tuliskan $\displaystyle\sum_{n=1}^{\infty} a_n = S$.</p>
+ <p class="lesson-text">Jika barisan $\{S_n\}$ divergen (tidak memiliki limit berupa bilangan real), maka deretnya dikatakan <strong>divergen</strong> dan tidak memiliki jumlah.</p>
+
+ <p class="lesson-text">Perhatikan bahwa definisi ini memindahkan masalah "menjumlahkan tak hingga suku" menjadi masalah "menghitung limit barisan"&mdash;sesuatu yang sudah kita kuasai dari materi sebelumnya.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Deret Geometri</h3>
+ <p class="lesson-text">Deret geometri adalah salah satu deret yang paling sederhana dan paling sering muncul. Bentuknya:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} a r^{n-1} = a + ar + ar^2 + ar^3 + \cdots$$</p>
+ <p class="lesson-text">dengan $a$ suku pertama dan $r$ rasio antar suku.</p>
+ <p class="lesson-text"><strong>Menghitung jumlah parsialnya.</strong> Untuk $r \neq 1$, jumlah parsial ke-$n$ dapat dihitung dengan rumus:</p>
+ <p class="lesson-text">$$S_n = a \cdot \frac{1 - r^n}{1 - r}$$</p>
+ <p class="lesson-text">Rumus ini dapat diturunkan dengan mengalikan $S_n$ dengan $r$ lalu mengurangkannya dari $S_n$&mdash;sehingga suku-suku di tengah saling menghapus.</p>
+ <p class="lesson-text"><strong>Menentukan konvergensi.</strong> Perilaku $S_n$ ketika $n \to \infty$ bergantung pada nilai $r$:</p>
+ <ul>
+  <li>Jika $|r| < 1$, maka $r^n \to 0$, sehingga $S_n \to \dfrac{a}{1 - r}$. Deret <strong>konvergen</strong>.</li>
+  <li>Jika $|r| \geq 1$, maka $r^n$ tidak menuju nol&mdash;nilainya bisa membesar tanpa batas atau berosilasi. Deret <strong>divergen</strong>.</li>
+ </ul>
+ <p class="lesson-text">Jadi untuk deret geometri:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} a r^{n-1} \begin{cases} \text{konvergen ke } \dfrac{a}{1 - r} & \text{jika } |r| < 1 \\ \text{divergen} & \text{jika } |r| \geq 1 \end{cases}$$</p>
+ <p class="lesson-text"><strong>Contoh konkret.</strong> Hitung jumlah deret $\displaystyle\sum_{n=1}^{\infty} \frac{1}{2^n} = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots$</p>
+ <p class="lesson-text">Ini adalah deret geometri dengan $a = \dfrac{1}{2}$ dan $r = \dfrac{1}{2}$. Karena $|r| < 1$, deretnya konvergen:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} \frac{1}{2^n} = \frac{\frac{1}{2}}{1 - \frac{1}{2}} = \frac{\frac{1}{2}}{\frac{1}{2}} = 1$$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 360" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="300" x2="580" y2="300" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,300 572,295 572,305" fill="#e8e8e8"/>
+  <text x="586" y="304" font-size="13" fill="#b8b8b8" font-style="italic">n</text>
+  <line x1="90" y1="330" x2="90" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="90,37 85,47 95,47" fill="#e8e8e8"/>
+  <text x="96" y="36" font-size="13" fill="#b8b8b8" font-style="italic">Sₙ</text>
+
+  <line x1="90" y1="100" x2="570" y2="100" stroke="#daa520" stroke-width="1" stroke-dasharray="5,4" opacity="0.7"/>
+  <text x="80" y="104" font-size="12" fill="#daa520" text-anchor="end" font-style="italic">1</text>
+
+  <line x1="130" y1="170" x2="130" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="180" y1="128" x2="180" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="230" y1="113" x2="230" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="280" y1="105" x2="280" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="330" y1="102" x2="330" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="380" y1="101" x2="380" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="430" y1="100" x2="430" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="480" y1="100" x2="480" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="530" y1="100" x2="530" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+
+  <circle cx="130" cy="170" r="5" fill="#5dade2"/>
+  <circle cx="180" cy="128" r="5" fill="#5dade2"/>
+  <circle cx="230" cy="113" r="5" fill="#5dade2"/>
+  <circle cx="280" cy="105" r="5" fill="#5dade2"/>
+  <circle cx="330" cy="102" r="5" fill="#5dade2"/>
+  <circle cx="380" cy="101" r="5" fill="#5dade2"/>
+  <circle cx="430" cy="100" r="5" fill="#5dade2"/>
+  <circle cx="480" cy="100" r="5" fill="#5dade2"/>
+  <circle cx="530" cy="100" r="5" fill="#5dade2"/>
+
+  <text x="540" y="130" font-size="13" fill="#5dade2" text-anchor="end" font-style="italic">Sₙ → 1</text>
+  <text x="540" y="150" font-size="11" fill="#b8b8b8" text-anchor="end" font-style="italic">deret ∑ 1/2ⁿ</text>
+
+  <text x="310" y="335" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Jumlah parsial mendekati 1 dari bawah</text>
+ </svg>
+ <figcaption class="visual-caption">Barisan jumlah parsial $S_n$ untuk deret $\sum \frac{1}{2^n}$. Setiap titik mewakili jumlah parsial ke-$n$. Ketika $n$ bertambah besar, $S_n$ semakin mendekati garis $y = 1$&mdash;inilah jumlah deretnya.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Sifat-Sifat Dasar Deret</h3>
+ <p class="lesson-text">Jika $\sum a_n$ dan $\sum b_n$ keduanya konvergen, dan $c$ adalah konstanta, maka:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Sifat</th><th>Rumus</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Kelipatan konstanta</td><td>$\displaystyle\sum_{n=1}^{\infty} c \cdot a_n = c \sum_{n=1}^{\infty} a_n$</td></tr>
+   <tr><td>Jumlah / selisih</td><td>$\displaystyle\sum_{n=1}^{\infty} (a_n \pm b_n) = \sum_{n=1}^{\infty} a_n \pm \sum_{n=1}^{\infty} b_n$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Namun perhatikan: sifat-sifat ini <em>hanya berlaku jika kedua deret sudah konvergen</em>. Jika salah satu deret divergen, kesamaannya bisa gagal.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Uji suku ke-n (uji divergen).</strong> Jika deret $\sum a_n$ konvergen, maka haruslah $a_n \to 0$ ketika $n \to \infty$. Ini adalah konsekuensi langsung dari definisi: jika $S_n$ konvergen ke $S$, maka $a_n = S_n - S_{n-1} \to S - S = 0$. <strong>Kontraposisinya</strong> sering dipakai: jika $a_n$ tidak menuju $0$, maka deret <em>pasti</em> divergen. Namun hati-hati&mdash;konversnya tidak berlaku: $a_n \to 0$ tidak menjamin deret konvergen (lihat Bab II untuk contohnya).</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Uji-Uji Kekonvergenan</h2>
+ <p class="lesson-text">Untuk sebagian besar deret, menghitung jumlah parsial secara eksplisit seperti pada deret geometri sangat sulit atau bahkan tidak mungkin. Karena itu, kita memerlukan <strong>uji kekonvergenan</strong>&mdash;yaitu alat-alat yang dapat memberi kesimpulan tentang konvergensi tanpa harus menghitung jumlahnya.</p>
+ <p class="lesson-text">Uji-uji ini berbeda dalam hal apa yang mereka kesimpulkan. Sebagian hanya dapat membuktikan divergensi, sebagian hanya konvergensi, dan sebagian dapat memberi kesimpulan keduanya. Memilih uji yang tepat untuk suatu deret adalah keterampilan yang berkembang melalui latihan.</p>
+
+ <h3 class="lesson-subheading">A. Uji Suku ke-n (Uji Divergen)</h3>
+ <p class="lesson-text">Uji ini paling sederhana dan sering dijadikan langkah pertama sebelum memakai uji lain.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Jika $\displaystyle\lim_{n \to \infty} a_n \neq 0$ (termasuk jika limitnya tidak ada atau $\pm\infty$), maka deret $\displaystyle\sum a_n$ <strong>divergen</strong>.</p>
+ <p class="lesson-text">Perhatikan bahwa uji ini <em>hanya</em> dapat menyimpulkan divergensi. Jika $a_n \to 0$, uji ini tidak memberi kesimpulan&mdash;deretnya bisa konvergen atau divergen.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Deret $\displaystyle\sum_{n=1}^{\infty} \frac{n}{n+1}$ divergen, karena:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{n}{n+1} = 1 \neq 0$$</p>
+
+ <h3 class="lesson-subheading">B. Deret Geometri</h3>
+ <p class="lesson-text">Sudah dibahas di Bab I: deret geometri $\displaystyle\sum a r^{n-1}$ konvergen jika dan hanya jika $|r| < 1$, dan dalam kasus itu jumlahnya $\dfrac{a}{1 - r}$.</p>
+
+ <h3 class="lesson-subheading">C. Deret-p (Deret Harmonik Umum)</h3>
+ <p class="lesson-text">Deret-p berbentuk:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} \frac{1}{n^p}$$</p>
+ <p class="lesson-text">Konvergensinya bergantung pada nilai $p$:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} \frac{1}{n^p} \begin{cases} \text{konvergen} & \text{jika } p > 1 \\ \text{divergen} & \text{jika } p \leq 1 \end{cases}$$</p>
+ <p class="lesson-text">Kasus $p = 1$ disebut <strong>deret harmonik</strong>:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots$$</p>
+ <p class="lesson-text">Deret harmonik <strong>divergen</strong>, meskipun sukunya menuju $0$. Ini adalah contoh klasik yang menunjukkan bahwa $a_n \to 0$ tidak menjamin konvergensi.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="270" x2="580" y2="270" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,270 572,265 572,275" fill="#e8e8e8"/>
+  <text x="586" y="274" font-size="13" fill="#b8b8b8" font-style="italic">n</text>
+  <line x1="90" y1="300" x2="90" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="90,37 85,47 95,47" fill="#e8e8e8"/>
+  <text x="96" y="36" font-size="13" fill="#b8b8b8" font-style="italic">aₙ = 1/n</text>
+
+  <line x1="90" y1="270" x2="580" y2="270" stroke="#b8b8b8" stroke-width="1"/>
+
+  <rect x="110" y="70" width="28" height="200" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="145" y="170" width="28" height="100" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="180" y="203" width="28" height="67" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="215" y="220" width="28" height="50" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="250" y="230" width="28" height="40" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="285" y="237" width="28" height="33" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="320" y="242" width="28" height="28" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="355" y="246" width="28" height="24" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="390" y="250" width="28" height="20" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="425" y="252" width="28" height="18" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="460" y="254" width="28" height="16" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="495" y="256" width="28" height="14" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+  <rect x="530" y="257" width="28" height="13" fill="#daa520" fill-opacity="0.35" stroke="#daa520" stroke-width="1"/>
+
+  <path d="M 110 270 L 124 70 L 159 170 L 194 203 L 229 220 L 264 230 L 299 237 L 334 242 L 369 246 L 404 250 L 439 252 L 474 254 L 509 256 L 544 257" fill="none" stroke="#5dade2" stroke-width="2"/>
+
+  <text x="200" y="105" font-size="12" fill="#5dade2" font-style="italic">1/n</text>
+  <text x="200" y="125" font-size="11" fill="#b8b8b8" font-style="italic">(suku menuju 0)</text>
+
+  <text x="460" y="90" font-size="12" fill="#daa520" font-style="italic">jumlah parsial → ∞</text>
+  <text x="460" y="110" font-size="11" fill="#b8b8b8" font-style="italic">(deret tetap divergen)</text>
+ </svg>
+ <figcaption class="visual-caption">Suku-suku deret harmonik $a_n = \frac{1}{n}$ menuju $0$, tetapi jumlah parsialnya $S_n$ membesar tanpa batas. Ini adalah contoh klasik bahwa $a_n \to 0$ <em>tidak</em> menjamin konvergensi deret.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Uji Integral</h3>
+ <p class="lesson-text">Uji ini menggunakan integral tak wajar sebagai alat pembanding untuk deret dengan suku-suku positif yang menurun.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Misalkan $f(x)$ adalah fungsi kontinu, positif, dan menurun pada $[1, \infty)$, dan misalkan $a_n = f(n)$. Maka:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} a_n \text{ konvergen} \iff \int_1^{\infty} f(x)\, dx \text{ konvergen}$$</p>
+ <p class="lesson-text">Dengan kata lain, deret dan integral tak wajarnya <em>konvergen bersama-sama atau divergen bersama-sama</em>.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Tentukan apakah $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^2}$ konvergen.</p>
+ <p class="lesson-text">Ambil $f(x) = \dfrac{1}{x^2}$, yang kontinu, positif, dan menurun pada $[1, \infty)$. Integral tak wajarnya:</p>
+ <p class="lesson-text">$$\int_1^{\infty} \frac{1}{x^2}\, dx = \lim_{b \to \infty} \left[-\frac{1}{x}\right]_1^b = \lim_{b \to \infty} \left(1 - \frac{1}{b}\right) = 1$$</p>
+ <p class="lesson-text">Karena integralnya konvergen, maka deretnya juga konvergen. (Jumlahnya ternyata $\dfrac{\pi^2}{6} \approx 1{,}6449$, tetapi penurunannya memerlukan teknik yang lebih lanjut.)</p>
+
+ <h3 class="lesson-subheading">E. Uji Perbandingan</h3>
+ <p class="lesson-text">Uji ini membandingkan deret yang ingin diperiksa dengan deret lain yang sudah diketahui konvergensinya.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Misalkan $0 \leq a_n \leq b_n$ untuk semua $n$ (setelah indeks tertentu):</p>
+ <ul>
+  <li>Jika $\sum b_n$ konvergen, maka $\sum a_n$ juga konvergen.</li>
+  <li>Jika $\sum a_n$ divergen, maka $\sum b_n$ juga divergen.</li>
+ </ul>
+ <p class="lesson-text">Intuisinya: deret yang lebih kecil dari deret konvergen juga harus konvergen; deret yang lebih besar dari deret divergen juga harus divergen.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Tentukan apakah $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^2 + 1}$ konvergen.</p>
+ <p class="lesson-text">Bandingkan dengan deret-p dengan $p = 2$:</p>
+ <p class="lesson-text">$$\frac{1}{n^2 + 1} < \frac{1}{n^2}$$</p>
+ <p class="lesson-text">Karena $\sum \dfrac{1}{n^2}$ konvergen (dari contoh sebelumnya), maka menurut uji perbandingan, $\sum \dfrac{1}{n^2 + 1}$ juga konvergen.</p>
+
+ <h3 class="lesson-subheading">F. Uji Perbandingan Limit</h3>
+ <p class="lesson-text">Uji ini adalah versi "halus" dari uji perbandingan&mdash;berguna ketika deret tidak langsung dapat dibandingkan dengan pertidaksamaan sederhana.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Misalkan $a_n > 0$ dan $b_n > 0$ untuk semua $n$, dan misalkan:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{a_n}{b_n} = L$$</p>
+ <p class="lesson-text">dengan $0 < L < \infty$. Maka $\sum a_n$ dan $\sum b_n$ konvergen bersama-sama atau divergen bersama-sama.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Tentukan apakah $\displaystyle\sum_{n=1}^{\infty} \frac{2n + 3}{n^3 + 1}$ konvergen.</p>
+ <p class="lesson-text">Bandingkan dengan $\dfrac{1}{n^2}$. Untuk $n$ besar, $\dfrac{2n + 3}{n^3 + 1} \approx \dfrac{2n}{n^3} = \dfrac{2}{n^2}$&mdash;jadi deret ini berperilaku seperti deret-p dengan $p = 2$. Mari kita verifikasi:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{(2n + 3)/(n^3 + 1)}{1/n^2} = \lim_{n \to \infty} \frac{(2n + 3) n^2}{n^3 + 1} = \lim_{n \to \infty} \frac{2n^3 + 3n^2}{n^3 + 1} = 2$$</p>
+ <p class="lesson-text">Karena limitnya $2$ (positif dan berhingga), kedua deret konvergen bersama-sama. Karena $\sum \dfrac{1}{n^2}$ konvergen, maka deret yang diperiksa juga konvergen.</p>
+
+ <h3 class="lesson-subheading">G. Uji Rasio</h3>
+ <p class="lesson-text">Uji ini sangat berguna ketika suku-sukunya mengandung faktorial atau bentuk eksponensial.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Misalkan $\displaystyle\lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right| = L$. Maka:</p>
+ <ul>
+  <li>Jika $L < 1$, deret $\sum a_n$ <strong>konvergen</strong> (bahkan konvergen mutlak).</li>
+  <li>Jika $L > 1$ (atau $L = \infty$), deret $\sum a_n$ <strong>divergen</strong>.</li>
+  <li>Jika $L = 1$, uji ini <strong>tidak memberi kesimpulan</strong>&mdash;deret bisa konvergen atau divergen.</li>
+ </ul>
+ <p class="lesson-text"><strong>Contoh.</strong> Tentukan apakah $\displaystyle\sum_{n=1}^{\infty} \frac{n!}{n^n}$ konvergen.</p>
+ <p class="lesson-text">Hitung rasio:</p>
+ <p class="lesson-text">$$\frac{a_{n+1}}{a_n} = \frac{(n+1)!/(n+1)^{n+1}}{n!/n^n} = \frac{(n+1)! \cdot n^n}{n! \cdot (n+1)^{n+1}}$$</p>
+ <p class="lesson-text">Karena $(n+1)! = (n+1) \cdot n!$, maka $\dfrac{(n+1)!}{n!} = n+1$:</p>
+ <p class="lesson-text">$$= \frac{(n+1) \cdot n^n}{(n+1)^{n+1}} = \frac{n^n}{(n+1)^n} = \left(\frac{n}{n+1}\right)^n = \frac{1}{\left(1 + \frac{1}{n}\right)^n}$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$, kita tahu bahwa $\left(1 + \dfrac{1}{n}\right)^n \to e$. Jadi:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \frac{1}{e} \approx 0{,}368 < 1$$</p>
+ <p class="lesson-text">Menurut uji rasio, deretnya konvergen.</p>
+
+ <h3 class="lesson-subheading">H. Uji Akar</h3>
+ <p class="lesson-text">Uji ini berguna ketika suku-sukunya muncul dalam bentuk pangkat $n$.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Misalkan $\displaystyle\lim_{n \to \infty} \sqrt[n]{|a_n|} = L$. Maka:</p>
+ <ul>
+  <li>Jika $L < 1$, deret $\sum a_n$ <strong>konvergen</strong>.</li>
+  <li>Jika $L > 1$ (atau $L = \infty$), deret $\sum a_n$ <strong>divergen</strong>.</li>
+  <li>Jika $L = 1$, uji ini <strong>tidak memberi kesimpulan</strong>.</li>
+ </ul>
+ <p class="lesson-text"><strong>Contoh.</strong> Tentukan apakah $\displaystyle\sum_{n=1}^{\infty} \left(\frac{n}{2n+1}\right)^n$ konvergen.</p>
+ <p class="lesson-text">Hitung akar:</p>
+ <p class="lesson-text">$$\sqrt[n]{a_n} = \sqrt[n]{\left(\frac{n}{2n+1}\right)^n} = \frac{n}{2n+1}$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{n}{2n+1} = \frac{1}{2} < 1$$</p>
+ <p class="lesson-text">Menurut uji akar, deretnya konvergen.</p>
+
+ <h3 class="lesson-subheading">I. Deret Bergantian (Uji Leibniz)</h3>
+ <p class="lesson-text">Deret <strong>bergantian</strong> adalah deret yang tanda sukunya bergantian antara positif dan negatif:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} (-1)^{n-1} b_n = b_1 - b_2 + b_3 - b_4 + \cdots$$</p>
+ <p class="lesson-text">dengan $b_n > 0$.</p>
+ <p class="lesson-text"><strong>Uji.</strong> Jika deret bergantian memenuhi dua syarat:</p>
+ <ul>
+  <li>$b_n$ menurun: $b_1 \geq b_2 \geq b_3 \geq \cdots$, dan</li>
+  <li>$b_n \to 0$ ketika $n \to \infty$,</li>
+ </ul>
+ <p class="lesson-text">maka deretnya <strong>konvergen</strong>.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Deret harmonik bergantian:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots$$</p>
+ <p class="lesson-text">Di sini $b_n = \dfrac{1}{n}$, yang menurun dan menuju $0$. Menurut uji Leibniz, deretnya konvergen. (Jumlahnya ternyata $\ln 2 \approx 0{,}6931$.)</p>
+ <p class="lesson-text">Perhatikan perbedaan penting: deret harmonik biasa $\sum \dfrac{1}{n}$ <em>divergen</em>, tetapi deret harmonik bergantian $\sum \dfrac{(-1)^{n-1}}{n}$ <em>konvergen</em>. Pergantian tanda inilah yang membuat deretnya konvergen, karena kontribusi positif dan negatif saling mengompensasi.</p>
+
+ <h3 class="lesson-subheading">J. Ringkasan Uji-Uji Kekonvergenan</h3>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Uji</th><th>Cocok untuk</th><th>Kesimpulan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Uji suku ke-n</td><td>Semua deret (langkah awal)</td><td>Hanya bisa menyimpulkan divergen</td></tr>
+   <tr><td>Deret geometri</td><td>Bentuk $ar^{n-1}$</td><td>Konvergen jika $|r| < 1$</td></tr>
+   <tr><td>Deret-p</td><td>Bentuk $1/n^p$</td><td>Konvergen jika $p > 1$</td></tr>
+   <tr><td>Uji integral</td><td>Suku positif, menurun</td><td>Konvergen $\iff$ integral konvergen</td></tr>
+   <tr><td>Uji perbandingan</td><td>Dapat dibandingkan dengan deret lain</td><td>Berdasarkan pertidaksamaan</td></tr>
+   <tr><td>Uji perbandingan limit</td><td>Rasio dengan deret pembanding</td><td>Konvergen/divergen bersama</td></tr>
+   <tr><td>Uji rasio</td><td>Faktorial, eksponensial</td><td>Berdasarkan $\lim |a_{n+1}/a_n|$</td></tr>
+   <tr><td>Uji akar</td><td>Bentuk pangkat $n$</td><td>Berdasarkan $\lim \sqrt[n]{|a_n|}$</td></tr>
+   <tr><td>Uji Leibniz</td><td>Deret bergantian</td><td>Konvergen jika $b_n$ menurun ke $0$</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Deret Taylor dan Maclaurin</h2>
+ <p class="lesson-text">Bab ini membahas cara menyatakan fungsi sebagai deret tak hingga. Gagasan utamanya: banyak fungsi yang rumit&mdash;seperti $e^x$, $\sin x$, dan $\cos x$&mdash;dapat dituliskan sebagai jumlah tak hingga dari suku-suku pangkat sederhana.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan: Mendekati Fungsi dengan Polinomial</h3>
+ <p class="lesson-text">Polinomial adalah fungsi paling sederhana untuk dihitung: hanya melibatkan perkalian dan penjumlahan. Sayangnya, banyak fungsi penting&mdash;seperti fungsi trigonometri dan eksponensial&mdash;bukan polinomial. Pertanyaan yang muncul: dapatkah kita <em>mendekati</em> fungsi-fungsi ini dengan polinomial?</p>
+ <p class="lesson-text">Bayangkan kita ingin mendekati $f(x)$ di sekitar titik $x = a$ dengan sebuah polinomial. Pendekatan paling sederhana adalah dengan konstanta $f(a)$. Namun pendekatan ini hanya akurat tepat di titik $a$. Kita bisa memperbaiki akurasinya dengan menambahkan suku-suku yang mengontrol kemiringan, kecekungan, dan seterusnya&mdash;semuanya melalui turunan.</p>
+ <p class="lesson-text">Idenya: kita ingin polinomial yang memiliki nilai, kemiringan, kecekungan, dan turunan-turunan tingkat tinggi yang sama dengan $f$ di titik $a$. Semakin banyak turunan yang dicocokkan, semakin akurat aproksimasinya.</p>
+
+ <h3 class="lesson-subheading">B. Polinomial Taylor</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ memiliki turunan hingga tingkat $n$ di titik $a$. Polinomial Taylor tingkat $n$ dari $f$ di sekitar $a$ adalah:</p>
+ <p class="lesson-text">$$P_n(x) = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x - a)^n$$</p>
+ <p class="lesson-text">atau secara ringkas:</p>
+ <p class="lesson-text">$$P_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k$$</p>
+ <p class="lesson-text">dengan konvensi $f^{(0)}(a) = f(a)$ dan $0! = 1$.</p>
+ <p class="lesson-text">Polinomial ini dibangun sedemikian sehingga $P_n$ dan semua turunannya hingga tingkat $n$ cocok dengan $f$ di titik $a$. Semakin besar $n$, semakin baik aproksimasinya di sekitar $a$.</p>
+
+ <h3 class="lesson-subheading">C. Deret Taylor</h3>
+ <p class="lesson-text">Jika kita membiarkan $n \to \infty$, polinomial Taylor menjadi <strong>deret Taylor</strong>:</p>
+ <p class="lesson-text">$$\sum_{k=0}^{\infty} \frac{f^{(k)}(a)}{k!}(x - a)^k = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots$$</p>
+ <p class="lesson-text">Deret ini <em>mungkin</em> konvergen ke $f(x)$ untuk nilai $x$ tertentu, tetapi tidak selalu. Himpunan nilai $x$ tempat deret Taylor konvergen ke $f(x)$ disebut <strong>interval kekonvergenan</strong>.</p>
+
+ <h3 class="lesson-subheading">D. Deret Maclaurin</h3>
+ <p class="lesson-text">Kasus khusus ketika $a = 0$ disebut <strong>deret Maclaurin</strong>:</p>
+ <p class="lesson-text">$$\sum_{k=0}^{\infty} \frac{f^{(k)}(0)}{k!} x^k = f(0) + f'(0) x + \frac{f''(0)}{2!} x^2 + \frac{f'''(0)}{3!} x^3 + \cdots$$</p>
+ <p class="lesson-text">Deret Maclaurin hanyalah deret Taylor yang dipusatkan di titik nol. Dalam praktiknya, deret Maclaurin sering lebih mudah dihitung karena $f^{(k)}(0)$ biasanya lebih sederhana daripada $f^{(k)}(a)$.</p>
+
+ <h3 class="lesson-subheading">E. Deret Maclaurin untuk Fungsi Dasar</h3>
+ <p class="lesson-text">Berikut deret Maclaurin untuk beberapa fungsi yang paling sering muncul. Setiap deret konvergen ke fungsi aslinya pada interval yang ditunjukkan.</p>
+
+ <p class="lesson-text"><strong>Fungsi eksponensial $e^x$:</strong></p>
+ <p class="lesson-text">$$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots = \sum_{k=0}^{\infty} \frac{x^k}{k!}$$</p>
+ <p class="lesson-text">Berlaku untuk semua $x$ (interval kekonvergenan: $(-\infty, \infty)$).</p>
+
+ <p class="lesson-text"><strong>Fungsi sinus $\sin x$:</strong></p>
+ <p class="lesson-text">$$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k+1}}{(2k+1)!}$$</p>
+ <p class="lesson-text">Berlaku untuk semua $x$.</p>
+
+ <p class="lesson-text"><strong>Fungsi kosinus $\cos x$:</strong></p>
+ <p class="lesson-text">$$\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots = \sum_{k=0}^{\infty} \frac{(-1)^k x^{2k}}{(2k)!}$$</p>
+ <p class="lesson-text">Berlaku untuk semua $x$.</p>
+
+ <p class="lesson-text"><strong>Fungsi logaritma natural $\ln(1 + x)$:</strong></p>
+ <p class="lesson-text">$$\ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \sum_{k=1}^{\infty} \frac{(-1)^{k-1} x^k}{k}$$</p>
+ <p class="lesson-text">Berlaku untuk $-1 < x \leq 1$.</p>
+
+ <p class="lesson-text"><strong>Fungsi geometri $\dfrac{1}{1 - x}$:</strong></p>
+ <p class="lesson-text">$$\frac{1}{1 - x} = 1 + x + x^2 + x^3 + \cdots = \sum_{k=0}^{\infty} x^k$$</p>
+ <p class="lesson-text">Berlaku untuk $|x| < 1$.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="310" y1="40" x2="310" y2="360" stroke="#e8e8e8" stroke-width="1.2"/>
+  <line x1="60" y1="200" x2="580" y2="200" stroke="#e8e8e8" stroke-width="1.5"/>
+  <text x="586" y="204" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="316" y="36" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 100 340 Q 200 320 280 240 Q 300 220 310 200 Q 320 180 340 160 Q 400 100 520 60" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <path d="M 200 250 Q 260 210 310 200 Q 360 190 420 150" fill="none" stroke="#daa520" stroke-width="2.2" stroke-dasharray="6,4"/>
+  <path d="M 220 240 Q 270 205 310 200 Q 350 195 400 165 Q 420 155 440 140" fill="none" stroke="#22d3ee" stroke-width="2" stroke-dasharray="4,3" opacity="0.8"/>
+
+  <text x="530" y="60" font-size="12" fill="#5dade2" font-style="italic">y = sin x</text>
+  <text x="440" y="140" font-size="12" fill="#daa520" font-style="italic">P₁ = x</text>
+  <text x="450" y="128" font-size="12" fill="#22d3ee" font-style="italic">P₃ = x − x³/6</text>
+
+  <text x="70" y="220" font-size="12" fill="#e8e8e8" text-anchor="start" font-style="italic">x = 0</text>
+
+  <text x="310" y="375" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">Semakin banyak suku, semakin dekat polinomial Taylor ke fungsi asli</text>
+ </svg>
+ <figcaption class="visual-caption">Aproksimasi $\sin x$ dengan polinomial Taylor di sekitar $x = 0$. Polinomial tingkat 1, yaitu $P_1(x) = x$, hanya akurat untuk $x$ kecil. Polinomial tingkat 3, yaitu $P_3(x) = x - \frac{x^3}{6}$, jauh lebih akurat. Menambahkan lebih banyak suku memperluas interval akurasi.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">F. Contoh: Menurunkan Deret Maclaurin untuk $e^x$</h3>
+ <p class="lesson-text">Mari kita turunkan deret Maclaurin untuk $f(x) = e^x$ sebagai ilustrasi bagaimana deret ini diperoleh.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung turunan-turunan di $x = 0$.</strong> Karena turunan $e^x$ adalah $e^x$ sendiri, semua turunannya sama:</p>
+ <p class="lesson-text">$$f(0) = e^0 = 1, \quad f'(0) = 1, \quad f''(0) = 1, \quad f^{(k)}(0) = 1 \text{ untuk semua } k$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Substitusi ke rumus Maclaurin.</strong></p>
+ <p class="lesson-text">$$e^x = \sum_{k=0}^{\infty} \frac{f^{(k)}(0)}{k!} x^k = \sum_{k=0}^{\infty} \frac{1}{k!} x^k = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Ambil $x = 1$. Deret Maclaurin memberi:</p>
+ <p class="lesson-text">$$e^1 \approx 1 + 1 + \frac{1}{2} + \frac{1}{6} + \frac{1}{24} + \frac{1}{120} \approx 2{,}71667$$</p>
+ <p class="lesson-text">Nilai sebenarnya $e \approx 2{,}71828$. Dengan hanya lima suku, aproksimasinya sudah cukup akurat.</p>
+
+ <h3 class="lesson-subheading">G. Contoh: Deret Maclaurin untuk $\sin x$</h3>
+ <p class="lesson-text">Mari kita turunkan deret Maclaurin untuk $f(x) = \sin x$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung turunan-turunan di $x = 0$.</strong></p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>$k$</th><th>$f^{(k)}(x)$</th><th>$f^{(k)}(0)$</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$0$</td><td>$\sin x$</td><td>$0$</td></tr>
+   <tr><td>$1$</td><td>$\cos x$</td><td>$1$</td></tr>
+   <tr><td>$2$</td><td>$-\sin x$</td><td>$0$</td></tr>
+   <tr><td>$3$</td><td>$-\cos x$</td><td>$-1$</td></tr>
+   <tr><td>$4$</td><td>$\sin x$</td><td>$0$</td></tr>
+   <tr><td>$5$</td><td>$\cos x$</td><td>$1$</td></tr>
+   <tr><td>$6$</td><td>$-\sin x$</td><td>$0$</td></tr>
+   <tr><td>$7$</td><td>$-\cos x$</td><td>$-1$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Polanya berulang setiap empat turunan. Turunan genap selalu $0$, dan turunan ganjil bergantian: $+1, -1, +1, -1, \ldots$</p>
+ <p class="lesson-text"><strong>Langkah 2: Substitusi ke rumus Maclaurin.</strong> Hanya turunan ganjil yang memberi kontribusi:</p>
+ <p class="lesson-text">$$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Ambil $x = 1$ radian. Deret memberi:</p>
+ <p class="lesson-text">$$\sin(1) \approx 1 - \frac{1}{6} + \frac{1}{120} - \frac{1}{5040} \approx 0{,}84147$$</p>
+ <p class="lesson-text">Nilai sebenarnya $\sin(1) \approx 0{,}84147$. Aproksimasinya sangat akurat.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan uji kekonvergenan dan deret Taylor/Maclaurin pada situasi yang tidak muncul di bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menentukan Konvergensi dengan Uji Perbandingan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan apakah deret $\displaystyle\sum_{n=1}^{\infty} \frac{\ln n}{n^2}$ konvergen.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Untuk $n$ besar, $\ln n$ tumbuh jauh lebih lambat daripada $n^{1/2}$. Secara formal, dapat dibuktikan bahwa untuk $n \geq 3$, berlaku $\ln n < \sqrt{n}$. Maka:</p>
+ <p class="lesson-text">$$\frac{\ln n}{n^2} < \frac{\sqrt{n}}{n^2} = \frac{1}{n^{3/2}}$$</p>
+ <p class="lesson-text">Deret $\displaystyle\sum \frac{1}{n^{3/2}}$ adalah deret-p dengan $p = \dfrac{3}{2} > 1$&mdash;sehingga konvergen. Menurut uji perbandingan, deret $\displaystyle\sum \frac{\ln n}{n^2}$ juga konvergen.</p>
+
+ <h3 class="lesson-subheading">B. Deret dengan Faktorial dan Uji Rasio</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan apakah $\displaystyle\sum_{n=1}^{\infty} \frac{3^n}{n!}$ konvergen.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Gunakan uji rasio. Rasio antara suku ke-$(n+1)$ dan suku ke-$n$:</p>
+ <p class="lesson-text">$$\frac{a_{n+1}}{a_n} = \frac{3^{n+1}/(n+1)!}{3^n/n!} = \frac{3^{n+1} \cdot n!}{3^n \cdot (n+1)!} = \frac{3}{n+1}$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$, rasio ini menuju $0 < 1$. Menurut uji rasio, deretnya konvergen. (Faktanya, jumlahnya adalah $e^3 - 1$.)</p>
+
+ <h3 class="lesson-subheading">C. Deret Bergantian dengan Uji Leibniz</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan apakah $\displaystyle\sum_{n=2}^{\infty} \frac{(-1)^n}{n \ln n}$ konvergen.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Ini adalah deret bergantian dengan $b_n = \dfrac{1}{n \ln n}$. Periksa dua syarat uji Leibniz:</p>
+ <ul>
+  <li><strong>$b_n$ menurun:</strong> Fungsi $f(x) = \dfrac{1}{x \ln x}$ memiliki turunan $f'(x) = -\dfrac{\ln x + 1}{(x \ln x)^2}$, yang negatif untuk $x > 1$. Jadi $b_n$ menurun untuk $n \geq 2$.</li>
+  <li><strong>$b_n \to 0$:</strong> Karena $n \ln n \to \infty$ ketika $n \to \infty$, maka $b_n \to 0$.</li>
+ </ul>
+ <p class="lesson-text">Kedua syarat terpenuhi. Menurut uji Leibniz, deretnya konvergen.</p>
+
+ <h3 class="lesson-subheading">D. Aproksimasi Nilai $\sin(0{,}5)$ dengan Deret Maclaurin</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Gunakan deret Maclaurin untuk $\sin x$ guna mengaproksimasi $\sin(0{,}5)$ sampai tiga suku pertama. Bandingkan dengan nilai sebenarnya.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Deret Maclaurin untuk $\sin x$:</p>
+ <p class="lesson-text">$$\sin x = x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots$$</p>
+ <p class="lesson-text">Substitusi $x = 0{,}5$:</p>
+ <ul>
+  <li>Suku 1: $0{,}5$</li>
+  <li>Suku 2: $-\dfrac{(0{,}5)^3}{6} = -\dfrac{0{,}125}{6} \approx -0{,}020833$</li>
+  <li>Suku 3: $+\dfrac{(0{,}5)^5}{120} = \dfrac{0{,}03125}{120} \approx +0{,}000260$</li>
+ </ul>
+ <p class="lesson-text">Jumlah tiga suku: $0{,}5 - 0{,}020833 + 0{,}000260 = 0{,}479427$.</p>
+ <p class="lesson-text">Nilai sebenarnya: $\sin(0{,}5) \approx 0{,}479426$. Aproksimasinya akurat sampai lima angka desimal dengan hanya tiga suku.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa ini penting?</strong> Kalkulator dan komputer menghitung nilai fungsi trigonometri, eksponensial, dan logaritma menggunakan deret Taylor&mdash;bukan dengan rumus geometri. Deret ini memungkinkan perhitungan dengan ketelitian berapa pun hanya dengan operasi aritmetika dasar: penjumlahan, perkalian, dan pembagian. Inilah alasan deret Taylor dan Maclaurin menjadi salah satu alat paling penting dalam analisis numerik.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Aproksimasi $e$ dengan Deret Maclaurin</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Gunakan deret Maclaurin untuk $e^x$ guna mengaproksimasi $e = e^1$ sampai empat angka desimal.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Deret Maclaurin untuk $e^x$ dengan $x = 1$:</p>
+ <p class="lesson-text">$$e = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \frac{1}{5!} + \frac{1}{6!} + \frac{1}{7!} + \cdots$$</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Suku ke-$k$</th><th>Nilai</th><th>Jumlah parsial</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$0$</td><td>$1$</td><td>$1$</td></tr>
+   <tr><td>$1$</td><td>$1$</td><td>$2$</td></tr>
+   <tr><td>$2$</td><td>$0{,}5$</td><td>$2{,}5$</td></tr>
+   <tr><td>$3$</td><td>$0{,}16667$</td><td>$2{,}66667$</td></tr>
+   <tr><td>$4$</td><td>$0{,}04167$</td><td>$2{,}70833$</td></tr>
+   <tr><td>$5$</td><td>$0{,}00833$</td><td>$2{,}71667$</td></tr>
+   <tr><td>$6$</td><td>$0{,}00139$</td><td>$2{,}71806$</td></tr>
+   <tr><td>$7$</td><td>$0{,}00020$</td><td>$2{,}71825$</td></tr>
+   <tr><td>$8$</td><td>$0{,}00002$</td><td>$2{,}71828$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Setelah delapan suku, jumlah parsialnya $2{,}71828$&mdash;sudah akurat sampai lima angka desimal. Nilai sebenarnya $e \approx 2{,}71828$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Konsep penting: kekonvergenan deret Maclaurin untuk $e^x$ sangat cepat.</strong> Karena penyebutnya mengandung faktorial yang tumbuh sangat cepat (misalnya $8! = 40320$), suku-suku setelah beberapa langkah menjadi sangat kecil. Inilah sebabnya hanya beberapa suku sudah memberi akurasi tinggi. Bandingkan dengan deret harmonik bergantian untuk $\ln 2$ yang konvergensinya jauh lebih lambat.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Menghitung Integral yang Sulit</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Integral $\displaystyle\int_0^1 e^{-x^2}\, dx$ tidak dapat dihitung secara eksak dengan teknik elementer, karena $e^{-x^2}$ tidak memiliki anti-turunan dalam bentuk fungsi dasar. Namun kita dapat mengaproksimasinya menggunakan deret Maclaurin.</p>
+ <p class="lesson-text"><strong>Langkah 1: Deret Maclaurin untuk $e^{-x^2}$.</strong> Ganti $x$ dengan $-x^2$ pada deret Maclaurin $e^u$:</p>
+ <p class="lesson-text">$$e^{-x^2} = 1 - x^2 + \frac{x^4}{2!} - \frac{x^6}{3!} + \frac{x^8}{4!} - \cdots$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Integralkan suku demi suku.</strong> Karena deret konvergen seragam pada $[0, 1]$, kita boleh menukar urutan integral dan penjumlahan:</p>
+ <p class="lesson-text">$$\int_0^1 e^{-x^2}\, dx = \int_0^1 \left(1 - x^2 + \frac{x^4}{2} - \frac{x^6}{6} + \cdots\right) dx$$</p>
+ <p class="lesson-text">$$= \left[x - \frac{x^3}{3} + \frac{x^5}{10} - \frac{x^7}{42} + \cdots\right]_0^1$$</p>
+ <p class="lesson-text">$$= 1 - \frac{1}{3} + \frac{1}{10} - \frac{1}{42} + \cdots \approx 0{,}7468$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Integral $\displaystyle\int_0^1 e^{-x^2}\, dx$ muncul dalam teori probabilitas (distribusi normal) dan fisika (distribusi kecepatan Maxwell). Nilainya sekitar $0{,}7468$&mdash;yang tidak dapat diperoleh dengan teknik pengintegralan elementer, tetapi dapat diaproksimasi dengan deret Maclaurin. Inilah salah satu alasan deret Taylor dan Maclaurin sangat penting: mereka memungkinkan perhitungan kuantitas yang tidak dapat diselesaikan dengan teknik dasar.</p>
+ </div>
+
+ <h3 class="lesson-subheading">G. Penerapan: Deret Geometri dalam Ekonomi</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah proyek investasi menjanjikan pembayaran tahunan sebesar Rp 10.000.000 setiap tahun, dimulai satu tahun dari sekarang, dan berlangsung selamanya. Jika tingkat diskonto tahunan adalah $5\%$, berapa nilai sekarang dari seluruh pembayaran ini?</p>
+ <p class="lesson-text"><strong>Model.</strong> Nilai sekarang dari pembayaran tahun ke-$n$ adalah $\dfrac{10^7}{(1{,}05)^n}$. Total nilai sekarang adalah jumlah deret:</p>
+ <p class="lesson-text">$$V = \sum_{n=1}^{\infty} \frac{10^7}{(1{,}05)^n} = \frac{10^7}{1{,}05} + \frac{10^7}{(1{,}05)^2} + \frac{10^7}{(1{,}05)^3} + \cdots$$</p>
+ <p class="lesson-text">Ini adalah deret geometri dengan suku pertama $a = \dfrac{10^7}{1{,}05}$ dan rasio $r = \dfrac{1}{1{,}05} \approx 0{,}9524$.</p>
+ <p class="lesson-text"><strong>Perhitungan.</strong> Karena $|r| < 1$, deretnya konvergen:</p>
+ <p class="lesson-text">$$V = \frac{a}{1 - r} = \frac{10^7/1{,}05}{1 - 1/1{,}05} = \frac{10^7/1{,}05}{0{,}05/1{,}05} = \frac{10^7}{0{,}05} = 2 \times 10^8$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Nilai sekarang dari seluruh pembayaran adalah Rp 200.000.000. Hasil ini disebut <em>perpetuitas</em> (anuitas tak terbatas)&mdash;yaitu serangkaian pembayaran yang berlangsung selamanya. Rumus yang dipakai adalah rumus deret geometri, tetapi dengan interpretasi ekonomi: karena setiap pembayaran didiskontokan oleh faktor $1/(1{,}05)^n$, nilainya mengecil cukup cepat sehingga jumlah totalnya berhingga. Konsep ini menjadi dasar penilaian obligasi, saham, dan berbagai instrumen keuangan lainnya.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Definisi Deret</h3>
+ <ul>
+  <li><strong>Menganggap deret sebagai penjumlahan biasa.</strong> Deret bukan penjumlahan biasa&mdash;ia adalah limit dari barisan jumlah parsial. Menjumlahkan suku-sukunya satu per satu tidak akan pernah selesai; yang kita hitung adalah <em>limit</em> dari jumlah parsial.</li>
+  <li><strong>Menganggap semua deret memiliki jumlah.</strong> Deret hanya memiliki jumlah jika konvergen. Deret divergen tidak memiliki jumlah berupa bilangan real.</li>
+  <li><strong>Menganggap deret tak hingga selalu divergen.</strong> Ini salah. Deret geometri dengan $|r| < 1$, misalnya, konvergen meskipun sukunya tak hingga banyak.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Uji Kekonvergenan</h3>
+ <ul>
+  <li><strong>Menyimpulkan konvergensi dari uji suku ke-n.</strong> Uji suku ke-n hanya dapat menyimpulkan <em>divergensi</em>. Jika $a_n \to 0$, uji ini tidak memberi kesimpulan apa pun. Contoh klasik: deret harmonik $\sum 1/n$ memiliki $a_n \to 0$, tetapi divergen.</li>
+  <li><strong>Menyimpulkan konvergensi dari uji rasio atau uji akar ketika $L = 1$.</strong> Jika $L = 1$, kedua uji ini <em>gagal</em>&mdash;mereka tidak memberi kesimpulan. Diperlukan uji lain untuk menentukan konvergensi.</li>
+  <li><strong>Menerapkan uji perbandingan tanpa memeriksa tanda.</strong> Uji perbandingan langsung mensyaratkan suku-sukunya non-negatif. Untuk deret bergantian, gunakan uji Leibniz.</li>
+  <li><strong>Menganggap $\sum a_n$ dan $\sum b_n$ pasti konvergen bersama karena $a_n \approx b_n$.</strong> Perbandingan limit memerlukan syarat bahwa limit rasionya <em>positif dan berhingga</em>. Jika limitnya $0$ atau $\infty$, kesimpulannya berbeda.</li>
+  <li><strong>Menukar arah uji perbandingan.</strong> Ingat: jika $\sum b_n$ konvergen dan $a_n \leq b_n$, maka $\sum a_n$ juga konvergen. Sebaliknya, jika $\sum a_n$ divergen dan $a_n \leq b_n$, tidak ada kesimpulan tentang $\sum b_n$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Deret Taylor dan Maclaurin</h3>
+ <ul>
+  <li><strong>Menganggap deret Taylor selalu konvergen ke fungsi aslinya.</strong> Deret Taylor hanya konvergen ke $f(x)$ pada interval kekonvergenannya. Di luar interval itu, deretnya mungkin divergen atau konvergen ke nilai yang berbeda.</li>
+  <li><strong>Salah menghitung faktorial.</strong> Ingat bahwa $0! = 1$ dan $1! = 1$&mdash;bukan $0$. Kesalahan pada faktorial kecil dapat merambat ke seluruh perhitungan.</li>
+  <li><strong>Menukar posisi $a$ dan $x$ pada rumus Taylor.</strong> Rumusnya menggunakan $(x - a)^k$, bukan $(a - x)^k$. Perhatikan tandanya.</li>
+  <li><strong>Menganggap deret Maclaurin selalu cukup akurat untuk semua $x$.</strong> Untuk $x$ yang jauh dari titik pusat, diperlukan banyak suku agar akurat. Untuk $x$ yang sangat besar, aproksimasi bisa sangat buruk.</li>
+  <li><strong>Lupa bahwa deret Taylor untuk fungsi dengan singularitas memiliki batas interval.</strong> Misalnya, deret Maclaurin untuk $\ln(1+x)$ hanya berlaku untuk $-1 < x \leq 1$, meskipun fungsi $\ln(1+x)$ sendiri terdefinisi untuk $x > -1$.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Ringkasan</h2>
+ <ul>
+  <li><strong>Definisi deret:</strong> $\displaystyle\sum_{n=1}^{\infty} a_n$ didefinisikan melalui limit barisan jumlah parsial $S_n = \sum_{k=1}^{n} a_k$.</li>
+  <li><strong>Konvergen:</strong> deret konvergen jika $\lim_{n \to \infty} S_n$ ada dan berhingga. Nilai limitnya disebut jumlah deret.</li>
+  <li><strong>Deret geometri:</strong> $\displaystyle\sum a r^{n-1}$ konvergen jika $|r| < 1$, dengan jumlah $\dfrac{a}{1-r}$.</li>
+  <li><strong>Uji suku ke-n:</strong> jika $a_n \not\to 0$, deret divergen. Jika $a_n \to 0$, tidak ada kesimpulan.</li>
+  <li><strong>Deret-p:</strong> $\displaystyle\sum \frac{1}{n^p}$ konvergen jika $p > 1$, divergen jika $p \leq 1$.</li>
+  <li><strong>Uji integral:</strong> untuk $f$ kontinu, positif, dan menurun, $\sum f(n)$ konvergen $\iff$ $\int_1^{\infty} f(x)\, dx$ konvergen.</li>
+  <li><strong>Uji perbandingan:</strong> jika $0 \leq a_n \leq b_n$, maka $\sum b_n$ konvergen $\Rightarrow$ $\sum a_n$ konvergen.</li>
+  <li><strong>Uji perbandingan limit:</strong> jika $\lim a_n/b_n = L$ dengan $0 < L < \infty$, maka kedua deret konvergen atau divergen bersama-sama.</li>
+  <li><strong>Uji rasio:</strong> jika $\lim |a_{n+1}/a_n| = L$, maka konvergen untuk $L < 1$ dan divergen untuk $L > 1$; tidak ada kesimpulan untuk $L = 1$.</li>
+  <li><strong>Uji akar:</strong> jika $\lim \sqrt[n]{|a_n|} = L$, maka konvergen untuk $L < 1$ dan divergen untuk $L > 1$; tidak ada kesimpulan untuk $L = 1$.</li>
+  <li><strong>Uji Leibniz:</strong> deret bergantian $\sum (-1)^{n-1} b_n$ konvergen jika $b_n$ menurun dan $b_n \to 0$.</li>
+  <li><strong>Polinomial Taylor:</strong> $P_n(x) = \displaystyle\sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x - a)^k$.</li>
+  <li><strong>Deret Taylor:</strong> limit dari polinomial Taylor ketika $n \to \infty$.</li>
+  <li><strong>Deret Maclaurin:</strong> deret Taylor dengan $a = 0$.</li>
+  <li><strong>Deret Maclaurin dasar:</strong> $e^x = \sum \frac{x^k}{k!}$; $\sin x = \sum \frac{(-1)^k x^{2k+1}}{(2k+1)!}$; $\cos x = \sum \frac{(-1)^k x^{2k}}{(2k)!}$; $\frac{1}{1-x} = \sum x^k$ untuk $|x| < 1$.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Deret memperluas konsep barisan dengan menjumlahkan seluruh sukunya. Meskipun jumlah sukunya tak berhingga, hasilnya bisa berhingga&mdash;dan inilah yang membuat deret menjadi alat yang sangat kuat. Uji-uji kekonvergenan memungkinkan kita menentukan apakah jumlahnya berhingga tanpa harus menghitungnya secara langsung, sedangkan deret Taylor dan Maclaurin memungkinkan kita menyatakan fungsi rumit sebagai deret pangkat yang sederhana.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>analisis Fourier</strong> akan memperluas gagasan deret ini ke fungsi periodik. Jika deret Taylor menguraikan fungsi menjadi suku-suku pangkat, deret Fourier menguraikan fungsi menjadi suku-suku sinus dan kosinus&mdash;yang jauh lebih alami untuk memodelkan fenomena periodik seperti gelombang suara, sinyal listrik, dan getaran mekanis. Konsep konvergensi deret yang sudah kita kuasai akan menjadi fondasi untuk memahami analisis Fourier.</p>
+</section>
+
+</main>
+</body>
+</html>

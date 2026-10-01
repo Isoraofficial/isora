@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalkulus Vektor (Medan Vektor, Integral Garis, Teorema Green, Stokes, Divergensi)</title>
+<meta name="description" content="Materi kalkulus vektor: medan vektor dan operator diferensial, integral garis, serta tiga teorema besar (Green, Stokes, Divergensi) beserta interpretasi dan penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Kalkulus Vektor (Medan Vektor, Integral Garis, Teorema Green, Stokes, Divergensi)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Fungsi Multivariabel</strong> &mdash; turunan parsial menjadi fondasi bagi gradien, divergensi, dan curl. Pemahaman tentang domain, limit, dan kekontinuan fungsi multivariabel juga diperlukan.</li>
+   <li><strong>Integral Lipat</strong> &mdash; Teorema Green dan Teorema Divergensi melibatkan integral ganda dan integral lipat tiga. Teknik perhitungan integral berulang akan terus dipakai.</li>
+   <li><strong>Integral Tentu dan Teknik Pengintegralan</strong> &mdash; integral garis didefinisikan melalui integral tentu, dan banyak perhitungannya memerlukan substitusi trigonometri atau manipulasi aljabar.</li>
+   <li><strong>Vektor Dasar</strong> &mdash; operasi vektor seperti hasil kali titik, hasil kali silang, panjang vektor, dan vektor satuan menjadi bahasa dasar dalam kalkulus vektor.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi sebelumnya, kita mempelajari fungsi bernilai real dari beberapa variabel&mdash;fungsi yang memetakan titik di ruang ke sebuah bilangan. Namun banyak besaran fisik tidak berupa bilangan tunggal di setiap titik, melainkan berupa vektor. Kecepatan aliran air di sebuah sungai, medan gaya gravitasi, medan listrik di sekitar muatan, dan medan magnet di sekitar kawat berarus&mdash;semuanya adalah contoh <strong>medan vektor</strong>: setiap titik di ruang dipasangkan sebuah vektor yang menyatakan besar dan arah suatu besaran.</p>
+ <p class="lesson-text">Kalkulus vektor adalah cabang kalkulus yang mempelajari medan vektor&mdash;bagaimana ia berubah, bagaimana ia berintegral, dan bagaimana perilakunya di sekitar kurva dan permukaan. Materi ini berpuncak pada tiga teorema besar yang saling terkait: <strong>Teorema Green</strong>, <strong>Teorema Stokes</strong>, dan <strong>Teorema Divergensi</strong>. Ketiganya memiliki pola yang sama&mdash;menghubungkan integral pada suatu daerah dengan integral pada batasnya&mdash;dan menjadi fondasi bagi banyak hukum fisika, terutama elektromagnetisme dan mekanika fluida.</p>
+ <p class="lesson-text">Materi ini mencakup lima topik. Pertama, medan vektor dan tiga operator diferensial (gradien, divergensi, curl). Kedua, integral garis&mdash;integral dari medan vektor sepanjang kurva. Ketiga, Teorema Green&mdash;yang menghubungkan integral garis tertutup dengan integral ganda atas daerah di dalamnya. Keempat, Teorema Stokes&mdash;perluasan Teorema Green ke permukaan tiga dimensi. Kelima, Teorema Divergensi&mdash;yang menghubungkan integral permukaan tertutup dengan integral lipat tiga atas volume di dalamnya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Medan Vektor dan Operator Diferensial</h2>
+ <p class="lesson-text">Bab ini memperkenalkan medan vektor dan tiga operator diferensial yang menjadi alat utama dalam kalkulus vektor. Ketiganya dibangun dari turunan parsial, tetapi masing-masing menangkap aspek yang berbeda dari perilaku medan.</p>
+
+ <h3 class="lesson-subheading">A. Medan Vektor</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Medan vektor pada $\mathbb{R}^2$ atau $\mathbb{R}^3$ adalah fungsi yang memasangkan setiap titik di ruang ke sebuah vektor. Contoh medan vektor di bidang:</p>
+ <p class="lesson-text">$$\mathbf{F}(x, y) = P(x, y)\, \mathbf{i} + Q(x, y)\, \mathbf{j}$$</p>
+ <p class="lesson-text">dengan $P$ dan $Q$ adalah fungsi skalar. Di ruang tiga dimensi, medan vektor berbentuk:</p>
+ <p class="lesson-text">$$\mathbf{F}(x, y, z) = P\, \mathbf{i} + Q\, \mathbf{j} + R\, \mathbf{k}$$</p>
+ <p class="lesson-text">Notasi ini sering dipersingkat dengan menuliskannya sebagai pasangan atau tripel fungsi: $\mathbf{F} = (P, Q)$ atau $\mathbf{F} = (P, Q, R)$.</p>
+ 
+ <figure>
+ <svg viewBox="0 0 620 440" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="26" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Medan vektor F(x, y) = (−y, x)</text>
+  
+  <!-- Sumbu -->
+  <line x1="80" y1="220" x2="580" y2="220" stroke="#e8e8e8" stroke-width="1" opacity="0.5" />
+  <line x1="310" y1="50" x2="310" y2="410" stroke="#e8e8e8" stroke-width="1" opacity="0.5" />
+  <text x="590" y="224" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="318" y="42" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  
+  <defs>
+   <marker id="arrIA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 10,5 0,10" fill="#5dade2" />
+   </marker>
+  </defs>
+  
+  <g stroke="#5dade2" stroke-width="1.8" fill="none" marker-end="url(#arrIA)">
+   <!-- Baris y = 2 (screen y = 80) -->
+   <line x1="170" y1="80" x2="142" y2="108" />
+   <line x1="240" y1="80" x2="212" y2="94" />
+   <line x1="310" y1="80" x2="282" y2="80" />
+   <line x1="380" y1="80" x2="352" y2="66" />
+   <line x1="450" y1="80" x2="422" y2="52" />
+   <!-- Baris y = 1 (screen y = 150) -->
+   <line x1="170" y1="150" x2="156" y2="178" />
+   <line x1="240" y1="150" x2="226" y2="164" />
+   <line x1="310" y1="150" x2="296" y2="150" />
+   <line x1="380" y1="150" x2="366" y2="136" />
+   <line x1="450" y1="150" x2="436" y2="122" />
+   <!-- Baris y = 0 (screen y = 220) -->
+   <line x1="170" y1="220" x2="170" y2="248" />
+   <line x1="240" y1="220" x2="240" y2="234" />
+   <line x1="380" y1="220" x2="380" y2="206" />
+   <line x1="450" y1="220" x2="450" y2="192" />
+   <!-- Baris y = -1 (screen y = 290) -->
+   <line x1="170" y1="290" x2="184" y2="318" />
+   <line x1="240" y1="290" x2="254" y2="304" />
+   <line x1="310" y1="290" x2="324" y2="290" />
+   <line x1="380" y1="290" x2="394" y2="276" />
+   <line x1="450" y1="290" x2="464" y2="262" />
+   <!-- Baris y = -2 (screen y = 360) -->
+   <line x1="170" y1="360" x2="198" y2="388" />
+   <line x1="240" y1="360" x2="268" y2="374" />
+   <line x1="310" y1="360" x2="338" y2="360" />
+   <line x1="380" y1="360" x2="408" y2="346" />
+   <line x1="450" y1="360" x2="478" y2="332" />
+  </g>
+  
+  <!-- Titik pusat (F = 0) -->
+  <circle cx="310" cy="220" r="4" fill="#daa520" />
+  
+  <!-- Indikator rotasi berlawanan jarum jam -->
+  <g transform="translate(520, 385)">
+   <path d="M 22 0 A 22 22 0 0 0 0 -22" fill="none" stroke="#daa520" stroke-width="2.2" />
+   <polygon points="-9,-22 3,-15 3,-29" fill="#daa520" />
+   <text x="-8" y="20" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">berputar CCW</text>
+  </g>
+  
+  <!-- Keterangan bawah -->
+  <text x="310" y="428" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Setiap panah menyatakan F di titik pangkalnya; panjang panah sebanding dengan |F|</text>
+ </svg>
+ <figcaption class="visual-caption">Medan vektor $\mathbf{F}(x, y) = (-y, x)$. Di setiap titik, vektor $\mathbf{F}$ tegak lurus terhadap vektor posisi dan menunjuk berlawanan arah jarum jam. Panjang panah sebanding dengan besar $|\mathbf{F}| = \sqrt{x^2 + y^2}$. Medan ini memiliki curl konstan $2$&mdash;menggambarkan rotasi murni.</figcaption>
+</figure>
+
+ <h3 class="lesson-subheading">B. Operator Gradien</h3>
+ <p class="lesson-text">Gradien adalah operator yang bekerja pada <em>fungsi skalar</em> dan menghasilkan <em>medan vektor</em>.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Untuk fungsi skalar $f(x, y, z)$, gradiennya adalah:</p>
+ <p class="lesson-text">$$\nabla f = \frac{\partial f}{\partial x}\, \mathbf{i} + \frac{\partial f}{\partial y}\, \mathbf{j} + \frac{\partial f}{\partial z}\, \mathbf{k}$$</p>
+ <p class="lesson-text">Simbol $\nabla$ (dibaca "nabla" atau "del") adalah operator diferensial vektor:</p>
+ <p class="lesson-text">$$\nabla = \frac{\partial}{\partial x}\, \mathbf{i} + \frac{\partial}{\partial y}\, \mathbf{j} + \frac{\partial}{\partial z}\, \mathbf{k}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Gradien menunjuk ke arah kenaikan $f$ yang paling cepat di setiap titik. Panjangnya menyatakan seberapa cepat kenaikan tersebut. Jika kita membayangkan $f$ sebagai ketinggian sebuah bukit, maka $\nabla f$ menunjuk ke arah paling curam ke atas&mdash;dan besarnya menyatakan kemiringannya. Gradien juga tegak lurus terhadap kurva level $f(x, y) = k$.</p>
+
+ <h3 class="lesson-subheading">C. Operator Divergensi</h3>
+ <p class="lesson-text">Divergensi bekerja pada <em>medan vektor</em> dan menghasilkan <em>fungsi skalar</em>.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Untuk medan vektor $\mathbf{F} = (P, Q, R)$, divergensinya adalah:</p>
+ <p class="lesson-text">$$\nabla \cdot \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Divergensi mengukur seberapa besar medan vektor "menyebar keluar" dari suatu titik. Jika $\nabla \cdot \mathbf{F} > 0$, berarti di titik itu medan bertindak sebagai sumber (mengeluarkan sesuatu). Jika $\nabla \cdot \mathbf{F} < 0$, medan bertindak sebagai penampung (menyerap). Jika $\nabla \cdot \mathbf{F} = 0$, tidak ada sumber maupun penampung&mdash;medan bersifat "tak termampatkan".</p>
+
+ <h3 class="lesson-subheading">D. Operator Curl</h3>
+ <p class="lesson-text">Curl juga bekerja pada medan vektor dan menghasilkan medan vektor.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Untuk medan vektor $\mathbf{F} = (P, Q, R)$, curl-nya adalah:</p>
+ <p class="lesson-text">$$\nabla \times \mathbf{F} = \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right) \mathbf{i} + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right) \mathbf{j} + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) \mathbf{k}$$</p>
+ <p class="lesson-text">Notasi $\nabla \times \mathbf{F}$ mengingatkan pada hasil kali silang&mdash;dan memang curl secara formal dihitung seperti determinan dengan baris pertama berisi vektor satuan, baris kedua berisi operator $\partial/\partial x, \partial/\partial y, \partial/\partial z$, dan baris ketiga berisi komponen $P, Q, R$.</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Curl mengukur seberapa besar medan vektor "berputar" di sekitar suatu titik. Jika kita menempatkan sebuah kincir air kecil di dalam aliran fluida, curl mengukur seberapa cepat kincir itu berputar. Medan dengan curl nol disebut <em>medan konservatif</em> atau <em>medan irrotasional</em>.</p>
+
+ <h3 class="lesson-subheading">E. Contoh Perhitungan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Untuk $f(x, y, z) = x^2 y + yz^3$ dan $\mathbf{F}(x, y, z) = (xy, yz, xz)$, hitung $\nabla f$, $\nabla \cdot \mathbf{F}$, dan $\nabla \times \mathbf{F}$.</p>
+ <p class="lesson-text"><strong>Gradien.</strong></p>
+ <p class="lesson-text">$$\nabla f = \frac{\partial f}{\partial x}\, \mathbf{i} + \frac{\partial f}{\partial y}\, \mathbf{j} + \frac{\partial f}{\partial z}\, \mathbf{k} = 2xy\, \mathbf{i} + (x^2 + z^3)\, \mathbf{j} + 3yz^2\, \mathbf{k}$$</p>
+ <p class="lesson-text"><strong>Divergensi.</strong> Dengan $\mathbf{F} = (P, Q, R) = (xy, yz, xz)$:</p>
+ <p class="lesson-text">$$\nabla \cdot \mathbf{F} = \frac{\partial (xy)}{\partial x} + \frac{\partial (yz)}{\partial y} + \frac{\partial (xz)}{\partial z} = y + z + x$$</p>
+ <p class="lesson-text"><strong>Curl.</strong></p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_x = \frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z} = 0 - y = -y$$</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_y = \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x} = 0 - z = -z$$</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_z = \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 0 - x = -x$$</p>
+ <p class="lesson-text">Jadi $\nabla \times \mathbf{F} = (-y, -z, -x)$.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Identitas penting.</strong> Dua identitas berikut sering dipakai dan dapat diverifikasi dengan perhitungan langsung:</p>
+  <ul>
+   <li>$\nabla \cdot (\nabla \times \mathbf{F}) = 0$&mdash;divergensi dari curl selalu nol.</li>
+   <li>$\nabla \times (\nabla f) = \mathbf{0}$&mdash;curl dari gradien selalu vektor nol.</li>
+  </ul>
+  <p class="lesson-text">Identitas kedua menunjukkan bahwa setiap medan gradien (medan konservatif) memiliki curl nol. Kebalikannya juga berlaku pada domain yang cukup "baik": jika curl suatu medan nol, maka medan itu adalah gradien dari suatu fungsi skalar.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Integral Garis</h2>
+ <p class="lesson-text">Integral garis adalah integral dari medan vektor sepanjang sebuah kurva. Konsep ini menjadi jembatan menuju tiga teorema besar&mdash;karena Teorema Green, Stokes, dan Divergensi semuanya melibatkan integral garis atau integral permukaan.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Integral Garis</h3>
+ <p class="lesson-text">Misalkan $\mathbf{F}$ adalah medan vektor kontinu pada suatu daerah yang memuat kurva mulus $C$ dengan parameterisasi $\mathbf{r}(t) = (x(t), y(t), z(t))$ untuk $t \in [a, b]$. <strong>Integral garis</strong> dari $\mathbf{F}$ sepanjang $C$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t)\, dt$$</p>
+ <p class="lesson-text">Dalam notasi komponen, jika $\mathbf{F} = (P, Q, R)$ dan $d\mathbf{r} = (dx, dy, dz)$, integral garis sering dituliskan sebagai:</p>
+ <p class="lesson-text">$$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_C P\, dx + Q\, dy + R\, dz$$</p>
+ <p class="lesson-text">Perhatikan bahwa integral garis menghasilkan sebuah bilangan, bukan fungsi maupun medan vektor.</p>
+
+ <h3 class="lesson-subheading">B. Interpretasi Fisika</h3>
+ <p class="lesson-text">Jika $\mathbf{F}$ menyatakan gaya yang bekerja pada sebuah partikel, maka $\int_C \mathbf{F} \cdot d\mathbf{r}$ menyatakan <strong>usaha</strong> yang dilakukan oleh gaya tersebut ketika partikel bergerak sepanjang kurva $C$. Ini adalah interpretasi yang paling intuitif: usaha adalah integral dari komponen gaya sepanjang arah gerak.</p>
+ <p class="lesson-text">Jika $\mathbf{F}$ menyatakan medan kecepatan fluida, maka integral garisnya menyatakan <strong>sirkulasi</strong>&mdash;yaitu seberapa besar fluida mengalir mengelilingi kurva $C$.</p>
+
+ <h3 class="lesson-subheading">C. Contoh Perhitungan Integral Garis</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_C \mathbf{F} \cdot d\mathbf{r}$ untuk $\mathbf{F}(x, y) = (x^2, xy)$ dan $C$ adalah kurva $\mathbf{r}(t) = (t, t^2)$ untuk $t$ dari $0$ sampai $1$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung $\mathbf{r}'(t)$.</strong></p>
+ <p class="lesson-text">$$\mathbf{r}'(t) = (1, 2t)$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Substitusi $\mathbf{F}$ pada $\mathbf{r}(t)$.</strong></p>
+ <p class="lesson-text">$$\mathbf{F}(\mathbf{r}(t)) = (t^2, t \cdot t^2) = (t^2, t^3)$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung hasil kali titik.</strong></p>
+ <p class="lesson-text">$$\mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t) = (t^2)(1) + (t^3)(2t) = t^2 + 2t^4$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Integralkan dari $0$ sampai $1$.</strong></p>
+ <p class="lesson-text">$$\int_0^1 (t^2 + 2t^4)\, dt = \left[\frac{t^3}{3} + \frac{2t^5}{5}\right]_0^1 = \frac{1}{3} + \frac{2}{5} = \frac{11}{15}$$</p>
+
+ <h3 class="lesson-subheading">D. Medan Konservatif</h3>
+ <p class="lesson-text">Sebuah medan vektor $\mathbf{F}$ disebut <strong>konservatif</strong> jika ada fungsi skalar $f$ sedemikian sehingga $\mathbf{F} = \nabla f$. Fungsi $f$ disebut <strong>fungsi potensial</strong> dari $\mathbf{F}$.</p>
+ <p class="lesson-text">Medan konservatif memiliki beberapa sifat penting:</p>
+ <ul>
+  <li><strong>Independen dari jalur.</strong> Integral garis $\int_C \mathbf{F} \cdot d\mathbf{r}$ hanya bergantung pada titik awal dan titik akhir, bukan pada jalur yang ditempuh.</li>
+  <li><strong>Integral pada kurva tertutup nol.</strong> Jika $C$ adalah kurva tertutup, maka $\oint_C \mathbf{F} \cdot d\mathbf{r} = 0$.</li>
+  <li><strong>Curl nol.</strong> Jika $\mathbf{F}$ konservatif dan komponen-komponennya memiliki turunan parsial kontinu, maka $\nabla \times \mathbf{F} = \mathbf{0}$. Sebaliknya, pada domain yang "cukup baik" (terhubung sederhana), curl nol berarti medan konservatif.</li>
+ </ul>
+ <p class="lesson-text">Sifat terakhir inilah yang akan menjadi kunci menghubungkan berbagai teorema di bab-bab berikutnya.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Menentukan Fungsi Potensial</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tunjukkan bahwa $\mathbf{F}(x, y) = (2xy, x^2 + 3y^2)$ konservatif, dan tentukan fungsi potensialnya.</p>
+ <p class="lesson-text"><strong>Langkah 1: Periksa curl (dalam dua dimensi).</strong> Untuk medan dua dimensi $\mathbf{F} = (P, Q)$, curl-nya diringkas menjadi satu komponen skalar $\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}$. Hitung:</p>
+ <p class="lesson-text">$$\frac{\partial Q}{\partial x} = \frac{\partial (x^2 + 3y^2)}{\partial x} = 2x, \qquad \frac{\partial P}{\partial y} = \frac{\partial (2xy)}{\partial y} = 2x$$</p>
+ <p class="lesson-text">Keduanya sama, sehingga curl-nya nol. Medan ini konservatif.</p>
+ <p class="lesson-text"><strong>Langkah 2: Cari fungsi potensial $f$ dengan $f_x = 2xy$ dan $f_y = x^2 + 3y^2$.</strong> Integralkan $f_x$ terhadap $x$:</p>
+ <p class="lesson-text">$$f(x, y) = \int 2xy\, dx = x^2 y + g(y)$$</p>
+ <p class="lesson-text">Di sini $g(y)$ adalah "konstanta integrasi" yang bisa bergantung pada $y$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Gunakan $f_y$ untuk menentukan $g(y)$.</strong></p>
+ <p class="lesson-text">$$f_y = x^2 + g'(y) = x^2 + 3y^2 \quad \Rightarrow \quad g'(y) = 3y^2 \quad \Rightarrow \quad g(y) = y^3 + C$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Tuliskan hasil akhirnya.</strong></p>
+ <p class="lesson-text">$$f(x, y) = x^2 y + y^3 + C$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Turunkan $f$ terhadap $x$: $f_x = 2xy$ ✓. Turunkan $f$ terhadap $y$: $f_y = x^2 + 3y^2$ ✓.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Teorema Green</h2>
+ <p class="lesson-text">Teorema Green adalah teorema pertama dari tiga teorema besar kalkulus vektor. Ia menghubungkan integral garis pada kurva tertutup dengan integral ganda atas daerah yang dibatasi oleh kurva tersebut.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema Green</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Misalkan $C$ adalah kurva tertutup sederhana yang berorientasi positif (yaitu berlawanan arah jarum jam) di bidang $xy$, dan $D$ adalah daerah yang dibatasi oleh $C$. Misalkan $P$ dan $Q$ memiliki turunan parsial pertama yang kontinu pada suatu daerah terbuka yang memuat $D$. Maka:</p>
+ <p class="lesson-text">$$\oint_C (P\, dx + Q\, dy) = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA$$</p>
+ <p class="lesson-text">"Kurva tertutup sederhana" berarti kurva tidak memotong dirinya sendiri dan berawal dan berakhir di titik yang sama.</p>
+
+ <h3 class="lesson-subheading">B. Interpretasi Teorema Green</h3>
+ <p class="lesson-text">Teorema Green menyatakan bahwa integral garis sepanjang batas suatu daerah sama dengan integral ganda dari curl (versi dua dimensi) di seluruh daerah tersebut. Dengan kata lain:</p>
+ <p class="lesson-text">$$\oint_C \mathbf{F} \cdot d\mathbf{r} = \iint_D (\nabla \times \mathbf{F}) \cdot \mathbf{k}\, dA$$</p>
+ <p class="lesson-text">Karena $\mathbf{F} = (P, Q)$ dan $(\nabla \times \mathbf{F})_z = \dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}$, integral ganda di ruas kanan adalah integral dari curl terhadap daerah $D$.</p>
+ <p class="lesson-text">Secara intuitif, Teorema Green menyatakan bahwa <em>sirkulasi</em> medan pada batas sama dengan <em>jumlah total curl</em> di dalamnya. Setiap "pusaran kecil" dari medan di dalam $D$ memberikan kontribusi terhadap sirkulasi keseluruhan di tepi.</p>
+ 
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="24" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Teorema Green: integral garis = integral ganda curl</text>
+  
+  <defs>
+   <marker id="arrG" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+    <polygon points="0,0 12,6 0,12" fill="#22d3ee" />
+   </marker>
+   <marker id="arrCurl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 10,5 0,10" fill="#daa520" />
+   </marker>
+  </defs>
+  
+  <!-- Daerah D -->
+  <ellipse cx="300" cy="200" rx="180" ry="120" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="3" />
+  
+  <!-- Label C dan D -->
+  <text x="300" y="205" font-size="18" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">D</text>
+  <text x="130" y="90" font-size="13" fill="#5dade2" font-style="italic">C (batas, CCW)</text>
+  
+  <!-- Panah orientasi CCW pada C (4 titik kardinal) -->
+  <line x1="480" y1="215" x2="480" y2="182" stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrG)" />
+  <line x1="318" y1="80" x2="282" y2="80" stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrG)" />
+  <line x1="120" y1="185" x2="120" y2="218" stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrG)" />
+  <line x1="282" y1="320" x2="318" y2="320" stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrG)" />
+  
+  <!-- Panah curl lokal (CCW kecil) di dalam D -->
+  <path d="M 250 158 A 15 15 0 0 0 235 173" fill="none" stroke="#daa520" stroke-width="1.8" marker-end="url(#arrCurl)" />
+  <path d="M 380 230 A 15 15 0 0 0 365 245" fill="none" stroke="#daa520" stroke-width="1.8" marker-end="url(#arrCurl)" />
+  <path d="M 390 175 A 15 15 0 0 0 375 190" fill="none" stroke="#daa520" stroke-width="1.8" marker-end="url(#arrCurl)" />
+  <path d="M 280 245 A 15 15 0 0 0 265 260" fill="none" stroke="#daa520" stroke-width="1.8" marker-end="url(#arrCurl)" />
+  
+  <text x="450" y="140" font-size="12" fill="#daa520" font-style="italic">curl lokal (CCW)</text>
+  
+  <text x="310" y="360" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">∮_C (P dx + Q dy) = ∬_D (∂Q/∂x − ∂P/∂y) dA</text>
+ </svg>
+ <figcaption class="visual-caption">Interpretasi Teorema Green. Kurva batas $C$ (biru) berorientasi positif&mdash;yaitu berlawanan arah jarum jam. Sirkulasi medan sepanjang $C$ sama dengan integral ganda curl di seluruh daerah $D$ di dalamnya. Panah-panah emas kecil menggambarkan curl lokal yang berkontribusi pada sirkulasi keseluruhan.</figcaption>
+</figure>
+
+ <h3 class="lesson-subheading">C. Contoh Penerapan Teorema Green</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\oint_C (xy\, dx + x^2\, dy)$ dengan $C$ adalah batas persegi $[0, 1] \times [0, 1]$ dengan orientasi positif.</p>
+ <p class="lesson-text"><strong>Penyelesaian dengan Teorema Green.</strong> Identifikasi $P = xy$ dan $Q = x^2$. Maka:</p>
+ <p class="lesson-text">$$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = \frac{\partial (x^2)}{\partial x} - \frac{\partial (xy)}{\partial y} = 2x - x = x$$</p>
+ <p class="lesson-text">Dengan Teorema Green:</p>
+ <p class="lesson-text">$$\oint_C (xy\, dx + x^2\, dy) = \iint_D x\, dA = \int_0^1 \int_0^1 x\, dy\, dx = \int_0^1 x\, dx = \frac{1}{2}$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan integral garis langsung.</strong> Persegi terdiri dari empat sisi:</p>
+ <ul>
+  <li>$C_1$: dari $(0, 0)$ ke $(1, 0)$, $y = 0$, $dy = 0$: $\displaystyle\int_0^1 0\, dx = 0$.</li>
+  <li>$C_2$: dari $(1, 0)$ ke $(1, 1)$, $x = 1$, $dx = 0$: $\displaystyle\int_0^1 1\, dy = 1$.</li>
+  <li>$C_3$: dari $(1, 1)$ ke $(0, 1)$, $y = 1$, $dy = 0$: $\displaystyle\int_1^0 x\, dx = -\dfrac{1}{2}$.</li>
+  <li>$C_4$: dari $(0, 1)$ ke $(0, 0)$, $x = 0$, $dx = 0$: $\displaystyle\int_1^0 0\, dy = 0$.</li>
+ </ul>
+ <p class="lesson-text">Jumlahnya: $0 + 1 - \dfrac{1}{2} + 0 = \dfrac{1}{2}$. Sesuai dengan hasil dari Teorema Green.</p>
+
+ <h3 class="lesson-subheading">D. Penerapan Teorema Green untuk Menghitung Luas</h3>
+ <p class="lesson-text">Salah satu aplikasi menarik dari Teorema Green adalah menghitung luas daerah yang dibatasi oleh kurva tertutup. Dengan memilih $P$ dan $Q$ yang sesuai sehingga $\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y} = 1$, integral gandanya menjadi luas daerah $D$.</p>
+ <p class="lesson-text">Ada tiga pilihan standar untuk $P$ dan $Q$:</p>
+ <ul>
+  <li>$P = 0$, $Q = x$: memberi $\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y} = 1$.</li>
+  <li>$P = -y$, $Q = 0$: juga memberi $1$.</li>
+  <li>$P = -\dfrac{y}{2}$, $Q = \dfrac{x}{2}$: memberi bentuk yang paling simetris.</li>
+ </ul>
+ <p class="lesson-text">Maka luas daerah $D$ dapat dihitung dengan:</p>
+ <p class="lesson-text">$$A = \frac{1}{2} \oint_C (x\, dy - y\, dx)$$</p>
+ <p class="lesson-text">Rumus ini sangat berguna ketika kurva batasnya diberikan secara parametrik dan integral gandanya sulit dihitung.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Teorema Stokes</h2>
+ <p class="lesson-text">Teorema Stokes adalah perluasan Teorema Green dari bidang datar ke permukaan lengkung di ruang tiga dimensi. Ia menghubungkan integral garis pada kurva batas dengan integral permukaan dari curl.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema Stokes</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Misalkan $S$ adalah permukaan berorientasi dengan batas $C$ yang berupa kurva tertutup sederhana. Orientasi $C$ diambil sedemikian sehingga jika kita berjalan sepanjang $C$ dengan kepala menunjuk ke arah normal permukaan, permukaan berada di sebelah kiri. Misalkan $\mathbf{F}$ adalah medan vektor dengan turunan parsial kontinu. Maka:</p>
+ <p class="lesson-text">$$\oint_C \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot \mathbf{n}\, dS$$</p>
+ <p class="lesson-text">dengan $\mathbf{n}$ adalah vektor normal satuan pada permukaan $S$.</p>
+ <p class="lesson-text">Jika $S$ adalah daerah datar di bidang $xy$, Teorema Stokes menjadi Teorema Green. Jadi Teorema Green adalah kasus khusus dari Teorema Stokes.</p>
+
+ <h3 class="lesson-subheading">B. Interpretasi Teorema Stokes</h3>
+ <p class="lesson-text">Sama seperti Teorema Green, Teorema Stokes menyatakan bahwa <em>sirkulasi</em> medan pada batas sama dengan <em>fluks curl</em> melalui permukaan. Perbedaannya adalah bahwa permukaannya tidak harus datar&mdash;bisa melengkung dalam ruang tiga dimensi.</p>
+ <p class="lesson-text">Poin penting: nilai integral permukaan tidak bergantung pada bentuk permukaan yang dipilih, selama batasnya sama. Semua permukaan yang memiliki batas $C$ yang sama memberikan hasil yang sama. Ini adalah salah satu alasan mengapa Teorema Stokes sangat kuat&mdash;kita dapat memilih permukaan yang paling mudah dihitung.</p>
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="24" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Teorema Stokes: integral garis = fluks curl</text>
+  
+  <defs>
+   <marker id="arrS" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+    <polygon points="0,0 12,6 0,12" fill="#daa520" />
+   </marker>
+   <marker id="arrN" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto">
+    <polygon points="0,0 12,6 0,12" fill="#22d3ee" />
+   </marker>
+  </defs>
+  
+  <!-- Kurva batas C (ellipse di bawah permukaan) -->
+  <ellipse cx="310" cy="310" rx="160" ry="42" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2.5" />
+  
+  <!-- Permukaan S (kubah) -->
+  <path d="M 150 310 Q 175 180 250 120 Q 310 80 370 120 Q 445 180 470 310" fill="#5dade2" fill-opacity="0.13" stroke="#5dade2" stroke-width="2.5" />
+  
+  <!-- Normal n -->
+  <line x1="310" y1="180" x2="310" y2="118" stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrN)" />
+  <text x="320" y="130" font-size="12" fill="#22d3ee" font-style="italic">n</text>
+  
+  <line x1="468" y1="315" x2="446" y2="298" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrS)" />
+  <!-- Atas (jam 12): CCW dari atas → menuju kiri -->
+  <line x1="330" y1="268" x2="290" y2="268" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrS)" />
+  <!-- Kiri (jam 9): CCW dari atas → menuju bawah-kanan -->
+  <line x1="152" y1="305" x2="174" y2="322" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrS)" />
+  <!-- Bawah (jam 6): CCW dari atas → menuju kanan -->
+  <line x1="290" y1="352" x2="330" y2="352" stroke="#daa520" stroke-width="2.5" marker-end="url(#arrS)" />
+  
+  <!-- Label -->
+  <text x="310" y="230" font-size="18" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">S</text>
+  <text x="180" y="335" font-size="13" fill="#daa520" font-style="italic">C</text>
+  
+  <text x="90" y="90" font-size="12" fill="#5dade2" font-style="italic">permukaan S</text>
+  <text x="90" y="106" font-size="11" fill="#b8b8b8" font-style="italic">dengan batas C</text>
+  
+  <text x="310" y="385" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">∮_C F · dr = ∬_S (∇ × F) · n dS</text>
+ </svg>
+ <figcaption class="visual-caption">Interpretasi Teorema Stokes. Kurva batas $C$ (emas) mengelilingi permukaan $S$ (biru) dengan orientasi yang konsisten terhadap normal $\mathbf{n}$&mdash;yaitu berlawanan arah jarum jam bila dilihat dari arah $\mathbf{n}$. Sirkulasi medan vektor sepanjang $C$ sama dengan fluks curl melalui $S$.</figcaption>
+</figure>
+
+ <h3 class="lesson-subheading">C. Contoh Penerapan Teorema Stokes</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\oint_C \mathbf{F} \cdot d\mathbf{r}$ untuk $\mathbf{F}(x, y, z) = (-y, x, z^2)$ dengan $C$ adalah lingkaran $x^2 + y^2 = 1$ pada bidang $z = 0$, berorientasi berlawanan arah jarum jam jika dilihat dari atas.</p>
+ <p class="lesson-text"><strong>Penyelesaian dengan Teorema Stokes.</strong> Ambil permukaan $S$ sebagai cakram datar $x^2 + y^2 \leq 1$ pada bidang $z = 0$. Normalnya $\mathbf{n} = \mathbf{k} = (0, 0, 1)$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung curl $\mathbf{F}$.</strong> Dengan $\mathbf{F} = (P, Q, R) = (-y, x, z^2)$:</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_x = \frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z} = 0 - 0 = 0$$</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_y = \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x} = 0 - 0 = 0$$</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_z = \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1 - (-1) = 2$$</p>
+ <p class="lesson-text">Jadi $\nabla \times \mathbf{F} = (0, 0, 2)$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung fluks curl melalui $S$.</strong> Karena normalnya $\mathbf{n} = (0, 0, 1)$ konstan, dan curl-nya juga konstan:</p>
+ <p class="lesson-text">$$\iint_S (\nabla \times \mathbf{F}) \cdot \mathbf{n}\, dS = \iint_S 2\, dS = 2 \cdot \text{luas cakram} = 2 \cdot \pi(1)^2 = 2\pi$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan integral garis langsung.</strong> Parameterisasi $C$: $\mathbf{r}(t) = (\cos t, \sin t, 0)$ untuk $t \in [0, 2\pi]$. Maka $\mathbf{r}'(t) = (-\sin t, \cos t, 0)$ dan $\mathbf{F}(\mathbf{r}(t)) = (-\sin t, \cos t, 0)$. Hasil kali titiknya:</p>
+ <p class="lesson-text">$$\mathbf{F} \cdot \mathbf{r}' = \sin^2 t + \cos^2 t = 1$$</p>
+ <p class="lesson-text">$$\oint_C \mathbf{F} \cdot d\mathbf{r} = \int_0^{2\pi} 1\, dt = 2\pi$$</p>
+ <p class="lesson-text">Sesuai dengan hasil dari Teorema Stokes.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Teorema Divergensi</h2>
+ <p class="lesson-text">Teorema Divergensi (juga dikenal sebagai Teorema Gauss) adalah yang ketiga dari tiga teorema besar kalkulus vektor. Ia menghubungkan integral permukaan tertutup dengan integral lipat tiga atas volume di dalamnya.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema Divergensi</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Misalkan $E$ adalah daerah tertutup dan terbatas di ruang tiga dimensi dengan permukaan batas $S$ yang halus sepotong-sepotong dan berorientasi keluar. Misalkan $\mathbf{F}$ adalah medan vektor dengan turunan parsial kontinu pada daerah terbuka yang memuat $E$. Maka:</p>
+ <p class="lesson-text">$$\iint_S \mathbf{F} \cdot \mathbf{n}\, dS = \iiint_E (\nabla \cdot \mathbf{F})\, dV$$</p>
+ <p class="lesson-text">dengan $\mathbf{n}$ adalah vektor normal satuan yang menunjuk keluar dari $E$.</p>
+
+ <h3 class="lesson-subheading">B. Interpretasi Teorema Divergensi</h3>
+ <p class="lesson-text">Teorema Divergensi menyatakan bahwa <em>fluks</em> medan vektor melalui permukaan tertutup sama dengan integral lipat tiga dari divergensi di seluruh volume di dalam permukaan tersebut.</p>
+ <p class="lesson-text">Secara intuitif: divergensi mengukur seberapa besar medan "menyebar keluar" di setiap titik. Jika kita jumlahkan seluruh penyebaran ini di dalam volume $E$, kita mendapatkan total fluks yang keluar melalui permukaan $S$. Sumber-sumber di dalam volume memberi kontribusi positif pada fluks keluar; penampung memberi kontribusi negatif.</p>
+ <p class="lesson-text">Dalam elektromagnetisme, Teorema Divergensi menjadi dasar dari <strong>Hukum Gauss</strong> untuk medan listrik: fluks medan listrik melalui permukaan tertutup sebanding dengan muatan total di dalamnya. Muatan listrik bertindak sebagai "sumber" dari medan listrik&mdash;dan teorema ini memberi hubungan yang presisi antara keduanya.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="24" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Teorema Divergensi: fluks permukaan = integral lipat tiga divergensi</text>
+  
+  <defs>
+   <marker id="arrV" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 12,6 0,12" fill="#daa520" />
+   </marker>
+   <marker id="arrVn" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 12,6 0,12" fill="#22d3ee" />
+   </marker>
+  </defs>
+  
+  <!-- Bola: circle dgn efek 3D via ellipse horizontal -->
+  <circle cx="310" cy="200" r="120" fill="#5dade2" fill-opacity="0.13" stroke="#5dade2" stroke-width="2.5" />
+  <ellipse cx="310" cy="200" rx="120" ry="40" fill="none" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+  
+  <!-- Panah medan F = (x,y,z) tersebar di seluruh interior -->
+  <g stroke="#daa520" stroke-width="1.8" fill="none" marker-end="url(#arrV)">
+   <line x1="360" y1="200" x2="412" y2="200" />
+   <line x1="347" y1="163" x2="384" y2="126" />
+   <line x1="310" y1="150" x2="310" y2="98" />
+   <line x1="273" y1="163" x2="236" y2="126" />
+   <line x1="260" y1="200" x2="208" y2="200" />
+   <line x1="273" y1="237" x2="236" y2="274" />
+   <line x1="310" y1="250" x2="310" y2="302" />
+   <line x1="347" y1="237" x2="384" y2="274" />
+  </g>
+  
+  <!-- Titik pusat (source) -->
+  <circle cx="310" cy="200" r="4.5" fill="#e8e8e8" />
+  <text x="322" y="222" font-size="11" fill="#e8e8e8" font-style="italic">sumber</text>
+  
+  <!-- Normal n (horizontal, tegak lurus permukaan kanan) -->
+  <line x1="430" y1="200" x2="478" y2="200" stroke="#22d3ee" stroke-width="2.5" marker-end="url(#arrVn)" />
+  <text x="484" y="204" font-size="12" fill="#22d3ee" font-style="italic">n</text>
+  
+  <!-- Label E/S -->
+  <text x="310" y="180" font-size="14" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">E</text>
+  <text x="100" y="120" font-size="12" fill="#5dade2" font-style="italic">permukaan tertutup S</text>
+  <text x="100" y="136" font-size="11" fill="#b8b8b8" font-style="italic">orientasi keluar</text>
+  
+  <!-- Persamaan -->
+  <text x="310" y="380" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">∬_S F · n dS = ∭_E (∇ · F) dV</text>
+ </svg>
+ <figcaption class="visual-caption">Interpretasi Teorema Divergensi. Medan vektor $\mathbf{F}$ (panah emas) mengarah radial keluar di setiap titik dalam volume $E$. Fluks keluar melalui permukaan tertutup $S$ sama dengan integral lipat tiga divergensi di seluruh volume $E$ di dalam $S$. Normal $\mathbf{n}$ (biru) pada permukaan berorientasi keluar.</figcaption>
+</figure>
+
+ <h3 class="lesson-subheading">C. Contoh Penerapan Teorema Divergensi</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung fluks medan $\mathbf{F}(x, y, z) = (x, y, z)$ melalui permukaan bola satuan $x^2 + y^2 + z^2 = 1$ dengan orientasi keluar.</p>
+ <p class="lesson-text"><strong>Penyelesaian dengan Teorema Divergensi.</strong> Daerah $E$ adalah bola satuan $x^2 + y^2 + z^2 \leq 1$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung divergensi $\mathbf{F}$.</strong></p>
+ <p class="lesson-text">$$\nabla \cdot \mathbf{F} = \frac{\partial x}{\partial x} + \frac{\partial y}{\partial y} + \frac{\partial z}{\partial z} = 1 + 1 + 1 = 3$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral lipat tiga.</strong> Karena divergensinya konstan:</p>
+ <p class="lesson-text">$$\iiint_E 3\, dV = 3 \cdot \text{volume bola} = 3 \cdot \frac{4}{3}\pi (1)^3 = 4\pi$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan integral permukaan langsung.</strong> Pada bola satuan, vektor normal keluar di titik $(x, y, z)$ adalah $\mathbf{n} = (x, y, z)$ sendiri (karena panjang vektor posisi adalah $1$). Maka:</p>
+ <p class="lesson-text">$$\mathbf{F} \cdot \mathbf{n} = (x, y, z) \cdot (x, y, z) = x^2 + y^2 + z^2 = 1$$</p>
+ <p class="lesson-text">Fluks permukaan: $\displaystyle\iint_S 1\, dS = \text{luas permukaan bola} = 4\pi$. Sesuai dengan hasil dari Teorema Divergensi.</p>
+
+ <h3 class="lesson-subheading">D. Hubungan Antara Ketiga Teorema</h3>
+ <p class="lesson-text">Ketiga teorema besar kalkulus vektor memiliki pola yang serupa&mdash;dan merupakan perwujudan dari satu prinsip yang lebih dalam: <strong>integral pada suatu daerah sama dengan integral pada batasnya</strong>.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Teorema</th><th>Integral pada batas</th><th>Integral pada daerah</th></tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>Teorema Green</td>
+    <td>$\displaystyle\oint_C (P\, dx + Q\, dy)$</td>
+    <td>$\displaystyle\iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA$</td>
+   </tr>
+   <tr>
+    <td>Teorema Stokes</td>
+    <td>$\displaystyle\oint_C \mathbf{F} \cdot d\mathbf{r}$</td>
+    <td>$\displaystyle\iint_S (\nabla \times \mathbf{F}) \cdot \mathbf{n}\, dS$</td>
+   </tr>
+   <tr>
+    <td>Teorema Divergensi</td>
+    <td>$\displaystyle\iint_S \mathbf{F} \cdot \mathbf{n}\, dS$</td>
+    <td>$\displaystyle\iiint_E (\nabla \cdot \mathbf{F})\, dV$</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Hubungan struktural ini juga dapat dilihat melalui "operator turunan" yang muncul di ruas kanan:</p>
+ <ul>
+  <li>Teorema Green menggunakan curl dua dimensi ($\partial Q/\partial x - \partial P/\partial y$).</li>
+  <li>Teorema Stokes menggunakan curl penuh (∇×F).</li>
+  <li>Teorema Divergensi menggunakan divergensi (∇·F).</li>
+ </ul>
+ <p class="lesson-text">Pada dasarnya, Teorema Stokes adalah versi umum dari Teorema Green (dan Teorema Green adalah kasus khusus ketika permukaannya datar di bidang $xy$), sedangkan Teorema Divergensi dapat dipandang sebagai "versi turunan" dari Teorema Stokes ketika kurva batas menyusut menjadi titik. Ketiga teorema ini merupakan contoh dari <em>teorema Stokes umum</em>, yang menyatakan bahwa integral dari turunan luar suatu bentuk pada suatu daerah sama dengan integral bentuk itu sendiri pada batas daerah.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh tambahan yang menerapkan ketiga teorema pada situasi yang tidak muncul di bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menghitung Luas dengan Teorema Green</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung luas daerah yang dibatasi oleh elips dengan parameterisasi $\mathbf{r}(t) = (a\cos t, b\sin t)$ untuk $t \in [0, 2\pi]$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Gunakan rumus luas dari Teorema Green: $A = \dfrac{1}{2}\displaystyle\oint_C (x\, dy - y\, dx)$.</p>
+ <p class="lesson-text">Dari parameterisasi: $x = a\cos t$, $y = b\sin t$, sehingga $dx = -a\sin t\, dt$ dan $dy = b\cos t\, dt$. Maka:</p>
+ <p class="lesson-text">$$x\, dy - y\, dx = (a\cos t)(b\cos t)\, dt - (b\sin t)(-a\sin t)\, dt = ab\cos^2 t\, dt + ab\sin^2 t\, dt = ab\, dt$$</p>
+ <p class="lesson-text">$$A = \frac{1}{2}\int_0^{2\pi} ab\, dt = \frac{1}{2} \cdot ab \cdot 2\pi = \pi ab$$</p>
+ <p class="lesson-text">Hasil $\pi ab$ sesuai dengan rumus luas elips yang sudah dikenal&mdash;tetapi diperoleh melalui integral garis tanpa perlu menghitung integral ganda.</p>
+
+ <h3 class="lesson-subheading">B. Teorema Stokes dengan Permukaan Berbeda</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\oint_C \mathbf{F} \cdot d\mathbf{r}$ untuk $\mathbf{F}(x, y, z) = (z, x, y)$, dengan $C$ adalah segitiga dengan titik sudut $(1, 0, 0)$, $(0, 1, 0)$, dan $(0, 0, 1)$, berorientasi berlawanan arah jarum jam jika dilihat dari titik asal.</p>
+ <p class="lesson-text"><strong>Penyelesaian dengan Teorema Stokes.</strong> Ambil permukaan $S$ sebagai bidang datar segitiga $x + y + z = 1$ pada oktan pertama.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung curl $\mathbf{F}$.</strong> Dengan $\mathbf{F} = (P, Q, R) = (z, x, y)$:</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_x = \frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z} = 1 - 0 = 1$$</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_y = \frac{\partial P}{\partial z} - \frac{\partial R}{\partial x} = 1 - 0 = 1$$</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F})_z = \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1 - 0 = 1$$</p>
+ <p class="lesson-text">Jadi $\nabla \times \mathbf{F} = (1, 1, 1)$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung fluks curl melalui $S$.</strong> Bidang $x + y + z = 1$ memiliki normal $\mathbf{n} = \dfrac{(1, 1, 1)}{\sqrt{3}}$, dengan tanda positif karena orientasi keluar dari titik asal. Maka:</p>
+ <p class="lesson-text">$$(\nabla \times \mathbf{F}) \cdot \mathbf{n} = (1, 1, 1) \cdot \frac{(1, 1, 1)}{\sqrt{3}} = \frac{3}{\sqrt{3}} = \sqrt{3}$$</p>
+ <p class="lesson-text">Integral permukaannya adalah $\sqrt{3}$ dikali luas segitiga $S$. Segitiga dengan titik sudut $(1, 0, 0)$, $(0, 1, 0)$, $(0, 0, 1)$ memiliki sisi-sisi yang panjangnya $\sqrt{2}$, sehingga luasnya adalah $\dfrac{\sqrt{3}}{4} \cdot 2 = \dfrac{\sqrt{3}}{2}$ (menggunakan rumus luas segitiga sama sisi dengan sisi $\sqrt{2}$). Maka:</p>
+ <p class="lesson-text">$$\iint_S (\nabla \times \mathbf{F}) \cdot \mathbf{n}\, dS = \sqrt{3} \cdot \frac{\sqrt{3}}{2} = \frac{3}{2}$$</p>
+
+ <h3 class="lesson-subheading">C. Teorema Divergensi untuk Medan Tak Konstan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung fluks medan $\mathbf{F}(x, y, z) = (x^2, y^2, z^2)$ melalui permukaan kubus satuan $[0, 1]^3$ dengan orientasi keluar.</p>
+ <p class="lesson-text"><strong>Penyelesaian dengan Teorema Divergensi.</strong></p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung divergensi.</strong></p>
+ <p class="lesson-text">$$\nabla \cdot \mathbf{F} = \frac{\partial (x^2)}{\partial x} + \frac{\partial (y^2)}{\partial y} + \frac{\partial (z^2)}{\partial z} = 2x + 2y + 2z$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral lipat tiga.</strong></p>
+ <p class="lesson-text">$$\iiint_E (2x + 2y + 2z)\, dV = 2\int_0^1 \int_0^1 \int_0^1 (x + y + z)\, dz\, dy\, dx$$</p>
+ <p class="lesson-text">Hitung integral dalam: $\displaystyle\int_0^1 (x + y + z)\, dz = x + y + \frac{1}{2}$.</p>
+ <p class="lesson-text">Integral tengah: $\displaystyle\int_0^1 \left(x + y + \frac{1}{2}\right) dy = x + \frac{1}{2} + \frac{1}{2} = x + 1$.</p>
+ <p class="lesson-text">Integral luar: $\displaystyle\int_0^1 (x + 1)\, dx = \frac{1}{2} + 1 = \frac{3}{2}$.</p>
+ <p class="lesson-text">Maka fluks totalnya adalah $2 \cdot \dfrac{3}{2} = 3$.</p>
+
+ <h3 class="lesson-subheading">D. Penerapan: Hukum Gauss untuk Medan Listrik</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam elektromagnetisme, Hukum Gauss menyatakan bahwa fluks medan listrik $\mathbf{E}$ melalui permukaan tertutup $S$ sebanding dengan muatan total $Q_{\text{enc}}$ yang terkurung di dalamnya:</p>
+ <p class="lesson-text">$$\iint_S \mathbf{E} \cdot \mathbf{n}\, dS = \frac{Q_{\text{enc}}}{\varepsilon_0}$$</p>
+ <p class="lesson-text">dengan $\varepsilon_0$ adalah permitivitas vakum. Dengan menerapkan Teorema Divergensi pada ruas kiri:</p>
+ <p class="lesson-text">$$\iint_S \mathbf{E} \cdot \mathbf{n}\, dS = \iiint_E (\nabla \cdot \mathbf{E})\, dV = \frac{Q_{\text{enc}}}{\varepsilon_0}$$</p>
+ <p class="lesson-text">Jika muatan didistribusikan dengan kerapatan $\rho$, maka $Q_{\text{enc}} = \iiint_E \rho\, dV$. Substitusikan:</p>
+ <p class="lesson-text">$$\iiint_E (\nabla \cdot \mathbf{E})\, dV = \frac{1}{\varepsilon_0}\iiint_E \rho\, dV$$</p>
+ <p class="lesson-text">Karena kesamaan ini berlaku untuk setiap volume $E$, integran dari kedua ruas harus sama:</p>
+ <p class="lesson-text">$$\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Bentuk diferensial dari Hukum Gauss&mdash;$\nabla \cdot \mathbf{E} = \rho/\varepsilon_0$&mdash;menyatakan bahwa divergensi medan listrik di suatu titik sebanding dengan kerapatan muatan di titik tersebut. Ini adalah salah satu dari empat persamaan Maxwell, yang menjadi fondasi seluruh elektromagnetisme klasik. Persamaan ini adalah hasil langsung dari penerapan Teorema Divergensi, dan menunjukkan bagaimana konsep matematis kalkulus vektor menjadi bahasa alami bagi hukum-hukum fisika fundamental.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Penerapan: Persamaan Kontinuitas dalam Mekanika Fluida</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam mekanika fluida, kerapatan massa fluida $\rho$ dan medan kecepatannya $\mathbf{v}$ memenuhi <strong>persamaan kontinuitas</strong>:</p>
+ <p class="lesson-text">$$\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho\mathbf{v}) = 0$$</p>
+ <p class="lesson-text">Persamaan ini menyatakan hukum kekekalan massa: laju perubahan massa di suatu titik diimbangi oleh aliran massa keluar dari titik tersebut.</p>
+ <p class="lesson-text"><strong>Penurunan dengan Teorema Divergensi.</strong> Massa total fluida di dalam volume $E$ adalah $M = \iiint_E \rho\, dV$. Laju perubahan massa terhadap waktu adalah:</p>
+ <p class="lesson-text">$$\frac{dM}{dt} = \iiint_E \frac{\partial \rho}{\partial t}\, dV$$</p>
+ <p class="lesson-text">Sebaliknya, laju aliran massa keluar melalui permukaan $S$ adalah $\iint_S (\rho\mathbf{v}) \cdot \mathbf{n}\, dS$. Menurut Teorema Divergensi, integral ini sama dengan $\iiint_E \nabla \cdot (\rho\mathbf{v})\, dV$. Karena massa tidak dapat diciptakan atau dimusnahkan, jumlah dari kedua kuantitas ini harus nol:</p>
+ <p class="lesson-text">$$\iiint_E \frac{\partial \rho}{\partial t}\, dV + \iiint_E \nabla \cdot (\rho\mathbf{v})\, dV = 0$$</p>
+ <p class="lesson-text">Karena ini berlaku untuk setiap volume $E$, integrandnya harus nol:</p>
+ <p class="lesson-text">$$\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho\mathbf{v}) = 0$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Persamaan kontinuitas adalah salah satu contoh paling elegan dari penerapan Teorema Divergensi. Persamaan ini menjadi dasar bagi hukum kekekalan massa, kekekalan muatan listrik, dan kekekalan energi dalam bentuk-bentuk yang melibatkan aliran. Bentuk matematisnya sederhana, tetapi implikasi fisiknya sangat luas&mdash;dari aliran air di pipa hingga dinamika bintang di galaksi.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Medan Vektor dan Operator</h3>
+ <ul>
+  <li><strong>Menganggap divergensi menghasilkan vektor.</strong> Divergensi menghasilkan <em>fungsi skalar</em>, bukan medan vektor. Kesalahan ini sering terjadi karena notasi $\nabla \cdot \mathbf{F}$ yang menyerupai hasil kali titik. Bandingkan dengan curl ($\nabla \times \mathbf{F}$) yang memang menghasilkan medan vektor.</li>
+  <li><strong>Salah menerapkan aturan turunan pada curl.</strong> Setiap komponen curl melibatkan turunan parsial dari komponen medan yang berbeda. Urutan pengurangan pada setiap komponen penting: komponen $x$ adalah $\partial R/\partial y - \partial Q/\partial z$, bukan sebaliknya.</li>
+  <li><strong>Menganggap $\nabla \cdot \mathbf{F} = 0$ berarti medan nol.</strong> Divergensi nol hanya berarti medan tidak memiliki sumber atau penampung. Contoh: medan $\mathbf{F} = (-y, x)$ memiliki divergensi nol, meskipun medannya jelas tidak nol.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Integral Garis</h3>
+ <ul>
+  <li><strong>Lupa menghitung $\mathbf{r}'(t)$.</strong> Dalam rumus $\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t)\, dt$, faktor $\mathbf{r}'(t)$ wajib disertakan. Tanpa faktor ini, integralnya salah.</li>
+  <li><strong>Salah parameterisasi kurva.</strong> Parameterisasi menentukan arah dan bentuk kurva. Parameterisasi yang salah menyebabkan integral yang salah. Periksa bahwa parameterisasi benar-benar mencakup semua titik pada kurva dengan orientasi yang benar.</li>
+  <li><strong>Menganggap integral garis selalu independen dari jalur.</strong> Hanya medan konservatif yang memiliki sifat ini. Untuk medan umum, nilai integral garis bergantung pada jalur yang ditempuh.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Teorema Green</h3>
+ <ul>
+  <li><strong>Salah menentukan orientasi kurva.</strong> Teorema Green mensyaratkan orientasi positif (berlawanan arah jarum jam). Jika orientasinya terbalik, tanda integralnya berubah.</li>
+  <li><strong>Menerapkan Teorema Green pada kurva yang tidak tertutup.</strong> Teorema Green hanya berlaku untuk kurva tertutup sederhana. Untuk kurva terbuka, gunakan integral garis biasa.</li>
+  <li><strong>Salah menerapkan urutan pada selisih $\partial Q/\partial x - \partial P/\partial y$.</strong> Urutannya penting dan sering tertukar dengan $\partial P/\partial y - \partial Q/\partial x$. Perhatikan bahwa rumusnya adalah $\partial Q/\partial x - \partial P/\partial y$&mdash;perhatikan bahwa $Q$ dan $P$ tertukar dari apa yang mungkin terlihat intuitif pada pandangan pertama.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Teorema Stokes</h3>
+ <ul>
+  <li><strong>Salah menentukan normal permukaan.</strong> Orientasi normal harus konsisten dengan orientasi kurva batas (aturan tangan kanan). Jika normal dibalik, tanda hasilnya berubah.</li>
+  <li><strong>Menganggap permukaan harus datar.</strong> Teorema Stokes berlaku untuk permukaan lengkung apa pun&mdash;bahkan yang tidak datar. Yang penting adalah batasnya sama dengan kurva $C$.</li>
+  <li><strong>Lupa bahwa permukaan harus berorientasi.</strong> Permukaan yang tidak dapat diorientasikan (misalnya pita Möbius) tidak memenuhi syarat Teorema Stokes.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Teorema Divergensi</h3>
+ <ul>
+  <li><strong>Menggunakan permukaan terbuka.</strong> Teorema Divergensi mensyaratkan bahwa permukaan $S$ bersifat <em>tertutup</em>&mdash;yaitu membatasi suatu volume $E$. Jika permukaan terbuka, gunakan integral permukaan biasa.</li>
+  <li><strong>Salah menentukan orientasi normal.</strong> Normal harus menunjuk keluar dari volume $E$. Jika orientasinya terbalik, tanda hasilnya berubah.</li>
+  <li><strong>Menerapkan Teorema Divergensi pada medan yang memiliki singularitas di dalam volume.</strong> Jika medan memiliki singularitas (misalnya pembagian dengan nol) di dalam $E$, teorema ini tidak dapat diterapkan secara langsung. Perlu penanganan khusus, seperti mengecualikan singularitas dengan permukaan kecil di sekitarnya.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Ringkasan</h2>
+ <ul>
+  <li><strong>Medan vektor:</strong> fungsi yang memasangkan setiap titik ke sebuah vektor. Dituliskan sebagai $\mathbf{F} = (P, Q, R)$.</li>
+  <li><strong>Gradien:</strong> $\nabla f = (f_x, f_y, f_z)$&mdash;bekerja pada fungsi skalar, menghasilkan medan vektor. Menunjuk ke arah kenaikan tercepat.</li>
+  <li><strong>Divergensi:</strong> $\nabla \cdot \mathbf{F} = P_x + Q_y + R_z$&mdash;bekerja pada medan vektor, menghasilkan fungsi skalar. Mengukur seberapa besar medan menyebar keluar.</li>
+  <li><strong>Curl:</strong> $\nabla \times \mathbf{F}$&mdash;bekerja pada medan vektor, menghasilkan medan vektor. Mengukur seberapa besar medan berputar.</li>
+  <li><strong>Integral garis:</strong> $\displaystyle\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t)\, dt$&mdash;mengukur usaha atau sirkulasi sepanjang kurva.</li>
+  <li><strong>Medan konservatif:</strong> medan yang dapat dituliskan sebagai gradien suatu fungsi skalar. Integral garisnya independen dari jalur, dan curl-nya nol.</li>
+  <li><strong>Teorema Green:</strong> $\displaystyle\oint_C (P\, dx + Q\, dy) = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA$&mdash;menghubungkan integral garis tertutup dengan integral ganda curl pada bidang.</li>
+  <li><strong>Teorema Stokes:</strong> $\displaystyle\oint_C \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot \mathbf{n}\, dS$&mdash;menghubungkan integral garis tertutup dengan fluks curl melalui permukaan.</li>
+  <li><strong>Teorema Divergensi:</strong> $\displaystyle\iint_S \mathbf{F} \cdot \mathbf{n}\, dS = \iiint_E (\nabla \cdot \mathbf{F})\, dV$&mdash;menghubungkan fluks melalui permukaan tertutup dengan integral lipat tiga divergensi.</li>
+  <li><strong>Hubungan struktural:</strong> ketiga teorema mengikuti pola yang sama&mdash;integral pada batas sama dengan integral dari "turunan" pada daerah.</li>
+  <li><strong>Penerapan:</strong> Hukum Gauss untuk listrik, persamaan kontinuitas dalam mekanika fluida, hukum Ampere, hukum Faraday, dan banyak hukum fisika lainnya.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Kalkulus vektor adalah puncak dari perjalanan melalui kalkulus multivariabel. Ia menyatukan konsep turunan parsial, integral lipat, dan geometri ruang menjadi satu kerangka yang koheren. Tiga teorema besarnya&mdash;Green, Stokes, dan Divergensi&mdash;bukanlah hasil yang berdiri sendiri, melainkan manifestasi dari satu prinsip mendalam: integral pada suatu daerah sama dengan integral pada batasnya. Prinsip ini muncul dalam berbagai bentuk di seluruh matematika dan fisika.</p>
+ <p class="lesson-text">Bagi fisika, kalkulus vektor adalah bahasa alami untuk merumuskan hukum-hukum alam. Persamaan Maxwell dalam elektromagnetisme, persamaan Navier-Stokes dalam mekanika fluida, persamaan kontinuitas untuk kekekalan massa dan muatan&mdash;semuanya dituliskan menggunakan operator gradien, divergensi, dan curl, serta teorema-teorema besar yang menghubungkan integral pada batas dengan integral pada daerah. Menguasai kalkulus vektor berarti memiliki akses ke sebagian besar bahasa fisika teoretis modern.</p>
+ <p class="lesson-text">Materi berikutnya dalam kategori kalkulus akan memperluas gagasan-gagasan ini ke arah yang lebih abstrak: <strong>analisis real</strong> memberikan dasar-dasar rigor bagi semua konsep yang telah kita pelajari, <strong>analisis kompleks</strong> memperluas kalkulus ke bidang bilangan kompleks, dan <strong>persamaan diferensial</strong> menyatukan semua ini untuk memodelkan perubahan dalam sistem dinamis. Semuanya bertumpu pada fondasi yang telah dibangun melalui barisan, deret, integral, dan sekarang kalkulus vektor.</p>
+</section>
+
+</main>
+</body>
+</html>

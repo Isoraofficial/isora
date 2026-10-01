@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integral Tak Wajar (Batas Tak Hingga, Integran Diskontinu)</title>
+<meta name="description" content="Materi integral tak wajar: definisi integral dengan batas tak hingga, integral dengan integran diskontinu, kekonvergenan dan kedivergenan, sifat-sifat, serta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Integral Tak Wajar (Batas Tak Hingga, Integran Diskontinu)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; integral tak wajar didefinisikan melalui limit, baik limit di tak hingga maupun limit satu sisi. Tanpa pemahaman yang kuat tentang limit, definisi ini tidak dapat diikuti.</li>
+   <li><strong>Integral Tentu</strong> &mdash; integral tak wajar adalah perluasan dari integral tentu. Definisi dasarnya, sifat-sifatnya, dan Teorema Fundamental Kalkulus yang menjadi alat hitungnya akan terus dipakai di sini.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi integral tentu, kita membahas definisi $\displaystyle\int_a^b f(x)\, dx$ yang mensyaratkan dua hal: interval $[a, b]$ harus <em>terbatas</em>, dan integran $f$ harus <em>kontinu</em> pada interval tersebut. Namun banyak pertanyaan menarik justru muncul di luar dua syarat itu. Misalnya, berapa luas daerah di bawah kurva $y = \dfrac{1}{x^2}$ jika daerahnya diperluas sampai $x$ tak hingga? Atau berapa luas daerah di bawah kurva $y = \dfrac{1}{\sqrt{x}}$ dari $x = 0$ sampai $x = 1$, meskipun kurvanya menuju tak hingga di $x = 0$?</p>
+ <p class="lesson-text">Pertanyaan-pertanyaan seperti ini tidak dapat dijawab dengan definisi integral tentu biasa. Namun kita dapat memperluas definisi tersebut menggunakan <strong>limit</strong>. Hasilnya adalah konsep <strong>integral tak wajar</strong> (<em>improper integral</em>): integral yang melibatkan batas tak hingga, integran yang tidak kontinu di salah satu titik, atau keduanya.</p>
+ <p class="lesson-text">Hal yang membuat konsep ini menarik adalah bahwa tidak semua integral tak wajar menghasilkan nilai berhingga. Sebagian <em>konvergen</em>&mdash;nilainya berhingga dan terdefinisi dengan baik. Sebagian lain <em>divergen</em>&mdash;nilainya tidak ada atau membesar tanpa batas. Membedakan keduanya menjadi inti dari materi ini.</p>
+ <p class="lesson-text">Materi ini mencakup empat topik. Pertama, konsep umum integral tak wajar dan dua jenisnya. Kedua, integral dengan batas tak hingga. Ketiga, integral dengan integran diskontinu. Keempat, sifat-sifat kekonvergenan beserta contoh penerapannya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Konsep Integral Tak Wajar</h2>
+ <p class="lesson-text">Bab ini menjelaskan apa yang dimaksud dengan integral tak wajar, mengapa konsep ini diperlukan, dan bagaimana ia didefinisikan secara umum.</p>
+
+ <h3 class="lesson-subheading">A. Keterbatasan Integral Tentu Biasa</h3>
+ <p class="lesson-text">Definisi integral tentu yang sudah kita pelajari&mdash;$\displaystyle\int_a^b f(x)\, dx$ melalui limit jumlah Riemann&mdash;mensyaratkan dua kondisi:</p>
+ <ul>
+  <li><strong>Interval terbatas.</strong> Bilangan $a$ dan $b$ keduanya berhingga, sehingga panjang interval $b - a$ adalah bilangan real.</li>
+  <li><strong>Integran terdefinisi dan kontinu.</strong> Fungsi $f$ harus terdefinisi di seluruh interval $[a, b]$, dan kontinu di sana. Setidaknya, $f$ harus terintegralkan pada interval tersebut.</li>
+ </ul>
+ <p class="lesson-text">Kondisi-kondisi ini muncul secara alami dari definisi jumlah Riemann: subinterval dibentuk dari pembagian $[a, b]$ menjadi $n$ bagian yang sama panjang, dan lebar $\Delta x = \frac{b - a}{n}$ harus berupa bilangan real yang terdefinisi.</p>
+ <p class="lesson-text">Namun ada situasi menarik di luar kedua kondisi ini:</p>
+ <ul>
+  <li><strong>Interval tak terbatas.</strong> Misalnya, kita ingin menghitung luas daerah di bawah kurva $y = \frac{1}{x^2}$ untuk $x$ dari $1$ sampai "tak hingga". Secara intuitif ini masuk akal&mdash;luas daerah yang membentang tanpa batas ke kanan&mdash;tetapi definisi integral tentu biasa tidak mencakup kasus ini.</li>
+  <li><strong>Integran tidak kontinu.</strong> Misalnya, kurva $y = \frac{1}{\sqrt{x}}$ menuju tak hingga ketika $x \to 0^+$. Fungsi ini tidak terdefinisi di $x = 0$, sehingga tidak dapat diintegralkan pada interval tertutup $[0, 1]$ menurut definisi biasa.</li>
+ </ul>
+ <p class="lesson-text">Integral tak wajar memperluas definisi integral tentu untuk mencakup kedua situasi di atas.</p>
+
+ <h3 class="lesson-subheading">B. Dua Jenis Integral Tak Wajar</h3>
+ <p class="lesson-text">Berdasarkan situasi di atas, terdapat dua jenis integral tak wajar.</p>
+ <p class="lesson-text"><strong>Jenis 1: Batas tak hingga.</strong> Salah satu batas integrasi (atau keduanya) adalah $+\infty$ atau $-\infty$. Contoh:</p>
+ <p class="lesson-text">$$\int_1^\infty \frac{1}{x^2}\, dx, \qquad \int_{-\infty}^0 e^x\, dx, \qquad \int_{-\infty}^\infty \frac{1}{1+x^2}\, dx$$</p>
+ <p class="lesson-text"><strong>Jenis 2: Integran diskontinu.</strong> Integran $f$ tidak kontinu di salah satu titik dalam interval $[a, b]$&mdash;baik di batas maupun di titik dalam. Contoh:</p>
+ <p class="lesson-text">$$\int_0^1 \frac{1}{\sqrt{x}}\, dx, \qquad \int_1^2 \frac{1}{(x-1)^2}\, dx, \qquad \int_{-1}^1 \frac{1}{x}\, dx$$</p>
+ <p class="lesson-text">Kedua jenis integral tak wajar memiliki ciri khas: pada titik di mana definisi integral tentu biasa gagal, kita gunakan <strong>limit</strong> untuk mendekati titik tersebut&mdash;seperti kita mendekati titik dalam definisi turunan.</p>
+
+ <h3 class="lesson-subheading">C. Konvergen dan Divergen</h3>
+ <p class="lesson-text">Ketika sebuah integral tak wajar diubah menjadi limit, ada dua kemungkinan hasil:</p>
+ <ul>
+  <li><strong>Konvergen.</strong> Limitnya ada dan merupakan bilangan real (berhingga). Dalam hal ini, kita katakan integral tak wajarnya <em>konvergen</em> ke nilai tersebut.</li>
+  <li><strong>Divergen.</strong> Limitnya tidak ada atau bernilai $+\infty$ atau $-\infty$. Dalam hal ini, kita katakan integral tak wajarnya <em>divergen</em>&mdash;dan tidak memiliki nilai numerik.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa "divergen" mencakup dua kasus: limit menuju tak hingga (membesar tanpa batas), dan limit tidak ada sama sekali (misalnya karena berosilasi). Dalam kedua kasus, integralnya tidak memiliki nilai berhingga.</p>
+ <p class="lesson-text">Karena itu, setiap kali menangani integral tak wajar, ada <em>dua</em> langkah yang perlu dilakukan: pertama, hitung integralnya melalui limit; kedua, periksa apakah limitnya ada dan berhingga. Jika ya, integral konvergen; jika tidak, divergen.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Integral dengan Batas Tak Hingga</h2>
+ <p class="lesson-text">Bab ini membahas jenis pertama integral tak wajar: integral yang melibatkan batas $+\infty$ atau $-\infty$. Gagasan dasarnya adalah mengganti batas tak hingga dengan variabel sementara, menghitung integral tentu biasa, lalu mengambil limit variabel tersebut.</p>
+
+ <h3 class="lesson-subheading">A. Batas Atas Tak Hingga</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada $[a, \infty)$. Integral tak wajar dari $f$ pada $[a, \infty)$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_a^\infty f(x)\, dx = \lim_{b \to \infty} \int_a^b f(x)\, dx$$</p>
+ <p class="lesson-text">Jika limit di ruas kanan ada dan berhingga, maka integral tak wajarnya <strong>konvergen</strong> dan nilainya sama dengan limit tersebut. Jika limitnya tidak ada atau tak hingga, maka integralnya <strong>divergen</strong>.</p>
+ <p class="lesson-text">Perhatikan bahwa limit diambil terhadap $b$&mdash;yaitu batas atas&mdash;sedangkan $a$ tetap. Artinya, kita mempertahankan titik awal integrasi, dan memperluas intervalnya ke kanan.</p>
+
+ <h3 class="lesson-subheading">B. Batas Bawah Tak Hingga</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada $(-\infty, b]$. Integral tak wajar dari $f$ pada $(-\infty, b]$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_{-\infty}^b f(x)\, dx = \lim_{a \to -\infty} \int_a^b f(x)\, dx$$</p>
+ <p class="lesson-text">Serupa dengan kasus sebelumnya, tetapi kali ini batas bawah yang menuju $-\infty$, sedangkan batas atas $b$ tetap.</p>
+
+ <h3 class="lesson-subheading">C. Kedua Batas Tak Hingga</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada $(-\infty, \infty)$. Integral tak wajar dari $f$ pada seluruh garis bilangan didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_{-\infty}^\infty f(x)\, dx = \int_{-\infty}^c f(x)\, dx + \int_c^\infty f(x)\, dx$$</p>
+ <p class="lesson-text">untuk sebarang bilangan real $c$. Integral di ruas kanan konvergen <em>jika dan hanya jika</em> kedua integral tersebut konvergen. Jika salah satu divergen, maka integral keseluruhannya divergen.</p>
+ <p class="lesson-text">Perhatikan bahwa definisi ini <strong>tidak</strong> langsung menggunakan limit dari $\int_{-b}^b f(x)\, dx$ ketika $b \to \infty$. Ada alasan penting untuk ini: pendekatan simetris semacam itu dapat menyembunyikan kedivergenan. Contohnya, meskipun $f(x) = \dfrac{x}{1+x^2}$ adalah fungsi ganjil sehingga $\int_{-b}^b \dfrac{x}{1+x^2}\, dx = 0$ untuk setiap $b$, integral tak wajarnya divergen&mdash;karena $\int_0^\infty \dfrac{x}{1+x^2}\, dx = \infty$. Definisi yang benar&mdash;memecah integral di suatu titik $c$&mdash;menghindari jebakan ini.</p>
+
+ <h3 class="lesson-subheading">D. Contoh 1: Integral yang Konvergen</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int_1^\infty \frac{1}{x^2}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah menjadi limit.</strong></p>
+ <p class="lesson-text">$$\int_1^\infty \frac{1}{x^2}\, dx = \lim_{b \to \infty} \int_1^b x^{-2}\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral tentunya.</strong> Anti-turunan dari $x^{-2}$ adalah $-x^{-1} = -\dfrac{1}{x}$. Maka:</p>
+ <p class="lesson-text">$$\int_1^b x^{-2}\, dx = \left[-\frac{1}{x}\right]_1^b = -\frac{1}{b} + 1$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Ambil limitnya.</strong></p>
+ <p class="lesson-text">$$\lim_{b \to \infty} \left(1 - \frac{1}{b}\right) = 1 - 0 = 1$$</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Integralnya konvergen, dengan nilai $1$.</p>
+ <p class="lesson-text">Secara geometris, hasil ini menyatakan bahwa daerah di bawah kurva $y = \dfrac{1}{x^2}$ dari $x = 1$ sampai $x = \infty$ memiliki luas $1$&mdash;meskipun daerahnya membentang tak hingga ke kanan. Ini mungkin mengejutkan: daerah dengan panjang tak hingga dapat memiliki luas berhingga, karena tingginya menyusut cukup cepat.</p>
+
+ <h3 class="lesson-subheading">E. Contoh 2: Integral yang Divergen</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int_1^\infty \frac{1}{x}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah menjadi limit.</strong></p>
+ <p class="lesson-text">$$\int_1^\infty \frac{1}{x}\, dx = \lim_{b \to \infty} \int_1^b \frac{1}{x}\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral tentunya.</strong> Anti-turunan dari $\dfrac{1}{x}$ adalah $\ln|x|$:</p>
+ <p class="lesson-text">$$\int_1^b \frac{1}{x}\, dx = \Big[\ln x\Big]_1^b = \ln b - \ln 1 = \ln b$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Ambil limitnya.</strong></p>
+ <p class="lesson-text">$$\lim_{b \to \infty} \ln b = \infty$$</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Integralnya divergen.</p>
+ <p class="lesson-text">Bandingkan dengan contoh sebelumnya. Kedua fungsi&mdash;$\dfrac{1}{x}$ dan $\dfrac{1}{x^2}$&mdash;keduanya menuju nol ketika $x \to \infty$. Namun $\dfrac{1}{x^2}$ menyusut cukup cepat, sehingga luas totalnya berhingga. Sebaliknya, $\dfrac{1}{x}$ menyusut terlalu lambat, sehingga luas totalnya membesar tanpa batas.</p>
+
+ <figure>
+ <svg viewBox="0 0 560 320" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sumbu -->
+  <line x1="60" y1="280" x2="545" y2="280" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="547,280 537,275 537,285" fill="#e8e8e8"/>
+  <text x="551" y="284" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="80" y1="300" x2="80" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="80,37 75,47 85,47" fill="#e8e8e8"/>
+  <text x="86" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <!-- Shading area under y = 1/x² from x=1 to x=5 -->
+  <path d="M 80 280 L 80 60 L 108 139 L 136 182 L 192 225 L 248 245 L 304 256 L 416 266 L 528 271 L 528 280 Z" fill="#5dade2" fill-opacity="0.18" stroke="none"/>
+
+  <!-- Kurva y = 1/x² -->
+  <path d="M 80 60 L 108 139 L 136 182 L 192 225 L 248 245 L 304 256 L 416 266 L 528 271" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <!-- Label -->
+  <text x="80" y="300" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">1</text>
+  <text x="90" y="50" font-size="12" fill="#5dade2" font-style="italic">y = 1/x²</text>
+  <text x="280" y="180" font-size="13" fill="#5dade2" text-anchor="middle" font-style="italic">luas total = 1</text>
+
+  <!-- Panah ke kanan -->
+  <line x1="450" y1="290" x2="530" y2="290" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="532,290 522,285 522,295" fill="#b8b8b8"/>
+  <text x="490" y="308" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">x → ∞</text>
+ </svg>
+ <figcaption class="visual-caption">Daerah di bawah kurva $y = \dfrac{1}{x^2}$ dari $x = 1$ sampai $x = \infty$. Meskipun membentang tak hingga ke kanan, luas totalnya berhingga&mdash;yaitu $1$&mdash;karena kurvanya menyusut cukup cepat.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">F. P-Integral pada Batas Tak Hingga</h3>
+ <p class="lesson-text">Kedua contoh di atas adalah kasus khusus dari keluarga integral berikut:</p>
+ <p class="lesson-text">$$\int_1^\infty \frac{1}{x^p}\, dx$$</p>
+ <p class="lesson-text">Integral ini memiliki pola kekonvergenan yang bergantung pada nilai $p$. Mari kita turunkan polanya.</p>
+ <p class="lesson-text"><strong>Kasus $p \neq 1$.</strong> Anti-turunan dari $x^{-p}$ adalah $\dfrac{x^{1-p}}{1-p}$. Maka:</p>
+ <p class="lesson-text">$$\int_1^b x^{-p}\, dx = \left[\frac{x^{1-p}}{1-p}\right]_1^b = \frac{b^{1-p} - 1}{1-p}$$</p>
+ <p class="lesson-text">Ketika $b \to \infty$, perilaku $b^{1-p}$ bergantung pada tanda eksponennya:</p>
+ <ul>
+  <li>Jika $p > 1$, maka $1 - p < 0$, sehingga $b^{1-p} = \dfrac{1}{b^{p-1}} \to 0$. Limitnya adalah $\dfrac{0 - 1}{1 - p} = \dfrac{1}{p - 1}$. <strong>Konvergen.</strong></li>
+  <li>Jika $p < 1$, maka $1 - p > 0$, sehingga $b^{1-p} \to \infty$. <strong>Divergen.</strong></li>
+ </ul>
+ <p class="lesson-text"><strong>Kasus $p = 1$.</strong> Integralnya menjadi $\displaystyle\int_1^b \frac{1}{x}\, dx = \ln b \to \infty$ ketika $b \to \infty$. <strong>Divergen.</strong></p>
+ <p class="lesson-text">Kesimpulannya:</p>
+ <p class="lesson-text">$$\int_1^\infty \frac{1}{x^p}\, dx \begin{cases} \text{konvergen} & \text{jika } p > 1 \\ \text{divergen} & \text{jika } p \leq 1 \end{cases}$$</p>
+ <p class="lesson-text">Pola ini sangat berguna: ia memberi cara cepat untuk memeriksa kekonvergenan tanpa harus menghitung integralnya secara eksplisit. Ketika nilai integralnya konvergen (untuk $p > 1$), nilainya adalah $\dfrac{1}{p - 1}$.</p>
+
+ <h3 class="lesson-subheading">G. Contoh 3: Fungsi Eksponensial</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int_0^\infty e^{-x}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah menjadi limit.</strong></p>
+ <p class="lesson-text">$$\int_0^\infty e^{-x}\, dx = \lim_{b \to \infty} \int_0^b e^{-x}\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral tentunya.</strong> Karena turunan dari $-e^{-x}$ adalah $e^{-x}$, maka anti-turunan dari $e^{-x}$ adalah $-e^{-x}$:</p>
+ <p class="lesson-text">$$\int_0^b e^{-x}\, dx = \Big[-e^{-x}\Big]_0^b = -e^{-b} + e^0 = 1 - e^{-b}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Ambil limitnya.</strong></p>
+ <p class="lesson-text">$$\lim_{b \to \infty} \left(1 - e^{-b}\right) = 1 - 0 = 1$$</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Integralnya konvergen, dengan nilai $1$.</p>
+ <p class="lesson-text">Secara umum, untuk $k > 0$:</p>
+ <p class="lesson-text">$$\int_0^\infty e^{-kx}\, dx = \frac{1}{k}$$</p>
+ <p class="lesson-text">Hasil ini muncul di banyak aplikasi, terutama dalam teori probabilitas (distribusi eksponensial) dan fisika (peluruhan radioaktif).</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Integral dengan Integran Diskontinu</h2>
+ <p class="lesson-text">Bab ini membahas jenis kedua integral tak wajar: integral di mana integran tidak kontinu di salah satu titik dalam interval integrasi. Gagasan dasarnya sama dengan jenis pertama&mdash;menggunakan limit&mdash;tetapi kali ini limitnya diambil terhadap titik diskontinuitasnya.</p>
+
+ <h3 class="lesson-subheading">A. Diskontinuitas di Batas Atas</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada $[a, b)$ tetapi tidak kontinu (atau tidak terdefinisi) di $b$. Maka:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \lim_{t \to b^-} \int_a^t f(x)\, dx$$</p>
+ <p class="lesson-text">Jika limitnya ada dan berhingga, integral konvergen. Jika tidak, divergen.</p>
+ <p class="lesson-text">Perhatikan bahwa limit yang digunakan adalah limit kiri, karena kita mendekati batas atas $b$ dari dalam interval.</p>
+
+ <h3 class="lesson-subheading">B. Diskontinuitas di Batas Bawah</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada $(a, b]$ tetapi tidak kontinu (atau tidak terdefinisi) di $a$. Maka:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \lim_{t \to a^+} \int_t^b f(x)\, dx$$</p>
+ <p class="lesson-text">Kali ini limit yang digunakan adalah limit kanan, karena kita mendekati batas bawah $a$ dari dalam interval.</p>
+
+ <h3 class="lesson-subheading">C. Diskontinuitas di Titik Dalam</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada $[a, b]$ kecuali di titik $c$ dalam $(a, b)$, di mana $f$ tidak kontinu (atau tidak terdefinisi). Maka:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx$$</p>
+ <p class="lesson-text">Integral di ruas kanan dihitung sebagai limit: yang pertama dengan $t \to c^-$ pada batas atasnya, dan yang kedua dengan $t \to c^+$ pada batas bawahnya. Integral asli konvergen jika dan hanya jika <strong>kedua</strong> integral tersebut konvergen.</p>
+ <p class="lesson-text">Jika salah satu divergen, maka integral keseluruhannya divergen.</p>
+
+ <h3 class="lesson-subheading">D. Contoh 1: Integral yang Konvergen</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int_0^1 \frac{1}{\sqrt{x}}\, dx$.</p>
+ <p class="lesson-text"><strong>Analisis singkat.</strong> Fungsi $\dfrac{1}{\sqrt{x}}$ tidak terdefinisi di $x = 0$&mdash;karena penyebutnya nol. Jadi integran tidak kontinu di batas bawah, sehingga ini adalah integral tak wajar jenis 2.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah menjadi limit.</strong></p>
+ <p class="lesson-text">$$\int_0^1 \frac{1}{\sqrt{x}}\, dx = \lim_{t \to 0^+} \int_t^1 x^{-1/2}\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral tentunya.</strong> Anti-turunan dari $x^{-1/2}$ adalah $2 x^{1/2} = 2\sqrt{x}$:</p>
+ <p class="lesson-text">$$\int_t^1 x^{-1/2}\, dx = \Big[2\sqrt{x}\Big]_t^1 = 2\sqrt{1} - 2\sqrt{t} = 2 - 2\sqrt{t}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Ambil limitnya.</strong></p>
+ <p class="lesson-text">$$\lim_{t \to 0^+} \left(2 - 2\sqrt{t}\right) = 2 - 0 = 2$$</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Integralnya konvergen, dengan nilai $2$.</p>
+ <p class="lesson-text">Hasil ini menarik: meskipun kurva $\dfrac{1}{\sqrt{x}}$ menuju tak hingga ketika $x$ mendekati $0$ dari kanan, luas daerah di bawahnya tetap berhingga. Kenaikan tingginya dikompensasi oleh penyusutan lebarnya&mdash;dalam arti yang sangat cepat.</p>
+
+ <figure>
+ <svg viewBox="0 0 500 340" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sumbu -->
+  <line x1="60" y1="290" x2="470" y2="290" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="472,290 462,285 462,295" fill="#e8e8e8"/>
+  <text x="476" y="294" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="100" y1="310" x2="100" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="100,37 95,47 105,47" fill="#e8e8e8"/>
+  <text x="106" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <!-- Asimtot vertikal di x=0 (x_svg=100) -->
+  <line x1="100" y1="60" x2="100" y2="290" stroke="#daa520" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Shading area under y = 1/√x dari x=0.05 sampai x=1 -->
+  <path d="M 117 290 L 117 62 L 134 129 L 168 176 L 202 197 L 236 209 L 270 218 L 304 224 L 338 229 L 372 233 L 406 236 L 440 239 L 440 290 Z" fill="#5dade2" fill-opacity="0.18" stroke="none"/>
+
+  <!-- Kurva y = 1/√x -->
+  <path d="M 117 62 L 134 129 L 168 176 L 202 197 L 236 209 L 270 218 L 304 224 L 338 229 L 372 233 L 406 236 L 440 239" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <!-- Label -->
+  <text x="100" y="308" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">0</text>
+  <text x="440" y="308" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">1</text>
+  <text x="180" y="80" font-size="12" fill="#5dade2" font-style="italic">y = 1/√x</text>
+  <text x="270" y="150" font-size="13" fill="#5dade2" text-anchor="middle" font-style="italic">luas total = 2</text>
+  <text x="118" y="200" font-size="11" fill="#daa520" font-style="italic">asimtot</text>
+  <text x="118" y="216" font-size="11" fill="#daa520" font-style="italic">di x = 0</text>
+ </svg>
+ <figcaption class="visual-caption">Daerah di bawah kurva $y = \dfrac{1}{\sqrt{x}}$ dari $x = 0$ sampai $x = 1$. Meskipun kurvanya menuju tak hingga di $x = 0$ (asimtot vertikal, garis putus-putus emas), luas totalnya berhingga&mdash;yaitu $2$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Contoh 2: Integral yang Divergen</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int_0^1 \frac{1}{x}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah menjadi limit.</strong></p>
+ <p class="lesson-text">$$\int_0^1 \frac{1}{x}\, dx = \lim_{t \to 0^+} \int_t^1 \frac{1}{x}\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung integral tentunya.</strong></p>
+ <p class="lesson-text">$$\int_t^1 \frac{1}{x}\, dx = \Big[\ln x\Big]_t^1 = \ln 1 - \ln t = -\ln t$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Ambil limitnya.</strong> Ketika $t \to 0^+$, $\ln t \to -\infty$, sehingga $-\ln t \to +\infty$. Maka:</p>
+ <p class="lesson-text">$$\lim_{t \to 0^+} (-\ln t) = +\infty$$</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Integralnya divergen.</p>
+ <p class="lesson-text">Bandingkan dengan contoh sebelumnya: meskipun baik $\dfrac{1}{\sqrt{x}}$ maupun $\dfrac{1}{x}$ sama-sama menuju tak hingga ketika $x \to 0^+$, keduanya memiliki laju pertumbuhan yang berbeda. Fungsi $\dfrac{1}{\sqrt{x}}$ tumbuh cukup lambat, sehingga luas totalnya berhingga. Fungsi $\dfrac{1}{x}$ tumbuh terlalu cepat, sehingga luas totalnya membesar tanpa batas.</p>
+
+ <h3 class="lesson-subheading">F. p-Integral pada Diskontinuitas di Nol</h3>
+ <p class="lesson-text">Kedua contoh di atas juga merupakan kasus khusus dari keluarga integral berikut:</p>
+ <p class="lesson-text">$$\int_0^1 \frac{1}{x^p}\, dx$$</p>
+ <p class="lesson-text">Perhatikan bahwa kali ini intervalnya berbeda dari sebelumnya. Jika pada p-integral tak hingga $x$ membesar, di sini $x$ mengecil menuju nol&mdash;dan karenanya pola kekonvergenannya berbeda.</p>
+ <p class="lesson-text"><strong>Kasus $p \neq 1$.</strong> Anti-turunan dari $x^{-p}$ adalah $\dfrac{x^{1-p}}{1-p}$. Maka:</p>
+ <p class="lesson-text">$$\int_t^1 x^{-p}\, dx = \left[\frac{x^{1-p}}{1-p}\right]_t^1 = \frac{1 - t^{1-p}}{1-p}$$</p>
+ <p class="lesson-text">Ketika $t \to 0^+$, perilaku $t^{1-p}$ bergantung pada tanda eksponennya:</p>
+ <ul>
+  <li>Jika $p < 1$, maka $1 - p > 0$, sehingga $t^{1-p} \to 0$. Limitnya adalah $\dfrac{1}{1 - p}$. <strong>Konvergen.</strong></li>
+  <li>Jika $p > 1$, maka $1 - p < 0$, sehingga $t^{1-p} = \dfrac{1}{t^{p-1}} \to \infty$. <strong>Divergen.</strong></li>
+ </ul>
+ <p class="lesson-text"><strong>Kasus $p = 1$.</strong> Integralnya menjadi $\displaystyle\int_t^1 \frac{1}{x}\, dx = -\ln t \to +\infty$ ketika $t \to 0^+$. <strong>Divergen.</strong></p>
+ <p class="lesson-text">Kesimpulannya:</p>
+ <p class="lesson-text">$$\int_0^1 \frac{1}{x^p}\, dx \begin{cases} \text{konvergen} & \text{jika } p < 1 \\ \text{divergen} & \text{jika } p \geq 1 \end{cases}$$</p>
+ <p class="lesson-text">Perhatikan bahwa kondisinya adalah kebalikan dari p-integral tak hingga. Di tak hingga, konvergen ketika $p > 1$; di sekitar nol, konvergen ketika $p < 1$. Ini karena di sekitar nol, penyusutan nilai $x^p$ untuk $p$ besar justru memperbesar integran&mdash;bukan memperkecilnya.</p>
+
+ <h3 class="lesson-subheading">G. Ringkasan p-Integral</h3>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Integral</th><th>Konvergen jika</th><th>Divergen jika</th><th>Nilai saat konvergen</th></tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>$\displaystyle\int_1^\infty \frac{1}{x^p}\, dx$</td>
+    <td>$p > 1$</td>
+    <td>$p \leq 1$</td>
+    <td>$\dfrac{1}{p - 1}$</td>
+   </tr>
+   <tr>
+    <td>$\displaystyle\int_0^1 \frac{1}{x^p}\, dx$</td>
+    <td>$p < 1$</td>
+    <td>$p \geq 1$</td>
+    <td>$\dfrac{1}{1 - p}$</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Sifat-Sifat Integral Tak Wajar</h2>
+ <p class="lesson-text">Integral tak wajar memiliki beberapa sifat yang mirip dengan integral tentu, tetapi dengan catatan tambahan yang berkaitan dengan kekonvergenan.</p>
+
+ <h3 class="lesson-subheading">A. Linearitas</h3>
+ <p class="lesson-text">Jika $\displaystyle\int_a^\infty f(x)\, dx$ dan $\displaystyle\int_a^\infty g(x)\, dx$ keduanya konvergen, maka untuk sebarang konstanta $c_1$ dan $c_2$ berlaku:</p>
+ <p class="lesson-text">$$\int_a^\infty [c_1 f(x) + c_2 g(x)]\, dx = c_1 \int_a^\infty f(x)\, dx + c_2 \int_a^\infty g(x)\, dx$$</p>
+ <p class="lesson-text">Sifat yang sama berlaku untuk integral dengan batas bawah tak hingga maupun dengan integran diskontinu.</p>
+ <p class="lesson-text">Perhatikan syaratnya: <strong>kedua</strong> integral harus konvergen. Jika salah satu divergen, sifat linearitas tidak otomatis berlaku. Sebagai contoh, jika $\int_a^\infty f(x)\, dx$ divergen tetapi $\int_a^\infty g(x)\, dx$ konvergen, tidak ada jaminan bahwa $\int_a^\infty [f(x) + g(x)]\, dx$ divergen&mdash;bisa saja konvergen jika $g$ "mengompensasi" divergensi $f$. Namun dalam praktiknya, kita biasanya memeriksa kekonvergenan masing-masing bagian secara terpisah.</p>
+
+ <h3 class="lesson-subheading">B. Penjumlahan Interval</h3>
+ <p class="lesson-text">Untuk sebarang $c > a$:</p>
+ <p class="lesson-text">$$\int_a^\infty f(x)\, dx = \int_a^c f(x)\, dx + \int_c^\infty f(x)\, dx$$</p>
+ <p class="lesson-text">Karena $\displaystyle\int_a^c f(x)\, dx$ adalah integral tentu biasa (bukan tak wajar) jika $f$ kontinu pada $[a, c]$, maka kekonvergenan $\displaystyle\int_a^\infty f(x)\, dx$ hanya bergantung pada kekonvergenan $\displaystyle\int_c^\infty f(x)\, dx$. Ini sering dipakai untuk menyederhanakan batas bawah&mdash;misalnya, mengubah $\displaystyle\int_1^\infty$ menjadi $\displaystyle\int_{100}^\infty$ untuk keperluan perbandingan.</p>
+
+ <h3 class="lesson-subheading">C. Catatan tentang Kedua Batas Tak Hingga</h3>
+ <p class="lesson-text">Seperti yang sudah disebutkan di Bab II, integral $\displaystyle\int_{-\infty}^\infty f(x)\, dx$ harus dipecah di suatu titik $c$:</p>
+ <p class="lesson-text">$$\int_{-\infty}^\infty f(x)\, dx = \int_{-\infty}^c f(x)\, dx + \int_c^\infty f(x)\, dx$$</p>
+ <p class="lesson-text">Kedua integral di ruas kanan harus konvergen agar integral keseluruhannya konvergen. Ini penting untuk diperhatikan, karena pendekatan simetris yang langsung&mdash;yaitu $\displaystyle\lim_{b \to \infty} \int_{-b}^b f(x)\, dx$&mdash;dapat memberi hasil yang menyesatkan untuk fungsi ganjil.</p>
+ <p class="lesson-text"><strong>Contoh menyesatkan.</strong> Fungsi $f(x) = \dfrac{x}{1 + x^2}$ adalah fungsi ganjil, sehingga $\displaystyle\int_{-b}^b \dfrac{x}{1 + x^2}\, dx = 0$ untuk setiap $b$. Namun:</p>
+ <p class="lesson-text">$$\int_0^\infty \frac{x}{1 + x^2}\, dx = \lim_{b \to \infty} \left[\frac{1}{2} \ln(1 + x^2)\right]_0^b = \lim_{b \to \infty} \frac{1}{2} \ln(1 + b^2) = \infty$$</p>
+ <p class="lesson-text">Jadi integral tak wajarnya <strong>divergen</strong>, meskipun pendekatan simetrisnya selalu nol. Inilah alasan definisi yang benar harus memecah integral di titik $c$.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Integral dengan Kedua Batas Tak Hingga</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int_{-\infty}^\infty \frac{1}{1 + x^2}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Pecah di titik $c = 0$.</strong></p>
+ <p class="lesson-text">$$\int_{-\infty}^\infty \frac{1}{1 + x^2}\, dx = \int_{-\infty}^0 \frac{1}{1 + x^2}\, dx + \int_0^\infty \frac{1}{1 + x^2}\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung masing-masing integral.</strong> Anti-turunan dari $\dfrac{1}{1 + x^2}$ adalah $\arctan x$. Maka:</p>
+ <p class="lesson-text">$$\int_0^\infty \frac{1}{1 + x^2}\, dx = \lim_{b \to \infty} \Big[\arctan x\Big]_0^b = \lim_{b \to \infty} (\arctan b - 0) = \frac{\pi}{2}$$</p>
+ <p class="lesson-text">$$\int_{-\infty}^0 \frac{1}{1 + x^2}\, dx = \lim_{a \to -\infty} \Big[\arctan x\Big]_a^0 = \lim_{a \to -\infty} (0 - \arctan a) = 0 - \left(-\frac{\pi}{2}\right) = \frac{\pi}{2}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Jumlahkan.</strong></p>
+ <p class="lesson-text">$$\int_{-\infty}^\infty \frac{1}{1 + x^2}\, dx = \frac{\pi}{2} + \frac{\pi}{2} = \pi$$</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Integralnya konvergen, dengan nilai $\pi$.</p>
+ <p class="lesson-text">Hasil ini muncul di banyak konteks, terutama dalam teori probabilitas (sebagai distribusi Cauchy) dan dalam analisis Fourier.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan definisi, aturan-aturan, dan sifat-sifat integral tak wajar.</p>
+
+ <h3 class="lesson-subheading">A. Integral dengan Batas Tak Hingga</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_1^\infty \frac{1}{x^3}\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Ini adalah p-integral dengan $p = 3 > 1$, sehingga konvergen. Nilainya:</p>
+ <p class="lesson-text">$$\int_1^\infty \frac{1}{x^3}\, dx = \frac{1}{p - 1} = \frac{1}{3 - 1} = \frac{1}{2}$$</p>
+ <p class="lesson-text">Verifikasi secara langsung: $\displaystyle\lim_{b \to \infty} \left[-\frac{1}{2x^2}\right]_1^b = \lim_{b \to \infty} \left(-\frac{1}{2b^2} + \frac{1}{2}\right) = \frac{1}{2}$. Sesuai.</p>
+
+ <h3 class="lesson-subheading">B. Integral Eksponensial</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^\infty e^{-2x}\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Anti-turunan dari $e^{-2x}$ adalah $-\dfrac{1}{2} e^{-2x}$. Maka:</p>
+ <p class="lesson-text">$$\int_0^\infty e^{-2x}\, dx = \lim_{b \to \infty} \left[-\frac{1}{2} e^{-2x}\right]_0^b = \lim_{b \to \infty} \left(-\frac{1}{2} e^{-2b} + \frac{1}{2}\right) = 0 + \frac{1}{2} = \frac{1}{2}$$</p>
+
+ <h3 class="lesson-subheading">C. Integral dengan Integran Diskontinu</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^1 \frac{1}{\sqrt[3]{x}}\, dx$.</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Fungsi $\dfrac{1}{\sqrt[3]{x}} = x^{-1/3}$ tidak terdefinisi di $x = 0$. Ini adalah p-integral dengan $p = \dfrac{1}{3} < 1$, sehingga konvergen.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong></p>
+ <p class="lesson-text">$$\int_0^1 x^{-1/3}\, dx = \lim_{t \to 0^+} \left[\frac{3}{2} x^{2/3}\right]_t^1 = \lim_{t \to 0^+} \left(\frac{3}{2} - \frac{3}{2} t^{2/3}\right) = \frac{3}{2}$$</p>
+
+ <h3 class="lesson-subheading">D. Integral dengan Diskontinuitas di Titik Dalam</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^2 \frac{1}{\sqrt[3]{x - 1}}\, dx$.</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Fungsi $\dfrac{1}{\sqrt[3]{x - 1}}$ tidak terdefinisi di $x = 1$, yang berada di dalam interval $[0, 2]$. Kita harus memecah integral di titik tersebut.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong></p>
+ <p class="lesson-text">$$\int_0^2 \frac{1}{\sqrt[3]{x - 1}}\, dx = \int_0^1 (x-1)^{-1/3}\, dx + \int_1^2 (x-1)^{-1/3}\, dx$$</p>
+ <p class="lesson-text">Hitung masing-masing dengan substitusi sederhana $u = x - 1$ (secara informal): anti-turunan dari $(x-1)^{-1/3}$ adalah $\dfrac{3}{2}(x-1)^{2/3}$. Maka:</p>
+ <p class="lesson-text">$$\int_0^1 (x-1)^{-1/3}\, dx = \lim_{t \to 1^-} \left[\frac{3}{2}(x-1)^{2/3}\right]_0^t = \frac{3}{2}(0 - 1) = -\frac{3}{2}$$</p>
+ <p class="lesson-text">Perhatikan bahwa $(x-1)^{2/3}$ di $x = 0$ bernilai $(-1)^{2/3} = 1$, dan di $x \to 1^-$ bernilai $0$. Jadi:</p>
+ <p class="lesson-text">$$\int_0^1 (x-1)^{-1/3}\, dx = 0 - \frac{3}{2}(1) = -\frac{3}{2}$$</p>
+ <p class="lesson-text">$$\int_1^2 (x-1)^{-1/3}\, dx = \lim_{t \to 1^+} \left[\frac{3}{2}(x-1)^{2/3}\right]_t^2 = \frac{3}{2}(1 - 0) = \frac{3}{2}$$</p>
+ <p class="lesson-text">Jumlah keduanya:</p>
+ <p class="lesson-text">$$\int_0^2 \frac{1}{\sqrt[3]{x - 1}}\, dx = -\frac{3}{2} + \frac{3}{2} = 0$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Hasilnya nol. Ini konsisten dengan pengamatan bahwa $\dfrac{1}{\sqrt[3]{x-1}}$ adalah fungsi ganjil terhadap titik $x = 1$&mdash;nilainya simetris dengan tanda berlawanan di kiri dan kanan titik tersebut. Kedua kontribusi saling menghapus.</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Energi Lepas dari Gravitasi Bumi</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Gaya gravitasi antara Bumi (massa $M$) dan sebuah objek bermassa $m$ pada jarak $r$ dari pusat Bumi adalah $F(r) = \dfrac{GMm}{r^2}$, dengan $G$ konstanta gravitasi. Energi yang dibutuhkan untuk membawa objek dari permukaan Bumi (jari-jari $R$) sampai jarak tak hingga adalah integral dari gaya terhadap jarak:</p>
+ <p class="lesson-text">$$E = \int_R^\infty \frac{GMm}{r^2}\, dr$$</p>
+ <p class="lesson-text"><strong>Perhitungan.</strong> Keluarkan konstanta $GMm$ dari integral:</p>
+ <p class="lesson-text">$$E = GMm \int_R^\infty \frac{1}{r^2}\, dr = GMm \cdot \lim_{b \to \infty} \left[-\frac{1}{r}\right]_R^b = GMm \cdot \lim_{b \to \infty} \left(-\frac{1}{b} + \frac{1}{R}\right) = \frac{GMm}{R}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Energi yang dibutuhkan untuk melepaskan objek dari gravitasi Bumi sepenuhnya (sampai jarak tak hingga) adalah <strong>berhingga</strong>&mdash;yaitu $\dfrac{GMm}{R}$. Hasil ini menjadi dasar dari konsep <em>kecepatan lepas</em>: dengan menyetel $\frac{1}{2} m v^2 = \frac{GMm}{R}$, kita memperoleh $v = \sqrt{\frac{2GM}{R}} \approx 11{,}2$ km/detik untuk Bumi. Fakta bahwa integralnya konvergen bukanlah kebetulan&mdash;ini mencerminkan bahwa medan gravitasi melemah cukup cepat pada jarak yang jauh.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Distribusi Probabilitas Eksponensial</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam teori probabilitas, sebuah fungsi kepadatan probabilitas (PDF) harus memenuhi dua syarat: nilainya non-negatif, dan integralnya di seluruh domain sama dengan $1$. Salah satu PDF paling dasar adalah <strong>distribusi eksponensial</strong>, yang dimodelkan oleh $f(x) = \lambda e^{-\lambda x}$ untuk $x \geq 0$, dengan $\lambda > 0$ konstanta.</p>
+ <p class="lesson-text"><strong>Verifikasi syarat normalisasi.</strong> Kita perlu memeriksa bahwa $\displaystyle\int_0^\infty \lambda e^{-\lambda x}\, dx = 1$:</p>
+ <p class="lesson-text">$$\int_0^\infty \lambda e^{-\lambda x}\, dx = \lambda \int_0^\infty e^{-\lambda x}\, dx = \lambda \cdot \frac{1}{\lambda} = 1$$</p>
+ <p class="lesson-text">dengan menggunakan hasil dari Bab II bahwa $\displaystyle\int_0^\infty e^{-kx}\, dx = \frac{1}{k}$ untuk $k > 0$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Distribusi eksponensial dipakai untuk memodelkan waktu tunggu antara dua peristiwa acak yang saling bebas&mdash;misalnya waktu antara dua kedatangan pelanggan di sebuah toko, atau waktu peluruhan sebuah atom radioaktif. Syarat normalisasi $\int_0^\infty f(x)\, dx = 1$ adalah pernyataan bahwa total probabilitas seluruh kemungkinan adalah $1$&mdash;dan syarat ini hanya dapat diverifikasi menggunakan integral tak wajar. Tanpa konsep integral tak wajar, distribusi probabilitas pada domain tak hingga tidak dapat didefinisikan secara formal.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap integral tak wajar sama dengan integral tentu biasa.</strong> Integral tak wajar memerlukan <em>pemeriksaan kekonvergenan</em> yang tidak ada pada integral tentu biasa. Tanpa memeriksa limitnya, kita tidak dapat menyimpulkan bahwa integral tak wajar memiliki nilai.</li>
+  <li><strong>Menganggap $\infty$ sebagai bilangan.</strong> Simbol $\infty$ bukan bilangan, dan tidak dapat disubstitusi langsung. Setiap kemunculan $\infty$ pada batas integrasi harus diubah menjadi limit terhadap variabel&mdash;misalnya $b \to \infty$&mdash;dan baru kemudian diambil limitnya.</li>
+  <li><strong>Menganggap hasil nol berarti integral konvergen.</strong> Kadang-kadang integral yang divergen dapat memberi hasil nol jika kita menggunakan pendekatan simetris yang salah. Contoh klasik: $\displaystyle\int_{-\infty}^\infty \frac{x}{1+x^2}\, dx$ divergen, meskipun nilai simetrisnya $\lim_{b \to \infty} \int_{-b}^b \frac{x}{1+x^2}\, dx = 0$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan Perhitungan</h3>
+ <ul>
+  <li><strong>Lupa menuliskan limit.</strong> Setiap integral tak wajar <em>wajib</em> dituliskan sebagai limit sebelum dihitung. Menghilangkan langkah ini membuat perhitungan menjadi tidak bermakna secara formal.</li>
+  <li><strong>Substitusi langsung $x = \infty$.</strong> Beberapa siswa menuliskan langsung $F(\infty) - F(a)$ tanpa menulis limit&mdash;atau lebih buruk, mensubstitusi $\infty$ ke dalam rumus dan melakukan operasi aljabar yang tidak sah, seperti $\infty - \infty$ atau $\dfrac{1}{\infty} = 0$ tanpa justifikasi. Cara yang benar adalah melalui limit.</li>
+  <li><strong>Salah menerapkan p-integral.</strong> Perhatikan bahwa kondisi kekonvergenan berbeda untuk dua jenis p-integral: di tak hingga, konvergen jika $p > 1$; di sekitar nol, konvergen jika $p < 1$. Sering tertukar.</li>
+  <li><strong>Lupa memeriksa kekonvergenan kedua bagian pada integral dengan dua batas tak hingga atau diskontinuitas di titik dalam.</strong> Integral dipecah menjadi dua&mdash;dan <em>keduanya</em> harus konvergen. Jika salah satu divergen, integral keseluruhannya divergen, bahkan jika bagian lain konvergen.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Sifat Linearitas</h3>
+ <ul>
+  <li><strong>Menerapkan linearitas tanpa memeriksa kekonvergenan.</strong> Sifat $\displaystyle\int_a^\infty [f + g] = \int_a^\infty f + \int_a^\infty g$ hanya berlaku jika kedua integral di ruas kanan konvergen. Jika salah satu divergen, kesamaannya bisa gagal.</li>
+  <li><strong>Menghitung integral divergen seolah-olah konvergen.</strong> Beberapa teknik manipulasi&mdash;misalnya mencoret suku atau menggabungkan pecahan&mdash;dapat menyembunyikan kedivergenan jika tidak dilakukan dengan hati-hati. Biasanya, jika hasilnya tidak jelas, perlu diperiksa dengan pendekatan lain.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Definisi:</strong> integral tak wajar adalah integral yang melibatkan batas tak hingga atau integran diskontinu. Didefinisikan melalui limit, dan dapat <em>konvergen</em> (limitnya berhingga) atau <em>divergen</em> (limitnya tidak ada atau tak hingga).</li>
+  <li><strong>Jenis 1: Batas tak hingga.</strong>
+   <ul>
+    <li>Batas atas: $\displaystyle\int_a^\infty f(x)\, dx = \lim_{b \to \infty} \int_a^b f(x)\, dx$.</li>
+    <li>Batas bawah: $\displaystyle\int_{-\infty}^b f(x)\, dx = \lim_{a \to -\infty} \int_a^b f(x)\, dx$.</li>
+    <li>Kedua batas: $\displaystyle\int_{-\infty}^\infty f(x)\, dx = \int_{-\infty}^c f + \int_c^\infty f$, harus keduanya konvergen.</li>
+   </ul>
+  </li>
+  <li><strong>Jenis 2: Integran diskontinu.</strong>
+   <ul>
+    <li>Di batas atas: $\displaystyle\int_a^b f = \lim_{t \to b^-} \int_a^t f$.</li>
+    <li>Di batas bawah: $\displaystyle\int_a^b f = \lim_{t \to a^+} \int_t^b f$.</li>
+    <li>Di titik dalam $c$: pecah integral di $c$, harus keduanya konvergen.</li>
+   </ul>
+  </li>
+  <li><strong>p-integral di tak hingga:</strong> $\displaystyle\int_1^\infty \frac{1}{x^p}\, dx$ konvergen jika $p > 1$, divergen jika $p \leq 1$. Nilainya (saat konvergen) adalah $\dfrac{1}{p - 1}$.</li>
+  <li><strong>p-integral di sekitar nol:</strong> $\displaystyle\int_0^1 \frac{1}{x^p}\, dx$ konvergen jika $p < 1$, divergen jika $p \geq 1$. Nilainya (saat konvergen) adalah $\dfrac{1}{1 - p}$.</li>
+  <li><strong>Integral eksponensial:</strong> $\displaystyle\int_0^\infty e^{-kx}\, dx = \dfrac{1}{k}$ untuk $k > 0$.</li>
+  <li><strong>Linearitas:</strong> berlaku jika kedua integral yang dilibatkan konvergen.</li>
+  <li><strong>Catatan penting:</strong> pendekatan simetris $\displaystyle\lim_{b \to \infty} \int_{-b}^b f(x)\, dx$ <em>tidak</em> mendefinisikan integral tak wajar pada $(-\infty, \infty)$. Definisi yang benar menggunakan pemecahan di titik $c$.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Integral tak wajar memperluas konsep integral tentu ke situasi yang lebih umum: interval tak terbatas, atau integran yang tidak kontinu di beberapa titik. Kunci dari perluasan ini adalah <strong>limit</strong>&mdash;menggantikan titik "bermasalah" dengan variabel sementara, lalu mengambil limitnya. Konsep ini memungkinkan kita menjawab pertanyaan yang tadinya tidak terjangkau: apakah luas daerah dengan panjang tak hingga bisa berhingga? Apakah luas daerah dengan tinggi tak hingga bisa berhingga?</p>
+ <p class="lesson-text">Jawabannya bergantung pada <em>seberapa cepat</em> integran menyusut (atau bertambah). Untuk p-integral di tak hingga, kekonvergenan terjadi jika $p > 1$&mdash;yaitu penyusutan yang cukup cepat. Untuk p-integral di sekitar nol, kekonvergenan terjadi jika $p < 1$&mdash;yaitu pertumbuhan yang cukup lambat. Pola-pola ini menjadi alat yang berguna untuk memeriksa kekonvergenan integral lain tanpa harus menghitungnya secara eksplisit.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>teknik pengintegralan</strong> akan memperluas kemampuan kita dalam mencari anti-turunan, sehingga lebih banyak integral&mdash;baik tentu maupun tak wajar&mdash;dapat dihitung. Setelah itu, materi tentang <strong>aplikasi integral</strong> akan menunjukkan bagaimana konsep-konsep ini dipakai untuk menghitung volume benda putar, panjang busur, pusat massa, dan berbagai besaran fisik lainnya.</p>
+</section>
+
+</main>
+</body>
+</html>

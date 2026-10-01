@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barisan (Definisi, Limit Barisan, Konvergensi, Barisan Monoton)</title>
+<meta name="description" content="Materi barisan: definisi barisan, notasi, limit barisan dan definisi epsilon-N, sifat-sifat limit barisan, barisan monoton dan terbatas, serta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Barisan (Definisi, Limit Barisan, Konvergensi, Barisan Monoton)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; konsep limit barisan dibangun di atas gagasan limit yang sama. Definisi $\varepsilon$-$N$ untuk barisan sangat mirip dengan definisi $\varepsilon$-$\delta$ untuk fungsi.</li>
+   <li><strong>Fungsi dan Notasi Fungsi</strong> &mdash; barisan adalah fungsi khusus dengan domain bilangan asli. Pemahaman tentang notasi fungsi dan penulisan $a_n$ menjadi dasar untuk membaca notasi barisan.</li>
+   <li><strong>Pertidaksamaan dan Nilai Mutlak</strong> &mdash; definisi formal limit barisan menggunakan pertidaksamaan $|a_n - L| < \varepsilon$ untuk menyatakan kedekatan.</li>
+   <li><strong>Aljabar Dasar</strong> &mdash; banyak perhitungan limit barisan memerlukan manipulasi aljabar, terutama pembagian dengan pangkat tertinggi untuk barisan rasional.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Bayangkan kita menjatuhkan sebuah bola dan mengukur tinggi pantulannya setiap kali bola memantul. Tinggi pantulan pertama, kedua, ketiga, dan seterusnya membentuk sebuah urutan bilangan yang nilainya terus menurun. Urutan bilangan seperti ini disebut <strong>barisan</strong>&mdash;yaitu fungsi yang didefinisikan pada bilangan asli, bukan pada bilangan real seperti fungsi biasa.</p>
+ <p class="lesson-text">Barisan muncul di banyak konteks. Pertumbuhan populasi yang dicatat setiap tahun, saldo tabungan yang bertambah setiap bulan, atau perkiraan nilai $\pi$ melalui metode numerik&mdash;semuanya adalah barisan. Pertanyaan yang paling penting tentang barisan adalah: ke arah mana barisan ini menuju? Apakah nilainya mendekati suatu bilangan tertentu, atau terus bertambah tanpa batas, atau berosilasi tanpa pola? Konsep <strong>limit barisan</strong> menjawab pertanyaan ini.</p>
+ <p class="lesson-text">Materi ini mencakup empat topik. Pertama, definisi barisan dan notasi yang digunakan untuk menyatakannya. Kedua, limit barisan beserta definisi formalnya yang mirip dengan definisi $\varepsilon$-$\delta$ pada fungsi. Ketiga, sifat-sifat aljabar limit barisan, yang memungkinkan perhitungan tanpa harus kembali ke definisi. Keempat, barisan monoton dan terbatas, beserta teorema penting yang menjamin kekonvergenannya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Definisi Barisan</h2>
+ <p class="lesson-text">Bab ini menyusun definisi barisan dan notasi yang digunakan, dilengkapi dengan contoh-contoh dari keluarga barisan yang paling sering muncul.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Barisan</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Barisan adalah fungsi yang domainnya adalah himpunan bilangan asli $\{1, 2, 3, \ldots\}$ dan kodomainnya adalah himpunan bilangan real $\mathbb{R}$.</p>
+ <p class="lesson-text">Dengan kata lain, barisan memasangkan setiap bilangan asli $n$ ke sebuah bilangan real. Jika fungsi tersebut dinamakan $a$, maka nilai di $n$ dituliskan $a_n$ dan disebut <strong>suku ke-$n$</strong> dari barisan. Barisan itu sendiri dituliskan sebagai:</p>
+ <p class="lesson-text">$$a_1, \, a_2, \, a_3, \, \ldots, \, a_n, \, \ldots$$</p>
+ <p class="lesson-text">atau secara lebih ringkas sebagai $\{a_n\}$ atau $\{a_n\}_{n=1}^{\infty}$.</p>
+ <p class="lesson-text">Perhatikan perbedaan notasi yang penting: $a_n$ menyatakan <em>satu</em> suku (bilangan real), sedangkan $\{a_n\}$ menyatakan <em>seluruh</em> barisan (fungsi). Suku pertama $a_1$ disebut <strong>suku awal</strong>, dan bilangan $n$ disebut <strong>indeks</strong>.</p>
+
+ <h3 class="lesson-subheading">B. Rumus Suku ke-$n$</h3>
+ <p class="lesson-text">Cara paling umum untuk mendefinisikan barisan adalah melalui <strong>rumus suku ke-$n$</strong>&mdash;yaitu rumus eksplisit yang menyatakan $a_n$ sebagai fungsi dari $n$. Dengan rumus ini, kita dapat menghitung suku mana pun tanpa perlu mengetahui suku-suku sebelumnya.</p>
+ <p class="lesson-text">Sebagai contoh, perhatikan barisan dengan rumus $a_n = \dfrac{1}{n}$. Suku-sukunya:</p>
+ <p class="lesson-text">$$1, \quad \frac{1}{2}, \quad \frac{1}{3}, \quad \frac{1}{4}, \quad \ldots$$</p>
+ <p class="lesson-text">Barisan ini disebut <strong>barisan harmonik</strong>. Perhatikan bahwa semakin besar $n$, semakin kecil nilai $a_n$&mdash;dan nilainya mendekati $0$.</p>
+ <p class="lesson-text">Contoh rumus suku ke-$n$ lainnya:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Rumus $a_n$</th><th>Beberapa suku pertama</th><th>Pola</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$a_n = n$</td><td>$1, 2, 3, 4, \ldots$</td><td>naik tanpa batas</td></tr>
+   <tr><td>$a_n = 2n - 1$</td><td>$1, 3, 5, 7, \ldots$</td><td>bilangan ganjil</td></tr>
+   <tr><td>$a_n = n^2$</td><td>$1, 4, 9, 16, \ldots$</td><td>kuadrat</td></tr>
+   <tr><td>$a_n = \dfrac{n}{n+1}$</td><td>$\dfrac{1}{2}, \dfrac{2}{3}, \dfrac{3}{4}, \dfrac{4}{5}, \ldots$</td><td>mendekati $1$</td></tr>
+   <tr><td>$a_n = (-1)^n$</td><td>$-1, 1, -1, 1, \ldots$</td><td>berosilasi</td></tr>
+   <tr><td>$a_n = 2^n$</td><td>$2, 4, 8, 16, \ldots$</td><td>naik sangat cepat</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">C. Definisi Rekursif</h3>
+ <p class="lesson-text">Selain rumus suku ke-$n$, barisan juga dapat didefinisikan secara <strong>rekursif</strong>&mdash;yaitu dengan memberikan satu atau beberapa suku awal, lalu sebuah aturan yang menyatakan suku berikutnya berdasarkan suku-suku sebelumnya.</p>
+ <p class="lesson-text">Contoh klasik adalah <strong>barisan Fibonacci</strong>:</p>
+ <p class="lesson-text">$$F_1 = 1, \quad F_2 = 1, \quad F_n = F_{n-1} + F_{n-2} \text{ untuk } n \geq 3$$</p>
+ <p class="lesson-text">Suku-sukunya: $1, 1, 2, 3, 5, 8, 13, 21, \ldots$ Setiap suku adalah jumlah dua suku sebelumnya.</p>
+ <p class="lesson-text">Barisan rekursif tidak memiliki rumus eksplisit untuk $a_n$ dalam bentuk fungsi dari $n$. Untuk menghitung suku ke-$n$, kita perlu menghitung semua suku sebelumnya terlebih dahulu. Meskipun demikian, banyak barisan rekursif memiliki limit yang dapat dianalisis secara langsung.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 360" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="60" y1="300" x2="580" y2="300" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,300 572,295 572,305" fill="#e8e8e8"/>
+  <text x="586" y="304" font-size="13" fill="#b8b8b8" font-style="italic">n</text>
+  <line x1="80" y1="330" x2="80" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="80,37 75,47 85,47" fill="#e8e8e8"/>
+  <text x="86" y="36" font-size="13" fill="#b8b8b8" font-style="italic">aₙ</text>
+
+  <line x1="80" y1="180" x2="560" y2="180" stroke="#daa520" stroke-width="1" stroke-dasharray="5,4" opacity="0.7"/>
+  <text x="70" y="184" font-size="12" fill="#daa520" text-anchor="end" font-style="italic">1</text>
+
+  <line x1="130" y1="220" x2="130" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="180" y1="240" x2="180" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="230" y1="250" x2="230" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="280" y1="256" x2="280" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="330" y1="260" x2="330" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="380" y1="263" x2="380" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="430" y1="265" x2="430" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="480" y1="267" x2="480" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="530" y1="269" x2="530" y2="300" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+
+  <circle cx="130" cy="220" r="5" fill="#5dade2"/>
+  <circle cx="180" cy="240" r="5" fill="#5dade2"/>
+  <circle cx="230" cy="250" r="5" fill="#5dade2"/>
+  <circle cx="280" cy="256" r="5" fill="#5dade2"/>
+  <circle cx="330" cy="260" r="5" fill="#5dade2"/>
+  <circle cx="380" cy="263" r="5" fill="#5dade2"/>
+  <circle cx="430" cy="265" r="5" fill="#5dade2"/>
+  <circle cx="480" cy="267" r="5" fill="#5dade2"/>
+  <circle cx="530" cy="269" r="5" fill="#5dade2"/>
+
+  <text x="545" y="285" font-size="13" fill="#5dade2" text-anchor="end" font-style="italic">aₙ = n/(n+1)</text>
+
+  <text x="350" y="335" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Setiap titik mewakili satu suku: (n, aₙ)</text>
+ </svg>
+ <figcaption class="visual-caption">Grafik barisan $a_n = \dfrac{n}{n+1}$ sebagai titik-titik pada bidang. Setiap titik mewakili satu suku dengan koordinat $(n, a_n)$. Nilai $a_n$ semakin mendekati $1$ ketika $n$ bertambah besar&mdash;garis putus-putus emas menunjukkan garis $y = 1$ yang menjadi limitnya.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Limit Barisan</h2>
+ <p class="lesson-text">Bab ini menyusun definisi limit barisan secara intuitif, kemudian memformalkannya dengan definisi $\varepsilon$-$N$&mdash;analog dengan definisi $\varepsilon$-$\delta$ untuk fungsi.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Intuitif Limit Barisan</h3>
+ <p class="lesson-text">Perhatikan barisan $a_n = \dfrac{1}{n}$. Suku-sukunya:</p>
+ <p class="lesson-text">$$1, \quad 0{,}5, \quad 0{,}333\ldots, \quad 0{,}25, \quad 0{,}2, \quad 0{,}166\ldots$$</p>
+ <p class="lesson-text">Semakin besar $n$, semakin kecil nilai $a_n$. Ketika $n$ menjadi sangat besar, nilai $a_n$ mendekati $0$. Kita katakan barisan ini <strong>konvergen ke $0$</strong>, dan kita tuliskan:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{1}{n} = 0$$</p>
+ <p class="lesson-text">Sekarang perhatikan barisan $b_n = n$. Suku-sukunya: $1, 2, 3, 4, \ldots$ Nilainya terus bertambah tanpa batas. Barisan ini tidak mendekati bilangan real mana pun; ia <strong>divergen</strong> menuju $+\infty$.</p>
+ <p class="lesson-text">Perhatikan juga barisan $c_n = (-1)^n$. Suku-sukunya: $-1, 1, -1, 1, \ldots$ Nilainya berosilasi antara $-1$ dan $1$ tanpa pernah stabil. Barisan ini juga divergen&mdash;bukan karena menuju tak hingga, tetapi karena tidak ada satu bilangan pun yang didekati.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Formal Limit Barisan</h3>
+ <p class="lesson-text">Definisi informal "nilai $a_n$ mendekati $L$ ketika $n$ menjadi besar" bekerja untuk kasus sederhana, tetapi belum cukup presisi untuk pembuktian. Kita perlu mengubah gagasan "mendekati" menjadi pernyataan kuantitatif&mdash;sama seperti yang kita lakukan pada limit fungsi.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Barisan $\{a_n\}$ dikatakan <strong>konvergen</strong> ke $L$, dan kita tuliskan:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} a_n = L$$</p>
+ <p class="lesson-text">jika untuk setiap $\varepsilon > 0$, terdapat bilangan asli $N$ sedemikian sehingga untuk setiap $n \geq N$, berlaku:</p>
+ <p class="lesson-text">$$|a_n - L| < \varepsilon$$</p>
+ <p class="lesson-text">Jika tidak ada bilangan real $L$ yang memenuhi definisi ini, maka barisan dikatakan <strong>divergen</strong>.</p>
+ <p class="lesson-text">Setiap simbol dalam definisi ini memiliki peran yang spesifik:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Simbol</th><th>Arti</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$\varepsilon > 0$</td><td>Toleransi&mdash;seberapa dekat $a_n$ harus berada dengan $L$. Nilainya dapat sekecil apa pun.</td></tr>
+   <tr><td>$N$ (bilangan asli)</td><td>Indeks&mdash;seberapa jauh ke dalam barisan kita harus berjalan agar toleransi $\varepsilon$ terpenuhi.</td></tr>
+   <tr><td>$n \geq N$</td><td>Semua suku setelah indeks ke-$N$ (dan termasuk $N$) harus memenuhi toleransi.</td></tr>
+   <tr><td>$|a_n - L| < \varepsilon$</td><td>Jarak antara suku ke-$n$ dengan $L$ kurang dari $\varepsilon$.</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">C. Membaca Definisi sebagai Permainan</h3>
+ <p class="lesson-text">Sama seperti definisi $\varepsilon$-$\delta$ pada limit fungsi, definisi $\varepsilon$-$N$ dapat dipahami sebagai permainan antara dua pihak:</p>
+ <ul>
+  <li><strong>Pihak pertama</strong> memilih $\varepsilon > 0$&mdash;toleransi kesalahan yang ia izinkan.</li>
+  <li><strong>Pihak kedua</strong> merespons dengan memilih $N$&mdash;seberapa jauh barisan harus berjalan agar suku-suku selanjutnya berada dalam toleransi $\varepsilon$.</li>
+  <li>Kemudian diperiksa: apakah untuk semua $n \geq N$, berlaku $|a_n - L| < \varepsilon$? Jika ya, pihak kedua menang.</li>
+ </ul>
+ <p class="lesson-text">Pernyataan $\lim_{n \to \infty} a_n = L$ berarti: <strong>pihak kedua selalu bisa menang, berapa pun $\varepsilon$ yang dipilih pihak pertama</strong>.</p>
+ <p class="lesson-text">Perhatikan perbedaan penting dengan limit fungsi. Pada limit fungsi, kita menggunakan $\delta$&mdash;sebuah bilangan real positif&mdash;untuk menyatakan jarak di sekitar titik. Pada limit barisan, kita menggunakan $N$&mdash;sebuah bilangan asli&mdash;karena argumennya hanya bernilai $1, 2, 3, \ldots$</p>
+
+ <h3 class="lesson-subheading">D. Contoh Pembuktian dengan Definisi ε-N</h3>
+ <p class="lesson-text"><strong>Klaim.</strong> $\displaystyle\lim_{n \to \infty} \frac{1}{n} = 0$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Analisis ekspresi yang harus dibatasi.</strong> Kita ingin $|a_n - L| < \varepsilon$, yaitu:</p>
+ <p class="lesson-text">$$\left|\frac{1}{n} - 0\right| = \frac{1}{n} < \varepsilon$$</p>
+ <p class="lesson-text">Pertidaksamaan ini setara dengan $n > \dfrac{1}{\varepsilon}$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Memilih $N$.</strong> Kita perlu memilih bilangan asli $N$ sedemikian sehingga $n \geq N$ menjamin $n > \dfrac{1}{\varepsilon}$. Pilihan yang paling sederhana adalah:</p>
+ <p class="lesson-text">$$N = \left\lceil \frac{1}{\varepsilon} \right\rceil$$</p>
+ <p class="lesson-text">yaitu bilangan bulat terkecil yang lebih besar atau sama dengan $\dfrac{1}{\varepsilon}$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Verifikasi.</strong> Misalkan $\varepsilon > 0$ diberikan, dan pilih $N$ seperti di atas. Untuk setiap $n \geq N$, berlaku $n \geq \dfrac{1}{\varepsilon}$, sehingga:</p>
+ <p class="lesson-text">$$\left|\frac{1}{n} - 0\right| = \frac{1}{n} \leq \frac{1}{N} \leq \varepsilon$$</p>
+ <p class="lesson-text">Karena $\varepsilon$ dapat dipilih sembarang, kita bisa membuat $\dfrac{1}{n}$ sekecil apa pun dengan memperbesar $n$. Ini membuktikan bahwa $\lim_{n \to \infty} \dfrac{1}{n} = 0$. $\blacksquare$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perhatikan hal penting.</strong> Nilai $N$ boleh bergantung pada $\varepsilon$ yang dipilih. Semakin kecil $\varepsilon$, semakin besar $N$ yang dibutuhkan. Namun untuk setiap $\varepsilon$ positif, selalu ada $N$ yang bekerja&mdash;dan itulah yang menjamin konvergensi.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Konvergen vs Divergen</h3>
+ <p class="lesson-text">Berdasarkan definisi di atas, barisan dapat diklasifikasikan menjadi dua kategori:</p>
+ <ul>
+  <li><strong>Konvergen.</strong> Barisan memiliki limit $L$ yang berupa bilangan real. Barisan menuju satu nilai tunggal dan stabil.</li>
+  <li><strong>Divergen.</strong> Barisan tidak memiliki limit berupa bilangan real. Ini mencakup tiga situasi:
+   <ul>
+    <li>Barisan menuju $+\infty$ atau $-\infty$&mdash;misalnya $a_n = n$ atau $a_n = -n^2$.</li>
+    <li>Barisan berosilasi tanpa stabil&mdash;misalnya $a_n = (-1)^n$.</li>
+    <li>Barisan berperilaku tidak beraturan&mdash;misalnya barisan yang suku-sukunya melompat secara acak.</li>
+   </ul>
+  </li>
+ </ul>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="20" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Konvergen vs Divergen</text>
+
+  <line x1="40" y1="200" x2="290" y2="200" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="292,200 282,195 282,205" fill="#e8e8e8"/>
+  <text x="296" y="204" font-size="12" fill="#b8b8b8" font-style="italic">n</text>
+  <line x1="60" y1="220" x2="60" y2="50" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="66" y="46" font-size="12" fill="#b8b8b8" font-style="italic">aₙ</text>
+
+  <line x1="60" y1="100" x2="280" y2="100" stroke="#daa520" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="52" y="104" font-size="11" fill="#daa520" text-anchor="end" font-style="italic">L</text>
+
+  <circle cx="80" cy="170" r="4.5" fill="#5dade2"/>
+  <circle cx="105" cy="145" r="4.5" fill="#5dade2"/>
+  <circle cx="130" cy="130" r="4.5" fill="#5dade2"/>
+  <circle cx="155" cy="120" r="4.5" fill="#5dade2"/>
+  <circle cx="180" cy="113" r="4.5" fill="#5dade2"/>
+  <circle cx="205" cy="108" r="4.5" fill="#5dade2"/>
+  <circle cx="230" cy="105" r="4.5" fill="#5dade2"/>
+  <circle cx="255" cy="102" r="4.5" fill="#5dade2"/>
+
+  <text x="165" y="255" font-size="13" fill="#5dade2" text-anchor="middle" font-style="italic">Konvergen ke L</text>
+  <text x="165" y="275" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">(misal: aₙ = 1 − 1/n)</text>
+
+  <line x1="330" y1="200" x2="580" y2="200" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="582,200 572,195 572,205" fill="#e8e8e8"/>
+  <text x="586" y="204" font-size="12" fill="#b8b8b8" font-style="italic">n</text>
+  <line x1="350" y1="220" x2="350" y2="50" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="356" y="46" font-size="12" fill="#b8b8b8" font-style="italic">aₙ</text>
+
+  <circle cx="370" cy="180" r="4.5" fill="#f0c75e"/>
+  <circle cx="395" cy="150" r="4.5" fill="#f0c75e"/>
+  <circle cx="420" cy="120" r="4.5" fill="#f0c75e"/>
+  <circle cx="445" cy="95" r="4.5" fill="#f0c75e"/>
+  <circle cx="470" cy="75" r="4.5" fill="#f0c75e"/>
+  <circle cx="495" cy="60" r="4.5" fill="#f0c75e"/>
+  <circle cx="520" cy="52" r="4.5" fill="#f0c75e"/>
+  <circle cx="545" cy="48" r="4.5" fill="#f0c75e"/>
+
+  <text x="455" y="255" font-size="13" fill="#f0c75e" text-anchor="middle" font-style="italic">Divergen (menuju ∞)</text>
+  <text x="455" y="275" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">(misal: aₙ = n)</text>
+ </svg>
+ <figcaption class="visual-caption">Perbandingan barisan konvergen dan divergen. Kiri: barisan konvergen ke $L$&mdash;semua suku setelah indeks tertentu berada dalam pita sempit di sekitar $L$. Kanan: barisan divergen menuju $+\infty$&mdash;nilai bertambah tanpa batas.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Sifat-Sifat Limit Barisan</h2>
+ <p class="lesson-text">Sebagaimana pada limit fungsi, limit barisan memiliki sifat-sifat aljabar yang memungkinkan perhitungan tanpa harus kembali ke definisi. Sifat-sifat ini adalah konsekuensi dari sifat-sifat limit yang sudah kita pelajari.</p>
+
+ <h3 class="lesson-subheading">A. Sifat-Sifat Aljabar</h3>
+ <p class="lesson-text">Misalkan $\displaystyle\lim_{n \to \infty} a_n = L$ dan $\displaystyle\lim_{n \to \infty} b_n = M$, keduanya konvergen. Maka:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Sifat</th><th>Rumus</th><th>Catatan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Jumlah</td><td>$\displaystyle\lim_{n \to \infty}[a_n + b_n] = L + M$</td><td>limit jumlah sama dengan jumlah limit</td></tr>
+   <tr><td>Selisih</td><td>$\displaystyle\lim_{n \to \infty}[a_n - b_n] = L - M$</td><td>limit selisih sama dengan selisih limit</td></tr>
+   <tr><td>Perkalian</td><td>$\displaystyle\lim_{n \to \infty}[a_n \cdot b_n] = L \cdot M$</td><td>limit hasil kali sama dengan hasil kali limit</td></tr>
+   <tr><td>Pembagian</td><td>$\displaystyle\lim_{n \to \infty}\frac{a_n}{b_n} = \frac{L}{M}$</td><td>berlaku jika $M \neq 0$</td></tr>
+   <tr><td>Kelipatan konstanta</td><td>$\displaystyle\lim_{n \to \infty}[c \cdot a_n] = c \cdot L$</td><td>konstanta boleh dikeluarkan</td></tr>
+   <tr><td>Pangkat</td><td>$\displaystyle\lim_{n \to \infty} [a_n]^p = L^p$</td><td>untuk $p$ yang membuat bentuknya terdefinisi</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Sifat-sifat ini identik dengan sifat-sifat limit fungsi. Alasannya: barisan adalah fungsi khusus dengan domain bilangan asli, sehingga sifat-sifat limit fungsi otomatis berlaku.</p>
+
+ <h3 class="lesson-subheading">B. Beberapa Limit Barisan Baku</h3>
+ <p class="lesson-text">Berikut beberapa limit barisan yang sering muncul dan sebaiknya diingat:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Barisan $a_n$</th><th>Limit</th><th>Catatan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$\dfrac{1}{n}$</td><td>$0$</td><td>konvergen</td></tr>
+   <tr><td>$\dfrac{1}{n^p}$ dengan $p > 0$</td><td>$0$</td><td>konvergen</td></tr>
+   <tr><td>$c$ (konstanta)</td><td>$c$</td><td>barisan konstan</td></tr>
+   <tr><td>$r^n$ dengan $|r| < 1$</td><td>$0$</td><td>konvergen</td></tr>
+   <tr><td>$r^n$ dengan $|r| > 1$</td><td>$\pm\infty$</td><td>divergen</td></tr>
+   <tr><td>$(-1)^n$</td><td>tidak ada</td><td>berosilasi</td></tr>
+   <tr><td>$n^{1/n}$</td><td>$1$</td><td>konvergen</td></tr>
+   <tr><td>$\left(1 + \dfrac{1}{n}\right)^n$</td><td>$e \approx 2{,}71828$</td><td>bilangan $e$</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">C. Teknik Menghitung Limit Barisan Rasional</h3>
+ <p class="lesson-text">Untuk barisan yang berbentuk rasio dua polinomial dalam $n$, kita dapat menggunakan teknik pembagian dengan pangkat tertinggi&mdash;sama seperti pada limit fungsi di tak hingga. Misalkan:</p>
+ <p class="lesson-text">$$a_n = \frac{3n^2 + 2n - 1}{n^2 + 5}$$</p>
+ <p class="lesson-text">Bagi pembilang dan penyebut dengan pangkat tertinggi, yaitu $n^2$:</p>
+ <p class="lesson-text">$$a_n = \frac{3 + \frac{2}{n} - \frac{1}{n^2}}{1 + \frac{5}{n^2}}$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$, setiap suku berbentuk $\dfrac{c}{n^k}$ menuju $0$. Maka:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} a_n = \frac{3 + 0 - 0}{1 + 0} = 3$$</p>
+ <p class="lesson-text">Secara umum, untuk barisan rasional, hasilnya bergantung pada derajat pembilang dan penyebut&mdash;sama seperti aturan pada limit fungsi di tak hingga.</p>
+
+ <h3 class="lesson-subheading">D. Teorema Apit untuk Barisan</h3>
+ <p class="lesson-text">Salah satu alat yang sangat berguna untuk menghitung limit barisan adalah <strong>teorema apit</strong>.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $a_n \leq b_n \leq c_n$ untuk semua $n \geq N_0$ (untuk suatu $N_0$), dan:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} a_n = \lim_{n \to \infty} c_n = L$$</p>
+ <p class="lesson-text">maka $\displaystyle\lim_{n \to \infty} b_n = L$.</p>
+ <p class="lesson-text">Intuisinya: jika $b_n$ selalu berada di antara dua barisan yang sama-sama menuju $L$, maka $b_n$ juga harus menuju $L$.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Hitung $\displaystyle\lim_{n \to \infty} \frac{\sin n}{n}$.</p>
+ <p class="lesson-text">Karena $-1 \leq \sin n \leq 1$ untuk setiap $n$, kita dapat membagi seluruh pertidaksamaan dengan $n$ (yang positif) untuk memperoleh:</p>
+ <p class="lesson-text">$$-\frac{1}{n} \leq \frac{\sin n}{n} \leq \frac{1}{n}$$</p>
+ <p class="lesson-text">Kedua barisan pengapit, $-\dfrac{1}{n}$ dan $\dfrac{1}{n}$, sama-sama konvergen ke $0$. Menurut teorema apit, barisan $\dfrac{\sin n}{n}$ juga konvergen ke $0$:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \frac{\sin n}{n} = 0$$</p>
+ <p class="lesson-text">Perhatikan bahwa tanpa teorema apit, kita akan kesulitan menghitung limit ini&mdash;karena $\sin n$ sendiri berosilasi tanpa memiliki limit.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Barisan Monoton dan Terbatas</h2>
+ <p class="lesson-text">Definisi $\varepsilon$-$N$ memungkinkan kita untuk <em>memverifikasi</em> bahwa suatu barisan konvergen ke $L$ tertentu, tetapi tidak membantu kita <em>menemukan</em> nilai $L$. Bab ini memperkenalkan kelas barisan yang konvergensinya dapat dijamin tanpa perlu mengetahui nilai limitnya.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Barisan Monoton</h3>
+ <p class="lesson-text">Barisan $\{a_n\}$ dikatakan:</p>
+ <ul>
+  <li><strong>Monoton naik</strong> jika $a_1 \leq a_2 \leq a_3 \leq \cdots$, yaitu $a_n \leq a_{n+1}$ untuk setiap $n$.</li>
+  <li><strong>Monoton turun</strong> jika $a_1 \geq a_2 \geq a_3 \geq \cdots$, yaitu $a_n \geq a_{n+1}$ untuk setiap $n$.</li>
+ </ul>
+ <p class="lesson-text">Jika ketidaksamaan yang berlaku adalah ketidaksamaan tegas ($<$ atau $>$), barisannya disebut <em>monoton naik tegas</em> atau <em>monoton turun tegas</em>.</p>
+ <p class="lesson-text">Untuk memeriksa kemonotonan, kita dapat memeriksa tanda dari selisih $a_{n+1} - a_n$:</p>
+ <ul>
+  <li>Jika $a_{n+1} - a_n \geq 0$ untuk setiap $n$, barisan monoton naik.</li>
+  <li>Jika $a_{n+1} - a_n \leq 0$ untuk setiap $n$, barisan monoton turun.</li>
+ </ul>
+ <p class="lesson-text">Sebagai contoh, barisan $a_n = \dfrac{n}{n+1}$ adalah monoton naik. Untuk memeriksanya:</p>
+ <p class="lesson-text">$$a_{n+1} - a_n = \frac{n+1}{n+2} - \frac{n}{n+1} = \frac{(n+1)^2 - n(n+2)}{(n+1)(n+2)} = \frac{1}{(n+1)(n+2)} > 0$$</p>
+ <p class="lesson-text">Karena selisihnya selalu positif, barisan ini monoton naik.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Barisan Terbatas</h3>
+ <p class="lesson-text">Barisan $\{a_n\}$ dikatakan:</p>
+ <ul>
+  <li><strong>Terbatas atas</strong> jika ada bilangan $M$ sedemikian sehingga $a_n \leq M$ untuk setiap $n$.</li>
+  <li><strong>Terbatas bawah</strong> jika ada bilangan $m$ sedemikian sehingga $a_n \geq m$ untuk setiap $n$.</li>
+  <li><strong>Terbatas</strong> jika terbatas atas <em>dan</em> terbatas bawah sekaligus.</li>
+ </ul>
+ <p class="lesson-text">Sebagai contoh, barisan $a_n = \dfrac{n}{n+1}$ terbatas. Batas bawahnya adalah $a_1 = \dfrac{1}{2}$ (karena barisan monoton naik), dan batas atasnya adalah $1$ (karena $\dfrac{n}{n+1} < 1$ untuk semua $n$).</p>
+ <p class="lesson-text">Perhatikan bahwa "terbatas" tidak berarti nilainya kecil&mdash;barisan $a_n = 5$ juga terbatas, dengan batas atas dan batas bawah keduanya $5$.</p>
+
+ <h3 class="lesson-subheading">C. Teorema Konvergensi Monoton</h3>
+ <p class="lesson-text">Sekarang kita sampai pada salah satu teorema paling penting tentang barisan.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $\{a_n\}$ adalah barisan yang monoton (naik atau turun) dan terbatas, maka $\{a_n\}$ konvergen.</p>
+ <p class="lesson-text">Intuisinya: barisan yang selalu bergerak ke satu arah (monoton) tidak mungkin berosilasi. Jika ia juga terbatas&mdash;yaitu tidak bisa melewati suatu batas&mdash;maka ia harus "berhenti" di suatu titik. Titik itulah limitnya.</p>
+ <p class="lesson-text">Perlu diperhatikan bahwa teorema ini hanya menjamin <em>keberadaan</em> limit, bukan nilai limitnya. Untuk menemukan nilai limit, kita masih perlu menganalisis barisannya secara langsung.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Barisan $a_n = \dfrac{n}{n+1}$ monoton naik (sudah dibuktikan di atas) dan terbatas atas oleh $1$. Menurut teorema konvergensi monoton, barisan ini konvergen. Untuk menemukan limitnya, kita bagi pembilang dan penyebut dengan $n$:</p>
+ <p class="lesson-text">$$a_n = \frac{n}{n+1} = \frac{1}{1 + \frac{1}{n}} \to \frac{1}{1 + 0} = 1$$</p>
+ <p class="lesson-text">Jadi limitnya adalah $1$.</p>
+
+ <h3 class="lesson-subheading">D. Mengapa Teorema Ini Berguna</h3>
+ <p class="lesson-text">Teorema konvergensi monoton sangat berguna ketika barisan didefinisikan secara rekursif dan sulit untuk dianalisis secara langsung. Sebagai contoh, barisan yang didefinisikan oleh:</p>
+ <p class="lesson-text">$$a_1 = 1, \qquad a_{n+1} = \sqrt{2 + a_n}$$</p>
+ <p class="lesson-text">Barisan ini menghasilkan suku-suku: $1, \sqrt{3}, \sqrt{2 + \sqrt{3}}, \ldots$ Nilai-nilai ini mendekati suatu bilangan, tetapi kita tidak dapat menemukannya dengan rumus eksplisit. Namun kita dapat membuktikan bahwa barisan ini monoton naik dan terbatas atas oleh $2$ (dapat dibuktikan dengan induksi). Menurut teorema konvergensi monoton, barisan ini pasti konvergen. Untuk menemukan limitnya $L$, kita gunakan fakta bahwa $L = \sqrt{2 + L}$&mdash;yang menghasilkan $L = 2$. Teknik seperti ini sering muncul dalam analisis numerik.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan definisi, sifat-sifat, dan teorema tentang barisan.</p>
+
+ <h3 class="lesson-subheading">A. Menghitung Limit Barisan Rasional</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\lim_{n \to \infty} \frac{4n^3 - 2n + 1}{2n^3 + n^2 - 5}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Bagi pembilang dan penyebut dengan pangkat tertinggi $n^3$:</p>
+ <p class="lesson-text">$$a_n = \frac{4 - \frac{2}{n^2} + \frac{1}{n^3}}{2 + \frac{1}{n} - \frac{5}{n^3}}$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$, semua suku berbentuk $\dfrac{c}{n^k}$ menuju $0$:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} a_n = \frac{4 - 0 + 0}{2 + 0 - 0} = 2$$</p>
+
+ <h3 class="lesson-subheading">B. Menghitung Limit Barisan Eksponensial</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\lim_{n \to \infty} \frac{2^n + 3^n}{3^n + 4^n}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Bagi pembilang dan penyebut dengan basis terbesar, yaitu $4^n$:</p>
+ <p class="lesson-text">$$a_n = \frac{\frac{2^n}{4^n} + \frac{3^n}{4^n}}{\frac{3^n}{4^n} + 1} = \frac{\left(\frac{1}{2}\right)^n + \left(\frac{3}{4}\right)^n}{\left(\frac{3}{4}\right)^n + 1}$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$, karena basis $\dfrac{1}{2}$ dan $\dfrac{3}{4}$ keduanya kurang dari $1$, maka $\left(\dfrac{1}{2}\right)^n \to 0$ dan $\left(\dfrac{3}{4}\right)^n \to 0$:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} a_n = \frac{0 + 0}{0 + 1} = 0$$</p>
+
+ <h3 class="lesson-subheading">C. Membuktikan Konvergensi dengan Definisi ε-N</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Buktikan bahwa $\displaystyle\lim_{n \to \infty} \frac{2n + 3}{n + 1} = 2$ menggunakan definisi $\varepsilon$-$N$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Analisis ekspresi $|a_n - L|$.</strong></p>
+ <p class="lesson-text">$$\left|\frac{2n + 3}{n + 1} - 2\right| = \left|\frac{2n + 3 - 2(n + 1)}{n + 1}\right| = \left|\frac{2n + 3 - 2n - 2}{n + 1}\right| = \left|\frac{1}{n + 1}\right| = \frac{1}{n + 1}$$</p>
+ <p class="lesson-text">Kita ingin $\dfrac{1}{n + 1} < \varepsilon$, yang setara dengan $n + 1 > \dfrac{1}{\varepsilon}$, yaitu $n > \dfrac{1}{\varepsilon} - 1$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Pilih $N$.</strong> Ambil $N$ sebagai bilangan asli terkecil yang lebih besar dari $\dfrac{1}{\varepsilon} - 1$. Secara lebih sederhana, kita bisa memilih $N > \dfrac{1}{\varepsilon}$&mdash;karena dengan pilihan ini, $n \geq N$ otomatis menjamin $n + 1 > \dfrac{1}{\varepsilon}$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Verifikasi.</strong> Untuk setiap $n \geq N$, berlaku:</p>
+ <p class="lesson-text">$$\left|\frac{2n + 3}{n + 1} - 2\right| = \frac{1}{n + 1} < \frac{1}{N} < \varepsilon$$</p>
+ <p class="lesson-text">Terbukti. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">D. Penerapan: Bunga Majemuk</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Seorang nasabah menyimpan uang sebesar Rp 10.000.000 dengan bunga tahunan $5\%$ yang dihitung secara majemuk. Saldo setelah $n$ tahun adalah $S_n = 10^7 \cdot (1{,}05)^n$. Berapa perilaku saldo dalam jangka panjang?</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Karena basis $(1{,}05) > 1$, barisan $S_n$ adalah barisan geometri dengan rasio lebih besar dari $1$. Akibatnya:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} (1{,}05)^n = +\infty$$</p>
+ <p class="lesson-text">Sehingga $S_n \to +\infty$&mdash;yaitu saldo terus bertambah tanpa batas.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Saldo tabungan dengan bunga majemuk <em>tidak</em> stabil&mdash;ia tumbuh secara eksponensial. Ini berbeda dengan barisan yang konvergen, yang nilainya mendekati suatu bilangan tetap. Contoh ini juga menunjukkan bahwa barisan dapat divergen menuju $+\infty$, bukan hanya konvergen ke suatu nilai.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Penerapan: Barisan Rekursif dalam Populasi</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Populasi suatu spesies burung di sebuah pulau dimodelkan dengan barisan rekursif:</p>
+ <p class="lesson-text">$$P_1 = 100, \qquad P_{n+1} = 0{,}8 P_n + 40$$</p>
+ <p class="lesson-text">dengan $P_n$ adalah populasi (dalam ekor) pada tahun ke-$n$. Model ini menyatakan bahwa setiap tahun $20\%$ populasi berkurang (migrasi atau kematian), tetapi 40 ekor baru datang dari pulau lain. Berapa populasi jangka panjangnya?</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung beberapa suku untuk melihat polanya.</strong></p>
+ <ul>
+  <li>$P_1 = 100$</li>
+  <li>$P_2 = 0{,}8(100) + 40 = 120$</li>
+  <li>$P_3 = 0{,}8(120) + 40 = 136$</li>
+  <li>$P_4 = 0{,}8(136) + 40 = 148{,}8$</li>
+ </ul>
+ <p class="lesson-text">Populasi tampak meningkat, tetapi kita perlu memeriksa apakah barisan ini konvergen.</p>
+ <p class="lesson-text"><strong>Langkah 2: Analisis kemonotonan dan keterbatasan.</strong> Jika kita asumsikan barisan memiliki limit $L$, maka ketika $n \to \infty$, berlaku $P_{n+1} \to L$ dan $P_n \to L$. Substitusikan ke dalam rumus rekursif:</p>
+ <p class="lesson-text">$$L = 0{,}8 L + 40$$</p>
+ <p class="lesson-text">$$0{,}2L = 40 \quad \Rightarrow \quad L = 200$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Verifikasi konvergensi.</strong> Barisan $P_n$ monoton naik (dapat dibuktikan dengan induksi) dan terbatas atas oleh $200$ (juga dapat dibuktikan dengan induksi). Menurut teorema konvergensi monoton, barisan ini konvergen. Karena satu-satunya kandidat limit adalah $200$, maka:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} P_n = 200$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Dalam jangka panjang, populasi burung tersebut stabil pada $200$ ekor. Angka ini adalah <em>titik keseimbangan</em> antara kehilangan tahunan ($20\%$) dan kedatangan tahunan (40 ekor). Jika populasi awal kurang dari $200$, ia akan naik menuju $200$; jika lebih dari $200$, ia akan turun menuju $200$. Model rekursif seperti ini banyak dipakai dalam ekologi, ekonomi, dan epidemiologi untuk memodelkan sistem yang menuju keseimbangan.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Perkiraan Bilangan e</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Bilangan $e \approx 2{,}71828$ dapat didefinisikan melalui barisan:</p>
+ <p class="lesson-text">$$a_n = \left(1 + \frac{1}{n}\right)^n$$</p>
+ <p class="lesson-text">Tunjukkan bahwa barisan ini konvergen, dan perkirakan nilainya.</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Dapat dibuktikan (dengan argumen yang cukup panjang menggunakan teorema binomial) bahwa barisan $a_n$ monoton naik dan terbatas atas oleh $3$. Menurut teorema konvergensi monoton, barisan ini konvergen. Limitnya didefinisikan sebagai bilangan $e$:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e$$</p>
+ <p class="lesson-text">Beberapa nilai untuk melihat pendekatan:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>$n$</th><th>$\left(1 + \frac{1}{n}\right)^n$</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$1$</td><td>$2$</td></tr>
+   <tr><td>$10$</td><td>$2{,}5937\ldots$</td></tr>
+   <tr><td>$100$</td><td>$2{,}7048\ldots$</td></tr>
+   <tr><td>$1000$</td><td>$2{,}7169\ldots$</td></tr>
+   <tr><td>$10000$</td><td>$2{,}7181\ldots$</td></tr>
+   <tr><td>$100000$</td><td>$2{,}71827\ldots$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Barisan ini mendekati bilangan $e$ dari bawah, dan konvergensinya cukup lambat&mdash;diperlukan $n$ yang sangat besar untuk mendapatkan beberapa angka desimal yang akurat. Dalam praktiknya, bilangan $e$ dihitung menggunakan deret tak hingga (yang akan dipelajari di materi Deret), bukan melalui barisan ini. Namun barisan ini tetap penting karena menjadi salah satu definisi standar bilangan $e$.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap barisan sama dengan fungsi kontinu.</strong> Barisan hanya terdefinisi pada bilangan asli $1, 2, 3, \ldots$&mdash;bukan pada seluruh bilangan real. Karena itu, grafik barisan berupa titik-titik terpisah, bukan kurva kontinu. Limit barisan juga hanya memperhatikan nilai di titik-titik diskrit ini.</li>
+  <li><strong>Menganggap barisan konvergen harus monoton.</strong> Kemonotonan adalah <em>syarat cukup</em> (bersama keterbatasan) untuk konvergensi, tetapi bukan syarat perlu. Barisan $a_n = \dfrac{(-1)^n}{n}$ konvergen ke $0$ meskipun tidak monoton&mdash;nilainya berosilasi tetapi amplitudonya mengecil.</li>
+  <li><strong>Menganggap barisan terbatas pasti konvergen.</strong> Keterbatasan saja tidak cukup. Barisan $(-1)^n$ terbatas (antara $-1$ dan $1$), tetapi divergen karena berosilasi. Kita juga memerlukan kemonotonan.</li>
+  <li><strong>Menganggap "divergen" hanya berarti menuju tak hingga.</strong> Divergen mencakup dua kasus: menuju $\pm\infty$ <em>atau</em> berosilasi tanpa konvergen. Barisan $(-1)^n$ divergen meskipun tidak menuju tak hingga.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan Perhitungan</h3>
+ <ul>
+  <li><strong>Salah membagi dengan pangkat tertinggi pada barisan rasional.</strong> Bagi pembilang <em>dan</em> penyebut dengan pangkat tertinggi yang sama. Jika hanya membagi salah satu, hasilnya akan salah.</li>
+  <li><strong>Menganggap $\dfrac{c}{n^k} \to 0$ untuk semua $k$.</strong> Sifat ini hanya berlaku untuk $k > 0$. Jika $k = 0$ (yaitu bentuk konstanta), nilainya tetap $c$. Jika $k < 0$, nilainya justru menuju $\infty$.</li>
+  <li><strong>Salah menerapkan aturan derajat pada barisan rasional dengan pangkat negatif.</strong> Barisan seperti $\dfrac{1/n + 1}{1/n^2 + 1}$ memiliki perilaku berbeda dari barisan rasional biasa. Bagi dengan pangkat tertinggi terlebih dahulu untuk melihat strukturnya.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Definisi ε-N</h3>
+ <ul>
+  <li><strong>Tertukar urutan kuantor.</strong> Definisi yang benar adalah "untuk setiap $\varepsilon > 0$, <em>ada</em> $N$ sedemikian sehingga untuk setiap $n \geq N$, ...". Urutan ini tidak boleh dibalik.</li>
+  <li><strong>Menganggap $N$ harus sama untuk semua $\varepsilon$.</strong> Nilai $N$ boleh&mdash;dan biasanya memang&mdash;bergantung pada $\varepsilon$. Semakin kecil $\varepsilon$, semakin besar $N$ yang dibutuhkan.</li>
+  <li><strong>Membuktikan limit dengan contoh numerik.</strong> Menguji beberapa nilai $\varepsilon$ dan $N$ tidak membuktikan limitnya. Bukti harus berlaku untuk semua $\varepsilon > 0$ secara umum.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Barisan Monoton</h3>
+ <ul>
+  <li><strong>Menganggap barisan yang "kelihatannya" naik pasti monoton.</strong> Kemonotonan harus dibuktikan, bukan sekadar diperkirakan dari beberapa suku pertama. Periksa tanda dari $a_{n+1} - a_n$ untuk semua $n$.</li>
+  <li><strong>Lupa memeriksa keterbatasan.</strong> Teorema konvergensi monoton memerlukan <em>dua</em> syarat: monoton dan terbatas. Barisan $a_n = n$ monoton naik tetapi tidak terbatas, sehingga divergen.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Definisi barisan:</strong> fungsi dengan domain bilangan asli $\{1, 2, 3, \ldots\}$ dan kodomain bilangan real.</li>
+  <li><strong>Notasi:</strong> $a_n$ menyatakan suku ke-$n$; $\{a_n\}$ menyatakan seluruh barisan.</li>
+  <li><strong>Definisi limit barisan:</strong> $\displaystyle\lim_{n \to \infty} a_n = L$ berarti untuk setiap $\varepsilon > 0$, ada $N$ sedemikian sehingga untuk setiap $n \geq N$, berlaku $|a_n - L| < \varepsilon$.</li>
+  <li><strong>Konvergen:</strong> barisan memiliki limit $L$ berupa bilangan real.</li>
+  <li><strong>Divergen:</strong> barisan tidak memiliki limit berupa bilangan real&mdash;bisa karena menuju $\pm\infty$ atau karena berosilasi.</li>
+  <li><strong>Sifat aljabar:</strong> limit jumlah, selisih, hasil kali, hasil bagi, dan kelipatan konstanta semuanya dapat dihitung dari limit barisan penyusunnya.</li>
+  <li><strong>Teknik barisan rasional:</strong> bagi pembilang dan penyebut dengan pangkat tertinggi dari $n$.</li>
+  <li><strong>Teorema apit:</strong> jika $a_n \leq b_n \leq c_n$ dan $\lim a_n = \lim c_n = L$, maka $\lim b_n = L$.</li>
+  <li><strong>Monoton naik:</strong> $a_n \leq a_{n+1}$ untuk setiap $n$.</li>
+  <li><strong>Monoton turun:</strong> $a_n \geq a_{n+1}$ untuk setiap $n$.</li>
+  <li><strong>Terbatas:</strong> ada bilangan $M$ dan $m$ sedemikian sehingga $m \leq a_n \leq M$ untuk setiap $n$.</li>
+  <li><strong>Teorema konvergensi monoton:</strong> setiap barisan yang monoton dan terbatas pasti konvergen.</li>
+  <li><strong>Verifikasi hasil:</strong> hasil limit barisan dapat diperiksa dengan menghitung beberapa suku pertama untuk melihat pola pendekatan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Barisan adalah jembatan antara aljabar elementer dan konsep limit yang lebih lanjut. Dengan memahami barisan dan limitnya, kita dapat menganalisis perilaku jangka panjang dari proses-proses diskrit&mdash;seperti pertumbuhan populasi tahunan, saldo tabungan bulanan, dan iterasi numerik. Definisi $\varepsilon$-$N$ untuk limit barisan adalah analog langsung dari definisi $\varepsilon$-$\delta$ untuk limit fungsi, sehingga konsep-konsep dari materi Limit Fungsi dapat digunakan kembali di sini.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>deret</strong> akan memperluas konsep barisan dengan menjumlahkan seluruh sukunya. Deret adalah barisan khusus yang suku-sukunya merupakan jumlah parsial dari barisan lain&mdash;dan pertanyaan tentang konvergensinya menjadi inti dari materi tersebut. Konsep limit barisan yang sudah kita kuasai akan menjadi fondasi untuk memahami kapan sebuah deret tak hingga memiliki jumlah yang berhingga.</p>
+</section>
+
+</main>
+</body>
+</html>

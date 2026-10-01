@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turunan Fungsi (Definisi, Aturan Turunan, Turunan Implisit)</title>
+<meta name="description" content="Materi turunan fungsi: definisi turunan sebagai limit, notasi turunan, aturan-aturan turunan (pangkat, produk, kuosien, rantai), turunan tingkat tinggi, dan turunan implisit.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Turunan Fungsi (Definisi, Aturan Turunan, Turunan Implisit)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; turunan didefinisikan sebagai sebuah limit. Konsep limit, sifat-sifatnya, dan limit bentuk $\frac{0}{0}$ menjadi dasar bagi semua perhitungan turunan dari definisi.</li>
+   <li><strong>Kekontinuan Fungsi</strong> &mdash; terdapat hubungan penting antara kekontinuan dan keterdiferensialan. Fungsi yang dapat diturunkan pasti kontinu, dan pemahaman kekontinuan membantu mengenali kapan turunan tidak ada.</li>
+   <li><strong>Aljabar Dasar</strong> &mdash; pemfaktoran, operasi pecahan, dan manipulasi bentuk aljabar dibutuhkan untuk menyederhanakan selisih hasil bagi sebelum mengambil limit.</li>
+   <li><strong>Trigonometri Dasar</strong> &mdash; turunan fungsi trigonometri bertumpu pada identitas dasar dan limit $\lim_{h \to 0} \frac{\sin h}{h} = 1$.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi limit, kita sudah menyinggung sebuah pertanyaan yang berulang di banyak bidang: berapa kecepatan sesaat sebuah benda pada satu titik waktu tertentu? Pertanyaan serupa juga muncul dalam bentuk lain: seberapa cepat biaya produksi bertambah ketika jumlah produksi dinaikkan sedikit? Seberapa cepat suhu berubah pada satu titik tertentu di sebuah pelat logam? Semua pertanyaan ini memiliki struktur yang sama&mdash;yaitu menanyakan <em>laju perubahan</em> sebuah besaran terhadap besaran lain.</p>
+ <p class="lesson-text">Turunan adalah alat matematika yang menjawab pertanyaan tersebut. Secara geometris, turunan mengukur kemiringan garis singgung pada sebuah kurva di suatu titik. Secara fisika, turunan mengukur laju perubahan sesaat. Secara umum, turunan memberi tahu kita bagaimana sebuah fungsi berubah ketika variabelnya berubah.</p>
+ <p class="lesson-text">Materi ini mencakup tiga topik. Pertama, definisi turunan sebagai limit&mdash;yang menjadi landasan bagi semua aturan turunan. Kedua, aturan-aturan turunan&mdash;yang memungkinkan kita menghitung turunan fungsi kompleks dari turunan fungsi-fungsi dasar tanpa harus selalu kembali ke definisi. Ketiga, turunan implisit&mdash;teknik untuk menurunkan fungsi yang tidak dinyatakan secara eksplisit sebagai $y = f(x)$, tetapi melalui persamaan yang menghubungkan $x$ dan $y$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Definisi Turunan</h2>
+ <p class="lesson-text">Bab ini menyusun definisi turunan secara bertahap. Kita mulai dari gagasan kemiringan garis singgung, kemudian merumuskannya sebagai limit, dan diakhiri dengan notasi-notasi yang lazim digunakan.</p>
+
+ <h3 class="lesson-subheading">A. Kemiringan Garis Singgung</h3>
+ <p class="lesson-text">Misalkan kita memiliki sebuah kurva $y = f(x)$ dan sebuah titik tetap $P(a, f(a))$ pada kurva tersebut. Kita ingin mengetahui kemiringan kurva <em>tepat</em> di titik $P$.</p>
+ <p class="lesson-text">Masalahnya, kemiringan biasanya didefinisikan sebagai "perubahan $y$ dibagi perubahan $x$". Pada satu titik tunggal, tidak ada perubahan&mdash;baik $\Delta x$ maupun $\Delta y$ bernilai nol. Untuk mengatasinya, kita ambil titik kedua $Q$ pada kurva yang berdekatan dengan $P$, hitung kemiringan garis yang melalui $P$ dan $Q$ (disebut garis <em>secan</em>), lalu periksa apa yang terjadi ketika $Q$ bergerak mendekati $P$.</p>
+ <p class="lesson-text">Misalkan $Q$ memiliki koordinat $(a + h,\, f(a + h))$ untuk suatu bilangan $h \neq 0$. Maka kemiringan garis secan $PQ$ adalah:</p>
+ <p class="lesson-text">$$m_{PQ} = \frac{f(a + h) - f(a)}{(a + h) - a} = \frac{f(a + h) - f(a)}{h}$$</p>
+ <p class="lesson-text">Ketika $h$ mendekati $0$, titik $Q$ bergerak sepanjang kurva menuju $P$. Garis secan $PQ$ berputar dan mendekati sebuah garis tertentu yang menyentuh kurva di titik $P$&mdash;garis inilah yang disebut <strong>garis singgung</strong>. Kemiringan garis singgung didefinisikan sebagai limit dari kemiringan garis secan:</p>
+ <p class="lesson-text">$$m = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h}$$</p>
+ <p class="lesson-text">Limit inilah yang menjadi definisi turunan.</p>
+ <figure>
+  <svg viewBox="0 0 620 420" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+   <line x1="60" y1="370" x2="590" y2="370" stroke="#e8e8e8" stroke-width="1.5" />
+   <polygon points="592,370 582,365 582,375" fill="#e8e8e8" />
+   <text x="596" y="374" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+   <line x1="80" y1="400" x2="80" y2="40" stroke="#e8e8e8" stroke-width="1.5" />
+   <polygon points="80,37 75,47 85,47" fill="#e8e8e8" />
+   <text x="86" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+   <line x1="140" y1="314" x2="450" y2="124" stroke="#f0c75e" stroke-width="1.8" stroke-dasharray="6,4" />
+   <line x1="135" y1="313" x2="390" y2="168" stroke="#daa520" stroke-width="2.2" />
+   <path d="M 100 320 C 220 280 320 200 480 100" fill="none" stroke="#5dade2" stroke-width="2.8" />
+   <line x1="222" y1="264" x2="331" y2="264" stroke="#b8b8b8" stroke-width="1.2" stroke-dasharray="3,3" />
+   <line x1="331" y1="264" x2="331" y2="197" stroke="#b8b8b8" stroke-width="1.2" stroke-dasharray="3,3" />
+   <circle cx="222" cy="264" r="6" fill="#daa520" />
+   <text x="212" y="259" font-size="12" fill="#daa520" text-anchor="end" font-style="italic">P(a, f(a))</text>
+   <circle cx="331" cy="197" r="6" fill="#f0c75e" />
+   <text x="343" y="200" font-size="12" fill="#f0c75e" font-style="italic">Q(a+h, f(a+h))</text>
+   <text x="276" y="282" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">h</text>
+   <text x="338" y="234" font-size="12" fill="#b8b8b8" font-style="italic">f(a+h) − f(a)</text>
+   <text x="398" y="176" font-size="12" fill="#daa520" font-style="italic">garis singgung</text>
+  <text x="458" y="122" font-size="12" fill="#f0c75e" font-style="italic">garis secan</text>
+ </svg>
+ <figcaption class="visual-caption">Kemiringan garis singgung di $P$ diperoleh sebagai limit dari kemiringan garis secan $PQ$ ketika $Q$ bergerak menuju $P$. Ketika $h \to 0$, garis secan berputar dan mendekati garis singgung.</figcaption>
+</figure>
+
+ <h3 class="lesson-subheading">B. Definisi Turunan</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Turunan fungsi $f$ di titik $x$ didefinisikan sebagai limit berikut, asalkan limit tersebut ada:</p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$$</p>
+ <p class="lesson-text">Jika limit ini ada, fungsi $f$ dikatakan <strong>dapat diturunkan</strong> (diferensiabel) di $x$, dan nilai $f'(x)$ disebut turunan $f$ di $x$. Jika limit ini tidak ada, $f$ dikatakan tidak dapat diturunkan di $x$.</p>
+ <p class="lesson-text">Perhatikan bahwa $x$ di sini bukan bilangan tertentu, melainkan variabel. Jadi $f'$ sendiri adalah sebuah fungsi, yang memetakan setiap $x$ (yang membuat limitnya ada) ke nilai turunannya di titik itu. Domain $f'$ bisa lebih kecil dari domain $f$&mdash;yaitu di titik-titik di mana limitnya tidak ada.</p>
+ <p class="lesson-text">Bentuk pecahan $\dfrac{f(x + h) - f(x)}{h}$ disebut <strong>selisih hasil bagi</strong> (<em>difference quotient</em>). Ini adalah kemiringan garis secan antara titik $(x, f(x))$ dan $(x + h, f(x + h))$. Saat $h$ mengecil menuju nol, garis secan berubah menjadi garis singgung, dan selisih hasil bagi menuju turunan.</p>
+
+ <h3 class="lesson-subheading">C. Notasi Turunan</h3>
+ <p class="lesson-text">Terdapat beberapa notasi yang lazim digunakan untuk menyatakan turunan. Masing-masing memiliki keunggulan tergantung konteks.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Notasi</th><th>Pembacaan</th><th>Dikemukakan oleh</th><th>Konteks umum</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$f'(x)$</td><td>"$f$ aksen $x$"</td><td>Lagrange</td><td>Analisis fungsi, penulisan ringkas</td></tr>
+   <tr><td>$\dfrac{dy}{dx}$</td><td>"$dy$ per $dx$"</td><td>Leibniz</td><td>Menekankan laju perubahan; sangat berguna untuk aturan rantai</td></tr>
+   <tr><td>$D_x f(x)$</td><td>"$D$ sub $x$ dari $f$"</td><td>Euler</td><td>Operator turunan; dipakai ketika variabelnya perlu dinyatakan</td></tr>
+   <tr><td>$\dot{y}$</td><td>"$y$ titik"</td><td>Newton</td><td>Fisika, terutama untuk besaran yang bergantung pada waktu</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Pada materi ini, notasi $f'(x)$ dan $\dfrac{dy}{dx}$ akan paling sering digunakan. Notasi Leibniz $\dfrac{dy}{dx}$ sering lebih disukai dalam aturan rantai dan turunan implisit, karena ia secara eksplisit menunjukkan variabel mana yang menjadi acuan turunan.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Turunan dari Definisi untuk $f(x) = x^2$</h3>
+ <p class="lesson-text">Berikut contoh menghitung turunan langsung dari definisi. Misalkan $f(x) = x^2$. Kita ingin menentukan $f'(x)$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Menyusun selisih hasil bagi.</strong></p>
+ <p class="lesson-text">$$f(x + h) = (x + h)^2 = x^2 + 2xh + h^2$$</p>
+ <p class="lesson-text">$$f(x + h) - f(x) = (x^2 + 2xh + h^2) - x^2 = 2xh + h^2$$</p>
+ <p class="lesson-text">$$\frac{f(x + h) - f(x)}{h} = \frac{2xh + h^2}{h} = \frac{h(2x + h)}{h} = 2x + h$$</p>
+ <p class="lesson-text">Perhatikan bahwa penyederhanaan terakhir sah untuk $h \neq 0$. Karena limit memperhatikan $h \to 0$ tanpa $h = 0$, kita boleh membagi dengan $h$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Mengambil limit.</strong></p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0}(2x + h) = 2x$$</p>
+ <p class="lesson-text">Jadi turunan $f(x) = x^2$ adalah $f'(x) = 2x$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Turunan $f'(x) = 2x$ memberi tahu kita bahwa kemiringan kurva $y = x^2$ di titik $x$ bergantung pada $x$. Di $x = 0$, kemiringannya $0$ (kurva datar di titik terendahnya). Di $x = 1$, kemiringannya $2$. Di $x = -1$, kemiringannya $-2$ (kurva menurun ke kiri). Pola ini sesuai dengan bentuk parabola $y = x^2$ yang simetris terhadap sumbu-$Y$.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Contoh: Turunan dari Definisi untuk $f(x) = x^3$</h3>
+ <p class="lesson-text">Misalkan $f(x) = x^3$. Kita hitung $f'(x)$ dari definisi.</p>
+ <p class="lesson-text"><strong>Langkah 1: Menyusun selisih hasil bagi.</strong></p>
+ <p class="lesson-text">$$f(x + h) = (x + h)^3 = x^3 + 3x^2 h + 3x h^2 + h^3$$</p>
+ <p class="lesson-text">$$f(x + h) - f(x) = 3x^2 h + 3x h^2 + h^3 = h(3x^2 + 3xh + h^2)$$</p>
+ <p class="lesson-text">$$\frac{f(x + h) - f(x)}{h} = 3x^2 + 3xh + h^2$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Mengambil limit.</strong></p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0}(3x^2 + 3xh + h^2) = 3x^2$$</p>
+ <p class="lesson-text">Jadi turunan $f(x) = x^3$ adalah $f'(x) = 3x^2$.</p>
+ <p class="lesson-text">Dari dua contoh ini, muncul pola: turunan $x^2$ adalah $2x$, dan turunan $x^3$ adalah $3x^2$. Pola umumnya&mdash;bahwa turunan $x^n$ adalah $n x^{n-1}$&mdash;akan dibahas di bab berikutnya sebagai aturan pangkat.</p>
+
+ <h3 class="lesson-subheading">F. Turunan sebagai Laju Perubahan</h3>
+ <p class="lesson-text">Selain sebagai kemiringan garis singgung, turunan memiliki tafsiran sebagai laju perubahan. Jika $y = f(x)$, maka $f'(x)$ menyatakan seberapa cepat $y$ berubah ketika $x$ berubah&mdash;yaitu perubahan $y$ per satuan perubahan $x$, diukur pada satu titik tertentu.</p>
+ <p class="lesson-text">Sebagai contoh, misalkan $s(t)$ menyatakan posisi sebuah mobil (dalam meter) pada waktu $t$ (dalam detik). Maka:</p>
+ <ul>
+  <li>$s'(t) = \dfrac{ds}{dt}$ menyatakan kecepatan mobil pada waktu $t$ (dalam meter per detik).</li>
+  <li>$s''(t)$ menyatakan percepatan mobil pada waktu $t$ (dalam meter per detik kuadrat).</li>
+ </ul>
+ <p class="lesson-text">Tafsiran ini yang membuat turunan begitu penting dalam fisika, teknik, ekonomi, dan banyak bidang lain. Setiap kali kita berbicara tentang "laju", "kecepatan", "pertumbuhan", atau "perubahan sesaat", di belakangnya ada konsep turunan.</p>
+
+ <h3 class="lesson-subheading">G. Kapan Turunan Tidak Ada</h3>
+ <p class="lesson-text">Karena turunan didefinisikan sebagai limit, turunan bisa saja tidak ada di titik tertentu. Tiga situasi yang paling sering muncul:</p>
+ <ul>
+  <li><strong>Fungsi tidak kontinu di titik tersebut.</strong> Jika fungsi melompat di $x = a$, limit yang mendefinisikan turunan tidak akan ada. Turunan hanya mungkin ada jika fungsinya kontinu.</li>
+  <li><strong>Terdapat sudut tajam pada grafik.</strong> Misalnya fungsi $f(x) = |x|$ di $x = 0$. Kemiringan dari kiri adalah $-1$ sedangkan dari kanan adalah $1$. Karena kedua sisi berbeda, limitnya tidak ada, sehingga turunan di $x = 0$ tidak ada.</li>
+  <li><strong>Terdapat garis singgung vertikal.</strong> Misalnya fungsi $f(x) = \sqrt[3]{x}$ di $x = 0$. Garis singgungnya vertikal, sehingga kemiringannya tidak terdefinisi sebagai bilangan real.</li>
+ </ul>
+ <p class="lesson-text">Perlu ditegaskan bahwa kekontinuan adalah <em>syarat perlu</em>, tetapi bukan <em>syarat cukup</em>, untuk keterdiferensialan. Setiap fungsi yang dapat diturunkan pasti kontinu, tetapi tidak setiap fungsi kontinu dapat diturunkan. Fungsi $f(x) = |x|$ adalah contoh klasiknya: kontinu di $x = 0$, tetapi tidak dapat diturunkan di titik itu.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Turunan Fungsi Dasar</h2>
+ <p class="lesson-text">Menghitung turunan dari definisi untuk setiap fungsi tentu sangat melelahkan. Karena itu, kita turunkan terlebih dahulu turunan dari fungsi-fungsi dasar, sehingga fungsi yang lebih kompleks dapat diturunkan dengan menggabungkan hasil-hasil dasar ini menggunakan aturan-aturan di bab berikutnya.</p>
+
+ <h3 class="lesson-subheading">A. Turunan Fungsi Konstanta</h3>
+ <p class="lesson-text">Misalkan $f(x) = c$ untuk suatu konstanta $c$. Fungsi ini bernilai sama di setiap titik&mdash;grafiknya adalah garis horizontal. Karena tidak ada perubahan nilai, laju perubahannya nol. Secara formal:</p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} = \lim_{h \to 0} \frac{c - c}{h} = \lim_{h \to 0} 0 = 0$$</p>
+ <p class="lesson-text">Jadi:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(c) = 0$$</p>
+
+ <h3 class="lesson-subheading">B. Turunan Fungsi Identitas</h3>
+ <p class="lesson-text">Misalkan $f(x) = x$. Fungsi ini memiliki kemiringan konstan $1$ di seluruh grafiknya, karena grafiknya adalah garis lurus $y = x$. Secara formal:</p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0} \frac{(x + h) - x}{h} = \lim_{h \to 0} \frac{h}{h} = \lim_{h \to 0} 1 = 1$$</p>
+ <p class="lesson-text">Jadi:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(x) = 1$$</p>
+
+ <h3 class="lesson-subheading">C. Aturan Pangkat</h3>
+ <p class="lesson-text">Misalkan $f(x) = x^n$ dengan $n$ bilangan real. Maka turunannya adalah:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(x^n) = n x^{n-1}$$</p>
+ <p class="lesson-text">Aturan ini adalah salah satu yang paling sering dipakai. Pola ini sudah terlihat dari contoh sebelumnya: turunan $x^2$ adalah $2x^{2-1} = 2x$, dan turunan $x^3$ adalah $3x^{3-1} = 3x^2$.</p>
+ <p class="lesson-text">Berikut beberapa contoh penerapan:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Fungsi $f(x)$</th><th>Turunan $f'(x)$</th><th>Penerapan aturan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$x^5$</td><td>$5x^4$</td><td>$n = 5$</td></tr>
+   <tr><td>$x^{10}$</td><td>$10x^9$</td><td>$n = 10$</td></tr>
+   <tr><td>$\dfrac{1}{x} = x^{-1}$</td><td>$-x^{-2} = -\dfrac{1}{x^2}$</td><td>$n = -1$</td></tr>
+   <tr><td>$\sqrt{x} = x^{1/2}$</td><td>$\dfrac{1}{2}x^{-1/2} = \dfrac{1}{2\sqrt{x}}$</td><td>$n = 1/2$</td></tr>
+   <tr><td>$\sqrt[3]{x} = x^{1/3}$</td><td>$\dfrac{1}{3}x^{-2/3}$</td><td>$n = 1/3$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Aturan pangkat juga berlaku untuk pangkat negatif dan pangkat rasional, bukan hanya pangkat bilangan bulat positif. Ini sebabnya aturan ini sangat praktis: bentuk akar dan bentuk pecahan tidak perlu diperlakukan secara khusus&mdash;cukup tulis ulang sebagai pangkat, lalu gunakan aturan pangkat.</p>
+
+ <h3 class="lesson-subheading">D. Turunan Fungsi Trigonometri Dasar</h3>
+ <p class="lesson-text">Tiga turunan fungsi trigonometri dasar yang perlu dihafal:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(\sin x) = \cos x$$</p>
+ <p class="lesson-text">$$\frac{d}{dx}(\cos x) = -\sin x$$</p>
+ <p class="lesson-text">$$\frac{d}{dx}(\tan x) = \sec^2 x = \frac{1}{\cos^2 x}$$</p>
+ <p class="lesson-text">Perhatikan tanda negatif pada turunan $\cos x$. Ini mudah tertukar; sering diingat sebagai "turunan sinus adalah kosinus, turunan kosinus adalah <em>negatif</em> sinus".</p>
+ <p class="lesson-text">Penurunan rumus turunan $\sin x$ dari definisi memerlukan identitas jumlah sudut untuk sinus dan limit fundamental $\lim_{h \to 0} \frac{\sin h}{h} = 1$. Berikut sketsa singkatnya. Dari identitas $\sin(x + h) = \sin x \cos h + \cos x \sin h$, diperoleh:</p>
+ <p class="lesson-text">$$\frac{\sin(x + h) - \sin x}{h} = \frac{\sin x \cos h + \cos x \sin h - \sin x}{h} = \sin x \cdot \frac{\cos h - 1}{h} + \cos x \cdot \frac{\sin h}{h}$$</p>
+ <p class="lesson-text">Ketika $h \to 0$, suku pertama menuju $\sin x \cdot 0 = 0$ (karena $\frac{\cos h - 1}{h} \to 0$), dan suku kedua menuju $\cos x \cdot 1 = \cos x$ (dari limit fundamental). Maka hasilnya $\cos x$.</p>
+
+ <h3 class="lesson-subheading">E. Turunan Fungsi Eksponensial dan Logaritma</h3>
+ <p class="lesson-text">Dua fungsi berikut memainkan peran khusus dalam kalkulus karena turunannya memiliki bentuk yang sangat sederhana:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(e^x) = e^x$$</p>
+ <p class="lesson-text">$$\frac{d}{dx}(\ln x) = \frac{1}{x}, \quad x > 0$$</p>
+ <p class="lesson-text">Fungsi $e^x$ adalah satu-satunya fungsi (selain fungsi nol) yang turunannya sama dengan dirinya sendiri. Sifat ini yang membuatnya istimewa&mdash;dan menjadi alasan mengapa bilangan $e \approx 2{,}71828$ dipilih sebagai basis logaritma natural.</p>
+ <p class="lesson-text">Untuk basis lain, terdapat penyesuaian konstanta:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(a^x) = a^x \ln a$$</p>
+ <p class="lesson-text">$$\frac{d}{dx}(\log_a x) = \frac{1}{x \ln a}$$</p>
+ <p class="lesson-text">Untuk basis $a = e$, konstanta $\ln e = 1$ sehingga rumusnya kembali ke bentuk sederhana di atas.</p>
+
+ <h3 class="lesson-subheading">F. Ringkasan Turunan Fungsi Dasar</h3>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Fungsi $f(x)$</th><th>Turunan $f'(x)$</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$c$ (konstanta)</td><td>$0$</td></tr>
+   <tr><td>$x$</td><td>$1$</td></tr>
+   <tr><td>$x^n$</td><td>$n x^{n-1}$</td></tr>
+   <tr><td>$\sin x$</td><td>$\cos x$</td></tr>
+   <tr><td>$\cos x$</td><td>$-\sin x$</td></tr>
+   <tr><td>$\tan x$</td><td>$\sec^2 x$</td></tr>
+   <tr><td>$e^x$</td><td>$e^x$</td></tr>
+   <tr><td>$\ln x$</td><td>$\dfrac{1}{x}$</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Aturan Turunan</h2>
+ <p class="lesson-text">Bab ini membahas aturan-aturan yang memungkinkan kita menghitung turunan fungsi yang dibangun dari kombinasi fungsi-fungsi dasar. Kelima aturan berikut adalah alat utama yang akan terus dipakai sepanjang kalkulus.</p>
+
+ <h3 class="lesson-subheading">A. Aturan Kelipatan Konstanta</h3>
+ <p class="lesson-text">Jika $c$ konstanta dan $f$ fungsi yang dapat diturunkan, maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[c \cdot f(x)] = c \cdot f'(x)$$</p>
+ <p class="lesson-text">Konstanta dapat dikeluarkan dari operasi turunan. Sebagai contoh:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(5x^3) = 5 \cdot \frac{d}{dx}(x^3) = 5 \cdot 3x^2 = 15x^2$$</p>
+ <p class="lesson-text">Aturan ini adalah konsekuensi dari sifat kelipatan konstanta pada limit: konstanta dapat dikeluarkan dari operasi limit, dan turunan adalah limit.</p>
+
+ <h3 class="lesson-subheading">B. Aturan Jumlah dan Selisih</h3>
+ <p class="lesson-text">Jika $f$ dan $g$ keduanya dapat diturunkan, maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[f(x) + g(x)] = f'(x) + g'(x)$$</p>
+ <p class="lesson-text">$$\frac{d}{dx}[f(x) - g(x)] = f'(x) - g'(x)$$</p>
+ <p class="lesson-text">Dengan kata lain, turunan dari jumlah (atau selisih) sama dengan jumlah (atau selisih) dari turunan-turunannya. Aturan ini juga berlaku untuk lebih dari dua suku. Sebagai contoh:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(3x^4 - 2x^2 + 7x - 5) = 12x^3 - 4x + 7$$</p>
+ <p class="lesson-text">Perhatikan bahwa turunan konstanta $-5$ adalah $0$, sesuai aturan turunan konstanta.</p>
+
+ <h3 class="lesson-subheading">C. Aturan Produk</h3>
+ <p class="lesson-text">Jika $f$ dan $g$ keduanya dapat diturunkan, maka turunan hasil kali <em>tidak</em> sama dengan hasil kali turunan. Aturan yang benar adalah:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[f(x) \cdot g(x)] = f'(x) \cdot g(x) + f(x) \cdot g'(x)$$</p>
+ <p class="lesson-text">Dalam kata-kata: "turunan fungsi pertama dikali fungsi kedua, ditambah fungsi pertama dikali turunan fungsi kedua."</p>
+ <p class="lesson-text">Mengapa bukan sekadar $f'(x) \cdot g'(x)$? Karena turunan mengukur laju perubahan, dan ketika dua fungsi dikalikan, perubahan total berasal dari <em>kedua</em> fungsi yang berubah secara bersamaan. Aturan produk menangkap kedua kontribusi tersebut.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Misalkan $f(x) = x^2$ dan $g(x) = \sin x$. Maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(x^2 \sin x) = (2x)(\sin x) + (x^2)(\cos x) = 2x \sin x + x^2 \cos x$$</p>
+ <p class="lesson-text">Jika salah satu faktornya adalah konstanta, aturan produk memberi hasil yang sama dengan aturan kelipatan konstanta. Sebagai contoh, $\dfrac{d}{dx}(3 \cdot x^2)$ dapat dihitung dengan aturan produk ($f = 3$, $g = x^2$) sebagai $0 \cdot x^2 + 3 \cdot 2x = 6x$, sama dengan hasil dari aturan kelipatan konstanta.</p>
+
+ <h3 class="lesson-subheading">D. Aturan Kuosien</h3>
+ <p class="lesson-text">Jika $f$ dan $g$ dapat diturunkan dan $g(x) \neq 0$, maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{[g(x)]^2}$$</p>
+ <p class="lesson-text">Dalam kata-kata: "turunan pembilang dikali penyebut, dikurangi pembilang dikali turunan penyebut, semuanya dibagi kuadrat penyebut." Perhatikan urutan pengurangan&mdash;urutan ini penting dan sering tertukar. Cara mengingatnya: "turunan atas kali bawah, dikurangi atas kali turunan bawah" (dalam bahasa Inggris dikenal sebagai <em>low d-high minus high d-low</em>).</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Misalkan kita ingin menurunkan $f(x) = \dfrac{x^2 + 1}{x - 1}$. Dengan $f_1 = x^2 + 1$ dan $g_1 = x - 1$:</p>
+ <p class="lesson-text">$$f_1' = 2x, \quad g_1' = 1$$</p>
+ <p class="lesson-text">$$\frac{d}{dx}\left[\frac{x^2 + 1}{x - 1}\right] = \frac{(2x)(x - 1) - (x^2 + 1)(1)}{(x - 1)^2} = \frac{2x^2 - 2x - x^2 - 1}{(x - 1)^2} = \frac{x^2 - 2x - 1}{(x - 1)^2}$$</p>
+
+ <h3 class="lesson-subheading">E. Aturan Rantai</h3>
+ <p class="lesson-text">Aturan rantai adalah aturan paling penting dalam kalkulus, karena memungkinkan kita menurunkan fungsi komposisi. Jika $y = f(u)$ dan $u = g(x)$ keduanya dapat diturunkan, maka:</p>
+ <p class="lesson-text">$$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}$$</p>
+ <p class="lesson-text">Dalam notasi fungsi $f \circ g$ (yaitu $f(g(x))$), aturan rantai dapat ditulis:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$$</p>
+ <p class="lesson-text">Dalam kata-kata: "turunan fungsi luar, dievaluasi pada fungsi dalam, dikali turunan fungsi dalam."</p>
+ <p class="lesson-text">Aturan rantai sering terasa sulit karena memerlukan identifikasi mana yang merupakan "fungsi luar" dan mana yang "fungsi dalam". Untuk $f(g(x)) = (3x^2 + 1)^5$, fungsi luarnya adalah $u^5$ dan fungsi dalamnya adalah $u = 3x^2 + 1$. Maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[(3x^2 + 1)^5] = 5(3x^2 + 1)^4 \cdot \frac{d}{dx}(3x^2 + 1) = 5(3x^2 + 1)^4 \cdot 6x = 30x(3x^2 + 1)^4$$</p>
+ <p class="lesson-text">Untuk fungsi trigonometri komposit, aturan yang sama berlaku. Misalkan kita ingin menurunkan $\sin(2x)$. Fungsi luarnya adalah $\sin u$ dan dalamnya $u = 2x$:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[\sin(2x)] = \cos(2x) \cdot \frac{d}{dx}(2x) = \cos(2x) \cdot 2 = 2\cos(2x)$$</p>
+ <p class="lesson-text">Aturan rantai bisa diterapkan secara berlapis jika komposisinya lebih dari dua fungsi. Misalkan $f(x) = \sin(e^{3x^2})$. Fungsi terluar adalah $\sin$, lapisan berikutnya adalah $e^u$, dan lapisan terdalam adalah $3x^2$. Maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[\sin(e^{3x^2})] = \cos(e^{3x^2}) \cdot e^{3x^2} \cdot 6x$$</p>
+ <p class="lesson-text">Setiap lapisan menyumbang satu faktor sesuai aturan rantai.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan notasi Leibniz.</strong> Notasi $\dfrac{dy}{dx} = \dfrac{dy}{du} \cdot \dfrac{du}{dx}$ sangat membantu secara intuitif&mdash;tampak seolah-olah "du" saling menghapus, seperti pecahan biasa. Meskipun interpretasi ini tidak sepenuhnya formal (karena $\dfrac{dy}{du}$ dan $\dfrac{du}{dx}$ bukan pecahan dalam arti biasa), ia memberi panduan yang baik untuk mengingat aturan rantai dan menggunakannya dengan benar.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Ringkasan Aturan Turunan</h3>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Aturan</th><th>Rumus</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Kelipatan konstanta</td><td>$\dfrac{d}{dx}[c \cdot f] = c \cdot f'$</td></tr>
+   <tr><td>Jumlah / selisih</td><td>$\dfrac{d}{dx}[f \pm g] = f' \pm g'$</td></tr>
+   <tr><td>Produk</td><td>$\dfrac{d}{dx}[f \cdot g] = f' \cdot g + f \cdot g'$</td></tr>
+   <tr><td>Kuosien</td><td>$\dfrac{d}{dx}\left[\dfrac{f}{g}\right] = \dfrac{f' \cdot g - f \cdot g'}{g^2}$</td></tr>
+   <tr><td>Rantai</td><td>$\dfrac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Turunan Tingkat Tinggi</h2>
+ <p class="lesson-text">Turunan dari sebuah fungsi juga merupakan fungsi, sehingga dapat diturunkan lagi. Proses ini bisa dilanjutkan beberapa kali, menghasilkan apa yang disebut <strong>turunan tingkat tinggi</strong>.</p>
+
+ <h3 class="lesson-subheading">A. Notasi Turunan Tingkat Tinggi</h3>
+ <p class="lesson-text">Jika $y = f(x)$, maka:</p>
+ <ul>
+  <li>Turunan pertama: $f'(x)$ atau $\dfrac{dy}{dx}$.</li>
+  <li>Turunan kedua: $f''(x)$ atau $\dfrac{d^2y}{dx^2}$&mdash;turunan dari turunan pertama.</li>
+  <li>Turunan ketiga: $f'''(x)$ atau $\dfrac{d^3y}{dx^3}$.</li>
+  <li>Turunan ke-$n$: $f^{(n)}(x)$ atau $\dfrac{d^ny}{dx^n}$, untuk $n$ bilangan bulat positif.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa untuk $n \geq 4$, penulisan aksen biasanya diganti dengan notasi angka dalam tanda kurung: $f^{(4)}(x)$, bukan $f''''(x)$. Ini untuk menghindari kebingungan dengan banyak tanda aksen.</p>
+
+ <h3 class="lesson-subheading">B. Contoh Perhitungan</h3>
+ <p class="lesson-text">Misalkan $f(x) = x^4 - 3x^2 + 2x$. Turunan-turunannya:</p>
+ <p class="lesson-text">$$f'(x) = 4x^3 - 6x + 2$$</p>
+ <p class="lesson-text">$$f''(x) = 12x^2 - 6$$</p>
+ <p class="lesson-text">$$f'''(x) = 24x$$</p>
+ <p class="lesson-text">$$f^{(4)}(x) = 24$$</p>
+ <p class="lesson-text">$$f^{(5)}(x) = 0$$</p>
+ <p class="lesson-text">Perhatikan bahwa turunan tingkat tinggi dari polinomial berderajat $n$ akan menjadi nol setelah $n + 1$ kali penurunan. Ini karena setiap penurunan menurunkan derajat polinomial sebanyak satu.</p>
+
+ <h3 class="lesson-subheading">C. Tafsiran Fisika: Kecepatan dan Percepatan</h3>
+ <p class="lesson-text">Turunan tingkat tinggi memiliki tafsiran langsung dalam fisika. Misalkan $s(t)$ menyatakan posisi sebuah benda pada waktu $t$. Maka:</p>
+ <ul>
+  <li>$s'(t) = v(t)$ adalah <strong>kecepatan</strong> benda (laju perubahan posisi).</li>
+  <li>$s''(t) = v'(t) = a(t)$ adalah <strong>percepatan</strong> benda (laju perubahan kecepatan).</li>
+  <li>$s'''(t)$ adalah laju perubahan percepatan&mdash;disebut <em>jerk</em>&mdash;yang penting dalam analisis gerak yang melibatkan kenyamanan (misalnya dalam perancangan kendaraan atau lift).</li>
+ </ul>
+ <p class="lesson-text"><strong>Contoh.</strong> Posisi sebuah benda (dalam meter) dimodelkan $s(t) = 3t^3 - 6t^2 + 2t$ dengan $t$ dalam detik. Maka:</p>
+ <p class="lesson-text">$$v(t) = s'(t) = 9t^2 - 12t + 2 \text{ m/detik}$$</p>
+ <p class="lesson-text">$$a(t) = s''(t) = 18t - 12 \text{ m/detik}^2$$</p>
+ <p class="lesson-text">Pada $t = 2$ detik, kecepatannya $9(4) - 12(2) + 2 = 36 - 24 + 2 = 14$ m/detik, dan percepatannya $18(2) - 12 = 24$ m/detik$^2$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Turunan Implisit</h2>
+ <p class="lesson-text">Sampai di sini, semua fungsi yang kita turunkan berbentuk <em>eksplisit</em>&mdash;yaitu $y$ dinyatakan secara langsung dalam $x$ sebagai $y = f(x)$. Namun banyak hubungan matematika yang dinyatakan secara <em>implisit</em>: $x$ dan $y$ muncul bersama dalam satu persamaan, tanpa $y$ diisolasi di satu sisi.</p>
+
+ <h3 class="lesson-subheading">A. Fungsi Eksplisit vs Fungsi Implisit</h3>
+ <p class="lesson-text">Perhatikan persamaan lingkaran berjari-jari $5$ yang berpusat di titik asal:</p>
+ <p class="lesson-text">$$x^2 + y^2 = 25$$</p>
+ <p class="lesson-text">Persamaan ini menghubungkan $x$ dan $y$, tetapi $y$ tidak dinyatakan sebagai fungsi eksplisit dari $x$. Kita bisa saja mengisolasinya menjadi dua fungsi terpisah:</p>
+ <p class="lesson-text">$$y = \sqrt{25 - x^2} \quad \text{(setengah lingkaran atas)}$$</p>
+ <p class="lesson-text">$$y = -\sqrt{25 - x^2} \quad \text{(setengah lingkaran bawah)}$$</p>
+ <p class="lesson-text">Tetapi pendekatan ini merepotkan&mdash;kita harus menangani dua fungsi sekaligus, dan menurunkan bentuk akar yang rumit. Turunan implisit memberi cara menurunkan langsung dari persamaan $x^2 + y^2 = 25$, tanpa perlu mengisolasi $y$.</p>
+
+ <h3 class="lesson-subheading">B. Metode Turunan Implisit</h3>
+ <p class="lesson-text">Ide dasarnya: meskipun $y$ tidak dinyatakan eksplisit, kita masih bisa menganggap $y$ sebagai fungsi dari $x$. Kemudian kita turunkan kedua ruas persamaan terhadap $x$. Setiap kali muncul $y$, turunannya mengandung faktor $\dfrac{dy}{dx}$ sesuai aturan rantai.</p>
+ <p class="lesson-text">Mengapa $\dfrac{dy}{dx}$ muncul? Karena jika $y$ bergantung pada $x$, maka setiap fungsi dari $y$ juga bergantung pada $x$. Turunan $y^2$ terhadap $x$, misalnya, tidak sama dengan $2y$, melainkan:</p>
+ <p class="lesson-text">$$\frac{d}{dx}(y^2) = 2y \cdot \frac{dy}{dx}$$</p>
+ <p class="lesson-text">Ini adalah penerapan aturan rantai dengan $y$ sebagai fungsi dalam.</p>
+ <p class="lesson-text">Setelah kedua ruas diturunkan, kita selesaikan untuk $\dfrac{dy}{dx}$ secara aljabar.</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Lingkaran $x^2 + y^2 = 25$</h3>
+ <p class="lesson-text">Kita ingin menentukan $\dfrac{dy}{dx}$ dari persamaan $x^2 + y^2 = 25$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Turunkan kedua ruas terhadap $x$.</strong></p>
+ <p class="lesson-text">$$\frac{d}{dx}(x^2) + \frac{d}{dx}(y^2) = \frac{d}{dx}(25)$$</p>
+ <p class="lesson-text">$$2x + 2y \cdot \frac{dy}{dx} = 0$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Selesaikan untuk $\dfrac{dy}{dx}$.</strong></p>
+ <p class="lesson-text">$$2y \cdot \frac{dy}{dx} = -2x$$</p>
+ <p class="lesson-text">$$\frac{dy}{dx} = -\frac{x}{y}$$</p>
+ <p class="lesson-text">Jadi turunan implisit dari $x^2 + y^2 = 25$ adalah $\dfrac{dy}{dx} = -\dfrac{x}{y}$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Verifikasi geometris.</strong> Untuk lingkaran berpusat di titik asal, garis singgung di titik $(x, y)$ selalu tegak lurus terhadap jari-jari yang menghubungkan titik asal ke $(x, y)$. Jari-jari tersebut memiliki kemiringan $y/x$, sehingga garis singgungnya&mdash;yang tegak lurus&mdash;memiliki kemiringan $-x/y$. Hasil ini sesuai dengan perhitungan implisit kita.</p>
+ </div>
+
+ <h3 class="lesson-subheading">D. Contoh: Persamaan dengan Produk dan Trigonometri</h3>
+ <p class="lesson-text">Misalkan kita ingin menurunkan persamaan implisit berikut:</p>
+ <p class="lesson-text">$$xy + \sin(y) = x^2$$</p>
+ <p class="lesson-text"><strong>Langkah 1: Turunkan kedua ruas terhadap $x$.</strong> Perhatikan bahwa $xy$ memerlukan aturan produk, dan $\sin(y)$ memerlukan aturan rantai.</p>
+ <p class="lesson-text">$$\frac{d}{dx}(xy) + \frac{d}{dx}(\sin y) = \frac{d}{dx}(x^2)$$</p>
+ <p class="lesson-text">Untuk $\dfrac{d}{dx}(xy)$: turunkan $x$ dikali $y$, ditambah $x$ dikali turunan $y$. Turunan $y$ terhadap $x$ adalah $\dfrac{dy}{dx}$.</p>
+ <p class="lesson-text">$$\frac{d}{dx}(xy) = 1 \cdot y + x \cdot \frac{dy}{dx} = y + x \frac{dy}{dx}$$</p>
+ <p class="lesson-text">Untuk $\dfrac{d}{dx}(\sin y)$: fungsi luar adalah $\sin$, fungsi dalam adalah $y$.</p>
+ <p class="lesson-text">$$\frac{d}{dx}(\sin y) = \cos(y) \cdot \frac{dy}{dx}$$</p>
+ <p class="lesson-text">Untuk $\dfrac{d}{dx}(x^2) = 2x$.</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$y + x \frac{dy}{dx} + \cos(y) \frac{dy}{dx} = 2x$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Kelompokkan suku-suku yang mengandung $\dfrac{dy}{dx}$.</strong></p>
+ <p class="lesson-text">$$x \frac{dy}{dx} + \cos(y) \frac{dy}{dx} = 2x - y$$</p>
+ <p class="lesson-text">$$\frac{dy}{dx} [x + \cos(y)] = 2x - y$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Selesaikan untuk $\dfrac{dy}{dx}$.</strong></p>
+ <p class="lesson-text">$$\frac{dy}{dx} = \frac{2x - y}{x + \cos(y)}$$</p>
+ <p class="lesson-text">Perhatikan bahwa hasilnya mengandung baik $x$ maupun $y$. Ini karakteristik turunan implisit: hasilnya seringkali dinyatakan dalam kedua variabel, bukan hanya $x$.</p>
+
+ <h3 class="lesson-subheading">E. Kapan Menggunakan Turunan Implisit</h3>
+ <p class="lesson-text">Turunan implisit berguna dalam situasi berikut:</p>
+ <ul>
+  <li>Ketika mengisolasi $y$ secara eksplisit merepotkan atau tidak mungkin dilakukan dengan mudah.</li>
+  <li>Ketika persamaannya melibatkan campuran fungsi yang sulit dipisahkan, seperti $xy$ atau $\sin(xy)$.</li>
+  <li>Ketika kita hanya perlu menghitung kemiringan garis singgung di titik tertentu, tanpa memerlukan rumus eksplisit untuk $y$.</li>
+ </ul>
+ <p class="lesson-text">Sebagai contoh, jika kita ingin kemiringan garis singgung lingkaran $x^2 + y^2 = 25$ di titik $(3, 4)$, kita cukup substitusi ke rumus $\dfrac{dy}{dx} = -\dfrac{x}{y}$:</p>
+ <p class="lesson-text">$$\left.\frac{dy}{dx}\right|_{(3,4)} = -\frac{3}{4}$$</p>
+ <p class="lesson-text">Kita memperoleh kemiringannya tanpa perlu menuliskan $y = \sqrt{25 - x^2}$ secara eksplisit.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan definisi turunan, aturan-aturan turunan, dan turunan implisit.</p>
+
+ <h3 class="lesson-subheading">A. Turunan dari Definisi</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan $f'(x)$ dari $f(x) = \dfrac{1}{x}$ menggunakan definisi turunan.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Susun selisih hasil bagi:</p>
+ <p class="lesson-text">$$f(x + h) - f(x) = \frac{1}{x + h} - \frac{1}{x} = \frac{x - (x + h)}{x(x + h)} = \frac{-h}{x(x + h)}$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\frac{f(x + h) - f(x)}{h} = \frac{-h}{h \cdot x(x + h)} = \frac{-1}{x(x + h)}$$</p>
+ <p class="lesson-text">Ambil limitnya:</p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0} \frac{-1}{x(x + h)} = -\frac{1}{x^2}$$</p>
+ <p class="lesson-text">Hasil ini konsisten dengan aturan pangkat: karena $\dfrac{1}{x} = x^{-1}$, maka turunannya adalah $-1 \cdot x^{-2} = -\dfrac{1}{x^2}$.</p>
+
+ <h3 class="lesson-subheading">B. Menerapkan Aturan Pangkat dan Jumlah</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan turunan dari $f(x) = 4x^5 - 3x^2 + 7x - 2$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Gunakan aturan jumlah, aturan kelipatan konstanta, dan aturan pangkat secara bertahap:</p>
+ <p class="lesson-text">$$f'(x) = 4 \cdot 5x^4 - 3 \cdot 2x + 7 \cdot 1 - 0 = 20x^4 - 6x + 7$$</p>
+
+ <h3 class="lesson-subheading">C. Menerapkan Aturan Produk</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan turunan dari $f(x) = (x^2 + 1)(3x - 2)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Misalkan $u = x^2 + 1$ dan $v = 3x - 2$. Maka $u' = 2x$ dan $v' = 3$.</p>
+ <p class="lesson-text">$$f'(x) = u' \cdot v + u \cdot v' = (2x)(3x - 2) + (x^2 + 1)(3)$$</p>
+ <p class="lesson-text">$$= 6x^2 - 4x + 3x^2 + 3 = 9x^2 - 4x + 3$$</p>
+ <p class="lesson-text">Verifikasi: jika kita kalikan dulu $f(x) = 3x^3 - 2x^2 + 3x - 2$, lalu turunkan, kita memperoleh $9x^2 - 4x + 3$. Hasilnya sama&mdash;aturan produk bekerja dengan benar.</p>
+
+ <h3 class="lesson-subheading">D. Menerapkan Aturan Kuosien</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan turunan dari $f(x) = \dfrac{x^2 + 1}{x - 1}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Misalkan $u = x^2 + 1$ dan $v = x - 1$. Maka $u' = 2x$ dan $v' = 1$.</p>
+ <p class="lesson-text">$$f'(x) = \frac{u' \cdot v - u \cdot v'}{v^2} = \frac{(2x)(x - 1) - (x^2 + 1)(1)}{(x - 1)^2}$$</p>
+ <p class="lesson-text">$$= \frac{2x^2 - 2x - x^2 - 1}{(x - 1)^2} = \frac{x^2 - 2x - 1}{(x - 1)^2}$$</p>
+
+ <h3 class="lesson-subheading">E. Menerapkan Aturan Rantai</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan turunan dari $f(x) = (3x^2 + 1)^5$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Fungsi luar: $u^5$ dengan $u = 3x^2 + 1$. Turunan fungsi luar terhadap $u$ adalah $5u^4$. Turunan fungsi dalam terhadap $x$ adalah $6x$.</p>
+ <p class="lesson-text">$$f'(x) = 5(3x^2 + 1)^4 \cdot 6x = 30x(3x^2 + 1)^4$$</p>
+
+ <h3 class="lesson-subheading">F. Penerapan: Garis Singgung</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan persamaan garis singgung kurva $f(x) = x^3 - 2x + 1$ di titik $x = 2$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Pertama, hitung nilai fungsi di $x = 2$:</p>
+ <p class="lesson-text">$$f(2) = 8 - 4 + 1 = 5$$</p>
+ <p class="lesson-text">Titik singgung adalah $(2, 5)$. Selanjutnya, hitung kemiringan garis singgung&mdash;yaitu turunan di $x = 2$:</p>
+ <p class="lesson-text">$$f'(x) = 3x^2 - 2$$</p>
+ <p class="lesson-text">$$f'(2) = 3(4) - 2 = 10$$</p>
+ <p class="lesson-text">Gunakan bentuk kemiringan-titik untuk persamaan garis lurus, dengan $m = 10$ dan melalui $(2, 5)$:</p>
+ <p class="lesson-text">$$y - 5 = 10(x - 2)$$</p>
+ <p class="lesson-text">$$y = 10x - 15$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Di sekitar titik $(2, 5)$, kurva $y = x^3 - 2x + 1$ berperilaku seperti garis lurus $y = 10x - 15$. Garis inilah yang disebut garis singgung di titik tersebut. Pendekatan ini menjadi dasar dari <em>linierisasi</em>, teknik yang banyak dipakai untuk menyederhanakan fungsi rumit di sekitar nilai tertentu.</p>
+ </div>
+
+ <h3 class="lesson-subheading">G. Penerapan: Kecepatan dan Percepatan</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Posisi sebuah mobil (dalam meter) setelah $t$ detik dimodelkan $s(t) = 2t^3 - 5t^2 + 3t$. Tentukan kecepatan dan percepatan mobil pada $t = 3$ detik.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kecepatan adalah turunan pertama dari posisi:</p>
+ <p class="lesson-text">$$v(t) = s'(t) = 6t^2 - 10t + 3$$</p>
+ <p class="lesson-text">Pada $t = 3$:</p>
+ <p class="lesson-text">$$v(3) = 6(9) - 10(3) + 3 = 54 - 30 + 3 = 27 \text{ m/detik}$$</p>
+ <p class="lesson-text">Percepatan adalah turunan kedua dari posisi&mdash;yaitu turunan pertama dari kecepatan:</p>
+ <p class="lesson-text">$$a(t) = v'(t) = s''(t) = 12t - 10$$</p>
+ <p class="lesson-text">Pada $t = 3$:</p>
+ <p class="lesson-text">$$a(3) = 12(3) - 10 = 26 \text{ m/detik}^2$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Pada detik ke-3, mobil bergerak dengan kecepatan $27$ meter per detik, dan kecepatannya bertambah dengan laju $26$ meter per detik setiap detiknya. Hubungan antara posisi, kecepatan, dan percepatan ini&mdash;melalui turunan&mdash;adalah inti dari kinematika dalam fisika.</p>
+ </div>
+
+ <h3 class="lesson-subheading">H. Penerapan: Turunan Implisit pada Lingkaran</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan kemiringan garis singgung lingkaran $x^2 + y^2 = 25$ di titik $(3, 4)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Turunkan kedua ruas persamaan terhadap $x$:</p>
+ <p class="lesson-text">$$2x + 2y \frac{dy}{dx} = 0$$</p>
+ <p class="lesson-text">$$\frac{dy}{dx} = -\frac{x}{y}$$</p>
+ <p class="lesson-text">Substitusi titik $(3, 4)$:</p>
+ <p class="lesson-text">$$\left.\frac{dy}{dx}\right|_{(3,4)} = -\frac{3}{4}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Garis singgung lingkaran di titik $(3, 4)$ memiliki kemiringan $-\frac{3}{4}$. Kemiringan negatif berarti garis tersebut menurun dari kiri ke kanan&mdash;sesuai dengan bentuk lingkaran di kuadran pertama, di mana bagian atas melengkung ke bawah.</p>
+ </div>
+
+ <h3 class="lesson-subheading">I. Penerapan: Biaya Marginal</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Biaya total memproduksi $x$ unit barang (dalam ribu rupiah) dimodelkan $C(x) = 0{,}02x^3 - 0{,}6x^2 + 8x + 100$. Tentukan biaya marginal pada tingkat produksi $x = 20$ unit.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Biaya marginal adalah turunan dari biaya total:</p>
+ <p class="lesson-text">$$C'(x) = 0{,}06x^2 - 1{,}2x + 8$$</p>
+ <p class="lesson-text">Pada $x = 20$:</p>
+ <p class="lesson-text">$$C'(20) = 0{,}06(400) - 1{,}2(20) + 8 = 24 - 24 + 8 = 8$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Biaya marginal di $x = 20$ adalah $8$ ribu rupiah per unit. Artinya, menambah produksi satu unit (dari 20 menjadi 21) akan menambah biaya sekitar Rp 8.000. Angka ini dipakai manajemen untuk memutuskan apakah menambah produksi menguntungkan&mdash;yaitu ketika harga jual per unit melebihi biaya marginal.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap turunan hasil kali sama dengan hasil kali turunan.</strong> Ini salah. $\dfrac{d}{dx}[f \cdot g] \neq f' \cdot g'$. Aturan yang benar adalah $f' \cdot g + f \cdot g'$. Sebagai contoh, $\dfrac{d}{dx}(x \cdot x) = \dfrac{d}{dx}(x^2) = 2x$, sedangkan $1 \cdot 1 = 1$. Jelas berbeda.</li>
+  <li><strong>Menganggap turunan hasil bagi sama dengan hasil bagi turunan.</strong> Sama, $\dfrac{d}{dx}\left[\dfrac{f}{g}\right] \neq \dfrac{f'}{g'}$. Aturan yang benar melibatkan numerator $f' g - f g'$ dibagi $g^2$.</li>
+  <li><strong>Mengabaikan aturan rantai pada fungsi komposisi.</strong> Turunan $\sin(2x)$ bukan $\cos(2x)$, melainkan $2\cos(2x)$. Faktor $2$ berasal dari turunan fungsi dalam.</li>
+  <li><strong>Menganggap turunan selalu ada.</strong> Turunan tidak ada di titik-titik di mana fungsi tidak kontinu, atau di titik-titik dengan sudut tajam, atau di titik dengan garis singgung vertikal.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan Perhitungan</h3>
+ <ul>
+  <li><strong>Salah menerapkan aturan pangkat.</strong> Turunan $x^n$ adalah $n x^{n-1}$, bukan $n x^n$ atau $x^{n-1}$. Ingat bahwa pangkatnya berkurang satu.</li>
+  <li><strong>Tertukar tanda pada turunan $\cos x$.</strong> Turunan $\cos x$ adalah $-\sin x$&mdash;dengan tanda negatif. Ini sering terlupakan.</li>
+  <li><strong>Salah urutan pada aturan kuosien.</strong> Numeratornya adalah $f' g - f g'$, bukan $f g' - f' g$. Urutan pengurangan ini penting dan sering tertukar.</li>
+  <li><strong>Lupa mengalikan dengan turunan fungsi dalam pada aturan rantai.</strong> Setelah menurunkan fungsi luar, harus dikalikan dengan turunan fungsi dalam. Contoh: turunan $\sin(3x)$ adalah $3\cos(3x)$, bukan hanya $\cos(3x)$.</li>
+  <li><strong>Menyederhanakan pecahan sebelum menurunkan.</strong> Kadang ini sah, tetapi sering justru mempersulit. Secara umum, gunakan aturan kuosien atau produk terlebih dahulu, baru sederhanakan hasilnya.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Turunan Implisit</h3>
+ <ul>
+  <li><strong>Lupa mengalikan dengan $\dfrac{dy}{dx}$ saat menurunkan $y$.</strong> Turunan $y^2$ terhadap $x$ adalah $2y \dfrac{dy}{dx}$, bukan hanya $2y$. Faktor $\dfrac{dy}{dx}$ muncul karena $y$ bergantung pada $x$.</li>
+  <li><strong>Menganggap $\dfrac{dy}{dx}$ sebagai pecahan biasa.</strong> Notasi $\dfrac{dy}{dx}$ bukan pecahan dalam arti biasa&mdash;ia adalah notasi untuk turunan. Namun dalam aturan rantai, "pencoretan" $du$ memberi panduan yang baik.</li>
+  <li><strong>Lupa mengelompokkan suku-suku $\dfrac{dy}{dx}$ sebelum menyelesaikan.</strong> Setelah menurunkan, suku-suku yang mengandung $\dfrac{dy}{dx}$ perlu dikumpulkan di satu sisi sebelum difaktorkan dan diselesaikan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Ringkasan</h2>
+ <ul>
+  <li><strong>Definisi turunan:</strong> $f'(x) = \displaystyle\lim_{h \to 0} \dfrac{f(x + h) - f(x)}{h}$.</li>
+  <li><strong>Tafsiran geometris:</strong> turunan adalah kemiringan garis singgung kurva di titik $x$.</li>
+  <li><strong>Tafsiran fisika:</strong> turunan adalah laju perubahan sesaat.</li>
+  <li><strong>Notasi:</strong> $f'(x)$, $\dfrac{dy}{dx}$, $D_x f(x)$, atau $\dot{y}$.</li>
+  <li><strong>Turunan tidak ada</strong> jika fungsi tidak kontinu, atau terdapat sudut tajam, atau terdapat garis singgung vertikal di titik tersebut.</li>
+  <li><strong>Turunan fungsi dasar:</strong> $\dfrac{d}{dx}(c) = 0$, $\dfrac{d}{dx}(x) = 1$, $\dfrac{d}{dx}(x^n) = nx^{n-1}$, $\dfrac{d}{dx}(\sin x) = \cos x$, $\dfrac{d}{dx}(\cos x) = -\sin x$, $\dfrac{d}{dx}(\tan x) = \sec^2 x$, $\dfrac{d}{dx}(e^x) = e^x$, $\dfrac{d}{dx}(\ln x) = \dfrac{1}{x}$.</li>
+  <li><strong>Aturan kelipatan konstanta:</strong> $\dfrac{d}{dx}[c \cdot f] = c \cdot f'$.</li>
+  <li><strong>Aturan jumlah/selisih:</strong> $\dfrac{d}{dx}[f \pm g] = f' \pm g'$.</li>
+  <li><strong>Aturan produk:</strong> $\dfrac{d}{dx}[f \cdot g] = f' g + f g'$.</li>
+  <li><strong>Aturan kuosien:</strong> $\dfrac{d}{dx}\left[\dfrac{f}{g}\right] = \dfrac{f' g - f g'}{g^2}$.</li>
+  <li><strong>Aturan rantai:</strong> $\dfrac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$.</li>
+  <li><strong>Turunan tingkat tinggi:</strong> $f''(x)$, $f'''(x)$, $f^{(n)}(x)$&mdash;diperoleh dengan menurunkan berulang kali.</li>
+  <li><strong>Turunan implisit:</strong> teknik menurunkan persamaan yang menghubungkan $x$ dan $y$ tanpa mengisolasi $y$. Setiap kali menurunkan $y$, muncul faktor $\dfrac{dy}{dx}$ sesuai aturan rantai.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Turunan adalah alat utama kalkulus untuk mengukur laju perubahan. Ia menjembatani gagasan intuitif tentang "kemiringan" dan "kecepatan" dengan perhitungan yang presisi, melalui definisi sebagai limit selisih hasil bagi. Dari definisi ini, kita menurunkan aturan-aturan turunan&mdash;aturan pangkat, produk, kuosien, dan rantai&mdash;yang memungkinkan kita menghitung turunan fungsi kompleks secara sistematis, tanpa harus selalu kembali ke definisi.</p>
+ <p class="lesson-text">Turunan implisit melengkapi alat ini dengan kemampuan menangani persamaan yang tidak menghubungkan $x$ dan $y$ secara eksplisit. Teknik ini penting dalam banyak aplikasi, terutama ketika hubungan antar variabel dinyatakan melalui persamaan aljabar yang tidak mudah dipecahkan untuk satu variabel.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>Aplikasi Turunan</strong> akan memanfaatkan seluruh teknik yang telah dibangun di sini. Turunan&mdash;yang sekarang bisa kita hitung dengan cepat&mdash;akan dipakai untuk menganalisis kemonotonan fungsi, menemukan titik ekstrem, menyelesaikan masalah optimisasi, dan memahami laju terkait dalam sistem yang lebih kompleks.</p>
+</section>
+
+</main>
+</body>
+</html>

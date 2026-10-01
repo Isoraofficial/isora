@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kekontinuan Fungsi (Definisi, Jenis Diskontinuitas, Teorema Nilai Antara)</title>
+<meta name="description" content="Materi kekontinuan fungsi: definisi kekontinuan di titik dan pada interval, jenis-jenis diskontinuitas, sifat-sifat fungsi kontinu, serta Teorema Nilai Antara (Intermediate Value Theorem) beserta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Kekontinuan Fungsi (Definisi, Jenis Diskontinuitas, Teorema Nilai Antara)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; kekontinuan didefinisikan melalui limit. Tanpa memahami konsep limit, sifat-sifat limit, dan limit satu sisi, definisi kekontinuan tidak akan terbaca dengan benar.</li>
+   <li><strong>Fungsi dan Grafik</strong> &mdash; kekontinuan berkaitan langsung dengan "tidak terputusnya" grafik. Kemampuan membaca grafik dan mengidentifikasi nilai fungsi di titik tertentu sangat membantu.</li>
+   <li><strong>Interval Bilangan Real</strong> &mdash; konsep interval terbuka, tertutup, dan setengah terbuka dibutuhkan untuk membicarakan kekontinuan pada suatu selang, bukan hanya di satu titik.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Bayangkan sebuah mobil bergerak di jalan lurus. Posisinya dicatat setiap saat oleh alat GPS. Jika alat tersebut merekam posisi sebagai fungsi waktu, maka fungsi posisi tersebut <em>seharusnya</em> tidak "melompat"&mdash;mobil tidak mungkin berpindah dari kilometer 5 ke kilometer 50 dalam waktu nol. Sifat "tidak melompat" inilah yang dalam matematika disebut <strong>kekontinuan</strong>.</p>
+ <p class="lesson-text">Kekontinuan adalah sifat yang menghubungkan konsep limit dengan perilaku fungsi secara utuh. Sebuah fungsi disebut kontinu di suatu titik jika nilai limitnya di titik itu sama dengan nilai fungsinya. Dengan kata lain, limit dan nilai fungsi "sepakat"&mdash;tidak ada kejutan, tidak ada lompatan, tidak ada lubang.</p>
+ <p class="lesson-text">Materi ini mencakup tiga topik. Pertama, definisi kekontinuan di titik dan pada interval, beserta cara memeriksanya. Kedua, jenis-jenis diskontinuitas&mdash;yaitu cara-cara di mana fungsi bisa gagal kontinu. Ketiga, Teorema Nilai Antara, sebuah teorema penting yang menjadi konsekuensi langsung dari kekontinuan pada interval tertutup, dan yang menjadi dasar berbagai metode numerik pencarian akar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Definisi Kekontinuan</h2>
+ <p class="lesson-text">Bab ini menyusun definisi kekontinuan secara bertahap. Kita mulai dari definisi di satu titik, lalu melihat mengapa tiga syarat diperlukan, dan diakhiri dengan definisi pada interval.</p>
+
+ <h3 class="lesson-subheading">A. Kekontinuan di Satu Titik</h3>
+ <p class="lesson-text">Sebuah fungsi dikatakan <strong>kontinu di titik</strong> $x = a$ jika ketiga syarat berikut terpenuhi secara bersamaan:</p>
+ <ol>
+  <li>$f(a)$ <strong>terdefinisi</strong>&mdash;yaitu $a$ berada di domain $f$.</li>
+  <li>$\displaystyle\lim_{x \to a} f(x)$ <strong>ada</strong>&mdash;yaitu limit kiri dan limit kanan ada dan bernilai sama.</li>
+  <li>$\displaystyle\lim_{x \to a} f(x) = f(a)$&mdash;yaitu nilai limit sama dengan nilai fungsi di titik tersebut.</li>
+ </ol>
+ <p class="lesson-text">Ketiga syarat ini tidak berdiri sendiri; mereka harus terpenuhi bersamaan. Jika salah satu gagal, fungsi dikatakan <strong>diskontinu</strong> di titik tersebut.</p>
+ <p class="lesson-text">Perhatikan bahwa syarat ketiga adalah inti dari kekontinuan. Syarat pertama memastikan fungsi "punya nilai" di titik itu; syarat kedua memastikan fungsi "punya kecenderungan" yang jelas di sekitar titik itu. Syarat ketiga menyatukan keduanya: kecenderungan dan nilai aktual harus cocok. Ketika ketiganya terpenuhi, grafik fungsi di sekitar titik tersebut tidak memiliki lubang, lompatan, maupun asimtot.</p>
+
+ <h3 class="lesson-subheading">B. Mengapa Tiga Syarat Diperlukan</h3>
+ <p class="lesson-text">Setiap syarat menangkap satu cara berbeda di mana kekontinuan bisa gagal. Untuk memperjelas, kita tinjau tiga fungsi, masing-masing melanggar satu syarat.</p>
+ <p class="lesson-text"><strong>Contoh 1: syarat pertama gagal.</strong> Perhatikan fungsi berikut:</p>
+ <p class="lesson-text">$$f(x) = \frac{x^2 - 1}{x - 1}$$</p>
+ <p class="lesson-text">Fungsi ini tidak terdefinisi di $x = 1$, karena substitusi langsung menghasilkan $\frac{0}{0}$. Maka $f(1)$ tidak ada. Namun limitnya di $x = 1$ ada dan bernilai $2$. Karena syarat pertama gagal&mdash;meskipun syarat kedua terpenuhi&mdash;fungsi tidak kontinu di $x = 1$. Grafiknya identik dengan garis lurus $y = x + 1$ tetapi memiliki lubang di titik $(1, 2)$.</p>
+ <p class="lesson-text"><strong>Contoh 2: syarat kedua gagal.</strong> Perhatikan fungsi nilai mutlak dibagi $x$:</p>
+ <p class="lesson-text">$$f(x) = \frac{|x|}{x}$$</p>
+ <p class="lesson-text">Fungsi ini juga tidak terdefinisi di $x = 0$ (syarat pertama gagal). Namun lebih dari itu, limitnya di $x = 0$ juga tidak ada&mdash;karena limit kiri bernilai $-1$ dan limit kanan bernilai $1$. Karena limitnya tidak ada, syarat kedua gagal. Grafik fungsi melompat dari $-1$ ke $1$ tepat di $x = 0$.</p>
+ <p class="lesson-text"><strong>Contoh 3: syarat ketiga gagal.</strong> Perhatikan fungsi piecewise berikut:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} x + 1 & \text{jika } x \neq 2 \\ 5 & \text{jika } x = 2 \end{cases}$$</p>
+ <p class="lesson-text">Fungsi ini terdefinisi di $x = 2$, dengan $f(2) = 5$. Limitnya di $x = 2$ juga ada&mdash;yaitu $\lim_{x \to 2} f(x) = 3$, karena untuk $x \neq 2$, fungsi bernilai $x + 1$ yang mendekati $3$. Namun limitnya tidak sama dengan nilai fungsi: $3 \neq 5$. Karena syarat ketiga gagal, fungsi diskontinu di $x = 2$. Grafiknya tampak seperti garis lurus $y = x + 1$, tetapi ada satu titik terpisah di $(2, 5)$.</p>
+ <p class="lesson-text">Ketiga contoh ini menunjukkan bahwa ketiga syarat menangkap jenis kegagalan yang berbeda. Karena itu, ketiganya diperlukan.</p>
+
+ <figure>
+ <svg viewBox="0 0 1000 380" style="max-width:100%; height:auto; width:1000px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Panel 1: Lubang (syarat 1 gagal) -->
+  <g>
+   <text x="160" y="30" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="700">Syarat 1 gagal: lubang</text>
+   <line x1="40" y1="280" x2="300" y2="280" stroke="#e8e8e8" stroke-width="1.2"/>
+   <line x1="80" y1="310" x2="80" y2="60" stroke="#e8e8e8" stroke-width="1.2"/>
+   <line x1="90" y1="260" x2="280" y2="90" stroke="#5dade2" stroke-width="2.5"/>
+   <circle cx="180" cy="175" r="6" fill="#1a1a1a" stroke="#daa520" stroke-width="2.2"/>
+   <text x="180" y="300" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">1</text>
+   <text x="68" y="178" font-size="11" fill="#daa520" text-anchor="end" font-style="italic">2</text>
+  </g>
+  <!-- Panel 2: Lompatan (syarat 2 gagal) -->
+  <g>
+   <text x="500" y="30" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="700">Syarat 2 gagal: lompatan</text>
+   <line x1="380" y1="190" x2="640" y2="190" stroke="#e8e8e8" stroke-width="1.2"/>
+   <line x1="510" y1="310" x2="510" y2="60" stroke="#e8e8e8" stroke-width="1.2"/>
+   <line x1="400" y1="240" x2="504" y2="240" stroke="#5dade2" stroke-width="2.5"/>
+   <circle cx="504" cy="240" r="5" fill="#1a1a1a" stroke="#5dade2" stroke-width="2.2"/>
+   <line x1="516" y1="140" x2="620" y2="140" stroke="#daa520" stroke-width="2.5"/>
+   <circle cx="516" cy="140" r="5" fill="#1a1a1a" stroke="#daa520" stroke-width="2.2"/>
+   <text x="510" y="330" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">a</text>
+  </g>
+  <!-- Panel 3: Titik terpisah (syarat 3 gagal) -->
+  <g>
+   <text x="840" y="30" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="700">Syarat 3 gagal: titik terpisah</text>
+   <line x1="720" y1="280" x2="980" y2="280" stroke="#e8e8e8" stroke-width="1.2"/>
+   <line x1="800" y1="310" x2="800" y2="60" stroke="#e8e8e8" stroke-width="1.2"/>
+   <line x1="730" y1="260" x2="950" y2="110" stroke="#5dade2" stroke-width="2.5"/>
+   <circle cx="840" cy="185" r="5" fill="none" stroke="#5dade2" stroke-width="2.2"/>
+   <circle cx="840" cy="100" r="6" fill="#daa520"/>
+   <text x="840" y="300" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">2</text>
+   <text x="852" y="98" font-size="11" fill="#daa520" font-style="italic">(2, 5)</text>
+  </g>
+ </svg>
+ <figcaption class="visual-caption">Tiga cara kekontinuan gagal. Kiri: fungsi tidak terdefinisi di titik $a$ sehingga muncul lubang. Tengah: limit kiri dan limit kanan berbeda sehingga muncul lompatan. Kanan: limit ada dan fungsi terdefinisi, tetapi nilainya tidak cocok sehingga muncul titik terpisah.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">C. Definisi Ringkas</h3>
+ <p class="lesson-text">Dengan menggunakan notasi limit, definisi kekontinuan dapat dituliskan secara ringkas sebagai berikut.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $f$ kontinu di $x = a$ jika:</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(x) = f(a)$$</p>
+ <p class="lesson-text">Penulisan singkat ini secara implisit mencakup ketiga syarat sebelumnya: agar kesamaan ini bermakna, $f(a)$ harus terdefinisi, dan limit di ruas kiri harus ada. Dengan kata lain, kekontinuan di $a$ berarti limit dan nilai fungsi di $a$ sama.</p>
+
+ <h3 class="lesson-subheading">D. Kekontinuan pada Interval</h3>
+ <p class="lesson-text">Setelah memahami kekontinuan di satu titik, kita perluas ke interval. Ada dua jenis interval yang perlu dibedakan: terbuka dan tertutup.</p>
+ <p class="lesson-text"><strong>Kontinu pada interval terbuka.</strong> Fungsi $f$ dikatakan kontinu pada interval terbuka $(a, b)$ jika $f$ kontinu di setiap titik $x$ dalam interval tersebut. Tidak ada syarat khusus di titik ujung $a$ dan $b$, karena titik-titik tersebut bukan bagian dari interval.</p>
+ <p class="lesson-text"><strong>Kontinu pada interval tertutup.</strong> Fungsi $f$ dikatakan kontinu pada interval tertutup $[a, b]$ jika $f$ kontinu di setiap titik dalam $(a, b)$, serta:</p>
+ <ul>
+  <li>$\displaystyle\lim_{x \to a^+} f(x) = f(a)$&mdash;yaitu limit kanan di $a$ sama dengan nilai fungsi di $a$.</li>
+  <li>$\displaystyle\lim_{x \to b^-} f(x) = f(b)$&mdash;yaitu limit kiri di $b$ sama dengan nilai fungsi di $b$.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa untuk interval tertutup, kita menggunakan <em>limit satu sisi</em> di titik ujung. Hal ini karena di titik $a$, fungsi hanya "bisa dilihat" dari sisi kanan; tidak ada nilai fungsi untuk $x < a$ dalam konteks interval tersebut. Karena itu, kondisi yang diperlukan adalah kesesuaian antara limit dari dalam interval dan nilai fungsi di titik ujung.</p>
+
+ <figure>
+ <svg viewBox="0 0 600 300" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="230" x2="560" y2="230" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="562,230 552,225 552,235" fill="#e8e8e8"/>
+  <text x="566" y="234" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <path d="M 120 180 Q 250 100 480 130" fill="none" stroke="#5dade2" stroke-width="2.5"/>
+  <circle cx="120" cy="180" r="5" fill="#5dade2"/>
+  <circle cx="480" cy="130" r="5" fill="#5dade2"/>
+  <line x1="120" y1="180" x2="120" y2="230" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <line x1="480" y1="130" x2="480" y2="230" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <text x="120" y="250" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">a</text>
+  <text x="480" y="250" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">b</text>
+  <text x="300" y="280" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">interval [a, b]</text>
+ </svg>
+ <figcaption class="visual-caption">Fungsi kontinu pada interval tertutup $[a, b]$. Grafiknya tidak memiliki lubang, lompatan, atau asimtot di seluruh interval, termasuk di kedua titik ujung.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Contoh: Memeriksa Kekontinuan Fungsi Piecewise</h3>
+ <p class="lesson-text">Berikut contoh memeriksa kekontinuan fungsi piecewise di titik sambungan.</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} 2x + 1 & \text{jika } x < 1 \\ 5 & \text{jika } x = 1 \\ x^2 + 3 & \text{jika } x > 1 \end{cases}$$</p>
+ <p class="lesson-text">Kita periksa kekontinuan di $x = 1$, karena hanya di titik itu rumus fungsinya berubah.</p>
+ <p class="lesson-text"><strong>Langkah 1: Periksa apakah $f(1)$ terdefinisi.</strong> Dari definisi piecewise, $f(1) = 5$. Syarat pertama terpenuhi.</p>
+ <p class="lesson-text"><strong>Langkah 2: Periksa limit kiri dan limit kanan.</strong></p>
+ <p class="lesson-text">Limit kiri: $\displaystyle\lim_{x \to 1^-} f(x) = \lim_{x \to 1^-}(2x + 1) = 3$.</p>
+ <p class="lesson-text">Limit kanan: $\displaystyle\lim_{x \to 1^+} f(x) = \lim_{x \to 1^+}(x^2 + 3) = 4$.</p>
+ <p class="lesson-text">Limit kiri dan limit kanan berbeda ($3 \neq 4$), sehingga $\displaystyle\lim_{x \to 1} f(x)$ tidak ada. Syarat kedua gagal.</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Fungsi tidak kontinu di $x = 1$, karena limitnya tidak ada. Perhatikan bahwa meskipun syarat pertama terpenuhi, syarat kedua gagal&mdash;dan kegagalan salah satu syarat sudah cukup untuk membuat fungsi diskontinu.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Jenis-Jenis Diskontinuitas</h2>
+ <p class="lesson-text">Ketika sebuah fungsi tidak kontinu di suatu titik, cara ketidak kontinuannya dapat diklasifikasikan. Klasifikasi ini berguna karena setiap jenis diskontinuitas memiliki sifat yang berbeda dan penanganan yang berbeda.</p>
+
+ <h3 class="lesson-subheading">A. Diskontinuitas yang Dapat Dihapuskan</h3>
+ <p class="lesson-text">Diskontinuitas jenis ini terjadi ketika limit fungsi di titik tersebut <strong>ada</strong>, tetapi nilainya tidak sama dengan $f(a)$&mdash;atau $f(a)$ tidak terdefinisi. Disebut "dapat dihapuskan" karena jika kita mendefinisikan ulang (atau mendefinisikan) $f(a)$ sama dengan nilai limitnya, fungsi menjadi kontinu di titik tersebut.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Fungsi $f(x) = \dfrac{x^2 - 1}{x - 1}$ tidak terdefinisi di $x = 1$, tetapi $\displaystyle\lim_{x \to 1} f(x) = 2$. Jika kita definisikan ulang $f(1) = 2$, fungsi menjadi kontinu di $x = 1$. Grafik fungsi ini hanya memiliki satu lubang di titik $(1, 2)$.</p>
+
+ <h3 class="lesson-subheading">B. Diskontinuitas Lompatan</h3>
+ <p class="lesson-text">Diskontinuitas jenis ini terjadi ketika limit kiri dan limit kanan <strong>ada tetapi nilainya berbeda</strong>. Limit dua sisi tidak ada, sehingga tidak mungkin "memperbaiki" kekontinuan hanya dengan mendefinisikan ulang satu titik.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Fungsi $f(x) = \dfrac{|x|}{x}$ di $x = 0$ memiliki limit kiri $-1$ dan limit kanan $1$. Tidak ada nilai $f(0)$ yang dapat membuat fungsi ini kontinu. Grafiknya melompat dari $-1$ ke $1$ di titik nol.</p>
+
+ <h3 class="lesson-subheading">C. Diskontinuitas Tak Hingga</h3>
+ <p class="lesson-text">Diskontinuitas jenis ini terjadi ketika fungsi menuju $+\infty$ atau $-\infty$ di sekitar titik tersebut. Grafiknya memiliki asimtot vertikal di titik itu.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Fungsi $f(x) = \dfrac{1}{x}$ di $x = 0$ menuju $-\infty$ dari kiri dan $+\infty$ dari kanan. Limitnya tidak ada sebagai bilangan real, dan tidak ada cara mendefinisikan ulang untuk memperbaikinya.</p>
+
+ <h3 class="lesson-subheading">D. Ringkasan Jenis Diskontinuitas</h3>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Jenis</th><th>Ciri</th><th>Contoh</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Dapat dihapuskan</td><td>Limit ada, tetapi $f(a)$ tidak ada atau berbeda</td><td>$\dfrac{x^2 - 1}{x - 1}$ di $x = 1$</td></tr>
+   <tr><td>Lompatan</td><td>Limit kiri dan kanan ada tetapi berbeda</td><td>$\dfrac{|x|}{x}$ di $x = 0$</td></tr>
+   <tr><td>Tak hingga</td><td>Fungsi menuju $\pm\infty$</td><td>$\dfrac{1}{x}$ di $x = 0$</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Sifat-Sifat Fungsi Kontinu</h2>
+ <p class="lesson-text">Kekontinuan memiliki sifat-sifat yang membuat analisis fungsi menjadi lebih mudah. Bab ini mengumpulkan sifat-sifat tersebut.</p>
+
+ <h3 class="lesson-subheading">A. Operasi Aljabar pada Fungsi Kontinu</h3>
+ <p class="lesson-text">Misalkan $f$ dan $g$ keduanya kontinu di $x = a$. Maka:</p>
+ <ul>
+  <li>$f + g$ kontinu di $a$.</li>
+  <li>$f - g$ kontinu di $a$.</li>
+  <li>$f \cdot g$ kontinu di $a$.</li>
+  <li>$\dfrac{f}{g}$ kontinu di $a$, asalkan $g(a) \neq 0$.</li>
+ </ul>
+ <p class="lesson-text">Sifat-sifat ini adalah konsekuensi langsung dari sifat-sifat aljabar limit. Misalkan untuk penjumlahan:</p>
+ <p class="lesson-text">$$\lim_{x \to a}(f + g)(x) = \lim_{x \to a} f(x) + \lim_{x \to a} g(x) = f(a) + g(a) = (f + g)(a)$$</p>
+ <p class="lesson-text">Kesamaan pertama menggunakan sifat limit jumlah, kesamaan kedua menggunakan kekontinuan $f$ dan $g$ di $a$. Hasil akhirnya menunjukkan bahwa limit dari $f + g$ sama dengan nilainya di $a$&mdash;yang berarti $f + g$ kontinu di $a$.</p>
+
+ <h3 class="lesson-subheading">B. Komposisi Fungsi Kontinu</h3>
+ <p class="lesson-text">Jika $g$ kontinu di $a$ dan $f$ kontinu di $g(a)$, maka komposisi $f \circ g$ kontinu di $a$:</p>
+ <p class="lesson-text">$$\lim_{x \to a}(f \circ g)(x) = \lim_{x \to a} f(g(x)) = f\left(\lim_{x \to a} g(x)\right) = f(g(a))$$</p>
+ <p class="lesson-text">Sifat ini memungkinkan kita memindahkan tanda limit ke dalam fungsi luar, asalkan fungsi luar kontinu di titik yang dituju. Inilah yang membuat banyak perhitungan limit menjadi sederhana: kita tidak perlu memikirkan limit secara terpisah jika fungsi-fungsi penyusunnya sudah dikenal kontinu.</p>
+
+ <h3 class="lesson-subheading">C. Fungsi-Fungsi yang Selalu Kontinu</h3>
+ <p class="lesson-text">Beberapa keluarga fungsi selalu kontinu di seluruh domainnya:</p>
+ <ul>
+  <li><strong>Fungsi polinomial</strong> kontinu di seluruh garis bilangan real $\mathbb{R}$. Contoh: $x^2$, $3x^5 - 2x + 1$.</li>
+  <li><strong>Fungsi rasional</strong> kontinu di setiap titik domainnya&mdash;yaitu di semua titik kecuali tempat penyebutnya nol.</li>
+  <li><strong>Fungsi trigonometri</strong> $\sin x$ dan $\cos x$ kontinu di seluruh $\mathbb{R}$.</li>
+  <li><strong>Fungsi eksponensial</strong> $a^x$ dengan $a > 0$ kontinu di seluruh $\mathbb{R}$.</li>
+  <li><strong>Fungsi logaritma</strong> $\log_a x$ kontinu di domainnya, yaitu $x > 0$.</li>
+ </ul>
+ <p class="lesson-text">Dengan menggabungkan sifat operasi aljabar dan komposisi, kita dapat menyimpulkan bahwa fungsi-fungsi yang dibangun dari keluarga dasar di atas&mdash;misalnya $\sqrt{x^2 + 1}$, $\dfrac{\sin x}{x^2 + 1}$, atau $e^{x} \cos x$&mdash;juga kontinu di domainnya tanpa perlu memeriksa satu per satu.</p>
+
+ <h3 class="lesson-subheading">D. Kekontinuan dan Interval Tertutup</h3>
+ <p class="lesson-text">Fungsi yang kontinu pada interval tertutup memiliki sifat-sifat istimewa yang tidak dimiliki fungsi kontinu pada interval terbuka. Dua sifat terpenting adalah:</p>
+ <ul>
+  <li><strong>Teorema Nilai Ekstrem.</strong> Jika $f$ kontinu pada $[a, b]$, maka $f$ mencapai nilai maksimum dan nilai minimum pada interval tersebut.</li>
+  <li><strong>Teorema Nilai Antara.</strong> Jika $f$ kontinu pada $[a, b]$ dan $N$ adalah bilangan antara $f(a)$ dan $f(b)$, maka terdapat $c$ dalam $[a, b]$ sedemikian sehingga $f(c) = N$.</li>
+ </ul>
+ <p class="lesson-text">Kedua teorema ini <em>tidak berlaku</em> jika fungsinya tidak kontinu, atau jika intervalnya terbuka. Bab berikutnya akan membahas Teorema Nilai Antara secara mendalam.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Teorema Nilai Antara</h2>
+ <p class="lesson-text">Teorema Nilai Antara adalah salah satu teorema paling intuitif dalam kalkulus, sekaligus salah satu yang paling bermanfaat dalam penerapan. Bab ini membahas pernyataan, interpretasi, syarat, dan penggunaannya.</p>
+
+ <h3 class="lesson-subheading">A. Pernyataan Teorema</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $f$ kontinu pada interval tertutup $[a, b]$, dan $N$ adalah sebarang bilangan antara $f(a)$ dan $f(b)$ (yaitu $f(a) \leq N \leq f(b)$ atau $f(b) \leq N \leq f(a)$), maka terdapat paling sedikit satu bilangan $c$ dalam $[a, b]$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$f(c) = N$$</p>
+ <p class="lesson-text">Dengan kata lain: fungsi yang kontinu pada interval tertutup mengambil setiap nilai antara nilai awalnya dan nilai akhirnya.</p>
+
+ <h3 class="lesson-subheading">B. Interpretasi Geometris</h3>
+ <p class="lesson-text">Bayangkan sebuah kurva kontinu yang menghubungkan titik $(a, f(a))$ dengan titik $(b, f(b))$. Kurva ini tidak terputus di seluruh interval. Jika kita tarik garis horizontal $y = N$ pada ketinggian apa pun yang berada antara $f(a)$ dan $f(b)$, maka garis tersebut pasti memotong kurva paling sedikit satu kali. Titik potong itulah $c$, tempat $f(c) = N$.</p>
+
+ <figure>
+ <svg viewBox="0 0 600 400" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sumbu -->
+  <line x1="50" y1="340" x2="560" y2="340" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="562,340 552,335 552,345" fill="#e8e8e8"/>
+  <text x="566" y="344" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="80" y1="370" x2="80" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="80,37 75,47 85,47" fill="#e8e8e8"/>
+  <text x="86" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <!-- Kurva kontinu -->
+  <path d="M 120 280 Q 220 200 320 150 Q 400 110 480 90" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <!-- Garis horizontal y=N -->
+  <line x1="90" y1="180" x2="540" y2="180" stroke="#daa520" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Titik a -->
+  <line x1="120" y1="280" x2="120" y2="340" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <circle cx="120" cy="280" r="5.5" fill="#5dade2"/>
+  <text x="120" y="360" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">a</text>
+  <text x="106" y="284" font-size="11" fill="#5dade2" text-anchor="end" font-style="italic">f(a)</text>
+
+  <!-- Titik b -->
+  <line x1="480" y1="90" x2="480" y2="340" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+  <circle cx="480" cy="90" r="5.5" fill="#5dade2"/>
+  <text x="480" y="360" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">b</text>
+  <text x="496" y="86" font-size="11" fill="#5dade2" font-style="italic">f(b)</text>
+
+  <!-- Titik c (perpotongan) — cari nilai x pada kurva yang y=180. Kurva dari (320,150) menuju (400,110), jadi y=180 terjadi sekitar x=270 -->
+  <circle cx="270" cy="180" r="6" fill="#daa520"/>
+  <line x1="270" y1="180" x2="270" y2="340" stroke="#daa520" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="270" y="360" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">c</text>
+  <text x="284" y="172" font-size="11" fill="#daa520" font-style="italic">f(c) = N</text>
+
+  <!-- Garis y=N label -->
+  <text x="546" y="176" font-size="12" fill="#daa520" font-style="italic" text-anchor="end">y = N</text>
+ </svg>
+ <figcaption class="visual-caption">Ilustrasi Teorema Nilai Antara. Kurva $f$ kontinu pada $[a, b]$. Garis horizontal $y = N$ berada di antara $f(a)$ dan $f(b)$. Karena kurva tidak terputus, ia pasti memotong garis tersebut paling sedikit satu kali, di titik $x = c$, sehingga $f(c) = N$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">C. Mengapa Fungsi Harus Kontinu</h3>
+ <p class="lesson-text">Kekontinuan adalah syarat yang tidak dapat dihilangkan. Tanpa kekontinuan, kesimpulan teorema bisa gagal. Perhatikan contoh fungsi piecewise berikut pada interval $[0, 2]$:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} 1 & \text{jika } 0 \leq x < 1 \\ 3 & \text{jika } 1 \leq x \leq 2 \end{cases}$$</p>
+ <p class="lesson-text">Fungsi ini memiliki $f(0) = 1$ dan $f(2) = 3$. Bilangan $N = 2$ berada di antara $1$ dan $3$. Namun, karena fungsi melompat dari $1$ ke $3$ tepat di $x = 1$, tidak ada nilai $x$ yang menghasilkan $f(x) = 2$. Fungsi ini kontinu di mana-mana <em>kecuali</em> di $x = 1$, dan justru di titik itulah kesimpulan teorema gagal.</p>
+
+ <h3 class="lesson-subheading">D. Mengapa Interval Harus Tertutup</h3>
+ <p class="lesson-text">Syarat bahwa intervalnya tertutup $[a, b]$ juga penting. Jika kita hanya menggunakan interval terbuka $(a, b)$, maka nilai $f(a)$ dan $f(b)$ tidak menjadi acuan. Sebagai contoh, fungsi $f(x) = x$ pada interval terbuka $(0, 1)$ memiliki nilai di antara $0$ dan $1$, tetapi tidak mengambil nilai $0$ atau $1$ itu sendiri&mdash;karena titik ujungnya tidak termasuk.</p>
+ <p class="lesson-text">Namun perlu diperhatikan bahwa Teorema Nilai Antara <em>tidak mensyaratkan</em> $N$ harus di antara $f(a)$ dan $f(b)$. Jika $N$ sama dengan $f(a)$ atau $f(b)$, maka kesimpulannya tetap benar dengan $c = a$ atau $c = b$. Yang penting adalah $N$ berada dalam rentang tertutup antara kedua nilai tersebut.</p>
+
+ <h3 class="lesson-subheading">E. Jaminan Keberadaan, Bukan Nilai</h3>
+ <p class="lesson-text">Teorema Nilai Antara menjamin <strong>keberadaan</strong> suatu $c$ sedemikian sehingga $f(c) = N$. Tetapi teorema ini <em>tidak</em> memberi tahu di mana $c$ berada, dan <em>tidak</em> memberi tahu berapa banyak nilai $c$ yang memenuhi. Fungsi yang kontinu bisa mengambil suatu nilai $N$ satu kali, dua kali, tiga kali, atau lebih banyak lagi sepanjang interval tersebut.</p>
+ <p class="lesson-text">Sebagai contoh, fungsi $f(x) = \sin x$ pada interval $[0, 2\pi]$ memiliki $f(0) = 0$ dan $f(2\pi) = 0$. Bilangan $N = \frac{1}{2}$ berada di antara keduanya (secara teknis, karena $f(0) = f(2\pi) = 0$, nilai $N$ harus berada "di antara" dalam rentang tertutup). Fungsi ini mengambil nilai $\frac{1}{2}$ di dua titik: $c_1 = \frac{\pi}{6}$ dan $c_2 = \frac{5\pi}{6}$. Teorema Nilai Antara hanya menjamin adanya paling sedikit satu titik; jumlah pastinya bergantung pada fungsi.</p>
+
+ <h3 class="lesson-subheading">F. Kasus Khusus: Mencari Akar</h3>
+ <p class="lesson-text">Salah satu penggunaan paling praktis dari Teorema Nilai Antara adalah untuk membuktikan keberadaan akar suatu persamaan. Jika $f$ kontinu pada $[a, b]$ dan $f(a)$ dan $f(b)$ memiliki tanda yang berbeda&mdash;yaitu satu positif dan satu negatif&mdash;maka ada $c$ di antara $a$ dan $b$ sedemikian sehingga $f(c) = 0$. Dengan kata lain, $f$ memiliki akar di interval tersebut.</p>
+ <p class="lesson-text">Mengapa? Karena $0$ berada di antara bilangan positif dan bilangan negatif. Menurut Teorema Nilai Antara dengan $N = 0$, harus ada $c$ yang menghasilkan $f(c) = 0$.</p>
+ <p class="lesson-text">Hasil ini sangat berguna dalam analisis numerik. Untuk mencari akar persamaan yang sulit dipecahkan secara aljabar, kita bisa menebak dua titik dengan nilai fungsi berbeda tanda, lalu secara bertahap mempersempit interval untuk mendekati akar tersebut. Metode ini dikenal sebagai <strong>metode biseksi</strong>.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan konsep kekontinuan dan Teorema Nilai Antara.</p>
+
+ <h3 class="lesson-subheading">A. Memeriksa Kekontinuan di Satu Titik</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Periksa apakah fungsi berikut kontinu di $x = 2$:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} \dfrac{x^2 - 4}{x - 2} & \text{jika } x \neq 2 \\ 4 & \text{jika } x = 2 \end{cases}$$</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kita periksa ketiga syarat kekontinuan.</p>
+ <p class="lesson-text"><strong>Syarat 1.</strong> Nilai $f(2) = 4$ terdefinisi.</p>
+ <p class="lesson-text"><strong>Syarat 2.</strong> Hitung limitnya. Untuk $x \neq 2$, berlaku:</p>
+ <p class="lesson-text">$$\frac{x^2 - 4}{x - 2} = \frac{(x - 2)(x + 2)}{x - 2} = x + 2$$</p>
+ <p class="lesson-text">Maka $\displaystyle\lim_{x \to 2} f(x) = \lim_{x \to 2}(x + 2) = 4$. Limitnya ada.</p>
+ <p class="lesson-text"><strong>Syarat 3.</strong> Nilai limitnya adalah $4$, dan $f(2) = 4$. Keduanya sama.</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Ketiga syarat terpenuhi, sehingga $f$ kontinu di $x = 2$.</p>
+
+ <h3 class="lesson-subheading">B. Menentukan Konstanta agar Fungsi Kontinu</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan nilai $k$ agar fungsi berikut kontinu di $x = 3$:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} x^2 - k & \text{jika } x < 3 \\ 2x + 1 & \text{jika } x \geq 3 \end{cases}$$</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Agar kontinu di $x = 3$, limit kiri dan limit kanan harus sama, dan harus sama dengan $f(3)$.</p>
+ <p class="lesson-text">Limit kiri: $\displaystyle\lim_{x \to 3^-} f(x) = \lim_{x \to 3^-}(x^2 - k) = 9 - k$.</p>
+ <p class="lesson-text">Limit kanan: $\displaystyle\lim_{x \to 3^+} f(x) = \lim_{x \to 3^+}(2x + 1) = 7$.</p>
+ <p class="lesson-text">Nilai $f(3) = 7$ (karena rumus untuk $x \geq 3$ berlaku di $x = 3$).</p>
+ <p class="lesson-text">Agar kontinu, kedua limit harus sama dengan $f(3) = 7$. Maka:</p>
+ <p class="lesson-text">$$9 - k = 7 \quad \Rightarrow \quad k = 2$$</p>
+ <p class="lesson-text">Jadi fungsi kontinu di $x = 3$ jika $k = 2$.</p>
+
+ <h3 class="lesson-subheading">C. Membuktikan Keberadaan Akar dengan Teorema Nilai Antara</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Buktikan bahwa persamaan $x^3 - x - 1 = 0$ memiliki akar di antara $x = 1$ dan $x = 2$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Misalkan $f(x) = x^3 - x - 1$. Fungsi ini adalah polinomial, sehingga kontinu pada seluruh bilangan real&mdash;termasuk interval $[1, 2]$.</p>
+ <p class="lesson-text">Hitung nilai fungsi di kedua ujung interval:</p>
+ <p class="lesson-text">$$f(1) = 1^3 - 1 - 1 = -1$$</p>
+ <p class="lesson-text">$$f(2) = 2^3 - 2 - 1 = 8 - 2 - 1 = 5$$</p>
+ <p class="lesson-text">Nilai $f(1) = -1$ (negatif) dan $f(2) = 5$ (positif). Karena $0$ berada di antara $-1$ dan $5$, dan $f$ kontinu pada $[1, 2]$, maka menurut Teorema Nilai Antara terdapat $c$ dalam $(1, 2)$ sedemikian sehingga $f(c) = 0$.</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Persamaan $x^3 - x - 1 = 0$ memiliki paling sedikit satu akar di interval $(1, 2)$.</p>
+ <p class="lesson-text">Teorema ini tidak memberi tahu nilai akar secara pasti, tetapi menjamin keberadaannya. Untuk memperkirakan nilainya, kita bisa menggunakan metode biseksi.</p>
+
+ <h3 class="lesson-subheading">D. Metode Biseksi: Mencari Akar secara Numerik</h3>
+ <p class="lesson-text">Metode biseksi adalah algoritma pencarian akar yang memanfaatkan Teorema Nilai Antara secara berulang. Mari kita gunakan untuk memperkirakan akar dari soal sebelumnya.</p>
+ <p class="lesson-text">Kita sudah tahu bahwa $f(1) = -1$ dan $f(2) = 5$. Ambil titik tengah $x = 1{,}5$:</p>
+ <p class="lesson-text">$$f(1{,}5) = 1{,}5^3 - 1{,}5 - 1 = 3{,}375 - 2{,}5 = 0{,}875$$</p>
+ <p class="lesson-text">Karena $f(1{,}5) > 0$ dan $f(1) < 0$, akar berada di interval $[1, 1{,}5]$.</p>
+ <p class="lesson-text">Ambil titik tengah berikutnya, $x = 1{,}25$:</p>
+ <p class="lesson-text">$$f(1{,}25) = 1{,}953125 - 1{,}25 - 1 = -0{,}296875$$</p>
+ <p class="lesson-text">Karena $f(1{,}25) < 0$ dan $f(1{,}5) > 0$, akar berada di interval $[1{,}25, 1{,}5]$.</p>
+ <p class="lesson-text">Ambil titik tengah, $x = 1{,}375$:</p>
+ <p class="lesson-text">$$f(1{,}375) = 2{,}599609 - 1{,}375 - 1 = 0{,}224609$$</p>
+ <p class="lesson-text">Karena $f(1{,}375) > 0$ dan $f(1{,}25) < 0$, akar berada di interval $[1{,}25, 1{,}375]$.</p>
+ <p class="lesson-text">Dengan melanjutkan proses ini, kita bisa memperkirakan akar dengan ketelitian berapa pun. Akar persamaan $x^3 - x - 1 = 0$ adalah sekitar $1{,}3247$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Inti metode biseksi.</strong> Setiap langkah memotong interval menjadi dua. Karena akar selalu berada di salah satu bagian, dan bagian itu dipilih berdasarkan tanda fungsi, interval pencarian terus menyusut. Setelah $n$ langkah, lebar interval menjadi $(b - a)/2^n$, yang dapat dibuat sekecil apa pun. Konvergensi ini dijamin oleh Teorema Nilai Antara.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Penerapan: Suhu dan Perubahan Fase</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Suatu larutan dipanaskan dari suhu $20°C$ hingga $90°C$ selama satu jam. Suhu larutan diukur secara kontinu, dan diketahui fungsi suhu $T(t)$ bergantung pada waktu $t$ (dalam menit) secara kontinu. Apakah pasti ada saat ketika suhu larutan tepat $50°C$?</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Fungsi $T(t)$ kontinu pada interval $[0, 60]$, dengan $T(0) = 20$ dan $T(60) = 90$. Nilai $N = 50$ berada di antara $20$ dan $90$. Menurut Teorema Nilai Antara, ada $c$ dalam $[0, 60]$ sedemikian sehingga $T(c) = 50$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Karena suhu berubah secara kontinu, ia harus melewati setiap nilai antara $20°C$ dan $90°C$. Termasuk $50°C$. Ini terlihat jelas secara intuitif, tetapi Teorema Nilai Antara memberi jaminan matematis bahwa hal ini selalu benar untuk fungsi kontinu&mdash;dan bisa gagal jika suhu melompat secara tiba-tiba, yang secara fisik tidak mungkin terjadi.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Kecepatan dan Perpindahan</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah mobil bergerak dari keadaan diam hingga kecepatan $30$ m/detik dalam waktu $10$ detik. Kecepatan mobil sebagai fungsi waktu, $v(t)$, diasumsikan kontinu pada $[0, 10]$, dengan $v(0) = 0$ dan $v(10) = 30$. Apakah ada saat ketika kecepatan mobil tepat $20$ m/detik?</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Nilai $N = 20$ berada di antara $v(0) = 0$ dan $v(10) = 30$. Karena $v$ kontinu, Teorema Nilai Antara menjamin adanya $c$ dalam $(0, 10)$ dengan $v(c) = 20$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Mobil harus melewati kecepatan $20$ m/detik sebelum mencapai $30$ m/detik. Ini adalah penerapan langsung Teorema Nilai Antara: percepatan yang wajar tidak mungkin "melompati" kecepatan tertentu tanpa melewatinya.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap kekontinuan hanya berarti "tidak terputus".</strong> Definisi yang benar melibatkan tiga syarat: $f(a)$ terdefinisi, limitnya ada, dan keduanya sama. Grafik yang terlihat "tidak terputus" bisa saja memiliki lubang kecil yang tidak terlihat, dan lubang itu tetap membuat fungsi diskontinu.</li>
+  <li><strong>Menganggap limit ada berarti fungsi kontinu.</strong> Limit yang ada belum cukup. Fungsi $f(x) = \frac{x^2 - 1}{x - 1}$ punya limit di $x = 1$, tetapi tidak kontinu di sana karena $f(1)$ tidak terdefinisi.</li>
+  <li><strong>Menganggap kekontinuan di satu titik berarti kontinu di seluruh domain.</strong> Kekontinuan diperiksa per titik. Fungsi bisa kontinu di sebagian besar titik dan diskontinu di beberapa titik tertentu.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Teorema Nilai Antara</h3>
+ <ul>
+  <li><strong>Mengabaikan syarat kekontinuan.</strong> Teorema Nilai Antara hanya berlaku untuk fungsi kontinu. Jika fungsi tidak kontinu, kesimpulannya bisa gagal&mdash;lihat contoh fungsi piecewise di bagian sebelumnya.</li>
+  <li><strong>Menganggap teorema memberi nilai $c$ secara eksplisit.</strong> Teorema hanya menjamin keberadaan $c$, bukan nilai atau lokasi pastinya. Untuk menemukan $c$, kita perlu metode lain seperti biseksi atau Newton.</li>
+  <li><strong>Menganggap hanya ada satu nilai $c$.</strong> Teorema menjamin paling sedikit satu $c$, tetapi fungsinya bisa memiliki lebih dari satu titik yang menghasilkan nilai $N$ yang sama.</li>
+  <li><strong>Menerapkan pada interval terbuka tanpa penyesuaian.</strong> Teorema Nilai Antara dirumuskan untuk interval tertutup $[a, b]$. Untuk interval terbuka, kesimpulannya bisa gagal di titik ujung.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan Notasi</h3>
+ <ul>
+  <li><strong>Menukar $[a, b]$ dengan $(a, b)$.</strong> Perbedaan ini bukan sekadar notasi&mdash;interval tertutup mencakup titik ujung, sedangkan terbuka tidak. Untuk Teorema Nilai Antara, interval <em>harus</em> tertutup.</li>
+  <li><strong>Menganggap nilai $N$ harus benar-benar "di antara" (strict).</strong> Jika $N = f(a)$ atau $N = f(b)$, kesimpulan tetap berlaku dengan $c = a$ atau $c = b$. Yang penting adalah $N$ berada dalam rentang tertutup antara kedua nilai tersebut.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Definisi kekontinuan di titik:</strong> $f$ kontinu di $x = a$ jika $f(a)$ terdefinisi, $\displaystyle\lim_{x \to a} f(x)$ ada, dan kedua nilai ini sama.</li>
+  <li><strong>Notasi ringkas:</strong> $\displaystyle\lim_{x \to a} f(x) = f(a)$.</li>
+  <li><strong>Kontinu pada interval terbuka:</strong> kontinu di setiap titik dalam interval tersebut.</li>
+  <li><strong>Kontinu pada interval tertutup $[a, b]$:</strong> kontinu di $(a, b)$, serta limit kanan di $a$ sama dengan $f(a)$ dan limit kiri di $b$ sama dengan $f(b)$.</li>
+  <li><strong>Tiga jenis diskontinuitas:</strong> dapat dihapuskan (limit ada tetapi $f(a)$ tidak cocok), lompatan (limit kiri berbeda dari limit kanan), dan tak hingga (fungsi menuju $\pm\infty$).</li>
+  <li><strong>Sifat aljabar:</strong> jumlah, selisih, hasil kali, hasil bagi fungsi kontinu tetap kontinu (dengan syarat penyebut tak nol).</li>
+  <li><strong>Komposisi:</strong> jika $g$ kontinu di $a$ dan $f$ kontinu di $g(a)$, maka $f \circ g$ kontinu di $a$.</li>
+  <li><strong>Fungsi yang selalu kontinu di domainnya:</strong> polinomial, rasional, $\sin x$, $\cos x$, eksponensial, logaritma.</li>
+  <li><strong>Teorema Nilai Antara:</strong> jika $f$ kontinu pada $[a, b]$ dan $N$ berada di antara $f(a)$ dan $f(b)$, maka terdapat $c$ dalam $[a, b]$ dengan $f(c) = N$.</li>
+  <li><strong>Penerapan Teorema Nilai Antara:</strong> membuktikan keberadaan akar (jika $f(a)$ dan $f(b)$ berbeda tanda, maka ada akar di antaranya), dan dasar dari metode biseksi untuk pencarian akar secara numerik.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Kekontinuan adalah jembatan antara konsep limit dan perilaku fungsi secara utuh. Limit menjelaskan apa yang terjadi "di sekitar" titik, sedangkan kekontinuan menyatakan bahwa apa yang terjadi di sekitar titik itu <em>cocok</em> dengan apa yang terjadi tepat di titik itu. Ketika keduanya cocok, fungsi memiliki sifat yang dapat diandalkan: tidak ada kejutan, tidak ada lompatan, tidak ada lubang.</p>
+ <p class="lesson-text">Teorema Nilai Antara adalah konsekuensi paling berguna dari kekontinuan pada interval tertutup. Ia menjamin bahwa fungsi kontinu mengambil setiap nilai antara nilai awalnya dan nilai akhirnya&mdash;sebuah jaminan yang terdengar intuitif tetapi memiliki akibat praktis yang dalam. Metode biseksi, yang menjadi dasar berbagai algoritma pencarian akar dalam analisis numerik, berdiri sepenuhnya di atas teorema ini.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>turunan</strong> akan memanfaatkan konsep kekontinuan secara langsung: setiap fungsi yang dapat diturunkan pasti kontinu, meskipun tidak setiap fungsi kontinu dapat diturunkan. Sementara itu, dalam pembahasan <strong>integral</strong>, kekontinuan pada interval tertutup menjadi syarat cukup untuk menjamin bahwa integral tentu terdefinisi dengan baik.</p>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analisis Real (Kelengkapan ℝ, Topologi ℝ, Fungsi Real)</title>
+<meta name="description" content="Materi analisis real: aksioma dan sifat dasar bilangan real, kelengkapan ℝ melalui supremum dan infimum, topologi ℝ (himpunan terbuka, tertutup, kompak), serta fungsi real dan kekontinuannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Analisis Real (Kelengkapan ℝ, Topologi ℝ, Fungsi Real)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; definisi $\varepsilon$-$\delta$, sifat-sifat limit, dan limit satu sisi menjadi fondasi bagi definisi kekontinuan dan sifat-sifat fungsi real yang dipelajari di analisis real.</li>
+   <li><strong>Barisan</strong> &mdash; kekonvergenan barisan dan sifat-sifatnya menjadi alat utama dalam membuktikan kelengkapan $\mathbb{R}$ dan sifat-sifat topologis himpunan bilangan real.</li>
+   <li><strong>Pembuktian Matematis</strong> &mdash; analisis real sangat menekankan rigor. Kemampuan menuliskan bukti dengan struktur yang jelas (kontradiksi, kontraposisi, induksi, dan sebagainya) merupakan keterampilan wajib.</li>
+   <li><strong>Himpunan</strong> &mdash; notasi dan operasi himpunan (irisan, gabungan, komplemen, selisih) dipakai sepanjang materi ini, terutama pada topologi $\mathbb{R}$.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Sepanjang materi-materi kalkulus sebelumnya, kita telah menggunakan bilangan real $\mathbb{R}$ sebagai landasan hampir setiap konsep: limit, turunan, integral, barisan, dan deret. Kita memperlakukan sifat-sifat seperti "setiap barisan yang terbatas memiliki subbarisan yang konvergen" atau "setiap fungsi kontinu pada interval tertutup mencapai nilai maksimumnya" sebagai hal yang wajar&mdash;tanpa mempertanyakan mengapa hal-hal itu benar. Analisis real mengubah sikap ini: ia membangun semua konsep kalkulus dari aksioma-aksioma dasar bilangan real, dengan pembuktian yang teliti untuk setiap pernyataan.</p>
+ <p class="lesson-text">Analisis real adalah salah satu cabang matematika yang paling fundamental namun juga paling menantang. Ia menjawab pertanyaan-pertanyaan yang mungkin tidak pernah muncul di kalkulus dasar: Apa sebenarnya bilangan real? Mengapa bilangan rasional tidak cukup untuk menggambarkan garis bilangan? Apa artinya sebuah himpunan bilangan real menjadi "terbuka" atau "tertutup"? Mengapa sifat-sifat yang kita anggap intuitif tentang fungsi kontinu sebenarnya memerlukan pembuktian yang sangat teliti?</p>
+ <p class="lesson-text">Materi ini mencakup tiga topik. Pertama, <strong>kelengkapan $\mathbb{R}$</strong>&mdash;yaitu sifat istimewa bilangan real yang membedakannya dari bilangan rasional. Kedua, <strong>topologi $\mathbb{R}$</strong>&mdash;yang mempelajari struktur himpunan-himpunan bilangan real: kapan sebuah himpunan terbuka, tertutup, atau kompak. Ketiga, <strong>fungsi real</strong>&mdash;dengan penekanan pada rigor kekontinuan dan sifat-sifat pentingnya. Banyak konsep dalam materi ini merupakan formalisasi dari gagasan yang sudah kita kenal&mdash;tetapi dengan tingkat ketelitian yang jauh lebih tinggi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Aksioma dan Sifat Dasar ℝ</h2>
+ <p class="lesson-text">Bab ini memperkenalkan bilangan real melalui aksioma-aksioma yang menjadi landasan bagi seluruh analisis. Alih-alih mendefinisikan apa itu bilangan real, kita menetapkan sejumlah sifat yang harus dipenuhi oleh himpunan $\mathbb{R}$, dan menurunkan semua sifat lain sebagai teorema.</p>
+
+ <h3 class="lesson-subheading">A. Aksioma Lapangan</h3>
+ <p class="lesson-text">Himpunan $\mathbb{R}$ dengan operasi penjumlahan $(+)$ dan perkalian $(\cdot)$ memenuhi aksioma-aksioma berikut untuk semua $a, b, c \in \mathbb{R}$:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Kategori</th><th>Aksioma</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Komutatif</td><td>$a + b = b + a$ dan $a \cdot b = b \cdot a$</td></tr>
+   <tr><td>Asosiatif</td><td>$(a + b) + c = a + (b + c)$ dan $(a \cdot b) \cdot c = a \cdot (b \cdot c)$</td></tr>
+   <tr><td>Distributif</td><td>$a \cdot (b + c) = a \cdot b + a \cdot c$</td></tr>
+   <tr><td>Identitas</td><td>Terdapat $0 \neq 1$ dengan $a + 0 = a$ dan $a \cdot 1 = a$</td></tr>
+   <tr><td>Invers</td><td>Untuk setiap $a$, ada $-a$ dengan $a + (-a) = 0$. Untuk $a \neq 0$, ada $a^{-1}$ dengan $a \cdot a^{-1} = 1$</td></tr>
+  </tbody>
+ </table>
+ </div>
+ <p class="lesson-text">Dari aksioma-aksioma ini, semua aturan aljabar biasa dapat diturunkan&mdash;termasuk aturan seperti $a \cdot 0 = 0$, $(-a) \cdot b = -(a \cdot b)$, dan sebagainya. Aksioma ini menjadikan $\mathbb{R}$ sebagai <strong>lapangan</strong> (<em>field</em>).</p>
+
+ <h3 class="lesson-subheading">B. Aksioma Urutan</h3>
+ <p class="lesson-text">Selain struktur lapangan, $\mathbb{R}$ juga memiliki struktur <strong>urutan</strong>&mdash;yaitu relasi $\leq$ yang memenuhi:</p>
+ <ul>
+  <li><strong>Trikotomi:</strong> untuk setiap $a, b \in \mathbb{R}$, tepat satu dari $a < b$, $a = b$, atau $a > b$ berlaku.</li>
+  <li><strong>Transitif:</strong> jika $a \leq b$ dan $b \leq c$, maka $a \leq c$.</li>
+  <li><strong>Konsisten dengan operasi:</strong> jika $a \leq b$, maka $a + c \leq b + c$ untuk setiap $c$; dan jika $a \leq b$ dan $c \geq 0$, maka $ac \leq bc$.</li>
+ </ul>
+ <p class="lesson-text">Relasi urutan inilah yang memungkinkan kita membicarakan "bilangan yang lebih besar" dan "bilangan yang lebih kecil"&mdash;sesuatu yang tidak ada pada bilangan kompleks.</p>
+
+ <h3 class="lesson-subheading">C. Nilai Mutlak</h3>
+ <p class="lesson-text">Nilai mutlak bilangan real $a$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$|a| = \begin{cases} a & \text{jika } a \geq 0 \\ -a & \text{jika } a < 0 \end{cases}$$</p>
+ <p class="lesson-text">Nilai mutlak adalah alat untuk menyatakan "jarak" antara dua bilangan. Jarak antara $a$ dan $b$ adalah $|a - b|$. Beberapa sifat penting:</p>
+ <ul>
+  <li>$|ab| = |a| \cdot |b|$.</li>
+  <li><strong>Ketidaksamaan segitiga:</strong> $|a + b| \leq |a| + |b|$.</li>
+  <li>$|a| \leq c$ jika dan hanya jika $-c \leq a \leq c$ (untuk $c \geq 0$).</li>
+ </ul>
+ <p class="lesson-text">Ketidaksamaan segitiga adalah salah satu alat paling sering dipakai di analisis real&mdash;baik dalam membuktikan konvergensi, kekontinuan, maupun keterbatasan.</p>
+
+ <h3 class="lesson-subheading">D. Sifat Archimedes</h3>
+ <p class="lesson-text">Salah satu sifat $\mathbb{R}$ yang tidak dipenuhi oleh semua lapangan berurut adalah <strong>sifat Archimedes</strong>.</p>
+ <p class="lesson-text"><strong>Teorema (Sifat Archimedes).</strong> Untuk setiap $a \in \mathbb{R}$ dan setiap $b > 0$, terdapat bilangan asli $n$ sedemikian sehingga $nb > a$.</p>
+ <p class="lesson-text">Konsekuensi intuitifnya: berapa pun besarnya $a$ dan berapa pun kecilnya $b$, kita selalu dapat melampaui $a$ dengan menjumlahkan $b$ sebanyak cukup kali. Dengan kata lain, tidak ada bilangan real yang "tak terhingga besarnya" atau "tak terhingga kecilnya" dalam arti yang dipakai oleh analisis nonstandar.</p>
+ <p class="lesson-text">Konsekuensi penting lainnya: untuk setiap $\varepsilon > 0$, terdapat bilangan asli $n$ sedemikian sehingga $\dfrac{1}{n} < \varepsilon$. Ini adalah dasar dari banyak argumen limit&mdash;kita selalu bisa membuat $\dfrac{1}{n}$ sekecil apa pun dengan memperbesar $n$.</p>
+
+ <h3 class="lesson-subheading">E. Kepadatan Bilangan Rasional</h3>
+ <p class="lesson-text"><strong>Teorema (Kepadatan $\mathbb{Q}$).</strong> Di antara dua bilangan real berbeda, selalu terdapat bilangan rasional.</p>
+ <p class="lesson-text">Dengan kata lain, jika $a < b$ adalah dua bilangan real, maka ada $q \in \mathbb{Q}$ dengan $a < q < b$. Sifat yang sama juga berlaku untuk bilangan irasional: di antara dua bilangan real berbeda, selalu ada bilangan irasional.</p>
+ <p class="lesson-text">Meskipun demikian, $\mathbb{Q}$ dan $\mathbb{R}$ tetap berbeda secara mendasar&mdash;dan perbedaannya terletak pada <strong>kelengkapan</strong>, yang akan dibahas di bab berikutnya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Kelengkapan ℝ</h2>
+ <p class="lesson-text">Bab ini membahas sifat yang paling khas dari bilangan real&mdash;yaitu <strong>kelengkapan</strong>. Sifat ini tidak dimiliki oleh bilangan rasional, dan inilah yang membedakan keduanya secara mendasar. Kelengkapan adalah alasan mengapa konsep-konsep kalkulus seperti limit, kekontinuan, dan optimisasi bekerja dengan baik di $\mathbb{R}$.</p>
+
+ <h3 class="lesson-subheading">A. Batas Atas dan Batas Bawah</h3>
+ <p class="lesson-text">Misalkan $S$ adalah himpunan bagian tak kosong dari $\mathbb{R}$.</p>
+ <ul>
+  <li>Bilangan $u$ disebut <strong>batas atas</strong> (<em>upper bound</em>) dari $S$ jika $s \leq u$ untuk setiap $s \in S$.</li>
+  <li>Bilangan $\ell$ disebut <strong>batas bawah</strong> (<em>lower bound</em>) dari $S$ jika $\ell \leq s$ untuk setiap $s \in S$.</li>
+  <li>$S$ disebut <strong>terbatas atas</strong> jika memiliki setidaknya satu batas atas. Serupa untuk <strong>terbatas bawah</strong>. $S$ disebut <strong>terbatas</strong> jika terbatas atas dan bawah.</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Misalkan $S = (0, 1)$, interval terbuka dari $0$ sampai $1$. Maka:</p>
+ <ul>
+  <li>Bilangan $1$, $2$, $100$&mdash;semuanya adalah batas atas dari $S$.</li>
+  <li>Bilangan $0$, $-1$, $-100$&mdash;semuanya adalah batas bawah dari $S$.</li>
+  <li>Himpunan $S$ terbatas.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa batas atas tidak harus berada dalam himpunan. Bilangan $1$ adalah batas atas dari $S = (0, 1)$, meskipun $1 \notin S$.</p>
+
+ <h3 class="lesson-subheading">B. Supremum dan Infimum</h3>
+ <p class="lesson-text">Dari semua batas atas yang mungkin, ada satu yang paling penting&mdash;yaitu yang terkecil.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $S$ adalah himpunan bagian tak kosong dari $\mathbb{R}$.</p>
+ <ul>
+  <li><strong>Supremum</strong> dari $S$, ditulis $\sup S$, adalah batas atas terkecil dari $S$&mdash;yaitu bilangan $u$ sedemikian sehingga (a) $u$ adalah batas atas dari $S$, dan (b) tidak ada batas atas lain dari $S$ yang lebih kecil dari $u$.</li>
+  <li><strong>Infimum</strong> dari $S$, ditulis $\inf S$, adalah batas bawah terbesar dari $S$&mdash;yaitu bilangan $\ell$ sedemikian sehingga (a) $\ell$ adalah batas bawah dari $S$, dan (b) tidak ada batas bawah lain dari $S$ yang lebih besar dari $\ell$.</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Karakterisasi alternatif.</strong> Bilangan $u = \sup S$ jika dan hanya jika:</p>
+ <ul>
+  <li>$s \leq u$ untuk setiap $s \in S$ (yaitu $u$ adalah batas atas).</li>
+  <li>Untuk setiap $\varepsilon > 0$, terdapat $s \in S$ dengan $s > u - \varepsilon$ (yaitu $u$ adalah batas atas terkecil&mdash;tidak ada batas atas yang lebih kecil dari $u$ dengan selisih lebih dari $\varepsilon$).</li>
+ </ul>
+ <p class="lesson-text">Karakterisasi yang serupa juga berlaku untuk infimum: $\ell = \inf S$ jika dan hanya jika $\ell \leq s$ untuk setiap $s \in S$, dan untuk setiap $\varepsilon > 0$ terdapat $s \in S$ dengan $s < \ell + \varepsilon$.</p>
+
+ <p class="lesson-text"><strong>Perbedaan supremum dan maksimum.</strong> Jika supremum dari $S$ <em>termasuk</em> dalam $S$, maka supremum tersebut sekaligus menjadi <strong>maksimum</strong> dari $S$. Jika tidak, supremum bukan maksimum&mdash;artinya tidak ada elemen terbesar dalam $S$, meskipun ada batas atas terkecil.</p>
+ <p class="lesson-text">Sebagai contoh, untuk $S = (0, 1)$, supremumnya adalah $1$ (tetapi $1 \notin S$), sehingga $S$ tidak memiliki maksimum. Untuk $S = (0, 1]$, supremumnya juga $1$ (dan $1 \in S$), sehingga supremum sekaligus maksimum. Perbedaan halus ini sangat penting dalam analisis.</p>
+
+ <h3 class="lesson-subheading">C. Aksioma Kelengkapan</h3>
+ <p class="lesson-text">Sekarang kita sampai pada aksioma yang membedakan $\mathbb{R}$ dari $\mathbb{Q}$.</p>
+ <p class="lesson-text"><strong>Aksioma Kelengkapan.</strong> Setiap himpunan bagian tak kosong dari $\mathbb{R}$ yang terbatas atas memiliki supremum di $\mathbb{R}$.</p>
+ <p class="lesson-text">Aksioma ini terlihat sederhana, tetapi konsekuensinya sangat besar. Ia menjamin bahwa "garis bilangan real tidak memiliki lubang"&mdash;artinya setiap kali kita mendekati suatu titik dari bawah (dengan batas atas yang ada), titik tersebut benar-benar ada di dalam $\mathbb{R}$.</p>
+
+ <p class="lesson-text"><strong>Mengapa $\mathbb{Q}$ tidak lengkap.</strong> Himpunan bilangan rasional <em>tidak</em> memenuhi aksioma ini. Sebagai contoh, himpunan:</p>
+ <p class="lesson-text">$$S = \{q \in \mathbb{Q} : q > 0 \text{ dan } q^2 < 2\}$$</p>
+ <p class="lesson-text">adalah himpunan tak kosong yang terbatas atas (misalnya oleh $2$). Namun supremumnya di $\mathbb{Q}$ tidak ada&mdash;karena $\sqrt{2}$ bukan bilangan rasional. Dalam $\mathbb{R}$, himpunan ini memiliki supremum, yaitu $\sqrt{2}$.</p>
+ <p class="lesson-text">Inilah alasan mengapa bilangan rasional tidak cukup untuk kalkulus. Barisan bilangan rasional yang "seharusnya" konvergen ke $\sqrt{2}$ tidak memiliki limit di $\mathbb{Q}$. Kelengkapan $\mathbb{R}$ memastikan bahwa setiap barisan yang "seharusnya" konvergen benar-benar memiliki limit.</p>
+
+ <h3 class="lesson-subheading">D. Konsekuensi Kelengkapan: Sifat Batas Monoton</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Setiap barisan bilangan real yang monoton naik dan terbatas atas pasti konvergen. Limitnya adalah supremum dari himpunan nilai-nilai barisan.</p>
+ <p class="lesson-text"><strong>Bukti.</strong> Misalkan $\{a_n\}$ adalah barisan monoton naik dan terbatas atas. Himpunan $S = \{a_n : n \in \mathbb{N}\}$ adalah himpunan tak kosong yang terbatas atas. Menurut aksioma kelengkapan, $S$ memiliki supremum $L$. Akan ditunjukkan bahwa $a_n \to L$.</p>
+ <p class="lesson-text">Misalkan $\varepsilon > 0$. Karena $L$ adalah batas atas terkecil, $L - \varepsilon$ bukan batas atas dari $S$. Maka terdapat $N$ sedemikian sehingga $a_N > L - \varepsilon$. Karena barisan monoton naik, untuk setiap $n \geq N$ berlaku $a_n \geq a_N > L - \varepsilon$. Di sisi lain, karena $L$ adalah batas atas, $a_n \leq L$. Jadi untuk $n \geq N$, berlaku $L - \varepsilon < a_n \leq L$, yang berarti $|a_n - L| < \varepsilon$. Terbukti bahwa $a_n \to L$. $\blacksquare$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 320" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Kelengkapan ℝ: setiap himpunan terbatas atas memiliki supremum</text>
+
+  <line x1="60" y1="260" x2="560" y2="260" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="562,260 552,255 552,265" fill="#e8e8e8"/>
+
+  <line x1="120" y1="270" x2="120" y2="250" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="500" y1="270" x2="500" y2="250" stroke="#e8e8e8" stroke-width="1"/>
+
+  <circle cx="180" cy="260" r="4" fill="#5dade2"/>
+  <circle cx="230" cy="260" r="4" fill="#5dade2"/>
+  <circle cx="280" cy="260" r="4" fill="#5dade2"/>
+  <circle cx="330" cy="260" r="4" fill="#5dade2"/>
+  <circle cx="380" cy="260" r="4" fill="#5dade2"/>
+  <circle cx="430" cy="260" r="4" fill="#5dade2"/>
+  <circle cx="470" cy="260" r="4" fill="#5dade2"/>
+
+  <line x1="180" y1="240" x2="470" y2="240" stroke="#5dade2" stroke-width="0.6" stroke-dasharray="3,3"/>
+  <text x="330" y="232" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">S (terbatas atas)</text>
+
+  <circle cx="500" cy="260" r="7" fill="#daa520" stroke="#e8e8e8" stroke-width="1.5"/>
+  <text x="500" y="290" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">sup S</text>
+
+  <circle cx="540" cy="260" r="4" fill="#f0c75e"/>
+  <text x="540" y="290" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">batas atas</text>
+
+  <text x="120" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">a</text>
+  <text x="560" y="240" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">ℝ</text>
+
+  <text x="310" y="55" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">Supremum adalah batas atas terkecil</text>
+  <text x="310" y="75" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Selalu ada di ℝ jika S tak kosong dan terbatas atas</text>
+ </svg>
+ <figcaption class="visual-caption">Ilustrasi aksioma kelengkapan. Himpunan $S$ yang tak kosong dan terbatas atas selalu memiliki supremum di $\mathbb{R}$&mdash;yaitu batas atas terkecil dari $S$. Sifat ini tidak dimiliki oleh $\mathbb{Q}$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Konsekuensi Kelengkapan: Teorema Bolzano-Weierstrass</h3>
+ <p class="lesson-text"><strong>Teorema (Bolzano-Weierstrass).</strong> Setiap barisan bilangan real yang terbatas memiliki subbarisan yang konvergen.</p>
+ <p class="lesson-text">Teorema ini juga merupakan konsekuensi langsung dari kelengkapan $\mathbb{R}$. Intuisinya: meskipun barisan aslinya mungkin berosilasi dan tidak konvergen, selalu ada "bagian" dari barisan itu yang menuju suatu nilai. Teorema ini sangat penting dalam analisis, terutama untuk membuktikan eksistensi solusi dalam masalah optimisasi dan persamaan diferensial.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Topologi ℝ</h2>
+ <p class="lesson-text">Bab ini mempelajari struktur himpunan-himpunan bilangan real. Topologi adalah studi tentang "kedekatan" dan "keterbukaan"&mdash;gagasan-gagasan yang menjadi kunci untuk memahami kekontinuan, kekompakan, dan sifat-sifat lanjutan lainnya.</p>
+
+ <h3 class="lesson-subheading">A. Lingkungan dan Titik Interior</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> <strong>Lingkungan</strong> (<em>neighborhood</em>) dari titik $a \in \mathbb{R}$ dengan jari-jari $\varepsilon > 0$ adalah interval terbuka $(a - \varepsilon, a + \varepsilon)$. Lingkungan ini sering dinotasikan $V_\varepsilon(a)$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $S \subseteq \mathbb{R}$ dan $a \in S$. Titik $a$ disebut <strong>titik interior</strong> dari $S$ jika terdapat $\varepsilon > 0$ sedemikian sehingga $(a - \varepsilon, a + \varepsilon) \subseteq S$. Dengan kata lain, ada lingkungan di sekitar $a$ yang seluruhnya berada di dalam $S$.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk $S = (0, 1)$, titik $a = 0{,}5$ adalah titik interior&mdash;misalnya dengan $\varepsilon = 0{,}3$, lingkungan $(0{,}2, 0{,}8)$ seluruhnya berada di dalam $S$. Namun titik $a = 0$ bukan titik interior&mdash;sebab lingkungan mana pun di sekitar $0$ akan memuat bilangan negatif yang tidak termasuk dalam $S$.</p>
+
+ <h3 class="lesson-subheading">B. Himpunan Terbuka</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Himpunan $S \subseteq \mathbb{R}$ disebut <strong>terbuka</strong> (<em>open</em>) jika setiap titiknya adalah titik interior. Dengan kata lain, untuk setiap $a \in S$, terdapat $\varepsilon > 0$ sedemikian sehingga $(a - \varepsilon, a + \varepsilon) \subseteq S$.</p>
+ <p class="lesson-text"><strong>Contoh himpunan terbuka:</strong></p>
+ <ul>
+  <li>Interval terbuka $(a, b)$ untuk setiap $a < b$.</li>
+  <li>$\mathbb{R}$ itu sendiri&mdash;karena setiap lingkungan dari setiap titiknya berada di dalam $\mathbb{R}$.</li>
+  <li>Himpunan kosong $\emptyset$&mdash;secara konvensi, syaratnya dipenuhi "secara hampa" (<em>vacuously true</em>) karena tidak ada titik yang perlu diperiksa.</li>
+  <li>Gabungan sebarang dari interval terbuka.</li>
+ </ul>
+ <p class="lesson-text"><strong>Sifat-sifat himpunan terbuka:</strong></p>
+ <ul>
+  <li>Gabungan sebarang (berhingga atau tak berhingga) dari himpunan terbuka adalah terbuka.</li>
+  <li>Irisan berhingga dari himpunan terbuka adalah terbuka.</li>
+  <li>Irisan tak berhingga dari himpunan terbuka <em>belum tentu</em> terbuka. Sebagai contoh, $\bigcap_{n=1}^{\infty} \left(-\dfrac{1}{n}, \dfrac{1}{n}\right) = \{0\}$, dan $\{0\}$ bukan himpunan terbuka.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">C. Himpunan Tertutup</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Himpunan $S \subseteq \mathbb{R}$ disebut <strong>tertutup</strong> (<em>closed</em>) jika komplemennya $\mathbb{R} \setminus S$ terbuka.</p>
+ <p class="lesson-text"><strong>Contoh himpunan tertutup:</strong></p>
+ <ul>
+  <li>Interval tertutup $[a, b]$ untuk setiap $a < b$.</li>
+  <li>$\mathbb{R}$ dan $\emptyset$&mdash;keduanya sekaligus terbuka dan tertutup.</li>
+  <li>Himpunan berhingga, seperti $\{1, 2, 3\}$.</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Karakterisasi melalui titik limit.</strong> Terdapat karakterisasi yang lebih intuitif dari himpunan tertutup, menggunakan gagasan titik limit.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Titik $a \in \mathbb{R}$ disebut <strong>titik limit</strong> (<em>limit point</em>) dari $S$ jika setiap lingkungan dari $a$ memuat setidaknya satu titik dari $S$ yang berbeda dari $a$. Dengan kata lain, untuk setiap $\varepsilon > 0$, terdapat $s \in S$ dengan $s \neq a$ dan $|s - a| < \varepsilon$.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Himpunan $S$ tertutup jika dan hanya jika $S$ memuat semua titik limitnya.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Interval $[a, b]$ tertutup. Titik limit dari $[a, b]$ adalah semua titik di $[a, b]$ itu sendiri, dan semuanya berada di dalam $[a, b]$. Sebaliknya, interval $(a, b)$ tidak tertutup&mdash;karena titik $a$ dan $b$ adalah titik limit dari $(a, b)$ tetapi tidak berada di dalamnya.</p>
+
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Penting: "terbuka" dan "tertutup" bukan kebalikan.</strong> Dalam bahasa sehari-hari, kata "terbuka" dan "tertutup" adalah kebalikan satu sama lain. Dalam topologi, tidak demikian. Himpunan bisa terbuka saja, tertutup saja, keduanya (misalnya $\mathbb{R}$ dan $\emptyset$), atau tidak keduanya. Contoh himpunan yang tidak terbuka dan tidak tertutup: $[0, 1)$&mdash;komplemennya $(-\infty, 0) \cup [1, \infty)$ tidak terbuka, jadi himpunan ini tidak tertutup; dan titik $0$ bukan titik interior, jadi tidak terbuka.</p>
+ </div>
+
+ <h3 class="lesson-subheading">D. Titik Batas dan Closure</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Titik $a \in \mathbb{R}$ disebut <strong>titik batas</strong> (<em>boundary point</em>) dari $S$ jika setiap lingkungan dari $a$ memuat setidaknya satu titik dari $S$ dan setidaknya satu titik dari komplemennya $\mathbb{R} \setminus S$. Himpunan semua titik batas disebut <strong>batas</strong> (<em>boundary</em>) dari $S$, ditulis $\partial S$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> <strong>Closure</strong> dari $S$, ditulis $\overline{S}$, adalah $S \cup \partial S$&mdash;yaitu himpunan $S$ bersama semua titik batasnya. Closure dari $S$ adalah himpunan tertutup terkecil yang memuat $S$.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk $S = (0, 1)$:</p>
+ <ul>
+  <li>Batas $\partial S = \{0, 1\}$&mdash;setiap lingkungan dari $0$ memuat bilangan positif kecil (anggota $S$) dan bilangan negatif (bukan anggota $S$). Serupa untuk $1$.</li>
+  <li>Closure $\overline{S} = [0, 1]$&mdash;yaitu interval tertutup dari $0$ sampai $1$.</li>
+  <li>Titik interior: $(0, 1)$ itu sendiri.</li>
+ </ul>
+
+ <figure>
+ <svg viewBox="0 0 620 260" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Titik interior, titik batas, dan closure</text>
+
+  <line x1="60" y1="180" x2="560" y2="180" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="562,180 552,175 552,185" fill="#e8e8e8"/>
+  <text x="566" y="184" font-size="12" fill="#b8b8b8" font-style="italic">ℝ</text>
+
+  <line x1="180" y1="170" x2="180" y2="190" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="440" y1="170" x2="440" y2="190" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="180" y="210" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">0</text>
+  <text x="440" y="210" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">1</text>
+
+  <line x1="180" y1="180" x2="440" y2="180" stroke="#5dade2" stroke-width="4"/>
+  <circle cx="180" cy="180" r="6" fill="#e8e8e8" stroke="#5dade2" stroke-width="2.2"/>
+  <circle cx="440" cy="180" r="6" fill="#e8e8e8" stroke="#5dade2" stroke-width="2.2"/>
+
+  <circle cx="250" cy="180" r="4" fill="#daa520"/>
+  <circle cx="310" cy="180" r="4" fill="#daa520"/>
+  <circle cx="370" cy="180" r="4" fill="#daa520"/>
+
+  <text x="310" y="120" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">S = (0, 1)</text>
+
+  <line x1="100" y1="140" x2="180" y2="140" stroke="#f0c75e" stroke-width="1.6" stroke-dasharray="4,3"/>
+  <line x1="440" y1="140" x2="520" y2="140" stroke="#f0c75e" stroke-width="1.6" stroke-dasharray="4,3"/>
+
+  <text x="310" y="140" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">∂S = {0, 1}</text>
+
+  <text x="310" y="245" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">Closure S̄ = [0, 1] (garis penuh dari 0 sampai 1)</text>
+ </svg>
+ <figcaption class="visual-caption">Ilustrasi topologi himpunan $S = (0, 1)$. Lingkaran emas menandai batas $\partial S = \{0, 1\}$. Titik-titik di dalam $S$ (biru) adalah titik interior. Closure $\overline{S} = [0, 1]$ adalah himpunan tertutup terkecil yang memuat $S$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Himpunan Kompak</h3>
+ <p class="lesson-text">Kekompakan adalah konsep yang sangat penting dalam analisis. Konsep ini menangkap gagasan "himpunan yang tidak dapat diperluas tanpa batas"&mdash;atau lebih tepatnya, himpunan yang setiap barisannya memiliki subbarisan konvergen dengan limit di dalam himpunan itu sendiri.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Himpunan $K \subseteq \mathbb{R}$ disebut <strong>kompak</strong> (<em>compact</em>) jika setiap barisan di dalam $K$ memiliki subbarisan yang konvergen ke suatu titik yang juga berada di dalam $K$.</p>
+
+ <p class="lesson-text"><strong>Teorema Heine-Borel.</strong> Himpunan $K \subseteq \mathbb{R}$ kompak jika dan hanya jika $K$ tertutup dan terbatas.</p>
+ <p class="lesson-text">Teorema ini memberi karakterisasi yang sangat sederhana untuk himpunan kompak di $\mathbb{R}$. Sebagai contoh:</p>
+ <ul>
+  <li>Interval $[0, 1]$ adalah kompak&mdash;tertutup dan terbatas.</li>
+  <li>Interval $(0, 1)$ <em>tidak</em> kompak&mdash;tidak tertutup (meskipun terbatas).</li>
+  <li>Interval $[0, \infty)$ <em>tidak</em> kompak&mdash;tertutup tetapi tidak terbatas.</li>
+  <li>$\mathbb{R}$ <em>tidak</em> kompak&mdash;tertutup tetapi tidak terbatas.</li>
+ </ul>
+ <p class="lesson-text">Kekompakan memainkan peran yang sangat penting dalam banyak teorema analisis, terutama yang berkaitan dengan eksistensi nilai ekstrem fungsi dan konvergensi barisan fungsi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Fungsi Real dan Kekontinuan</h2>
+ <p class="lesson-text">Bab ini membahas fungsi real&mdash;yaitu fungsi $f: \mathbb{R} \to \mathbb{R}$&mdash;dengan penekanan pada rigor kekontinuan. Banyak konsep di sini sudah pernah kita temui di kalkulus dasar, tetapi kali ini dengan definisi formal dan pembuktian yang teliti.</p>
+
+ <h3 class="lesson-subheading">A. Limit Fungsi secara Rigor</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f: A \to \mathbb{R}$ dengan $A \subseteq \mathbb{R}$, dan misalkan $c$ adalah titik limit dari $A$. Kita katakan $\displaystyle\lim_{x \to c} f(x) = L$ jika untuk setiap $\varepsilon > 0$ terdapat $\delta > 0$ sedemikian sehingga untuk setiap $x \in A$ dengan $0 < |x - c| < \delta$, berlaku $|f(x) - L| < \varepsilon$.</p>
+ <p class="lesson-text">Definisi ini adalah formalisasi dari "nilai $f(x)$ mendekati $L$ saat $x$ mendekati $c$" yang sudah kita pelajari di kalkulus dasar. Kali ini kita menggunakannya sebagai fondasi untuk mendefinisikan kekontinuan dan membuktikan sifat-sifat fungsi kontinu secara rigor.</p>
+
+ <h3 class="lesson-subheading">B. Kekontinuan</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $f: A \to \mathbb{R}$ dikatakan <strong>kontinu di titik</strong> $c \in A$ jika untuk setiap $\varepsilon > 0$ terdapat $\delta > 0$ sedemikian sehingga untuk setiap $x \in A$ dengan $|x - c| < \delta$, berlaku $|f(x) - f(c)| < \varepsilon$.</p>
+ <p class="lesson-text">Perhatikan perbedaan kunci dengan definisi limit: dalam definisi kekontinuan, tidak ada syarat $0 < |x - c|$&mdash;artinya $x = c$ diperbolehkan. Dan syaratnya adalah $|f(x) - f(c)| < \varepsilon$, menggunakan nilai $f(c)$ sebagai pengganti $L$.</p>
+
+ <p class="lesson-text"><strong>Karakterisasi melalui barisan.</strong> Terdapat karakterisasi alternatif yang sering lebih mudah dipakai dalam pembuktian.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Fungsi $f$ kontinu di titik $c$ jika dan hanya jika untuk setiap barisan $(x_n)$ di $A$ dengan $x_n \to c$, berlaku $f(x_n) \to f(c)$.</p>
+ <p class="lesson-text">Karakterisasi ini disebut <strong>kekontinuan berurutan</strong> (<em>sequential continuity</em>). Ia sangat berguna karena memungkinkan kita memakai semua teorema tentang barisan yang sudah kita kuasai.</p>
+
+ <h3 class="lesson-subheading">C. Kekontinuan pada Himpunan</h3>
+ <p class="lesson-text">Fungsi $f$ dikatakan <strong>kontinu pada himpunan $A$</strong> jika ia kontinu di setiap titik $c \in A$.</p>
+ <p class="lesson-text"><strong>Karakterisasi topologis.</strong> Terdapat karakterisasi yang sangat elegan menggunakan himpunan terbuka.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Fungsi $f: \mathbb{R} \to \mathbb{R}$ kontinu pada $\mathbb{R}$ jika dan hanya jika untuk setiap himpunan terbuka $U \subseteq \mathbb{R}$, prapeta $f^{-1}(U) = \{x : f(x) \in U\}$ juga terbuka di $\mathbb{R}$.</p>
+ <p class="lesson-text">Karakterisasi ini menunjukkan bahwa kekontinuan adalah konsep <em>topologis</em>&mdash;ia hanya bergantung pada struktur himpunan terbuka, bukan pada nilai-nilai spesifik fungsi. Karena itu, kekontinuan dapat didefinisikan pada ruang-ruang yang jauh lebih umum daripada $\mathbb{R}$.</p>
+
+ <h3 class="lesson-subheading">D. Sifat-Sifat Fungsi Kontinu pada Himpunan Kompak</h3>
+ <p class="lesson-text">Fungsi kontinu pada himpunan kompak memiliki sifat-sifat yang sangat kuat&mdash;dan menjadi dasar bagi banyak teorema penting dalam analisis dan optimisasi.</p>
+
+ <p class="lesson-text"><strong>Teorema (Keterbatasan).</strong> Jika $f$ kontinu pada himpunan kompak $K$, maka $f$ terbatas pada $K$&mdash;yaitu terdapat $M > 0$ sedemikian sehingga $|f(x)| \leq M$ untuk setiap $x \in K$.</p>
+ <p class="lesson-text"><strong>Teorema Nilai Ekstrem (EVT).</strong> Jika $f$ kontinu pada himpunan kompak $K$, maka $f$ mencapai nilai maksimum dan nilai minimum pada $K$. Dengan kata lain, terdapat $x_{\max}, x_{\min} \in K$ sedemikian sehingga $f(x_{\min}) \leq f(x) \leq f(x_{\max})$ untuk setiap $x \in K$.</p>
+ <p class="lesson-text">Kedua teorema ini adalah formalisasi dari fakta intuitif: fungsi kontinu pada interval tertutup dan terbatas pasti mencapai puncak dan dasar. Sebagai contoh, dalam masalah optimisasi, jika daerah fisibelnya kompak dan fungsi objektifnya kontinu, maka solusi optimum pasti ada&mdash;dan ini adalah jaminan teoretis yang sangat penting.</p>
+
+ <h3 class="lesson-subheading">E. Teorema Nilai Antara</h3>
+ <p class="lesson-text"><strong>Teorema (IVT).</strong> Jika $f$ kontinu pada interval tertutup $[a, b]$ dan $N$ adalah sebarang bilangan antara $f(a)$ dan $f(b)$, maka terdapat setidaknya satu $c \in (a, b)$ sedemikian sehingga $f(c) = N$.</p>
+ <p class="lesson-text">Teorema ini sudah kita bahas di materi Kekontinuan, tetapi di sini kita memberi pembuktian alternatif yang menggunakan konsep supremum&mdash;dan justru bergantung pada kelengkapan $\mathbb{R}$.</p>
+ <p class="lesson-text"><strong>Bukti (kasus $f(a) < N < f(b)$).</strong> Definisikan himpunan:</p>
+ <p class="lesson-text">$$S = \{x \in [a, b] : f(x) < N\}$$</p>
+ <p class="lesson-text">Himpunan ini tak kosong (karena $a \in S$) dan terbatas atas (oleh $b$). Menurut aksioma kelengkapan, $S$ memiliki supremum, sebut saja $c = \sup S$. Akan ditunjukkan bahwa $f(c) = N$.</p>
+ <p class="lesson-text">Pertama, tunjukkan $f(c) \leq N$. Karena $c = \sup S$, terdapat barisan $(x_n)$ di $S$ dengan $x_n \to c$. Karena $f$ kontinu, $f(x_n) \to f(c)$. Karena setiap $f(x_n) < N$, maka $f(c) \leq N$.</p>
+ <p class="lesson-text">Kedua, tunjukkan $f(c) \geq N$. Andaikan $f(c) < N$. Maka $\varepsilon_0 := N - f(c) > 0$. Karena $f$ kontinu di $c$, terdapat $\delta_1 > 0$ sedemikian sehingga untuk setiap $x \in [a, b]$ dengan $|x - c| < \delta_1$, berlaku $|f(x) - f(c)| < \varepsilon_0$, yaitu $f(x) < N$. Karena $f(c) < N < f(b)$, berlaku $c < b$&mdash;sehingga titik $x_0 := c + \dfrac{\min(\delta_1, b - c)}{2}$ memenuhi $c < x_0 < b$ dan $x_0 - c < \delta_1$. Maka $x_0 \in [a, b]$ dengan $f(x_0) < N$, sehingga $x_0 \in S$ dan $x_0 > c$. Ini berarti $c$ bukan batas atas dari $S$&mdash;kontradiksi dengan $c = \sup S$. Jadi pengandaian salah, dan haruslah $f(c) \geq N$.</p>
+ <p class="lesson-text">Dari kedua hasil, $f(c) = N$. $\blacksquare$</p>
+ <p class="lesson-text">Perhatikan bahwa pembuktian ini sangat bergantung pada aksioma kelengkapan&mdash;yang menjamin bahwa $c = \sup S$ benar-benar ada. Tanpa kelengkapan, teorema ini bisa gagal. Inilah salah satu contoh betapa konsep-konsep dalam analisis real saling terkait erat.</p>
+
+ <h3 class="lesson-subheading">F. Kekontinuan Seragam</h3>
+ <p class="lesson-text">Salah satu konsep yang hanya muncul di analisis real&mdash;dan tidak di kalkulus dasar&mdash;adalah <strong>kekontinuan seragam</strong> (<em>uniform continuity</em>).</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $f: A \to \mathbb{R}$ dikatakan <strong>kontinu seragam</strong> pada $A$ jika untuk setiap $\varepsilon > 0$ terdapat $\delta > 0$ sedemikian sehingga untuk setiap $x, y \in A$ dengan $|x - y| < \delta$, berlaku $|f(x) - f(y)| < \varepsilon$.</p>
+ <p class="lesson-text">Perbedaan kunci dengan kekontinuan biasa: dalam kekontinuan biasa, nilai $\delta$ boleh bergantung pada titik $c$; dalam kekontinuan seragam, $\delta$ harus bergantung hanya pada $\varepsilon$&mdash;berlaku sama untuk semua titik di $A$.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $f$ kontinu pada himpunan kompak $K$, maka $f$ kontinu seragam pada $K$.</p>
+ <p class="lesson-text">Teorema ini adalah salah satu alasan utama mengapa kekompakan begitu penting. Kekontinuan pada himpunan kompak secara otomatis memberikan kekontinuan seragam&mdash;sebuah sifat yang jauh lebih kuat. Sebaliknya, kekontinuan pada himpunan tidak kompak tidak menjamin kekontinuan seragam.</p>
+ <p class="lesson-text"><strong>Contoh fungsi kontinu tetapi tidak kontinu seragam.</strong> Fungsi $f(x) = x^2$ pada $\mathbb{R}$ kontinu tetapi tidak kontinu seragam. Untuk melihatnya, misalkan $\varepsilon = 1$. Berapa pun $\delta > 0$, kita bisa memilih $x$ dan $y$ dengan selisih kecil tetapi $|x^2 - y^2|$ sangat besar. Misalnya, ambil $x = \dfrac{1}{\delta}$ dan $y = \dfrac{1}{\delta} + \dfrac{\delta}{2}$. Maka $|x - y| = \dfrac{\delta}{2} < \delta$, tetapi $|x^2 - y^2| = \left|\dfrac{1}{\delta} + \dfrac{\delta}{2}\right| \cdot \dfrac{\delta}{2} \approx \dfrac{1}{2}$, yang bisa lebih besar dari $\varepsilon = 1$ untuk $\delta$ kecil. Jadi kekontinuan tidak seragam di $\mathbb{R}$. Namun pada setiap interval kompak, $f(x) = x^2$ kontinu seragam.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan konsep-konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menentukan Supremum dan Infimum</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan supremum dan infimum dari $S = \left\{1 - \dfrac{1}{n} : n \in \mathbb{N}\right\}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Himpunan $S$ memiliki elemen-elemen: $0$, $\dfrac{1}{2}$, $\dfrac{2}{3}$, $\dfrac{3}{4}$, $\dfrac{4}{5}$, $\ldots$ Barisan ini monoton naik dan mendekati $1$, tetapi tidak pernah mencapai $1$.</p>
+ <ul>
+  <li>$\inf S = 0$&mdash;dan $0 \in S$ (untuk $n = 1$), sehingga infimum sekaligus minimum.</li>
+  <li>$\sup S = 1$&mdash;tetapi $1 \notin S$, sehingga supremum bukan maksimum.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Membuktikan Himpunan Terbuka</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tunjukkan bahwa interval $(a, b)$ adalah himpunan terbuka.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Ambil sebarang $x \in (a, b)$. Kita perlu menemukan $\varepsilon > 0$ sedemikian sehingga $(x - \varepsilon, x + \varepsilon) \subseteq (a, b)$.</p>
+ <p class="lesson-text">Pilih $\varepsilon = \min(x - a, b - x)$. Karena $x \in (a, b)$, maka $x - a > 0$ dan $b - x > 0$, sehingga $\varepsilon > 0$.</p>
+ <p class="lesson-text">Sekarang ambil sebarang $y \in (x - \varepsilon, x + \varepsilon)$. Maka $x - \varepsilon < y < x + \varepsilon$. Karena $\varepsilon \leq x - a$, maka $y > x - \varepsilon \geq a$. Karena $\varepsilon \leq b - x$, maka $y < x + \varepsilon \leq b$. Jadi $a < y < b$, sehingga $y \in (a, b)$.</p>
+ <p class="lesson-text">Kesimpulan: $(x - \varepsilon, x + \varepsilon) \subseteq (a, b)$, sehingga $x$ adalah titik interior. Karena $x$ sebarang, semua titik di $(a, b)$ adalah titik interior, jadi $(a, b)$ terbuka. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">C. Membuktikan Himpunan Tertutup</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tunjukkan bahwa interval $[a, b]$ adalah himpunan tertutup.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kita perlu menunjukkan bahwa komplemennya, yaitu $(-\infty, a) \cup (b, \infty)$, adalah himpunan terbuka.</p>
+ <p class="lesson-text">Ambil sebarang $x \in (-\infty, a)$. Pilih $\varepsilon = a - x > 0$. Maka $(x - \varepsilon, x + \varepsilon) = (2x - a, a)$ yang seluruhnya berada di dalam $(-\infty, a)$&mdash;karena batas atasnya adalah $a$ dan $a \notin (-\infty, a)$. Jadi $x$ adalah titik interior.</p>
+ <p class="lesson-text">Serupa untuk $x \in (b, \infty)$ dengan $\varepsilon = x - b$.</p>
+ <p class="lesson-text">Karena setiap titik di komplemennya adalah titik interior, komplemennya terbuka. Jadi $[a, b]$ tertutup. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">D. Menerapkan Teorema Nilai Ekstrem</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tunjukkan bahwa fungsi $f(x) = x^3 - 3x + 1$ mencapai nilai maksimum dan minimum pada interval $[-2, 2]$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Fungsi $f$ adalah polinomial, sehingga kontinu pada seluruh $\mathbb{R}$&mdash;termasuk pada $[-2, 2]$. Interval $[-2, 2]$ adalah himpunan tertutup dan terbatas, sehingga menurut Teorema Heine-Borel, ia kompak. Menurut Teorema Nilai Ekstrem, $f$ mencapai nilai maksimum dan minimum pada $[-2, 2]$. $\blacksquare$</p>
+ <p class="lesson-text">Perhatikan bahwa kita tidak perlu mencari nilai maksimum dan minimumnya&mdash;cukup menunjukkan bahwa keduanya ada. Ini adalah keuntungan besar dari pendekatan analisis real: kita sering dapat membuktikan eksistensi tanpa harus menghitung nilainya.</p>
+
+ <h3 class="lesson-subheading">E. Menerapkan Teorema Nilai Antara untuk Mencari Akar</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tunjukkan bahwa persamaan $x^3 - 4x + 1 = 0$ memiliki akar di antara $1$ dan $2$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Misalkan $f(x) = x^3 - 4x + 1$. Fungsi ini kontinu pada $[1, 2]$. Hitung:</p>
+ <ul>
+  <li>$f(1) = 1 - 4 + 1 = -2 < 0$.</li>
+  <li>$f(2) = 8 - 8 + 1 = 1 > 0$.</li>
+ </ul>
+ <p class="lesson-text">Karena $0$ berada di antara $f(1)$ dan $f(2)$, menurut Teorema Nilai Antara terdapat $c \in (1, 2)$ sedemikian sehingga $f(c) = 0$. Jadi persamaan tersebut memiliki akar di antara $1$ dan $2$. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">F. Penerapan: Eksistensi Solusi dalam Optimisasi</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah perusahaan ingin memaksimumkan keuntungan $P(x, y)$ yang bergantung pada dua variabel keputusan $x$ dan $y$. Misalkan daerah fisibel adalah himpunan tertutup dan terbatas $D \subseteq \mathbb{R}^2$, dan $P$ kontinu pada $D$. Tunjukkan bahwa masalah ini selalu memiliki solusi optimal.</p>
+ <p class="lesson-text"><strong>Analisis.</strong> Ini adalah versi multidimensi dari Teorema Nilai Ekstrem. Karena $D$ tertutup dan terbatas, ia kompak (menurut versi multidimensi dari Teorema Heine-Borel). Karena $P$ kontinu pada $D$ yang kompak, menurut versi multidimensi dari Teorema Nilai Ekstrem, $P$ mencapai nilai maksimum dan minimum pada $D$.</p>
+ <p class="lesson-text">Jadi solusi optimal selalu ada&mdash;dan inilah jaminan teoretis yang membuat algoritma optimisasi modern dapat diandalkan. Konsep kompak, kontinu, dan eksistensi optimum saling terkait erat, dan fondasi untuk semua ini adalah kelengkapan $\mathbb{R}$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Banyak algoritma optimisasi modern&mdash;termasuk yang dipakai dalam pembelajaran mesin dan riset operasi&mdash;bertumpu pada jaminan teoretis ini. Tanpa kelengkapan $\mathbb{R}$ dan sifat-sifat kompak, kita tidak dapat memastikan bahwa masalah optimisasi memiliki solusi. Analisis real menyediakan fondasi rigor untuk semua ini.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Supremum dan Infimum</h3>
+ <ul>
+  <li><strong>Menganggap supremum selalu merupakan elemen himpunan.</strong> Supremum adalah batas atas terkecil, tetapi belum tentu berada di dalam himpunan. Sebagai contoh, $\sup (0, 1) = 1$, tetapi $1 \notin (0, 1)$.</li>
+  <li><strong>Menganggap setiap himpunan terbatas memiliki maksimum.</strong> Himpunan $(0, 1)$ terbatas tetapi tidak memiliki maksimum (dan tidak memiliki minimum). Yang dijamin oleh kelengkapan adalah supremum dan infimum, bukan maksimum dan minimum.</li>
+  <li><strong>Menganggap supremum dan maksimum selalu sama.</strong> Keduanya sama jika dan hanya jika supremum termasuk dalam himpunan. Untuk himpunan seperti $(0, 1)$, supremum ada tetapi maksimum tidak.</li>
+  <li><strong>Menganggap setiap himpunan tak kosong memiliki supremum.</strong> Aksioma kelengkapan mensyaratkan himpunan tersebut <em>terbatas atas</em>. Himpunan $\{1, 2, 3, \ldots\} = \mathbb{N}$ tidak terbatas atas, sehingga tidak memiliki supremum di $\mathbb{R}$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Topologi</h3>
+ <ul>
+  <li><strong>Menganggap "terbuka" dan "tertutup" adalah kebalikan.</strong> Dalam topologi, keduanya bukan konsep yang saling melengkapi. Himpunan bisa terbuka saja, tertutup saja, keduanya, atau tidak keduanya.</li>
+  <li><strong>Menganggap interval $[a, b]$ selalu kompak.</strong> Benar, $[a, b]$ selalu kompak dalam $\mathbb{R}$. Namun himpunan tertutup yang tidak terbatas (seperti $[0, \infty)$) tidak kompak. Kekompakan memerlukan <em>dua</em> syarat: tertutup dan terbatas.</li>
+  <li><strong>Menganggap himpunan berhingga selalu tertutup.</strong> Benar, himpunan berhingga selalu tertutup&mdash;tetapi bukan karena alasan trivial. Komplemen himpunan berhingga adalah gabungan berhingga interval terbuka, yang menurut sifat himpunan terbuka adalah terbuka.</li>
+  <li><strong>Menganggap irisan tak berhingga dari himpunan terbuka selalu terbuka.</strong> Ini <em>tidak</em> berlaku. Sebagai contoh, $\bigcap_{n=1}^{\infty} \left(-\dfrac{1}{n}, \dfrac{1}{n}\right) = \{0\}$ yang bukan himpunan terbuka. Hanya irisan berhingga yang selalu terbuka.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Fungsi Real</h3>
+ <ul>
+  <li><strong>Menganggap kekontinuan pada himpunan tidak kompak sama dengan kekontinuan seragam.</strong> Fungsi $f(x) = x^2$ kontinu pada $\mathbb{R}$ tetapi tidak kontinu seragam. Kekontinuan seragam hanya dijamin pada himpunan kompak.</li>
+  <li><strong>Menganggap Teorema Nilai Antara hanya berlaku untuk interval tertutup.</strong> Benar untuk interval tertutup, tetapi juga berlaku untuk setiap interval (terbuka, setengah terbuka, atau tak terbatas) di mana fungsi kontinu.</li>
+  <li><strong>Menganggap Teorema Nilai Ekstrem berlaku untuk semua himpunan tertutup.</strong> Teorema ini memerlukan himpunan yang <em>kompak</em>&mdash;yaitu tertutup dan terbatas. Untuk himpunan tertutup yang tidak terbatas (seperti $[0, \infty)$), teorema tidak berlaku. Contoh: $f(x) = x$ pada $[0, \infty)$ tidak mencapai maksimum.</li>
+  <li><strong>Menganggap fungsi kontinu selalu dapat diturunkan.</strong> Kekontinuan tidak menjamin keterdiferensialan. Fungsi $f(x) = |x|$ kontinu di $x = 0$ tetapi tidak dapat diturunkan di sana.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Aksioma lapangan:</strong> $\mathbb{R}$ memenuhi sifat komutatif, asosiatif, distributif, identitas, dan invers terhadap penjumlahan dan perkalian.</li>
+  <li><strong>Aksioma urutan:</strong> $\mathbb{R}$ memiliki relasi $\leq$ yang memenuhi trikotomi, transitif, dan konsisten dengan operasi.</li>
+  <li><strong>Sifat Archimedes:</strong> untuk setiap $a \in \mathbb{R}$ dan $b > 0$, terdapat $n \in \mathbb{N}$ dengan $nb > a$.</li>
+  <li><strong>Batas atas dan batas bawah:</strong> $u$ adalah batas atas dari $S$ jika $s \leq u$ untuk semua $s \in S$.</li>
+  <li><strong>Supremum:</strong> batas atas terkecil dari $S$. Ditulis $\sup S$.</li>
+  <li><strong>Infimum:</strong> batas bawah terbesar dari $S$. Ditulis $\inf S$.</li>
+  <li><strong>Aksioma kelengkapan:</strong> setiap himpunan bagian tak kosong dari $\mathbb{R}$ yang terbatas atas memiliki supremum di $\mathbb{R}$. Ini adalah sifat yang membedakan $\mathbb{R}$ dari $\mathbb{Q}$.</li>
+  <li><strong>Sifat batas monoton:</strong> setiap barisan monoton dan terbatas pasti konvergen.</li>
+  <li><strong>Teorema Bolzano-Weierstrass:</strong> setiap barisan terbatas memiliki subbarisan yang konvergen.</li>
+  <li><strong>Lingkungan:</strong> interval $(a - \varepsilon, a + \varepsilon)$ di sekitar titik $a$.</li>
+  <li><strong>Titik interior:</strong> titik $a \in S$ di mana ada lingkungan yang seluruhnya berada dalam $S$.</li>
+  <li><strong>Himpunan terbuka:</strong> setiap titiknya adalah titik interior.</li>
+  <li><strong>Himpunan tertutup:</strong> komplemennya terbuka. Ekuivalen: memuat semua titik limitnya.</li>
+  <li><strong>Sifat himpunan terbuka:</strong> gabungan sebarang terbuka; irisan berhingga terbuka.</li>
+  <li><strong>Titik batas:</strong> setiap lingkungannya memuat titik dari $S$ dan dari komplemennya.</li>
+  <li><strong>Closure:</strong> $S \cup \partial S$, himpunan tertutup terkecil yang memuat $S$.</li>
+  <li><strong>Himpunan kompak:</strong> setiap barisan di dalamnya memiliki subbarisan konvergen dengan limit di dalamnya.</li>
+  <li><strong>Teorema Heine-Borel:</strong> $K$ kompak jika dan hanya jika $K$ tertutup dan terbatas.</li>
+  <li><strong>Kekontinuan:</strong> $f$ kontinu di $c$ jika untuk setiap $\varepsilon > 0$ ada $\delta > 0$ sehingga $|x - c| < \delta$ berimplikasi $|f(x) - f(c)| < \varepsilon$.</li>
+  <li><strong>Karakterisasi berurutan:</strong> $f$ kontinu di $c$ jika dan hanya jika untuk setiap barisan $x_n \to c$, berlaku $f(x_n) \to f(c)$.</li>
+  <li><strong>Karakterisasi topologis:</strong> $f$ kontinu pada $\mathbb{R}$ jika dan hanya jika prapeta setiap himpunan terbuka adalah terbuka.</li>
+  <li><strong>Teorema Nilai Ekstrem:</strong> fungsi kontinu pada himpunan kompak mencapai maksimum dan minimum.</li>
+  <li><strong>Teorema Nilai Antara:</strong> fungsi kontinu pada $[a, b]$ mengambil setiap nilai antara $f(a)$ dan $f(b)$.</li>
+  <li><strong>Kekontinuan seragam:</strong> untuk setiap $\varepsilon > 0$ ada $\delta > 0$ yang bekerja untuk semua titik sekaligus.</li>
+  <li><strong>Kekontinuan pada himpunan kompak bersifat seragam.</strong></li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Analisis real meletakkan fondasi rigor bagi semua konsep kalkulus yang telah kita pelajari. Dengan memulai dari aksioma-aksioma bilangan real&mdash;lapangan, urutan, dan kelengkapan&mdash;kita membangun seluruh kerangka kalkulus atas dasar yang kokoh. Sifat kelengkapan $\mathbb{R}$ khususnya adalah alasan mengapa limit, kekontinuan, dan optimisasi bekerja dengan baik: ia menjamin bahwa batas-batas yang kita cari benar-benar ada.</p>
+ <p class="lesson-text">Topologi $\mathbb{R}$ memberi bahasa yang lebih umum untuk membicarakan kedekatan dan kekompakan. Gagasan seperti "himpunan terbuka" dan "himpunan kompak" bukan sekadar istilah teknis&mdash;mereka menangkap intuisi intuitif tentang struktur dan keterbatasan, dan menjadi alat utama untuk membuktikan sifat-sifat fungsi kontinu seperti Teorema Nilai Ekstrem dan Teorema Nilai Antara.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>Bilangan p-adic</strong> akan membawa kita ke sistem bilangan yang sama sekali berbeda&mdash;di mana kelengkapan justru didefinisikan dengan cara yang berlawanan dengan intuisi kita. Sedangkan <strong>Teori Ukuran &amp; Integral Lebesgue</strong> akan memperluas konsep integral dari yang kita pelajari di kalkulus, dengan menangani fungsi-fungsi yang jauh lebih umum daripada yang dapat diintegralkan Riemann. Keduanya bertumpu pada fondasi yang telah kita bangun dalam analisis real ini.</p>
+</section>
+
+</main>
+</body>
+</html>

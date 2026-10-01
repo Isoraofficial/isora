@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analisis Kompleks (Fungsi Kompleks, Integral Kontur, Teorema Residu)</title>
+<meta name="description" content="Materi analisis kompleks: fungsi kompleks dan analitik, persamaan Cauchy-Riemann, integral kontur dan Teorema Cauchy, deret Laurent dan singularitas, serta Teorema Residu beserta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Analisis Kompleks (Fungsi Kompleks, Integral Kontur, Teorema Residu)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Bilangan Kompleks Dasar</strong> &mdash; bentuk kartesius $z = x + iy$, bentuk polar $z = re^{i\theta}$, rumus Euler, operasi aritmetika kompleks, dan modulus.</li>
+   <li><strong>Turunan Parsial</strong> &mdash; persamaan Cauchy-Riemann dinyatakan melalui turunan parsial dari bagian riil dan imajiner fungsi kompleks.</li>
+   <li><strong>Integral Tentu dan Teknik Pengintegralan</strong> &mdash; integral kontur didefinisikan melalui integral tentu terhadap parameter, dan banyak perhitungannya memerlukan substitusi serta manipulasi aljabar.</li>
+   <li><strong>Deret (Deret Taylor dan Maclaurin)</strong> &mdash; deret Taylor dan Laurent menjadi alat utama untuk memahami perilaku fungsi kompleks di sekitar titik singularitas.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Bilangan kompleks awalnya muncul sebagai alat untuk menyelesaikan persamaan polinomial yang tidak memiliki akar real, seperti $x^2 + 1 = 0$. Namun seiring berkembangnya matematika, bilangan kompleks ternyata membuka dunia yang jauh lebih kaya daripada sekadar solusi formal. Fungsi-fungsi kompleks memiliki sifat-sifat yang sangat berbeda dari fungsi real&mdash;dan justru perbedaan inilah yang menjadikan analisis kompleks sebagai salah satu cabang matematika paling elegan dan paling berguna.</p>
+ <p class="lesson-text">Materi ini membahas tiga topik utama. Pertama, fungsi kompleks dan sifat analitiknya, yang didefinisikan melalui persamaan Cauchy-Riemann. Kedua, integral kontur&mdash;integral fungsi kompleks sepanjang kurva di bidang kompleks&mdash;beserta Teorema Cauchy dan rumus integral Cauchy yang menjadi fondasi. Ketiga, deret Laurent, singularitas, dan Teorema Residu, yang menyediakan alat sangat ampuh untuk menghitung integral yang sulit diselesaikan dengan metode real. Penerapan-penerapan penting akan ditunjukkan pada bab contoh.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Fungsi Kompleks dan Analitik</h2>
+ <p class="lesson-text">Bab ini memperkenalkan fungsi kompleks dan konsep analitik&mdash;yaitu properti utama yang membedakan fungsi kompleks "baik" dari yang tidak.</p>
+
+ <h3 class="lesson-subheading">A. Bilangan Kompleks: Ringkasan Singkat</h3>
+ <p class="lesson-text">Bilangan kompleks $z$ dapat dituliskan dalam dua bentuk utama:</p>
+ <ul>
+  <li><strong>Bentuk kartesius:</strong> $z = x + iy$ dengan $x, y \in \mathbb{R}$ dan $i^2 = -1$. Bilangan $x = \operatorname{Re}(z)$ disebut bagian riil, dan $y = \operatorname{Im}(z)$ disebut bagian imajiner.</li>
+  <li><strong>Bentuk polar:</strong> $z = r(\cos\theta + i\sin\theta) = re^{i\theta}$, dengan $r = |z| = \sqrt{x^2 + y^2}$ adalah modulus dan $\theta = \arg(z)$ adalah argumen.</li>
+ </ul>
+ <p class="lesson-text">Identitas Euler $e^{i\theta} = \cos\theta + i\sin\theta$ menjadi jembatan antara kedua bentuk ini. Rumus-rumus penting:</p>
+ <ul>
+  <li>$|z_1 z_2| = |z_1| \cdot |z_2|$ dan $\arg(z_1 z_2) = \arg z_1 + \arg z_2$.</li>
+  <li>$|z|^2 = z\bar{z}$ dengan $\bar{z} = x - iy$ adalah konjugat kompleks.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Fungsi Kompleks</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi kompleks $f: \Omega \to \mathbb{C}$ dengan domain $\Omega \subseteq \mathbb{C}$ adalah pemetaan yang memasangkan setiap bilangan kompleks $z \in \Omega$ ke sebuah bilangan kompleks $w = f(z)$.</p>
+ <p class="lesson-text">Setiap fungsi kompleks dapat dituliskan dalam bentuk komponen:</p>
+ <p class="lesson-text">$$f(z) = u(x, y) + iv(x, y)$$</p>
+ <p class="lesson-text">dengan $z = x + iy$, dan $u, v: \mathbb{R}^2 \to \mathbb{R}$ adalah fungsi dua variabel real. Fungsi $u$ disebut bagian riil dari $f$, dan $v$ disebut bagian imajinernya.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Fungsi $f(z) = z^2$. Dengan $z = x + iy$:</p>
+ <p class="lesson-text">$$z^2 = (x + iy)^2 = x^2 - y^2 + 2ixy$$</p>
+ <p class="lesson-text">Sehingga $u(x, y) = x^2 - y^2$ dan $v(x, y) = 2xy$.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Fungsi $f(z) = e^z$. Menggunakan $z = x + iy$:</p>
+ <p class="lesson-text">$$e^z = e^{x+iy} = e^x(\cos y + i\sin y)$$</p>
+ <p class="lesson-text">Sehingga $u(x, y) = e^x \cos y$ dan $v(x, y) = e^x \sin y$.</p>
+
+ <h3 class="lesson-subheading">C. Limit dan Kekontinuan Fungsi Kompleks</h3>
+ <p class="lesson-text"><strong>Definisi limit.</strong> Kita katakan $\displaystyle\lim_{z \to z_0} f(z) = L$ jika untuk setiap $\varepsilon > 0$ terdapat $\delta > 0$ sedemikian sehingga untuk setiap $z$ dengan $0 < |z - z_0| < \delta$, berlaku $|f(z) - L| < \varepsilon$.</p>
+ <p class="lesson-text">Perhatikan bahwa definisi ini secara formal identik dengan definisi limit fungsi dua variabel real&mdash;karena modulus $|z - z_0|$ pada dasarnya adalah jarak Euclidean di $\mathbb{R}^2$. Konsekuensinya:</p>
+ <ul>
+  <li>Limit fungsi kompleks ada jika dan hanya jika limit dari kedua komponennya ($u$ dan $v$) ada.</li>
+  <li>Kekontinuan fungsi kompleks $f = u + iv$ di titik $z_0$ setara dengan kekontinuan $u$ dan $v$ di titik yang bersesuaian.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Fungsi Analitik dan Persamaan Cauchy-Riemann</h3>
+ <p class="lesson-text">Konsep kunci dalam analisis kompleks adalah <strong>analitik</strong> (atau <em>holomorfik</em>)&mdash;yaitu sifat yang jauh lebih kuat daripada sekadar dapat diturunkan.</p>
+ <p class="lesson-text"><strong>Definisi turunan kompleks.</strong> Turunan fungsi kompleks $f$ di titik $z_0$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$f'(z_0) = \lim_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h}$$</p>
+ <p class="lesson-text">dengan $h$ adalah bilangan kompleks. Perbedaan mendasar dengan turunan real: limit ini harus ada untuk <em>semua</em> arah pendekatan $h \to 0$ di bidang kompleks, bukan hanya dari kiri dan kanan.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $f$ disebut <strong>analitik</strong> (atau holomorfik) di titik $z_0$ jika $f$ dapat diturunkan pada lingkungan terbuka di sekitar $z_0$. Fungsi $f$ disebut analitik pada himpunan $\Omega$ jika analitik di setiap titik $\Omega$.</p>
+
+ <p class="lesson-text"><strong>Teorema (Persamaan Cauchy-Riemann).</strong> Misalkan $f(z) = u(x, y) + iv(x, y)$ terdefinisi pada lingkungan terbuka di sekitar $z_0 = x_0 + iy_0$. Jika $f$ analitik di $z_0$ dan turunan parsial $u, v$ kontinu di $(x_0, y_0)$, maka berlaku:</p>
+ <p class="lesson-text">$$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$$</p>
+ <p class="lesson-text">Sebaliknya, jika $u$ dan $v$ memiliki turunan parsial pertama yang kontinu di $(x_0, y_0)$ dan memenuhi kedua persamaan di atas, maka $f$ analitik di $z_0$, dengan:</p>
+ <p class="lesson-text">$$f'(z_0) = \frac{\partial u}{\partial x}(x_0, y_0) + i\frac{\partial v}{\partial x}(x_0, y_0)$$</p>
+
+ <p class="lesson-text"><strong>Mengapa persamaan ini benar?</strong> Turunan kompleks harus sama ketika $h \to 0$ sepanjang arah real ($h = \Delta x$) maupun sepanjang arah imajiner ($h = i\Delta y$).</p>
+ <ul>
+  <li>Sepanjang arah real: $f'(z) = \dfrac{\partial u}{\partial x} + i\dfrac{\partial v}{\partial x}$.</li>
+  <li>Sepanjang arah imajiner: $f'(z) = \dfrac{\partial v}{\partial y} - i\dfrac{\partial u}{\partial y}$.</li>
+ </ul>
+ <p class="lesson-text">Menyamakan kedua hasil ini memberi persamaan Cauchy-Riemann. Karena turunan kompleks harus ada untuk semua arah, kedua ekspresi ini harus sama&mdash;inilah yang membuat syarat analitik begitu ketat dan konsekuensinya begitu kuat.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Menguji Analitik dengan Persamaan Cauchy-Riemann</h3>
+ <p class="lesson-text"><strong>Contoh 1.</strong> Selidiki apakah $f(z) = z^2$ analitik.</p>
+ <p class="lesson-text">Kita sudah tahu $u = x^2 - y^2$ dan $v = 2xy$. Hitung turunan parsialnya:</p>
+ <ul>
+  <li>$u_x = 2x$, $v_y = 2x$. Keduanya sama ✓.</li>
+  <li>$u_y = -2y$, $v_x = 2y$. Jadi $u_y = -v_x$ ✓.</li>
+ </ul>
+ <p class="lesson-text">Kedua persamaan Cauchy-Riemann terpenuhi dan turunan parsialnya kontinu di seluruh bidang. Jadi $f(z) = z^2$ analitik di mana-mana.</p>
+
+ <p class="lesson-text"><strong>Contoh 2.</strong> Selidiki apakah $f(z) = \bar{z} = x - iy$ analitik.</p>
+ <p class="lesson-text">Di sini $u = x$ dan $v = -y$. Maka:</p>
+ <ul>
+  <li>$u_x = 1$, $v_y = -1$. Tidak sama ✗.</li>
+ </ul>
+ <p class="lesson-text">Persamaan Cauchy-Riemann gagal di semua titik. Jadi $f(z) = \bar{z}$ <strong>tidak analitik</strong> di mana pun. Ini contoh penting: meskipun $\bar{z}$ kontinu dan sederhana, ia tidak dapat diturunkan secara kompleks.</p>
+
+ <p class="lesson-text"><strong>Contoh 3.</strong> Selidiki apakah $f(z) = |z|^2 = x^2 + y^2$ analitik.</p>
+ <p class="lesson-text">Di sini $u = x^2 + y^2$ dan $v = 0$. Maka:</p>
+ <ul>
+  <li>$u_x = 2x$, $v_y = 0$. Sama hanya jika $x = 0$.</li>
+  <li>$u_y = 2y$, $v_x = 0$. Sama hanya jika $y = 0$.</li>
+ </ul>
+ <p class="lesson-text">Persamaan Cauchy-Riemann terpenuhi hanya di titik $(0, 0)$. Karena tidak ada lingkungan terbuka di mana persamaannya berlaku, $f$ <strong>tidak analitik</strong> di mana pun&mdash;termasuk di titik asal.</p>
+
+ <h3 class="lesson-subheading">F. Sifat Fungsi Analitik</h3>
+ <p class="lesson-text">Fungsi analitik memiliki sifat-sifat yang sangat kuat&mdash;jauh lebih kuat daripada fungsi real yang dapat diturunkan.</p>
+ <ul>
+  <li><strong>Analitik ⇒ dapat diturunkan tak hingga kali.</strong> Jika $f$ analitik, maka semua turunan $f', f'', f''', \ldots$ ada dan juga analitik.</li>
+  <li><strong>Analitik ⇒ dapat dinyatakan sebagai deret Taylor.</strong> Di sekitar setiap titik $z_0$ dalam domain, $f$ dapat dinyatakan sebagai deret pangkat yang konvergen.</li>
+  <li><strong>Sifat Liouville.</strong> Jika $f$ analitik dan terbatas di seluruh bidang kompleks $\mathbb{C}$, maka $f$ konstan.</li>
+  <li><strong>Prinsip modulus maksimum.</strong> Jika $f$ analitik dan tidak konstan pada domain $\Omega$, maka $|f|$ tidak mencapai nilai maksimumnya di interior $\Omega$.</li>
+  <li><strong>Bagian riil dan imajiner harmonik.</strong> Jika $f = u + iv$ analitik, maka $u$ dan $v$ masing-masing memenuhi persamaan Laplace $u_{xx} + u_{yy} = 0$ dan $v_{xx} + v_{yy} = 0$. Koneksi ini menjadi jembatan antara analisis kompleks dan teori potensial dalam fisika.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Integral Kontur</h2>
+ <p class="lesson-text">Setelah memahami fungsi analitik, kita beralih ke integral dari fungsi kompleks sepanjang kurva di bidang kompleks. Integral kontur adalah fondasi bagi Teorema Cauchy, rumus integral Cauchy, dan Teorema Residu.</p>
+
+ <h3 class="lesson-subheading">A. Kurva di Bidang Kompleks</h3>
+ <p class="lesson-text">Sebuah <strong>kurva</strong> $C$ di bidang kompleks dapat diparameterisasi sebagai:</p>
+ <p class="lesson-text">$$z(t) = x(t) + iy(t), \qquad a \leq t \leq b$$</p>
+ <p class="lesson-text">Kurva disebut <strong>mulus</strong> (<em>smooth</em>) jika $z'(t)$ kontinu dan tidak nol pada $(a, b)$. Kurva disebut <strong>mulus sepotong-sepotong</strong> jika terdiri dari berhingga banyak bagian mulus. Kurva disebut <strong>tertutup</strong> jika $z(a) = z(b)$, dan <strong>sederhana</strong> jika tidak memotong dirinya sendiri (kecuali di titik ujung).</p>
+ <p class="lesson-text"><strong>Orientasi.</strong> Kurva tertutup memiliki orientasi <strong>positif</strong> jika dijalani berlawanan arah jarum jam. Orientasi ini menjadi konvensi standar dalam Teorema Cauchy dan Teorema Residu.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Integral Kontur</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ kontinu pada domain yang memuat kurva mulus $C$ dengan parameterisasi $z(t)$ untuk $t \in [a, b]$. Integral kontur dari $f$ sepanjang $C$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_C f(z)\, dz = \int_a^b f(z(t)) \, z'(t)\, dt$$</p>
+ <p class="lesson-text">Untuk kurva mulus sepotong-sepotong, integral dihitung sebagai jumlah integral sepanjang setiap bagian mulus.</p>
+ <p class="lesson-text">Integral kontur juga dapat dinyatakan melalui bagian riil dan imajiner:</p>
+ <p class="lesson-text">$$\int_C f(z)\, dz = \int_C (u + iv)(dx + i\, dy) = \int_C (u\, dx - v\, dy) + i\int_C (v\, dx + u\, dy)$$</p>
+ <p class="lesson-text">Ini menunjukkan bahwa integral kontur kompleks pada dasarnya adalah kombinasi dua integral garis real.</p>
+
+ <h3 class="lesson-subheading">C. Contoh Perhitungan Integral Kontur</h3>
+ <p class="lesson-text"><strong>Contoh 1.</strong> Hitung $\displaystyle\oint_{|z|=1} \frac{dz}{z}$, dengan arah berlawanan jarum jam.</p>
+ <p class="lesson-text">Parameterisasi lingkaran satuan: $z(t) = e^{it}$ untuk $t \in [0, 2\pi]$. Maka $z'(t) = ie^{it}$, sehingga:</p>
+ <p class="lesson-text">$$\oint_{|z|=1} \frac{dz}{z} = \int_0^{2\pi} \frac{1}{e^{it}} \cdot ie^{it}\, dt = \int_0^{2\pi} i\, dt = 2\pi i$$</p>
+ <p class="lesson-text">Hasil $2\pi i$ ini adalah salah satu hasil paling fundamental dalam analisis kompleks&mdash;akan muncul kembali di banyak tempat, terutama dalam Teorema Residu.</p>
+
+ <p class="lesson-text"><strong>Contoh 2.</strong> Hitung $\displaystyle\oint_{|z|=1} z^n\, dz$ untuk bilangan bulat $n$.</p>
+ <p class="lesson-text">Dengan parameterisasi yang sama, $z^n = e^{int}$ dan $z'(t) = ie^{it}$:</p>
+ <p class="lesson-text">$$\oint_{|z|=1} z^n\, dz = \int_0^{2\pi} e^{int} \cdot ie^{it}\, dt = i\int_0^{2\pi} e^{i(n+1)t}\, dt$$</p>
+ <p class="lesson-text">Untuk $n \neq -1$, integral ini bernilai $0$ karena integral dari fungsi periodik dengan periode $2\pi$ dan rata-rata nol. Untuk $n = -1$, hasilnya adalah $2\pi i$ (sesuai contoh sebelumnya). Jadi:</p>
+ <p class="lesson-text">$$\oint_{|z|=1} z^n\, dz = \begin{cases} 2\pi i & \text{jika } n = -1 \\ 0 & \text{jika } n \neq -1 \end{cases}$$</p>
+
+ <h3 class="lesson-subheading">D. Teorema Cauchy</h3>
+ <p class="lesson-text"><strong>Teorema (Cauchy).</strong> Jika $f$ analitik pada domain terhubung sederhana $\Omega$ (artinya tidak memiliki "lubang"), dan $C$ adalah kurva tertutup mulus sepotong-sepotong di dalam $\Omega$, maka:</p>
+ <p class="lesson-text">$$\oint_C f(z)\, dz = 0$$</p>
+ <p class="lesson-text">Teorema ini mengejutkan: meskipun integral kontur secara umum bergantung pada jalur, untuk fungsi analitik, integral sepanjang kurva tertutup selalu nol&mdash;asalkan kurva dan seluruh daerah di dalamnya berada dalam domain di mana $f$ analitik.</p>
+ <p class="lesson-text"><strong>Mengapa teorema ini benar?</strong> Sketsa pembuktiannya menggunakan Teorema Green. Tulis $f = u + iv$ dan gunakan identitas $\oint_C f\, dz = \oint_C (u\, dx - v\, dy) + i\oint_C (v\, dx + u\, dy)$. Dengan Teorema Green, kedua integral garis ini dapat diubah menjadi integral ganda dengan integran yang melibatkan persamaan Cauchy-Riemann. Karena $f$ analitik, kedua integran ini nol&mdash;sehingga integralnya nol.</p>
+
+ <h3 class="lesson-subheading">E. Rumus Integral Cauchy</h3>
+ <p class="lesson-text"><strong>Teorema (Rumus Integral Cauchy).</strong> Misalkan $f$ analitik pada domain terhubung sederhana $\Omega$, dan misalkan $C$ adalah kurva tertutup sederhana di dalam $\Omega$ dengan orientasi positif. Untuk setiap titik $z_0$ di dalam $C$:</p>
+ <p class="lesson-text">$$f(z_0) = \frac{1}{2\pi i}\oint_C \frac{f(z)}{z - z_0}\, dz$$</p>
+ <p class="lesson-text">Rumus ini menyatakan bahwa nilai fungsi analitik di titik $z_0$ dapat diperoleh hanya dengan mengintegralkan $f$ pada kurva batas di sekitarnya. Ini adalah sifat yang sangat istimewa&mdash;fungsi analitik "dikontrol secara penuh" oleh nilainya pada batas domain.</p>
+ <p class="lesson-text"><strong>Generalisasi (turunan).</strong> Turunan ke-$n$ dari $f$ di titik $z_0$ adalah:</p>
+ <p class="lesson-text">$$f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_C \frac{f(z)}{(z - z_0)^{n+1}}\, dz$$</p>
+
+ <h3 class="lesson-subheading">F. Contoh Penerapan Rumus Integral Cauchy</h3>
+ <p class="lesson-text"><strong>Contoh 1.</strong> Hitung $\displaystyle\oint_{|z|=2} \frac{e^z}{z - 1}\, dz$.</p>
+ <p class="lesson-text">Fungsi $f(z) = e^z$ analitik di seluruh bidang, dan titik $z_0 = 1$ berada di dalam lingkaran $|z| = 2$. Menurut rumus integral Cauchy:</p>
+ <p class="lesson-text">$$\oint_{|z|=2} \frac{e^z}{z - 1}\, dz = 2\pi i \cdot f(1) = 2\pi i \cdot e^1 = 2\pi ie$$</p>
+
+ <p class="lesson-text"><strong>Contoh 2.</strong> Hitung $\displaystyle\oint_{|z|=1} \frac{e^z}{z^2}\, dz$.</p>
+ <p class="lesson-text">Di sini kita punya $(z - z_0)^2$ di penyebut dengan $z_0 = 0$, sehingga kita gunakan rumus turunan dengan $n = 1$ dan $f(z) = e^z$:</p>
+ <p class="lesson-text">$$\oint_{|z|=1} \frac{e^z}{z^2}\, dz = \frac{2\pi i}{1!} f'(0) = 2\pi i \cdot e^0 = 2\pi i$$</p>
+
+ <h3 class="lesson-subheading">G. Deformasi Kontur</h3>
+ <p class="lesson-text">Salah satu konsekuensi penting dari Teorema Cauchy adalah <strong>prinsip deformasi kontur</strong>: jika $f$ analitik pada daerah antara dua kurva tertutup $C_1$ dan $C_2$ (dengan $C_1$ berada "di dalam" $C_2$), maka:</p>
+ <p class="lesson-text">$$\oint_{C_1} f(z)\, dz = \oint_{C_2} f(z)\, dz$$</p>
+ <p class="lesson-text">Ini memungkinkan kita "mendeformasi" kontur integrasi menjadi bentuk yang lebih mudah dihitung, selama kita tidak melewati titik singularitas dari $f$. Prinsip ini menjadi kunci bagi perhitungan integral dengan Teorema Residu.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Deformasi kontur mengelilingi singularitas</text>
+
+  <line x1="60" y1="200" x2="580" y2="200" stroke="#e8e8e8" stroke-width="1" opacity="0.5"/>
+  <line x1="310" y1="340" x2="310" y2="60" stroke="#e8e8e8" stroke-width="1" opacity="0.5"/>
+  <text x="586" y="204" font-size="12" fill="#b8b8b8" font-style="italic">Re</text>
+  <text x="320" y="56" font-size="12" fill="#b8b8b8" font-style="italic">Im</text>
+
+  <path d="M 130 200 Q 130 100 230 90 Q 330 80 400 120 Q 490 170 470 240 Q 450 310 340 320 Q 220 330 150 270 Q 130 250 130 200 Z" fill="none" stroke="#5dade2" stroke-width="2.2"/>
+
+  <path d="M 250 200 Q 250 160 285 155 Q 320 150 340 175 Q 355 195 340 220 Q 320 245 285 240 Q 250 235 250 200 Z" fill="none" stroke="#daa520" stroke-width="2.2"/>
+
+  <circle cx="295" cy="198" r="7" fill="#daa520" stroke="#e8e8e8" stroke-width="1.5"/>
+  <text x="295" y="182" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">z₀</text>
+
+ <line x1="395" y1="115" x2="415" y2="125" stroke="#5dade2" stroke-width="2" marker-end="url(#arrowC)" />
+ <line x1="332" y1="170" x2="348" y2="180" stroke="#daa520" stroke-width="2" marker-end="url(#arrowC2)" />
+  <defs>
+   <marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 10,5 0,10" fill="#5dade2"/>
+   </marker>
+   <marker id="arrowC2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 10,5 0,10" fill="#daa520"/>
+   </marker>
+  </defs>
+
+  <text x="200" y="70" font-size="13" fill="#5dade2" font-style="italic">C₂</text>
+  <text x="365" y="180" font-size="13" fill="#daa520" font-style="italic">C₁</text>
+
+  <text x="310" y="360" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">∮_{C₁} f dz = ∮_{C₂} f dz, selama f analitik di daerah antara C₁ dan C₂</text>
+ </svg>
+ <figcaption class="visual-caption">Prinsip deformasi kontur. Kontur luar $C_2$ dapat dideformasi menjadi kontur dalam $C_1$ yang mengelilingi singularitas $z_0$&mdash;selama $f$ analitik di daerah antara kedua kontur. Kedua integral memberikan nilai yang sama. Prinsip ini menjadi dasar perhitungan dengan Teorema Residu.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Deret Laurent dan Singularitas</h2>
+ <p class="lesson-text">Bab ini memperkenalkan deret Laurent&mdash;perluasan deret Taylor untuk fungsi dengan singularitas&mdash;dan klasifikasi titik-titik singularitas.</p>
+
+ <h3 class="lesson-subheading">A. Deret Taylor Fungsi Kompleks</h3>
+ <p class="lesson-text">Jika $f$ analitik pada cakram terbuka $|z - z_0| < R$, maka $f$ dapat dinyatakan sebagai deret Taylor yang konvergen pada cakram tersebut:</p>
+ <p class="lesson-text">$$f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n, \qquad a_n = \frac{f^{(n)}(z_0)}{n!}$$</p>
+ <p class="lesson-text">Deret ini konvergen mutlak dan seragam pada setiap cakram tertutup di dalam $|z - z_0| < R$. Jari-jari konvergensi $R$ adalah jarak dari $z_0$ ke singularitas terdekat dari $f$.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Deret Taylor dari $f(z) = e^z$ di sekitar $z_0 = 0$:</p>
+ <p class="lesson-text">$$e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!} = 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \cdots$$</p>
+ <p class="lesson-text">Deret ini konvergen untuk semua $z \in \mathbb{C}$ (jari-jari konvergensi $R = \infty$), karena $e^z$ analitik di seluruh bidang.</p>
+
+ <h3 class="lesson-subheading">B. Deret Laurent</h3>
+ <p class="lesson-text">Jika $f$ analitik pada daerah berbentuk cincin (<em>annulus</em>) $r < |z - z_0| < R$ (dengan $0 \leq r < R \leq \infty$), maka $f$ dapat dinyatakan sebagai <strong>deret Laurent</strong>:</p>
+ <p class="lesson-text">$$f(z) = \sum_{n=-\infty}^{\infty} a_n (z - z_0)^n = \underbrace{\sum_{n=0}^{\infty} a_n (z - z_0)^n}_{\text{bagian analitik}} + \underbrace{\sum_{n=1}^{\infty} a_{-n} (z - z_0)^{-n}}_{\text{bagian utama}}$$</p>
+ <p class="lesson-text">Koefisien $a_n$ dihitung melalui:</p>
+ <p class="lesson-text">$$a_n = \frac{1}{2\pi i}\oint_C \frac{f(z)}{(z - z_0)^{n+1}}\, dz$$</p>
+ <p class="lesson-text">dengan $C$ adalah sebarang kurva tertutup sederhana yang mengelilingi $z_0$ dan berada dalam annulus.</p>
+ <p class="lesson-text">Perbedaan kunci dengan deret Taylor: deret Laurent boleh mengandung pangkat negatif dari $(z - z_0)$&mdash;yang memungkinkannya merepresentasikan fungsi di sekitar singularitas.</p>
+
+ <h3 class="lesson-subheading">C. Klasifikasi Singularitas</h3>
+ <p class="lesson-text">Misalkan $f$ analitik pada cakram berlubang $0 < |z - z_0| < R$ tetapi tidak analitik di $z_0$. Titik $z_0$ disebut <strong>titik singularitas terisolasi</strong>. Terdapat tiga jenis singularitas, diklasifikasikan menurut bagian utama dari deret Laurent:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Jenis</th><th>Bentuk Bagian Utama</th><th>Perilaku $f$</th></tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td><strong>Terhapuskan</strong></td>
+    <td>Tidak ada bagian utama</td>
+    <td>$f$ terbatas di sekitar $z_0$; dapat didefinisikan ulang agar analitik</td>
+   </tr>
+   <tr>
+    <td><strong>Pole orde $n$</strong></td>
+    <td>Berhingga, dengan $a_{-n} \neq 0$ sebagai suku negatif terendah</td>
+    <td>$|f(z)| \to \infty$ ketika $z \to z_0$</td>
+   </tr>
+   <tr>
+    <td><strong>Esensial</strong></td>
+    <td>Tak berhingga banyak suku negatif</td>
+    <td>$f$ berperilaku sangat tidak teratur di sekitar $z_0$ (teorema Picard)</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text"><strong>Contoh terhapuskan.</strong> $f(z) = \dfrac{\sin z}{z}$ di $z_0 = 0$. Karena $\sin z = z - \dfrac{z^3}{3!} + \cdots$, maka $\dfrac{\sin z}{z} = 1 - \dfrac{z^2}{3!} + \cdots$ tidak memiliki suku negatif. Titik $z_0 = 0$ adalah singularitas terhapuskan&mdash;jika kita mendefinisikan $f(0) = 1$, fungsi menjadi analitik di seluruh bidang.</p>
+ <p class="lesson-text"><strong>Contoh pole.</strong> $f(z) = \dfrac{1}{z^2(z-1)}$ memiliki pole orde $2$ di $z = 0$ dan pole orde $1$ di $z = 1$.</p>
+ <p class="lesson-text"><strong>Contoh esensial.</strong> $f(z) = e^{1/z}$ di $z_0 = 0$. Ekspansinya adalah $\sum_{n=0}^{\infty} \dfrac{1}{n! z^n}$, yang memiliki tak berhingga banyak suku negatif. Ini adalah singularitas esensial&mdash;perilakunya sangat liar: untuk setiap bilangan kompleks $w \neq 0$, terdapat barisan $z_n \to 0$ dengan $f(z_n) \to w$ (teorema Picard yang terkenal).</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Teorema Residu</h2>
+ <p class="lesson-text">Bab ini menyajikan alat paling ampuh dalam analisis kompleks&mdash;Teorema Residu&mdash;yang memungkinkan perhitungan banyak integral (baik kompleks maupun real) dengan sangat elegan.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Residu</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $z_0$ adalah singularitas terisolasi dari $f$. <strong>Residu</strong> dari $f$ di $z_0$, ditulis $\operatorname{Res}(f, z_0)$, didefinisikan sebagai koefisien $a_{-1}$ dalam deret Laurent dari $f$ di sekitar $z_0$:</p>
+ <p class="lesson-text">$$f(z) = \sum_{n=-\infty}^{\infty} a_n (z - z_0)^n, \qquad \operatorname{Res}(f, z_0) = a_{-1}$$</p>
+ <p class="lesson-text">Mengapa koefisien $a_{-1}$? Karena jika kita mengintegralkan suku $a_{-1}/(z - z_0)$ sepanjang kurva tertutup kecil yang mengelilingi $z_0$, kita memperoleh $a_{-1} \cdot 2\pi i$&mdash;sedangkan suku-suku lain (dengan pangkat bukan $-1$) memberikan kontribusi nol. Residu inilah yang "menangkap" kontribusi nontrivial dari singularitas terhadap integral kontur.</p>
+
+ <h3 class="lesson-subheading">B. Cara Menghitung Residu</h3>
+ <p class="lesson-text">Untuk singularitas berjenis pole, terdapat rumus praktis untuk menghitung residu tanpa harus menentukan seluruh deret Laurent.</p>
+
+ <p class="lesson-text"><strong>Pole orde 1 (simple pole).</strong> Jika $z_0$ adalah pole orde 1:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, z_0) = \lim_{z \to z_0} (z - z_0) f(z)$$</p>
+
+ <p class="lesson-text"><strong>Pole orde $n$.</strong> Jika $z_0$ adalah pole orde $n$:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, z_0) = \frac{1}{(n-1)!}\lim_{z \to z_0} \frac{d^{n-1}}{dz^{n-1}}\left[(z - z_0)^n f(z)\right]$$</p>
+
+ <p class="lesson-text"><strong>Kasus khusus: rasional sederhana.</strong> Jika $f(z) = \dfrac{p(z)}{q(z)}$ dengan $p(z_0) \neq 0$, $q(z_0) = 0$, dan $q'(z_0) \neq 0$ (sehingga $z_0$ adalah pole orde 1), maka:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, z_0) = \frac{p(z_0)}{q'(z_0)}$$</p>
+
+ <h3 class="lesson-subheading">C. Contoh Menghitung Residu</h3>
+ <p class="lesson-text"><strong>Contoh 1: Pole orde 1.</strong> Hitung residu $f(z) = \dfrac{1}{z^2 + 1}$ di $z = i$.</p>
+ <p class="lesson-text">Fungsi dapat dituliskan $f(z) = \dfrac{1}{(z-i)(z+i)}$. Gunakan rumus pole orde 1:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, i) = \lim_{z \to i}(z - i)\frac{1}{(z-i)(z+i)} = \lim_{z \to i} \frac{1}{z+i} = \frac{1}{2i} = -\frac{i}{2}$$</p>
+
+ <p class="lesson-text"><strong>Contoh 2: Dengan rumus rasional.</strong> Hitung residu $f(z) = \dfrac{z^2 + 3}{z - 1}$ di $z = 1$.</p>
+ <p class="lesson-text">Ambil $p(z) = z^2 + 3$ dan $q(z) = z - 1$. Maka $q'(z) = 1$, sehingga:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, 1) = \frac{p(1)}{q'(1)} = \frac{1 + 3}{1} = 4$$</p>
+
+ <p class="lesson-text"><strong>Contoh 3: Pole orde 2.</strong> Hitung residu $f(z) = \dfrac{e^z}{z^2}$ di $z = 0$.</p>
+ <p class="lesson-text">Gunakan rumus pole orde $n = 2$ dengan $g(z) = e^z$:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, 0) = \frac{1}{1!}\lim_{z \to 0} \frac{d}{dz}[z^2 \cdot \frac{e^z}{z^2}] = \lim_{z \to 0} \frac{d}{dz}[e^z] = \lim_{z \to 0} e^z = 1$$</p>
+
+ <h3 class="lesson-subheading">D. Teorema Residu</h3>
+ <p class="lesson-text"><strong>Teorema (Residu).</strong> Misalkan $f$ analitik pada domain terhubung sederhana $\Omega$ kecuali pada berhingga banyak titik singularitas terisolasi $z_1, z_2, \ldots, z_n$ di dalam $\Omega$. Misalkan $C$ adalah kurva tertutup sederhana dengan orientasi positif yang mengelilingi semua titik singularitas tersebut. Maka:</p>
+ <p class="lesson-text">$$\oint_C f(z)\, dz = 2\pi i \sum_{k=1}^{n} \operatorname{Res}(f, z_k)$$</p>
+
+ <p class="lesson-text">Teorema ini menyatakan bahwa integral kontur sepanjang kurva tertutup hanya bergantung pada residu fungsi di titik-titik singularitas di dalam kurva&mdash;bukan pada bentuk kurvanya.</p>
+
+ <p class="lesson-text"><strong>Mengapa teorema ini benar?</strong> Ide pokoknya adalah <em>deformasi kontur</em>. Kurva $C$ dapat dideformasi menjadi gabungan kurva-kurva kecil $C_k$ yang masing-masing mengelilingi satu titik singularitas $z_k$. Integral sepanjang bagian-bagian yang saling berhadapan saling menghapus, dan yang tersisa hanyalah integral pada kurva-kurva kecil di sekitar setiap singularitas. Untuk setiap kurva kecil $C_k$, integralnya adalah $2\pi i \cdot \operatorname{Res}(f, z_k)$&mdash;yang merupakan konsekuensi langsung dari definisi residu dan hasil $\oint_C dz/z = 2\pi i$.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Teorema Residu: integral kontur = 2πi × jumlah residu</text>
+
+  <line x1="60" y1="200" x2="580" y2="200" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <line x1="310" y1="340" x2="310" y2="60" stroke="#e8e8e8" stroke-width="1" opacity="0.4"/>
+  <text x="586" y="204" font-size="12" fill="#b8b8b8" font-style="italic">Re</text>
+  <text x="320" y="56" font-size="12" fill="#b8b8b8" font-style="italic">Im</text>
+
+  <path d="M 140 200 Q 130 110 220 90 Q 320 70 400 100 Q 490 130 490 210 Q 490 300 380 330 Q 260 360 180 320 Q 130 290 140 200 Z" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="2.2"/>
+
+  <path d="M 220 200 Q 215 175 235 168 Q 260 160 270 180 Q 280 200 260 215 Q 235 225 220 200 Z" fill="none" stroke="#daa520" stroke-width="2"/>
+  <circle cx="245" cy="195" r="5" fill="#daa520" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="245" y="180" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">z₁</text>
+
+  <path d="M 390 180 Q 385 155 405 148 Q 430 140 440 160 Q 450 180 430 195 Q 405 205 390 180 Z" fill="none" stroke="#daa520" stroke-width="2"/>
+  <circle cx="415" cy="175" r="5" fill="#daa520" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="415" y="160" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">z₂</text>
+
+  <path d="M 305 290 Q 300 270 320 264 Q 340 258 350 278 Q 358 298 338 305 Q 315 310 305 290 Z" fill="none" stroke="#daa520" stroke-width="2"/>
+  <circle cx="327" cy="285" r="5" fill="#daa520" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="327" y="315" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">z₃</text>
+
+  <text x="145" y="185" font-size="13" fill="#5dade2" font-style="italic">C</text>
+
+  <path d="M 400 100 Q 395 110 405 115" fill="none" stroke="#5dade2" stroke-width="2" marker-end="url(#arrRes)"/>
+  <defs>
+   <marker id="arrRes" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 10,5 0,10" fill="#5dade2"/>
+   </marker>
+  </defs>
+
+  <text x="310" y="370" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">∮_C f(z) dz = 2πi · [Res(f, z₁) + Res(f, z₂) + Res(f, z₃)]</text>
+ </svg>
+ <figcaption class="visual-caption">Ilustrasi Teorema Residu. Kurva tertutup $C$ (biru) mengelilingi tiga titik singularitas $z_1, z_2, z_3$. Integral kontur sepanjang $C$ sama dengan $2\pi i$ dikali jumlah residu di ketiga titik tersebut. Kontur dapat dideformasi menjadi tiga lingkaran kecil di sekitar setiap singularitas&mdash;hasilnya tetap sama.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Contoh Penerapan Teorema Residu</h3>
+ <p class="lesson-text"><strong>Contoh.</strong> Hitung $\displaystyle\oint_{|z|=2} \frac{dz}{z^2 + 1}$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Identifikasi singularitas.</strong> $f(z) = \dfrac{1}{z^2 + 1} = \dfrac{1}{(z-i)(z+i)}$ memiliki pole orde 1 di $z = i$ dan $z = -i$. Keduanya berada di dalam lingkaran $|z| = 2$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung residu.</strong></p>
+ <p class="lesson-text">Di $z = i$: $\operatorname{Res}(f, i) = \dfrac{1}{2i} = -\dfrac{i}{2}$.</p>
+ <p class="lesson-text">Di $z = -i$: $\operatorname{Res}(f, -i) = \dfrac{1}{-2i} = \dfrac{i}{2}$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Terapkan Teorema Residu.</strong></p>
+ <p class="lesson-text">$$\oint_{|z|=2} \frac{dz}{z^2 + 1} = 2\pi i \left(-\frac{i}{2} + \frac{i}{2}\right) = 2\pi i \cdot 0 = 0$$</p>
+ <p class="lesson-text">Hasilnya nol. Ini konsisten dengan kenyataan bahwa $f(z) = 1/(z^2+1)$ memiliki anti-turunan $\arctan z$ pada daerah yang cukup luas&mdash;dan integral dari turunan sepanjang kurva tertutup selalu nol.</p>
+
+ <p class="lesson-text"><strong>Contoh lain.</strong> Hitung $\displaystyle\oint_{|z|=2} \frac{e^z}{z - 1}\, dz$.</p>
+ <p class="lesson-text">Singularitas: pole orde 1 di $z = 1$, berada di dalam $|z| = 2$. Residunya:</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, 1) = \lim_{z \to 1}(z-1)\frac{e^z}{z-1} = e^1 = e$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\oint_{|z|=2} \frac{e^z}{z-1}\, dz = 2\pi i \cdot e = 2\pi ie$$</p>
+ <p class="lesson-text">Hasil ini sama dengan yang kita peroleh menggunakan rumus integral Cauchy di Bab II&mdash;sebagaimana mestinya, karena kedua teorema ini saling terkait.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut contoh-contoh tambahan yang menerapkan Teorema Residu untuk menghitung integral real yang sulit diselesaikan dengan metode kalkulus biasa.</p>
+
+ <h3 class="lesson-subheading">A. Integral Trigonometri</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^{2\pi} \frac{d\theta}{2 + \cos\theta}$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah ke integral kontur.</strong> Gunakan substitusi $z = e^{i\theta}$, sehingga $d\theta = \dfrac{dz}{iz}$ dan $\cos\theta = \dfrac{z + z^{-1}}{2} = \dfrac{z^2 + 1}{2z}$. Ketika $\theta$ bergerak dari $0$ sampai $2\pi$, $z$ bergerak sepanjang lingkaran satuan $|z| = 1$ dengan orientasi positif.</p>
+ <p class="lesson-text">$$2 + \cos\theta = 2 + \frac{z^2 + 1}{2z} = \frac{4z + z^2 + 1}{2z}$$</p>
+ <p class="lesson-text">Maka integran menjadi:</p>
+ <p class="lesson-text">$$\frac{1}{2 + \cos\theta} \cdot d\theta = \frac{2z}{z^2 + 4z + 1} \cdot \frac{dz}{iz} = \frac{2\, dz}{i(z^2 + 4z + 1)}$$</p>
+ <p class="lesson-text">Sehingga integralnya menjadi:</p>
+ <p class="lesson-text">$$\int_0^{2\pi} \frac{d\theta}{2 + \cos\theta} = \frac{2}{i}\oint_{|z|=1} \frac{dz}{z^2 + 4z + 1}$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Cari singularitas di dalam $|z| = 1$.</strong> Akar dari $z^2 + 4z + 1 = 0$ adalah $z = -2 \pm \sqrt{3}$. Nilai numerik: $-2 + \sqrt{3} \approx -0{,}268$ dan $-2 - \sqrt{3} \approx -3{,}732$. Hanya $-2 + \sqrt{3}$ yang berada di dalam $|z| = 1$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung residu.</strong> Karena akar-akarnya berbeda, $z_0 = -2 + \sqrt{3}$ adalah pole orde 1. Gunakan rumus:</p>
+ <p class="lesson-text">$$\operatorname{Res}\left(\frac{1}{z^2 + 4z + 1}, z_0\right) = \frac{1}{2z_0 + 4} = \frac{1}{2(-2 + \sqrt{3}) + 4} = \frac{1}{2\sqrt{3}}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Terapkan Teorema Residu.</strong></p>
+ <p class="lesson-text">$$\oint_{|z|=1} \frac{dz}{z^2 + 4z + 1} = 2\pi i \cdot \frac{1}{2\sqrt{3}} = \frac{\pi i}{\sqrt{3}}$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Hitung integral aslinya.</strong></p>
+ <p class="lesson-text">$$\int_0^{2\pi} \frac{d\theta}{2 + \cos\theta} = \frac{2}{i} \cdot \frac{\pi i}{\sqrt{3}} = \frac{2\pi}{\sqrt{3}}$$</p>
+ <p class="lesson-text">Hasil ini sesuai dengan rumus standar $\displaystyle\int_0^{2\pi} \frac{d\theta}{a + b\cos\theta} = \frac{2\pi}{\sqrt{a^2 - b^2}}$ untuk $a > |b|$, dengan $a = 2$ dan $b = 1$.</p>
+
+ <h3 class="lesson-subheading">B. Integral Tak Wajar pada Garis Real</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_{-\infty}^{\infty} \frac{dx}{1 + x^2}$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Ubah ke integral kontur.</strong> Kita tutup garis real dengan setengah lingkaran $C_R$ di bagian atas bidang kompleks dengan jari-jari $R$ besar. Kontur tertutup $\Gamma_R$ terdiri dari segmen real $[-R, R]$ dan setengah lingkaran $C_R$. Maka:</p>
+ <p class="lesson-text">$$\oint_{\Gamma_R} \frac{dz}{1 + z^2} = \int_{-R}^{R} \frac{dx}{1 + x^2} + \int_{C_R} \frac{dz}{1 + z^2}$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Tunjukkan integral pada $C_R$ menuju nol.</strong> Untuk $|z| = R$ besar, $|1 + z^2| \geq R^2 - 1$, sehingga:</p>
+ <p class="lesson-text">$$\left|\int_{C_R} \frac{dz}{1 + z^2}\right| \leq \frac{\pi R}{R^2 - 1} \to 0 \quad \text{ketika } R \to \infty$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung residu.</strong> $f(z) = \dfrac{1}{1 + z^2}$ memiliki pole orde 1 di $z = i$ dan $z = -i$. Hanya $z = i$ yang berada di dalam kontur $\Gamma_R$ (untuk $R > 1$).</p>
+ <p class="lesson-text">$$\operatorname{Res}(f, i) = \frac{1}{2i} = -\frac{i}{2}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Terapkan Teorema Residu dan ambil limit.</strong></p>
+ <p class="lesson-text">$$\oint_{\Gamma_R} \frac{dz}{1 + z^2} = 2\pi i \cdot \left(-\frac{i}{2}\right) = \pi$$</p>
+ <p class="lesson-text">Ketika $R \to \infty$, integral pada $C_R$ menuju nol, sehingga:</p>
+ <p class="lesson-text">$$\int_{-\infty}^{\infty} \frac{dx}{1 + x^2} = \pi$$</p>
+ <p class="lesson-text">Hasil ini dapat diverifikasi dengan metode real: $\int_{-\infty}^{\infty} \frac{dx}{1+x^2} = \lim_{b \to \infty} [\arctan x]_{-b}^{b} = \frac{\pi}{2} - \left(-\frac{\pi}{2}\right) = \pi$ ✓. Namun untuk integral yang lebih rumit, metode residu jauh lebih mudah daripada metode real.</p>
+
+ <h3 class="lesson-subheading">C. Penerapan: Fisika Kuantum dan Teori Medan</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam teori medan kuantum, integral lintasan (<em>path integral</em>) melibatkan integral fungsional yang sering diselesaikan menggunakan teknik dari analisis kompleks. Salah satu teknik yang paling penting adalah <strong>rotasi Wick</strong>&mdash;yaitu mengubah variabel waktu $t$ menjadi waktu imajiner $\tau = it$. Transformasi ini mengubah eksponensial berosilasi $e^{iS/\hbar}$ menjadi eksponensial menurun $e^{-S_E/\hbar}$&mdash;sehingga integral menjadi konvergen dan dapat dihitung dengan teknik analisis kompleks.</p>
+ <p class="lesson-text">Alasan rotasi Wick sah adalah bahwa integrand adalah fungsi analitik pada bidang kompleks, dan kontur integrasi dapat dideformasi dari sumbu real ke sumbu imajiner tanpa mengubah nilai integral&mdash;selama tidak melewati singularitas. Inilah langsung penerapan prinsip deformasi kontur yang kita bahas di Bab II.</p>
+
+ <h3 class="lesson-subheading">D. Penerapan: Transformasi Fourier dan Pemrosesan Sinyal</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Transformasi Fourier dari sebuah sinyal $f(t)$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\hat{f}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t}\, dt$$</p>
+ <p class="lesson-text">Untuk banyak fungsi penting, integral ini dapat dihitung dengan teknik analisis kompleks. Contohnya, transformasi Fourier dari fungsi Lorentzian $f(t) = \dfrac{1}{1 + t^2}$ dapat dihitung dengan menutup kontur di bidang kompleks bagian atas (untuk $\omega > 0$) atau bawah (untuk $\omega < 0$), lalu menggunakan Teorema Residu.</p>
+ <p class="lesson-text">Hasilnya, $\hat{f}(\omega) = \pi e^{-|\omega|}$&mdash;sebuah eksponensial menurun yang menunjukkan bahwa fungsi Lorentzian memiliki kandungan frekuensi yang terkonsentrasi di sekitar nol.</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Teori Bilangan Analitik</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Fungsi zeta Riemann $\zeta(s) = \sum_{n=1}^{\infty} n^{-s}$ adalah salah satu objek paling penting dalam teori bilangan. Fungsi ini dapat diperluas secara analitik ke seluruh bidang kompleks (kecuali di $s = 1$) menggunakan <strong>rumus residu</strong>:</p>
+ <p class="lesson-text">$$\zeta(s) = \frac{\Gamma(1-s)}{2\pi i}\oint_C \frac{t^{s-1}}{e^t - 1}\, dt$$</p>
+ <p class="lesson-text">dengan $\Gamma$ adalah fungsi gamma dan $C$ adalah kontur yang mengelilingi titik-titik singularitas dari integran. Ekspansi analitik inilah yang memungkinkan kita mempelajari sifat-sifat $\zeta(s)$ di seluruh bidang kompleks&mdash;termasuk hipotesis Riemann yang terkenal, salah satu masalah terbuka paling penting dalam matematika.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Analisis kompleks bukan sekadar keindahan teoretis&mdash;ia adalah alat yang tak terhindarkan di hampir semua cabang matematika modern. Teori bilangan analitik, fisika kuantum, pemrosesan sinyal, dan bahkan teori komputasi semuanya menggunakan alat-alat dari analisis kompleks. Teorema Residu, khususnya, menyediakan cara untuk menghitung integral yang tampaknya mustahil dengan teknik real&mdash;cukup dengan mencari residu fungsi di titik-titik singularitasnya.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Fungsi Analitik</h3>
+ <ul>
+  <li><strong>Menganggap setiap fungsi yang dapat diturunkan secara real juga dapat diturunkan secara kompleks.</strong> Fungsi $f(z) = \bar{z}$ kontinu dan dapat diturunkan sepanjang arah real maupun imajiner&mdash;tetapi bukan secara kompleks. Syarat analitik jauh lebih ketat.</li>
+  <li><strong>Menganggap persamaan Cauchy-Riemann tidak perlu syarat kontinuitas.</strong> Terdapat fungsi yang memenuhi persamaan Cauchy-Riemann di suatu titik tanpa analitik di titik tersebut. Syarat kontinuitas turunan parsial diperlukan agar sebaliknya berlaku.</li>
+  <li><strong>Menganggap bagian riil atau imajiner fungsi analitik selalu harmonik.</strong> Benar&mdash;tetapi hanya jika $f$ betul-betul analitik pada domain terhubung. Untuk fungsi yang hanya analitik di beberapa titik saja, kesimpulan ini bisa gagal.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Integral Kontur</h3>
+ <ul>
+  <li><strong>Mengabaikan orientasi kurva.</strong> Membalik orientasi kurva membalik tanda integral. Untuk kurva tertutup, orientasi positif adalah berlawanan arah jarum jam.</li>
+  <li><strong>Lupa mengalikan dengan $z'(t)$ saat menggunakan parameterisasi.</strong> Dalam rumus $\int_C f(z)\, dz = \int_a^b f(z(t)) z'(t)\, dt$, faktor $z'(t)$ wajib disertakan.</li>
+  <li><strong>Menerapkan Teorema Cauchy tanpa memeriksa analitik.</strong> Teorema Cauchy hanya berlaku jika $f$ analitik di seluruh domain yang memuat kurva dan interiornya. Jika ada singularitas di dalamnya, integralnya mungkin tidak nol.</li>
+  <li><strong>Menganggap kontur harus selalu berbentuk lingkaran.</strong> Kontur dapat berupa kurva tertutup sederhana apa pun. Teorema Cauchy dan Teorema Residu berlaku untuk semua kurva tertutup mulus sepotong-sepotong.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Deret Laurent dan Singularitas</h3>
+ <ul>
+  <li><strong>Menganggap deret Taylor dan Laurent selalu sama.</strong> Deret Taylor hanya memuat pangkat tidak negatif, sedangkan deret Laurent boleh memuat pangkat negatif. Deret Laurent dapat merepresentasikan fungsi di sekitar singularitas; deret Taylor tidak.</li>
+  <li><strong>Salah mengidentifikasi jenis singularitas.</strong> Singularitas esensial bukan pole dari orde tinggi. Singularitas esensial memiliki tak berhingga banyak suku negatif di ekspansi Laurent, dan perilakunya sangat berbeda dari pole.</li>
+  <li><strong>Menganggap singularitas terhapuskan sebagai analitik.</strong> Fungsi $f(z) = \dfrac{\sin z}{z}$ memiliki singularitas terhapuskan di $z = 0$. Fungsi ini <em>tidak</em> analitik di $z = 0$ tanpa pendefinisian ulang&mdash;tetapi dapat dibuat analitik dengan menetapkan $f(0) = 1$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Residu dan Teorema Residu</h3>
+ <ul>
+  <li><strong>Salah menerapkan rumus residu untuk pole orde salah.</strong> Rumus untuk pole orde 1 dan pole orde $n$ berbeda. Menggunakan rumus pole orde 1 untuk pole orde 2 akan menghasilkan jawaban yang salah.</li>
+  <li><strong>Lupa mengalikan dengan $2\pi i$ pada Teorema Residu.</strong> Faktor $2\pi i$ wajib disertakan; tanpa itu, hasilnya salah secara signifikan.</li>
+  <li><strong>Mengabaikan singularitas yang berada di dalam kontur.</strong> Teorema Residu memerlukan penjumlahan residu dari <em>semua</em> singularitas di dalam kurva. Melupakan satu singularitas menghasilkan jawaban yang salah.</li>
+  <li><strong>Menganggap residu selalu bilangan real.</strong> Residu umumnya bilangan kompleks. Sebagai contoh, residu dari $1/(z^2+1)$ di $z = i$ adalah $-i/2$, yang murni imajiner.</li>
+  <li><strong>Salah menentukan arah penutupan kontur untuk integral real.</strong> Untuk integral pada garis real $(-\infty, \infty)$, kontur harus ditutup di setengah bidang atas jika fungsi menurun cukup cepat di sana; jika tidak, integral pada setengah lingkaran tidak akan menuju nol.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Fungsi kompleks:</strong> $f(z) = u(x, y) + iv(x, y)$ dengan $z = x + iy$.</li>
+  <li><strong>Fungsi analitik:</strong> $f$ dapat diturunkan pada lingkungan terbuka di setiap titik. Jauh lebih kuat daripada dapat diturunkan real.</li>
+  <li><strong>Persamaan Cauchy-Riemann:</strong> $u_x = v_y$ dan $u_y = -v_x$. Syarat perlu dan (bersama kontinuitas turunan parsial) cukup untuk analitik.</li>
+  <li><strong>Integral kontur:</strong> $\displaystyle\int_C f(z)\, dz = \int_a^b f(z(t)) z'(t)\, dt$ dengan $z(t)$ parameterisasi $C$.</li>
+  <li><strong>Teorema Cauchy:</strong> jika $f$ analitik pada domain terhubung sederhana yang memuat kurva tertutup $C$, maka $\displaystyle\oint_C f(z)\, dz = 0$.</li>
+  <li><strong>Rumus Integral Cauchy:</strong> $f(z_0) = \dfrac{1}{2\pi i}\displaystyle\oint_C \dfrac{f(z)}{z - z_0}\, dz$ untuk $z_0$ di dalam $C$.</li>
+  <li><strong>Generalisasi turunan:</strong> $f^{(n)}(z_0) = \dfrac{n!}{2\pi i}\displaystyle\oint_C \dfrac{f(z)}{(z - z_0)^{n+1}}\, dz$.</li>
+  <li><strong>Prinsip deformasi kontur:</strong> integral tidak berubah ketika kontur dideformasi, selama tidak melewati singularitas.</li>
+  <li><strong>Deret Taylor:</strong> $f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n$ untuk $f$ analitik pada cakram.</li>
+  <li><strong>Deret Laurent:</strong> $f(z) = \sum_{n=-\infty}^{\infty} a_n (z - z_0)^n$ untuk $f$ analitik pada annulus.</li>
+  <li><strong>Jenis singularitas:</strong> terhapuskan (tanpa suku negatif), pole orde $n$ (berhingga suku negatif dengan suku terendah $-n$), esensial (tak berhingga suku negatif).</li>
+  <li><strong>Residu:</strong> koefisien $a_{-1}$ dalam deret Laurent.</li>
+  <li><strong>Rumus residu pole orde 1:</strong> $\operatorname{Res}(f, z_0) = \lim_{z \to z_0} (z - z_0) f(z)$.</li>
+  <li><strong>Rumus residu pole orde $n$:</strong> $\operatorname{Res}(f, z_0) = \dfrac{1}{(n-1)!}\lim_{z \to z_0} \dfrac{d^{n-1}}{dz^{n-1}}[(z - z_0)^n f(z)]$.</li>
+  <li><strong>Teorema Residu:</strong> $\displaystyle\oint_C f(z)\, dz = 2\pi i \sum_{k=1}^{n} \operatorname{Res}(f, z_k)$ untuk semua singularitas $z_k$ di dalam $C$.</li>
+  <li><strong>Penerapan:</strong> integral trigonometri, integral tak wajar pada garis real, transformasi Fourier, fisika kuantum, teori bilangan analitik.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Analisis kompleks adalah salah satu cabang matematika yang paling elegan dan paling berguna. Dengan memperluas fungsi ke bidang kompleks, kita memperoleh sifat-sifat yang jauh lebih kuat daripada yang mungkin pada fungsi real&mdash;terutama kenyataan bahwa setiap fungsi analitik ditentukan sepenuhnya oleh nilainya pada batas domain, dan bahwa integral kontur hanya bergantung pada residu di titik singularitas.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>Teori Bilangan Analitik</strong> akan memperluas gagasan-gagasan ini dengan menerapkan alat-alat analisis kompleks pada pertanyaan-pertanyaan tentang distribusi bilangan prima&mdash;menghubungkan dua cabang matematika yang tampaknya sangat jauh. Sedangkan <strong>Persamaan Diferensial Parsial</strong> akan menggunakan transformasi Fourier dan analisis kompleks untuk menyelesaikan persamaan-persamaan fundamental fisika seperti persamaan panas, gelombang, dan Laplace.</p>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persamaan Diferensial Biasa (Orde Satu, Linear, Sistem)</title>
+<meta name="description" content="Materi persamaan diferensial biasa: konsep dasar, persamaan orde satu (variabel terpisah, linear, homogen), persamaan linear orde dua, dan sistem persamaan diferensial dengan analisis nilai eigen.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Persamaan Diferensial Biasa (Orde Satu, Linear, Sistem)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Turunan Fungsi</strong> &mdash; persamaan diferensial melibatkan turunan dari fungsi yang tidak diketahui. Aturan turunan (pangkat, produk, kuosien, rantai) dan turunan fungsi dasar menjadi bahasa dasar dalam seluruh materi.</li>
+   <li><strong>Integral Tak Tentu dan Teknik Pengintegralan</strong> &mdash; menyelesaikan persamaan diferensial pada dasarnya adalah operasi anti-turunan. Substitusi dan penggabungan pecahan akan sering dipakai.</li>
+   <li><strong>Matriks, Determinan, dan Nilai Eigen</strong> &mdash; analisis sistem persamaan diferensial linear bertumpu pada nilai eigen dan vektor eigen dari matriks koefisien.</li>
+   <li><strong>Bilangan Kompleks Dasar</strong> &mdash; akar karakteristik dari persamaan linear orde dua sering berupa bilangan kompleks, sehingga solusinya melibatkan bentuk eksponensial kompleks.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Banyak fenomena di alam dapat dijelaskan melalui <em>laju perubahan</em>. Peluruhan radioaktif, pertumbuhan populasi, pendinginan benda, osilasi pegas, dan arus listrik dalam rangkaian semuanya mengikuti pola yang sama: laju perubahan suatu besaran bergantung pada besaran itu sendiri. Hubungan seperti ini dinyatakan dalam <strong>persamaan diferensial</strong>&mdash;yaitu persamaan yang memuat turunan dari fungsi yang tidak diketahui.</p>
+ <p class="lesson-text">Materi ini membahas tiga kelas persamaan diferensial biasa (PDB) yang paling penting. Pertama, persamaan orde satu&mdash;yang melibatkan turunan pertama saja. Kedua, persamaan linear orde dua&mdash;yang muncul secara alami dalam sistem mekanik dan listrik. Ketiga, sistem persamaan diferensial&mdash;yang melibatkan beberapa fungsi sekaligus dan diselesaikan menggunakan nilai eigen.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Konsep Dasar Persamaan Diferensial</h2>
+ <p class="lesson-text">Bab ini memperkenalkan istilah-istilah dasar dalam persamaan diferensial dan mendefinisikan apa yang dimaksud dengan solusi.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Persamaan Diferensial</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> <strong>Persamaan diferensial</strong> adalah persamaan yang memuat turunan dari satu atau lebih fungsi yang tidak diketahui. Jika fungsinya hanya bergantung pada satu variabel bebas, persamaannya disebut <strong>persamaan diferensial biasa</strong> (PDB). Jika fungsinya bergantung pada dua atau lebih variabel bebas, persamaannya disebut <strong>persamaan diferensial parsial</strong> (PDP).</p>
+
+ <p class="lesson-text"><strong>Contoh PDB:</strong></p>
+ <ul>
+  <li>$\dfrac{dy}{dx} = 3x^2 + 1$&mdash;fungsi $y$ bergantung pada satu variabel $x$.</li>
+  <li>$\dfrac{d^2y}{dx^2} + 4\dfrac{dy}{dx} + 3y = 0$&mdash;melibatkan turunan kedua.</li>
+  <li>$\dfrac{dx}{dt} = 2x - y$, $\dfrac{dy}{dt} = x + 3y$&mdash;sistem dua persamaan.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Orde dan Derajat</h3>
+ <p class="lesson-text"><strong>Orde</strong> persamaan diferensial adalah tingkat turunan tertinggi yang muncul dalam persamaan. <strong>Derajat</strong> adalah pangkat tertinggi dari turunan tertinggi (asalkan persamaan dapat dituliskan sebagai polinomial dalam turunan-turunannya).</p>
+ <p class="lesson-text">Dalam materi ini kita akan membahas:</p>
+ <ul>
+  <li>Orde satu: hanya melibatkan $\dfrac{dy}{dx}$.</li>
+  <li>Orde dua: melibatkan $\dfrac{d^2y}{dx^2}$.</li>
+  <li>Sistem orde satu: beberapa persamaan orde satu yang saling terkait.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">C. Persamaan Linear dan Nonlinear</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Persamaan diferensial orde $n$ disebut <strong>linear</strong> jika dapat dituliskan dalam bentuk:</p>
+ <p class="lesson-text">$$a_n(x)\frac{d^ny}{dx^n} + a_{n-1}(x)\frac{d^{n-1}y}{dx^{n-1}} + \cdots + a_1(x)\frac{dy}{dx} + a_0(x)y = f(x)$$</p>
+ <p class="lesson-text">dengan setiap $a_i(x)$ dan $f(x)$ adalah fungsi dari $x$ saja&mdash;bukan dari $y$ atau turunannya.</p>
+ <p class="lesson-text">Jika persamaan tidak dapat dituliskan dalam bentuk di atas, maka disebut <strong>nonlinear</strong>. Contoh nonlinear: $y' = y^2$, $y'' + \sin y = 0$, atau $yy' = x$.</p>
+ <p class="lesson-text"><strong>Mengapa penting membedakan?</strong> Persamaan linear memiliki teori solusi yang lengkap dan sistematis. Untuk persamaan nonlinear, tidak ada metode umum&mdash;setiap persamaan memerlukan pendekatan tersendiri.</p>
+
+ <h3 class="lesson-subheading">D. Solusi Umum dan Solusi Khusus</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $y = \phi(x)$ disebut <strong>solusi</strong> dari persamaan diferensial jika substitusi $\phi$ dan turunan-turunannya ke dalam persamaan menghasilkan identitas untuk semua $x$ dalam domain.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> <strong>Solusi umum</strong> dari persamaan orde $n$ adalah keluarga solusi yang memuat $n$ konstanta sembarang. <strong>Solusi khusus</strong> diperoleh dengan menetapkan nilai-nilai konstanta tersebut, biasanya melalui <strong>kondisi awal</strong>.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Persamaan $\dfrac{dy}{dx} = 2x$ memiliki solusi umum $y = x^2 + C$. Solusi khusus dengan kondisi awal $y(0) = 3$ adalah $y = x^2 + 3$.</p>
+ <p class="lesson-text">Kondisi awal biasanya dituliskan sebagai $y(x_0) = y_0$ untuk persamaan orde satu, dan $y(x_0) = y_0$, $y'(x_0) = y_1$ untuk persamaan orde dua.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Persamaan Diferensial Orde Satu</h2>
+ <p class="lesson-text">Bab ini membahas empat metode utama untuk menyelesaikan persamaan diferensial orde satu: variabel terpisah, persamaan linear dengan faktor integrasi, persamaan homogen, dan persamaan eksak.</p>
+
+ <h3 class="lesson-subheading">A. Persamaan Variabel Terpisah</h3>
+ <p class="lesson-text">Bentuk paling sederhana dari persamaan orde satu adalah ketika variabel $x$ dan $y$ dapat dipisahkan:</p>
+ <p class="lesson-text">$$\frac{dy}{dx} = f(x) \cdot g(y)$$</p>
+ <p class="lesson-text">Jika $g(y) \neq 0$, kita dapat menuliskan:</p>
+ <p class="lesson-text">$$\frac{1}{g(y)}\, dy = f(x)\, dx$$</p>
+ <p class="lesson-text">Kedua ruas kemudian diintegralkan:</p>
+ <p class="lesson-text">$$\int \frac{1}{g(y)}\, dy = \int f(x)\, dx + C$$</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Selesaikan $\dfrac{dy}{dx} = 3x^2 y$.</p>
+ <p class="lesson-text">Pisahkan variabel: $\dfrac{1}{y}\, dy = 3x^2\, dx$ (untuk $y \neq 0$). Integrasikan kedua ruas:</p>
+ <p class="lesson-text">$$\ln|y| = x^3 + C_1$$</p>
+ <p class="lesson-text">Eksponensialkan: $|y| = e^{C_1} e^{x^3}$. Karena $e^{C_1}$ adalah konstanta positif, kita dapat menuliskan solusi umum sebagai:</p>
+ <p class="lesson-text">$$y = C e^{x^3}$$</p>
+ <p class="lesson-text">dengan $C$ konstanta sembarang (nilai $C = 0$ juga memenuhi persamaan).</p>
+
+ <h3 class="lesson-subheading">B. Persamaan Linear Orde Satu</h3>
+ <p class="lesson-text"><strong>Bentuk standar.</strong> Persamaan linear orde satu dituliskan sebagai:</p>
+ <p class="lesson-text">$$\frac{dy}{dx} + P(x)y = Q(x)$$</p>
+ <p class="lesson-text"><strong>Metode faktor integrasi.</strong> Ide dasarnya adalah mengalikan persamaan dengan suatu fungsi $\mu(x)$ sedemikian sehingga ruas kiri menjadi turunan dari $\mu(x) y$.</p>
+ <p class="lesson-text">Kalikan dengan $\mu(x)$:</p>
+ <p class="lesson-text">$$\mu(x)y' + \mu(x)P(x)y = \mu(x)Q(x)$$</p>
+ <p class="lesson-text">Kita ingin ruas kiri menjadi $\dfrac{d}{dx}[\mu(x) y] = \mu y' + \mu' y$. Maka syaratnya adalah $\mu' = \mu P$, yang dipenuhi oleh:</p>
+ <p class="lesson-text">$$\mu(x) = e^{\int P(x)\, dx}$$</p>
+ <p class="lesson-text">Dengan faktor integrasi ini, persamaan menjadi:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[\mu y] = \mu Q$$</p>
+ <p class="lesson-text">Integrasikan kedua ruas:</p>
+ <p class="lesson-text">$$\mu(x) y = \int \mu(x) Q(x)\, dx + C$$</p>
+ <p class="lesson-text">Sehingga solusi umumnya:</p>
+ <p class="lesson-text">$$y = \frac{1}{\mu(x)}\left(\int \mu(x) Q(x)\, dx + C\right)$$</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Selesaikan $\dfrac{dy}{dx} + 2y = 6$.</p>
+ <p class="lesson-text">Di sini $P(x) = 2$ dan $Q(x) = 6$. Faktor integrasi:</p>
+ <p class="lesson-text">$$\mu(x) = e^{\int 2\, dx} = e^{2x}$$</p>
+ <p class="lesson-text">Kalikan persamaan dengan $\mu$:</p>
+ <p class="lesson-text">$$e^{2x} y' + 2e^{2x} y = 6e^{2x}$$</p>
+ <p class="lesson-text">Ruas kiri dapat ditulis sebagai $\dfrac{d}{dx}[e^{2x} y]$:</p>
+ <p class="lesson-text">$$\frac{d}{dx}\left[e^{2x} y\right] = 6e^{2x}$$</p>
+ <p class="lesson-text">Integrasikan:</p>
+ <p class="lesson-text">$$e^{2x} y = 3e^{2x} + C$$</p>
+ <p class="lesson-text">Sehingga:</p>
+ <p class="lesson-text">$$y = 3 + Ce^{-2x}$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Turunkan: $y' = -2Ce^{-2x}$. Substitusi ke persamaan: $-2Ce^{-2x} + 2(3 + Ce^{-2x}) = -2Ce^{-2x} + 6 + 2Ce^{-2x} = 6$. Sesuai. ✓</p>
+
+ <h3 class="lesson-subheading">C. Persamaan Homogen</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Persamaan orde satu disebut <strong>homogen</strong> jika dapat dituliskan dalam bentuk:</p>
+ <p class="lesson-text">$$\frac{dy}{dx} = f\left(\frac{y}{x}\right)$$</p>
+ <p class="lesson-text">yaitu ruas kanan hanya bergantung pada rasio $y/x$.</p>
+ <p class="lesson-text"><strong>Metode substitusi.</strong> Ambil $v = y/x$, sehingga $y = vx$. Turunkan terhadap $x$:</p>
+ <p class="lesson-text">$$\frac{dy}{dx} = v + x\frac{dv}{dx}$$</p>
+ <p class="lesson-text">Substitusi ke persamaan awal memberikan persamaan variabel terpisah dalam $v$ dan $x$:</p>
+ <p class="lesson-text">$$v + x\frac{dv}{dx} = f(v) \quad \Rightarrow \quad x\frac{dv}{dx} = f(v) - v$$</p>
+ <p class="lesson-text">Setelah menyelesaikan persamaan dalam $v$, kembalikan $v = y/x$.</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Selesaikan $\dfrac{dy}{dx} = \dfrac{x + y}{x}$.</p>
+ <p class="lesson-text">Ruas kanan dapat dituliskan sebagai $1 + y/x$, sehingga ini adalah persamaan homogen dengan $f(v) = 1 + v$. Substitusi $y = vx$:</p>
+ <p class="lesson-text">$$v + x\frac{dv}{dx} = 1 + v \quad \Rightarrow \quad x\frac{dv}{dx} = 1$$</p>
+ <p class="lesson-text">Pisahkan variabel: $dv = \dfrac{dx}{x}$. Integrasikan:</p>
+ <p class="lesson-text">$$v = \ln|x| + C$$</p>
+ <p class="lesson-text">Kembalikan $v = y/x$:</p>
+ <p class="lesson-text">$$y = x\ln|x| + Cx$$</p>
+
+ <h3 class="lesson-subheading">D. Persamaan Eksak</h3>
+ <p class="lesson-text">Persamaan orde satu $M(x, y)\, dx + N(x, y)\, dy = 0$ disebut <strong>eksak</strong> jika terdapat fungsi $F(x, y)$ sedemikian sehingga $\dfrac{\partial F}{\partial x} = M$ dan $\dfrac{\partial F}{\partial y} = N$. Dalam hal ini, solusinya adalah $F(x, y) = C$.</p>
+ <p class="lesson-text"><strong>Syarat eksak.</strong> Persamaan eksak jika dan hanya jika:</p>
+ <p class="lesson-text">$$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$</p>
+ <p class="lesson-text">Syarat ini berasal dari kesamaan turunan parsial campuran $F_{xy} = F_{yx}$.</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Selesaikan $(2xy + 3)\, dx + (x^2 + 4y)\, dy = 0$.</p>
+ <p class="lesson-text">Periksa syarat eksak:</p>
+ <ul>
+  <li>$\dfrac{\partial M}{\partial y} = \dfrac{\partial (2xy + 3)}{\partial y} = 2x$.</li>
+  <li>$\dfrac{\partial N}{\partial x} = \dfrac{\partial (x^2 + 4y)}{\partial x} = 2x$.</li>
+ </ul>
+ <p class="lesson-text">Keduanya sama, sehingga persamaan eksak. Cari $F$ dengan $F_x = M$:</p>
+ <p class="lesson-text">$$F = \int (2xy + 3)\, dx = x^2 y + 3x + g(y)$$</p>
+ <p class="lesson-text">Gunakan $F_y = N$ untuk menentukan $g(y)$:</p>
+ <p class="lesson-text">$$F_y = x^2 + g'(y) = x^2 + 4y \quad \Rightarrow \quad g'(y) = 4y \quad \Rightarrow \quad g(y) = 2y^2 + C_1$$</p>
+ <p class="lesson-text">Jadi solusi umumnya: $x^2 y + 3x + 2y^2 = C$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Persamaan Linear Orde Dua</h2>
+ <p class="lesson-text">Persamaan linear orde dua muncul di hampir semua sistem fisik yang melibatkan osilasi&mdash;dari pegas dan pendulum hingga rangkaian listrik. Bab ini membahas bentuk homogen dan non-homogen.</p>
+
+ <h3 class="lesson-subheading">A. Persamaan Homogen dengan Koefisien Konstan</h3>
+ <p class="lesson-text">Bentuk paling penting:</p>
+ <p class="lesson-text">$$ay'' + by' + cy = 0$$</p>
+ <p class="lesson-text">dengan $a, b, c$ konstanta dan $a \neq 0$.</p>
+ <p class="lesson-text"><strong>Metode persamaan karakteristik.</strong> Cari solusi dalam bentuk $y = e^{rx}$. Substitusi:</p>
+ <p class="lesson-text">$$ar^2 e^{rx} + br e^{rx} + c e^{rx} = 0 \quad \Rightarrow \quad e^{rx}(ar^2 + br + c) = 0$$</p>
+ <p class="lesson-text">Karena $e^{rx} \neq 0$ untuk semua $r$, kita peroleh <strong>persamaan karakteristik</strong>:</p>
+ <p class="lesson-text">$$ar^2 + br + c = 0$$</p>
+ <p class="lesson-text">Bentuk solusi bergantung pada akar-akar $r_1, r_2$ dari persamaan ini.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Jenis Akar</th><th>Solusi Umum</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Real dan berbeda ($r_1 \neq r_2$)</td><td>$y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$</td></tr>
+   <tr><td>Real dan kembar ($r_1 = r_2 = r$)</td><td>$y = (C_1 + C_2 x) e^{rx}$</td></tr>
+   <tr><td>Kompleks konjugat ($r = \alpha \pm \beta i$)</td><td>$y = e^{\alpha x}(C_1 \cos\beta x + C_2 \sin\beta x)$</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text"><strong>Contoh 1: Akar real berbeda.</strong> Selesaikan $y'' - 5y' + 6y = 0$.</p>
+ <p class="lesson-text">Persamaan karakteristik: $r^2 - 5r + 6 = 0 \Rightarrow (r-2)(r-3) = 0$, sehingga $r_1 = 2$, $r_2 = 3$. Solusi umum:</p>
+ <p class="lesson-text">$$y = C_1 e^{2x} + C_2 e^{3x}$$</p>
+
+ <p class="lesson-text"><strong>Contoh 2: Akar real kembar.</strong> Selesaikan $y'' - 4y' + 4y = 0$.</p>
+ <p class="lesson-text">Persamaan karakteristik: $r^2 - 4r + 4 = 0 \Rightarrow (r-2)^2 = 0$, sehingga $r = 2$ (kembar). Solusi umum:</p>
+ <p class="lesson-text">$$y = (C_1 + C_2 x) e^{2x}$$</p>
+ <p class="lesson-text">Mengapa ada faktor $x$? Karena $e^{2x}$ saja hanya memberikan satu solusi bebas. Untuk memperoleh solusi kedua yang bebas, kita mengalikannya dengan $x$.</p>
+
+ <p class="lesson-text"><strong>Contoh 3: Akar kompleks.</strong> Selesaikan $y'' + 4y = 0$.</p>
+ <p class="lesson-text">Persamaan karakteristik: $r^2 + 4 = 0 \Rightarrow r = \pm 2i$. Di sini $\alpha = 0$ dan $\beta = 2$. Solusi umum:</p>
+ <p class="lesson-text">$$y = C_1 \cos(2x) + C_2 \sin(2x)$$</p>
+ <p class="lesson-text">Solusi ini menggambarkan osilasi harmonik sederhana&mdash;sesuai dengan model pegas ideal tanpa gesekan.</p>
+
+ <h3 class="lesson-subheading">B. Persamaan Non-Homogen</h3>
+ <p class="lesson-text">Bentuk umum:</p>
+ <p class="lesson-text">$$ay'' + by' + cy = f(x)$$</p>
+ <p class="lesson-text">dengan $f(x) \neq 0$. Solusi umumnya berbentuk:</p>
+ <p class="lesson-text">$$y = y_h + y_p$$</p>
+ <p class="lesson-text">dengan $y_h$ adalah solusi umum dari persamaan homogen terkait ($ay'' + by' + cy = 0$), dan $y_p$ adalah <strong>solusi khusus</strong> dari persamaan non-homogen.</p>
+
+ <p class="lesson-text"><strong>Metode koefisien tak tentu.</strong> Metode ini menebak bentuk $y_p$ berdasarkan bentuk $f(x)$. Beberapa bentuk standar:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>$f(x)$</th><th>Tebakan $y_p$</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$P_n(x)$ (polinomial)</td><td>$A_n x^n + \cdots + A_0$</td></tr>
+   <tr><td>$e^{kx}$</td><td>$A e^{kx}$</td></tr>
+   <tr><td>$\cos(kx)$ atau $\sin(kx)$</td><td>$A\cos(kx) + B\sin(kx)$</td></tr>
+   <tr><td>$e^{kx} P_n(x)$</td><td>$e^{kx}(A_n x^n + \cdots + A_0)$</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Setelah menebak, substitusi $y_p$ dan turunannya ke persamaan, lalu samakan koefisien untuk menentukan konstanta.</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Selesaikan $y'' - 3y' + 2y = 4x$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Solusi homogen.</strong> Persamaan karakteristik $r^2 - 3r + 2 = 0 \Rightarrow (r-1)(r-2) = 0$, sehingga:</p>
+ <p class="lesson-text">$$y_h = C_1 e^x + C_2 e^{2x}$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Tebak $y_p$.</strong> Karena $f(x) = 4x$ adalah polinomial derajat 1, tebak $y_p = Ax + B$. Maka $y_p' = A$ dan $y_p'' = 0$. Substitusi:</p>
+ <p class="lesson-text">$$0 - 3A + 2(Ax + B) = 4x \quad \Rightarrow \quad 2Ax + (2B - 3A) = 4x$$</p>
+ <p class="lesson-text">Samakan koefisien:</p>
+ <ul>
+  <li>$2A = 4 \Rightarrow A = 2$.</li>
+  <li>$2B - 3A = 0 \Rightarrow 2B = 6 \Rightarrow B = 3$.</li>
+ </ul>
+ <p class="lesson-text">Jadi $y_p = 2x + 3$, dan solusi umumnya:</p>
+ <p class="lesson-text">$$y = C_1 e^x + C_2 e^{2x} + 2x + 3$$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Tiga jenis solusi persamaan linear orde dua</text>
+
+  <text x="160" y="60" font-size="12" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">Akar real berbeda</text>
+  <text x="160" y="78" font-size="10" fill="#b8b8b8" text-anchor="middle" font-style="italic">(overdamped)</text>
+  <line x1="40" y1="220" x2="290" y2="220" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="60" y1="280" x2="60" y2="100" stroke="#e8e8e8" stroke-width="1"/>
+  <path d="M 60 130 C 100 140 140 170 200 195 C 240 210 260 216 280 218" fill="none" stroke="#5dade2" stroke-width="2.5"/>
+  <text x="160" y="300" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">y = C₁e^{r₁x} + C₂e^{r₂x}</text>
+
+  <text x="310" y="60" font-size="12" fill="#daa520" text-anchor="middle" font-weight="700" font-style="italic">Akar real kembar</text>
+  <text x="310" y="78" font-size="10" fill="#b8b8b8" text-anchor="middle" font-style="italic">(critically damped)</text>
+  <line x1="190" y1="220" x2="440" y2="220" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="210" y1="280" x2="210" y2="100" stroke="#e8e8e8" stroke-width="1"/>
+  <path d="M 210 120 C 240 140 280 180 330 205 C 370 215 410 218 430 218" fill="none" stroke="#daa520" stroke-width="2.5"/>
+  <text x="310" y="300" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">y = (C₁ + C₂x)e^{rx}</text>
+
+  <text x="460" y="60" font-size="12" fill="#22d3ee" text-anchor="middle" font-weight="700" font-style="italic">Akar kompleks</text>
+  <text x="460" y="78" font-size="10" fill="#b8b8b8" text-anchor="middle" font-style="italic">(underdamped)</text>
+  <line x1="340" y1="220" x2="590" y2="220" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="360" y1="280" x2="360" y2="100" stroke="#e8e8e8" stroke-width="1"/>
+  <path d="M 360 180 Q 379 110 398 180 Q 417 230 436 180 Q 455 130 474 180 Q 493 214 512 180 Q 531 148 550 180 Q 569 200 588 180" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
+  <text x="460" y="300" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">y = e^{αx}(C₁cos βx + C₂sin βx)</text>
+ </svg>
+ <figcaption class="visual-caption">Tiga jenis solusi persamaan linear orde dua homogen dengan koefisien konstan. Kiri: akar real berbeda&mdash;solusi meluruh tanpa osilasi. Tengah: akar real kembar&mdash;solusi kembali ke nol secepat mungkin tanpa melintasi. Kanan: akar kompleks&mdash;solusi berosilasi dengan amplitudo yang meluruh.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Sistem Persamaan Diferensial</h2>
+ <p class="lesson-text">Banyak sistem fisik melibatkan beberapa besaran yang saling mempengaruhi. Misalnya, dua tangki air yang terhubung, dua spesies yang berinteraksi, atau rangkaian listrik dengan beberapa komponen. Sistem seperti ini dideskripsikan oleh beberapa persamaan diferensial yang saling terkait.</p>
+
+ <h3 class="lesson-subheading">A. Bentuk Matriks Sistem Linear</h3>
+ <p class="lesson-text">Sistem linear orde satu dengan koefisien konstan dapat dituliskan dalam bentuk matriks:</p>
+ <p class="lesson-text">$$\frac{d\mathbf{x}}{dt} = A\mathbf{x}$$</p>
+ <p class="lesson-text">dengan $\mathbf{x}(t) = (x_1(t), x_2(t), \ldots, x_n(t))^T$ adalah vektor fungsi, dan $A$ adalah matriks koefisien berukuran $n \times n$.</p>
+ <p class="lesson-text"><strong>Contoh sistem $2 \times 2$.</strong> Sistem:</p>
+ <p class="lesson-text">$$\frac{dx_1}{dt} = 2x_1 + x_2, \qquad \frac{dx_2}{dt} = x_1 + 2x_2$$</p>
+ <p class="lesson-text">dapat dituliskan sebagai $\dfrac{d\mathbf{x}}{dt} = A\mathbf{x}$ dengan $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$.</p>
+
+ <h3 class="lesson-subheading">B. Solusi dengan Nilai Eigen</h3>
+ <p class="lesson-text">Gagasan kunci: cari solusi dalam bentuk $\mathbf{x}(t) = e^{\lambda t}\mathbf{v}$, dengan $\mathbf{v}$ adalah vektor konstan. Substitusi:</p>
+ <p class="lesson-text">$$\frac{d}{dt}(e^{\lambda t}\mathbf{v}) = A(e^{\lambda t}\mathbf{v}) \quad \Rightarrow \quad \lambda e^{\lambda t}\mathbf{v} = e^{\lambda t} A\mathbf{v}$$</p>
+ <p class="lesson-text">Karena $e^{\lambda t} \neq 0$, kita memperoleh persamaan nilai eigen:</p>
+ <p class="lesson-text">$$A\mathbf{v} = \lambda \mathbf{v}$$</p>
+ <p class="lesson-text">Jadi setiap nilai eigen $\lambda$ dari $A$ memberikan solusi $\mathbf{x} = e^{\lambda t}\mathbf{v}$, dengan $\mathbf{v}$ adalah vektor eigen yang bersesuaian.</p>
+
+ <p class="lesson-text"><strong>Prosedur umum.</strong></p>
+ <ol>
+  <li>Hitung nilai eigen dari $A$ dengan menyelesaikan $\det(A - \lambda I) = 0$.</li>
+  <li>Untuk setiap nilai eigen, hitung vektor eigen yang bersesuaian dengan menyelesaikan $(A - \lambda I)\mathbf{v} = \mathbf{0}$.</li>
+  <li>Solusi umum adalah kombinasi linear dari solusi-solusi ini.</li>
+ </ol>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Selesaikan sistem dengan $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Nilai eigen.</strong></p>
+ <p class="lesson-text">$$\det(A - \lambda I) = \det\begin{pmatrix} 2 - \lambda & 1 \\ 1 & 2 - \lambda \end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = 0$$</p>
+ <p class="lesson-text">Faktorkan: $(\lambda - 1)(\lambda - 3) = 0$, sehingga $\lambda_1 = 1$, $\lambda_2 = 3$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Vektor eigen.</strong></p>
+ <p class="lesson-text">Untuk $\lambda_1 = 1$: selesaikan $(A - I)\mathbf{v} = \mathbf{0}$:</p>
+ <p class="lesson-text">$$\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \mathbf{0}$$</p>
+ <p class="lesson-text">Ini memberi $v_1 + v_2 = 0$, sehingga $\mathbf{v}_1 = (1, -1)^T$ (dipilih $v_1 = 1$).</p>
+ <p class="lesson-text">Untuk $\lambda_2 = 3$: selesaikan $(A - 3I)\mathbf{v} = \mathbf{0}$:</p>
+ <p class="lesson-text">$$\begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \mathbf{0}$$</p>
+ <p class="lesson-text">Ini memberi $-v_1 + v_2 = 0$, sehingga $\mathbf{v}_2 = (1, 1)^T$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Solusi umum.</strong></p>
+ <p class="lesson-text">$$\mathbf{x}(t) = C_1 e^{t}\begin{pmatrix} 1 \\ -1 \end{pmatrix} + C_2 e^{3t}\begin{pmatrix} 1 \\ 1 \end{pmatrix}$$</p>
+ <p class="lesson-text">Atau dalam bentuk komponen:</p>
+ <p class="lesson-text">$$x_1(t) = C_1 e^t + C_2 e^{3t}, \qquad x_2(t) = -C_1 e^t + C_2 e^{3t}$$</p>
+
+ <h3 class="lesson-subheading">C. Klasifikasi Titik Kesetimbangan</h3>
+ <p class="lesson-text">Untuk sistem $2 \times 2$ dengan $\det(A) \neq 0$, satu-satunya titik kesetimbangan adalah titik asal $\mathbf{x} = \mathbf{0}$. Perilaku solusi di sekitar titik asal ditentukan oleh nilai eigen dari $A$.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Nilai Eigen</th><th>Jenis Kesetimbangan</th><th>Stabilitas</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Real, keduanya positif</td><td>Node tidak stabil</td><td>Tidak stabil (menjauh dari 0)</td></tr>
+   <tr><td>Real, keduanya negatif</td><td>Node stabil</td><td>Stabil (menuju 0)</td></tr>
+   <tr><td>Real, tanda berbeda</td><td>Saddle (pelana)</td><td>Tidak stabil</td></tr>
+   <tr><td>Kompleks dengan $\alpha > 0$</td><td>Spiral tidak stabil</td><td>Tidak stabil</td></tr>
+   <tr><td>Kompleks dengan $\alpha < 0$</td><td>Spiral stabil</td><td>Stabil</td></tr>
+   <tr><td>Imajiner murni ($\alpha = 0$)</td><td>Center (pusat)</td><td>Netral</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Jenis titik kesetimbangan sistem linear 2×2</text>
+
+  <g>
+   <text x="110" y="55" font-size="12" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">Node stabil</text>
+   <line x1="20" y1="180" x2="200" y2="180" stroke="#e8e8e8" stroke-width="0.8"/>
+   <line x1="110" y1="90" x2="110" y2="270" stroke="#e8e8e8" stroke-width="0.8"/>
+   <path d="M 40 130 L 100 175" stroke="#5dade2" stroke-width="1.5" fill="none"/>
+   <polygon points="100,175 94,173 97,168" fill="#5dade2"/>
+   <path d="M 180 130 L 120 175" stroke="#5dade2" stroke-width="1.5" fill="none"/>
+   <polygon points="120,175 126,173 123,168" fill="#5dade2"/>
+   <path d="M 40 230 L 100 185" stroke="#5dade2" stroke-width="1.5" fill="none"/>
+   <polygon points="100,185 94,187 97,192" fill="#5dade2"/>
+   <path d="M 180 230 L 120 185" stroke="#5dade2" stroke-width="1.5" fill="none"/>
+   <polygon points="120,185 126,187 123,192" fill="#5dade2"/>
+   <circle cx="110" cy="180" r="4" fill="#daa520"/>
+  </g>
+
+  <g>
+   <text x="310" y="55" font-size="12" fill="#f0c75e" text-anchor="middle" font-weight="700" font-style="italic">Saddle</text>
+   <line x1="220" y1="180" x2="400" y2="180" stroke="#e8e8e8" stroke-width="0.8"/>
+   <line x1="310" y1="90" x2="310" y2="270" stroke="#e8e8e8" stroke-width="0.8"/>
+   <path d="M 250 130 L 305 175" stroke="#f0c75e" stroke-width="1.5" fill="none"/>
+   <polygon points="305,175 299,173 302,168" fill="#f0c75e"/>
+   <path d="M 250 230 L 305 185" stroke="#f0c75e" stroke-width="1.5" fill="none"/>
+   <polygon points="305,185 299,187 302,192" fill="#f0c75e"/>
+   <path d="M 315 175 L 370 130" stroke="#f0c75e" stroke-width="1.5" fill="none"/>
+   <polygon points="370,130 364,132 368,137" fill="#f0c75e"/>
+   <path d="M 315 185 L 370 230" stroke="#f0c75e" stroke-width="1.5" fill="none"/>
+   <polygon points="370,230 364,228 368,223" fill="#f0c75e"/>
+   <circle cx="310" cy="180" r="4" fill="#daa520"/>
+  </g>
+
+  <g>
+   <text x="510" y="55" font-size="12" fill="#22d3ee" text-anchor="middle" font-weight="700" font-style="italic">Spiral stabil</text>
+   <line x1="420" y1="180" x2="600" y2="180" stroke="#e8e8e8" stroke-width="0.8"/>
+   <line x1="510" y1="90" x2="510" y2="270" stroke="#e8e8e8" stroke-width="0.8"/>
+   <path d="M 590 130 Q 510 130 510 180 Q 510 230 570 230 Q 550 180 510 180 Q 490 180 490 200 Q 490 210 500 210" fill="none" stroke="#22d3ee" stroke-width="1.8"/>
+   <circle cx="510" cy="180" r="4" fill="#daa520"/>
+  </g>
+ </svg>
+ <figcaption class="visual-caption">Tiga jenis titik kesetimbangan utama. Kiri: node stabil&mdash;semua lintasan menuju titik kesetimbangan. Tengah: saddle (pelana)&mdash;sebagian lintasan menjauh, sebagian mendekat. Kanan: spiral stabil&mdash;lintasan berputar menuju titik kesetimbangan.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Contoh Penerapan Sistem</h3>
+ <p class="lesson-text"><strong>Contoh: Dua tangki air terhubung.</strong> Dua tangki berisi air garam yang saling terhubung. Air mengalir dari tangki 1 ke tangki 2 dengan laju 2 L/menit, dan dari tangki 2 ke tangki 1 dengan laju 1 L/menit. Volume tiap tangki tetap (air yang keluar segera diganti air bersih dengan laju yang sama). Jika $x_1(t)$ dan $x_2(t)$ menyatakan jumlah garam (dalam kg) di masing-masing tangki, sistemnya adalah:</p>
+ <p class="lesson-text">$$\frac{dx_1}{dt} = -2x_1 + x_2, \qquad \frac{dx_2}{dt} = 2x_1 - x_2$$</p>
+ <p class="lesson-text">Matriks koefisiennya $A = \begin{pmatrix} -2 & 1 \\ 2 & -1 \end{pmatrix}$.</p>
+ <p class="lesson-text">Nilai eigen: $\det(A - \lambda I) = (-2-\lambda)(-1-\lambda) - 2 = \lambda^2 + 3\lambda = \lambda(\lambda + 3) = 0$. Jadi $\lambda_1 = 0$ dan $\lambda_2 = -3$.</p>
+ <p class="lesson-text">Vektor eigen untuk $\lambda_1 = 0$: $(A - 0)\mathbf{v} = \mathbf{0}$ memberi $-2v_1 + v_2 = 0$, sehingga $v_2 = 2v_1$ dan $\mathbf{v}_1 = (1, 2)^T$.</p>
+ <p class="lesson-text">Vektor eigen untuk $\lambda_2 = -3$: $(A + 3I)\mathbf{v} = \mathbf{0}$ memberi $v_1 + v_2 = 0$, sehingga $\mathbf{v}_2 = (1, -1)^T$.</p>
+ <p class="lesson-text">Solusi umum:</p>
+ <p class="lesson-text">$$x_1(t) = C_1 + C_2 e^{-3t}, \qquad x_2(t) = 2C_1 - C_2 e^{-3t}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Ketika $t \to \infty$, suku $e^{-3t} \to 0$, sehingga sistem menuju keadaan setimbang $x_1 \to C_1$ dan $x_2 \to 2C_1$. Jumlah garam di kedua tangki menjadi konstan, dan rasio $x_2/x_1 = 2$ mencerminkan keseimbangan antara aliran masuk dan keluar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh penerapan yang menunjukkan bagaimana persamaan diferensial dipakai dalam konteks nyata.</p>
+
+ <h3 class="lesson-subheading">A. Peluruhan Radioaktif</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Laju peluruhan zat radioaktif sebanding dengan jumlah zat yang tersisa. Jika $N(t)$ adalah jumlah zat pada waktu $t$, maka:</p>
+ <p class="lesson-text">$$\frac{dN}{dt} = -kN$$</p>
+ <p class="lesson-text">dengan $k > 0$ adalah konstanta peluruhan. Persamaan ini adalah persamaan variabel terpisah:</p>
+ <p class="lesson-text">$$\frac{dN}{N} = -k\, dt \quad \Rightarrow \quad \ln N = -kt + C_1 \quad \Rightarrow \quad N(t) = N_0 e^{-kt}$$</p>
+ <p class="lesson-text">dengan $N_0 = N(0)$ adalah jumlah awal.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Waktu paruh $t_{1/2}$ didefinisikan sebagai waktu yang dibutuhkan agar jumlah zat menjadi setengah dari jumlah awal. Substitusi $N(t_{1/2}) = N_0/2$:</p>
+  <p class="lesson-text">$$\frac{N_0}{2} = N_0 e^{-k t_{1/2}} \quad \Rightarrow \quad t_{1/2} = \frac{\ln 2}{k}$$</p>
+  <p class="lesson-text">Persamaan ini menjadi dasar bagi penanggalan radiokarbon (<em>radiocarbon dating</em>)&mdash;yaitu teknik untuk menentukan usia benda organik dengan mengukur sisa karbon-14.</p>
+ </div>
+
+ <h3 class="lesson-subheading">B. Pendinginan Newton</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Hukum pendinginan Newton menyatakan bahwa laju perubahan suhu sebuah benda sebanding dengan selisih antara suhunya dan suhu lingkungan:</p>
+ <p class="lesson-text">$$\frac{dT}{dt} = -k(T - T_\infty)$$</p>
+ <p class="lesson-text">dengan $T(t)$ adalah suhu benda, $T_\infty$ adalah suhu lingkungan (konstan), dan $k > 0$ konstanta.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Substitusi $u = T - T_\infty$:</p>
+ <p class="lesson-text">$$\frac{du}{dt} = -ku \quad \Rightarrow \quad u(t) = u_0 e^{-kt} \quad \Rightarrow \quad T(t) = T_\infty + (T_0 - T_\infty)e^{-kt}$$</p>
+ <p class="lesson-text">dengan $T_0 = T(0)$ adalah suhu awal.</p>
+ <p class="lesson-text">Solusi ini menunjukkan bahwa suhu benda secara eksponensial mendekati suhu lingkungan&mdash;sesuai dengan intuisi sehari-hari.</p>
+
+ <h3 class="lesson-subheading">C. Rangkaian RLC</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Rangkaian listrik yang terdiri dari resistor ($R$), induktor ($L$), dan kapasitor ($C$) yang dihubungkan seri memenuhi persamaan diferensial orde dua:</p>
+ <p class="lesson-text">$$L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q = E(t)$$</p>
+ <p class="lesson-text">dengan $q(t)$ adalah muatan pada kapasitor dan $E(t)$ adalah tegangan sumber. Persamaan ini identik secara matematis dengan persamaan gerak osilator teredam.</p>
+ <p class="lesson-text"><strong>Kasus tanpa sumber ($E = 0$).</strong> Persamaan karakteristik $Lr^2 + Rr + 1/C = 0$ memiliki diskriminan $R^2 - 4L/C$. Berdasarkan nilai diskriminan ini, rangkaian bersifat:</p>
+ <ul>
+  <li><strong>Overdamped</strong> ($R^2 > 4L/C$): akar real berbeda, muatan meluruh tanpa osilasi.</li>
+  <li><strong>Critically damped</strong> ($R^2 = 4L/C$): akar real kembar, muatan kembali ke nol secepat mungkin.</li>
+  <li><strong>Underdamped</strong> ($R^2 < 4L/C$): akar kompleks, muatan berosilasi dengan amplitudo yang meluruh.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Model Predator-Prey (Lotka-Volterra)</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Interaksi antara populasi mangsa ($x$) dan pemangsa ($y$) dapat dimodelkan dengan sistem nonlinear Lotka-Volterra:</p>
+ <p class="lesson-text">$$\frac{dx}{dt} = \alpha x - \beta xy, \qquad \frac{dy}{dt} = -\gamma y + \delta xy$$</p>
+ <p class="lesson-text">dengan $\alpha, \beta, \gamma, \delta > 0$ adalah konstanta.</p>
+ <p class="lesson-text">Sistem ini <em>tidak</em> linear, sehingga analisis nilai eigen lengkap tidak dapat diterapkan. Namun, dengan linearisasi di sekitar titik kesetimbangan $(x^*, y^*) = (\gamma/\delta, \alpha/\beta)$, dapat ditunjukkan bahwa solusi berosilasi secara periodik di sekitar titik ini.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Model Lotka-Volterra adalah contoh klasik bagaimana persamaan diferensial nonlinear dapat menjelaskan fenomena biologis yang kompleks. Model ini memprediksi siklus periodik populasi&mdash;sesuatu yang secara empiris teramati pada ekosistem nyata seperti interaksi antara lynx dan snowshoe hare di Kanada.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Konsep Dasar</h3>
+ <ul>
+  <li><strong>Menganggap solusi persamaan diferensial adalah bilangan, bukan fungsi.</strong> Solusi PDB adalah fungsi yang memenuhi persamaan, bukan nilai tunggal. Setiap solusi adalah fungsi dari variabel bebas.</li>
+  <li><strong>Lupa menambahkan konstanta integrasi.</strong> Setiap integrasi memunculkan konstanta. Untuk persamaan orde $n$, solusi umumnya memuat $n$ konstanta.</li>
+  <li><strong>Menganggap solusi umum selalu mencakup semua solusi.</strong> Untuk persamaan nonlinear, ada kemungkinan solusi singular yang tidak dapat diperoleh dari solusi umum.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Persamaan Orde Satu</h3>
+  <ul>
+  <li><strong>Menggunakan metode variabel terpisah tanpa memeriksa $g(y) \neq 0$.</strong> Jika $g(y) = 0$ untuk suatu nilai $y$, solusi konstan $y = $ nilai tersebut juga merupakan solusi yang mungkin hilang jika kita membagi dengan $g(y)$.</li>
+  <li><strong>Salah menerapkan faktor integrasi.</strong> Rumus $\mu = e^{\int P\, dx}$ mengasumsikan persamaan sudah dalam bentuk standar $y' + Py = Q$. Jika persamaan diberikan dalam bentuk lain, harus dinormalkan terlebih dahulu.</li>
+  <li><strong>Lupa mengembalikan substitusi pada persamaan homogen.</strong> Setelah menyelesaikan dalam $v$, kita harus mengembalikan $v = y/x$ untuk mendapatkan solusi dalam variabel asli.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Persamaan Orde Dua</h3>
+ <ul>
+  <li><strong>Salah menentukan bentuk solusi untuk akar kembar.</strong> Untuk akar kembar $r$, solusinya $(C_1 + C_2 x)e^{rx}$&mdash;bukan $C_1 e^{rx} + C_2 e^{rx}$, yang akan menjadi redundan.</li>
+  <li><strong>Menganggap akar kompleks selalu berbentuk $a \pm bi$ dengan $a = 0$.</strong> Jika akar kompleks adalah $\alpha \pm \beta i$ dengan $\alpha \neq 0$, solusinya memuat faktor peluruhan $e^{\alpha x}$.</li>
+  <li><strong>Menebak $y_p$ tanpa memperhatikan $y_h$.</strong> Jika tebakan $y_p$ merupakan solusi dari persamaan homogen, harus dikalikan dengan $x$ (atau $x^2$ untuk akar kembar).</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Sistem Persamaan</h3>
+ <ul>
+  <li><strong>Menganggap semua vektor eigen dapat dinormalkan menjadi vektor satuan.</strong> Vektor eigen selalu dapat dikalikan dengan skalar apa pun; pilihan normalisasi tidak mempengaruhi hasil akhir.</li>
+  <li><strong>Salah menginterpretasikan jenis kesetimbangan dari nilai eigen.</strong> Nilai eigen kompleks murni (imajiner murni) menghasilkan <em>center</em>, bukan spiral. Perbedaannya penting: center memiliki lintasan tertutup (periodik), sedangkan spiral tidak.</li>
+  <li><strong>Menganggap semua sistem $2 \times 2$ memiliki nilai eigen berbeda.</strong> Sistem dapat memiliki akar kembar, yang memerlukan penanganan khusus seperti pada persamaan orde dua.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Persamaan diferensial</strong> adalah persamaan yang memuat turunan dari fungsi yang tidak diketahui. <strong>Orde</strong> adalah tingkat turunan tertinggi.</li>
+  <li><strong>Solusi umum</strong> memuat konstanta sebanyak orde persamaan; <strong>solusi khusus</strong> diperoleh dengan menetapkan konstanta melalui kondisi awal.</li>
+  <li><strong>Variabel terpisah:</strong> $\dfrac{dy}{dx} = f(x)g(y) \Rightarrow \int \dfrac{dy}{g(y)} = \int f(x)\, dx$.</li>
+  <li><strong>Linear orde satu:</strong> $y' + P(x)y = Q(x)$, faktor integrasi $\mu = e^{\int P\, dx}$.</li>
+  <li><strong>Homogen orde satu:</strong> $\dfrac{dy}{dx} = f(y/x)$, substitusi $v = y/x$.</li>
+  <li><strong>Eksak:</strong> $M\, dx + N\, dy = 0$ dengan $M_y = N_x$.</li>
+  <li><strong>Linear orde dua homogen:</strong> $ay'' + by' + cy = 0$, persamaan karakteristik $ar^2 + br + c = 0$.</li>
+  <li><strong>Solusi berdasarkan jenis akar:</strong> real berbeda → $C_1 e^{r_1 x} + C_2 e^{r_2 x}$; real kembar → $(C_1 + C_2 x)e^{rx}$; kompleks → $e^{\alpha x}(C_1 \cos\beta x + C_2 \sin\beta x)$.</li>
+  <li><strong>Non-homogen:</strong> $y = y_h + y_p$, dengan $y_p$ dicari melalui koefisien tak tentu.</li>
+  <li><strong>Sistem linear:</strong> $\dfrac{d\mathbf{x}}{dt} = A\mathbf{x}$. Solusi berbentuk $e^{\lambda t}\mathbf{v}$ dengan $\lambda$ nilai eigen dan $\mathbf{v}$ vektor eigen dari $A$.</li>
+  <li><strong>Klasifikasi titik kesetimbangan:</strong> node stabil/tidak stabil, saddle, spiral stabil/tidak stabil, center&mdash;bergantung pada tanda dan jenis nilai eigen.</li>
+  <li><strong>Penerapan:</strong> peluruhan radioaktif, pendinginan Newton, rangkaian RLC, model predator-prey.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Persamaan diferensial adalah bahasa matematika untuk memodelkan perubahan&mdash;dari peluruhan atom hingga osilasi pegas, dari pertumbuhan populasi hingga arus listrik. Materi ini telah membahas tiga kelas utama PDB: orde satu dengan berbagai metode penyelesaian, persamaan linear orde dua yang muncul dalam sistem osilasi, dan sistem persamaan linear yang diselesaikan dengan nilai eigen. Setiap kelas memiliki teknik dan interpretasi yang khas, tetapi semuanya berbagi gagasan yang sama: menemukan fungsi yang memenuhi hubungan antara nilainya dan turunannya.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>Persamaan Diferensial Parsial</strong> akan memperluas konsep ini ke fungsi dengan beberapa variabel bebas, seperti persamaan panas, gelombang, dan Laplace&mdash;yang menjadi dasar bagi banyak bidang fisika dan teknik modern.</p>
+</section>
+
+</main>
+</body>
+</html>

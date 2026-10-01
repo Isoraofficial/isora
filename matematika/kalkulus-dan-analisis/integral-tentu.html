@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integral Tentu (Limit Jumlah Riemann, Luas Bertanda, Sifat-Sifat, Teorema Fundamental Kalkulus)</title>
+<meta name="description" content="Materi integral tentu: jumlah Riemann, definisi integral tentu sebagai limit, luas bertanda, sifat-sifat integral tentu, dan Teorema Fundamental Kalkulus beserta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Integral Tentu (Limit Jumlah Riemann, Luas Bertanda, Sifat-Sifat, Teorema Fundamental Kalkulus)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; integral tentu didefinisikan sebagai limit dari jumlah Riemann. Konsep limit, sifat-sifatnya, dan pemahaman tentang limit bentuk tak tentu menjadi fondasi definisi ini.</li>
+   <li><strong>Kekontinuan Fungsi</strong> &mdash; jaminan bahwa integral tentu terdefinisi dengan baik pada interval tertutup bersumber dari sifat kekontinuan. Setiap fungsi kontinu pada interval tertutup pasti terintegralkan.</li>
+   <li><strong>Integral Tak Tentu</strong> &mdash; Teorema Fundamental Kalkulus menghubungkan integral tentu dengan anti-turunan. Tanpa kemampuan mencari anti-turunan, perhitungan integral tentu akan sangat berat.</li>
+   <li><strong>Notasi Sigma</strong> &mdash; jumlah Riemann menggunakan notasi $\Sigma$ untuk menyatakan penjumlahan berindeks. Pemahaman dasar tentang notasi ini diperlukan untuk mengikuti definisi integral tentu.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Sebelumnya kita sudah mempelajari integral tak tentu sebagai operasi kebalikan dari turunan. Namun ada cara lain&mdash;yang sama sekali berbeda&mdash;untuk memahami apa itu integral: melalui <strong>masalah luas daerah</strong>. Misalkan kita ingin menghitung luas daerah yang dibatasi oleh sebuah kurva sembarang dan sumbu-$X$. Untuk daerah yang berbentuk persegi panjang atau segitiga, rumus dasar geometri sudah cukup. Tetapi untuk daerah yang batasnya berupa kurva melengkung, kita memerlukan pendekatan yang lebih umum.</p>
+ <p class="lesson-text">Gagasan yang dipakai adalah membagi daerah menjadi potongan-potongan kecil yang bentuknya mendekati persegi panjang, menghitung luas setiap potongan, lalu menjumlahkannya. Semakin banyak potongan yang dipakai, semakin baik hasilnya. Pada batas tak hingga banyak potongan&mdash;yaitu ketika lebar tiap potongan menuju nol&mdash;jumlah tersebut menjadi nilai eksak yang disebut <strong>integral tentu</strong>.</p>
+ <p class="lesson-text">Yang membuat konsep ini luar biasa adalah hasil berikut: meskipun integral tentu didefinisikan melalui luas&mdash;sesuatu yang tampak tidak berhubungan dengan turunan&mdash;ternyata ia dapat dihitung menggunakan anti-turunan. Hubungan ini dinyatakan oleh <strong>Teorema Fundamental Kalkulus</strong>, yang menjadi salah satu pencapaian terbesar dalam matematika: ia menyatukan dua cabang kalkulus&mdash;diferensial dan integral&mdash;menjadi satu kerangka yang utuh.</p>
+ <p class="lesson-text">Materi ini mencakup empat topik. Pertama, jumlah Riemann sebagai aproksimasi luas dan definisi integral tentu sebagai limitnya. Kedua, tafsiran integral tentu sebagai luas bertanda. Ketiga, sifat-sifat aljabar integral tentu. Keempat, Teorema Fundamental Kalkulus&mdash;yang menghubungkan integral tentu dengan anti-turunan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Jumlah Riemann</h2>
+ <p class="lesson-text">Bab ini menyusun definisi integral tentu dari gagasan paling dasar: menghitung luas daerah dengan pendekatan persegi panjang. Kita mulai dari masalah luas, kemudian membangun aproksimasinya secara bertahap.</p>
+
+ <h3 class="lesson-subheading">A. Masalah Luas di Bawah Kurva</h3>
+ <p class="lesson-text">Misalkan $f$ adalah fungsi kontinu dan non-negatif pada interval tertutup $[a, b]$. Kita ingin menentukan luas daerah $R$ yang dibatasi oleh:</p>
+ <ul>
+  <li>Kurva $y = f(x)$ sebagai batas atas,</li>
+  <li>Sumbu-$X$ sebagai batas bawah,</li>
+  <li>Garis vertikal $x = a$ sebagai batas kiri,</li>
+  <li>Garis vertikal $x = b$ sebagai batas kanan.</li>
+ </ul>
+ <p class="lesson-text">Jika $f(x)$ adalah fungsi linear, daerah $R$ berbentuk trapesium dan luasnya dapat dihitung dengan rumus geometri biasa. Namun jika $f(x)$ adalah kurva melengkung, rumus geometri sederhana tidak lagi memadai. Kita memerlukan pendekatan yang lebih umum.</p>
+
+ <h3 class="lesson-subheading">B. Aproksimasi dengan Persegi Panjang</h3>
+ <p class="lesson-text">Gagasan dasarnya sederhana: daerah di bawah kurva dapat <em>didekati</em> oleh sejumlah persegi panjang yang disusun berdampingan. Meskipun bentuk persegi panjang tidak persis sama dengan daerah aslinya, jumlah luasnya memberi perkiraan yang cukup baik&mdash;dan perkiraan ini dapat diperbaiki dengan memperbanyak persegi panjang.</p>
+ <p class="lesson-text">Prosedur aproksimasinya sebagai berikut.</p>
+ <p class="lesson-text"><strong>Langkah 1: Bagi interval.</strong> Bagi interval $[a, b]$ menjadi $n$ subinterval yang sama panjang. Lebar setiap subinterval adalah:</p>
+ <p class="lesson-text">$$\Delta x = \frac{b - a}{n}$$</p>
+ <p class="lesson-text">Titik-titik pembagi interval ini adalah:</p>
+ <p class="lesson-text">$$x_0 = a, \, x_1 = a + \Delta x, \, x_2 = a + 2\Delta x, \, \ldots, \, x_n = b$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Pilih titik sampel.</strong> Dalam setiap subinterval $[x_{i-1}, x_i]$, pilih satu titik $x_i^*$&mdash;bisa titik kiri ($x_i^* = x_{i-1}$), titik kanan ($x_i^* = x_i$), titik tengah, atau titik mana pun dalam subinterval tersebut.</p>
+ <p class="lesson-text"><strong>Langkah 3: Bentuk persegi panjang.</strong> Untuk setiap subinterval, bentuk persegi panjang dengan lebar $\Delta x$ dan tinggi $f(x_i^*)$. Luas persegi panjang ke-$i$ adalah $f(x_i^*) \cdot \Delta x$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Jumlahkan.</strong> Jumlah luas semua persegi panjang adalah:</p>
+ <p class="lesson-text">$$S_n = \sum_{i=1}^{n} f(x_i^*) \, \Delta x$$</p>
+ <p class="lesson-text">Jumlah ini disebut <strong>jumlah Riemann</strong> (<em>Riemann sum</em>) untuk $f$ pada $[a, b]$. Ia memberi aproksimasi luas daerah yang diinginkan.</p>
+
+ <figure>
+  <svg viewBox="0 0 560 400" style="max-width:100%; height:auto; width:560px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="340" x2="545" y2="340" stroke="#e8e8e8" stroke-width="1.5" />
+  <polygon points="547,340 537,335 537,345" fill="#e8e8e8" />
+  <text x="551" y="344" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="60" y1="375" x2="60" y2="30" stroke="#e8e8e8" stroke-width="1.5" />
+  <polygon points="60,27 55,37 65,37" fill="#e8e8e8" />
+  <text x="66" y="26" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <rect x="80" y="130" width="100" height="210" fill="#daa520" fill-opacity="0.18" stroke="#daa520" stroke-width="1.3" />
+  <rect x="180" y="55" width="100" height="285" fill="#daa520" fill-opacity="0.18" stroke="#daa520" stroke-width="1.3" />
+  <rect x="280" y="55" width="100" height="285" fill="#daa520" fill-opacity="0.18" stroke="#daa520" stroke-width="1.3" />
+  <rect x="380" y="130" width="100" height="210" fill="#daa520" fill-opacity="0.18" stroke="#daa520" stroke-width="1.3" />
+  <path d="M 80 280 Q 180 40 280 40 Q 380 40 480 280" fill="none" stroke="#5dade2" stroke-width="2.8" />
+  <circle cx="130" cy="130" r="4.5" fill="#5dade2" />
+  <circle cx="230" cy="55" r="4.5" fill="#5dade2" />
+  <circle cx="330" cy="55" r="4.5" fill="#5dade2" />
+  <circle cx="430" cy="130" r="4.5" fill="#5dade2" />
+  <text x="80" y="360" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">a</text>
+  <text x="480" y="360" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">b</text>
+  <line x1="80" y1="378" x2="180" y2="378" stroke="#b8b8b8" stroke-width="1" />
+  <line x1="80" y1="374" x2="80" y2="382" stroke="#b8b8b8" stroke-width="1" />
+  <line x1="180" y1="374" x2="180" y2="382" stroke="#b8b8b8" stroke-width="1" />
+  <text x="130" y="394" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Δx</text>
+  <text x="280" y="20" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Jumlah Riemann untuk f pada [a, b]</text>
+ </svg>
+ <figcaption class="visual-caption">Aproksimasi luas daerah di bawah kurva $y = f(x)$ dengan $4$ persegi panjang menggunakan titik tengah setiap subinterval. Setiap persegi panjang memiliki lebar $\Delta x = \frac{b - a}{4}$, dan tingginya adalah nilai $f$ di titik tengah masing-masing subinterval&mdash;sehingga puncak tiap batang tepat menyentuh kurva. Jumlah luas persegi panjang ini adalah jumlah Riemann $S_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">C. Notasi Sigma</h3>
+ <p class="lesson-text">Sebelum melanjutkan, kita perlu memahami notasi yang digunakan untuk menuliskan jumlah Riemann secara ringkas. Notasi <strong>sigma</strong> menggunakan huruf Yunani kapital $\Sigma$ untuk menyatakan penjumlahan berindeks:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{n} a_i = a_1 + a_2 + a_3 + \cdots + a_n$$</p>
+ <p class="lesson-text">Notasi ini dibaca "jumlah dari $a_i$, untuk $i$ dari $1$ sampai $n$". Indeks $i$ disebut <strong>indeks penjumlahan</strong>, dan ia hanya berperan sebagai penghitung&mdash;bisa diganti dengan huruf lain tanpa mengubah hasilnya.</p>
+ <p class="lesson-text">Beberapa sifat notasi sigma yang sering dipakai:</p>
+ <ul>
+  <li><strong>Kelipatan konstanta:</strong> $\displaystyle\sum_{i=1}^{n} k \cdot a_i = k \sum_{i=1}^{n} a_i$.</li>
+  <li><strong>Jumlah / selisih:</strong> $\displaystyle\sum_{i=1}^{n} (a_i \pm b_i) = \sum_{i=1}^{n} a_i \pm \sum_{i=1}^{n} b_i$.</li>
+  <li><strong>Konstanta berulang:</strong> $\displaystyle\sum_{i=1}^{n} k = n \cdot k$ (karena ada $n$ suku, masing-masing $k$).</li>
+  <li><strong>Pemisahan suku terakhir:</strong> $\displaystyle\sum_{i=1}^{n} a_i = \sum_{i=1}^{n-1} a_i + a_n$.</li>
+ </ul>
+ <p class="lesson-text">Dengan notasi ini, jumlah Riemann dapat dituliskan secara ringkas: $S_n = \displaystyle\sum_{i=1}^{n} f(x_i^*) \Delta x$.</p>
+
+ <h3 class="lesson-subheading">D. Definisi Integral Tentu sebagai Limit</h3>
+ <p class="lesson-text">Aproksimasi dengan persegi panjang menjadi semakin baik ketika jumlah persegi panjang bertambah. Pada batas $n \to \infty$, lebar setiap persegi panjang $\Delta x$ menuju nol, dan jumlah Riemann menuju sebuah nilai yang disebut <strong>integral tentu</strong> dari $f$ pada $[a, b]$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ terdefinisi pada interval tertutup $[a, b]$. Integral tentu dari $f$ dari $a$ ke $b$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \, \Delta x$$</p>
+ <p class="lesson-text">asalkan limit tersebut ada dan tidak bergantung pada pemilihan titik sampel $x_i^*$.</p>
+ <p class="lesson-text">Jika limitnya ada, fungsi $f$ dikatakan <strong>terintegralkan</strong> pada $[a, b]$. Dalam hal ini, nilai limitnya adalah sebuah bilangan real, bukan fungsi&mdash;dan tidak mengandung konstanta integrasi.</p>
+ <p class="lesson-text">Salah satu hasil penting dalam kalkulus menyatakan bahwa <strong>setiap fungsi kontinu pada $[a, b]$ pasti terintegralkan pada $[a, b]$</strong>. Karena itu, semua fungsi kontinu yang kita bahas memiliki integral tentu pada setiap interval tertutup dalam domainnya.</p>
+
+ <h3 class="lesson-subheading">E. Hubungan dengan Aproksimasi Persegi Panjang</h3>
+ <p class="lesson-text">Perhatikan bahwa definisi ini menggunakan titik sampel $x_i^*$ yang bebas. Untuk fungsi kontinu, pemilihan titik sampel tidak mempengaruhi nilai limitnya&mdash;selama lebar subinterval menuju nol. Pemilihan titik kiri, titik kanan, titik tengah, atau titik mana pun dalam subinterval akan menghasilkan limit yang sama. Sifat inilah yang membuat integral tentu terdefinisi dengan baik.</p>
+ <p class="lesson-text">Namun untuk keperluan praktis, penggunaan titik ujung kanan atau kiri sering lebih mudah, karena kita dapat mengidentifikasi titik-titik $x_i^*$ secara langsung dari pembagian interval.</p>
+
+ <h3 class="lesson-subheading">F. Contoh: Menghitung Integral Tentu dari Definisi</h3>
+ <p class="lesson-text">Untuk memperlihatkan bagaimana definisi ini dipakai, mari kita hitung $\displaystyle\int_0^3 x^2\, dx$ melalui jumlah Riemann. Hasil ini nantinya dapat kita bandingkan dengan perhitungan menggunakan Teorema Fundamental Kalkulus.</p>
+ <p class="lesson-text"><strong>Langkah 1: Bagi interval.</strong> Interval $[0, 3]$ dibagi menjadi $n$ subinterval dengan lebar $\Delta x = \frac{3}{n}$. Titik-titik pembagi: $x_0 = 0, \, x_1 = \frac{3}{n}, \, x_2 = \frac{6}{n}, \, \ldots, \, x_i = \frac{3i}{n}$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Pilih titik sampel.</strong> Ambil titik ujung kanan setiap subinterval: $x_i^* = x_i = \frac{3i}{n}$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Bentuk jumlah Riemann.</strong></p>
+ <p class="lesson-text">$$S_n = \sum_{i=1}^{n} f(x_i^*) \Delta x = \sum_{i=1}^{n} \left(\frac{3i}{n}\right)^2 \cdot \frac{3}{n} = \sum_{i=1}^{n} \frac{9 i^2}{n^2} \cdot \frac{3}{n} = \frac{27}{n^3} \sum_{i=1}^{n} i^2$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Gunakan rumus jumlah kuadrat.</strong> Terdapat rumus baku:</p>
+ <p class="lesson-text">$$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$S_n = \frac{27}{n^3} \cdot \frac{n(n+1)(2n+1)}{6} = \frac{27}{6} \cdot \frac{(n+1)(2n+1)}{n^2} = \frac{9}{2} \cdot \frac{2n^2 + 3n + 1}{n^2}$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Ambil limit.</strong></p>
+ <p class="lesson-text">$$\int_0^3 x^2\, dx = \lim_{n \to \infty} \frac{9}{2} \cdot \frac{2n^2 + 3n + 1}{n^2} = \frac{9}{2} \cdot 2 = 9$$</p>
+ <p class="lesson-text">Jadi $\displaystyle\int_0^3 x^2\, dx = 9$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Perhitungan di atas memerlukan pengetahuan tentang rumus jumlah kuadrat $\sum_{i=1}^{n} i^2$ dan beberapa manipulasi aljabar. Hasilnya memang benar, tetapi prosesnya cukup panjang. Bandingkan dengan perhitungan yang akan kita lakukan menggunakan Teorema Fundamental Kalkulus di Bab V&mdash;yang hanya memerlukan satu langkah singkat.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Notasi dan Istilah Integral Tentu</h2>
+ <p class="lesson-text">Bab ini membahas bagian-bagian dari notasi integral tentu, perbedaan penting antara integral tentu dan tak tentu, serta tafsiran geometrisnya.</p>
+
+ <h3 class="lesson-subheading">A. Bagian-Bagian Notasi</h3>
+ <p class="lesson-text">Dalam notasi integral tentu $\displaystyle\int_a^b f(x)\, dx$:</p>
+ <ul>
+  <li>$a$ disebut <strong>batas bawah</strong> integrasi&mdash;titik awal interval.</li>
+  <li>$b$ disebut <strong>batas atas</strong> integrasi&mdash;titik akhir interval.</li>
+  <li>$f(x)$ adalah <strong>integran</strong>&mdash;fungsi yang diintegralkan.</li>
+  <li>$dx$ menyatakan variabel integrasi.</li>
+  <li>Simbol $\displaystyle\int$ tetap merupakan lambang integral, tetapi kali ini ia mewakili operasi yang berbeda dari integral tak tentu.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Perbedaan Integral Tentu dan Tak Tentu</h3>
+ <p class="lesson-text">Meskipun menggunakan simbol integral yang sama, integral tentu dan integral tak tentu memiliki perbedaan penting:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Aspek</th><th>Integral Tak Tentu</th><th>Integral Tentu</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Notasi</td><td>$\displaystyle\int f(x)\, dx$</td><td>$\displaystyle\int_a^b f(x)\, dx$</td></tr>
+   <tr><td>Batas</td><td>Tidak ada</td><td>Ada ($a$ dan $b$)</td></tr>
+   <tr><td>Hasil</td><td>Fungsi (keluarga fungsi)</td><td>Bilangan</td></tr>
+   <tr><td>Konstanta integrasi</td><td>Wajib ($+ C$)</td><td>Tidak ada</td></tr>
+   <tr><td>Definisi</td><td>Anti-turunan</td><td>Limit jumlah Riemann</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Perbedaan "hasil berupa fungsi" vs "hasil berupa bilangan" adalah yang paling penting untuk diingat. Ini juga menjadi alasan mengapa konstanta integrasi tidak muncul di integral tentu: ia akan saling menghapus ketika dilakukan pengurangan.</p>
+
+ <h3 class="lesson-subheading">C. Tafsiran Geometris</h3>
+ <p class="lesson-text">Jika $f(x) \leq 0$ pada interval tersebut&mdash;yaitu kurva berada di bawah sumbu-$X$&mdash;maka integralnya bernilai negatif atau nol. Nilai absolutnya menyatakan luas daerah yang berada di bawah sumbu-$X$ dan di atas kurva.</p>
+ <p class="lesson-text">Jika $f(x) \leq 0$ pada interval tersebut&mdash;yaitu kurva berada di bawah sumbu-$X$&mdash;maka integralnya bernilai negatif. Nilai absolutnya menyatakan luas daerah yang berada di bawah sumbu-$X$ dan di atas kurva.</p>
+ <p class="lesson-text">Jika $f$ berganti tanda di dalam interval, maka integralnya menghitung <em>luas bertanda</em>&mdash;daerah di atas sumbu-$X$ dihitung positif, daerah di bawah sumbu-$X$ dihitung negatif. Konsep ini dibahas lebih lanjut di Bab III.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Luas Bertanda</h2>
+ <p class="lesson-text">Salah satu perbedaan paling penting antara "luas geometris" dan "integral tentu" adalah konsep <strong>luas bertanda</strong>. Integral tentu tidak sekadar menghitung luas daerah; ia memberikan tanda positif atau negatif tergantung pada posisi daerah tersebut terhadap sumbu-$X$.</p>
+
+ <h3 class="lesson-subheading">A. Mengapa Tanda Muncul</h3>
+ <p class="lesson-text">Dalam definisi jumlah Riemann $S_n = \sum_{i=1}^{n} f(x_i^*) \Delta x$, lebar subinterval $\Delta x$ selalu positif. Karena itu, tanda setiap suku $f(x_i^*) \Delta x$ ditentukan sepenuhnya oleh nilai $f(x_i^*)$:</p>
+ <ul>
+  <li>Jika $f(x_i^*) > 0$, suku tersebut positif&mdash;daerah berada di atas sumbu-$X$.</li>
+  <li>Jika $f(x_i^*) < 0$, suku tersebut negatif&mdash;daerah berada di bawah sumbu-$X$.</li>
+ </ul>
+ <p class="lesson-text">Ketika kita menjumlahkan suku-suku ini dan mengambil limitnya, tanda-tanda tersebut tetap bertahan. Akibatnya, integral tentu menghitung <em>kontribusi bersih</em> dari semua daerah: daerah di atas sumbu-$X$ dan daerah di bawah sumbu-$X$ saling mengurangi.</p>
+
+ <h3 class="lesson-subheading">B. Luas Bertanda vs Luas Geometris</h3>
+ <p class="lesson-text">Perbedaan ini dapat dirumuskan secara singkat:</p>
+ <ul>
+  <li><strong>Luas bertanda</strong> = integral tentu = $\displaystyle\int_a^b f(x)\, dx$. Bisa positif, negatif, atau nol.</li>
+  <li><strong>Luas geometris</strong> = jumlah luas tanpa memperhatikan tanda. Selalu non-negatif.</li>
+ </ul>
+ <p class="lesson-text">Untuk menghitung luas geometris, kita perlu memecah integral di titik-titik tempat $f$ berganti tanda, lalu menjumlahkan nilai absolut dari masing-masing bagian.</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Fungsi yang Berganti Tanda</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^{2\pi} \sin x\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Dari Bab V kita akan memperoleh bahwa anti-turunan dari $\sin x$ adalah $-\cos x$. Maka:</p>
+ <p class="lesson-text">$$\int_0^{2\pi} \sin x\, dx = \Big[-\cos x\Big]_0^{2\pi} = (-\cos 2\pi) - (-\cos 0) = (-1) - (-1) = 0$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Hasilnya nol. Ini bukan berarti tidak ada daerah yang dihitung. Dari $x = 0$ hingga $x = \pi$, kurva $\sin x$ berada di atas sumbu-$X$, sehingga kontribusinya positif dengan nilai $\int_0^\pi \sin x\, dx = 2$. Dari $x = \pi$ hingga $x = 2\pi$, kurva berada di bawah sumbu-$X$, sehingga kontribusinya negatif dengan besar yang sama, yaitu $-2$. Jumlahnya $2 + (-2) = 0$.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 320" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sumbu X di tengah -->
+  <line x1="40" y1="160" x2="600" y2="160" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="602,160 592,155 592,165" fill="#e8e8e8"/>
+  <text x="606" y="164" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="80" y1="295" x2="80" y2="30" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="80,27 75,37 85,37" fill="#e8e8e8"/>
+  <text x="86" y="26" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <!-- Kurva sinus dari 0 hingga 2π. Skala: 0 sampai 2π → x_svg 100 sampai 560. y dari -1 sampai 1 → 60px per unit. Baseline y=160. -->
+  <path d="M 100 160 Q 145 60 215 60 Q 285 60 330 160 Q 375 260 445 260 Q 515 260 560 160" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <!-- Area positif (0 sampai π) diisi warna biru -->
+  <path d="M 100 160 Q 145 60 215 60 Q 285 60 330 160 L 100 160 Z" fill="#5dade2" fill-opacity="0.15"/>
+
+  <!-- Area negatif (π sampai 2π) diisi warna kuning -->
+  <path d="M 330 160 Q 375 260 445 260 Q 515 260 560 160 L 330 160 Z" fill="#daa520" fill-opacity="0.15"/>
+
+  <!-- Label π dan 2π -->
+  <line x1="330" y1="150" x2="330" y2="170" stroke="#b8b8b8" stroke-width="1"/>
+  <text x="330" y="186" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">π</text>
+  <text x="100" y="186" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">0</text>
+  <text x="560" y="186" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">2π</text>
+
+  <!-- Label area -->
+  <text x="215" y="110" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">luas = +2</text>
+  <text x="445" y="240" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">luas = −2</text>
+
+  <!-- Keterangan integral total -->
+  <text x="330" y="300" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">∫₀²π sin x dx = 2 + (−2) = 0</text>
+ </svg>
+ <figcaption class="visual-caption">Luas bertanda dari $\sin x$ pada $[0, 2\pi]$. Daerah di atas sumbu-$X$ (biru) dihitung positif dengan luas $+2$; daerah di bawah sumbu-$X$ (kuning) dihitung negatif dengan luas $-2$. Jumlah keduanya nol&mdash;meskipun secara geometris daerahnya ada.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Sifat-Sifat Integral Tentu</h2>
+ <p class="lesson-text">Integral tentu memiliki beberapa sifat dasar yang berguna dalam perhitungan. Sifat-sifat ini dapat dibuktikan dari definisi limit jumlah Riemann, atau diturunkan dari sifat-sifat limit.</p>
+
+ <h3 class="lesson-subheading">A. Sifat Batas</h3>
+ <p class="lesson-text"><strong>Sifat 1: Batas sama.</strong> Jika batas atas dan batas bawah sama, integralnya nol:</p>
+ <p class="lesson-text">$$\int_a^a f(x)\, dx = 0$$</p>
+ <p class="lesson-text">Alasan: intervalnya memiliki panjang nol, sehingga luas daerahnya juga nol.</p>
+ <p class="lesson-text"><strong>Sifat 2: Batas tertukar.</strong> Jika batas atas dan batas bawah ditukar, tanda integral berubah:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = -\int_b^a f(x)\, dx$$</p>
+ <p class="lesson-text">Alasan: menukar batas berarti menukar arah integrasi, sehingga arah penjumlahan juga berbalik&mdash;menghasilkan nilai dengan tanda berlawanan.</p>
+
+ <h3 class="lesson-subheading">B. Sifat Linearitas</h3>
+ <p class="lesson-text"><strong>Sifat 3: Kelipatan konstanta.</strong></p>
+ <p class="lesson-text">$$\int_a^b k \cdot f(x)\, dx = k \int_a^b f(x)\, dx$$</p>
+ <p class="lesson-text">Konstanta dapat dikeluarkan dari integral tentu, sama seperti pada integral tak tentu.</p>
+ <p class="lesson-text"><strong>Sifat 4: Jumlah dan selisih.</strong></p>
+ <p class="lesson-text">$$\int_a^b [f(x) \pm g(x)]\, dx = \int_a^b f(x)\, dx \pm \int_a^b g(x)\, dx$$</p>
+ <p class="lesson-text">Integral dari jumlah atau selisih fungsi sama dengan jumlah atau selisih integral masing-masing fungsi.</p>
+
+ <h3 class="lesson-subheading">C. Sifat Interval</h3>
+ <p class="lesson-text"><strong>Sifat 5: Penjumlahan interval.</strong> Jika $c$ adalah titik dalam interval $[a, b]$, maka:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx$$</p>
+ <p class="lesson-text">Integral dari $a$ ke $b$ sama dengan integral dari $a$ ke $c$ ditambah integral dari $c$ ke $b$. Sifat ini memungkinkan kita memecah integral pada titik-titik tertentu&mdash;misalnya ketika integran berubah rumus (fungsi piecewise) atau ketika fungsi berganti tanda.</p>
+ <p class="lesson-text">Menariknya, sifat ini tetap berlaku bahkan jika $c$ berada di luar interval $[a, b]$&mdash;selama $f$ terdefinisi di sana.</p>
+
+ <h3 class="lesson-subheading">D. Sifat Perbandingan</h3>
+ <p class="lesson-text"><strong>Sifat 6: Perbandingan.</strong> Jika $f(x) \leq g(x)$ untuk semua $x$ dalam $[a, b]$, maka:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx \leq \int_a^b g(x)\, dx$$</p>
+ <p class="lesson-text">Jika satu kurva selalu berada di atas kurva lain, maka integralnya juga lebih besar. Sifat ini sering dipakai untuk membandingkan integral tanpa perlu menghitung nilainya.</p>
+
+ <h3 class="lesson-subheading">E. Ringkasan Sifat-Sifat</h3>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Sifat</th><th>Rumus</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Batas sama</td><td>$\displaystyle\int_a^a f(x)\, dx = 0$</td></tr>
+   <tr><td>Batas tertukar</td><td>$\displaystyle\int_a^b f(x)\, dx = -\int_b^a f(x)\, dx$</td></tr>
+   <tr><td>Kelipatan konstanta</td><td>$\displaystyle\int_a^b k \cdot f(x)\, dx = k \int_a^b f(x)\, dx$</td></tr>
+   <tr><td>Jumlah / selisih</td><td>$\displaystyle\int_a^b [f(x) \pm g(x)]\, dx = \int_a^b f(x)\, dx \pm \int_a^b g(x)\, dx$</td></tr>
+   <tr><td>Penjumlahan interval</td><td>$\displaystyle\int_a^b f(x)\, dx = \int_a^c f(x)\, dx + \int_c^b f(x)\, dx$</td></tr>
+   <tr><td>Perbandingan</td><td>Jika $f \leq g$ pada $[a, b]$, maka $\displaystyle\int_a^b f \leq \int_a^b g$</td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Teorema Fundamental Kalkulus</h2>
+ <p class="lesson-text">Sampai di sini, kita memiliki dua konsep integral yang tampak tidak berhubungan: integral tak tentu sebagai anti-turunan, dan integral tentu sebagai limit jumlah Riemann. Teorema Fundamental Kalkulus menyatakan bahwa kedua konsep ini sesungguhnya saling terkait. Hubungan ini menjadikan kalkulus sebagai satu kerangka yang utuh&mdash;dan sekaligus menyediakan cara yang jauh lebih mudah untuk menghitung integral tentu.</p>
+
+ <h3 class="lesson-subheading">A. Teorema Fundamental Kalkulus Bagian 1</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Misalkan $f$ kontinu pada interval tertutup $[a, b]$. Definisikan fungsi $F$ pada $[a, b]$ sebagai:</p>
+ <p class="lesson-text">$$F(x) = \int_a^x f(t)\, dt$$</p>
+ <p class="lesson-text">Maka $F$ dapat diturunkan pada $(a, b)$, dan berlaku:</p>
+ <p class="lesson-text">$$F'(x) = f(x)$$</p>
+ <p class="lesson-text">untuk setiap $x$ dalam $(a, b)$.</p>
+ <p class="lesson-text">Dengan kata lain: <strong>turunan dari integral tentu terhadap batas atasnya adalah integran itu sendiri</strong>. Ini berarti setiap fungsi kontinu memiliki anti-turunan&mdash;yaitu fungsi $F$ di atas&mdash;dan anti-turunan tersebut dapat dibangun dari integral tentu.</p>
+
+ <h3 class="lesson-subheading">B. Mengapa Bagian 1 Benar</h3>
+ <p class="lesson-text">Gagasan di balik teorema ini dapat dipahami secara geometris. Fungsi $F(x) = \int_a^x f(t)\, dt$ menyatakan luas bertanda di bawah kurva $f$ dari $a$ hingga $x$. Ketika $x$ bertambah sedikit sebesar $h$, luas ini bertambah dengan laju yang sebanding dengan tinggi kurva di titik $x$&mdash;yaitu $f(x)$. Jadi laju pertambahan luas $F$ terhadap $x$ sama dengan $f(x)$, yang berarti $F'(x) = f(x)$.</p>
+ <p class="lesson-text">Secara lebih formal, dari definisi turunan:</p>
+ <p class="lesson-text">$$F'(x) = \lim_{h \to 0} \frac{F(x + h) - F(x)}{h} = \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} f(t)\, dt$$</p>
+ <p class="lesson-text">Karena $f$ kontinu, nilai $f(t)$ pada interval kecil $[x, x + h]$ mendekati $f(x)$. Akibatnya, integral $\int_x^{x+h} f(t)\, dt$ kira-kira sama dengan $f(x) \cdot h$, sehingga rasionya mendekati $f(x)$ ketika $h \to 0$.</p>
+
+ <h3 class="lesson-subheading">C. Teorema Fundamental Kalkulus Bagian 2</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Misalkan $f$ kontinu pada interval tertutup $[a, b]$, dan misalkan $F$ adalah sebarang anti-turunan dari $f$ pada interval tersebut. Maka:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = F(b) - F(a)$$</p>
+ <p class="lesson-text">Inilah inti Teorema Fundamental Kalkulus. Ia menyatakan bahwa untuk menghitung integral tentu, kita tidak perlu menghitung limit jumlah Riemann secara langsung. Kita cukup mengikuti tiga langkah berikut:</p>
+ <ol>
+  <li>Mencari anti-turunan $F$ dari $f$.</li>
+  <li>Mengevaluasi $F$ di $b$ dan di $a$.</li>
+  <li>Menghitung selisih $F(b) - F(a)$.</li>
+ </ol>
+ <p class="lesson-text">Hasilnya adalah nilai integral tentu yang dicari.</p>
+ <p class="lesson-text">Untuk menyederhanakan penulisan, hasil $F(b) - F(a)$ biasanya dituliskan dengan notasi kurung siku:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \Big[F(x)\Big]_a^b = F(b) - F(a)$$</p>
+
+ <h3 class="lesson-subheading">D. Mengapa Bagian 2 Benar</h3>
+ <p class="lesson-text">Bagian 2 dapat diturunkan dari Bagian 1 dengan argumen sebagai berikut. Misalkan $F$ adalah sebarang anti-turunan dari $f$. Berdasarkan Bagian 1, fungsi $G(x) = \int_a^x f(t)\, dt$ juga merupakan anti-turunan dari $f$. Karena semua anti-turunan dari $f$ berbeda hanya oleh konstanta, terdapat konstanta $C$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$G(x) = F(x) + C$$</p>
+ <p class="lesson-text">Substitusi $x = a$:</p>
+ <p class="lesson-text">$$G(a) = \int_a^a f(t)\, dt = 0 \quad \Rightarrow \quad 0 = F(a) + C \quad \Rightarrow \quad C = -F(a)$$</p>
+ <p class="lesson-text">Maka $G(x) = F(x) - F(a)$. Substitusi $x = b$:</p>
+ <p class="lesson-text">$$\int_a^b f(t)\, dt = G(b) = F(b) - F(a)$$</p>
+ <p class="lesson-text">Terbukti.</p>
+
+ <h3 class="lesson-subheading">E. Mengapa Teorema Ini Disebut "Fundamental"</h3>
+ <p class="lesson-text">Sebelum teorema ini ditemukan, masalah mencari luas daerah (integral) dan masalah mencari garis singgung (turunan) dianggap sebagai dua bidang yang sama sekali berbeda. Keduanya diselesaikan dengan metode terpisah yang seringkali sangat rumit. Teorema Fundamental Kalkulus menunjukkan bahwa keduanya ternyata adalah dua sisi dari koin yang sama: turunan dan integral adalah operasi yang saling berkebalikan.</p>
+ <p class="lesson-text">Akibat praktisnya sangat besar. Menghitung integral tentu melalui definisi limit jumlah Riemann&mdash;yang melibatkan penjumlahan tak hingga banyak suku&mdash;adalah pekerjaan berat bahkan untuk fungsi sederhana. Dengan Teorema Fundamental Kalkulus, pekerjaan ini tereduksi menjadi pencarian anti-turunan, yang jauh lebih mudah karena hanya melibatkan aturan-aturan dasar turunan yang dibalik.</p>
+ <p class="lesson-text">Bandingkan perhitungan $\displaystyle\int_0^3 x^2\, dx$ di Bab I, yang memerlukan sekitar lima langkah aljabar dan pengetahuan tentang rumus jumlah kuadrat, dengan perhitungan berikut yang menggunakan Teorema Fundamental Kalkulus:</p>
+ <p class="lesson-text">$$\int_0^3 x^2\, dx = \left[\frac{x^3}{3}\right]_0^3 = \frac{27}{3} - \frac{0}{3} = 9$$</p>
+ <p class="lesson-text">Hanya satu baris. Inilah kekuatan Teorema Fundamental Kalkulus.</p>
+
+ <h3 class="lesson-subheading">F. Contoh Penerapan</h3>
+
+ <p class="lesson-text"><strong>Contoh 1.</strong> Hitung $\displaystyle\int_1^3 x^2\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Cari anti-turunan.</strong> Menggunakan aturan pangkat: $\displaystyle\int x^2\, dx = \frac{x^3}{3} + C$. Ambil $F(x) = \dfrac{x^3}{3}$ (konstanta $C$ dapat diabaikan&mdash;ia akan saling menghapus).</p>
+ <p class="lesson-text"><strong>Langkah 2: Evaluasi.</strong></p>
+ <p class="lesson-text">$$F(3) = \frac{27}{3} = 9, \quad F(1) = \frac{1}{3}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung selisihnya.</strong></p>
+ <p class="lesson-text">$$\int_1^3 x^2\, dx = F(3) - F(1) = 9 - \frac{1}{3} = \frac{26}{3}$$</p>
+
+ <p class="lesson-text"><strong>Contoh 2.</strong> Hitung $\displaystyle\int_0^{\pi} \sin x\, dx$.</p>
+ <p class="lesson-text">Anti-turunan dari $\sin x$ adalah $-\cos x$. Maka:</p>
+ <p class="lesson-text">$$\int_0^{\pi} \sin x\, dx = \Big[-\cos x\Big]_0^{\pi} = (-\cos \pi) - (-\cos 0) = (-(-1)) - (-1) = 1 + 1 = 2$$</p>
+
+ <p class="lesson-text"><strong>Contoh 3.</strong> Hitung $\displaystyle\int_1^2 \left(3x^2 - 2x\right) dx$.</p>
+ <p class="lesson-text">Anti-turunan: $F(x) = x^3 - x^2$. Maka:</p>
+ <p class="lesson-text">$$\int_1^2 (3x^2 - 2x)\, dx = \Big[x^3 - x^2\Big]_1^2 = (8 - 4) - (1 - 1) = 4 - 0 = 4$$</p>
+
+ <p class="lesson-text"><strong>Contoh 4.</strong> Hitung $\displaystyle\int_0^1 (e^x + x^2)\, dx$.</p>
+ <p class="lesson-text">Anti-turunan dari $e^x + x^2$ adalah $e^x + \dfrac{x^3}{3}$. Maka:</p>
+ <p class="lesson-text">$$\int_0^1 (e^x + x^2)\, dx = \left[e^x + \frac{x^3}{3}\right]_0^1 = \left(e^1 + \frac{1}{3}\right) - \left(e^0 + \frac{0}{3}\right) = e + \frac{1}{3} - 1 = e - \frac{2}{3}$$</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut contoh-contoh yang menerapkan definisi jumlah Riemann, sifat-sifat integral tentu, dan Teorema Fundamental Kalkulus.</p>
+
+ <h3 class="lesson-subheading">A. Menghitung Integral Sederhana dengan TFC</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_{-1}^2 (4x^3 - 2x + 5)\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Anti-turunan dari $4x^3 - 2x + 5$ adalah $x^4 - x^2 + 5x$. Maka:</p>
+ <p class="lesson-text">$$\int_{-1}^2 (4x^3 - 2x + 5)\, dx = \Big[x^4 - x^2 + 5x\Big]_{-1}^2$$</p>
+ <p class="lesson-text">Evaluasi di batas atas: $2^4 - 2^2 + 5(2) = 16 - 4 + 10 = 22$.</p>
+ <p class="lesson-text">Evaluasi di batas bawah: $(-1)^4 - (-1)^2 + 5(-1) = 1 - 1 - 5 = -5$.</p>
+ <p class="lesson-text">Selisihnya: $22 - (-5) = 27$.</p>
+
+ <h3 class="lesson-subheading">B. Menggunakan Sifat Penjumlahan Interval</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Diberikan fungsi piecewise:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} x & \text{jika } 0 \leq x \leq 1 \\ 2 - x & \text{jika } 1 \leq x \leq 2 \end{cases}$$</p>
+ <p class="lesson-text">Hitung $\displaystyle\int_0^2 f(x)\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Karena rumus $f$ berubah di $x = 1$, kita pecah integralnya di titik tersebut sesuai sifat penjumlahan interval:</p>
+ <p class="lesson-text">$$\int_0^2 f(x)\, dx = \int_0^1 x\, dx + \int_1^2 (2 - x)\, dx$$</p>
+ <p class="lesson-text">Hitung masing-masing:</p>
+ <p class="lesson-text">$$\int_0^1 x\, dx = \left[\frac{x^2}{2}\right]_0^1 = \frac{1}{2} - 0 = \frac{1}{2}$$</p>
+ <p class="lesson-text">$$\int_1^2 (2 - x)\, dx = \left[2x - \frac{x^2}{2}\right]_1^2 = (4 - 2) - \left(2 - \frac{1}{2}\right) = 2 - \frac{3}{2} = \frac{1}{2}$$</p>
+ <p class="lesson-text">Jumlah keduanya: $\dfrac{1}{2} + \dfrac{1}{2} = 1$.</p>
+ <p class="lesson-text">Jadi $\displaystyle\int_0^2 f(x)\, dx = 1$.</p>
+
+ <h3 class="lesson-subheading">C. Menghitung Luas Geometris</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan luas daerah yang dibatasi oleh kurva $y = x^2$, sumbu-$X$, dan garis $x = 0$ serta $x = 3$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Karena $y = x^2 \geq 0$ pada interval $[0, 3]$, luas daerah sama dengan integral tentu:</p>
+ <p class="lesson-text">$$L = \int_0^3 x^2\, dx = \left[\frac{x^3}{3}\right]_0^3 = \frac{27}{3} - 0 = 9$$</p>
+ <p class="lesson-text">Jadi luasnya adalah $9$ satuan luas.</p>
+
+ <h3 class="lesson-subheading">D. Luas Geometris untuk Fungsi yang Berganti Tanda</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung luas geometris daerah yang dibatasi oleh kurva $y = \sin x$, sumbu-$X$, dari $x = 0$ hingga $x = 2\pi$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Fungsi $\sin x$ berganti tanda di $x = \pi$: positif pada $(0, \pi)$ dan negatif pada $(\pi, 2\pi)$. Untuk luas geometris, kita hitung nilai absolut masing-masing bagian:</p>
+ <p class="lesson-text">$$\int_0^\pi \sin x\, dx = \Big[-\cos x\Big]_0^\pi = (-\cos \pi) - (-\cos 0) = 1 + 1 = 2$$</p>
+ <p class="lesson-text">$$\int_\pi^{2\pi} \sin x\, dx = \Big[-\cos x\Big]_\pi^{2\pi} = (-\cos 2\pi) - (-\cos \pi) = (-1) - (1) = -2$$</p>
+ <p class="lesson-text">Luas geometris adalah jumlah nilai absolutnya: $|2| + |-2| = 4$.</p>
+ <p class="lesson-text">Perhatikan perbedaannya dengan integral tentu $\int_0^{2\pi} \sin x\, dx = 0$, yang menghitung luas bertanda. Luas geometris selalu positif&mdash;yaitu $4$ satuan luas.</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Perpindahan vs Jarak Tempuh</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah partikel bergerak sepanjang garis lurus dengan kecepatan $v(t) = t^2 - 4t + 3$ (dalam m/detik), dengan $t$ dalam detik. Tentukan (a) perpindahan partikel dari $t = 0$ sampai $t = 4$, dan (b) jarak total yang ditempuh selama interval tersebut.</p>
+ <p class="lesson-text"><strong>Bagian (a): Perpindahan.</strong> Perpindahan adalah integral dari kecepatan terhadap waktu:</p>
+ <p class="lesson-text">$$\Delta s = \int_0^4 (t^2 - 4t + 3)\, dt = \left[\frac{t^3}{3} - 2t^2 + 3t\right]_0^4$$</p>
+ <p class="lesson-text">Evaluasi di $t = 4$: $\dfrac{64}{3} - 32 + 12 = \dfrac{64}{3} - 20 = \dfrac{64 - 60}{3} = \dfrac{4}{3}$.</p>
+ <p class="lesson-text">Evaluasi di $t = 0$: $0$.</p>
+ <p class="lesson-text">Perpindahan: $\dfrac{4}{3} \approx 1{,}33$ meter.</p>
+ <p class="lesson-text"><strong>Bagian (b): Jarak total.</strong> Untuk jarak total, kita perlu memeriksa kapan kecepatan berganti tanda, karena partikel berbalik arah. Faktorkan $v(t) = (t - 1)(t - 3)$. Maka $v(t) = 0$ di $t = 1$ dan $t = 3$.</p>
+ <p class="lesson-text">Tanda $v(t)$ pada interval:</p>
+ <ul>
+  <li>$v(t) > 0$ untuk $t \in [0, 1)$&mdash;partikel bergerak maju.</li>
+  <li>$v(t) < 0$ untuk $t \in (1, 3)$&mdash;partikel bergerak mundur.</li>
+  <li>$v(t) > 0$ untuk $t \in (3, 4]$&mdash;partikel bergerak maju lagi.</li>
+ </ul>
+ <p class="lesson-text">Jarak total adalah jumlah nilai absolut integral pada setiap subinterval:</p>
+ <p class="lesson-text">$$\int_0^1 v(t)\, dt = \left[\frac{t^3}{3} - 2t^2 + 3t\right]_0^1 = \frac{1}{3} - 2 + 3 = \frac{4}{3}$$</p>
+ <p class="lesson-text">$$\int_1^3 v(t)\, dt = \left[\frac{t^3}{3} - 2t^2 + 3t\right]_1^3 = (9 - 18 + 9) - \frac{4}{3} = 0 - \frac{4}{3} = -\frac{4}{3}$$</p>
+ <p class="lesson-text">$$\int_3^4 v(t)\, dt = \left[\frac{t^3}{3} - 2t^2 + 3t\right]_3^4 = \frac{4}{3} - 0 = \frac{4}{3}$$</p>
+ <p class="lesson-text">Jarak total $= \left|\dfrac{4}{3}\right| + \left|-\dfrac{4}{3}\right| + \left|\dfrac{4}{3}\right| = 4$ meter.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Perpindahan adalah perubahan posisi bersih: meskipun partikel bergerak maju dan mundur, posisi akhirnya hanya $1{,}33$ meter dari posisi awal. Sementara jarak total&mdash;yang memperhitungkan semua pergerakan tanpa memperhatikan arah&mdash;adalah $4$ meter. Perbedaan ini mencerminkan perbedaan antara <em>luas bertanda</em> (integral tentu) dan <em>luas geometris</em> (jumlah nilai absolut).</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Biaya Total dari Laju Biaya</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Laju pengeluaran sebuah perusahaan (dalam juta rupiah per bulan) pada bulan ke-$t$ dimodelkan $R(t) = 3t^2 + 2t + 1$, dengan $t$ dari $0$ sampai $6$ (bulan). Berapa total pengeluaran perusahaan selama $6$ bulan pertama?</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Total pengeluaran adalah integral dari laju pengeluaran:</p>
+ <p class="lesson-text">$$T = \int_0^6 (3t^2 + 2t + 1)\, dt = \left[t^3 + t^2 + t\right]_0^6$$</p>
+ <p class="lesson-text">$$= (216 + 36 + 6) - 0 = 258 \text{ juta rupiah}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Jika laju pengeluaran pada bulan ke-$t$ adalah $R(t)$, maka total pengeluaran selama interval waktu adalah integral tentu dari $R(t)$. Hubungan ini adalah salah satu penerapan paling langsung dari integral tentu: dari laju, kita memperoleh akumulasi total. Contoh serupa muncul dalam konteks populasi (dari laju pertumbuhan ke total populasi), fisika (dari daya ke energi), dan ekonomi (dari pendapatan marginal ke pendapatan total).</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap integral tentu selalu positif.</strong> Integral tentu menghitung luas <em>bertanda</em>. Daerah di bawah sumbu-$X$ memberikan kontribusi negatif. Hasilnya bisa negatif atau nol.</li>
+  <li><strong>Menganggap integral tentu menyatakan luas geometris.</strong> Integral tentu dan luas geometris berbeda ketika fungsi berganti tanda. Untuk luas geometris, perlu memecah integral di titik-titik tempat fungsi berganti tanda.</li>
+  <li><strong>Menganggap hasil integral tentu bergantung pada pilihan titik sampel.</strong> Untuk fungsi kontinu, hasilnya tidak bergantung pada pemilihan titik kiri, kanan, tengah, atau titik mana pun. Inilah yang membuat integral tentu terdefinisi dengan baik.</li>
+  <li><strong>Menganggap Teorema Fundamental Kalkulus berlaku untuk semua fungsi.</strong> Teorema ini memerlukan syarat kekontinuan fungsi pada interval tertutup. Untuk fungsi yang tidak kontinu, kesimpulan teorema dapat gagal.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan Perhitungan</h3>
+ <ul>
+  <li><strong>Menambahkan konstanta integrasi $C$ pada integral tentu.</strong> Integral tentu menghasilkan bilangan, bukan fungsi. Konstanta $C$ tidak muncul dalam hasil akhir&mdash;karena akan saling menghapus pada pengurangan $F(b) - F(a)$.</li>
+  <li><strong>Salah urutan pada $F(b) - F(a)$.</strong> Hasilnya adalah $F$ di batas atas dikurangi $F$ di batas bawah. Menukar urutannya akan mengubah tanda hasil.</li>
+  <li><strong>Lupa memecah integral pada fungsi piecewise.</strong> Jika integran berubah rumus di suatu titik dalam interval integrasi, integral harus dipecah di titik tersebut menggunakan sifat penjumlahan interval.</li>
+  <li><strong>Salah memasukkan tanda negatif pada batas bawah.</strong> Misalnya, untuk $F(x) = x^3$ dan batas bawah $x = -2$, nilai $F(-2) = (-2)^3 = -8$&mdash;bukan $8$. Tanda negatif harus diperhatikan saat mengevaluasi.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Sifat-Sifat</h3>
+ <ul>
+  <li><strong>Menganggap penjumlahan interval hanya berlaku untuk $c$ di dalam $[a, b]$.</strong> Sifat ini tetap berlaku bahkan jika $c$ di luar interval, asalkan $f$ terdefinisi di sana.</li>
+  <li><strong>Salah menerapkan sifat batas tertukar.</strong> Menukar batas atas dan batas bawah mengubah tanda integral, bukan nilai absolutnya. Hasil $\int_a^b f = -\int_b^a f$ bukan $\int_b^a f$.</li>
+  <li><strong>Menganggap kekontinuan pada interval terbuka sudah cukup untuk menjamin keterintegralan.</strong> Integral Riemann didefinisikan pada interval <em>tertutup</em> $[a, b]$. Fungsi yang kontinu pada $(a, b)$ belum tentu terintegralkan (Riemann) di sana&mdash;misalnya jika ia tak terbatas di dekat salah satu ujung, seperti $f(x) = 1/x$ pada $(0, 1)$. Jaminan otomatis berlaku untuk kekontinuan pada interval tertutup.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Ringkasan</h2>
+ <ul>
+  <li><strong>Jumlah Riemann:</strong> aproksimasi luas daerah dengan $n$ persegi panjang: $S_n = \displaystyle\sum_{i=1}^{n} f(x_i^*) \Delta x$, dengan $\Delta x = \dfrac{b - a}{n}$.</li>
+  <li><strong>Integral tentu:</strong> $\displaystyle\int_a^b f(x)\, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x$. Menghasilkan <em>bilangan</em>, bukan fungsi.</li>
+  <li><strong>Keterintegralan:</strong> setiap fungsi kontinu pada $[a, b]$ pasti terintegralkan pada $[a, b]$.</li>
+  <li><strong>Luas bertanda:</strong> integral tentu menghitung luas dengan tanda positif untuk daerah di atas sumbu-$X$ dan tanda negatif untuk daerah di bawah sumbu-$X$.</li>
+  <li><strong>Sifat batas:</strong> $\displaystyle\int_a^a f = 0$ dan $\displaystyle\int_a^b f = -\int_b^a f$.</li>
+  <li><strong>Sifat linearitas:</strong> $\displaystyle\int_a^b [f \pm g] = \int_a^b f \pm \int_a^b g$ dan $\displaystyle\int_a^b kf = k\int_a^b f$.</li>
+  <li><strong>Sifat penjumlahan interval:</strong> $\displaystyle\int_a^b f = \int_a^c f + \int_c^b f$.</li>
+  <li><strong>Sifat perbandingan:</strong> jika $f \leq g$ pada $[a, b]$, maka $\displaystyle\int_a^b f \leq \int_a^b g$.</li>
+  <li><strong>TFC Bagian 1:</strong> jika $F(x) = \displaystyle\int_a^x f(t)\, dt$ dengan $f$ kontinu, maka $F'(x) = f(x)$.</li>
+  <li><strong>TFC Bagian 2:</strong> jika $F$ adalah anti-turunan dari $f$ pada $[a, b]$, maka $\displaystyle\int_a^b f(x)\, dx = F(b) - F(a)$.</li>
+  <li><strong>Peran Teorema Fundamental Kalkulus:</strong> menghubungkan integral tentu dengan anti-turunan, sehingga perhitungan integral tentu menjadi jauh lebih mudah&mdash;cukup mencari anti-turunan, bukan menghitung limit jumlah Riemann.</li>
+  <li><strong>Verifikasi:</strong> hasil perhitungan integral tentu dapat diperiksa dengan menurunkan anti-turunan yang dipakai&mdash;yaitu memastikan $F'(x) = f(x)$ untuk setiap $x$ di $[a, b]$. (TFC Bagian 1 memberikan cara lain untuk membangun anti-turunan: jika $F(x) = \int_a^x f(t)\,dt$, maka $F'(x) = f(x)$.)</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Integral tentu adalah konsep yang menjembatani dua gagasan besar dalam matematika: akumulasi (luas, total, perpindahan) dan laju perubahan (turunan). Didefinisikan melalui limit jumlah Riemann, integral tentu memberikan cara sistematis untuk menghitung akumulasi dari sebuah laju&mdash;sesuatu yang jauh lebih umum daripada rumus luas geometri biasa.</p>
+ <p class="lesson-text">Teorema Fundamental Kalkulus adalah salah satu hasil terpenting dalam matematika. Ia mengungkap bahwa diferensiasi dan integrasi adalah operasi yang saling berkebalikan&mdash;sebuah fakta yang memiliki konsekuensi mendalam di hampir setiap cabang matematika, fisika, dan teknik. Ia juga memberikan metode praktis untuk menghitung integral tentu: cukup mencari anti-turunan, bukan menghitung limit jumlah Riemann secara langsung.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>teknik pengintegralan</strong> akan memperluas kemampuan kita dalam mencari anti-turunan&mdash;terutama untuk fungsi-fungsi yang tidak dapat diintegralkan langsung dengan aturan dasar. Sedangkan materi tentang <strong>aplikasi integral</strong> akan menunjukkan bagaimana konsep luas dan akumulasi dipakai untuk menghitung volume benda putar, panjang busur, pusat massa, dan berbagai besaran fisik lainnya.</p>
+</section>
+
+</main>
+</body>
+</html>

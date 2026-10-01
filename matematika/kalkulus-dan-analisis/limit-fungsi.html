@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limit Fungsi (Definisi ε-δ, Sifat-Sifat Limit, Limit Satu Sisi)</title>
+<meta name="description" content="Materi limit fungsi: konsep limit, definisi formal epsilon-delta, sifat-sifat aljabar limit, teorema apit, serta limit kiri dan limit kanan.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Limit Fungsi (Definisi ε-δ, Sifat-Sifat Limit, Limit Satu Sisi)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Pertidaksamaan dan Nilai Mutlak</strong> &mdash; definisi $\varepsilon$-$\delta$ dibangun dari gagasan jarak, yang dinyatakan dengan nilai mutlak dan pertidaksamaan. Tanpa kenyamanan membaca $|x - a| < \delta$, definisi formal akan sulit diikuti.</li>
+   <li><strong>Fungsi dan Notasi Fungsi</strong> &mdash; limit selalu dibicarakan dalam konteks suatu fungsi: apa domainnya, bagaimana nilainya di sekitar titik tertentu, dan bagaimana grafiknya berperilaku.</li>
+   <li><strong>Pemfaktoran Bentuk Aljabar</strong> &mdash; banyak contoh limit melibatkan bentuk $\frac{0}{0}$ yang diselesaikan dengan memfaktorkan pembilang dan penyebut, lalu mencoret faktor bersama.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Dalam aljabar, kita biasa menghitung nilai fungsi dengan substitusi langsung. Misalkan $f(x) = x^2 + 1$. Nilai fungsi di $x = 2$ adalah $f(2) = 5$. Namun substitusi langsung tidak selalu berhasil. Misalkan $f(x) = \dfrac{x^2 - 1}{x - 1}$. Substitusi $x = 1$ menghasilkan $\dfrac{0}{0}$, dan ekspresi ini tidak memiliki nilai numerik.</p>
+ <p class="lesson-text">Pertanyaannya: apakah ketidakberhasilan substitusi berarti fungsi tersebut tidak memiliki nilai di sekitar titik itu? Ternyata tidak. Nilai fungsi di <em>sekitar</em> $x = 1$ masih bisa dijelaskan dengan baik&mdash;dan jawaban atas pertanyaan ini adalah inti dari konsep <strong>limit</strong>.</p>
+ <p class="lesson-text">Materi ini mencakup tiga topik. Pertama, definisi formal limit menggunakan $\varepsilon$ dan $\delta$, yang mengubah gagasan intuitif "mendekati" menjadi pernyataan matematis yang presisi. Kedua, sifat-sifat aljabar limit, yang memungkinkan perhitungan tanpa harus selalu kembali ke definisi. Ketiga, limit satu sisi, yang diperlukan untuk fungsi yang berperilaku berbeda di kiri dan di kanan suatu titik.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Konsep Limit</h2>
+ <p class="lesson-text">Bab ini membangun pengertian limit secara bertahap melalui empat contoh. Setiap contoh menambah satu aspek baru: dari yang paling sederhana (bentuk $\frac{0}{0}$ yang mudah difaktorkan), sampai ke kasus di mana limit tidak ada. Setelah keempat contoh, kita rumuskan definisi informal limit.</p>
+
+ <h3 class="lesson-subheading">A. Mengapa Limit Diperlukan</h3>
+ <p class="lesson-text">Substitusi langsung adalah cara termudah untuk menghitung nilai fungsi. Misalkan $f(x) = x^2 + 1$. Untuk menghitung nilai di $x = 2$, kita cukup mengganti $x$ dengan $2$:</p>
+ <p class="lesson-text">$$f(2) = 2^2 + 1 = 5$$</p>
+ <p class="lesson-text">Namun ada kalanya substitusi langsung menghasilkan ekspresi yang tidak memiliki nilai numerik. Kasus paling sering adalah pembagian nol, yang muncul ketika pembilang dan penyebut keduanya bernilai nol di titik yang diperiksa.</p>
+ <p class="lesson-text">Limit memberikan cara untuk memahami perilaku fungsi pada situasi seperti ini. Alih-alih menanyakan nilai fungsi <em>di</em> suatu titik, limit menanyakan nilai yang <em>didekati</em> fungsi ketika variabelnya mendekati titik tersebut. Untuk memahami perbedaan ini secara konkret, kita mulai dengan sebuah contoh.</p>
+
+ <h3 class="lesson-subheading">B. Contoh 1: Bentuk $\frac{0}{0}$ yang Dapat Disederhanakan</h3>
+ <p class="lesson-text">Perhatikan fungsi berikut:</p>
+ <p class="lesson-text">$$f(x) = \frac{x^2 - 1}{x - 1}$$</p>
+ <p class="lesson-text">Substitusi langsung $x = 1$ menghasilkan $\dfrac{1 - 1}{1 - 1} = \dfrac{0}{0}$. Ekspresi $\dfrac{0}{0}$ tidak memiliki nilai numerik&mdash;ia bukan bilangan, dan tidak bisa dihitung. Karena itu, fungsi $f$ tidak terdefinisi di $x = 1$; bilangan $1$ tidak termasuk domainnya.</p>
+ <p class="lesson-text">Meskipun $f(1)$ tidak ada, kita masih dapat menanyakan: ketika $x$ mendekati $1$&mdash;tetapi tidak sama dengan $1$&mdash;nilai $f(x)$ cenderung ke arah mana? Untuk menjawabnya, kita hitung nilai $f(x)$ di beberapa titik yang mendekati $1$ dari kedua arah.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr>
+    <th>$x$</th>
+    <th>$0{,}9$</th>
+    <th>$0{,}99$</th>
+    <th>$0{,}999$</th>
+    <th>$0{,}9999$</th>
+    <th>$\to 1 \leftarrow$</th>
+    <th>$1{,}0001$</th>
+    <th>$1{,}001$</th>
+    <th>$1{,}01$</th>
+    <th>$1{,}1$</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>$f(x)$</td>
+    <td>$1{,}9$</td>
+    <td>$1{,}99$</td>
+    <td>$1{,}999$</td>
+    <td>$1{,}9999$</td>
+    <td>&mdash;</td>
+    <td>$2{,}0001$</td>
+    <td>$2{,}001$</td>
+    <td>$2{,}01$</td>
+    <td>$2{,}1$</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Dari tabel, terlihat pola yang jelas. Ketika $x$ mendekati $1$ dari kiri (nilai $x$ yang lebih kecil dari $1$), nilai $f(x)$ mendekati $2$ dari bawah: $1{,}9$, $1{,}99$, $1{,}999$, $1{,}9999$, $\ldots$ Ketika $x$ mendekati $1$ dari kanan (nilai $x$ yang lebih besar dari $1$), nilai $f(x)$ juga mendekati $2$ tetapi dari atas: $2{,}1$, $2{,}01$, $2{,}001$, $2{,}0001$, $\ldots$</p>
+ <p class="lesson-text">Kedua arah menuju angka yang sama, yaitu $2$. Kita simpulkan:</p>
+ <p class="lesson-text">$$\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = 2$$</p>
+ <p class="lesson-text">Perhatikan dua hal dari contoh ini:</p>
+ <ul>
+  <li>Nilai $f(1)$ <strong>tidak ada</strong>, tetapi limit $f$ di $x = 1$ <strong>ada</strong> dan bernilai $2$. Ini menunjukkan bahwa limit tidak bergantung pada nilai fungsi di titik itu sendiri.</li>
+  <li>Nilai limit $2$ bukan hasil perkiraan dari tabel. Tabel hanya memberi petunjuk; nilai eksaknya diperoleh melalui penyederhanaan aljabar, yang akan kita lihat di bagian berikutnya.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">C. Verifikasi: Mengapa Nilainya Tepat 2, Bukan Sekadar Dekat</h3>
+ <p class="lesson-text">Tabel nilai memberi petunjuk bahwa limitnya adalah $2$. Namun petunjuk bukan bukti&mdash;bisa saja nilai $f(x)$ menyimpang di titik yang belum kita hitung. Untuk memastikan nilainya tepat $2$, kita gunakan penyederhanaan aljabar.</p>
+ <p class="lesson-text">Pembilang $x^2 - 1$ dapat difaktorkan menggunakan identitas selisih dua kuadrat:</p>
+ <p class="lesson-text">$$x^2 - 1 = (x - 1)(x + 1)$$</p>
+ <p class="lesson-text">Untuk setiap $x \neq 1$, berlaku $x - 1 \neq 0$. Karena itu, pembagian dengan $x - 1$ adalah operasi yang sah, dan kita boleh menyederhanakan:</p>
+ <p class="lesson-text">$$\frac{x^2 - 1}{x - 1} = \frac{(x - 1)(x + 1)}{x - 1} = x + 1$$</p>
+ <p class="lesson-text">Perhatikan kata kunci "untuk setiap $x \neq 1$". Di titik $x = 1$, penyederhanaan ini tidak berlaku, karena $x - 1 = 0$ dan kita tidak boleh membagi dengan nol. Namun <em>di sekitar</em> $x = 1$ (tetapi tidak di $x = 1$), fungsi $f(x) = \dfrac{x^2 - 1}{x - 1}$ identik dengan fungsi $g(x) = x + 1$.</p>
+ <p class="lesson-text">Sekarang, apa yang terjadi pada $g(x) = x + 1$ ketika $x$ mendekati $1$? Karena $g$ adalah fungsi polinomial yang nilainya berubah secara mulus, nilai $g(x)$ mendekati $g(1) = 2$ ketika $x$ mendekati $1$. Karena $f$ dan $g$ identik di sekitar $x = 1$, maka nilai $f(x)$ juga mendekati $2$:</p>
+ <p class="lesson-text">$$\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = \lim_{x \to 1}(x + 1) = 1 + 1 = 2$$</p>
+ <p class="lesson-text">Dengan cara ini, kita memperoleh nilai limit secara eksak, bukan sekadar perkiraan. Perbedaan antara "nilai pendekatan dari tabel" dan "nilai eksak dari aljabar" akan menjadi penting saat kita masuk ke pembuktian formal di bab berikutnya.</p>
+
+ <figure>
+ <svg viewBox="0 0 500 340" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="280" x2="480" y2="280" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="482,280 472,275 472,285" fill="#e8e8e8"/>
+  <text x="486" y="284" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="80" y1="300" x2="80" y2="30" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="80,27 75,37 85,37" fill="#e8e8e8"/>
+  <text x="86" y="26" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <line x1="100" y1="260" x2="440" y2="80" stroke="#5dade2" stroke-width="2.5"/>
+  <circle cx="240" cy="140" r="7" fill="#1a1a1a" stroke="#daa520" stroke-width="2.2"/>
+  <line x1="240" y1="140" x2="240" y2="280" stroke="#daa520" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="80" y1="140" x2="240" y2="140" stroke="#daa520" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="240" y="300" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">1</text>
+  <text x="68" y="144" font-size="13" fill="#daa520" text-anchor="end" font-style="italic">2</text>
+  <text x="252" y="132" font-size="11" fill="#daa520" font-style="italic">(1, 2)</text>
+  <text x="360" y="200" font-size="13" fill="#5dade2" font-style="italic">y = x + 1</text>
+ </svg>
+ <figcaption class="visual-caption">Grafik $f(x) = \dfrac{x^2 - 1}{x - 1}$ identik dengan garis $y = x + 1$, kecuali terdapat lubang di titik $(1, 2)$ karena $f(1)$ tidak terdefinisi. Meskipun demikian, ketika $x$ mendekati $1$ dari kedua arah, nilai $f(x)$ mendekati $2$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Contoh 2: Pola yang Sama dengan Angka Berbeda</h3>
+ <p class="lesson-text">Contoh pertama mungkin terasa "kebetulan" karena angka-angkanya sederhana. Untuk memperkuat pemahaman, mari kita coba contoh serupa dengan angka yang berbeda.</p>
+ <p class="lesson-text">$$f(x) = \frac{x^2 - 4}{x - 2}$$</p>
+ <p class="lesson-text">Substitusi langsung $x = 2$ menghasilkan $\dfrac{4 - 4}{2 - 2} = \dfrac{0}{0}$. Sama seperti contoh sebelumnya, bentuk tak tentu. Namun kita dapat memfaktorkan pembilangnya:</p>
+ <p class="lesson-text">$$x^2 - 4 = (x - 2)(x + 2)$$</p>
+ <p class="lesson-text">Untuk $x \neq 2$, kita boleh menyederhanakan:</p>
+ <p class="lesson-text">$$\frac{x^2 - 4}{x - 2} = \frac{(x - 2)(x + 2)}{x - 2} = x + 2$$</p>
+ <p class="lesson-text">Karena $x + 2$ adalah fungsi polinomial, nilai $x + 2$ mendekati $2 + 2 = 4$ ketika $x$ mendekati $2$. Maka:</p>
+ <p class="lesson-text">$$\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \lim_{x \to 2}(x + 2) = 4$$</p>
+ <p class="lesson-text">Dua contoh ini menunjukkan pola yang sama: ketika substitusi langsung menghasilkan $\frac{0}{0}$, kita dapat memfaktorkan pembilang dan penyebut, mencoret faktor bersama yang menyebabkan nol, lalu mensubstitusi ulang.</p>
+
+ <h3 class="lesson-subheading">E. Contoh 3: Kasus yang Tidak Dapat Difaktorkan</h3>
+ <p class="lesson-text">Dua contoh sebelumnya menunjukkan bahwa bentuk $\frac{0}{0}$ dapat diselesaikan dengan pemfaktoran. Namun tidak semua kasus dapat diselesaikan dengan cara ini. Perhatikan fungsi berikut:</p>
+ <p class="lesson-text">$$f(x) = \frac{\sin x}{x}$$</p>
+ <p class="lesson-text">Substitusi langsung $x = 0$ menghasilkan $\dfrac{\sin 0}{0} = \dfrac{0}{0}$. Namun di sini kita tidak bisa memfaktorkan pembilangnya&mdash;karena $\sin x$ bukan fungsi polinomial dan tidak memiliki faktor bentuk $(x - 0)$ yang bisa dicoret. Kita perlu metode lain.</p>
+ <p class="lesson-text">Meskipun demikian, kita masih bisa memeriksa perilaku $f(x)$ di sekitar $x = 0$ dengan tabel nilai. Karena $x$ di sini dinyatakan dalam radian (satuan standar untuk sudut dalam kalkulus), kita hitung beberapa nilai:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr>
+    <th>$x$ (radian)</th>
+    <th>$-0{,}1$</th>
+    <th>$-0{,}01$</th>
+    <th>$-0{,}001$</th>
+    <th>$\to 0 \leftarrow$</th>
+    <th>$0{,}001$</th>
+    <th>$0{,}01$</th>
+    <th>$0{,}1$</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>$\dfrac{\sin x}{x}$</td>
+    <td>$0{,}9983$</td>
+    <td>$0{,}99998$</td>
+    <td>$0{,}9999998$</td>
+    <td>&mdash;</td>
+    <td>$0{,}9999998$</td>
+    <td>$0{,}99998$</td>
+    <td>$0{,}9983$</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Pola yang muncul: semakin dekat $x$ ke $0$, semakin dekat nilai $\dfrac{\sin x}{x}$ ke $1$. Bahkan ketika $x$ sangat kecil, nilainya hampir tepat $1$. Secara matematis, limit ini bernilai $1$:</p>
+ <p class="lesson-text">$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$</p>
+ <p class="lesson-text">Pembuktiannya memerlukan argumen geometris (disebut <em>teorema apit</em>), yang akan kita pelajari di Bab III. Untuk sekarang, yang penting adalah menyadari bahwa limit tidak selalu dapat diselesaikan dengan pemfaktoran&mdash;tetapi limitnya tetap bisa ada.</p>
+
+ <h3 class="lesson-subheading">F. Contoh 4: Kasus Ketika Limit Tidak Ada</h3>
+ <p class="lesson-text">Sampai di sini, semua contoh menunjukkan limit yang ada. Namun tidak semua fungsi memiliki limit di setiap titik. Perhatikan fungsi berikut:</p>
+ <p class="lesson-text">$$f(x) = \frac{|x|}{x}$$</p>
+ <p class="lesson-text">Fungsi ini tidak terdefinisi di $x = 0$. Untuk memeriksa perilakunya di sekitar nol, kita perlu memperhatikan definisi nilai mutlak, yang bergantung pada tanda $x$:</p>
+ <ul>
+  <li>Untuk $x < 0$ (nilai negatif), berlaku $|x| = -x$. Maka $f(x) = \dfrac{-x}{x} = -1$.</li>
+  <li>Untuk $x > 0$ (nilai positif), berlaku $|x| = x$. Maka $f(x) = \dfrac{x}{x} = 1$.</li>
+ </ul>
+ <p class="lesson-text">Jadi, untuk semua $x$ negatif, nilai $f(x)$ adalah $-1$. Untuk semua $x$ positif, nilai $f(x)$ adalah $1$. Ini berarti:</p>
+ <p class="lesson-text">$$\lim_{x \to 0^-} \frac{|x|}{x} = -1, \qquad \lim_{x \to 0^+} \frac{|x|}{x} = 1$$</p>
+ <p class="lesson-text">Kedua sisi menuju nilai yang berbeda. Karena limit dari kiri dan limit dari kanan tidak sama, kita katakan:</p>
+ <p class="lesson-text">$$\lim_{x \to 0} \frac{|x|}{x} \text{ tidak ada}$$</p>
+ <p class="lesson-text">Ini menunjukkan bahwa tidak setiap fungsi memiliki limit di setiap titik. Limit dua sisi hanya ada jika kedua sisi sepakat menuju nilai yang sama.</p>
+
+ <figure>
+ <svg viewBox="0 0 540 340" style="max-width:100%; height:auto; width:540px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="170" x2="520" y2="170" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="522,170 512,165 512,175" fill="#e8e8e8"/>
+  <text x="526" y="174" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="270" y1="310" x2="270" y2="30" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="270,27 265,37 275,37" fill="#e8e8e8"/>
+  <text x="276" y="26" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <line x1="60" y1="230" x2="260" y2="230" stroke="#5dade2" stroke-width="2.5"/>
+  <circle cx="260" cy="230" r="6" fill="#1a1a1a" stroke="#5dade2" stroke-width="2.2"/>
+  <line x1="280" y1="110" x2="480" y2="110" stroke="#daa520" stroke-width="2.5"/>
+  <circle cx="280" cy="110" r="6" fill="#1a1a1a" stroke="#daa520" stroke-width="2.2"/>
+  <line x1="270" y1="110" x2="270" y2="170" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="270" y1="170" x2="270" y2="230" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <text x="270" y="330" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">0</text>
+  <text x="256" y="114" font-size="12" fill="#daa520" text-anchor="end" font-style="italic">1</text>
+  <text x="256" y="234" font-size="12" fill="#5dade2" text-anchor="end" font-style="italic">−1</text>
+  <text x="160" y="215" font-size="12" fill="#5dade2" font-style="italic">limit kiri = −1</text>
+  <text x="310" y="100" font-size="12" fill="#daa520" font-style="italic">limit kanan = 1</text>
+ </svg>
+ <figcaption class="visual-caption">Grafik $f(x) = \dfrac{|x|}{x}$. Fungsi bernilai $-1$ untuk $x < 0$ dan $1$ untuk $x > 0$. Kedua limit satu sisi ada tetapi nilainya berbeda, sehingga limit dua sisi di $x = 0$ tidak ada.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">G. Definisi Informal Limit</h3>
+ <p class="lesson-text">Dari keempat contoh di atas, kita dapat menyimpulkan bahwa <strong>limit adalah nilai yang didekati oleh fungsi ketika variabelnya mendekati suatu titik</strong>. Secara lebih formal:</p>
+ <p class="lesson-text"><strong>$\displaystyle\lim_{x \to a} f(x) = L$</strong> berarti: ketika $x$ mendekati $a$ (tetapi tidak sama dengan $a$), nilai $f(x)$ mendekati $L$.</p>
+ <p class="lesson-text">Tiga ciri penting dari definisi ini:</p>
+ <ul>
+  <li>Limit tidak bergantung pada nilai $f(a)$. Fungsi $f$ boleh tidak terdefinisi di $a$, dan limitnya tetap dapat ada&mdash;seperti pada Contoh 1, 2, dan 3.</li>
+  <li>Limit dua sisi membutuhkan kedua arah sepakat. Jika nilai dari kiri berbeda dari nilai dari kanan, limitnya tidak ada&mdash;seperti pada Contoh 4.</li>
+  <li>Nilai limit dapat dibuat sedekat apa pun dengan $L$ dengan mengambil $x$ yang cukup dekat dengan $a$. Inilah yang akan diformalkan oleh definisi $\varepsilon$-$\delta$ di bab berikutnya.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa definisi ini masih bersifat informal, karena frasa "mendekati" belum didefinisikan secara kuantitatif. Berapa dekat yang dimaksud? Definisi $\varepsilon$-$\delta$ menjawab pertanyaan ini dengan mengubah gagasan "dekat" menjadi pertidaksamaan yang dapat diukur.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Definisi Formal ε-δ</h2>
+ <p class="lesson-text">Bab ini menyusun definisi formal limit. Kita mulai dari alasan mengapa definisi ini diperlukan, kemudian menyusunnya secara bertahap, dan diakhiri dengan dua contoh pembuktian.</p>
+
+ <h3 class="lesson-subheading">A. Mengapa Diperlukan Definisi Formal</h3>
+ <p class="lesson-text">Definisi informal "nilai $f(x)$ mendekati $L$ saat $x$ mendekati $a$" bekerja untuk kasus sederhana, tetapi tidak cukup untuk menjawab pertanyaan berikut:</p>
+ <ul>
+  <li>Berapa "dekat" yang dimaksud? Apakah $x = a + 0{,}001$ sudah cukup dekat, atau perlu lebih dekat lagi?</li>
+  <li>Bagaimana membuktikan bahwa limitnya benar-benar $L$, bukan sekadar tampak begitu dari tabel nilai?</li>
+  <li>Bagaimana membedakan limit yang benar-benar ada dari yang hampir ada?</li>
+ </ul>
+ <p class="lesson-text">Untuk menjawab pertanyaan-pertanyaan ini, kita memerlukan cara mengukur kedekatan secara kuantitatif. Alat ukurnya adalah <strong>jarak</strong>, yang dalam matematika dinyatakan dengan <strong>nilai mutlak</strong>. Jarak antara $x$ dan $a$ adalah $|x - a|$, sedangkan jarak antara $f(x)$ dan $L$ adalah $|f(x) - L|$. Definisi $\varepsilon$-$\delta$ dibangun sepenuhnya dari dua besaran jarak ini.</p>
+
+ <h3 class="lesson-subheading">B. Definisi ε-δ</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ terdefinisi pada interval terbuka yang memuat $a$ (kecuali mungkin di $a$ sendiri). Kita katakan <em>limit $f(x)$ ketika $x$ mendekati $a$ adalah $L$</em>, dan kita tulis:</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(x) = L$$</p>
+ <p class="lesson-text">jika untuk setiap bilangan $\varepsilon > 0$, terdapat bilangan $\delta > 0$ sedemikian sehingga untuk semua $x$ dengan $0 < |x - a| < \delta$, berlaku $|f(x) - L| < \varepsilon$.</p>
+ <p class="lesson-text">Setiap simbol dalam definisi ini memiliki peran yang spesifik:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Simbol</th><th>Arti</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$\varepsilon > 0$</td><td>Toleransi&mdash;seberapa dekat $f(x)$ harus berada dengan $L$. Nilainya dapat dipilih sekecil apa pun.</td></tr>
+   <tr><td>$\delta > 0$</td><td>Jari-jari lingkungan di sekitar $a$&mdash;seberapa dekat $x$ harus berada dengan $a$ agar toleransi $\varepsilon$ terpenuhi.</td></tr>
+   <tr><td>$0 < |x - a| < \delta$</td><td>$x$ berada dalam jarak $\delta$ dari $a$, tetapi tidak sama dengan $a$. Tanda $0 <$ mengecualikan titik $a$ sendiri.</td></tr>
+   <tr><td>$|f(x) - L| < \varepsilon$</td><td>Nilai $f(x)$ berada dalam jarak $\varepsilon$ dari $L$.</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">C. Membaca Definisi sebagai Permainan</h3>
+ <p class="lesson-text">Definisi ini sering dianggap sulit karena strukturnya berlapis. Cara paling mudah memahaminya adalah membayangkannya sebagai sebuah permainan antara dua pihak:</p>
+ <ul>
+  <li><strong>Pihak pertama</strong> memilih bilangan $\varepsilon > 0$&mdash;toleransi kesalahan yang ia izinkan. Semakin kecil $\varepsilon$ yang ia pilih, semakin ketat tuntutannya.</li>
+  <li><strong>Pihak kedua</strong> harus merespons dengan memilih $\delta > 0$&mdash;seberapa dekat $x$ harus berada dengan $a$. Pilihannya boleh bergantung pada $\varepsilon$.</li>
+  <li>Setelah keduanya memilih, diperiksa: apakah untuk semua $x$ dengan $0 < |x - a| < \delta$, selalu berlaku $|f(x) - L| < \varepsilon$? Jika ya, pihak kedua menang.</li>
+ </ul>
+ <p class="lesson-text">Pernyataan $\lim_{x \to a} f(x) = L$ berarti: <strong>pihak kedua selalu bisa menang, berapa pun $\varepsilon$ yang dipilih pihak pertama</strong>&mdash;termasuk jika $\varepsilon$ dipilih sangat kecil.</p>
+ <p class="lesson-text">Perhatikan bahwa urutan kuantor "untuk setiap $\varepsilon$, ada $\delta$" sangat penting. Jika urutannya dibalik&mdash;menjadi "ada $\delta$ sedemikian sehingga untuk setiap $\varepsilon$"&mdash;artinya sangat berbeda: itu akan berarti ada satu $\delta$ yang bekerja untuk semua $\varepsilon$, yang tidak mungkin kecuali $f$ adalah fungsi konstan.</p>
+
+ <figure>
+ <svg viewBox="0 0 600 420" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="360" x2="570" y2="360" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="572,360 562,355 562,365" fill="#e8e8e8"/>
+  <text x="576" y="364" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="100" y1="390" x2="100" y2="30" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="100,27 95,37 105,37" fill="#e8e8e8"/>
+  <text x="106" y="26" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <rect x="120" y="140" width="420" height="80" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="548" y="152" font-size="12" fill="#5dade2" font-style="italic" text-anchor="end">L + ε</text>
+  <text x="548" y="228" font-size="12" fill="#5dade2" font-style="italic" text-anchor="end">L − ε</text>
+  <line x1="120" y1="180" x2="540" y2="180" stroke="#5dade2" stroke-width="1.2" opacity="0.6"/>
+  <rect x="270" y="60" width="80" height="300" fill="#daa520" fill-opacity="0.10" stroke="#daa520" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="278" y="70" font-size="12" fill="#daa520" font-style="italic">a − δ</text>
+  <text x="358" y="70" font-size="12" fill="#daa520" font-style="italic">a + δ</text>
+  <line x1="310" y1="60" x2="310" y2="360" stroke="#daa520" stroke-width="1.2" opacity="0.6"/>
+  <path d="M 130 320 Q 220 260 270 210 Q 290 190 310 180 Q 330 170 370 145 Q 450 110 540 85" fill="none" stroke="#f0c75e" stroke-width="2.5"/>
+  <circle cx="310" cy="180" r="5.5" fill="#f0c75e"/>
+  <rect x="270" y="140" width="80" height="80" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="310" y="380" font-size="13" fill="#daa520" text-anchor="middle" font-style="italic">a</text>
+  <text x="88" y="184" font-size="13" fill="#5dade2" text-anchor="end" font-style="italic">L</text>
+  <text x="310" y="45" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Setiap x di pita vertikal menghasilkan f(x) di pita horizontal</text>
+ </svg>
+ <figcaption class="visual-caption">Interpretasi geometris definisi $\varepsilon$-$\delta$. Pita horizontal biru adalah daerah nilai $y$ dengan $|f(x) - L| < \varepsilon$. Pita vertikal emas adalah daerah nilai $x$ dengan $|x - a| < \delta$. Daerah irisan berwarna biru tua menunjukkan bahwa setiap $x$ di dalam pita vertikal menghasilkan $f(x)$ di dalam pita horizontal.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Contoh Pembuktian: Fungsi Linear</h3>
+ <p class="lesson-text">Berikut pembuktian limit fungsi linear menggunakan definisi $\varepsilon$-$\delta$.</p>
+ <p class="lesson-text"><strong>Klaim.</strong> $\displaystyle\lim_{x \to 3}(2x + 1) = 7$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Analisis ekspresi yang harus dibatasi.</strong> Sederhanakan $|f(x) - L|$:</p>
+ <p class="lesson-text">$$|(2x + 1) - 7| = |2x - 6| = 2|x - 3|$$</p>
+ <p class="lesson-text">Kita ingin $2|x - 3| < \varepsilon$, yang setara dengan $|x - 3| < \varepsilon/2$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Memilih $\delta$.</strong> Dari analisis di atas, pilih $\delta = \varepsilon/2$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Verifikasi.</strong> Misalkan $\varepsilon > 0$ diberikan. Pilih $\delta = \varepsilon/2$. Untuk setiap $x$ dengan $0 < |x - 3| < \delta$, berlaku:</p>
+ <p class="lesson-text">$$|(2x + 1) - 7| = 2|x - 3| < 2 \cdot \frac{\varepsilon}{2} = \varepsilon$$</p>
+ <p class="lesson-text">Maka $|(2x + 1) - 7| < \varepsilon$, sesuai yang ingin dibuktikan. $\blacksquare$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pola umum untuk fungsi linear.</strong> Untuk limit berbentuk $\lim_{x \to a}(mx + c) = ma + c$, selisih $|f(x) - L|$ selalu dapat ditulis sebagai $|m| \cdot |x - a|$. Pilihan $\delta = \varepsilon/|m|$ selalu bekerja. Untuk $m = 0$ (fungsi konstan), limitnya trivial karena $|f(x) - L| = 0 < \varepsilon$ untuk setiap $\delta$.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Contoh Pembuktian: Fungsi Kuadrat</h3>
+ <p class="lesson-text">Contoh berikutnya lebih menantang karena selisih $|f(x) - L|$ tidak langsung berbentuk $|m| \cdot |x - a|$.</p>
+ <p class="lesson-text"><strong>Klaim.</strong> $\displaystyle\lim_{x \to 2} x^2 = 4$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Analisis.</strong> Faktorkan selisih:</p>
+ <p class="lesson-text">$$|x^2 - 4| = |x - 2| \cdot |x + 2|$$</p>
+ <p class="lesson-text">Faktor $|x - 2|$ dapat dikontrol dengan $\delta$, tetapi faktor $|x + 2|$ bergantung pada nilai $x$. Kita perlu membatasi $|x + 2|$ agar tidak terlalu besar.</p>
+ <p class="lesson-text"><strong>Langkah 2: Membatasi $|x + 2|$.</strong> Misalkan kita tetapkan $\delta \leq 1$ untuk sementara. Maka $|x - 2| < 1$, sehingga $1 < x < 3$, dan karenanya $|x + 2| < 5$. Dengan batasan ini:</p>
+ <p class="lesson-text">$$|x^2 - 4| < 5|x - 2|$$</p>
+ <p class="lesson-text">Kita ingin $5|x - 2| < \varepsilon$, yaitu $|x - 2| < \varepsilon/5$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Memilih $\delta$.</strong> Gabungkan dua batasan: $\delta \leq 1$ dan $\delta \leq \varepsilon/5$. Pilih yang lebih ketat:</p>
+ <p class="lesson-text">$$\delta = \min\left(1, \frac{\varepsilon}{5}\right)$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Verifikasi.</strong> Misalkan $\varepsilon > 0$ diberikan, dan pilih $\delta$ seperti di atas. Untuk setiap $x$ dengan $0 < |x - 2| < \delta$:</p>
+ <ul>
+  <li>Karena $\delta \leq 1$, berlaku $|x - 2| < 1$, sehingga $|x + 2| < 5$.</li>
+  <li>Karena $\delta \leq \varepsilon/5$, berlaku $|x - 2| < \varepsilon/5$.</li>
+ </ul>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$|x^2 - 4| = |x - 2| \cdot |x + 2| < \frac{\varepsilon}{5} \cdot 5 = \varepsilon$$</p>
+ <p class="lesson-text">Terbukti. $\blacksquare$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Pola umum untuk fungsi kuadrat.</strong> Untuk limit $\lim_{x \to a} x^2 = a^2$, pemfaktoran selalu memunculkan faktor tambahan $|x + a|$. Strateginya: (1) batasi $\delta \leq 1$ lebih dahulu untuk memperoleh batas atas $|x + a|$, (2) tentukan $\delta$ dalam $\varepsilon$ berdasarkan batas tersebut, (3) pilih $\delta = \min$ dari kedua batasan.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Membantah Limit</h3>
+ <p class="lesson-text">Definisi $\varepsilon$-$\delta$ juga memberi cara untuk membuktikan bahwa suatu limit <em>tidak</em> sama dengan nilai tertentu. Kita perlu menunjukkan bahwa ada suatu $\varepsilon > 0$ sedemikian sehingga untuk setiap $\delta > 0$, terdapat $x$ dengan $0 < |x - a| < \delta$ tetapi $|f(x) - L| \geq \varepsilon$. Dengan kata lain, ada satu toleransi yang tidak dapat dipenuhi dengan cara apa pun.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Sifat-Sifat Limit</h2>
+ <p class="lesson-text">Definisi $\varepsilon$-$\delta$ ampuh untuk pembuktian, tetapi terlalu berat untuk dipakai setiap kali menghitung limit. Karena itu, kita kumpulkan sifat-sifat yang telah terbukti benar dari definisi tersebut, sehingga perhitungan limit dapat dilakukan secara sistematis.</p>
+
+ <h3 class="lesson-subheading">A. Sifat-Sifat Aljabar Limit</h3>
+ <p class="lesson-text">Misalkan $\displaystyle\lim_{x \to a} f(x) = L$ dan $\displaystyle\lim_{x \to a} g(x) = M$, keduanya ada sebagai bilangan real. Maka berlaku:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Sifat</th><th>Rumus</th><th>Catatan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>Jumlah</td><td>$\displaystyle\lim_{x \to a}[f(x) + g(x)] = L + M$</td><td>limit jumlah sama dengan jumlah limit</td></tr>
+   <tr><td>Selisih</td><td>$\displaystyle\lim_{x \to a}[f(x) - g(x)] = L - M$</td><td>limit selisih sama dengan selisih limit</td></tr>
+   <tr><td>Perkalian</td><td>$\displaystyle\lim_{x \to a}[f(x) \cdot g(x)] = L \cdot M$</td><td>limit hasil kali sama dengan hasil kali limit</td></tr>
+   <tr><td>Pembagian</td><td>$\displaystyle\lim_{x \to a}\frac{f(x)}{g(x)} = \frac{L}{M}$</td><td>berlaku jika $M \neq 0$</td></tr>
+   <tr><td>Kelipatan konstanta</td><td>$\displaystyle\lim_{x \to a}[c \cdot f(x)] = c \cdot L$</td><td>konstanta boleh dikeluarkan dari limit</td></tr>
+   <tr><td>Pangkat</td><td>$\displaystyle\lim_{x \to a}[f(x)]^n = L^n$</td><td>untuk $n$ bilangan bulat positif</td></tr>
+   <tr><td>Akar</td><td>$\displaystyle\lim_{x \to a}\sqrt[n]{f(x)} = \sqrt[n]{L}$</td><td>berlaku jika bentuk akar terdefinisi</td></tr>
+   <tr><td>Konstanta</td><td>$\displaystyle\lim_{x \to a} c = c$</td><td>limit konstanta sama dengan konstanta itu sendiri</td></tr>
+   <tr><td>Identitas</td><td>$\displaystyle\lim_{x \to a} x = a$</td><td>limit fungsi identitas di $a$ adalah $a$</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">B. Substitusi Langsung untuk Fungsi Polinomial</h3>
+ <p class="lesson-text">Sebagai konsekuensi dari sifat-sifat di atas, untuk setiap fungsi polinomial $P(x)$ berlaku:</p>
+ <p class="lesson-text">$$\lim_{x \to a} P(x) = P(a)$$</p>
+ <p class="lesson-text">Mengapa? Karena polinomial dibangun dari fungsi identitas ($x$) dan fungsi konstanta ($c$) melalui operasi penjumlahan, pengurangan, dan perkalian&mdash;dan ketiga operasi ini memenuhi sifat-sifat aljabar limit. Dengan menerapkan sifat-sifat tersebut secara bertahap, kita memperoleh hasil untuk polinomial berderajat apa pun.</p>
+ <p class="lesson-text">Misalkan kita ingin menghitung $\displaystyle\lim_{x \to 2}(3x^2 - 5x + 1)$. Langkahnya:</p>
+ <ul>
+  <li>$\displaystyle\lim_{x \to 2} x = 2$ (sifat identitas).</li>
+  <li>$\displaystyle\lim_{x \to 2} x^2 = 4$ (sifat pangkat).</li>
+  <li>$\displaystyle\lim_{x \to 2} 3x^2 = 12$ (sifat kelipatan konstanta).</li>
+  <li>$\displaystyle\lim_{x \to 2} 5x = 10$ (sifat kelipatan konstanta).</li>
+  <li>$\displaystyle\lim_{x \to 2} 1 = 1$ (sifat konstanta).</li>
+  <li>Gabungkan dengan sifat jumlah dan selisih: $12 - 10 + 1 = 3$.</li>
+ </ul>
+ <p class="lesson-text">Jadi $\displaystyle\lim_{x \to 2}(3x^2 - 5x + 1) = 3$.</p>
+
+ <h3 class="lesson-subheading">C. Sifat Komposisi Fungsi</h3>
+ <p class="lesson-text">Jika $f$ kontinu di $L$ dan $\displaystyle\lim_{x \to a} g(x) = L$, maka berlaku:</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(g(x)) = f\left(\lim_{x \to a} g(x)\right) = f(L)$$</p>
+ <p class="lesson-text">Sifat ini memungkinkan kita memindahkan tanda limit ke dalam fungsi luar, asalkan fungsi luar kontinu di titik yang dituju. Misalkan kita ingin menghitung $\displaystyle\lim_{x \to 3} \sqrt{x^2 - 5}$. Karena fungsi akar kuadrat kontinu di $x = 4$:</p>
+ <p class="lesson-text">$$\lim_{x \to 3} \sqrt{x^2 - 5} = \sqrt{\lim_{x \to 3}(x^2 - 5)} = \sqrt{4} = 2$$</p>
+
+ <h3 class="lesson-subheading">D. Sifat Urutan</h3>
+ <p class="lesson-text">Jika $f(x) \leq g(x)$ untuk semua $x$ di sekitar $a$ (kecuali mungkin di $a$ sendiri), dan kedua limitnya ada, maka:</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(x) \leq \lim_{x \to a} g(x)$$</p>
+ <p class="lesson-text">Perhatikan bahwa jika $f(x) < g(x)$ dengan ketidaksamaan tegas, limitnya hanya dijamin memenuhi $\leq$, bukan $<$. Sebagai contoh, $0 < x^2$ untuk setiap $x \neq 0$, tetapi $\lim_{x \to 0} 0 = \lim_{x \to 0} x^2 = 0$. Ketidaksamaan tegas menjadi tidak tegas setelah diambil limitnya.</p>
+
+ <h3 class="lesson-subheading">E. Teorema Apit</h3>
+ <p class="lesson-text">Teorema ini berguna untuk fungsi yang sulit dihitung langsung, tetapi dapat "diapit" oleh dua fungsi yang lebih sederhana.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $f(x) \leq g(x) \leq h(x)$ untuk semua $x$ di sekitar $a$ (kecuali mungkin di $a$), dan</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L$$</p>
+ <p class="lesson-text">maka $\displaystyle\lim_{x \to a} g(x) = L$.</p>
+ <p class="lesson-text">Intuisinya: jika $g$ selalu berada di antara $f$ dan $h$, dan kedua pengapit menuju nilai $L$ yang sama, maka $g$ juga harus menuju $L$. Sebagai contoh, karena $-1 \leq \sin(1/x) \leq 1$ untuk $x \neq 0$, maka $-x^2 \leq x^2 \sin(1/x) \leq x^2$. Kedua pengapit menuju $0$ saat $x \to 0$, sehingga $\lim_{x \to 0} x^2 \sin(1/x) = 0$&mdash;meskipun $\sin(1/x)$ sendiri berosilasi tanpa stabil.</p>
+
+ <h3 class="lesson-subheading">F. Catatan Penggunaan Sifat-Sifat</h3>
+ <p class="lesson-text">Sifat-sifat aljabar limit mensyaratkan bahwa kedua limit yang dilibatkan sudah ada sebagai bilangan real. Jika salah satu limit tidak ada (misalnya karena menuju tak hingga), sifat-sifat ini tidak otomatis berlaku. Sebagai contoh, $\lim_{x \to \infty}(x - x)$ jelas bernilai $0$, tetapi tidak sama dengan $\lim_{x \to \infty} x - \lim_{x \to \infty} x$, karena kedua limit di ruas kanan tidak ada.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Limit Satu Sisi</h2>
+ <p class="lesson-text">Sampai di sini, kita selalu mengambil limit dua sisi: $x$ mendekati $a$ dari kedua arah sekaligus. Namun ada fungsi&mdash;terutama fungsi piecewise&mdash;yang berperilaku berbeda di kiri dan di kanan suatu titik. Untuk fungsi seperti ini, konsep limit satu sisi diperlukan.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Limit Kiri dan Limit Kanan</h3>
+ <p class="lesson-text"><strong>Limit kiri</strong>, ditulis $\displaystyle\lim_{x \to a^-} f(x)$, adalah nilai yang didekati $f(x)$ ketika $x$ mendekati $a$ dari nilai-nilai $x$ yang lebih kecil dari $a$.</p>
+ <p class="lesson-text"><strong>Limit kanan</strong>, ditulis $\displaystyle\lim_{x \to a^+} f(x)$, adalah nilai yang didekati $f(x)$ ketika $x$ mendekati $a$ dari nilai-nilai $x$ yang lebih besar dari $a$.</p>
+ <p class="lesson-text">Tanda $^-$ dan $^+$ pada $a$ bukan menunjukkan tanda bilangan, melainkan hanya menunjukkan arah pendekatan: dari kiri atau dari kanan.</p>
+ <p class="lesson-text">Dalam kerangka $\varepsilon$-$\delta$, definisi limit kiri adalah sebagai berikut. Kita katakan $\displaystyle\lim_{x \to a^-} f(x) = L$ jika untuk setiap $\varepsilon > 0$ terdapat $\delta > 0$ sedemikian sehingga jika $a - \delta < x < a$, maka $|f(x) - L| < \varepsilon$. Definisi limit kanan serupa, dengan syarat $a < x < a + \delta$.</p>
+
+ <h3 class="lesson-subheading">B. Hubungan dengan Limit Dua Sisi</h3>
+ <p class="lesson-text">Limit dua sisi ada jika dan hanya jika limit kiri dan limit kanan ada dan bernilai sama:</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(x) = L \iff \lim_{x \to a^-} f(x) = L \text{ dan } \lim_{x \to a^+} f(x) = L$$</p>
+ <p class="lesson-text">Dengan kata lain, untuk memeriksa apakah limit dua sisi ada, cukup memeriksa kedua limit satu sisi dan membandingkan hasilnya. Jika salah satu tidak ada, atau keduanya ada tetapi berbeda nilainya, maka limit dua sisi tidak ada.</p>
+
+ <figure>
+ <svg viewBox="0 0 540 360" style="max-width:100%; height:auto; width:540px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="180" x2="520" y2="180" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="522,180 512,175 512,185" fill="#e8e8e8"/>
+  <text x="526" y="184" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="270" y1="320" x2="270" y2="30" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="270,27 265,37 275,37" fill="#e8e8e8"/>
+  <text x="276" y="26" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <line x1="60" y1="240" x2="260" y2="240" stroke="#5dade2" stroke-width="2.5"/>
+  <circle cx="260" cy="240" r="6" fill="#1a1a1a" stroke="#5dade2" stroke-width="2.2"/>
+  <line x1="280" y1="120" x2="480" y2="120" stroke="#daa520" stroke-width="2.5"/>
+  <circle cx="280" cy="120" r="6" fill="#1a1a1a" stroke="#daa520" stroke-width="2.2"/>
+  <line x1="270" y1="120" x2="270" y2="180" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <line x1="270" y1="180" x2="270" y2="240" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+  <text x="270" y="340" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">0</text>
+  <text x="256" y="124" font-size="12" fill="#daa520" text-anchor="end" font-style="italic">1</text>
+  <text x="256" y="244" font-size="12" fill="#5dade2" text-anchor="end" font-style="italic">−1</text>
+  <text x="160" y="225" font-size="12" fill="#5dade2" font-style="italic">limit kiri = −1</text>
+  <text x="310" y="110" font-size="12" fill="#daa520" font-style="italic">limit kanan = 1</text>
+ </svg>
+ <figcaption class="visual-caption">Grafik $f(x) = \dfrac{|x|}{x}$. Fungsi bernilai $-1$ untuk $x < 0$ dan $1$ untuk $x > 0$. Kedua limit satu sisi ada tetapi nilainya berbeda, sehingga limit dua sisi di $x = 0$ tidak ada.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">C. Contoh: Fungsi Nilai Mutlak</h3>
+ <p class="lesson-text">Perhatikan fungsi $f(x) = \dfrac{|x|}{x}$. Fungsi ini tidak terdefinisi di $x = 0$.</p>
+ <p class="lesson-text"><strong>Limit kiri.</strong> Untuk $x < 0$, berlaku $|x| = -x$, sehingga $f(x) = \dfrac{-x}{x} = -1$. Karena nilainya konstan $-1$ di seluruh sisi kiri:</p>
+ <p class="lesson-text">$$\lim_{x \to 0^-} \frac{|x|}{x} = -1$$</p>
+ <p class="lesson-text"><strong>Limit kanan.</strong> Untuk $x > 0$, berlaku $|x| = x$, sehingga $f(x) = \dfrac{x}{x} = 1$. Karena nilainya konstan $1$ di seluruh sisi kanan:</p>
+ <p class="lesson-text">$$\lim_{x \to 0^+} \frac{|x|}{x} = 1$$</p>
+ <p class="lesson-text">Kedua limit satu sisi ada, tetapi nilainya berbeda. Karena itu, limit dua sisinya tidak ada:</p>
+ <p class="lesson-text">$$\lim_{x \to 0} \frac{|x|}{x} \text{ tidak ada}$$</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Fungsi Piecewise</h3>
+ <p class="lesson-text">Perhatikan fungsi berikut:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} x + 1 & \text{jika } x < 2 \\ x^2 - 1 & \text{jika } x \geq 2 \end{cases}$$</p>
+ <p class="lesson-text">Di titik $x = 2$, berlaku dua rumus yang berbeda. Kita periksa kedua limit satu sisi secara terpisah.</p>
+ <p class="lesson-text"><strong>Limit kiri.</strong> Untuk $x < 2$, rumus yang berlaku adalah $x + 1$:</p>
+ <p class="lesson-text">$$\lim_{x \to 2^-} f(x) = 2 + 1 = 3$$</p>
+ <p class="lesson-text"><strong>Limit kanan.</strong> Untuk $x > 2$, rumus yang berlaku adalah $x^2 - 1$:</p>
+ <p class="lesson-text">$$\lim_{x \to 2^+} f(x) = 4 - 1 = 3$$</p>
+ <p class="lesson-text">Kedua limit satu sisi bernilai $3$, sehingga limit dua sisinya ada:</p>
+ <p class="lesson-text">$$\lim_{x \to 2} f(x) = 3$$</p>
+ <p class="lesson-text">Nilai $f(2)$ juga $3$, karena rumus $x^2 - 1$ berlaku di $x = 2$. Kebetulan ini membuat fungsi kontinu di $x = 2$. Namun perlu ditekankan bahwa kesamaan ini tidak disyaratkan oleh limit&mdash;limit hanya membutuhkan kedua limit satu sisi ada dan sama.</p>
+
+ <h3 class="lesson-subheading">E. Kapan Limit Dua Sisi Tidak Ada</h3>
+ <p class="lesson-text">Dengan kerangka limit satu sisi, terdapat tiga kondisi di mana limit dua sisi gagal ada:</p>
+ <ul>
+  <li><strong>Limit satu sisi berbeda.</strong> Keduanya ada, tetapi nilainya tidak sama. Contoh: $f(x) = \frac{|x|}{x}$ di $x = 0$, dengan limit kiri $-1$ dan limit kanan $1$.</li>
+  <li><strong>Salah satu limit satu sisi tidak ada.</strong> Misalnya fungsi menuju tak hingga dari satu arah, atau berosilasi tanpa stabil. Contoh: $f(x) = 1/x$ di $x = 0$, dengan limit kiri $-\infty$ dan limit kanan $+\infty$. Keduanya bukan bilangan real.</li>
+  <li><strong>Kedua limit satu sisi tidak ada.</strong> Contoh: $f(x) = \sin(1/x)$ di $x = 0$. Nilainya berosilasi antara $-1$ dan $1$ tanpa stabil, baik dari kiri maupun dari kanan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan definisi $\varepsilon$-$\delta$, sifat-sifat limit, dan limit satu sisi.</p>
+
+ <h3 class="lesson-subheading">A. Membuktikan Limit dengan Definisi ε-δ</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Buktikan $\displaystyle\lim_{x \to 5}(3x - 2) = 13$ menggunakan definisi $\varepsilon$-$\delta$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Sederhanakan $|f(x) - L|$:</p>
+ <p class="lesson-text">$$|(3x - 2) - 13| = |3x - 15| = 3|x - 5|$$</p>
+ <p class="lesson-text">Kita ingin $3|x - 5| < \varepsilon$, yaitu $|x - 5| < \varepsilon/3$. Pilih $\delta = \varepsilon/3$.</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Untuk setiap $\varepsilon > 0$, pilih $\delta = \varepsilon/3$. Jika $0 < |x - 5| < \delta$, maka:</p>
+ <p class="lesson-text">$$|(3x - 2) - 13| = 3|x - 5| < 3 \cdot \frac{\varepsilon}{3} = \varepsilon$$</p>
+ <p class="lesson-text">Terbukti. $\blacksquare$</p>
+
+ <h3 class="lesson-subheading">B. Menghitung Limit dengan Sifat-Sifat Aljabar</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\lim_{x \to 3}(x^3 - 2x + 5)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Karena fungsi di dalam limit adalah polinomial, kita dapat menggunakan sifat-sifat aljabar secara bertahap:</p>
+ <ul>
+  <li>$\displaystyle\lim_{x \to 3} x = 3$ (sifat identitas).</li>
+  <li>$\displaystyle\lim_{x \to 3} x^3 = 27$ (sifat pangkat).</li>
+  <li>$\displaystyle\lim_{x \to 3} 2x = 6$ (sifat kelipatan konstanta).</li>
+  <li>$\displaystyle\lim_{x \to 3} 5 = 5$ (sifat konstanta).</li>
+  <li>Gabungkan: $27 - 6 + 5 = 26$.</li>
+ </ul>
+ <p class="lesson-text">Jadi $\displaystyle\lim_{x \to 3}(x^3 - 2x + 5) = 26$.</p>
+
+ <h3 class="lesson-subheading">C. Limit Satu Sisi pada Fungsi Piecewise</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Diberikan</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} 2x + 1 & \text{jika } x < 1 \\ x^2 + 3 & \text{jika } x \geq 1 \end{cases}$$</p>
+ <p class="lesson-text">Tentukan apakah $\displaystyle\lim_{x \to 1} f(x)$ ada.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Karena $x = 1$ adalah titik sambungan antara dua rumus, kita periksa kedua limit satu sisi.</p>
+ <p class="lesson-text">Limit kiri (untuk $x < 1$): $\displaystyle\lim_{x \to 1^-}(2x + 1) = 3$.</p>
+ <p class="lesson-text">Limit kanan (untuk $x > 1$): $\displaystyle\lim_{x \to 1^+}(x^2 + 3) = 4$.</p>
+ <p class="lesson-text">Kedua limit satu sisi ada, tetapi nilainya berbeda ($3 \neq 4$). Karena itu:</p>
+ <p class="lesson-text">$$\lim_{x \to 1} f(x) \text{ tidak ada}$$</p>
+
+ <h3 class="lesson-subheading">D. Limit Fungsi Rasional dengan Bentuk Tak Tentu</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Substitusi langsung menghasilkan $\frac{0}{0}$. Faktorkan pembilang:</p>
+ <p class="lesson-text">$$\frac{x^2 - 9}{x - 3} = \frac{(x - 3)(x + 3)}{x - 3} = x + 3 \quad (\text{untuk } x \neq 3)$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\lim_{x \to 3} \frac{x^2 - 9}{x - 3} = \lim_{x \to 3}(x + 3) = 6$$</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Kecepatan Sesaat</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Posisi sebuah mobil (dalam meter) setelah $t$ detik dimodelkan $s(t) = 3t^2 + 2t$. Berapa kecepatan mobil tepat pada $t = 4$ detik?</p>
+ <p class="lesson-text"><strong>Model.</strong> Kecepatan rata-rata antara $t = 4$ dan $t = 4 + h$ adalah $\frac{s(4 + h) - s(4)}{h}$. Kecepatan sesaat adalah limitnya ketika $h \to 0$:</p>
+ <p class="lesson-text">$$v(4) = \lim_{h \to 0} \frac{s(4 + h) - s(4)}{h}$$</p>
+ <p class="lesson-text"><strong>Perhitungan.</strong> Hitung $s(4)$ dan $s(4 + h)$:</p>
+ <p class="lesson-text">$$s(4) = 3(16) + 2(4) = 56$$</p>
+ <p class="lesson-text">$$s(4 + h) = 3(16 + 8h + h^2) + 8 + 2h = 56 + 26h + 3h^2$$</p>
+ <p class="lesson-text">Selisihnya: $26h + 3h^2$. Bagi dengan $h$: $26 + 3h$. Ambil limitnya:</p>
+ <p class="lesson-text">$$v(4) = \lim_{h \to 0}(26 + 3h) = 26 \text{ m/detik}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Kecepatan mobil tepat pada detik ke-4 adalah 26 meter per detik. Kecepatan sesaat didefinisikan sebagai limit dari kecepatan rata-rata ketika selang waktu mendekati nol.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Fungsi dengan Lompatan</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Tarif parkir ditetapkan Rp 5.000 per jam atau bagiannya. Misalkan $t$ adalah lama parkir dalam jam dan $C(t)$ adalah biaya total. Fungsi biaya dapat dituliskan sebagai $C(t) = 5000 \cdot \lceil t \rceil$, dengan $\lceil t \rceil$ adalah bilangan bulat terkecil yang lebih besar atau sama dengan $t$.</p>
+ <p class="lesson-text"><strong>Perilaku di $t = 2$.</strong> Untuk $t$ sedikit di bawah $2$ (misalnya $1{,}99$), biayanya $5000 \cdot 2 = 10000$. Untuk $t$ sedikit di atas $2$ (misalnya $2{,}01$), biayanya $5000 \cdot 3 = 15000$. Maka:</p>
+ <p class="lesson-text">$$\lim_{t \to 2^-} C(t) = 10000, \qquad \lim_{t \to 2^+} C(t) = 15000$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Karena limit kiri dan limit kanan berbeda, $\displaystyle\lim_{t \to 2} C(t)$ tidak ada. Fungsi biaya parkir mengalami lompatan di setiap bilangan bulat jam. Lompatan ini mencerminkan aturan tarif yang sesungguhnya: begitu lama parkir melewati satu detik dari jam ke-2, tarif langsung masuk kategori jam ke-3.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan Konseptual</h3>
+ <ul>
+  <li><strong>Menganggap limit sama dengan nilai fungsi di titik itu.</strong> Limit adalah tentang kecenderungan nilai di sekitar titik, bukan nilai aktual di titik tersebut. Fungsi boleh tidak terdefinisi di $a$ dan tetap punya limit di $a$.</li>
+  <li><strong>Menganggap limit ada hanya karena satu sisi memberi nilai.</strong> Limit dua sisi membutuhkan kedua limit satu sisi ada dan sama.</li>
+  <li><strong>Menganggap "limit tidak ada" sama dengan "limit tak hingga".</strong> Ketika kita menulis $\lim_{x \to 0} \frac{1}{x^2} = +\infty$, ini bukan berarti limitnya sama dengan tak hingga&mdash;melainkan cara singkat menyatakan bahwa nilainya membesar tanpa batas, sehingga limitnya tidak ada dalam arti bilangan real.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Definisi ε-δ</h3>
+ <ul>
+  <li><strong>Tertukar urutan kuantor.</strong> Definisi yang benar adalah "untuk setiap $\varepsilon > 0$, ada $\delta > 0$, sedemikian sehingga...". Urutan ini tidak boleh dibalik.</li>
+  <li><strong>Menghilangkan tanda $0 <$ pada $|x - a| < \delta$.</strong> Tanda $0 <$ menegaskan bahwa $x \neq a$. Menghilangkannya mengubah arti definisi.</li>
+  <li><strong>Menganggap $\delta$ harus berbentuk sederhana.</strong> $\delta$ boleh dipilih dengan cara apa pun asalkan memenuhi syarat, termasuk bentuk seperti $\min(1, \varepsilon/5)$.</li>
+  <li><strong>Membuktikan limit dengan contoh numerik.</strong> Menguji beberapa nilai $\varepsilon$ dan $\delta$ tidak membuktikan limit; bukti harus berlaku untuk semua $\varepsilon > 0$ secara umum.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Limit Satu Sisi</h3>
+ <ul>
+  <li><strong>Menganggap limit kiri dan limit kanan selalu sama.</strong> Ini hanya berlaku untuk fungsi yang kontinu atau mulus di sekitar titik tersebut. Untuk fungsi piecewise atau fungsi dengan nilai mutlak, kedua sisi sering berbeda.</li>
+  <li><strong>Menghitung limit satu sisi dengan rumus yang salah.</strong> Saat menghitung limit kiri di titik sambungan, gunakan rumus yang berlaku untuk $x < a$, bukan rumus untuk $x > a$ atau rumus di $x = a$.</li>
+  <li><strong>Menganggap nilai $f(a)$ relevan untuk limit satu sisi.</strong> Sama seperti limit dua sisi, limit satu sisi tidak bergantung pada nilai $f(a)$.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Definisi informal limit:</strong> $\displaystyle\lim_{x \to a} f(x) = L$ berarti nilai $f(x)$ mendekati $L$ saat $x$ mendekati $a$, tanpa harus mencapai $a$.</li>
+  <li><strong>Definisi formal ε-δ:</strong> untuk setiap $\varepsilon > 0$, ada $\delta > 0$ sedemikian sehingga jika $0 < |x - a| < \delta$, maka $|f(x) - L| < \varepsilon$.</li>
+  <li><strong>Pola pembuktian ε-δ fungsi linear:</strong> tulis $|f(x) - L| = |m| \cdot |x - a|$, lalu pilih $\delta = \varepsilon/|m|$.</li>
+  <li><strong>Pola pembuktian ε-δ fungsi kuadrat:</strong> muncul faktor tambahan yang bergantung pada $x$. Batasi $\delta \leq 1$, hitung batas atas faktor tambahan, lalu pilih $\delta = \min$ dari kedua batasan.</li>
+  <li><strong>Sifat-sifat aljabar limit:</strong> limit jumlah, selisih, hasil kali, hasil bagi, pangkat, akar, dan konstanta dapat dihitung dari limit fungsi penyusunnya, asalkan limit penyusunnya ada sebagai bilangan real.</li>
+  <li><strong>Substitusi langsung:</strong> berlaku untuk fungsi polinomial, karena ia dibangun dari operasi-operasi yang memenuhi sifat aljabar limit.</li>
+  <li><strong>Teorema apit:</strong> jika $f(x) \leq g(x) \leq h(x)$ dan $\lim f = \lim h = L$, maka $\lim g = L$.</li>
+  <li><strong>Limit satu sisi:</strong> $\displaystyle\lim_{x \to a^-} f(x)$ adalah limit kiri, $\displaystyle\lim_{x \to a^+} f(x)$ adalah limit kanan.</li>
+  <li><strong>Kriteria keberadaan limit dua sisi:</strong> $\displaystyle\lim_{x \to a} f(x) = L$ jika dan hanya jika kedua limit satu sisi ada dan bernilai $L$.</li>
+  <li><strong>Limit tidak ada ketika:</strong> limit kiri $\neq$ limit kanan, atau salah satu atau keduanya tidak ada (menuju tak hingga atau berosilasi).</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Limit menjembatani aljabar elementer dengan kalkulus. Ia mengubah pertanyaan "berapa nilai fungsi di titik ini?" menjadi pertanyaan yang lebih halus: "ke arah mana nilai fungsi bergerak ketika kita mendekati titik ini?" Pergeseran cara berpikir inilah yang membuka jalan menuju turunan dan integral.</p>
+ <p class="lesson-text">Definisi $\varepsilon$-$\delta$ mengubah gagasan intuitif "dekat" menjadi pertidaksamaan yang presisi, sehingga pernyataan tentang limit dapat dibuktikan secara meyakinkan. Sifat-sifat aljabar limit memungkinkan perhitungan tanpa harus selalu kembali ke definisi. Limit satu sisi memberi kemampuan menganalisis fungsi yang berperilaku berbeda di kiri dan kanan suatu titik.</p>
+ <p class="lesson-text">Materi berikutnya tentang teknik menghitung limit (pemfaktoran, perkalian sekawan, penggabungan pecahan) akan bertumpu pada sifat-sifat yang telah dibangun di sini. Sedangkan materi tentang turunan dimulai dengan definisi formal $\lim_{h \to 0} \frac{f(x + h) - f(x)}{h}$, yang strukturnya sama dengan definisi $\varepsilon$-$\delta$ yang telah dipelajari.</p>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikasi Turunan (Kemonotonan, Nilai Ekstrem, Optimisasi, Laju Terkait)</title>
+<meta name="description" content="Materi aplikasi turunan: kemonotonan fungsi, nilai ekstrem lokal dan global, uji turunan pertama dan kedua, kecekungan, optimisasi, serta laju terkait.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Aplikasi Turunan (Kemonotonan, Nilai Ekstrem, Optimisasi, Laju Terkait)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Turunan Fungsi</strong> &mdash; materi ini bertumpu sepenuhnya pada kemampuan menghitung turunan. Aturan pangkat, produk, kuosien, dan rantai akan terus dipakai, bersama dengan turunan implisit untuk laju terkait.</li>
+   <li><strong>Limit dan Kekontinuan</strong> &mdash; beberapa argumen tentang keberadaan nilai ekstrem (misalnya pada interval tertutup) mengandalkan sifat-sifat kekontinuan dan limit.</li>
+   <li><strong>Aljabar Dasar dan Geometri</strong> &mdash; masalah optimisasi dan laju terkait sering kali melibatkan pemodelan geometris (luas, volume, jarak) dan penyelesaian persamaan aljabar.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi sebelumnya, kita sudah mempelajari cara menghitung turunan. Namun turunan bukanlah tujuan akhir&mdash;ia adalah alat. Materi ini membahas <em>untuk apa</em> turunan dipakai: bagaimana ia memberi informasi tentang perilaku fungsi dan bagaimana ia menyelesaikan masalah nyata yang melibatkan nilai maksimum, minimum, atau laju perubahan.</p>
+ <p class="lesson-text">Empat topik utama akan dibahas. Pertama, <strong>kemonotonan</strong>&mdash;yaitu menentukan di mana sebuah fungsi naik dan di mana ia turun. Kedua, <strong>nilai ekstrem</strong>&mdash;yaitu nilai maksimum dan minimum fungsi, baik yang bersifat lokal maupun global. Ketiga, <strong>optimisasi</strong>&mdash;yaitu seni memecahkan masalah nyata dengan mencari nilai maksimum atau minimum dari suatu besaran. Keempat, <strong>laju terkait</strong>&mdash;yaitu masalah di mana dua besaran atau lebih berubah terhadap waktu dan perubahannya saling terkait.</p>
+ <p class="lesson-text">Setiap topik dimulai dari konsep dasar, dilengkapi dengan prosedur kerja yang jelas, dan diakhiri dengan contoh yang menunjukkan bagaimana konsep tersebut dipakai untuk menjawab pertanyaan konkret.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Kemonotonan Fungsi</h2>
+ <p class="lesson-text">Bab ini membahas perilaku dasar fungsi: kapan ia naik, kapan ia turun, dan bagaimana turunan mengungkapkan informasi ini.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Fungsi Naik dan Turun</h3>
+ <p class="lesson-text">Misalkan $f$ terdefinisi pada interval $I$. Kita katakan:</p>
+ <ul>
+  <li>$f$ <strong>naik pada</strong> $I$ jika untuk setiap $x_1 < x_2$ dalam $I$, berlaku $f(x_1) < f(x_2)$. Dengan kata lain, ketika $x$ bertambah, nilai $f(x)$ juga bertambah.</li>
+  <li>$f$ <strong>turun pada</strong> $I$ jika untuk setiap $x_1 < x_2$ dalam $I$, berlaku $f(x_1) > f(x_2)$. Ketika $x$ bertambah, nilai $f(x)$ berkurang.</li>
+  <li>$f$ <strong>konstan pada</strong> $I$ jika $f(x_1) = f(x_2)$ untuk setiap $x_1, x_2$ dalam $I$. Nilainya tidak berubah.</li>
+ </ul>
+ <p class="lesson-text">Secara geometris, fungsi naik berarti grafiknya bergerak ke atas saat bergerak ke kanan; fungsi turun berarti grafiknya bergerak ke bawah saat bergerak ke kanan.</p>
+
+ <h3 class="lesson-subheading">B. Uji Turunan Pertama untuk Kemonotonan</h3>
+ <p class="lesson-text">Turunan memberi cara mudah untuk menentukan kemonotonan tanpa perlu memeriksa pasangan titik satu per satu. Kuncinya adalah tafsiran turunan sebagai kemiringan garis singgung.</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Misalkan $f$ kontinu pada interval $[a, b]$ dan dapat diturunkan pada $(a, b)$.</p>
+ <ul>
+  <li>Jika $f'(x) > 0$ untuk setiap $x$ dalam $(a, b)$, maka $f$ naik pada $[a, b]$.</li>
+  <li>Jika $f'(x) < 0$ untuk setiap $x$ dalam $(a, b)$, maka $f$ turun pada $[a, b]$.</li>
+  <li>Jika $f'(x) = 0$ untuk setiap $x$ dalam $(a, b)$, maka $f$ konstan pada $[a, b]$.</li>
+ </ul>
+ <p class="lesson-text">Alasannya intuitif: jika kemiringan garis singgung selalu positif, grafik selalu bergerak ke atas. Jika selalu negatif, grafik selalu bergerak ke bawah.</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Menentukan Interval Naik dan Turun</h3>
+ <p class="lesson-text">Misalkan $f(x) = x^3 - 3x^2 - 9x + 5$. Kita tentukan interval di mana $f$ naik dan turun.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung turunan pertama.</strong></p>
+ <p class="lesson-text">$$f'(x) = 3x^2 - 6x - 9 = 3(x^2 - 2x - 3) = 3(x - 3)(x + 1)$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Tentukan titik-titik kritis.</strong> Titik kritis adalah nilai $x$ yang membuat $f'(x) = 0$ (atau tidak ada). Di sini, $f'(x) = 0$ ketika $x = 3$ atau $x = -1$. Kedua titik ini membagi garis bilangan menjadi tiga interval: $(-\infty, -1)$, $(-1, 3)$, dan $(3, \infty)$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Tentukan tanda $f'(x)$ pada setiap interval.</strong> Ambil satu titik uji dari masing-masing interval:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Interval</th><th>Titik uji</th><th>$f'(x) = 3(x - 3)(x + 1)$</th><th>Tanda</th><th>Kesimpulan</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$(-\infty, -1)$</td><td>$x = -2$</td><td>$3(-5)(-1) = 15$</td><td>$+$</td><td>naik</td></tr>
+   <tr><td>$(-1, 3)$</td><td>$x = 0$</td><td>$3(-3)(1) = -9$</td><td>$-$</td><td>turun</td></tr>
+   <tr><td>$(3, \infty)$</td><td>$x = 4$</td><td>$3(1)(5) = 15$</td><td>$+$</td><td>naik</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Jadi $f$ naik pada $(-\infty, -1)$ dan $(3, \infty)$, serta turun pada $(-1, 3)$.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="200" x2="590" y2="200" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="592,200 582,195 582,205" fill="#e8e8e8"/>
+  <text x="596" y="204" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="180" y1="370" x2="180" y2="40" stroke="#e8e8e8" stroke-width="1.2"/>
+  <polygon points="180,37 175,47 185,47" fill="#e8e8e8"/>
+  <text x="186" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <!-- Kurva: naik (kiri), turun (tengah), naik (kanan) -->
+  <path d="M 60 320 C 130 280 170 200 210 185 C 260 170 300 260 360 265 C 420 270 470 210 540 110" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <!-- Titik maksimum lokal di x=-1 -->
+  <circle cx="210" cy="185" r="6" fill="#daa520"/>
+  <text x="210" y="172" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">maks lokal</text>
+
+  <!-- Titik minimum lokal di x=3 -->
+  <circle cx="360" cy="265" r="6" fill="#f0c75e"/>
+  <text x="360" y="290" font-size="12" fill="#f0c75e" text-anchor="middle" font-style="italic">min lokal</text>
+
+  <!-- Garis bantu -->
+  <line x1="210" y1="185" x2="210" y2="200" stroke="#daa520" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+  <line x1="360" y1="265" x2="360" y2="200" stroke="#f0c75e" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+
+  <!-- Label x -->
+  <text x="210" y="220" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">−1</text>
+  <text x="360" y="220" font-size="12" fill="#f0c75e" text-anchor="middle" font-style="italic">3</text>
+
+  <!-- Anotasi naik/turun -->
+  <text x="120" y="130" font-size="13" fill="#5dade2" font-style="italic">f naik</text>
+  <text x="120" y="148" font-size="11" fill="#b8b8b8" font-style="italic">(f′ &gt; 0)</text>
+
+  <text x="285" y="110" font-size="13" fill="#5dade2" font-style="italic">f turun</text>
+  <text x="285" y="128" font-size="11" fill="#b8b8b8" font-style="italic">(f′ &lt; 0)</text>
+
+  <text x="460" y="80" font-size="13" fill="#5dade2" font-style="italic">f naik</text>
+  <text x="460" y="98" font-size="11" fill="#b8b8b8" font-style="italic">(f′ &gt; 0)</text>
+ </svg>
+ <figcaption class="visual-caption">Grafik $f(x) = x^3 - 3x^2 - 9x + 5$. Fungsi naik ketika $f'(x) > 0$, turun ketika $f'(x) < 0$. Di titik $x = -1$, terjadi perubahan dari naik ke turun&mdash;yaitu maksimum lokal. Di titik $x = 3$, terjadi perubahan dari turun ke naik&mdash;yaitu minimum lokal.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Nilai Ekstrem Fungsi</h2>
+ <p class="lesson-text">Kemonotonan memberi tahu kita kapan fungsi naik atau turun. Titik-titik di mana arah perubahan berbalik&mdash;dari naik ke turun atau sebaliknya&mdash;memiliki peran penting: di titik-titik itulah fungsi mencapai nilai ekstremnya.</p>
+
+ <h3 class="lesson-subheading">A. Maksimum dan Minimum Lokal</h3>
+ <p class="lesson-text">Misalkan $f$ terdefinisi pada interval yang memuat titik $c$.</p>
+ <ul>
+  <li>$f(c)$ adalah <strong>nilai maksimum lokal</strong> jika $f(c) \geq f(x)$ untuk semua $x$ dalam suatu interval terbuka yang memuat $c$.</li>
+  <li>$f(c)$ adalah <strong>nilai minimum lokal</strong> jika $f(c) \leq f(x)$ untuk semua $x$ dalam suatu interval terbuka yang memuat $c$.</li>
+ </ul>
+ <p class="lesson-text">Kata "lokal" di sini berarti pembandingannya hanya berlaku <em>di sekitar</em> titik $c$, bukan di seluruh domain fungsi. Nilai ekstrem global&mdash;yaitu nilai terbesar atau terkecil di seluruh domain&mdash;dibahas di bagian lain.</p>
+
+ <h3 class="lesson-subheading">B. Titik Kritis</h3>
+ <p class="lesson-text">Di manakah nilai ekstrem lokal dapat terjadi? Jika $f$ dapat diturunkan di $c$ dan $f(c)$ adalah nilai maksimum lokal, maka garis singgung di $c$ harus mendatar&mdash;karena jika tidak, akan ada titik di sekitarnya yang lebih tinggi. Dengan kata lain, $f'(c) = 0$.</p>
+ <p class="lesson-text">Namun, nilai ekstrem lokal juga dapat terjadi di titik-titik di mana turunan <em>tidak ada</em>&mdash;misalnya pada titik sudut tajam. Karena itu, kita definisikan:</p>
+ <p class="lesson-text"><strong>Titik kritis</strong> fungsi $f$ adalah bilangan $c$ dalam domain $f$ sedemikian sehingga salah satu dari berikut berlaku:</p>
+ <ul>
+  <li>$f'(c) = 0$, atau</li>
+  <li>$f'(c)$ tidak ada.</li>
+ </ul>
+ <p class="lesson-text">Teorema penting: jika $f$ memiliki nilai ekstrem lokal di $c$ dan $f$ dapat diturunkan di $c$, maka $c$ harus merupakan titik kritis. Dengan kata lain, nilai ekstrem lokal hanya dapat terjadi di titik kritis.</p>
+ <p class="lesson-text">Perhatikan bahwa kalimat ini <em>tidak berlaku sebaliknya</em>. Tidak setiap titik kritis menghasilkan nilai ekstrem. Contohnya, $f(x) = x^3$ memiliki $f'(0) = 0$, tetapi $x = 0$ bukan maksimum maupun minimum lokal&mdash;fungsi terus naik melewatinya. Titik seperti ini disebut titik belok dengan garis singgung mendatar.</p>
+
+ <h3 class="lesson-subheading">C. Uji Turunan Pertama</h3>
+ <p class="lesson-text">Untuk menentukan apakah suatu titik kritis menghasilkan maksimum lokal, minimum lokal, atau bukan keduanya, kita periksa tanda $f'$ di sekitar titik tersebut.</p>
+ <p class="lesson-text"><strong>Prosedur.</strong> Misalkan $c$ adalah titik kritis dari $f$ yang kontinu di $c$.</p>
+ <ul>
+  <li>Jika $f'$ berubah dari <strong>positif</strong> ke <strong>negatif</strong> di $c$, maka $f(c)$ adalah <strong>maksimum lokal</strong>.</li>
+  <li>Jika $f'$ berubah dari <strong>negatif</strong> ke <strong>positif</strong> di $c$, maka $f(c)$ adalah <strong>minimum lokal</strong>.</li>
+  <li>Jika $f'$ tidak berubah tanda di $c$ (tetap positif atau tetap negatif di kedua sisi), maka $f(c)$ <strong>bukan</strong> nilai ekstrem lokal.</li>
+ </ul>
+ <p class="lesson-text">Logikanya sederhana: jika fungsi naik lalu turun, titik peralihannya pasti menjadi puncak&mdash;yaitu maksimum. Jika turun lalu naik, titik peralihannya pasti menjadi dasar&mdash;yaitu minimum.</p>
+
+ <h3 class="lesson-subheading">D. Uji Turunan Kedua</h3>
+ <p class="lesson-text">Ada cara alternatif untuk menentukan jenis titik kritis, yang kadang lebih cepat. Jika $f'(c) = 0$ dan $f''$ ada di sekitar $c$, maka:</p>
+ <ul>
+  <li>Jika $f''(c) < 0$, maka $f(c)$ adalah <strong>maksimum lokal</strong>.</li>
+  <li>Jika $f''(c) > 0$, maka $f(c)$ adalah <strong>minimum lokal</strong>.</li>
+  <li>Jika $f''(c) = 0$, uji ini tidak memberi kesimpulan. Kita perlu kembali ke uji turunan pertama.</li>
+ </ul>
+ <p class="lesson-text">Interpretasi geometrisnya begini. Nilai $f''(c) < 0$ berarti kurva cekung ke bawah di sekitar $c$&mdash;seperti atap rumah&mdash;sehingga titik $c$ menjadi puncak. Nilai $f''(c) > 0$ berarti kurva cekung ke atas&mdash;seperti mangkuk&mdash;sehingga titik $c$ menjadi dasar.</p>
+
+ <h3 class="lesson-subheading">E. Kecekungan dan Titik Belok</h3>
+ <p class="lesson-text">Uji turunan kedua menyinggung konsep <em>kecekungan</em>. Sebuah kurva dikatakan:</p>
+ <ul>
+  <li><strong>Cekung ke atas</strong> pada suatu interval jika $f''(x) > 0$ di interval tersebut. Kurva melengkung seperti mangkuk, dan garis singgung berada di bawah kurva.</li>
+  <li><strong>Cekung ke bawah</strong> pada suatu interval jika $f''(x) < 0$ di interval tersebut. Kurva melengkung seperti atap, dan garis singgung berada di atas kurva.</li>
+ </ul>
+ <p class="lesson-text"><strong>Titik belok</strong> adalah titik di mana kecekungan berubah&mdash;dari cekung ke atas menjadi cekung ke bawah, atau sebaliknya. Titik belok dapat terjadi di titik-titik di mana $f''(x) = 0$ atau $f''(x)$ tidak ada, asalkan kecekungan benar-benar berubah di titik tersebut.</p>
+ 
+ <figure>
+  <svg viewBox="0 0 500 320" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="285" x2="470" y2="285" stroke="#e8e8e8" stroke-width="1.2" />
+  <polygon points="472,285 462,280 462,290" fill="#e8e8e8" />
+  <text x="476" y="289" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="250" y1="305" x2="250" y2="40" stroke="#e8e8e8" stroke-width="1.2" />
+  <polygon points="250,37 245,47 255,47" fill="#e8e8e8" />
+  <text x="256" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <path d="M 90 110 C 170 280 330 280 410 110" fill="none" stroke="#5dade2" stroke-width="2.8" />
+  <line x1="130" y1="237" x2="370" y2="237" stroke="#daa520" stroke-width="2" stroke-dasharray="6,4" />
+  <circle cx="250" cy="237" r="6" fill="#daa520" />
+  <text x="250" y="65" font-size="15" fill="#5dade2" font-weight="700" text-anchor="middle" font-style="italic">Cekung ke atas</text>
+  <text x="250" y="85" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">f″(x) &gt; 0</text>
+  <text x="250" y="262" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">garis singgung di bawah kurva</text>
+ </svg>
+ <figcaption class="visual-caption">Cekung ke atas. Kurva melengkung seperti mangkuk, dan garis singgung berada <em>di bawah</em> kurva. Turunan kedua positif: $f''(x) > 0$.</figcaption>
+</figure>
+
+ <figure>
+  <svg viewBox="0 0 500 320" style="max-width:100%; height:auto; width:500px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="285" x2="470" y2="285" stroke="#e8e8e8" stroke-width="1.2" />
+  <polygon points="472,285 462,280 462,290" fill="#e8e8e8" />
+  <text x="476" y="289" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="250" y1="305" x2="250" y2="40" stroke="#e8e8e8" stroke-width="1.2" />
+  <polygon points="250,37 245,47 255,47" fill="#e8e8e8" />
+  <text x="256" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+  <path d="M 90 250 C 170 80 330 80 410 250" fill="none" stroke="#5dade2" stroke-width="2.8" />
+  
+  <line x1="130" y1="123" x2="370" y2="123" stroke="#daa520" stroke-width="2" stroke-dasharray="6,4" />
+    <circle cx="250" cy="123" r="6" fill="#daa520" />
+  <text x="250" y="190" font-size="15" fill="#5dade2" font-weight="700" text-anchor="middle" font-style="italic">Cekung ke bawah</text>
+  <text x="250" y="210" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">f″(x) &lt; 0</text>
+   <text x="250" y="102" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">garis singgung di atas kurva</text>
+ </svg>
+ <figcaption class="visual-caption">Cekung ke bawah. Kurva melengkung seperti atap, dan garis singgung berada <em>di atas</em> kurva. Turunan kedua negatif: $f''(x) < 0$.</figcaption>
+</figure>
+
+ <h3 class="lesson-subheading">F. Contoh Lengkap: Analisis Fungsi</h3>
+ <p class="lesson-text">Misalkan $f(x) = x^3 - 3x^2 - 9x + 5$. Kita analisis secara menyeluruh: kemonotonan, nilai ekstrem, kecekungan, dan titik belok.</p>
+ <p class="lesson-text"><strong>Langkah 1: Turunan pertama dan titik kritis.</strong></p>
+ <p class="lesson-text">$$f'(x) = 3x^2 - 6x - 9 = 3(x - 3)(x + 1)$$</p>
+ <p class="lesson-text">Titik kritis: $x = -1$ dan $x = 3$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Uji tanda $f'$.</strong> Dari analisis di bab sebelumnya, kita sudah tahu $f$ naik pada $(-\infty, -1)$ dan $(3, \infty)$, turun pada $(-1, 3)$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Kesimpulan nilai ekstrem.</strong> Berdasarkan uji turunan pertama:</p>
+ <ul>
+  <li>Di $x = -1$: $f'$ berubah dari positif ke negatif, sehingga $f(-1)$ adalah maksimum lokal.</li>
+  <li>Di $x = 3$: $f'$ berubah dari negatif ke positif, sehingga $f(3)$ adalah minimum lokal.</li>
+ </ul>
+ <p class="lesson-text">Nilai-nilainya: $f(-1) = -1 - 3 + 9 + 5 = 10$ dan $f(3) = 27 - 27 - 27 + 5 = -22$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Turunan kedua dan kecekungan.</strong></p>
+ <p class="lesson-text">$$f''(x) = 6x - 6 = 6(x - 1)$$</p>
+ <p class="lesson-text">Tanda $f''$: negatif untuk $x < 1$ (cekung ke bawah), positif untuk $x > 1$ (cekung ke atas). Titik $x = 1$ adalah titik belok, karena kecekungan berubah di sana.</p>
+ <p class="lesson-text"><strong>Langkah 5: Verifikasi dengan uji turunan kedua.</strong></p>
+ <p class="lesson-text">$f''(-1) = 6(-2) = -12 < 0$, sehingga $x = -1$ adalah maksimum lokal. Sesuai dengan kesimpulan sebelumnya.</p>
+ <p class="lesson-text">$f''(3) = 6(2) = 12 > 0$, sehingga $x = 3$ adalah minimum lokal. Sesuai juga.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Optimisasi</h2>
+ <p class="lesson-text">Optimisasi adalah salah satu penerapan turunan yang paling praktis. Tujuannya adalah mencari nilai maksimum atau minimum dari suatu besaran dalam konteks nyata: luas maksimum, biaya minimum, volume maksimum, waktu minimum, dan seterusnya.</p>
+
+ <h3 class="lesson-subheading">A. Maksimum dan Minimum Global pada Interval Tertutup</h3>
+ <p class="lesson-text">Misalkan $f$ kontinu pada interval tertutup $[a, b]$. Menurut Teorema Nilai Ekstrem, $f$ pasti mencapai nilai maksimum global dan nilai minimum global pada interval tersebut. Nilai-nilai ini dapat terjadi di salah satu dari dua jenis titik:</p>
+ <ul>
+  <li>Titik kritis $c$ dalam $(a, b)$&mdash;yaitu tempat $f'(c) = 0$ atau $f'(c)$ tidak ada.</li>
+  <li>Titik ujung interval, yaitu $x = a$ atau $x = b$.</li>
+ </ul>
+ <p class="lesson-text">Ini memberikan <strong>metode interval tertutup</strong> untuk mencari nilai maksimum dan minimum global:</p>
+ <ol>
+  <li>Tentukan semua titik kritis $f$ dalam $(a, b)$.</li>
+  <li>Hitung nilai $f$ di setiap titik kritis.</li>
+  <li>Hitung nilai $f$ di titik ujung $a$ dan $b$.</li>
+  <li>Nilai terbesar di antara semua nilai tersebut adalah maksimum global; nilai terkecil adalah minimum global.</li>
+ </ol>
+
+ <h3 class="lesson-subheading">B. Contoh: Optimisasi pada Interval Tertutup</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan nilai maksimum dan minimum global dari $f(x) = x^3 - 3x^2 + 1$ pada interval $[-1, 4]$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Titik kritis.</strong></p>
+ <p class="lesson-text">$$f'(x) = 3x^2 - 6x = 3x(x - 2)$$</p>
+ <p class="lesson-text">Titik kritis: $x = 0$ dan $x = 2$. Keduanya berada dalam interval $(-1, 4)$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung nilai $f$ di semua kandidat.</strong></p>
+ <ul>
+  <li>$f(-1) = -1 - 3 + 1 = -3$ (titik ujung kiri).</li>
+  <li>$f(0) = 0 - 0 + 1 = 1$ (titik kritis).</li>
+  <li>$f(2) = 8 - 12 + 1 = -3$ (titik kritis).</li>
+  <li>$f(4) = 64 - 48 + 1 = 17$ (titik ujung kanan).</li>
+ </ul>
+ <p class="lesson-text"><strong>Langkah 3: Bandingkan.</strong> Nilai terbesar adalah $17$ (di $x = 4$), dan nilai terkecil adalah $-3$ (di $x = -1$ dan $x = 2$).</p>
+ <p class="lesson-text">Jadi maksimum global adalah $17$ dan minimum global adalah $-3$.</p>
+
+ <h3 class="lesson-subheading">C. Strategi Menyelesaikan Masalah Optimisasi</h3>
+ <p class="lesson-text">Ketika menghadapi masalah optimisasi yang disajikan dalam bentuk cerita, langkah-langkah berikut sangat membantu:</p>
+ <ol>
+  <li><strong>Pahami masalahnya.</strong> Identifikasi besaran yang ingin dimaksimumkan atau diminimumkan.</li>
+  <li><strong>Gambar sketsa</strong> jika memungkinkan, dan beri nama variabel-variabel yang terlibat.</li>
+  <li><strong>Tuliskan fungsi objektif</strong>&mdash;yaitu fungsi yang akan dioptimalkan&mdash;dalam satu variabel saja. Jika muncul lebih dari satu variabel, gunakan informasi dari soal untuk mengekspresikan variabel lain dalam variabel utama.</li>
+  <li><strong>Tentukan domain</strong> dari variabel tersebut, berdasarkan batasan fisik masalah.</li>
+  <li><strong>Cari titik kritis</strong> dengan menurunkan fungsi objektif dan menyetelnya nol.</li>
+  <li><strong>Tentukan nilai maksimum atau minimum</strong> dengan metode interval tertutup atau uji turunan pertama atau kedua.</li>
+  <li><strong>Interpretasikan hasilnya</strong> dalam konteks masalah asli.</li>
+ </ol>
+
+ <h3 class="lesson-subheading">D. Contoh: Kotak Tanpa Tutup dengan Volume Maksimum</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Sebuah kotak tanpa tutup akan dibuat dari selembar karton berukuran $20$ cm × $20$ cm. Caranya adalah memotong persegi berukuran sama di keempat sudut, lalu melipat sisi-sisinya ke atas. Berapa panjang sisi persegi yang harus dipotong agar volume kotak maksimum?</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $x$ adalah panjang sisi persegi yang dipotong (dalam cm). Setelah dipotong dan dilipat, kotak akan memiliki:</p>
+ <ul>
+  <li>Tinggi $x$.</li>
+  <li>Panjang alas $20 - 2x$.</li>
+  <li>Lebar alas $20 - 2x$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Langkah 2: Fungsi objektif.</strong> Volume kotak adalah:</p>
+ <p class="lesson-text">$$V(x) = x(20 - 2x)^2 = x(400 - 80x + 4x^2) = 4x^3 - 80x^2 + 400x$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Domain.</strong> Karena panjang dan lebar harus positif, maka $20 - 2x > 0$, yaitu $x < 10$. Dan karena $x$ adalah panjang, maka $x > 0$. Jadi domainnya adalah $0 < x < 10$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Titik kritis.</strong></p>
+ <p class="lesson-text">$$V'(x) = 12x^2 - 160x + 400 = 4(3x^2 - 40x + 100)$$</p>
+ <p class="lesson-text">Setel $V'(x) = 0$:</p>
+ <p class="lesson-text">$$3x^2 - 40x + 100 = 0$$</p>
+ <p class="lesson-text">Menggunakan rumus kuadrat:</p>
+ <p class="lesson-text">$$x = \frac{40 \pm \sqrt{1600 - 1200}}{6} = \frac{40 \pm 20}{6}$$</p>
+ <p class="lesson-text">Diperoleh $x = 10$ atau $x = \dfrac{10}{3}$. Karena $x < 10$, titik kritis yang valid adalah $x = \dfrac{10}{3} \approx 3{,}33$ cm.</p>
+ <p class="lesson-text"><strong>Langkah 5: Verifikasi dengan uji turunan kedua.</strong></p>
+ <p class="lesson-text">$$V''(x) = 24x - 160$$</p>
+ <p class="lesson-text">$$V''\left(\tfrac{10}{3}\right) = 24 \cdot \tfrac{10}{3} - 160 = 80 - 160 = -80 < 0$$</p>
+ <p class="lesson-text">Karena $V'' < 0$, titik $x = \dfrac{10}{3}$ menghasilkan maksimum.</p>
+ <p class="lesson-text"><strong>Langkah 6: Interpretasi.</strong> Untuk memperoleh volume maksimum, potong persegi dengan sisi $\dfrac{10}{3} \approx 3{,}33$ cm di keempat sudut karton.</p>
+ <p class="lesson-text">Volume maksimumnya: $V\left(\tfrac{10}{3}\right) = \tfrac{10}{3}\left(20 - \tfrac{20}{3}\right)^2 = \tfrac{10}{3} \cdot \left(\tfrac{40}{3}\right)^2 = \tfrac{10}{3} \cdot \tfrac{1600}{9} = \tfrac{16000}{27} \approx 592{,}6$ cm³.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Biaya Minimum</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Sebuah perusahaan ingin membuat kaleng berbentuk tabung tertutup dengan volume $1000$ cm³. Biaya bahan untuk sisi lengkung sebesar Rp 2 per cm², sedangkan untuk tutup dan alas sebesar Rp 4 per cm². Tentukan jari-jari dan tinggi kaleng yang meminimumkan biaya bahan.</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $r$ adalah jari-jari alas (cm) dan $h$ adalah tinggi (cm).</p>
+ <p class="lesson-text"><strong>Langkah 2: Hubungan antar variabel.</strong> Volume tabung adalah $\pi r^2 h = 1000$, sehingga $h = \dfrac{1000}{\pi r^2}$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Fungsi objektif.</strong> Luas sisi lengkung adalah $2\pi r h$, dan luas tutup plus alas adalah $2\pi r^2$. Biaya total:</p>
+ <p class="lesson-text">$$C = 2(2\pi r h) + 4(2\pi r^2) = 4\pi r h + 8\pi r^2$$</p>
+ <p class="lesson-text">Substitusi $h = \dfrac{1000}{\pi r^2}$:</p>
+ <p class="lesson-text">$$C(r) = 4\pi r \cdot \frac{1000}{\pi r^2} + 8\pi r^2 = \frac{4000}{r} + 8\pi r^2$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Titik kritis.</strong></p>
+ <p class="lesson-text">$$C'(r) = -\frac{4000}{r^2} + 16\pi r$$</p>
+ <p class="lesson-text">Setel $C'(r) = 0$:</p>
+ <p class="lesson-text">$$16\pi r = \frac{4000}{r^2} \quad \Rightarrow \quad 16\pi r^3 = 4000 \quad \Rightarrow \quad r^3 = \frac{250}{\pi}$$</p>
+ <p class="lesson-text">$$r = \sqrt[3]{\frac{250}{\pi}} \approx 4{,}30 \text{ cm}$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Verifikasi dengan uji turunan kedua.</strong></p>
+ <p class="lesson-text">$$C''(r) = \frac{8000}{r^3} + 16\pi > 0 \text{ untuk semua } r > 0$$</p>
+ <p class="lesson-text">Karena $C''(r) > 0$, titik ini menghasilkan minimum.</p>
+ <p class="lesson-text"><strong>Langkah 6: Interpretasi.</strong> Jari-jari optimal sekitar $4{,}30$ cm. Tingginya:</p>
+ <p class="lesson-text">$$h = \frac{1000}{\pi (4{,}30)^2} \approx \frac{1000}{58{,}1} \approx 17{,}2 \text{ cm}$$</p>
+ <p class="lesson-text">Perhatikan bahwa tinggi kaleng sekitar empat kali jari-jarinya&mdash;bukan bentuk yang "proporsional" secara estetika, tetapi inilah bentuk yang meminimumkan biaya bahan berdasarkan asumsi harga yang diberikan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Laju Terkait</h2>
+ <p class="lesson-text">Sampai di sini, kita membahas masalah di mana variabel bebasnya adalah $x$&mdash;suatu posisi atau besaran statis. Namun banyak fenomena nyata melibatkan besaran yang <em>berubah terhadap waktu</em>. Ketika dua atau lebih besaran yang saling terkait berubah terhadap waktu, turunan mereka terhadap waktu juga saling terkait. Hubungan inilah yang menjadi inti dari <strong>laju terkait</strong>.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Dasar</h3>
+ <p class="lesson-text">Misalkan sebuah balon berbentuk bola ditiup. Ketika udara masuk, jari-jarinya bertambah, dan volumenya juga bertambah. Kedua besaran ini terkait melalui rumus volume bola:</p>
+ <p class="lesson-text">$$V = \frac{4}{3}\pi r^3$$</p>
+ <p class="lesson-text">Jika kita turunkan kedua ruas terhadap waktu $t$, kita memperoleh hubungan antara laju perubahan volume $\dfrac{dV}{dt}$ dan laju perubahan jari-jari $\dfrac{dr}{dt}$:</p>
+ <p class="lesson-text">$$\frac{dV}{dt} = 4\pi r^2 \cdot \frac{dr}{dt}$$</p>
+ <p class="lesson-text">Ini adalah contoh khas laju terkait. Jika kita diberi salah satu laju, kita dapat menentukan yang lain&mdash;asalkan kita juga mengetahui nilai variabel lain pada saat yang dimaksud.</p>
+ <p class="lesson-text">Perhatikan bahwa $\dfrac{dr}{dt}$ muncul karena aturan rantai: $r$ bergantung pada $t$, sehingga turunan $r^3$ terhadap $t$ adalah $3r^2 \cdot \dfrac{dr}{dt}$.</p>
+
+ <h3 class="lesson-subheading">B. Strategi Menyelesaikan Masalah Laju Terkait</h3>
+ <ol>
+  <li><strong>Gambar sketsa</strong> jika memungkinkan, dan beri nama semua variabel yang berubah terhadap waktu.</li>
+  <li><strong>Identifikasi informasi yang diberikan</strong> dalam bentuk laju&mdash;yaitu nilai dari turunan seperti $\dfrac{dx}{dt}$ atau $\dfrac{dy}{dt}$&mdash;dan laju yang ingin dicari.</li>
+  <li><strong>Tuliskan persamaan</strong> yang menghubungkan semua variabel yang terlibat.</li>
+  <li><strong>Turunkan kedua ruas persamaan terhadap waktu $t$.</strong> Gunakan aturan rantai: setiap kali menurunkan variabel yang bergantung pada $t$, kalikan dengan $\dfrac{d(\cdot)}{dt}$.</li>
+  <li><strong>Substitusi nilai-nilai yang diketahui</strong> pada saat yang dimaksud.</li>
+  <li><strong>Selesaikan untuk laju yang dicari.</strong> Jangan lupa satuan.</li>
+ </ol>
+
+ <h3 class="lesson-subheading">C. Contoh: Balon yang Ditiup</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Udara dipompa ke dalam balon berbentuk bola dengan laju $100$ cm³/detik. Berapa laju pertambahan jari-jari balon ketika jari-jarinya $5$ cm?</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $V$ adalah volume balon (cm³) dan $r$ jari-jarinya (cm), keduanya fungsi dari waktu $t$ (detik).</p>
+ <p class="lesson-text"><strong>Langkah 2: Informasi yang diketahui.</strong> Laju perubahan volume: $\dfrac{dV}{dt} = 100$ cm³/detik. Laju yang dicari: $\dfrac{dr}{dt}$ pada saat $r = 5$ cm.</p>
+ <p class="lesson-text"><strong>Langkah 3: Persamaan yang menghubungkan.</strong></p>
+ <p class="lesson-text">$$V = \frac{4}{3}\pi r^3$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Turunkan terhadap $t$.</strong></p>
+ <p class="lesson-text">$$\frac{dV}{dt} = 4\pi r^2 \cdot \frac{dr}{dt}$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Substitusi.</strong> Saat $r = 5$:</p>
+ <p class="lesson-text">$$100 = 4\pi (25) \cdot \frac{dr}{dt} = 100\pi \cdot \frac{dr}{dt}$$</p>
+ <p class="lesson-text"><strong>Langkah 6: Selesaikan.</strong></p>
+ <p class="lesson-text">$$\frac{dr}{dt} = \frac{100}{100\pi} = \frac{1}{\pi} \approx 0{,}318 \text{ cm/detik}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Ketika jari-jari balon $5$ cm, jari-jarinya bertambah dengan laju sekitar $0{,}318$ cm per detik. Perhatikan bahwa meskipun volume bertambah dengan laju konstan $100$ cm³/detik, jari-jari bertambah dengan laju yang <em>menurun</em> seiring waktu: semakin besar balon, semakin lambat pertambahan jari-jarinya untuk laju volume yang sama.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Balon kecil (saat ini) -->
+  <circle cx="180" cy="170" r="50" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="2"/>
+  <line x1="180" y1="170" x2="230" y2="170" stroke="#5dade2" stroke-width="1.4"/>
+  <text x="205" y="162" font-size="11" fill="#5dade2" font-style="italic" text-anchor="middle">r</text>
+
+  <!-- Panah -->
+  <path d="M 260 170 L 330 170" stroke="#daa520" stroke-width="2" stroke-dasharray="6,4"/>
+  <polygon points="335,170 325,165 325,175" fill="#daa520"/>
+  <text x="297" y="158" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">waktu</text>
+
+  <!-- Balon besar (setelah beberapa saat) -->
+  <circle cx="450" cy="170" r="80" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="2"/>
+  <line x1="450" y1="170" x2="530" y2="170" stroke="#5dade2" stroke-width="1.4"/>
+  <text x="490" y="162" font-size="11" fill="#5dade2" font-style="italic" text-anchor="middle">r + Δr</text>
+
+  <!-- Keterangan laju -->
+  <text x="180" y="270" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Saat ini</text>
+  <text x="180" y="290" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">dV/dt = 100 cm³/detik</text>
+  <text x="180" y="308" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">dr/dt = ?</text>
+
+  <text x="450" y="280" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Beberapa saat kemudian</text>
+  <text x="450" y="298" font-size="12" fill="#5dade2" text-anchor="middle" font-style="italic">dr/dt lebih kecil</text>
+ </svg>
+ <figcaption class="visual-caption">Balon yang ditiup dengan laju volume konstan. Ketika jari-jari bertambah, laju pertambahan jari-jari berkurang&mdash;karena volume yang sama harus "disebar" pada permukaan yang lebih luas.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Contoh: Tangga yang Meluncur</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Sebuah tangga dengan panjang $10$ meter bersandar pada dinding vertikal. Ujung bawah tangga ditarik menjauhi dinding dengan laju $1$ m/detik. Berapa laju turunnya ujung atas tangga ketika ujung bawahnya berada $6$ meter dari dinding?</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $x$ adalah jarak ujung bawah tangga dari dinding (meter), dan $y$ adalah tinggi ujung atas tangga dari tanah (meter). Keduanya fungsi dari $t$ (detik).</p>
+ <p class="lesson-text"><strong>Langkah 2: Informasi yang diketahui.</strong> $\dfrac{dx}{dt} = 1$ m/detik. Laju yang dicari: $\dfrac{dy}{dt}$ pada saat $x = 6$ m.</p>
+ <p class="lesson-text"><strong>Langkah 3: Persamaan.</strong> Menurut Teorema Pythagoras (karena tangga, dinding, dan tanah membentuk segitiga siku-siku):</p>
+ <p class="lesson-text">$$x^2 + y^2 = 100$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Turunkan terhadap $t$.</strong></p>
+ <p class="lesson-text">$$2x \frac{dx}{dt} + 2y \frac{dy}{dt} = 0$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Substitusi.</strong> Saat $x = 6$, kita hitung $y$ dari persamaan: $y = \sqrt{100 - 36} = \sqrt{64} = 8$ m.</p>
+ <p class="lesson-text">Substitusi $x = 6$, $y = 8$, dan $\dfrac{dx}{dt} = 1$:</p>
+ <p class="lesson-text">$$2(6)(1) + 2(8)\frac{dy}{dt} = 0$$</p>
+ <p class="lesson-text">$$12 + 16 \frac{dy}{dt} = 0$$</p>
+ <p class="lesson-text"><strong>Langkah 6: Selesaikan.</strong></p>
+ <p class="lesson-text">$$\frac{dy}{dt} = -\frac{12}{16} = -\frac{3}{4} \text{ m/detik}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Tanda negatif menunjukkan bahwa tinggi ujung atas tangga <em>berkurang</em>&mdash;artinya ujung atas tangga turun. Ketika ujung bawah berada $6$ m dari dinding, ujung atas tangga turun dengan laju $\dfrac{3}{4}$ m/detik.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Kerucut dari Air yang Mengalir</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Air dituangkan ke dalam wadah berbentuk kerucut terbalik dengan jari-jari mulut $4$ cm dan tinggi $16$ cm, dengan laju $3$ cm³/detik. Berapa laju kenaikan permukaan air ketika ketinggian air di wadah $8$ cm?</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $r$ adalah jari-jari permukaan air (cm), $h$ tinggi air (cm), dan $V$ volume air (cm³), semua sebagai fungsi waktu $t$ (detik).</p>
+ <p class="lesson-text"><strong>Langkah 2: Hubungan antar variabel.</strong> Karena kerucut sebangun, rasio $\dfrac{r}{h}$ konstan dan sama dengan rasio jari-jari mulut terhadap tinggi:</p>
+ <p class="lesson-text">$$\frac{r}{h} = \frac{4}{16} = \frac{1}{4} \quad \Rightarrow \quad r = \frac{h}{4}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Persamaan.</strong> Volume kerucut: $V = \dfrac{1}{3}\pi r^2 h$. Substitusi $r = \dfrac{h}{4}$:</p>
+ <p class="lesson-text">$$V = \frac{1}{3}\pi \left(\frac{h}{4}\right)^2 h = \frac{\pi h^3}{48}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Turunkan terhadap $t$.</strong></p>
+ <p class="lesson-text">$$\frac{dV}{dt} = \frac{\pi}{48} \cdot 3h^2 \cdot \frac{dh}{dt} = \frac{\pi h^2}{16} \cdot \frac{dh}{dt}$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Substitusi.</strong> Diketahui $\dfrac{dV}{dt} = 3$ cm³/detik dan $h = 8$ cm:</p>
+ <p class="lesson-text">$$3 = \frac{\pi (64)}{16} \cdot \frac{dh}{dt} = 4\pi \cdot \frac{dh}{dt}$$</p>
+ <p class="lesson-text"><strong>Langkah 6: Selesaikan.</strong></p>
+ <p class="lesson-text">$$\frac{dh}{dt} = \frac{3}{4\pi} \approx 0{,}239 \text{ cm/detik}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Ketika ketinggian air $8$ cm, permukaan air naik dengan laju sekitar $0{,}239$ cm per detik. Seperti pada contoh balon, laju kenaikan ini bergantung pada ketinggian&mdash;dan biasanya menurun seiring naiknya permukaan air, karena volume air yang sama harus mengisi bagian yang lebih lebar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut contoh-contoh tambahan yang menggabungkan berbagai konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menganalisis Fungsi secara Menyeluruh</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Diberikan $f(x) = x^4 - 4x^3$. Tentukan kemonotonan, nilai ekstrem lokal, kecekungan, dan titik beloknya.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong></p>
+ <p class="lesson-text">Turunan pertama: $f'(x) = 4x^3 - 12x^2 = 4x^2(x - 3)$.</p>
+ <p class="lesson-text">Titik kritis: $x = 0$ dan $x = 3$. Uji tanda $f'$:</p>
+ <ul>
+  <li>Pada $(-\infty, 0)$: $f'(-1) = 4(1)(-4) = -16 < 0$, turun.</li>
+  <li>Pada $(0, 3)$: $f'(1) = 4(1)(-2) = -8 < 0$, turun.</li>
+  <li>Pada $(3, \infty)$: $f'(4) = 4(16)(1) = 64 > 0$, naik.</li>
+ </ul>
+ <p class="lesson-text">Karena $f'$ tetap negatif di kedua sisi $x = 0$, titik $x = 0$ bukan nilai ekstrem. Di $x = 3$, $f'$ berubah dari negatif ke positif&mdash;maka $f(3) = 81 - 108 = -27$ adalah minimum lokal.</p>
+ <p class="lesson-text">Turunan kedua: $f''(x) = 12x^2 - 24x = 12x(x - 2)$.</p>
+ <p class="lesson-text">Tanda $f''$: positif untuk $x < 0$, negatif untuk $0 < x < 2$, positif untuk $x > 2$. Titik belok terjadi di $x = 0$ dan $x = 2$&mdash;karena kecekungan berubah di kedua titik tersebut.</p>
+
+ <h3 class="lesson-subheading">B. Optimisasi: Pagar untuk Lahan Persegi Panjang</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Seorang petani memiliki $100$ meter kawat untuk memagari lahan persegi panjang. Salah satu sisi lahan berbatasan langsung dengan sungai, sehingga tidak perlu dipagari. Berapa ukuran lahan agar luasnya maksimum?</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $x$ adalah panjang sisi yang tegak lurus sungai (m) dan $y$ adalah panjang sisi yang sejajar sungai (m).</p>
+ <p class="lesson-text"><strong>Langkah 2: Kendala.</strong> Kawat yang digunakan menutupi dua sisi tegak lurus dan satu sisi sejajar:</p>
+ <p class="lesson-text">$$2x + y = 100 \quad \Rightarrow \quad y = 100 - 2x$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Fungsi objektif.</strong> Luas lahan:</p>
+ <p class="lesson-text">$$A(x) = x \cdot y = x(100 - 2x) = 100x - 2x^2$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Titik kritis.</strong></p>
+ <p class="lesson-text">$$A'(x) = 100 - 4x = 0 \quad \Rightarrow \quad x = 25$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Verifikasi.</strong> $A''(x) = -4 < 0$, sehingga $x = 25$ menghasilkan maksimum.</p>
+ <p class="lesson-text"><strong>Langkah 6: Interpretasi.</strong> Sisi tegak lurus sungai panjangnya $25$ m, sisi sejajar sungai panjangnya $y = 100 - 50 = 50$ m. Luas maksimumnya $A = 25 \cdot 50 = 1250$ m².</p>
+
+ <h3 class="lesson-subheading">C. Laju Terkait: Bayangan Berjalan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Seorang pria dengan tinggi $1{,}8$ m berjalan menjauhi tiang lampu setinggi $6$ m dengan laju $1{,}5$ m/detik. Berapa laju pertambahan panjang bayangannya ketika ia berada $9$ m dari tiang?</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $x$ adalah jarak pria dari tiang (m) dan $s$ adalah panjang bayangannya (m).</p>
+ <p class="lesson-text"><strong>Langkah 2: Hubungan.</strong> Dengan kesebangunan segitiga (tinggi tiang, tinggi pria, dan bayangan), berlaku:</p>
+ <p class="lesson-text">$$\frac{6}{x + s} = \frac{1{,}8}{s}$$</p>
+ <p class="lesson-text">Sederhanakan: $6s = 1{,}8(x + s)$, sehingga $6s = 1{,}8x + 1{,}8s$, atau $4{,}2s = 1{,}8x$. Maka $s = \dfrac{1{,}8}{4{,}2} x = \dfrac{3}{7} x$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Turunkan terhadap $t$.</strong></p>
+ <p class="lesson-text">$$\frac{ds}{dt} = \frac{3}{7} \cdot \frac{dx}{dt}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Substitusi.</strong> $\dfrac{dx}{dt} = 1{,}5$ m/detik:</p>
+ <p class="lesson-text">$$\frac{ds}{dt} = \frac{3}{7} \cdot 1{,}5 = \frac{4{,}5}{7} \approx 0{,}643 \text{ m/detik}$$</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Panjang bayangan bertambah dengan laju sekitar $0{,}643$ m per detik. Perhatikan bahwa laju ini tidak bergantung pada posisi pria&mdash;ia konstan sepanjang perjalanan, karena hubungan antara $s$ dan $x$ linear.</p>
+
+ <h3 class="lesson-subheading">D. Optimisasi: Volume Tabung dalam Bola</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Sebuah tabung dimasukkan ke dalam bola berjari-jari $R$. Tentukan dimensi tabung agar volumenya maksimum.</p>
+ <p class="lesson-text"><strong>Langkah 1: Variabel.</strong> Misalkan $r$ adalah jari-jari tabung dan $h$ tingginya. Pusat tabung berimpit dengan pusat bola.</p>
+ <p class="lesson-text"><strong>Langkah 2: Kendala.</strong> Jari-jari bola, jari-jari tabung, dan setengah tinggi tabung membentuk segitiga siku-siku dengan hipotenusa $R$:</p>
+ <p class="lesson-text">$$r^2 + \left(\frac{h}{2}\right)^2 = R^2 \quad \Rightarrow \quad r^2 = R^2 - \frac{h^2}{4}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Fungsi objektif.</strong> Volume tabung:</p>
+ <p class="lesson-text">$$V = \pi r^2 h = \pi \left(R^2 - \frac{h^2}{4}\right) h = \pi R^2 h - \frac{\pi h^3}{4}$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Titik kritis.</strong></p>
+ <p class="lesson-text">$$V'(h) = \pi R^2 - \frac{3\pi h^2}{4} = 0 \quad \Rightarrow \quad h^2 = \frac{4R^2}{3} \quad \Rightarrow \quad h = \frac{2R}{\sqrt{3}}$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Verifikasi.</strong> $V''(h) = -\dfrac{3\pi h}{2} < 0$ untuk $h > 0$, sehingga titik ini menghasilkan maksimum.</p>
+ <p class="lesson-text"><strong>Langkah 6: Interpretasi.</strong> Tinggi optimal $h = \dfrac{2R}{\sqrt{3}}$, dan jari-jarinya:</p>
+ <p class="lesson-text">$$r^2 = R^2 - \frac{1}{4} \cdot \frac{4R^2}{3} = R^2 - \frac{R^2}{3} = \frac{2R^2}{3} \quad \Rightarrow \quad r = R\sqrt{\frac{2}{3}}$$</p>
+ <p class="lesson-text">Rasio tinggi terhadap jari-jari adalah $\dfrac{h}{r} = \dfrac{2R/\sqrt{3}}{R\sqrt{2/3}} = \dfrac{2}{\sqrt{2}} = \sqrt{2}$. Jadi tabung dengan volume maksimum di dalam bola memiliki tinggi sekitar $1{,}414$ kali jari-jarinya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Kemonotonan dan Ekstrem</h3>
+ <ul>
+  <li><strong>Menganggap $f'(c) = 0$ berarti $c$ pasti titik ekstrem.</strong> Ini salah. $f'(c) = 0$ hanya berarti $c$ adalah titik kritis. Contoh: $f(x) = x^3$ di $x = 0$ memiliki $f'(0) = 0$, tetapi bukan maksimum atau minimum. Perlu diperiksa apakah tanda $f'$ benar-benar berubah di sekitar $c$.</li>
+  <li><strong>Lupa memeriksa titik di mana $f'(c)$ tidak ada.</strong> Titik kritis tidak hanya $f'(c) = 0$, tetapi juga tempat $f'(c)$ tidak ada. Contoh: $f(x) = |x|$ memiliki titik kritis di $x = 0$ (minimum lokal), meskipun $f'(0)$ tidak ada.</li>
+  <li><strong>Menyimpulkan kemonotonan dari satu titik uji saja.</strong> Harus diperiksa tanda $f'$ di <em>seluruh</em> interval antara dua titik kritis berurutan, bukan hanya di satu titik.</li>
+  <li><strong>Mengabaikan titik ujung pada optimisasi interval tertutup.</strong> Nilai maksimum atau minimum pada $[a, b]$ bisa saja terjadi di titik ujung, bukan di titik kritis.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Optimisasi</h3>
+ <ul>
+  <li><strong>Lupa mengekspresikan fungsi objektif dalam satu variabel.</strong> Fungsi objektif yang masih mengandung dua variabel tidak dapat diturunkan secara langsung. Gunakan kendala untuk mengganti satu variabel dengan yang lain.</li>
+  <li><strong>Mengabaikan domain fisik.</strong> Domain fungsi objektif biasanya dibatasi oleh kenyataan soal&mdash;misalnya panjang tidak boleh negatif, atau volume tidak boleh melebihi kapasitas. Titik kritis di luar domain tidak relevan.</li>
+  <li><strong>Tidak memverifikasi jenis ekstrem.</strong> Setelah menemukan titik kritis, harus dikonfirmasi apakah ia maksimum atau minimum dengan uji turunan pertama atau kedua.</li>
+  <li><strong>Salah menginterpretasikan hasil.</strong> Setelah mendapat nilai $x$, harus dikembalikan ke konteks soal&mdash;berapa panjang, berapa lebar, berapa volume, dan sebagainya.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Laju Terkait</h3>
+ <ul>
+  <li><strong>Lupa mengalikan dengan $\dfrac{d(\cdot)}{dt}$ saat menurunkan variabel yang bergantung pada waktu.</strong> Ini adalah kesalahan paling umum. Setiap kali menurunkan besaran yang berubah terhadap waktu, muncul faktor laju perubahannya sesuai aturan rantai.</li>
+  <li><strong>Substitusi nilai numerik terlalu awal.</strong> Nilai-nilai yang diketahui (seperti $x = 6$) harus disubstitusi <em>setelah</em> penurunan, bukan sebelum. Jika disubstitusi lebih awal, variabelnya menjadi konstanta dan turunannya menjadi nol&mdash;yang mengubah arti masalah.</li>
+  <li><strong>Mengabaikan tanda negatif.</strong> Laju yang menurun dinyatakan dengan tanda negatif. Jika soal menanyakan "laju turun", jawabannya harus positif&mdash;tetapi perhitungan turunannya menghasilkan negatif. Perhatikan interpretasi tandanya.</li>
+  <li><strong>Menggunakan satuan yang tidak konsisten.</strong> Pastikan semua laju dinyatakan dalam satuan yang sama sebelum disubstitusi. Misalnya, jika satu laju dalam cm/detik dan yang lain dalam m/menit, harus dikonversi terlebih dahulu.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Kemonotonan:</strong> $f$ naik ketika $f'(x) > 0$, turun ketika $f'(x) < 0$.</li>
+  <li><strong>Titik kritis:</strong> $c$ sedemikian sehingga $f'(c) = 0$ atau $f'(c)$ tidak ada.</li>
+  <li><strong>Uji turunan pertama:</strong> jika $f'$ berubah dari $+$ ke $-$, maka maksimum lokal; jika dari $-$ ke $+$, minimum lokal; jika tidak berubah, bukan ekstrem.</li>
+  <li><strong>Uji turunan kedua:</strong> jika $f'(c) = 0$ dan $f''(c) < 0$, maksimum lokal; jika $f''(c) > 0$, minimum lokal.</li>
+  <li><strong>Kecekungan:</strong> $f''(x) > 0$ berarti cekung ke atas; $f''(x) < 0$ berarti cekung ke bawah.</li>
+  <li><strong>Titik belok:</strong> titik di mana kecekungan berubah.</li>
+  <li><strong>Metode interval tertutup:</strong> untuk mencari maksimum/minimum global pada $[a, b]$, bandingkan nilai $f$ di titik kritis dan di titik ujung.</li>
+  <li><strong>Strategi optimisasi:</strong> identifikasi besaran yang dioptimalkan, tulis fungsi objektif dalam satu variabel, tentukan domain, cari titik kritis, verifikasi jenis ekstrem, interpretasikan hasil.</li>
+  <li><strong>Laju terkait:</strong> turunkan persamaan yang menghubungkan variabel-variabel terhadap waktu $t$; setiap kali menurunkan variabel yang bergantung pada $t$, muncul faktor $\dfrac{d(\cdot)}{dt}$ sesuai aturan rantai.</li>
+  <li><strong>Strategi laju terkait:</strong> gambar sketsa, identifikasi laju yang diketahui dan dicari, tulis persamaan penghubung, turunkan terhadap $t$, substitusi nilai pada saat yang dimaksud, selesaikan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Turunan bukanlah sekadar alat untuk menghitung kemiringan. Ia adalah kunci untuk memahami perilaku fungsi secara menyeluruh: kapan fungsi naik atau turun, di mana ia mencapai nilai ekstremnya, bagaimana bentuk kurvanya, dan bagaimana berbagai besaran yang berubah terhadap waktu saling terkait. Materi ini menunjukkan bahwa turunan&mdash;yang semula tampak abstrak&mdash;memiliki penerapan langsung dalam masalah optimisasi dan laju terkait, dua topik yang muncul di hampir setiap bidang sains, teknik, dan ekonomi.</p>
+ <p class="lesson-text">Setiap teknik yang dipelajari di sini memiliki pola yang konsisten. Kemonotonan dan nilai ekstrem bertumpu pada tanda turunan pertama dan kedua. Optimisasi menggabungkan analisis titik kritis dengan pemodelan masalah nyata. Laju terkait menggunakan aturan rantai untuk menghubungkan laju-laju yang berbeda. Semua bermuara pada satu gagasan sederhana: turunan mengukur laju perubahan, dan dengan memahami laju perubahan, kita dapat memprediksi dan mengendalikan perilaku sistem.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>integral</strong> akan membawa kita ke arah kebalikan: alih-alih mencari laju perubahan dari suatu fungsi, kita akan mencari fungsi dari laju perubahannya. Konsep-konsep yang telah dibangun di sini&mdash;terutama pemahaman tentang laju, akumulasi, dan hubungan antar besaran&mdash;akan menjadi fondasi yang kuat untuk memahami integral dan aplikasinya.</p>
+</section>
+
+</main>
+</body>
+</html>

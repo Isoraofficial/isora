@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teori Ukuran &amp; Integral Lebesgue (Ukuran, Himpunan Terukur, Integral Lebesgue)</title>
+<meta name="description" content="Materi teori ukuran dan integral Lebesgue: keterbatasan integral Riemann, ukuran luar, himpunan terukur, ukuran Lebesgue, fungsi terukur, integral Lebesgue, dan teorema-teorema konvergensi.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Teori Ukuran &amp; Integral Lebesgue (Ukuran, Himpunan Terukur, Integral Lebesgue)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Analisis Real</strong> &mdash; konsep supremum, infimum, kelengkapan $\mathbb{R}$, himpunan terbuka dan tertutup, serta barisan dan kekonvergenannya menjadi fondasi bagi hampir semua definisi dalam teori ukuran.</li>
+   <li><strong>Integral Tentu</strong> &mdash; integral Riemann yang sudah kita pelajari menjadi titik tolak: kita akan menunjukkan keterbatasannya, lalu memperluasnya menjadi integral Lebesgue.</li>
+   <li><strong>Barisan dan Deret</strong> &mdash; konsep limit barisan dan deret, serta pertukaran limit dengan operasi lain, sangat penting untuk memahami teorema-teorema konvergensi dalam integral Lebesgue.</li>
+   <li><strong>Himpunan</strong> &mdash; notasi himpunan, operasi himpunan (irisan, gabungan, komplemen), dan konsep himpunan tak berhingga (terhitung dan tak terhitung) menjadi dasar untuk memahami himpunan terukur.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi Integral Tentu, kita sudah mempelajari integral Riemann&mdash;sebuah alat yang sangat berhasil untuk menghitung luas daerah, volume benda putar, dan berbagai besaran fisika. Namun integral Riemann memiliki keterbatasan mendasar. Ada fungsi-fungsi yang secara intuitif "seharusnya" dapat diintegralkan&mdash;misalnya fungsi yang bernilai $1$ pada bilangan rasional dan $0$ pada bilangan irasional&mdash;tetapi tidak dapat ditangani oleh integral Riemann. Selain itu, integral Riemann tidak cukup fleksibel untuk menangani operasi limit: barisan fungsi yang konvergen titik demi titik tidak selalu dapat "ditukar" dengan integralnya.</p>
+ <p class="lesson-text">Teori ukuran dan integral Lebesgue menjawab keterbatasan ini. Gagasan intinya adalah mengubah cara kita membagi domain integrasi. Integral Riemann membagi domain menjadi interval-interval kecil pada sumbu-$x$, lalu mendekati luas dengan persegi panjang. Integral Lebesgue membagi <em>range</em> fungsi menjadi nilai-nilai kecil pada sumbu-$y$, lalu mengukur <em>himpunan</em> titik di mana fungsi bernilai dalam rentang tertentu. Perubahan sudut pandang ini terlihat sederhana, tetapi konsekuensinya sangat besar: integral Lebesgue dapat menangani lebih banyak fungsi, dan memiliki sifat-sifat teoretis yang jauh lebih kuat.</p>
+ <p class="lesson-text">Untuk mengembangkan integral Lebesgue, kita memerlukan konsep <strong>ukuran</strong>&mdash;yaitu generalisasi dari gagasan "panjang", "luas", atau "volume" untuk himpunan yang jauh lebih umum daripada interval. Pertanyaan "berapa besar himpunan ini?" ternyata jauh lebih halus daripada yang terlihat pada awalnya. Sebagian himpunan&mdash;yang disebut <em>tidak terukur</em>&mdash;tidak dapat diberi ukuran dengan cara yang konsisten. Karena itu, kita perlu mendefinisikan dengan hati-hati apa yang dimaksud dengan "himpunan terukur".</p>
+ <p class="lesson-text">Materi ini mencakup empat topik. Pertama, keterbatasan integral Riemann dan motivasi untuk memperluasnya. Kedua, ukuran luar dan definisi himpunan terukur melalui kriteria Carathéodory. Ketiga, fungsi terukur dan sifat-sifatnya. Keempat, integral Lebesgue beserta teorema-teorema konvergensi utama.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Keterbatasan Integral Riemann</h2>
+ <p class="lesson-text">Bab ini menjelaskan mengapa kita memerlukan integral baru dengan menunjukkan keterbatasan integral Riemann secara konkret.</p>
+
+ <h3 class="lesson-subheading">A. Ringkasan Integral Riemann</h3>
+ <p class="lesson-text">Ingat kembali bahwa integral Riemann dari $f$ pada $[a, b]$ didefinisikan melalui limit dari jumlah Riemann:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \, \Delta x$$</p>
+ <p class="lesson-text">dengan $\Delta x = \dfrac{b - a}{n}$ dan $x_i^*$ adalah titik sampel di subinterval ke-$i$. Jika limitnya ada dan tidak bergantung pada pemilihan titik sampel, maka $f$ dikatakan terintegralkan Riemann.</p>
+ <p class="lesson-text">Salah satu syarat yang menjamin keterintegralan Riemann adalah: <strong>jika $f$ kontinu pada $[a, b]$, maka $f$ terintegralkan Riemann</strong>. Sifat ini sudah kita pakai sepanjang materi integral tanpa perlu mempertanyakannya.</p>
+
+ <h3 class="lesson-subheading">B. Keterbatasan Integral Riemann</h3>
+ <p class="lesson-text">Namun integral Riemann memiliki keterbatasan yang serius. Berikut tiga di antaranya.</p>
+
+ <p class="lesson-text"><strong>Keterbatasan 1: Fungsi yang sangat tidak kontinu.</strong> Perhatikan fungsi Dirichlet:</p>
+ <p class="lesson-text">$$f(x) = \begin{cases} 1 & \text{jika } x \in \mathbb{Q} \\ 0 & \text{jika } x \notin \mathbb{Q} \end{cases}$$</p>
+ <p class="lesson-text">Fungsi ini tidak terintegralkan Riemann pada interval apa pun&mdash;karena di setiap subinterval, terdapat bilangan rasional dan irasional, sehingga titik sampel bisa dipilih untuk menghasilkan jumlah Riemann yang berbeda secara signifikan. Namun secara intuitif, karena himpunan bilangan rasional "jauh lebih kecil" daripada bilangan irasional (dalam arti tertentu yang akan kita buat rigor), kita berharap integralnya $0$. Integral Lebesgue memberi nilai ini dengan tepat.</p>
+
+ <p class="lesson-text"><strong>Keterbatasan 2: Operasi limit tidak dapat ditukar.</strong> Misalkan $(f_n)$ adalah barisan fungsi yang konvergen titik demi titik ke $f$. Secara umum:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \int_a^b f_n(x)\, dx \neq \int_a^b \lim_{n \to \infty} f_n(x)\, dx$$</p>
+ <p class="lesson-text">Pertukaran ini hanya sah dalam kondisi-kondisi khusus (misalnya konvergensi seragam). Integral Lebesgue memiliki teorema konvergensi yang jauh lebih kuat yang berlaku dengan syarat-syarat yang lebih lemah.</p>
+
+ <p class="lesson-text"><strong>Keterbatasan 3: Ruang fungsi tidak lengkap.</strong> Ruang fungsi-fungsi yang terintegralkan Riemann, dengan norma tertentu, tidak lengkap&mdash;artinya ada barisan Cauchy yang tidak konvergen ke fungsi terintegralkan Riemann mana pun. Ruang fungsi terintegralkan Lebesgue (yang disebut $L^1$) bersifat lengkap, dan karena itu menjadi objek studi utama dalam analisis fungsional.</p>
+
+ <h3 class="lesson-subheading">C. Gagasan Integral Lebesgue</h3>
+ <p class="lesson-text">Gagasan Lebesgue adalah mengubah cara kita memandang aproksimasi. Dalam integral Riemann, kita membagi domain (sumbu-$x$) menjadi subinterval-subinterval kecil dan mengaproksimasi luas dengan persegi panjang. Dalam integral Lebesgue, kita membagi range (sumbu-$y$) menjadi interval-interval kecil dan mengukur berapa "besar" himpunan di mana $f$ bernilai dalam interval tersebut.</p>
+ <p class="lesson-text">Misalkan $f$ adalah fungsi non-negatif pada himpunan $E$. Untuk nilai $y$ dari $0$ sampai $M$, bagi range menjadi subinterval dengan lebar $\Delta y$. Untuk setiap subinterval, ukur himpunan:</p>
+ <p class="lesson-text">$$E_i = \{x \in E : y_i \leq f(x) < y_{i+1}\}$$</p>
+ <p class="lesson-text">Jika kita dapat mengukur "besar" himpunan ini&mdash;disebut <strong>ukuran</strong> $\mu(E_i)$&mdash;maka integralnya dapat didekati oleh:</p>
+ <p class="lesson-text">$$\int_E f \, d\mu \approx \sum_i y_i \cdot \mu(E_i)$$</p>
+ <p class="lesson-text">Perhatikan dua perubahan penting dari definisi Riemann. Pertama, aproksimasi menggunakan <em>tinggi</em> dari range, bukan lebar dari domain. Kedua, elemen volumenya bukan panjang interval, melainkan <strong>ukuran himpunan</strong>&mdash;sesuatu yang jauh lebih umum.</p>
+ <figure>
+ <svg viewBox="0 0 620 360" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="160" y="24" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Integral Riemann</text>
+  <text x="470" y="24" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Integral Lebesgue</text>
+  
+  <!-- ============= PANEL KIRI: RIEMANN ============= -->
+  <g>
+   <line x1="40" y1="280" x2="290" y2="280" stroke="#e8e8e8" stroke-width="1" />
+   <line x1="60" y1="300" x2="60" y2="70" stroke="#e8e8e8" stroke-width="1" />
+   <text x="296" y="284" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+   <text x="66" y="66" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+   
+   <path d="M 80 230 Q 170 110 280 170" fill="none" stroke="#5dade2" stroke-width="2.2" />
+   
+   <rect x="80" y="230" width="30" height="50" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   <rect x="110" y="192" width="30" height="88" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   <rect x="140" y="155" width="30" height="125" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   <rect x="170" y="135" width="30" height="145" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   <rect x="200" y="143" width="30" height="137" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   <rect x="230" y="155" width="30" height="125" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   <rect x="260" y="165" width="20" height="115" fill="#daa520" fill-opacity="0.28" stroke="#daa520" stroke-width="1" />
+   
+   <line x1="80" y1="308" x2="110" y2="308" stroke="#b8b8b8" stroke-width="1" />
+   <line x1="80" y1="304" x2="80" y2="312" stroke="#b8b8b8" stroke-width="1" />
+   <line x1="110" y1="304" x2="110" y2="312" stroke="#b8b8b8" stroke-width="1" />
+   <text x="95" y="322" font-size="10" fill="#b8b8b8" text-anchor="middle" font-style="italic">Δx</text>
+   
+   <text x="160" y="345" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">domain dibagi; lebar Δx tetap</text>
+  </g>
+  
+  <!-- ============= PANEL KANAN: LEBESGUE ============= -->
+  <g transform="translate(300,0)">
+   <line x1="40" y1="280" x2="290" y2="280" stroke="#e8e8e8" stroke-width="1" />
+   <line x1="60" y1="300" x2="60" y2="70" stroke="#e8e8e8" stroke-width="1" />
+   <text x="296" y="284" font-size="11" fill="#b8b8b8" font-style="italic">x</text>
+   <text x="66" y="66" font-size="11" fill="#b8b8b8" font-style="italic">y</text>
+   
+   <!-- Kurva: puncak di (170, 130) -->
+   <path d="M 80 240 Q 170 20 260 240" fill="none" stroke="#5dade2" stroke-width="2.2" />
+   
+   <!-- Level 1: y = 200 -->
+   <line x1="60" y1="200" x2="270" y2="200" stroke="#daa520" stroke-width="1.2" stroke-dasharray="4,3" />
+   <text x="272" y="204" font-size="10" fill="#daa520" font-style="italic">y₁</text>
+   
+   <!-- Level 2: y = 160 -->
+   <line x1="60" y1="160" x2="270" y2="160" stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="4,3" />
+   <text x="272" y="164" font-size="10" fill="#22d3ee" font-style="italic">y₂</text>
+   
+   <path d="M 128 160 Q 148 130 170 130 Q 192 130 212 160 Z" fill="#22d3ee" fill-opacity="0.30" stroke="none" />
+    <path d="M 100 200 Q 120 145 170 130 Q 220 145 240 200 Z" fill="#daa520" fill-opacity="0.18" stroke="none"/>
+   
+   <!-- Penanda pada sumbu-x untuk E_1 -->
+   <line x1="100" y1="200" x2="100" y2="280" stroke="#daa520" stroke-width="1" stroke-dasharray="3,2" />
+   <line x1="240" y1="200" x2="240" y2="280" stroke="#daa520" stroke-width="1" stroke-dasharray="3,2" />
+   <circle cx="100" cy="200" r="3.5" fill="#daa520" />
+   <circle cx="240" cy="200" r="3.5" fill="#daa520" />
+   
+   <!-- Penanda pada sumbu-x untuk E_2 -->
+   <line x1="128" y1="160" x2="128" y2="280" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2" />
+   <line x1="212" y1="160" x2="212" y2="280" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2" />
+   <circle cx="128" cy="160" r="3.5" fill="#22d3ee" />
+   <circle cx="212" cy="160" r="3.5" fill="#22d3ee" />
+   
+   <!-- Panah lebar E_1 -->
+   <line x1="100" y1="290" x2="240" y2="290" stroke="#daa520" stroke-width="1.8" />
+   <line x1="100" y1="286" x2="100" y2="294" stroke="#daa520" stroke-width="1.8" />
+   <line x1="240" y1="286" x2="240" y2="294" stroke="#daa520" stroke-width="1.8" />
+   <text x="170" y="307" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">μ({x : f(x) ≥ y₁})</text>
+   
+   <!-- Panah lebar E_2 -->
+   <line x1="128" y1="318" x2="212" y2="318" stroke="#22d3ee" stroke-width="1.8" />
+   <line x1="128" y1="314" x2="128" y2="322" stroke="#22d3ee" stroke-width="1.8" />
+   <line x1="212" y1="314" x2="212" y2="322" stroke="#22d3ee" stroke-width="1.8" />
+   <text x="170" y="335" font-size="10" fill="#22d3ee" text-anchor="middle" font-style="italic">μ({x : f(x) ≥ y₂})</text>
+   
+   <text x="170" y="352" font-size="10" fill="#b8b8b8" text-anchor="middle" font-style="italic">range dibagi; ukur lebar himpunan</text>
+  </g>
+ </svg>
+ <figcaption class="visual-caption">Perbedaan pendekatan integral Riemann dan Lebesgue. Kiri: Riemann membagi <em>domain</em> menjadi subinterval dengan lebar $\Delta x$ tetap, lalu mengaproksimasi luas dengan persegi panjang. Kanan: Lebesgue membagi <em>range</em> menjadi level-level $y_1, y_2, \ldots$, lalu untuk setiap level mengukur lebar himpunan $\{x : f(x) \geq y_i\}$&mdash;yaitu lebar horizontal dari daerah yang berada di atas level tersebut. Integral didekati oleh jumlah $y_i \cdot \mu(\{f \geq y_i\})$.</figcaption>
+</figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Ukuran Luar dan Himpunan Terukur</h2>
+ <p class="lesson-text">Bab ini memperkenalkan konsep ukuran&mdash;yaitu generalisasi dari panjang, luas, atau volume. Kita mulai dari definisi ukuran luar, kemudian mendefinisikan himpunan terukur melalui kriteria Carathéodory.</p>
+
+ <h3 class="lesson-subheading">A. Ukuran Luar Lebesgue</h3>
+ <p class="lesson-text">Misalkan $A \subseteq \mathbb{R}$. Kita ingin mendefinisikan "panjang total" dari $A$&mdash;yang kita sebut <strong>ukuran</strong>. Gagasan intuitifnya adalah menutupi $A$ dengan interval-interval terbuka, lalu menjumlahkan panjang semua interval tersebut. Semakin efisien penutupnya, semakin kecil jumlah panjangnya.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Ukuran luar Lebesgue dari himpunan $A \subseteq \mathbb{R}$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$m^*(A) = \inf \left\{ \sum_{n=1}^{\infty} \ell(I_n) : A \subseteq \bigcup_{n=1}^{\infty} I_n \right\}$$</p>
+ <p class="lesson-text">dengan $I_n$ adalah interval-interval terbuka dan $\ell(I_n)$ adalah panjang dari $I_n$. Infimum diambil atas semua penutupan berhingga atau tak berhingga terhitung yang mungkin.</p>
+ <p class="lesson-text">Ukuran luar selalu terdefinisi untuk <em>setiap</em> himpunan bagian dari $\mathbb{R}$&mdash;tetapi nilainya bisa berhingga atau tak hingga. Beberapa contoh sederhana:</p>
+ <ul>
+  <li>Jika $A = \{a\}$ (himpunan satu titik), maka $m^*(A) = 0$&mdash;kita dapat menutupinya dengan interval terbuka berukuran sesingkat apa pun.</li>
+  <li>Jika $A = [a, b]$ (interval tertutup), maka $m^*(A) = b - a$&mdash;yaitu panjangnya. Interval tertutup dan terbuka dengan batas yang sama memiliki ukuran luar yang sama.</li>
+  <li>Jika $A = \mathbb{Q} \cap [0, 1]$ (bilangan rasional dalam $[0, 1]$), maka $m^*(A) = 0$&mdash;meskipun $\mathbb{Q}$ padat di $[0, 1]$, himpunannya "terlalu kecil" untuk memiliki ukuran positif. Ini karena $\mathbb{Q}$ terhitung, sehingga dapat ditutup dengan interval-interval yang panjangnya totalnya sesingkat apa pun.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Sifat-Sifat Ukuran Luar</h3>
+ <p class="lesson-text">Ukuran luar memiliki sifat-sifat berikut:</p>
+ <ul>
+  <li><strong>Tak negatif:</strong> $m^*(A) \geq 0$, dan $m^*(\emptyset) = 0$.</li>
+  <li><strong>Monoton:</strong> jika $A \subseteq B$, maka $m^*(A) \leq m^*(B)$.</li>
+  <li><strong>Subaditif terhitung:</strong> $m^*\left(\bigcup_{n=1}^{\infty} A_n\right) \leq \sum_{n=1}^{\infty} m^*(A_n)$.</li>
+  <li><strong>Invarian terhadap translasi:</strong> $m^*(A + c) = m^*(A)$ untuk setiap $c \in \mathbb{R}$.</li>
+ </ul>
+
+ <p class="lesson-text">Sifat subaditif terhitung menyatakan bahwa ukuran luar dari gabungan himpunan-himpunan tidak melebihi jumlah ukuran masing-masing. Namun untuk aditif (yaitu kesetaraan), kita memerlukan syarat tambahan. Sayangnya, ukuran luar <em>tidak</em> aditif secara umum. Ada himpunan-himpunan yang saling lepas $A$ dan $B$ yang $m^*(A \cup B) \neq m^*(A) + m^*(B)$. Inilah alasan kita perlu membatasi perhatian pada kelas himpunan khusus yang disebut <strong>terukur</strong>.</p>
+
+ <h3 class="lesson-subheading">C. Himpunan Terukur: Kriteria Carathéodory</h3>
+ <p class="lesson-text">Untuk menentukan himpunan mana yang berperilaku baik terhadap ukuran luar, kita menggunakan kriteria yang ditemukan oleh Constantin Carathéodory.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Himpunan $E \subseteq \mathbb{R}$ disebut <strong>terukur</strong> (Lebesgue) jika untuk setiap himpunan $A \subseteq \mathbb{R}$:</p>
+ <p class="lesson-text">$$m^*(A) = m^*(A \cap E) + m^*(A \cap E^c)$$</p>
+ <p class="lesson-text">dengan $E^c$ adalah komplemen dari $E$ di $\mathbb{R}$.</p>
+
+ <p class="lesson-text"><strong>Interpretasi intuitif.</strong> Kriteria ini menyatakan bahwa himpunan $E$ terukur jika ia "memotong" himpunan uji $A$ secara rapi&mdash;yaitu ukuran dari $A$ sama dengan jumlah ukuran bagian yang berada di dalam $E$ dan bagian yang berada di luar $E$. Karena subaditif selalu berlaku ($\leq$), kondisi terukur hanya memerlukan arah sebaliknya.</p>
+
+ <p class="lesson-text">Kriteria ini terlihat rumit, tetapi memiliki beberapa keunggulan teoretis. Yang paling penting adalah kriteria ini bekerja tanpa asumsi tentang struktur $E$&mdash;cukup dengan menguji setiap himpunan $A$.</p>
+
+ <h3 class="lesson-subheading">D. Sifat-Sifat Himpunan Terukur</h3>
+ <p class="lesson-text">Keluarga himpunan terukur&mdash;disebut juga <strong>$\sigma$-aljabar Lebesgue</strong>&mdash;memiliki sifat-sifat berikut:</p>
+ <ul>
+  <li><strong>Memuat $\emptyset$ dan $\mathbb{R}$.</strong> Keduanya terukur.</li>
+  <li><strong>Tertutup terhadap komplemen.</strong> Jika $E$ terukur, maka $E^c$ terukur.</li>
+  <li><strong>Tertutup terhadap gabungan terhitung.</strong> Jika $E_1, E_2, \ldots$ terukur, maka $\bigcup_{n=1}^{\infty} E_n$ terukur.</li>
+  <li><strong>Tertutup terhadap irisan terhitung.</strong> Jika $E_1, E_2, \ldots$ terukur, maka $\bigcap_{n=1}^{\infty} E_n$ terukur.</li>
+  <li><strong>Setiap interval adalah terukur.</strong> Termasuk interval terbuka, tertutup, setengah terbuka, dan interval tak berhingga.</li>
+  <li><strong>Setiap himpunan terbuka dan tertutup adalah terukur.</strong> Karena setiap himpunan terbuka adalah gabungan terhitung interval terbuka, dan himpunan tertutup adalah komplemen dari himpunan terbuka.</li>
+  <li><strong>Setiap himpunan berukuran luar nol adalah terukur.</strong> Termasuk setiap himpunan terhitung, seperti $\mathbb{Q}$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">E. Ukuran Lebesgue</h3>
+ <p class="lesson-text">Setelah membatasi perhatian pada himpunan terukur, kita dapat mendefinisikan <strong>ukuran Lebesgue</strong>:</p>
+ <p class="lesson-text">$$\mu(E) = m^*(E) \quad \text{untuk } E \text{ terukur}$$</p>
+ <p class="lesson-text">Dengan definisi ini, $\mu$ memenuhi sifat-sifat berikut&mdash;yang menjadi aksioma-aksioma ukuran:</p>
+ <ul>
+  <li><strong>Tak negatif:</strong> $\mu(E) \geq 0$ dan $\mu(\emptyset) = 0$.</li>
+  <li><strong>Aditif terhitung:</strong> jika $(E_n)$ adalah barisan himpunan terukur yang saling lepas (yaitu $E_i \cap E_j = \emptyset$ untuk $i \neq j$), maka:
+  $$\mu\left(\bigcup_{n=1}^{\infty} E_n\right) = \sum_{n=1}^{\infty} \mu(E_n)$$</li>
+  <li><strong>Invarian terhadap translasi:</strong> $\mu(E + c) = \mu(E)$.</li>
+  <li><strong>Reguler:</strong> untuk setiap himpunan terukur $E$ dan setiap $\varepsilon > 0$, terdapat himpunan terbuka $U$ dan himpunan tertutup $F$ dengan $F \subseteq E \subseteq U$, dan $\mu(U \setminus F) < \varepsilon$.</li>
+ </ul>
+
+ <p class="lesson-text"><strong>Perbedaan penting antara ukuran luar dan ukuran Lebesgue.</strong> Ukuran luar bersifat subaditif (bahkan untuk himpunan yang tidak terukur), sedangkan ukuran Lebesgue bersifat aditif terhitung&mdash;tetapi hanya berlaku untuk himpunan terukur. Inilah alasan utama kita membatasi perhatian pada himpunan terukur.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Hirarki himpunan: dari umum ke terukur</text>
+
+  <ellipse cx="310" cy="200" rx="270" ry="130" fill="#b8b8b8" fill-opacity="0.10" stroke="#b8b8b8" stroke-width="1.5"/>
+  <text x="310" y="85" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Semua himpunan A ⊆ ℝ</text>
+
+  <ellipse cx="310" cy="210" rx="200" ry="95" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="1.8"/>
+  <text x="310" y="135" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">Himpunan terukur (σ-aljabar Lebesgue)</text>
+
+  <ellipse cx="310" cy="230" rx="120" ry="55" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1.8"/>
+  <text x="310" y="215" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">Himpunan Borel</text>
+  <text x="310" y="232" font-size="10" fill="#5dade2" text-anchor="middle" font-style="italic">(terbuka, tertutup, gabungan,</text>
+  <text x="310" y="246" font-size="10" fill="#5dade2" text-anchor="middle" font-style="italic">irisan dari keduanya)</text>
+
+  <text x="310" y="325" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">Tidak semua himpunan terukur; tidak semua himpunan terukur Borel</text>
+ </svg>
+ <figcaption class="visual-caption">Hirarki himpunan dalam teori ukuran. Setiap himpunan Borel terukur, setiap himpunan terukur memiliki ukuran luar yang terdefinisi, tetapi tidak semua himpunan dapat diberi ukuran secara konsisten. Himpunan tidak terukur pertama kali dikonstruksi oleh Vitali pada tahun 1905.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">F. Himpunan Tidak Terukur</h3>
+ <p class="lesson-text">Apakah ada himpunan yang <em>tidak</em> terukur? Jawabannya ya&mdash;tetapi konstruksinya memerlukan <strong>aksioma pilihan</strong>. Contoh klasik adalah <strong>himpunan Vitali</strong>, yang didefinisikan sebagai berikut.</p>
+ <p class="lesson-text">Definisikan relasi ekivalen pada $[0, 1]$ dengan $x \sim y$ jika $x - y \in \mathbb{Q}$. Relasi ini membagi $[0, 1]$ menjadi kelas-kelas ekivalen. Dengan menggunakan aksioma pilihan, kita dapat memilih satu elemen dari setiap kelas ekivalen, dan membentuk himpunan $V$ dari elemen-elemen yang dipilih tersebut. Himpunan $V$ inilah yang disebut himpunan Vitali.</p>
+ <p class="lesson-text">Dapat dibuktikan bahwa himpunan $V$ <em>tidak</em> terukur. Jika $V$ terukur dengan ukuran $\mu(V) = a$, maka dengan menggunakan sifat aditif terhitung dan invarian translasi, kita akan memperoleh kontradiksi:</p>
+ <ul>
+  <li>Jika $a = 0$, maka $[0, 1] \subseteq$ gabungan terhitung translasi dari $V$ akan memiliki ukuran $0$&mdash;padahal $\mu([0, 1]) = 1$.</li>
+  <li>Jika $a > 0$, maka gabungan translasi dari $V$ akan memiliki ukuran tak hingga&mdash;padahal gabungannya terbatas.</li>
+ </ul>
+ <p class="lesson-text">Kontradiksi ini menunjukkan bahwa asumsi $V$ terukur adalah salah. Jadi memang ada himpunan yang tidak dapat diberi ukuran dengan cara yang konsisten&mdash;dan inilah salah satu alasan mengapa teori ukuran memerlukan kehati-hatian yang begitu besar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Fungsi Terukur</h2>
+ <p class="lesson-text">Setelah memiliki konsep himpunan terukur, kita dapat mendefinisikan kelas fungsi yang akan dapat diintegralkan&mdash;yaitu fungsi terukur. Fungsi terukur adalah analog dari fungsi kontinu dalam teori ukuran.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Fungsi Terukur</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $E \subseteq \mathbb{R}$ adalah himpunan terukur. Fungsi $f: E \to \mathbb{R}$ disebut <strong>terukur</strong> jika untuk setiap $c \in \mathbb{R}$, himpunan prapeta:</p>
+ <p class="lesson-text">$$\{x \in E : f(x) > c\}$$</p>
+ <p class="lesson-text">adalah himpunan terukur.</p>
+ <p class="lesson-text">Definisi ini dapat dinyatakan secara setara dengan beberapa cara: menggunakan $f(x) \geq c$, $f(x) < c$, atau $f(x) \leq c$&mdash;semuanya memberikan definisi yang setara. Hal ini karena himpunan terukur tertutup terhadap operasi komplemen dan gabungan/irisan terhitung.</p>
+
+ <p class="lesson-text">Mengapa definisi ini yang dipilih? Karena kita ingin memastikan bahwa ketika kita mengukur "seberapa besar himpunan di mana $f$ bernilai dalam rentang tertentu", himpunan tersebut selalu terukur. Dalam pendekatan Lebesgue, kita membagi range fungsi menjadi interval, dan untuk setiap interval mengukur himpunan di mana fungsi bernilai di sana. Jika semua himpunan tersebut terukur, kita dapat mendefinisikan integralnya.</p>
+
+ <h3 class="lesson-subheading">B. Contoh Fungsi Terukur</h3>
+ <p class="lesson-text">Banyak fungsi yang kita kenal adalah terukur:</p>
+ <ul>
+  <li><strong>Setiap fungsi kontinu adalah terukur.</strong> Buktinya: untuk fungsi kontinu $f$, himpunan $\{x : f(x) > c\} = f^{-1}((c, \infty))$ adalah prapeta dari himpunan terbuka&mdash;yang menurut sifat kekontinuan, juga terbuka (dan karenanya terukur).</li>
+  <li><strong>Setiap fungsi monoton adalah terukur.</strong></li>
+  <li><strong>Fungsi indikator dari himpunan terukur.</strong> Jika $A$ adalah himpunan terukur, fungsi indikatornya $\mathbf{1}_A(x) = 1$ jika $x \in A$ dan $0$ jika $x \notin A$, adalah terukur. Faktanya, $\{x : \mathbf{1}_A(x) > c\}$ sama dengan $A$ (untuk $0 \leq c < 1$) atau $\emptyset$ (untuk $c \geq 1$) atau seluruh domain (untuk $c < 0$)&mdash;semuanya terukur.</li>
+  <li><strong>Fungsi Dirichlet.</strong> Fungsi $f(x) = 1$ jika $x \in \mathbb{Q}$ dan $f(x) = 0$ jika $x \notin \mathbb{Q}$ adalah terukur&mdash;karena $\mathbb{Q}$ terukur (ukurannya $0$). Ingat bahwa fungsi ini <em>tidak</em> terintegralkan Riemann, tetapi terukur. Inilah salah satu contoh pertama kita di mana kekuatan integral Lebesgue mengalahkan integral Riemann.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">C. Operasi pada Fungsi Terukur</h3>
+ <p class="lesson-text">Kelas fungsi terukur memiliki sifat-sifat penutupan yang sangat baik:</p>
+ <ul>
+  <li><strong>Linearitas:</strong> jika $f$ dan $g$ terukur dan $\alpha, \beta \in \mathbb{R}$, maka $\alpha f + \beta g$ terukur.</li>
+  <li><strong>Perkalian:</strong> jika $f$ dan $g$ terukur, maka $fg$ terukur.</li>
+  <li><strong>Fungsi maksimum dan minimum:</strong> jika $f$ dan $g$ terukur, maka $\max(f, g)$ dan $\min(f, g)$ terukur. Secara khusus, $f^+ = \max(f, 0)$ dan $f^- = \max(-f, 0)$ terukur.</li>
+  <li><strong>Nilai mutlak:</strong> jika $f$ terukur, maka $|f|$ terukur.</li>
+  <li><strong>Limit titik demi titik:</strong> jika $(f_n)$ adalah barisan fungsi terukur yang konvergen titik demi titik ke $f$, maka $f$ juga terukur. Sifat ini sangat penting dan menjadi dasar bagi banyak teorema konvergensi.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Fungsi Sederhana</h3>
+ <p class="lesson-text">Kelas fungsi khusus yang sangat berguna untuk membangun integral Lebesgue adalah <strong>fungsi sederhana</strong>.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $\phi: E \to \mathbb{R}$ disebut <strong>sederhana</strong> (<em>simple</em>) jika ia terukur dan hanya mengambil berhingga banyak nilai.</p>
+ <p class="lesson-text">Setiap fungsi sederhana dapat dituliskan dalam bentuk kanonik:</p>
+ <p class="lesson-text">$$\phi(x) = \sum_{i=1}^{n} a_i \, \mathbf{1}_{A_i}(x)$$</p>
+ <p class="lesson-text">dengan $a_i$ adalah nilai-nilai berbeda yang diambil oleh $\phi$, dan $A_i = \{x : \phi(x) = a_i\}$ adalah himpunan-himpunan terukur yang saling lepas.</p>
+
+ <p class="lesson-text"><strong>Mengapa fungsi sederhana penting?</strong> Karena fungsi sederhana adalah "bahan dasar" dari integral Lebesgue&mdash;analog dengan persegi panjang dalam integral Riemann. Setiap fungsi non-negatif dapat didekati dari bawah oleh fungsi-fungsi sederhana, dan integralnya didefinisikan sebagai supremum dari integral fungsi-fungsi sederhana tersebut.</p>
+
+ <p class="lesson-text"><strong>Teorema aproksimasi.</strong> Untuk setiap fungsi terukur non-negatif $f: E \to [0, \infty]$, terdapat barisan fungsi sederhana non-negatif $(\phi_n)$ yang monoton naik ke $f$&mdash;yaitu $\phi_1 \leq \phi_2 \leq \cdots$ dan $\lim_{n \to \infty} \phi_n(x) = f(x)$ untuk setiap $x \in E$.</p>
+ <p class="lesson-text">Teorema ini memberi jaminan bahwa pendekatan melalui fungsi sederhana selalu mungkin, dan menjadi fondasi bagi definisi integral Lebesgue.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Integral Lebesgue</h2>
+ <p class="lesson-text">Bab ini membangun integral Lebesgue secara bertahap: mulai dari fungsi sederhana, kemudian fungsi non-negatif, dan akhirnya fungsi umum.</p>
+
+ <h3 class="lesson-subheading">A. Integral Fungsi Sederhana</h3>
+ <p class="lesson-text">Untuk fungsi sederhana non-negatif $\phi(x) = \sum_{i=1}^{n} a_i \mathbf{1}_{A_i}(x)$ dengan $a_i \geq 0$, integralnya didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_E \phi \, d\mu = \sum_{i=1}^{n} a_i \cdot \mu(A_i)$$</p>
+ <p class="lesson-text">Definisi ini sangat intuitif: setiap nilai $a_i$ dikalikan dengan ukuran himpunan $A_i$ di mana $\phi$ bernilai $a_i$. Jika $\mu(A_i) = \infty$ dan $a_i > 0$, maka integralnya juga $\infty$.</p>
+
+ <p class="lesson-text">Beberapa sifat penting dari integral fungsi sederhana:</p>
+ <ul>
+  <li><strong>Linearitas:</strong> $\displaystyle\int_E (\alpha \phi + \beta \psi) \, d\mu = \alpha \int_E \phi \, d\mu + \beta \int_E \psi \, d\mu$.</li>
+  <li><strong>Monoton:</strong> jika $\phi \leq \psi$, maka $\displaystyle\int_E \phi \, d\mu \leq \int_E \psi \, d\mu$.</li>
+  <li><strong>Aditif untuk domain:</strong> jika $E = E_1 \cup E_2$ dengan $E_1, E_2$ saling lepas dan terukur, maka $\displaystyle\int_E \phi \, d\mu = \int_{E_1} \phi \, d\mu + \int_{E_2} \phi \, d\mu$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Integral Fungsi Non-Negatif</h3>
+ <p class="lesson-text">Untuk fungsi terukur non-negatif $f: E \to [0, \infty]$, kita mendefinisikan integralnya sebagai supremum dari integral semua fungsi sederhana yang dibatasi oleh $f$:</p>
+ <p class="lesson-text">$$\int_E f \, d\mu = \sup \left\{ \int_E \phi \, d\mu : \phi \text{ sederhana, } 0 \leq \phi \leq f \right\}$$</p>
+ <p class="lesson-text">Ide di balik definisi ini adalah bahwa kita ingin integral dari $f$ menjadi "batas atas terkecil" dari integral semua fungsi sederhana yang lebih kecil darinya. Ini analog dengan definisi luas daerah sebagai supremum dari luas persegi panjang yang tertutup di dalamnya.</p>
+ <p class="lesson-text">Definisi ini konsisten dengan definisi sebelumnya: jika $f$ sendiri adalah fungsi sederhana, maka supremum tercapai ketika $\phi = f$, sehingga integralnya sama dengan rumus sebelumnya.</p>
+
+ <h3 class="lesson-subheading">C. Integral Fungsi Umum</h3>
+ <p class="lesson-text">Untuk fungsi terukur $f: E \to \mathbb{R}$ yang dapat bernilai negatif, kita memisahkannya menjadi bagian positif dan negatif:</p>
+ <p class="lesson-text">$$f^+(x) = \max(f(x), 0), \qquad f^-(x) = \max(-f(x), 0)$$</p>
+ <p class="lesson-text">Keduanya non-negatif, terukur, dan memenuhi $f = f^+ - f^-$ serta $|f| = f^+ + f^-$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi terukur $f$ disebut <strong>terintegralkan Lebesgue</strong> pada $E$ jika:</p>
+ <p class="lesson-text">$$\int_E |f| \, d\mu = \int_E f^+ \, d\mu + \int_E f^- \, d\mu < \infty$$</p>
+ <p class="lesson-text">Dalam hal ini, integralnya didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\int_E f \, d\mu = \int_E f^+ \, d\mu - \int_E f^- \, d\mu$$</p>
+ <p class="lesson-text">Himpunan semua fungsi terintegralkan Lebesgue pada $E$ dinotasikan $L^1(E)$ atau $L^1(E, \mu)$.</p>
+
+ <p class="lesson-text"><strong>Catatan penting.</strong> Jika $\int_E f^+ \, d\mu = \infty$ tetapi $\int_E f^- \, d\mu < \infty$, kita katakan integralnya $+\infty$. Jika keduanya $+\infty$, integralnya tidak terdefinisi (kita tidak boleh melakukan $\infty - \infty$). Karena itu, syarat $|f| \in L^1$ menjadi syarat alami untuk $f \in L^1$.</p>
+
+ <h3 class="lesson-subheading">D. Perbandingan dengan Integral Riemann</h3>
+ <p class="lesson-text">Bagaimana hubungan antara integral Riemann dan integral Lebesgue?</p>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $f$ terintegralkan Riemann pada $[a, b]$, maka $f$ terintegralkan Lebesgue pada $[a, b]$, dan kedua nilai integralnya sama:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\, dx = \int_{[a, b]} f \, d\mu$$</p>
+ <p class="lesson-text">Dengan kata lain, integral Lebesgue adalah <em>perluasan</em> dari integral Riemann&mdash;setiap fungsi yang dapat diintegralkan Riemann juga dapat diintegralkan Lebesgue, dengan nilai yang sama. Namun sebaliknya tidak berlaku: ada fungsi yang terintegralkan Lebesgue tetapi tidak terintegralkan Riemann. Contoh klasiknya adalah fungsi Dirichlet&mdash;terintegralkan Lebesgue dengan integral $0$ (karena himpunan bilangan rasional berukuran $0$), tetapi tidak terintegralkan Riemann.</p>
+ <p class="lesson-text">Dengan kata lain, kelas fungsi $L^1$ lebih besar daripada kelas fungsi terintegralkan Riemann&mdash;dan integral Lebesgue memiliki sifat-sifat teoretis yang lebih baik.</p>
+
+ <h3 class="lesson-subheading">E. Contoh Perhitungan</h3>
+ <p class="lesson-text"><strong>Contoh 1: Fungsi indikator.</strong> Hitung $\displaystyle\int_{[0, 1]} \mathbf{1}_{[0, 1/2]}(x)\, d\mu$.</p>
+ <p class="lesson-text">Fungsi indikator $\mathbf{1}_{[0, 1/2]}$ bernilai $1$ pada $[0, 1/2]$ dan $0$ di tempat lain. Maka:</p>
+ <p class="lesson-text">$$\int_{[0, 1]} \mathbf{1}_{[0, 1/2]}(x)\, d\mu = 1 \cdot \mu([0, 1/2]) + 0 \cdot \mu((1/2, 1]) = \frac{1}{2}$$</p>
+
+ <p class="lesson-text"><strong>Contoh 2: Fungsi sederhana.</strong> Hitung $\displaystyle\int_{[0, 2]} \phi \, d\mu$ dengan $\phi(x) = 3 \cdot \mathbf{1}_{[0, 1]}(x) + 5 \cdot \mathbf{1}_{(1, 2]}(x)$.</p>
+ <p class="lesson-text">$$\int_{[0, 2]} \phi \, d\mu = 3 \cdot \mu([0, 1]) + 5 \cdot \mu((1, 2]) = 3 \cdot 1 + 5 \cdot 1 = 8$$</p>
+
+ <p class="lesson-text"><strong>Contoh 3: Fungsi Dirichlet.</strong> Hitung $\displaystyle\int_{[0, 1]} f \, d\mu$ dengan $f(x) = 1$ jika $x \in \mathbb{Q}$ dan $f(x) = 0$ jika $x \notin \mathbb{Q}$.</p>
+ <p class="lesson-text">Kita tahu bahwa $\mu(\mathbb{Q} \cap [0, 1]) = 0$, karena $\mathbb{Q}$ terhitung. Maka:</p>
+ <p class="lesson-text">$$\int_{[0, 1]} f \, d\mu = 1 \cdot \mu(\mathbb{Q} \cap [0, 1]) + 0 \cdot \mu([0, 1] \setminus \mathbb{Q}) = 1 \cdot 0 + 0 \cdot 1 = 0$$</p>
+ <p class="lesson-text">Perhatikan bahwa integral ini bernilai $0$, meskipun $f$ bernilai $1$ pada bilangan rasional yang padat di $[0, 1]$. Ini karena himpunan bilangan rasional memiliki ukuran $0$&mdash;secara intuitif, ia "terlalu tipis" untuk mempengaruhi nilai integral. Inilah salah satu kekuatan integral Lebesgue: ia mengabaikan himpunan berukuran nol.</p>
+
+ <h3 class="lesson-subheading">F. Sifat-Sifat Integral Lebesgue</h3>
+ <p class="lesson-text">Integral Lebesgue memiliki sifat-sifat berikut:</p>
+ <ul>
+  <li><strong>Linearitas:</strong> untuk setiap $\alpha, \beta \in \mathbb{R}$ dan $f, g \in L^1(E)$:
+  $$\int_E (\alpha f + \beta g) \, d\mu = \alpha \int_E f \, d\mu + \beta \int_E g \, d\mu$$</li>
+  <li><strong>Monoton:</strong> jika $f \leq g$ hampir di mana-mana pada $E$ dan keduanya terintegralkan, maka $\displaystyle\int_E f \, d\mu \leq \int_E g \, d\mu$.</li>
+  <li><strong>Aditif untuk domain:</strong> jika $E = E_1 \cup E_2$ dengan $E_1, E_2$ terukur dan saling lepas, maka $\displaystyle\int_E f \, d\mu = \int_{E_1} f \, d\mu + \int_{E_2} f \, d\mu$.</li>
+  <li><strong>Nilai mutlak:</strong> $\left|\displaystyle\int_E f \, d\mu\right| \leq \displaystyle\int_E |f| \, d\mu$.</li>
+  <li><strong>Ketakterpengaruhan oleh himpunan berukuran nol:</strong> jika $f = g$ hampir di mana-mana pada $E$ (yaitu himpunan di mana $f \neq g$ memiliki ukuran $0$), maka $\displaystyle\int_E f \, d\mu = \int_E g \, d\mu$.</li>
+ </ul>
+ <p class="lesson-text">Sifat terakhir ini&mdash;ketakterpengaruhan oleh himpunan berukuran nol&mdash;adalah salah satu keunggulan utama integral Lebesgue. Ia memungkinkan kita mengabaikan "anomali" pada fungsi tanpa mempengaruhi integralnya, dan menjadi dasar dari konsep "hampir di mana-mana" yang akan sering muncul di analisis modern.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Teorema-Teorema Konvergensi</h2>
+ <p class="lesson-text">Salah satu keunggulan utama integral Lebesgue dibandingkan integral Riemann adalah sifat-sifat konvergensinya yang sangat kuat. Bab ini membahas tiga teorema konvergensi utama.</p>
+
+ <h3 class="lesson-subheading">A. Teorema Konvergensi Monoton</h3>
+ <p class="lesson-text"><strong>Teorema (Monotone Convergence Theorem).</strong> Misalkan $(f_n)$ adalah barisan fungsi terukur non-negatif pada himpunan terukur $E$, dengan:</p>
+ <p class="lesson-text">$$0 \leq f_1 \leq f_2 \leq f_3 \leq \cdots$$</p>
+ <p class="lesson-text">dan misalkan $f(x) = \lim_{n \to \infty} f_n(x)$ untuk setiap $x \in E$ (limit bisa bernilai $\infty$). Maka:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \int_E f_n \, d\mu = \int_E f \, d\mu$$</p>
+ <p class="lesson-text">Teorema ini menyatakan bahwa untuk barisan fungsi non-negatif yang monoton naik, kita <strong>selalu</strong> dapat menukar limit dengan integral. Ini jauh lebih kuat daripada versi Riemann, yang memerlukan konvergensi seragam.</p>
+
+ <h3 class="lesson-subheading">B. Lemma Fatou</h3>
+ <p class="lesson-text"><strong>Lemma (Fatou).</strong> Misalkan $(f_n)$ adalah barisan fungsi terukur non-negatif pada himpunan terukur $E$. Maka:</p>
+ <p class="lesson-text">$$\int_E \liminf_{n \to \infty} f_n \, d\mu \leq \liminf_{n \to \infty} \int_E f_n \, d\mu$$</p>
+ <p class="lesson-text">Lemma ini memberi ketidaksamaan yang berguna tetapi bukan kesetaraan. Ia menjadi alat penting dalam membuktikan teorema konvergensi dominasi.</p>
+
+ <h3 class="lesson-subheading">C. Teorema Konvergensi Terdominasi</h3>
+ <p class="lesson-text"><strong>Teorema (Dominated Convergence Theorem).</strong> Misalkan $(f_n)$ adalah barisan fungsi terukur pada himpunan terukur $E$ yang konvergen titik demi titik ke $f$. Jika terdapat fungsi non-negatif $g \in L^1(E)$ sedemikian sehingga $|f_n(x)| \leq g(x)$ untuk setiap $n$ dan setiap $x \in E$, maka:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \int_E f_n \, d\mu = \int_E f \, d\mu$$</p>
+ <p class="lesson-text">Teorema ini sering dianggap sebagai teorema konvergensi paling penting dalam teori ukuran. Ia memberi kondisi yang cukup (adanya fungsi dominasi $g$ yang terintegralkan) untuk menukar limit dan integral.</p>
+ <p class="lesson-text"><strong>Catatan penting.</strong> Tanpa syarat dominasi, kesetaraan bisa gagal. Sebagai contoh, ambil $f_n(x) = n \cdot \mathbf{1}_{(0, 1/n)}(x)$ pada $E = (0, 1)$. Fungsi ini konvergen titik demi titik ke $0$ (karena untuk setiap $x > 0$, kita bisa memilih $n$ cukup besar sehingga $1/n < x$, dan $f_n(x) = 0$ untuk semua $n$ yang lebih besar). Namun:</p>
+ <p class="lesson-text">$$\int_E f_n \, d\mu = n \cdot \frac{1}{n} = 1 \quad \text{untuk setiap } n$$</p>
+ <p class="lesson-text">sehingga $\displaystyle\lim_{n \to \infty} \int_E f_n \, d\mu = 1$, tetapi $\displaystyle\int_E \lim_{n \to \infty} f_n \, d\mu = \int_E 0 \, d\mu = 0$. Jadi tanpa syarat dominasi, kesetaraan gagal. Fungsi $g = \sup_n |f_n|$ bukan terintegralkan Lebesgue pada contoh ini.</p>
+
+ <h3 class="lesson-subheading">D. Perbandingan dengan Integral Riemann</h3>
+ <p class="lesson-text">Sebagai perbandingan, dalam integral Riemann, pertukaran limit dan integral memerlukan <strong>konvergensi seragam</strong>&mdash;yaitu:</p>
+ <p class="lesson-text">$$\sup_{x \in [a, b]} |f_n(x) - f(x)| \to 0 \quad \text{ketika } n \to \infty$$</p>
+ <p class="lesson-text">Syarat ini sangat ketat dan sering tidak dipenuhi. Integral Lebesgue memerlukan kondisi yang jauh lebih lemah&mdash;cukup konvergensi titik demi titik ditambah adanya fungsi dominasi. Inilah salah satu alasan utama mengapa integral Lebesgue lebih disukai dalam analisis modern.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh tambahan yang menerapkan konsep-konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menghitung Ukuran Himpunan Cantor</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung ukuran Lebesgue dari himpunan Cantor.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Himpunan Cantor $C$ dibentuk dengan menghapus, secara berulang, sepertiga tengah dari setiap interval. Konstruksinya:</p>
+ <ul>
+  <li>Mulai dari $[0, 1]$. Hapus $(1/3, 2/3)$. Panjang yang dihapus: $1/3$.</li>
+  <li>Dari dua interval sisa $[0, 1/3]$ dan $[2/3, 1]$, hapus sepertiga tengah masing-masing. Panjang yang dihapus: $2 \cdot 1/9 = 2/9$.</li>
+  <li>Dari empat interval sisa, hapus sepertiga tengah masing-masing. Panjang yang dihapus: $4 \cdot 1/27 = 4/27$.</li>
+  <li>Lanjutkan proses ini tanpa batas.</li>
+ </ul>
+ <p class="lesson-text">Total panjang yang dihapus adalah jumlah deret geometri:</p>
+ <p class="lesson-text">$$\frac{1}{3} + \frac{2}{9} + \frac{4}{27} + \cdots = \frac{1/3}{1 - 2/3} = 1$$</p>
+ <p class="lesson-text">Jadi panjang total yang dihapus adalah $1$, sehingga ukuran himpunan Cantor adalah:</p>
+ <p class="lesson-text">$$\mu(C) = \mu([0, 1]) - 1 = 1 - 1 = 0$$</p>
+ <p class="lesson-text">Meskipun demikian, himpunan Cantor memiliki kardinalitas yang sama dengan $\mathbb{R}$&mdash;yaitu <em>tak terhitung</em>. Ini adalah contoh mencolok dari himpunan tak terhitung yang berukuran nol, sekaligus menunjukkan bahwa "ukuran nol" tidak sama dengan "berhingga" atau "terhitung".</p>
+
+ <h3 class="lesson-subheading">B. Integral dengan Fungsi yang Tidak Terintegralkan Riemann</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_{[0, 1]} f \, d\mu$ dengan $f(x) = 1$ jika $x \in \mathbb{Q}$ dan $f(x) = -1$ jika $x \notin \mathbb{Q}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Pisahkan $f$ menjadi bagian positif dan negatif:</p>
+ <ul>
+  <li>$f^+(x) = 1$ jika $x \in \mathbb{Q}$, dan $0$ jika $x \notin \mathbb{Q}$.</li>
+  <li>$f^-(x) = 1$ jika $x \notin \mathbb{Q}$, dan $0$ jika $x \in \mathbb{Q}$.</li>
+ </ul>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int_{[0, 1]} f^+ \, d\mu = 1 \cdot \mu(\mathbb{Q} \cap [0, 1]) = 0$$</p>
+ <p class="lesson-text">$$\int_{[0, 1]} f^- \, d\mu = 1 \cdot \mu([0, 1] \setminus \mathbb{Q}) = 1 \cdot 1 = 1$$</p>
+ <p class="lesson-text">Sehingga $\displaystyle\int_{[0, 1]} f \, d\mu = 0 - 1 = -1$.</p>
+ <p class="lesson-text">Karena $|f| = 1$ pada $[0, 1]$, maka $\displaystyle\int_{[0, 1]} |f| \, d\mu = 1 < \infty$, sehingga $f \in L^1([0, 1])$. Fungsi ini terintegralkan Lebesgue, meskipun tidak terintegralkan Riemann.</p>
+
+ <h3 class="lesson-subheading">C. Menerapkan Teorema Konvergensi Monoton</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\lim_{n \to \infty} \int_{[0, 1]} \frac{nx}{1 + nx} \, d\mu$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Definisikan $f_n(x) = \dfrac{nx}{1 + nx}$. Perhatikan bahwa:</p>
+ <ul>
+  <li>Setiap $f_n$ terukur (rasional dari fungsi kontinu).</li>
+  <li>$f_n \geq 0$ pada $[0, 1]$.</li>
+  <li>Barisan $(f_n)$ monoton naik: untuk $m > n$ dan $x \in (0, 1]$, berlaku $\dfrac{mx}{1 + mx} > \dfrac{nx}{1 + nx}$ (dapat dibuktikan dengan manipulasi aljabar).</li>
+  <li>$\lim_{n \to \infty} f_n(x) = 1$ untuk $x \in (0, 1]$, dan $\lim_{n \to \infty} f_n(0) = 0$.</li>
+ </ul>
+ <p class="lesson-text">Menurut Teorema Konvergensi Monoton:</p>
+ <p class="lesson-text">$$\lim_{n \to \infty} \int_{[0, 1]} f_n \, d\mu = \int_{[0, 1]} \lim_{n \to \infty} f_n \, d\mu = \int_{[0, 1]} \mathbf{1}_{(0, 1]} \, d\mu = 1$$</p>
+ <p class="lesson-text">Perhatikan bahwa kita dapat langsung menghitung limit tanpa harus menghitung integral dari setiap $f_n$. Inilah kekuatan teorema konvergensi.</p>
+
+ <h3 class="lesson-subheading">D. Penerapan: Ruang $L^1$ dan Kelengkapannya</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Ruang $L^1(E)$ adalah himpunan semua fungsi terintegralkan Lebesgue pada $E$. Dengan norma:</p>
+ <p class="lesson-text">$$\|f\|_1 = \int_E |f| \, d\mu$$</p>
+ <p class="lesson-text">ruang ini menjadi ruang bernorma. Salah satu hasil paling penting dalam analisis fungsional adalah:</p>
+ <p class="lesson-text"><strong>Teorema (Riesz-Fischer).</strong> Ruang $L^1(E)$ bersifat <strong>lengkap</strong>&mdash;yaitu setiap barisan Cauchy dalam norma $\|\cdot\|_1$ konvergen ke suatu elemen di $L^1(E)$.</p>
+ <p class="lesson-text">Kelengkapan ini tidak dimiliki oleh ruang fungsi terintegralkan Riemann. Inilah salah satu alasan utama mengapa integral Lebesgue menjadi standar dalam analisis fungsional dan teori persamaan diferensial parsial&mdash;ruang fungsi yang dipakai dalam bidang-bidang ini memerlukan kelengkapan agar teorema-teorema penting (seperti eksistensi solusi) dapat dibuktikan.</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Probabilitas dan Teori Ukuran</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Teori probabilitas modern dibangun di atas teori ukuran. Sebuah <strong>ruang probabilitas</strong> adalah tripel $(\Omega, \mathcal{F}, P)$ dengan:</p>
+ <ul>
+  <li>$\Omega$ adalah himpunan semua kemungkinan hasil&mdash;disebut <em>ruang sampel</em>.</li>
+  <li>$\mathcal{F}$ adalah $\sigma$-aljabar dari himpunan bagian $\Omega$&mdash;disebut <em>kejadian</em>.</li>
+  <li>$P: \mathcal{F} \to [0, 1]$ adalah ukuran dengan $P(\Omega) = 1$&mdash;disebut <em>probabilitas</em>.</li>
+ </ul>
+ <p class="lesson-text">Dengan kerangka ini, semua konsep probabilitas dapat dirumuskan dalam bahasa ukuran:</p>
+ <ul>
+  <li><strong>Variabel acak</strong> adalah fungsi terukur $X: \Omega \to \mathbb{R}$.</li>
+  <li><strong>Nilai harapan</strong> variabel acak adalah integral Lebesgue: $\mathbb{E}[X] = \displaystyle\int_\Omega X \, dP$.</li>
+  <li><strong>Hukum Bilangan Besar</strong> dan <strong>Teorema Limit Pusat</strong> adalah hasil-hasil tentang konvergensi barisan variabel acak&mdash;yang dibuktikan menggunakan teorema konvergensi Lebesgue.</li>
+ </ul>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Hampir seluruh teori probabilitas modern&mdash;termasuk yang dipakai dalam statistika, keuangan, pembelajaran mesin, dan fisika&mdash;bertumpu pada teori ukuran. Kolmogorov merumuskan aksioma-aksioma probabilitas pada tahun 1933 menggunakan bahasa teori ukuran, dan sejak itu teori ukuran menjadi bahasa standar untuk semua yang berurusan dengan ketidakpastian. Memahami teori ukuran berarti memahami dasar matematis dari semua aplikasi ini.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Ukuran</h3>
+ <ul>
+  <li><strong>Menganggap ukuran selalu terdefinisi untuk semua himpunan.</strong> Ini tidak benar. Himpunan Vitali adalah contoh himpunan yang tidak dapat diberi ukuran secara konsisten. Karena itu, kita membatasi perhatian pada himpunan terukur.</li>
+  <li><strong>Menganggap ukuran nol berarti himpunan kosong atau terhitung.</strong> Himpunan Cantor berukuran nol tetapi tak terhitung. Ukuran dan kardinalitas adalah dua konsep yang berbeda.</li>
+  <li><strong>Menganggap ukuran luar bersifat aditif.</strong> Ukuran luar hanya bersifat subaditif. Aditif hanya berlaku untuk himpunan terukur.</li>
+  <li><strong>Menganggap setiap himpunan terbuka atau tertutup berukuran positif.</strong> Himpunan kosong adalah terbuka dan tertutup, dan ukurannya $0$. Selain itu, ada himpunan terbuka yang berukuran sangat kecil&mdash;misalnya, gabungan interval-interval terbuka dengan panjang total sesingkat apa pun yang tetap padat di $[0, 1]$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Fungsi Terukur</h3>
+ <ul>
+  <li><strong>Menganggap setiap fungsi terukur.</strong> Ini tidak benar. Meskipun banyak fungsi yang kita kenal terukur, ada fungsi yang tidak terukur. Faktanya, jika $V$ adalah himpunan Vitali, maka fungsi indikator $\mathbf{1}_V$ tidak terukur.</li>
+  <li><strong>Menganggap komposisi fungsi terukur selalu terukur.</strong> Ini <em>tidak</em> selalu benar. Jika $f$ terukur dan $g$ kontinu, maka $g \circ f$ terukur. Tetapi jika $f$ kontinu dan $g$ terukur, $g \circ f$ mungkin tidak terukur.</li>
+  <li><strong>Menganggap limit fungsi terukur selalu terukur.</strong> Ini <em>benar</em> untuk limit titik demi titik&mdash;tetapi tidak untuk limit seragam pada himpunan yang tidak terukur, atau limit dalam arti lain.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Integral Lebesgue</h3>
+ <ul>
+  <li><strong>Menganggap integral Lebesgue selalu sama dengan integral Riemann.</strong> Untuk fungsi yang terintegralkan Riemann, nilainya sama. Namun untuk fungsi yang hanya terintegralkan Lebesgue (seperti fungsi Dirichlet), integral Riemann tidak terdefinisi.</li>
+  <li><strong>Menganggap pertukaran limit dan integral selalu sah.</strong> Ini hanya sah dalam kondisi tertentu. Teorema Konvergensi Monoton memerlukan monotonisitas; Teorema Konvergensi Terdominasi memerlukan fungsi dominasi. Tanpa kondisi ini, pertukaran bisa gagal.</li>
+  <li><strong>Salah menerapkan Lemma Fatou.</strong> Lemma Fatou memberi <em>ketidaksamaan</em>, bukan kesetaraan. Kesetaraan hanya dijamin oleh teorema konvergensi yang lebih kuat.</li>
+  <li><strong>Mengabaikan peran "hampir di mana-mana".</strong> Integral Lebesgue tidak peduli dengan nilai fungsi pada himpunan berukuran nol. Ini berarti bahwa dua fungsi yang berbeda hanya pada himpunan berukuran nol memiliki integral yang sama&mdash;sesuatu yang sering diabaikan oleh pemula.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Teorema Konvergensi</h3>
+ <ul>
+  <li><strong>Menggunakan Teorema Konvergensi Monoton untuk barisan yang tidak monoton.</strong> Teorema ini <em>hanya</em> berlaku untuk barisan yang monoton naik. Untuk barisan umum, gunakan Teorema Konvergensi Terdominasi.</li>
+  <li><strong>Menggunakan Teorema Konvergensi Terdominasi tanpa fungsi dominasi.</strong> Syarat adanya $g \in L^1$ yang mendominasi semua $f_n$ adalah syarat wajib. Tanpa syarat ini, kesetaraan bisa gagal&mdash;seperti pada contoh $f_n(x) = n \cdot \mathbf{1}_{(0, 1/n)}(x)$.</li>
+  <li><strong>Menganggap fungsi dominasi selalu konstan.</strong> Fungsi dominasi tidak harus konstan&mdash;hanya perlu terintegralkan Lebesgue. Sebagai contoh, $g(x) = 1/x^2$ pada $[1, \infty)$ adalah fungsi dominasi yang sah (karena terintegralkan), meskipun nilainya bervariasi.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Ringkasan</h2>
+ <ul>
+  <li><strong>Ukuran luar:</strong> $m^*(A) = \inf \left\{ \sum \ell(I_n) : A \subseteq \bigcup I_n \right\}$&mdash;panjang total minimum dari penutup interval terbuka.</li>
+  <li><strong>Himpunan terukur:</strong> $E$ terukur jika untuk setiap $A$, $m^*(A) = m^*(A \cap E) + m^*(A \cap E^c)$. Kriteria ini disebut kriteria Carathéodory.</li>
+  <li><strong>Ukuran Lebesgue:</strong> $\mu(E) = m^*(E)$ untuk $E$ terukur. Bersifat tak negatif, aditif terhitung, dan invarian terhadap translasi.</li>
+  <li><strong>$\sigma$-aljabar Lebesgue:</strong> keluarga himpunan terukur, tertutup terhadap komplemen dan gabungan/irisan terhitung.</li>
+  <li><strong>Himpunan tidak terukur:</strong> ada, tetapi memerlukan aksioma pilihan untuk dikonstruksi. Contoh: himpunan Vitali.</li>
+  <li><strong>Fungsi terukur:</strong> $f$ terukur jika $\{x : f(x) > c\}$ terukur untuk setiap $c$.</li>
+  <li><strong>Fungsi sederhana:</strong> fungsi terukur dengan berhingga banyak nilai. Dituliskan sebagai kombinasi linear dari fungsi indikator.</li>
+  <li><strong>Integral fungsi sederhana:</strong> $\displaystyle\int_E \phi \, d\mu = \sum_i a_i \mu(A_i)$.</li>
+  <li><strong>Integral fungsi non-negatif:</strong> supremum dari integral fungsi sederhana yang dibatasi olehnya.</li>
+  <li><strong>Integral fungsi umum:</strong> $f \in L^1$ jika $\displaystyle\int |f| \, d\mu < \infty$, dan integralnya adalah $\displaystyle\int f^+ \, d\mu - \int f^- \, d\mu$.</li>
+  <li><strong>Perbandingan dengan Riemann:</strong> setiap fungsi terintegralkan Riemann juga terintegralkan Lebesgue, dengan nilai yang sama. Sebaliknya tidak berlaku.</li>
+  <li><strong>Teorema Konvergensi Monoton:</strong> untuk barisan monoton naik non-negatif, $\displaystyle\lim \int f_n = \int \lim f_n$.</li>
+  <li><strong>Lemma Fatou:</strong> $\displaystyle\int \liminf f_n \leq \liminf \int f_n$.</li>
+  <li><strong>Teorema Konvergensi Terdominasi:</strong> jika $|f_n| \leq g$ untuk suatu $g \in L^1$, maka $\displaystyle\lim \int f_n = \int \lim f_n$.</li>
+  <li><strong>Ruang $L^1$:</strong> himpunan fungsi terintegralkan Lebesgue, dengan norma $\|f\|_1 = \int |f| \, d\mu$. Bersifat lengkap (teorema Riesz-Fischer).</li>
+  <li><strong>Aplikasi:</strong> teori probabilitas modern, analisis fungsional, persamaan diferensial parsial, dan hampir semua bidang matematika terapan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Teori ukuran dan integral Lebesgue adalah salah satu pencapaian puncak analisis matematika abad ke-20. Dengan mengubah cara kita memandang integral&mdash;dari pembagian domain menjadi pembagian range&mdash;Lebesgue membuka jalan bagi kelas fungsi yang jauh lebih luas dan sifat-sifat teoretis yang jauh lebih kuat daripada apa yang dapat dicapai oleh integral Riemann. Kelengkapan ruang $L^1$, ketakterpengaruhan oleh himpunan berukuran nol, dan teorema-teorema konvergensi yang kuat adalah keunggulan-keunggulan yang menjadikan integral Lebesgue sebagai standar dalam analisis modern.</p>
+ <p class="lesson-text">Konsep ukuran juga memiliki arti penting di luar analisis: teori probabilitas modern sepenuhnya dibangun di atas teori ukuran, dengan variabel acak sebagai fungsi terukur dan nilai harapan sebagai integral Lebesgue. Fisika kuantum, teori informasi, dan pembelajaran mesin juga menggunakan konsep-konsep dari teori ukuran dalam perumusannya. Memahami teori ukuran berarti memiliki akses ke bahasa matematika yang dipakai di hampir semua bidang sains dan teknologi modern.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>Analisis Kompleks</strong> akan memperluas gagasan-gagasan ini ke bidang bilangan kompleks, dengan alat-alat yang sangat berbeda&mdash;terutama integral kontur dan teorema residu. Sedangkan <strong>Teori Bilangan Analitik</strong> akan menunjukkan bagaimana alat-alat dari analisis&mdash;termasuk integral Lebesgue dan deret&mdash;dipakai untuk mempelajari distribusi bilangan prima. Semua topik ini bertumpu pada fondasi analisis real dan teori ukuran yang telah kita bangun di sini.</p>
+</section>
+
+</main>
+</body>
+</html>

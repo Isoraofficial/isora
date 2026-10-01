@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persamaan Diferensial Parsial (Panas, Gelombang, Laplace)</title>
+<meta name="description" content="Materi persamaan diferensial parsial: konsep dasar, klasifikasi, metode pemisahan variabel, persamaan panas, persamaan gelombang, dan persamaan Laplace beserta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Persamaan Diferensial Parsial (Panas, Gelombang, Laplace)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Persamaan Diferensial Biasa</strong> &mdash; teknik penyelesaian PDB (variabel terpisah, persamaan karakteristik, sistem nilai eigen) menjadi fondasi langsung bagi metode yang dipakai untuk menyelesaikan PDP.</li>
+   <li><strong>Turunan Parsial</strong> &mdash; notasi $\partial u/\partial x$ dan $\partial^2 u/\partial t^2$, serta aturan rantai multivariabel, menjadi bahasa dasar untuk merumuskan dan memanipulasi PDP.</li>
+   <li><strong>Deret Fourier</strong> &mdash; solusi PDP pada domain berbatas hampir selalu dinyatakan sebagai deret Fourier. Koefisien Fourier ditentukan oleh kondisi awal dan kondisi batas.</li>
+   <li><strong>Fungsi Multivariabel</strong> &mdash; pemahaman tentang domain dua dimensi, kurva level, dan gradien diperlukan terutama untuk persamaan Laplace dan kondisi batas pada domain dua dimensi.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Jika persamaan diferensial biasa (PDB) memodelkan laju perubahan suatu besaran terhadap satu variabel&mdash;biasanya waktu&mdash;maka <strong>persamaan diferensial parsial</strong> (PDP) memodelkan besaran yang bergantung pada <em>beberapa</em> variabel bebas sekaligus. Suhu pada sebuah batang logam bergantung pada posisi <em>dan</em> waktu; getaran pada membran drum bergantung pada dua koordinat ruang <em>dan</em> waktu; potensial listrik pada sebuah pelat bergantung pada posisi $x$ dan $y$ tanpa bergantung pada waktu.</p>
+ <p class="lesson-text">Materi ini membahas tiga PDP klasik yang menjadi fondasi fisika matematika: <strong>persamaan panas</strong> (difusi), <strong>persamaan gelombang</strong> (osilasi), dan <strong>persamaan Laplace</strong> (keadaan tunak). Setelah memahami konsep dasar dan klasifikasi PDP, kita akan mempelajari metode <em>pemisahan variabel</em>&mdash;alat utama untuk menyelesaikan ketiga persamaan ini pada domain berbatas.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Konsep Dasar Persamaan Diferensial Parsial</h2>
+ <p class="lesson-text">Bab ini memperkenalkan definisi PDP, klasifikasinya, dan jenis-jenis kondisi yang menyertainya.</p>
+
+ <h3 class="lesson-subheading">A. Definisi dan Notasi</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Persamaan diferensial parsial adalah persamaan yang memuat turunan parsial dari satu atau lebih fungsi yang tidak diketahui terhadap dua atau lebih variabel bebas.</p>
+ <p class="lesson-text">Untuk fungsi $u(x, t)$ yang bergantung pada dua variabel, notasi yang umum dipakai:</p>
+ <p class="lesson-text">$$u_t = \frac{\partial u}{\partial t}, \quad u_x = \frac{\partial u}{\partial x}, \quad u_{xx} = \frac{\partial^2 u}{\partial x^2}, \quad u_{tt} = \frac{\partial^2 u}{\partial t^2}$$</p>
+
+ <p class="lesson-text"><strong>Orde</strong> PDP adalah tingkat turunan parsial tertinggi yang muncul. Ketiga PDP klasik yang akan kita bahas adalah orde dua.</p>
+
+ <h3 class="lesson-subheading">B. Klasifikasi PDP Orde Dua Linear</h3>
+ <p class="lesson-text">Bentuk umum PDP linear orde dua dengan dua variabel bebas adalah:</p>
+ <p class="lesson-text">$$A u_{xx} + B u_{xy} + C u_{yy} + D u_x + E u_y + F u = G$$</p>
+ <p class="lesson-text">dengan $A, B, C, D, E, F, G$ adalah fungsi dari $x$ dan $y$ (atau konstanta). PDP ini diklasifikasikan berdasarkan nilai <strong>diskriminan</strong> $\Delta = B^2 - 4AC$:</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Jenis</th><th>Syarat</th><th>Contoh</th><th>Perilaku Fisik</th></tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td><strong>Parabolik</strong></td>
+    <td>$B^2 - 4AC = 0$</td>
+    <td>$u_t = \alpha^2 u_{xx}$ (panas)</td>
+    <td>Difusi; meredam fluktuasi</td>
+   </tr>
+   <tr>
+    <td><strong>Hiperbolik</strong></td>
+    <td>$B^2 - 4AC > 0$</td>
+    <td>$u_{tt} = c^2 u_{xx}$ (gelombang)</td>
+    <td>Perambatan gelombang; mempertahankan bentuk</td>
+   </tr>
+   <tr>
+    <td><strong>Eliptik</strong></td>
+    <td>$B^2 - 4AC < 0$</td>
+    <td>$u_{xx} + u_{yy} = 0$ (Laplace)</td>
+    <td>Keadaan tunak; solusi halus</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Klasifikasi ini penting karena setiap jenis PDP memiliki sifat matematis yang berbeda&mdash;terutama dalam hal kelengkapan data yang diperlukan agar solusinya tunggal dan stabil.</p>
+
+ <h3 class="lesson-subheading">C. Kondisi Awal dan Kondisi Batas</h3>
+ <p class="lesson-text">Untuk memperoleh solusi tunggal, PDP memerlukan sejumlah kondisi yang sesuai dengan ordenya.</p>
+ <p class="lesson-text"><strong>Kondisi awal</strong> memberi informasi tentang keadaan sistem pada waktu $t = 0$. Persamaan panas memerlukan satu kondisi awal (karena turunan waktu orde satu), sedangkan persamaan gelombang memerlukan dua kondisi awal (karena turunan waktu orde dua).</p>
+ <p class="lesson-text"><strong>Kondisi batas</strong> memberi informasi tentang perilaku solusi pada batas domain ruang. Terdapat tiga jenis kondisi batas yang paling umum:</p>
+ <ul>
+  <li><strong>Dirichlet:</strong> nilai $u$ ditentukan pada batas. Contoh: suhu ujung batang dijaga pada $0°C$&mdash;$u(0, t) = u(L, t) = 0$.</li>
+  <li><strong>Neumann:</strong> turunan normal $\partial u/\partial n$ ditentukan pada batas. Contoh: ujung batang terisolasi&mdash;$u_x(0, t) = u_x(L, t) = 0$.</li>
+  <li><strong>Robin:</strong> kombinasi linear dari $u$ dan $\partial u/\partial n$ ditentukan. Contoh: ujung batang melepas panas ke lingkungan&mdash;$u_x(L, t) = -h[u(L, t) - T_\infty]$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Prinsip Superposisi</h3>
+ <p class="lesson-text">Untuk PDP <em>linear dan homogen</em>, berlaku <strong>prinsip superposisi</strong>: jika $u_1$ dan $u_2$ adalah solusi, maka kombinasi linear $c_1 u_1 + c_2 u_2$ juga solusi, untuk sebarang konstanta $c_1, c_2$.</p>
+ <p class="lesson-text">Prinsip ini menjadi landasan bagi metode pemisahan variabel: kita cari solusi-solusi "dasar" yang memenuhi kondisi batas, lalu kombinasikan secara linear untuk memenuhi kondisi awal. Kombinasi ini biasanya berupa deret tak hingga&mdash;dan di sinilah deret Fourier memainkan peran penting.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Persamaan Panas</h2>
+ <p class="lesson-text">Persamaan panas (atau persamaan difusi) adalah PDP parabolik yang memodelkan bagaimana suhu atau konsentrasi zat menyebar dalam ruang seiring waktu.</p>
+
+ <h3 class="lesson-subheading">A. Bentuk Persamaan</h3>
+ <p class="lesson-text">Untuk sebuah batang satu dimensi dengan panjang $L$, suhu $u(x, t)$ pada posisi $x \in [0, L]$ dan waktu $t \geq 0$ memenuhi:</p>
+ <p class="lesson-text">$$u_t = \alpha^2 u_{xx}$$</p>
+ <p class="lesson-text">dengan $\alpha^2 > 0$ adalah <strong>difusivitas termal</strong>&mdash;konstanta yang bergantung pada material. Semakin besar $\alpha^2$, semakin cepat panas menyebar.</p>
+ <p class="lesson-text">Persamaan ini menyatakan bahwa laju perubahan suhu di suatu titik sebanding dengan kecekungan distribusi suhu di sekitar titik itu. Jika suhu di sekitar titik lebih tinggi dari titik itu sendiri (kurva cekung ke atas), suhu titik tersebut akan naik; sebaliknya jika suhu di sekitarnya lebih rendah.</p>
+
+ <h3 class="lesson-subheading">B. Kondisi Batas dan Kondisi Awal</h3>
+ <p class="lesson-text">Untuk batang dengan ujung-ujung dijaga pada suhu $0°C$:</p>
+ <p class="lesson-text">$$u(0, t) = 0, \qquad u(L, t) = 0 \quad \text{untuk } t \geq 0 \quad \text{(kondisi batas Dirichlet)}$$</p>
+ <p class="lesson-text">$$u(x, 0) = f(x) \quad \text{untuk } 0 \leq x \leq L \quad \text{(kondisi awal)}$$</p>
+
+ <h3 class="lesson-subheading">C. Metode Pemisahan Variabel</h3>
+ <p class="lesson-text">Cari solusi dalam bentuk produk: $u(x, t) = X(x) \cdot T(t)$, dengan $X$ hanya bergantung pada $x$ dan $T$ hanya bergantung pada $t$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Substitusi ke persamaan.</strong></p>
+ <p class="lesson-text">$$X(x) T'(t) = \alpha^2 X''(x) T(t)$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Pisahkan variabel.</strong> Bagi dengan $\alpha^2 X(x) T(t)$:</p>
+ <p class="lesson-text">$$\frac{T'(t)}{\alpha^2 T(t)} = \frac{X''(x)}{X(x)}$$</p>
+ <p class="lesson-text">Ruas kiri hanya bergantung pada $t$, sedangkan ruas kanan hanya bergantung pada $x$. Karena keduanya sama untuk semua $(x, t)$, keduanya harus sama dengan sebuah konstanta&mdash;sebut saja $-\lambda$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Pecah menjadi dua PDB.</strong></p>
+ <p class="lesson-text">$$X''(x) + \lambda X(x) = 0 \qquad \text{(persamaan ruang)}$$</p>
+ <p class="lesson-text">$$T'(t) + \alpha^2 \lambda T(t) = 0 \qquad \text{(persamaan waktu)}$$</p>
+
+ <h3 class="lesson-subheading">D. Menyelesaikan Persamaan Ruang</h3>
+ <p class="lesson-text">Kondisi batas $u(0, t) = u(L, t) = 0$ berarti $X(0) = X(L) = 0$. Persamaan ruang dengan kondisi batas ini adalah masalah nilai eigen yang sudah kita kenal: hanya nilai-nilai khusus dari $\lambda$ yang menghasilkan solusi nontrivial.</p>
+ <p class="lesson-text">Untuk $\lambda \leq 0$, hanya solusi trivial $X = 0$. Untuk $\lambda > 0$, tuliskan $\lambda = k^2$ dengan $k > 0$. Solusi umumnya:</p>
+ <p class="lesson-text">$$X(x) = A \cos(kx) + B \sin(kx)$$</p>
+ <p class="lesson-text">Kondisi $X(0) = 0$ memberi $A = 0$. Kondisi $X(L) = 0$ memberi $B \sin(kL) = 0$. Untuk solusi nontrivial, $\sin(kL) = 0$, sehingga $kL = n\pi$ untuk $n = 1, 2, 3, \ldots$</p>
+ <p class="lesson-text">Jadi nilai-nilai eigen dan fungsi eigennya adalah:</p>
+ <p class="lesson-text">$$\lambda_n = \left(\frac{n\pi}{L}\right)^2, \qquad X_n(x) = \sin\left(\frac{n\pi x}{L}\right), \quad n = 1, 2, 3, \ldots$$</p>
+
+ <h3 class="lesson-subheading">E. Menyelesaikan Persamaan Waktu</h3>
+ <p class="lesson-text">Untuk $\lambda = \lambda_n$, persamaan waktu menjadi:</p>
+ <p class="lesson-text">$$T_n'(t) + \alpha^2 \left(\frac{n\pi}{L}\right)^2 T_n(t) = 0$$</p>
+ <p class="lesson-text">Ini adalah persamaan linear orde satu dengan solusi:</p>
+ <p class="lesson-text">$$T_n(t) = e^{-\alpha^2 (n\pi/L)^2 t}$$</p>
+ <p class="lesson-text">Perhatikan bahwa setiap $T_n$ meluruh secara eksponensial ke nol. Ini mencerminkan sifat difusi: fluktuasi suhu meredam seiring waktu.</p>
+
+ <h3 class="lesson-subheading">F. Solusi Umum sebagai Deret Fourier</h3>
+ <p class="lesson-text">Dengan prinsip superposisi, solusi umumnya adalah kombinasi linear dari semua solusi dasar:</p>
+ <p class="lesson-text">$$u(x, t) = \sum_{n=1}^{\infty} B_n \sin\left(\frac{n\pi x}{L}\right) e^{-\alpha^2 (n\pi/L)^2 t}$$</p>
+ <p class="lesson-text">Koefisien $B_n$ ditentukan oleh kondisi awal $u(x, 0) = f(x)$:</p>
+ <p class="lesson-text">$$f(x) = \sum_{n=1}^{\infty} B_n \sin\left(\frac{n\pi x}{L}\right)$$</p>
+ <p class="lesson-text">Ini adalah deret Fourier sinus dari $f$ pada interval $[0, L]$. Maka koefisiennya:</p>
+ <p class="lesson-text">$$B_n = \frac{2}{L}\int_0^L f(x) \sin\left(\frac{n\pi x}{L}\right) dx$$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Evolusi suhu pada batang dengan ujung-ujungnya dijaga 0°C</text>
+
+  <line x1="60" y1="280" x2="580" y2="280" stroke="#e8e8e8" stroke-width="1.2"/>
+  <line x1="60" y1="300" x2="60" y2="60" stroke="#e8e8e8" stroke-width="1.2"/>
+  <text x="586" y="284" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="66" y="56" font-size="12" fill="#b8b8b8" font-style="italic">u</text>
+
+  <text x="60" y="300" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">0</text>
+  <text x="580" y="300" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">L</text>
+
+  <path d="M 60 280 Q 320 80 580 280" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+  <text x="320" y="120" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">t = 0</text>
+
+  <path d="M 60 280 Q 320 150 580 280" fill="none" stroke="#22d3ee" stroke-width="2.4"/>
+  <text x="320" y="195" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">t = t₁</text>
+
+  <path d="M 60 280 Q 320 220 580 280" fill="none" stroke="#daa520" stroke-width="2.2"/>
+  <text x="320" y="245" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">t = t₂</text>
+
+  <path d="M 60 280 Q 320 268 580 280" fill="none" stroke="#f0c75e" stroke-width="2"/>
+  <text x="320" y="275" font-size="11" fill="#f0c75e" text-anchor="middle" font-style="italic">t → ∞</text>
+
+  <text x="310" y="325" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Suhu menyebar dan meredam seiring waktu, akhirnya menuju 0 di seluruh batang</text>
+ </svg>
+ <figcaption class="visual-caption">Evolusi suhu pada batang dengan ujung-ujungnya dijaga pada suhu $0°C$. Distribusi suhu awal $f(x)$ menyebar dan meredam seiring waktu, secara eksponensial menuju nol. Laju peredaman semakin cepat untuk harmonik berfrekuensi tinggi (nilai $n$ besar).</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">G. Contoh Perhitungan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Sebuah batang dengan panjang $L = \pi$ dan difusivitas $\alpha^2 = 1$ memiliki suhu awal $f(x) = \sin(2x)$. Ujung-ujungnya dijaga pada $0°C$. Tentukan solusi $u(x, t)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kondisi awal sudah berbentuk deret Fourier sinus dengan satu suku saja: $B_2 = 1$ dan $B_n = 0$ untuk $n \neq 2$ (karena $L = \pi$ dan $\sin(2x) = \sin(2\pi x/\pi) = \sin(2\pi x/L)$ sesuai bentuk umum).</p>
+ <p class="lesson-text">Maka solusinya:</p>
+ <p class="lesson-text">$$u(x, t) = \sin(2x) \, e^{-4t}$$</p>
+ <p class="lesson-text">Perhatikan bagaimana kondisi awal yang berbentuk sinus tunggal menghasilkan solusi yang sangat sederhana&mdash;hanya satu suku deret. Untuk kondisi awal yang lebih rumit, diperlukan deret Fourier lengkap.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Persamaan Gelombang</h2>
+ <p class="lesson-text">Persamaan gelombang adalah PDP hiperbolik yang memodelkan osilasi dan perambatan gelombang&mdash;dari getaran senar gitar hingga gelombang elektromagnetik.</p>
+
+ <h3 class="lesson-subheading">A. Bentuk Persamaan</h3>
+ <p class="lesson-text">Untuk sebuah senar yang bergetar dengan panjang $L$, perpindahan $u(x, t)$ dari posisi setimbang memenuhi:</p>
+ <p class="lesson-text">$$u_{tt} = c^2 u_{xx}$$</p>
+ <p class="lesson-text">dengan $c > 0$ adalah <strong>kecepatan rambat gelombang</strong> pada senar. Berbeda dengan persamaan panas yang mengandung turunan waktu orde satu, persamaan gelombang mengandung turunan waktu orde dua.</p>
+
+ <h3 class="lesson-subheading">B. Kondisi Batas dan Kondisi Awal</h3>
+ <p class="lesson-text">Untuk senar dengan ujung terikat:</p>
+ <p class="lesson-text">$$u(0, t) = u(L, t) = 0 \quad \text{(kondisi batas Dirichlet)}$$</p>
+ <p class="lesson-text">$$u(x, 0) = f(x) \quad \text{(perpindahan awal)}$$</p>
+ <p class="lesson-text">$$u_t(x, 0) = g(x) \quad \text{(kecepatan awal)}$$</p>
+ <p class="lesson-text">Perhatikan bahwa terdapat <em>dua</em> kondisi awal&mdash;karena persamaan melibatkan turunan waktu orde dua.</p>
+
+ <h3 class="lesson-subheading">C. Metode Pemisahan Variabel</h3>
+ <p class="lesson-text">Cari solusi dalam bentuk $u(x, t) = X(x) T(t)$. Substitusi:</p>
+ <p class="lesson-text">$$X(x) T''(t) = c^2 X''(x) T(t)$$</p>
+ <p class="lesson-text">Pisahkan variabel: $\dfrac{T''(t)}{c^2 T(t)} = \dfrac{X''(x)}{X(x)} = -\lambda$.</p>
+ <p class="lesson-text">Sama seperti persamaan panas, persamaan ruang dengan kondisi batas $X(0) = X(L) = 0$ memberi nilai eigen dan fungsi eigen:</p>
+ <p class="lesson-text">$$\lambda_n = \left(\frac{n\pi}{L}\right)^2, \qquad X_n(x) = \sin\left(\frac{n\pi x}{L}\right)$$</p>
+
+ <p class="lesson-text">Persamaan waktu menjadi:</p>
+ <p class="lesson-text">$$T_n''(t) + c^2\left(\frac{n\pi}{L}\right)^2 T_n(t) = 0$$</p>
+ <p class="lesson-text">Ini adalah persamaan osilator harmonik sederhana dengan frekuensi sudut $\omega_n = \dfrac{n\pi c}{L}$. Solusinya:</p>
+ <p class="lesson-text">$$T_n(t) = A_n \cos(\omega_n t) + B_n \sin(\omega_n t)$$</p>
+
+ <h3 class="lesson-subheading">D. Solusi Umum</h3>
+ <p class="lesson-text">Dengan prinsip superposisi:</p>
+ <p class="lesson-text">$$u(x, t) = \sum_{n=1}^{\infty} \sin\left(\frac{n\pi x}{L}\right)\left[A_n \cos\left(\frac{n\pi c t}{L}\right) + B_n \sin\left(\frac{n\pi c t}{L}\right)\right]$$</p>
+ <p class="lesson-text">Koefisien $A_n$ dan $B_n$ ditentukan oleh kondisi awal:</p>
+ <p class="lesson-text">$$A_n = \frac{2}{L}\int_0^L f(x) \sin\left(\frac{n\pi x}{L}\right) dx$$</p>
+ <p class="lesson-text">$$B_n = \frac{2}{n\pi c}\int_0^L g(x) \sin\left(\frac{n\pi x}{L}\right) dx$$</p>
+
+ <h3 class="lesson-subheading">E. Solusi d'Alembert</h3>
+ <p class="lesson-text">Alternatif dari deret Fourier, persamaan gelombang pada seluruh garis real ($-\infty < x < \infty$) memiliki solusi umum yang sangat elegan, ditemukan oleh d'Alembert:</p>
+ <p class="lesson-text">$$u(x, t) = F(x - ct) + G(x + ct)$$</p>
+ <p class="lesson-text">dengan $F$ dan $G$ adalah fungsi sembarang yang dapat diturunkan dua kali.</p>
+ <p class="lesson-text"><strong>Interpretasi.</strong> Suku $F(x - ct)$ adalah gelombang yang bergerak ke kanan dengan kecepatan $c$, sedangkan $G(x + ct)$ adalah gelombang yang bergerak ke kiri. Solusi ini menunjukkan bahwa persamaan gelombang mempertahankan bentuk pulsa yang merambat&mdash;berbeda dengan persamaan panas yang meredam fluktuasi.</p>
+
+ <h3 class="lesson-subheading">F. Contoh Perhitungan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Sebuah senar dengan panjang $L = \pi$ dan $c = 1$ memiliki perpindahan awal $f(x) = \sin x$ dan kecepatan awal $g(x) = 0$. Tentukan solusi $u(x, t)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kondisi awal $f(x) = \sin x = \sin(1 \cdot x)$ bersesuaian dengan $A_1 = 1$ dan $A_n = 0$ untuk $n \neq 1$. Kecepatan awal $g(x) = 0$ memberi $B_n = 0$ untuk semua $n$.</p>
+ <p class="lesson-text">Maka solusinya:</p>
+ <p class="lesson-text">$$u(x, t) = \sin x \cdot \cos(t)$$</p>
+ <p class="lesson-text">Solusi ini menggambarkan <em>gelombang berdiri</em>: senar berosilasi dengan pola spasial $\sin x$ dan amplitudo yang berubah terhadap waktu sesuai $\cos t$.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Gelombang berdiri pada senar: u(x, t) = sin x · cos t</text>
+
+  <line x1="60" y1="180" x2="580" y2="180" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="60" y1="60" x2="60" y2="300" stroke="#e8e8e8" stroke-width="1"/>
+
+  <path d="M 60 180 Q 320 60 580 180" fill="none" stroke="#5dade2" stroke-width="2.2"/>
+  <text x="580" y="165" font-size="11" fill="#5dade2" text-anchor="end" font-style="italic">t = 0</text>
+
+ <path d="M 60 180 Q 320 260 580 180" fill="none" stroke="#22d3ee" stroke-width="2" opacity="0.7" />
+  <path d="M 60 180 Q 320 300 580 180" fill="none" stroke="#22d3ee" stroke-width="2" opacity="0.7"/>
+
+  <path d="M 60 180 L 580 180" stroke="#daa520" stroke-width="2.2" stroke-dasharray="5,4"/>
+  <text x="580" y="200" font-size="11" fill="#daa520" text-anchor="end" font-style="italic">t = π/2</text>
+
+  <path d="M 60 180 Q 320 300 580 180" fill="none" stroke="#f0c75e" stroke-width="2.2"/>
+  <text x="580" y="300" font-size="11" fill="#f0c75e" text-anchor="end" font-style="italic">t = π</text>
+
+  <text x="60" y="195" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">0</text>
+  <text x="580" y="195" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">L</text>
+
+  <text x="310" y="325" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Senar berosilasi naik-turun; pada t = π/2 senar berada di posisi setimbang</text>
+ </svg>
+ <figcaption class="visual-caption">Gelombang berdiri pada senar dengan perpindahan awal $\sin x$ dan kecepatan awal nol. Solusi $u(x, t) = \sin x \cos t$ menunjukkan pola spasial yang tetap (sinus) dengan amplitudo yang berosilasi terhadap waktu. Pada $t = \pi/2$, seluruh senar berada pada posisi setimbang.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Persamaan Laplace</h2>
+ <p class="lesson-text">Persamaan Laplace adalah PDP eliptik yang memodelkan keadaan tunak (<em>steady state</em>)&mdash;yaitu ketika sistem telah mencapai keseimbangan dan tidak lagi berubah terhadap waktu.</p>
+
+ <h3 class="lesson-subheading">A. Bentuk Persamaan</h3>
+ <p class="lesson-text">Dalam dua dimensi, persamaan Laplace untuk fungsi $u(x, y)$ adalah:</p>
+ <p class="lesson-text">$$u_{xx} + u_{yy} = 0$$</p>
+ <p class="lesson-text">Persamaan ini dapat diperoleh sebagai kasus khusus dari persamaan panas ketika suhu tidak lagi berubah terhadap waktu ($u_t = 0$). Karena itu, solusinya disebut <strong>keadaan tunak</strong> dari sistem difusi. Persamaan Laplace juga muncul dalam elektrostatika, mekanika fluida ideal, dan teori potensial.</p>
+ <p class="lesson-text">Solusi dari persamaan Laplace disebut <strong>fungsi harmonik</strong>. Fungsi harmonik memiliki banyak sifat istimewa&mdash;termasuk prinsip modulus maksimum, mean value property, dan kaitan erat dengan fungsi analitik kompleks.</p>
+
+ <h3 class="lesson-subheading">B. Masalah Nilai Batas Dirichlet</h3>
+ <p class="lesson-text">Masalah paling klasik untuk persamaan Laplace adalah <strong>masalah Dirichlet</strong>: cari fungsi harmonik pada domain $\Omega$ yang mengambil nilai tertentu pada batas $\partial \Omega$.</p>
+ <p class="lesson-text">Misalkan kita memiliki persegi panjang $0 \leq x \leq a$ dan $0 \leq y \leq b$. Pada tiga sisi batas, nilai $u$ adalah nol; pada sisi keempat ($y = b$), nilai $u$ ditentukan oleh fungsi $f(x)$:</p>
+ <p class="lesson-text">$$u(x, 0) = 0, \quad u(0, y) = u(a, y) = 0, \quad u(x, b) = f(x)$$</p>
+
+ <h3 class="lesson-subheading">C. Pemisahan Variabel</h3>
+ <p class="lesson-text">Cari solusi dalam bentuk $u(x, y) = X(x) Y(y)$. Substitusi:</p>
+ <p class="lesson-text">$$X''(x) Y(y) + X(x) Y''(y) = 0 \quad \Rightarrow \quad \frac{X''(x)}{X(x)} = -\frac{Y''(y)}{Y(y)} = -\lambda$$</p>
+ <p class="lesson-text">Ini memberi dua PDB:</p>
+ <p class="lesson-text">$$X''(x) + \lambda X(x) = 0, \qquad Y''(y) - \lambda Y(y) = 0$$</p>
+
+ <p class="lesson-text"><strong>Persamaan ruang.</strong> Kondisi batas $u(0, y) = u(a, y) = 0$ berarti $X(0) = X(a) = 0$. Seperti sebelumnya, nilai eigen dan fungsi eigennya:</p>
+ <p class="lesson-text">$$\lambda_n = \left(\frac{n\pi}{a}\right)^2, \qquad X_n(x) = \sin\left(\frac{n\pi x}{a}\right)$$</p>
+
+ <p class="lesson-text"><strong>Persamaan vertikal.</strong> Untuk $\lambda = \lambda_n$, persamaan $Y''(y) - \lambda_n Y(y) = 0$ memiliki solusi:</p>
+ <p class="lesson-text">$$Y_n(y) = C_n \cosh\left(\frac{n\pi y}{a}\right) + D_n \sinh\left(\frac{n\pi y}{a}\right)$$</p>
+ <p class="lesson-text">Kondisi batas $u(x, 0) = 0$ memberi $Y_n(0) = 0$, sehingga $C_n = 0$. Jadi $Y_n(y) = D_n \sinh(n\pi y/a)$.</p>
+
+ <h3 class="lesson-subheading">D. Solusi Umum</h3>
+ <p class="lesson-text">Dengan superposisi:</p>
+ <p class="lesson-text">$$u(x, y) = \sum_{n=1}^{\infty} B_n \sin\left(\frac{n\pi x}{a}\right) \sinh\left(\frac{n\pi y}{a}\right)$$</p>
+ <p class="lesson-text">Koefisien $B_n$ ditentukan oleh kondisi batas pada $y = b$:</p>
+ <p class="lesson-text">$$f(x) = \sum_{n=1}^{\infty} B_n \sinh\left(\frac{n\pi b}{a}\right) \sin\left(\frac{n\pi x}{a}\right)$$</p>
+ <p class="lesson-text">Ini adalah deret Fourier sinus dari $f$. Maka:</p>
+ <p class="lesson-text">$$B_n = \frac{2}{a \sinh(n\pi b/a)} \int_0^a f(x) \sin\left(\frac{n\pi x}{a}\right) dx$$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Masalah Dirichlet pada persegi panjang</text>
+
+  <rect x="140" y="80" width="340" height="200" fill="#5dade2" fill-opacity="0.10" stroke="#5dade2" stroke-width="2"/>
+
+  <line x1="140" y1="80" x2="480" y2="80" stroke="#daa520" stroke-width="3"/>
+  <line x1="140" y1="80" x2="140" y2="280" stroke="#b8b8b8" stroke-width="3"/>
+  <line x1="480" y1="80" x2="480" y2="280" stroke="#b8b8b8" stroke-width="3"/>
+  <line x1="140" y1="280" x2="480" y2="280" stroke="#b8b8b8" stroke-width="3"/>
+
+  <text x="310" y="65" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">u(x, b) = f(x)</text>
+  <text x="120" y="180" font-size="11" fill="#b8b8b8" text-anchor="end" font-style="italic">u = 0</text>
+  <text x="500" y="180" font-size="11" fill="#b8b8b8" text-anchor="start" font-style="italic">u = 0</text>
+  <text x="310" y="305" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">u = 0</text>
+
+  <text x="310" y="180" font-size="14" fill="#5dade2" text-anchor="middle" font-style="italic">∇²u = 0</text>
+  <text x="310" y="200" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">(fungsi harmonik)</text>
+
+  <text x="310" y="120" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">solusi "meregang" dari nilai batas</text>
+ </svg>
+ <figcaption class="visual-caption">Masalah Dirichlet pada persamaan Laplace. Nilai fungsi ditentukan pada seluruh batas persegi panjang: nol pada tiga sisi dan $f(x)$ pada sisi atas. Solusi harmonik "meregang" secara halus di seluruh interior domain, menghubungkan nilai-nilai batasnya. Fungsi harmonik tidak dapat memiliki nilai maksimum atau minimum di interior kecuali konstan.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">E. Contoh Perhitungan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Persegi panjang dengan $a = \pi$, $b = \pi$. Kondisi batas: $u(x, 0) = u(0, y) = u(\pi, y) = 0$ dan $u(x, \pi) = \sin x$. Tentukan $u(x, y)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kondisi batas atas berbentuk $\sin x$, yang bersesuaian dengan suku $n = 1$. Maka $B_1 \sinh(\pi) = 1$ dan $B_n = 0$ untuk $n \geq 2$. Jadi:</p>
+ <p class="lesson-text">$$u(x, y) = \frac{\sin x \cdot \sinh y}{\sinh \pi}$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Periksa kondisi batas:</p>
+ <ul>
+  <li>$u(x, 0) = \dfrac{\sin x \cdot \sinh 0}{\sinh \pi} = 0$ ✓</li>
+  <li>$u(0, y) = \dfrac{\sin 0 \cdot \sinh y}{\sinh \pi} = 0$ ✓</li>
+  <li>$u(\pi, y) = \dfrac{\sin \pi \cdot \sinh y}{\sinh \pi} = 0$ ✓</li>
+  <li>$u(x, \pi) = \dfrac{\sin x \cdot \sinh \pi}{\sinh \pi} = \sin x$ ✓</li>
+ </ul>
+ <p class="lesson-text">Periksa bahwa $u$ harmonik: $u_{xx} = -\dfrac{\sin x \sinh y}{\sinh \pi}$ dan $u_{yy} = \dfrac{\sin x \sinh y}{\sinh \pi}$. Jumlahnya $u_{xx} + u_{yy} = 0$ ✓.</p>
+
+ <h3 class="lesson-subheading">F. Prinsip Maksimum dan Sifat Fungsi Harmonik</h3>
+ <p class="lesson-text">Fungsi harmonik memiliki sifat-sifat yang sangat kuat:</p>
+ <ul>
+  <li><strong>Prinsip maksimum-minimum:</strong> fungsi harmonik yang tidak konstan tidak dapat mencapai nilai maksimum atau minimum di interior domain. Nilai ekstrem selalu terjadi pada batas.</li>
+  <li><strong>Mean value property:</strong> nilai fungsi harmonik di suatu titik sama dengan rata-rata nilainya pada lingkaran di sekitar titik tersebut.</li>
+  <li><strong>Ketunggalan solusi:</strong> masalah Dirichlet pada domain berbatas memiliki solusi tunggal. Ini adalah konsekuensi langsung dari prinsip maksimum.</li>
+  <li><strong>Kaitan dengan analisis kompleks:</strong> bagian riil dan imajiner dari setiap fungsi analitik adalah harmonik. Sebaliknya, setiap fungsi harmonik dapat direpresentasikan sebagai bagian riil dari fungsi analitik lokal.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menunjukkan penerapan ketiga PDP dalam konteks nyata.</p>
+
+ <h3 class="lesson-subheading">A. Difusi Panas pada Pelat Logam</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah pelat logam tipis dipanaskan pada satu sisi dan didinginkan pada sisi lainnya. Setelah waktu yang cukup lama, distribusi suhu pada pelat tidak lagi berubah terhadap waktu&mdash;yaitu mencapai keadaan tunak.</p>
+ <p class="lesson-text"><strong>Model.</strong> Keadaan tunak dari persamaan panas adalah persamaan Laplace. Jika pelat berbentuk persegi panjang $0 \leq x \leq a$, $0 \leq y \leq b$, dengan suhu tetap $T_1$ pada sisi $y = 0$, $T_2$ pada sisi $y = b$, dan $0$ pada kedua sisi tegak, maka distribusi suhu tunak $u(x, y)$ memenuhi masalah Dirichlet.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Dengan memisahkan kontribusi dari setiap kondisi batas dan menggunakan superposisi, distribusi suhu dapat dihitung secara eksplisit. Untuk kasus sederhana dengan $T_1 = 0$, $T_2 = T_0$, dan $f(x) = T_0$ konstan, solusinya menjadi:</p>
+ <p class="lesson-text">$$u(x, y) = \sum_{n=1,3,5,\ldots}^{\infty} \frac{4T_0}{n\pi \sinh(n\pi b/a)} \sin\left(\frac{n\pi x}{a}\right) \sinh\left(\frac{n\pi y}{a}\right)$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Deret ini menunjukkan bahwa distribusi suhu tunak dapat dihitung dengan presisi apa pun dari kondisi batasnya. Dalam praktiknya, untuk keperluan rekayasa, cukup beberapa suku pertama deret karena suku-suku berikutnya meluruh sangat cepat. Contoh serupa muncul dalam analisis termal gedung, pendinginan chip elektronik, dan desain penukar panas.</p>
+ </div>
+
+ <h3 class="lesson-subheading">B. Getaran Senar Gitar</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah senar gitar dengan panjang $L = 65$ cm dan kecepatan gelombang $c = 400$ m/detik dipetik sehingga bentuk awalnya berbentuk segitiga. Perpindahan awal $f(x)$ dan kecepatan awal $g(x) = 0$.</p>
+ <p class="lesson-text"><strong>Model.</strong> Mengikuti persamaan gelombang dengan kondisi batas Dirichlet dan kondisi awal seperti di atas.</p>
+ <p class="lesson-text"><strong>Frekuensi dasar.</strong> Dari $\omega_n = n\pi c/L$, frekuensi dasar ($n = 1$) adalah:</p>
+ <p class="lesson-text">$$f_1 = \frac{\omega_1}{2\pi} = \frac{c}{2L} = \frac{400}{2 \times 0{,}65} \approx 308 \text{ Hz}$$</p>
+ <p class="lesson-text">Frekuensi ini sesuai dengan nada yang dihasilkan oleh senar tersebut&mdash;sekitar nada E♭. Harmonic-harmonik berikutnya ($n = 2, 3, 4, \ldots$) menghasilkan nada-nada tambahan yang menyusun <em>timbre</em> khas dari senar gitar.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Analisis Fourier dari getaran senar menunjukkan bahwa suara gitar adalah kombinasi dari banyak frekuensi harmonik dengan amplitudo berbeda-beda. Amplitudo setiap harmonik bergantung pada bentuk awal senar saat dipetik. Memetik senar di dekat jembatan menghasilkan lebih banyak harmonik tinggi, yang memberikan suara yang lebih "terang"&mdash;sedangkan memetik di dekat tengah menghasilkan harmonik dasar yang dominan, memberikan suara yang lebih "lembut".</p>
+ </div>
+
+ <h3 class="lesson-subheading">C. Potensial Listrik pada Kapasitor</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah kapasitor silindris memiliki pelat dalam dengan jari-jari $a$ pada potensial $V_0$ dan pelat luar dengan jari-jari $b$ pada potensial $0$. Tentukan potensial listrik $V(r)$ di antara kedua pelat.</p>
+ <p class="lesson-text"><strong>Model.</strong> Karena simetri silindris, potensial hanya bergantung pada $r$ (jari-jari). Persamaan Laplace dalam koordinat silinder, dengan asumsi tidak ada ketergantungan pada $\theta$ dan $z$, tereduksi menjadi:</p>
+ <p class="lesson-text">$$\frac{1}{r}\frac{d}{dr}\left(r\frac{dV}{dr}\right) = 0$$</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Persamaan ini menyatakan bahwa $r\dfrac{dV}{dr}$ adalah konstan. Sebut konstanta $C$:</p>
+ <p class="lesson-text">$$r\frac{dV}{dr} = C \quad \Rightarrow \quad \frac{dV}{dr} = \frac{C}{r} \quad \Rightarrow \quad V(r) = C \ln r + D$$</p>
+ <p class="lesson-text">Gunakan kondisi batas: $V(a) = V_0$ dan $V(b) = 0$. Dari kondisi kedua, $C \ln b + D = 0 \Rightarrow D = -C \ln b$. Substitusi ke kondisi pertama:</p>
+ <p class="lesson-text">$$C \ln a - C \ln b = V_0 \quad \Rightarrow \quad C \ln(a/b) = V_0 \quad \Rightarrow \quad C = \frac{V_0}{\ln(a/b)}$$</p>
+ <p class="lesson-text">Sehingga solusinya:</p>
+ <p class="lesson-text">$$V(r) = \frac{V_0 \ln(r/b)}{\ln(a/b)} = V_0 \frac{\ln(b/r)}{\ln(b/a)}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Potensial listrik antara dua pelat silindris bervariasi secara logaritmik terhadap jari-jari&mdash;bukan linear seperti pada kapasitor pelat datar. Hasil ini menjadi dasar bagi perhitungan kapasitansi kabel koaksial, yang banyak dipakai dalam sistem komunikasi dan instrumentasi.</p>
+ </div>
+
+ <h3 class="lesson-subheading">D. Persamaan Schrödinger untuk Partikel dalam Kotak</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam mekanika kuantum, fungsi gelombang $\psi(x, t)$ dari partikel yang bergerak dalam satu dimensi memenuhi persamaan Schrödinger:</p>
+ <p class="lesson-text">$$i\hbar \psi_t = -\frac{\hbar^2}{2m}\psi_{xx} + V(x)\psi$$</p>
+ <p class="lesson-text"><strong>Penyelesaian untuk kotak tak hingga.</strong> Untuk partikel dalam kotak dengan $V = 0$ pada $0 < x < L$ dan $V = \infty$ di luar, fungsi gelombang harus memenuhi kondisi batas Dirichlet $\psi(0, t) = \psi(L, t) = 0$. Dengan memisahkan variabel $\psi(x, t) = X(x) T(t)$, persamaan ruang $X'' + \frac{2mE}{\hbar^2}X = 0$ memiliki solusi eigen yang sama seperti pada persamaan gelombang:</p>
+ <p class="lesson-text">$$X_n(x) = \sin\left(\frac{n\pi x}{L}\right), \qquad E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2}$$</p>
+ <p class="lesson-text">Tingkat-tingkat energi $E_n$ yang diizinkan adalah diskrit&mdash;sesuatu yang secara eksperimen teramati dalam spektrum atom dan molekul.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Persamaan Schrödinger secara matematis sangat mirip dengan persamaan panas dan gelombang, tetapi dengan tambahan faktor imajiner $i$. Ini menjadikan solusinya berbentuk gelombang kompleks $e^{-iEt/\hbar}$ alih-alih peluruhan eksponensial (seperti panas) atau osilasi real (seperti gelombang). Kuantisasi tingkat energi&mdash;fondasi mekanika kuantum&mdash;muncul secara alami dari kondisi batas Dirichlet pada persamaan diferensial parsial.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Konsep Dasar</h3>
+ <ul>
+  <li><strong>Menganggap PDP selalu memerlukan dua kondisi awal.</strong> Jumlah kondisi awal bergantung pada orde turunan waktu. Persamaan panas (orde satu dalam $t$) memerlukan satu kondisi awal; persamaan gelombang (orde dua dalam $t$) memerlukan dua.</li>
+  <li><strong>Mengabaikan kondisi batas.</strong> Solusi PDP tanpa kondisi batas tidak tunggal. Kondisi batas inilah yang menentukan nilai eigen dan bentuk solusi.</li>
+  <li><strong>Menganggap semua PDP linear.</strong> Banyak PDP penting bersifat nonlinear&mdash;misalnya persamaan Navier-Stokes untuk fluida dan persamaan Einstein untuk gravitasi. Untuk PDP nonlinear, prinsip superposisi tidak berlaku.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Metode Pemisahan Variabel</h3>
+ <ul>
+  <li><strong>Menganggap semua solusi berbentuk $X(x) T(t)$.</strong> Metode pemisahan variabel hanya berlaku pada domain berbatas dengan kondisi batas yang sesuai. Untuk domain tak terbatas atau geometri kompleks, diperlukan metode lain seperti transformasi Fourier atau metode numerik.</li>
+  <li><strong>Salah menentukan tanda konstanta pemisahan.</strong> Pilihan $-\lambda$ (bukan $+\lambda$) penting agar diperoleh nilai eigen positif dan fungsi eigen berosilasi. Pilihan tanda sebaliknya akan menghasilkan solusi yang tidak dapat memenuhi kondisi batas.</li>
+  <li><strong>Lupa bahwa kondisi batas menentukan bentuk fungsi eigen.</strong> Untuk kondisi Dirichlet, fungsi eigennya adalah sinus; untuk Neumann, kosinus; untuk kondisi campuran, kombinasi lain.</li>
+  <li><strong>Mengabaikan suku-suku deret setelah beberapa suku.</strong> Meskipun secara praktis suku-suku awal sering dominan, secara matematis seluruh deret diperlukan agar solusi memenuhi kondisi awal secara eksak.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Interpretasi Fisik</h3>
+ <ul>
+  <li><strong>Menganggap persamaan panas mempertahankan bentuk.</strong> Persamaan panas <em>meredam</em> fluktuasi. Bentuk awalnya tidak dipertahankan, melainkan meluruh menuju keadaan tunak.</li>
+  <li><strong>Menganggap persamaan gelombang meredam.</strong> Persamaan gelombang tanpa suku peredam <em>mempertahankan</em> energi. Pulsa yang merambat tidak akan kehilangan amplitudonya.</li>
+  <li><strong>Menganggap persamaan Laplace bergantung pada waktu.</strong> Persamaan Laplace adalah keadaan tunak. Solusinya tidak berubah terhadap waktu&mdash;meskipun dalam penerapannya, keadaan tunak dicapai setelah waktu yang cukup lama.</li>
+  <li><strong>Menukar peran kondisi batas dan kondisi awal.</strong> Kondisi batas berlaku pada batas ruang (untuk semua waktu); kondisi awal berlaku pada satu titik waktu (untuk semua ruang).</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Koefisien Fourier</h3>
+ <ul>
+  <li><strong>Lupa faktor $2/L$ pada koefisien Fourier.</strong> Rumus koefisien deret Fourier sinus adalah $\dfrac{2}{L}\displaystyle\int_0^L f(x)\sin(n\pi x/L)\, dx$, bukan hanya integral tanpa faktor.</li>
+  <li><strong>Salah menentukan periode fundamental.</strong> Untuk domain $[0, L]$, periode dasar deret Fourier sinus adalah $2L$&mdash;bukan $L$.</li>
+  <li><strong>Menganggap koefisien Fourier selalu positif.</strong> Koefisien dapat bernilai negatif, bergantung pada bentuk fungsi yang direpresentasikan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>PDP</strong> adalah persamaan yang memuat turunan parsial dari fungsi dengan dua atau lebih variabel bebas.</li>
+  <li><strong>Klasifikasi PDP orde dua linear:</strong> parabolik ($B^2 - 4AC = 0$), hiperbolik ($B^2 - 4AC > 0$), eliptik ($B^2 - 4AC < 0$).</li>
+  <li><strong>Kondisi batas:</strong> Dirichlet (nilai $u$), Neumann (turunan normal), Robin (kombinasi).</li>
+  <li><strong>Prinsip superposisi:</strong> berlaku untuk PDP linear homogen; kombinasi linear solusi juga solusi.</li>
+  <li><strong>Persamaan panas:</strong> $u_t = \alpha^2 u_{xx}$. Parabolik. Memerlukan satu kondisi awal. Solusi meluruh secara eksponensial menuju keadaan tunak.</li>
+  <li><strong>Persamaan gelombang:</strong> $u_{tt} = c^2 u_{xx}$. Hiperbolik. Memerlukan dua kondisi awal. Solusi mempertahankan bentuk gelombang yang merambat.</li>
+  <li><strong>Persamaan Laplace:</strong> $u_{xx} + u_{yy} = 0$. Eliptik. Keadaan tunak dari sistem difusi. Solusinya disebut fungsi harmonik.</li>
+  <li><strong>Metode pemisahan variabel:</strong> asumsi $u = X(x) T(t)$ atau $u = X(x) Y(y)$ mengubah PDP menjadi dua PDB yang lebih mudah diselesaikan.</li>
+  <li><strong>Fungsi eigen:</strong> untuk kondisi batas Dirichlet, fungsi eigennya adalah $\sin(n\pi x/L)$ dengan nilai eigen $(n\pi/L)^2$.</li>
+  <li><strong>Solusi sebagai deret Fourier:</strong> solusi umum PDP adalah superposisi dari semua fungsi eigen, dengan koefisien ditentukan oleh kondisi awal melalui rumus Fourier.</li>
+  <li><strong>Solusi d'Alembert</strong> untuk persamaan gelombang pada garis real: $u(x, t) = F(x - ct) + G(x + ct)$.</li>
+  <li><strong>Fungsi harmonik</strong> memiliki sifat istimewa: prinsip maksimum, mean value property, ketunggalan solusi Dirichlet.</li>
+  <li><strong>Penerapan:</strong> difusi panas, getaran senar, potensial listrik, mekanika kuantum, dan banyak bidang lain.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Persamaan diferensial parsial adalah bahasa matematika untuk memodelkan sistem yang bergantung pada beberapa variabel bebas sekaligus. Tiga persamaan klasik&mdash;panas, gelombang, dan Laplace&mdash;masing-masing menangkap jenis perilaku fisik yang berbeda: difusi, osilasi, dan keadaan tunak. Metode pemisahan variabel, bersama dengan deret Fourier, memberikan kerangka sistematis untuk menyelesaikan ketiga persamaan ini pada domain berbatas.</p>
+ <p class="lesson-text">Materi ini menutup kategori Kalkulus dan Analisis. Perjalanan kita dimulai dari konsep limit dan kekontinuan, berlanjut melalui turunan, integral, barisan, dan deret, lalu diperluas ke fungsi multivariabel, kalkulus vektor, optimisasi, analisis real, analisis kompleks, teori ukuran, dan akhirnya persamaan diferensial parsial. Semua topik ini saling terkait, dan bersama-sama membentuk fondasi matematika bagi hampir semua bidang sains dan teknik modern.</p>
+</section>
+
+</main>
+</body>
+</html>

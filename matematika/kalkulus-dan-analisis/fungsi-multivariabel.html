@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fungsi Multivariabel (Limit, Kekontinuan, Turunan Parsial)</title>
+<meta name="description" content="Materi fungsi multivariabel: definisi fungsi dua atau tiga variabel, domain dan grafik, limit fungsi multivariabel, kekontinuan, dan turunan parsial beserta interpretasinya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Fungsi Multivariabel (Limit, Kekontinuan, Turunan Parsial)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Limit Fungsi</strong> &mdash; definisi limit satu variabel, sifat-sifat aljabarnya, dan gagasan jarak menjadi fondasi bagi definisi limit fungsi multivariabel. Pemahaman tentang definisi $\varepsilon$-$\delta$ membantu, tetapi bukan prasyarat mutlak&mdash;yang paling penting adalah intuisi tentang "pendekatan" dan sifat-sifat aljabar limit.</li>
+   <li><strong>Kekontinuan Fungsi</strong> &mdash; kekontinuan multivariabel didefinisikan dengan cara yang sama seperti kekontinuan satu variabel: limit harus sama dengan nilai fungsi di titik tersebut.</li>
+   <li><strong>Turunan Fungsi</strong> &mdash; turunan parsial dihitung menggunakan aturan-aturan turunan yang sudah dipelajari. Perbedaannya hanya pada cara memperlakukan variabel lain sebagai konstanta.</li>
+   <li><strong>Geometri Analitik</strong> &mdash; pemahaman tentang koordinat tiga dimensi, permukaan, dan irisan bidang sangat membantu dalam memvisualisasikan grafik fungsi dua variabel.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Sampai di sini, hampir semua fungsi yang kita pelajari bergantung pada satu variabel saja. Misalnya $f(x) = x^2$ atau $s(t) = 3t^2 + 2t$. Namun banyak besaran nyata bergantung pada lebih dari satu variabel. Suhu di suatu ruangan bergantung pada posisi tiga dimensinya, bukan hanya pada satu koordinat. Volume tabung bergantung pada jari-jari <em>dan</em> tinggi. Keuntungan sebuah perusahaan bergantung pada harga jual dan biaya produksi. Untuk memodelkan situasi seperti ini, kita memerlukan <strong>fungsi multivariabel</strong>&mdash;yaitu fungsi dengan lebih dari satu variabel bebas.</p>
+ <p class="lesson-text">Perluasan dari satu ke banyak variabel tidak sesederhana menambahkan variabel baru. Di ruang satu dimensi, sebuah titik dapat didekati dari hanya dua arah: kiri dan kanan. Di ruang dua dimensi, sebuah titik dapat didekati dari <em>tak hingga banyak</em> arah, karena kita bisa bergerak di sepanjang kurva apa pun menuju titik tersebut. Perbedaan inilah yang membuat konsep limit pada fungsi multivariabel jauh lebih halus dan menuntut perhatian ekstra.</p>
+ <p class="lesson-text">Materi ini mencakup tiga topik. Pertama, definisi fungsi multivariabel beserta domain dan grafiknya. Kedua, limit fungsi multivariabel&mdash;yang memerlukan pendekatan dari semua arah, bukan hanya dua. Ketiga, kekontinuan dan turunan parsial&mdash;yaitu konsep turunan yang diperluas ke fungsi dengan beberapa variabel bebas. Turunan parsial menjadi dasar bagi konsep gradien, optimisasi multivariabel, dan analisis vektor yang akan dipelajari di materi-materi berikutnya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Fungsi Dua Variabel atau Lebih</h2>
+ <p class="lesson-text">Bab ini memperkenalkan definisi fungsi multivariabel, dilanjutkan dengan domain, grafik, dan representasi visualnya.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Fungsi Multivariabel</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi dua variabel adalah fungsi $f$ yang memasangkan setiap pasangan terurut $(x, y)$ dalam suatu himpunan $D \subseteq \mathbb{R}^2$ ke sebuah bilangan real $z = f(x, y)$.</p>
+ <p class="lesson-text">Himpunan $D$ disebut <strong>domain</strong> fungsi, dan himpunan semua nilai yang mungkin dari $z$ disebut <strong>range</strong>. Notasi $f: D \subseteq \mathbb{R}^2 \to \mathbb{R}$ menegaskan bahwa domainnya adalah himpunan bagian dari bidang, sedangkan kodomainnya adalah bilangan real.</p>
+ <p class="lesson-text">Definisi ini dapat diperluas ke tiga variabel: fungsi $f(x, y, z)$ memasangkan setiap titik dalam ruang tiga dimensi ke sebuah bilangan real. Secara umum, fungsi dengan $n$ variabel adalah fungsi dari $\mathbb{R}^n$ ke $\mathbb{R}$.</p>
+
+ <h3 class="lesson-subheading">B. Domain dan Range</h3>
+ <p class="lesson-text">Domain fungsi multivariabel biasanya tidak dinyatakan secara eksplisit, melainkan ditentukan oleh batasan-batasan alami dari rumusnya. Batasan yang sering muncul:</p>
+ <ul>
+  <li><strong>Penyebut tidak boleh nol.</strong> Untuk $f(x, y) = \dfrac{1}{x - y}$, domainnya adalah himpunan semua $(x, y)$ dengan $x \neq y$.</li>
+  <li><strong>Di bawah akar kuadrat harus non-negatif.</strong> Untuk $f(x, y) = \sqrt{1 - x^2 - y^2}$, domainnya adalah himpunan $(x, y)$ dengan $x^2 + y^2 \leq 1$&mdash;yaitu cakram tertutup dengan jari-jari $1$ di sekitar titik asal.</li>
+  <li><strong>Argumen logaritma harus positif.</strong> Untuk $f(x, y) = \ln(x^2 + y^2)$, domainnya adalah semua titik kecuali titik asal.</li>
+ </ul>
+ <p class="lesson-text">Menggambarkan domain pada bidang $(x, y)$ sering membantu memahami perilaku fungsinya. Domain dari $f(x, y) = \sqrt{1 - x^2 - y^2}$, misalnya, adalah cakram tertutup&mdash;dan grafiknya adalah setengah bola atas dengan jari-jari $1$.</p>
+
+ <h3 class="lesson-subheading">C. Grafik Fungsi Dua Variabel</h3>
+ <p class="lesson-text"><strong>Grafik</strong> dari fungsi dua variabel $z = f(x, y)$ adalah himpunan semua titik $(x, y, z)$ dalam ruang tiga dimensi yang memenuhi $z = f(x, y)$ dan $(x, y)$ berada dalam domain.</p>
+ <p class="lesson-text">Berbeda dengan grafik fungsi satu variabel yang berbentuk kurva di bidang, grafik fungsi dua variabel berbentuk <strong>permukaan</strong> (<em>surface</em>) di ruang. Beberapa contoh bentuk permukaan yang paling sering muncul:</p>
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Fungsi</th><th>Grafik</th></tr>
+  </thead>
+  <tbody>
+   <tr><td>$f(x, y) = x^2 + y^2$</td><td>Paraboloid (mangkuk menghadap ke atas)</td></tr>
+   <tr><td>$f(x, y) = \sqrt{1 - x^2 - y^2}$</td><td>Setengah bola atas dengan jari-jari $1$</td></tr>
+   <tr><td>$f(x, y) = x^2 - y^2$</td><td>Pelana (<em>saddle</em>)</td></tr>
+   <tr><td>$f(x, y) = ax + by + c$</td><td>Bidang datar (plane)</td></tr>
+  </tbody>
+ </table>
+ </div>
+
+ <h3 class="lesson-subheading">D. Kurva Level</h3>
+ <p class="lesson-text">Menggambar permukaan tiga dimensi di atas kertas adalah hal yang sulit. Karena itu, sering digunakan representasi alternatif yang disebut <strong>kurva level</strong> (<em>level curve</em>) atau <strong>peta kontur</strong> (<em>contour plot</em>).</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Kurva level dari fungsi $f(x, y)$ pada nilai $k$ adalah himpunan semua titik $(x, y)$ dalam domain yang memenuhi $f(x, y) = k$.</p>
+ <p class="lesson-text">Kurva level pada dasarnya adalah "proyeksi" permukaan tiga dimensi ke bidang dua dimensi. Setiap kurva mewakili satu ketinggian tertentu, seperti garis-garis pada peta topografi. Peta kontur dengan banyak kurva level memberi gambaran tentang bentuk permukaan: jika kurva level berdekatan, berarti permukaannya curam; jika berjauhan, permukaannya landai.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Kurva level dari $f(x, y) = x^2 + y^2$ pada nilai $k$ adalah:</p>
+ <p class="lesson-text">$$x^2 + y^2 = k$$</p>
+ <p class="lesson-text">Untuk $k > 0$, ini adalah lingkaran berjari-jari $\sqrt{k}$ yang berpusat di titik asal. Semakin besar $k$, semakin besar lingkarannya. Peta kontur berupa lingkaran-lingkaran konsentris inilah yang memberi bentuk "mangkuk" pada paraboloid.</p>
+ <figure>
+ <svg viewBox="0 0 620 640" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto; width:620px;">
+  <text x="310" y="26" font-size="14" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Peta kontur f(x, y) = x² + y²</text>
+  <line x1="40" y1="300" x2="588" y2="300" stroke="#e8e8e8" stroke-width="1.2" opacity="0.45" />
+  <line x1="300" y1="48" x2="300" y2="588" stroke="#e8e8e8" stroke-width="1.2" opacity="0.45" />
+  <polygon points="592,300 582,295 582,305" fill="#e8e8e8" opacity="0.45" />
+  <polygon points="300,44 295,54 305,54" fill="#e8e8e8" opacity="0.45" />
+  <text x="598" y="305" font-size="14" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="308" y="40" font-size="14" fill="#b8b8b8" font-style="italic">y</text>
+  <circle cx="300" cy="300" r="70" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <circle cx="300" cy="300" r="99" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <circle cx="300" cy="300" r="121" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <circle cx="300" cy="300" r="140" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <circle cx="300" cy="300" r="157" fill="none" stroke="#5dade2" stroke-width="1.8" />
+  <circle cx="300" cy="300" r="171" fill="none" stroke="#5dade2" stroke-width="1.8" />
+   <circle cx="349.5" cy="250.5" r="3.0" fill="#5dade2" />
+  <circle cx="370" cy="230" r="3.0" fill="#5dade2" />
+  <circle cx="385.6" cy="214.4" r="3.0" fill="#5dade2" />
+  <circle cx="399" cy="201" r="3.0" fill="#5dade2" />
+  <circle cx="411" cy="189" r="3.0" fill="#5dade2" />
+  <circle cx="420.9" cy="179.1" r="3.0" fill="#5dade2" />
+   <circle cx="300" cy="300" r="3.5" fill="#daa520" />
+   <text x="341" y="263" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">k = 1</text>
+  <text x="362" y="243" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">k = 2</text>
+  <text x="377" y="227" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">k = 3</text>
+  <text x="391" y="214" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">k = 4</text>
+  <text x="403" y="202" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">k = 5</text>
+  <text x="412" y="192" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">k = 6</text>
+  <text x="310" y="608" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Nilai k berjarak sama, tetapi lingkaran makin rapat ke luar</text>
+  <text x="310" y="626" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">→ permukaan paraboloid makin curam</text>
+ </svg>
+ <figcaption class="visual-caption">Peta kontur dari $f(x, y) = x^2 + y^2$. Setiap lingkaran mewakili satu nilai konstan $k = f(x, y)$, dengan jari-jari $\sqrt{k}$. Meskipun nilai $k$ yang dipilih berjarak sama ($1, 2, 3, \ldots, 6$), lingkaran-lingkaran pada peta kontur ini justru <em>semakin rapat</em> ke arah luar. Kerapatan ini mencerminkan bahwa permukaan paraboloid semakin curam ketika menjauh dari titik asal.</figcaption>
+</figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Limit Fungsi Multivariabel</h2>
+ <p class="lesson-text">Bab ini menyusun definisi limit fungsi multivariabel dan menjelaskan mengapa konsep ini jauh lebih halus daripada limit fungsi satu variabel.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Limit</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Misalkan $f$ terdefinisi pada cakram terbuka di sekitar titik $(a, b)$, kecuali mungkin di $(a, b)$ sendiri. Kita katakan:</p>
+ <p class="lesson-text">$$\lim_{(x, y) \to (a, b)} f(x, y) = L$$</p>
+ <p class="lesson-text">jika untuk setiap $\varepsilon > 0$, terdapat $\delta > 0$ sedemikian sehingga jika $(x, y)$ memenuhi:</p>
+ <p class="lesson-text">$$0 < \sqrt{(x - a)^2 + (y - b)^2} < \delta$$</p>
+ <p class="lesson-text">maka berlaku $|f(x, y) - L| < \varepsilon$.</p>
+ <p class="lesson-text">Perhatikan perbedaan kunci dengan definisi satu variabel. Di sana, syaratnya adalah $0 < |x - a| < \delta$&mdash;yaitu jarak pada satu dimensi. Di sini, syaratnya adalah $0 < \sqrt{(x - a)^2 + (y - b)^2} < \delta$&mdash;yaitu jarak Euclidean pada bidang, yang memastikan $(x, y)$ berada dalam <em>cakram</em> di sekitar $(a, b)$, bukan sekadar pada sebuah interval.</p>
+
+ <h3 class="lesson-subheading">B. Mengapa Lebih Rumit daripada Satu Variabel</h3>
+ <p class="lesson-text">Pada fungsi satu variabel, $x$ dapat mendekati $a$ hanya dari dua arah: kiri dan kanan. Limit dua sisi ada jika dan hanya jika kedua limit satu sisi ini ada dan sama.</p>
+ <p class="lesson-text">Pada fungsi dua variabel, $(x, y)$ dapat mendekati $(a, b)$ dari <em>tak hingga banyak arah</em>&mdash;karena kita dapat mendekat melalui kurva apa pun yang menuju titik tersebut. Akibatnya, limit multivariabel hanya ada jika <strong>nilai limitnya sama untuk semua arah pendekatan</strong>. Jika ada dua arah yang memberikan nilai berbeda, limitnya tidak ada.</p>
+ <p class="lesson-text">Situasi ini mirip dengan analogi berikut. Bayangkan sebuah kota di tengah lembah. Untuk menentukan ketinggian tepat di pusat kota, kita bisa mengukur ketinggian di setiap jalur yang menuju pusat. Jika semua jalur memberikan ketinggian yang sama, ketinggian di pusat kota terdefinisi dengan baik. Jika ada satu jalur yang memberikan nilai berbeda, berarti ada sesuatu yang aneh di pusat kota tersebut.</p>
+
+ <h3 class="lesson-subheading">C. Limit yang Tidak Ada: Pendekatan Berbeda Arah</h3>
+ <p class="lesson-text">Untuk menunjukkan bahwa suatu limit multivariabel <em>tidak ada</em>, kita cukup menemukan <strong>dua jalur pendekatan</strong> yang memberikan nilai limit berbeda.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Periksa apakah $\displaystyle\lim_{(x, y) \to (0, 0)} \frac{xy}{x^2 + y^2}$ ada.</p>
+ <p class="lesson-text"><strong>Jalur 1: sepanjang sumbu-$X$.</strong> Ambil $y = 0$. Maka fungsi menjadi:</p>
+ <p class="lesson-text">$$f(x, 0) = \frac{x \cdot 0}{x^2 + 0} = 0$$</p>
+ <p class="lesson-text">Jadi limit sepanjang jalur ini adalah $0$.</p>
+ <p class="lesson-text"><strong>Jalur 2: sepanjang garis $y = x$.</strong> Ambil $y = x$. Maka fungsi menjadi:</p>
+ <p class="lesson-text">$$f(x, x) = \frac{x \cdot x}{x^2 + x^2} = \frac{x^2}{2x^2} = \frac{1}{2}$$</p>
+ <p class="lesson-text">Jadi limit sepanjang jalur ini adalah $\dfrac{1}{2}$.</p>
+ <p class="lesson-text">Kedua jalur memberikan nilai berbeda ($0$ vs $\dfrac{1}{2}$). Karena limit harus sama untuk semua jalur, maka:</p>
+ <p class="lesson-text">$$\lim_{(x, y) \to (0, 0)} \frac{xy}{x^2 + y^2} \text{ tidak ada}$$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="20" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Pendekatan ke (0, 0) dari berbagai jalur</text>
+
+  <line x1="90" y1="200" x2="550" y2="200" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="320" y1="320" x2="320" y2="40" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="556" y="204" font-size="12" fill="#b8b8b8" font-style="italic">x</text>
+  <text x="325" y="36" font-size="12" fill="#b8b8b8" font-style="italic">y</text>
+
+  <circle cx="320" cy="200" r="5" fill="#daa520"/>
+  <text x="310" y="220" font-size="12" fill="#daa520" text-anchor="middle" font-style="italic">(0, 0)</text>
+
+  <line x1="130" y1="200" x2="500" y2="200" stroke="#5dade2" stroke-width="2"/>
+  <text x="140" y="190" font-size="11" fill="#5dade2" font-style="italic">jalur y = 0 → nilai 0</text>
+
+  <line x1="150" y1="370" x2="490" y2="30" stroke="#22d3ee" stroke-width="2"/>
+  <text x="510" y="60" font-size="11" fill="#22d3ee" font-style="italic">jalur y = x</text>
+  <text x="510" y="76" font-size="11" fill="#22d3ee" font-style="italic">→ nilai ½</text>
+
+  <path d="M 135 40 Q 227.5 200 320 200 Q 412.5 200 505 40" fill="none" stroke="#f0c75e" stroke-width="2" />
+  <text x="180" y="90" font-size="11" fill="#f0c75e" font-style="italic">jalur y = x²</text>
+
+  <text x="450" y="320" font-size="12" fill="#b8b8b8" text-anchor="middle" font-style="italic">Nilai limit berbeda menurut jalur → limit tidak ada</text>
+ </svg>
+ <figcaption class="visual-caption">Pendekatan ke titik $(0, 0)$ dari berbagai jalur. Setiap jalur mewakili satu cara $(x, y)$ mendekati $(0, 0)$. Jika dua jalur menghasilkan nilai limit yang berbeda, limit tidak ada.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Limit yang Ada: Substitusi Polar</h3>
+ <p class="lesson-text">Menunjukkan bahwa suatu limit <em>ada</em> jauh lebih sulit daripada menunjukkan bahwa limitnya tidak ada. Untuk menunjukkan limit ada, kita perlu membuktikan bahwa semua jalur pendekatan memberikan nilai yang sama&mdash;sesuatu yang tidak dapat diverifikasi satu per satu karena ada tak hingga banyak jalur.</p>
+ <p class="lesson-text">Salah satu teknik yang sangat berguna adalah <strong>substitusi polar</strong>. Ide: nyatakan $(x, y)$ dalam koordinat polar terhadap titik $(a, b)$, yaitu $x = a + r\cos\theta$ dan $y = b + r\sin\theta$. Jika nilai $f$ dapat dibatasi oleh suatu fungsi yang hanya bergantung pada $r$ dan menuju $0$ ketika $r \to 0$&mdash;tanpa bergantung pada $\theta$&mdash;maka limitnya ada dan sama dengan nilai batas tersebut.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Periksa apakah $\displaystyle\lim_{(x, y) \to (0, 0)} \frac{x^2 y}{x^2 + y^2}$ ada.</p>
+ <p class="lesson-text">Substitusi $x = r\cos\theta$ dan $y = r\sin\theta$:</p>
+ <p class="lesson-text">$$\frac{x^2 y}{x^2 + y^2} = \frac{r^2 \cos^2\theta \cdot r \sin\theta}{r^2} = r \cos^2\theta \sin\theta$$</p>
+ <p class="lesson-text">Perhatikan bahwa $|\cos^2\theta \sin\theta| \leq 1$ untuk semua $\theta$. Maka:</p>
+ <p class="lesson-text">$$\left|r \cos^2\theta \sin\theta\right| \leq r$$</p>
+ <p class="lesson-text">Ketika $r \to 0$, batas atasnya menuju $0$&mdash;tanpa bergantung pada $\theta$. Menurut teorema apit, fungsi yang diapit juga harus menuju $0$. Jadi:</p>
+ <p class="lesson-text">$$\lim_{(x, y) \to (0, 0)} \frac{x^2 y}{x^2 + y^2} = 0$$</p>
+ <p class="lesson-text">Hasil ini berlaku karena apapun nilai $\theta$&mdash;yaitu apapun jalur pendekatannya&mdash;nilai fungsinya selalu terbatas oleh $r$ yang menuju $0$. Inilah yang membedakan limit yang ada dari limit yang tidak ada.</p>
+
+ <h3 class="lesson-subheading">E. Sifat-Sifat Limit</h3>
+ <p class="lesson-text">Sifat-sifat aljabar limit multivariabel sama persis dengan limit satu variabel. Jika $\displaystyle\lim_{(x,y)\to(a,b)} f(x,y) = L$ dan $\displaystyle\lim_{(x,y)\to(a,b)} g(x,y) = M$, maka:</p>
+ <ul>
+  <li>$\displaystyle\lim [f + g] = L + M$</li>
+  <li>$\displaystyle\lim [f \cdot g] = L \cdot M$</li>
+  <li>$\displaystyle\lim \dfrac{f}{g} = \dfrac{L}{M}$ (asalkan $M \neq 0$)</li>
+  <li>$\displaystyle\lim [c \cdot f] = c \cdot L$</li>
+  <li><strong>Teorema apit.</strong> Jika $|f(x, y)| \leq g(x, y)$ di sekitar $(a, b)$, dan $\displaystyle\lim_{(x,y)\to(a,b)} g(x, y) = 0$, maka $\displaystyle\lim_{(x,y)\to(a,b)} f(x, y) = 0$.</li>
+ </ul>
+ <p class="lesson-text">Sifat-sifat ini memungkinkan kita menghitung banyak limit multivariabel melalui substitusi langsung, tanpa harus kembali ke definisi $\varepsilon$-$\delta$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Kekontinuan Fungsi Multivariabel</h2>
+ <p class="lesson-text">Bab ini memperluas konsep kekontinuan ke fungsi multivariabel. Sama seperti pada satu variabel, kekontinuan menyatakan bahwa limit fungsi di suatu titik sama dengan nilai fungsi di titik tersebut.</p>
+
+ <h3 class="lesson-subheading">A. Definisi Kekontinuan</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Fungsi $f(x, y)$ dikatakan <strong>kontinu di titik</strong> $(a, b)$ jika ketiga syarat berikut terpenuhi:</p>
+ <ol>
+  <li>$f(a, b)$ terdefinisi.</li>
+  <li>$\displaystyle\lim_{(x, y) \to (a, b)} f(x, y)$ ada.</li>
+  <li>$\displaystyle\lim_{(x, y) \to (a, b)} f(x, y) = f(a, b)$.</li>
+ </ol>
+ <p class="lesson-text">Ketiga syarat ini identik dengan kekontinuan satu variabel. Perbedaannya hanya pada cara limit dihitung&mdash;di sini, limitnya harus ada untuk semua arah pendekatan, bukan hanya kiri dan kanan.</p>
+ <p class="lesson-text">Fungsi dikatakan <strong>kontinu pada suatu himpunan</strong> jika ia kontinu di setiap titik dalam himpunan tersebut.</p>
+
+ <h3 class="lesson-subheading">B. Contoh: Fungsi yang Kontinu di Mana-Manapun</h3>
+ <p class="lesson-text">Sebagian besar fungsi dasar yang kita kenal kontinu di seluruh domainnya:</p>
+ <ul>
+  <li><strong>Polinomial dua variabel</strong>, seperti $f(x, y) = x^2 + 3xy - y^3 + 5$, kontinu di seluruh bidang $\mathbb{R}^2$.</li>
+  <li><strong>Fungsi rasional</strong>, seperti $f(x, y) = \dfrac{x + y}{x - y}$, kontinu di semua titik kecuali tempat penyebutnya nol (yaitu sepanjang garis $x = y$).</li>
+  <li><strong>Fungsi eksponensial, logaritma, dan trigonometri</strong> juga kontinu pada domainnya.</li>
+ </ul>
+ <p class="lesson-text">Untuk fungsi-fungsi ini, kekontinuan dapat diperiksa dengan substitusi langsung&mdash;sama seperti pada satu variabel.</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Fungsi yang Diskontinu karena Limit Tidak Ada</h3>
+ <p class="lesson-text">Sebuah fungsi dapat diskontinu di titik tertentu karena limitnya tidak ada di titik tersebut.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Periksa kekontinuan fungsi berikut di $(0, 0)$:</p>
+ <p class="lesson-text">$$f(x, y) = \frac{xy}{x^2 + y^2}, \qquad f(0, 0) = 0$$</p>
+ <p class="lesson-text">Dari Bab II, kita sudah tahu bahwa limit dari $\dfrac{xy}{x^2 + y^2}$ ketika $(x, y) \to (0, 0)$ <em>tidak ada</em>&mdash;karena nilai sepanjang jalur $y = 0$ adalah $0$, sedangkan sepanjang jalur $y = x$ adalah $\dfrac{1}{2}$.</p>
+ <p class="lesson-text">Karena limitnya tidak ada, syarat kedua kekontinuan gagal. Jadi fungsi ini <strong>diskontinu</strong> di $(0, 0)$, meskipun nilainya di titik itu sudah didefinisikan sebagai $0$.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Fungsi yang Kontinu meskipun Terdefinisi melalui Kasus Khusus</h3>
+ <p class="lesson-text">Tidak semua fungsi dengan definisi kasus khusus bersifat diskontinu. Sebagian dapat dibuat kontinu dengan mendefinisikan nilai di titik khusus secara tepat.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Periksa kekontinuan fungsi berikut di $(0, 0)$:</p>
+ <p class="lesson-text">$$f(x, y) = \begin{cases} \dfrac{x^2 y}{x^2 + y^2} & \text{jika } (x, y) \neq (0, 0) \\ 0 & \text{jika } (x, y) = (0, 0) \end{cases}$$</p>
+ <p class="lesson-text"><strong>Syarat 1: Nilai $f(0, 0)$ terdefinisi.</strong> Ya, yaitu $0$.</p>
+ <p class="lesson-text"><strong>Syarat 2: Limit di $(0, 0)$ ada.</strong> Dari Bab II, kita sudah menghitung bahwa limit ini ada dan bernilai $0$&mdash;melalui substitusi polar.</p>
+ <p class="lesson-text"><strong>Syarat 3: Limit sama dengan nilai fungsi.</strong> Limitnya $0$ dan $f(0, 0) = 0$. Keduanya sama.</p>
+ <p class="lesson-text">Kesimpulan: fungsi ini <strong>kontinu</strong> di $(0, 0)$.</p>
+ 
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Perhatikan perbedaan penting antara kedua contoh.</strong> Fungsi $\dfrac{xy}{x^2 + y^2}$ memiliki limit yang bergantung pada jalur pendekatan, sehingga limitnya tidak ada. Fungsi $\dfrac{x^2 y}{x^2 + y^2}$ memiliki limit yang <em>sama</em> untuk semua jalur&mdash;yaitu $0$. Perbedaan ini berasal dari pangkat variabel di pembilang: pangkat total $x^2 y$ adalah $3$, sedangkan pangkat total $xy$ adalah $2$. Untuk fungsi rasional <strong>homogen</strong>&mdash;yaitu yang pembilang dan penyebutnya berupa polinomial homogen&mdash;pola ini berlaku: jika pangkat total pembilang lebih besar daripada pangkat total penyebut, limit di titik asal adalah $0$. Namun aturan ini <em>tidak berlaku umum</em> untuk fungsi rasional yang tidak homogen. Pada kasus seperti itu, kita tetap harus memeriksa dengan substitusi polar atau membandingkan jalur.</p>
+ </div>
+
+ <h3 class="lesson-subheading">E. Sifat-Sifat Fungsi Kontinu</h3>
+ <p class="lesson-text">Sifat-sifat kekontinuan multivariabel juga sama dengan kekontinuan satu variabel:</p>
+ <ul>
+  <li>Jika $f$ dan $g$ kontinu di $(a, b)$, maka $f + g$, $f - g$, $f \cdot g$, dan $\dfrac{f}{g}$ (dengan $g(a, b) \neq 0$) juga kontinu di $(a, b)$.</li>
+  <li>Jika $f$ kontinu di $(a, b)$ dan $h$ kontinu di $f(a, b)$, maka komposisi $h \circ f$ kontinu di $(a, b)$.</li>
+  <li>Jika $f$ kontinu pada himpunan tertutup dan terbatas, maka $f$ mencapai nilai maksimum dan minimum pada himpunan tersebut.</li>
+ </ul>
+ <p class="lesson-text">Sifat terakhir adalah Teorema Nilai Ekstrem versi multivariabel&mdash;dan akan menjadi fondasi untuk optimisasi pada materi berikutnya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Turunan Parsial</h2>
+ <p class="lesson-text">Bab ini memperkenalkan konsep turunan untuk fungsi multivariabel. Berbeda dengan turunan fungsi satu variabel yang berupa bilangan tunggal, turunan multivariabel memerlukan satu nilai untuk setiap variabel bebas&mdash;inilah yang disebut <strong>turunan parsial</strong>.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan: Turunan terhadap Satu Variabel Saja</h3>
+ <p class="lesson-text">Misalkan $f(x, y)$ adalah fungsi dua variabel. Bagaimana kita dapat mengukur laju perubahan $f$ terhadap $x$ ketika $y$ dibiarkan tetap? Inilah pertanyaan yang dijawab oleh turunan parsial.</p>
+ <p class="lesson-text">Gagasan dasarnya sederhana: anggap $y$ sebagai konstanta, sehingga $f(x, y)$ menjadi fungsi satu variabel $x$. Lalu hitung turunan fungsi tersebut terhadap $x$ menggunakan aturan-aturan turunan yang sudah kita pelajari. Hasilnya adalah <strong>turunan parsial $f$ terhadap $x$</strong>.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Turunan Parsial</h3>
+ <p class="lesson-text"><strong>Definisi.</strong> Turunan parsial dari $f(x, y)$ terhadap $x$ di titik $(a, b)$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x}(a, b) = \lim_{h \to 0} \frac{f(a + h, b) - f(a, b)}{h}$$</p>
+ <p class="lesson-text">Turunan parsial terhadap $y$ didefinisikan serupa, dengan variabel $y$ yang berubah dan $x$ tetap:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial y}(a, b) = \lim_{h \to 0} \frac{f(a, b + h) - f(a, b)}{h}$$</p>
+ <p class="lesson-text">Perhatikan bahwa definisinya identik dengan definisi turunan satu variabel&mdash;hanya saja variabel lain dianggap konstan selama perhitungan.</p>
+
+ <h3 class="lesson-subheading">C. Notasi</h3>
+ <p class="lesson-text">Terdapat beberapa notasi yang lazim digunakan untuk turunan parsial. Untuk fungsi $f(x, y) = z$, turunan parsial terhadap $x$ dapat dituliskan sebagai:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x}, \quad \frac{\partial z}{\partial x}, \quad f_x, \quad \text{atau} \quad D_x f$$</p>
+ <p class="lesson-text">Notasi $\dfrac{\partial f}{\partial x}$ diperkenalkan oleh Legendre dan menggunakan simbol $\partial$ (dibaca "partial", "do", atau "d bulat") untuk membedakannya dari simbol $d$ pada turunan biasa. Notasi $f_x$ lebih ringkas dan sering dipakai dalam perhitungan.</p>
+ <p class="lesson-text">(Perhatikan bahwa konvensi penulisan $f_{xy}$ bisa berbeda antar buku: sebagian penulis mendefinisikannya sebagai $\partial^2 f/\partial x \partial y$, yaitu kebalikan dari yang dipakai di sini. Yang penting adalah konsistensi internal&mdash;di materi ini, $f_{xy}$ berarti turunkan dulu terhadap $x$, lalu terhadap $y$.)</p>
+
+ <h3 class="lesson-subheading">D. Cara Menghitung Turunan Parsial</h3>
+ <p class="lesson-text">Aturan untuk menghitung turunan parsial sangat mudah diingat:</p>
+ <ul>
+  <li><strong>Untuk $\dfrac{\partial f}{\partial x}$</strong>: anggap $y$ sebagai konstanta, lalu turunkan terhadap $x$.</li>
+  <li><strong>Untuk $\dfrac{\partial f}{\partial y}$</strong>: anggap $x$ sebagai konstanta, lalu turunkan terhadap $y$.</li>
+ </ul>
+ <p class="lesson-text">Semua aturan turunan (pangkat, produk, kuosien, rantai) berlaku sama seperti pada fungsi satu variabel. Yang berubah hanya cara memperlakukan variabel lain sebagai konstanta.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Turunan Parsial Fungsi Polinomial</h3>
+ <p class="lesson-text">Hitung $\dfrac{\partial f}{\partial x}$ dan $\dfrac{\partial f}{\partial y}$ untuk $f(x, y) = x^3 y^2 + 2xy$.</p>
+ <p class="lesson-text"><strong>Turunan parsial terhadap $x$.</strong> Anggap $y$ sebagai konstanta:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x} = 3x^2 y^2 + 2y$$</p>
+ <p class="lesson-text">Perhatikan bahwa suku $x^3 y^2$ diturunkan menggunakan aturan pangkat pada $x$, dengan $y^2$ diperlakukan sebagai konstanta. Suku $2xy$ diturunkan menjadi $2y$ (karena $y$ konstan).</p>
+ <p class="lesson-text"><strong>Turunan parsial terhadap $y$.</strong> Anggap $x$ sebagai konstanta:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial y} = 2x^3 y + 2x$$</p>
+
+ <h3 class="lesson-subheading">F. Contoh: Turunan Parsial Fungsi Eksponensial dan Trigonometri</h3>
+ <p class="lesson-text">Hitung $\dfrac{\partial f}{\partial x}$ dan $\dfrac{\partial f}{\partial y}$ untuk $f(x, y) = e^{xy}\sin(x + y)$.</p>
+ <p class="lesson-text"><strong>Turunan parsial terhadap $x$.</strong> Gunakan aturan produk pada $e^{xy}$ dan $\sin(x+y)$:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x} = \left(\frac{\partial}{\partial x} e^{xy}\right) \sin(x+y) + e^{xy} \left(\frac{\partial}{\partial x}\sin(x+y)\right)$$</p>
+ <p class="lesson-text">Karena $\dfrac{\partial}{\partial x} e^{xy} = y e^{xy}$ (menggunakan aturan rantai, dengan $y$ konstan) dan $\dfrac{\partial}{\partial x}\sin(x+y) = \cos(x+y)$, maka:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x} = y e^{xy} \sin(x+y) + e^{xy} \cos(x+y) = e^{xy}\left[y\sin(x+y) + \cos(x+y)\right]$$</p>
+ <p class="lesson-text"><strong>Turunan parsial terhadap $y$.</strong> Serupa, tetapi kali ini $x$ yang konstan:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial y} = x e^{xy} \sin(x+y) + e^{xy} \cos(x+y) = e^{xy}\left[x\sin(x+y) + \cos(x+y)\right]$$</p>
+ <p class="lesson-text">Perhatikan bahwa kedua turunan parsial memiliki bentuk yang mirip&mdash;hanya berbeda pada faktor $x$ dan $y$ di suku pertama. Ini adalah konsekuensi dari simetri fungsi terhadap pertukaran $x$ dan $y$.</p>
+
+ <h3 class="lesson-subheading">G. Interpretasi Geometris Turunan Parsial</h3>
+ <p class="lesson-text">Apa arti geometris dari turunan parsial? Bayangkan grafik $z = f(x, y)$ sebagai permukaan di ruang tiga dimensi. Kemudian bayangkan sebuah bidang vertikal yang melalui titik $(a, b)$ dan sejajar dengan sumbu-$X$. Bidang ini memotong permukaan sepanjang sebuah kurva. Turunan parsial $\dfrac{\partial f}{\partial x}(a, b)$ adalah kemiringan garis singgung kurva ini di titik $(a, b)$.</p>
+ <p class="lesson-text">Dengan kata lain:</p>
+ <ul>
+  <li>$\dfrac{\partial f}{\partial x}$ mengukur seberapa cepat $f$ berubah ketika kita bergerak sejajar dengan sumbu-$X$, dengan $y$ tetap.</li>
+  <li>$\dfrac{\partial f}{\partial y}$ mengukur seberapa cepat $f$ berubah ketika kita bergerak sejajar dengan sumbu-$Y$, dengan $x$ tetap.</li>
+ </ul>
+ <p class="lesson-text">Kedua turunan parsial ini bersama-sama memberi gambaran tentang bagaimana permukaan berubah di sekitar titik tersebut. Gabungan keduanya dalam bentuk vektor disebut <strong>gradien</strong> dan akan dipelajari di materi Optimisasi.</p>
+
+ <h3 class="lesson-subheading">H. Turunan Parsial Tingkat Tinggi</h3>
+ <p class="lesson-text">Turunan parsial juga dapat diturunkan lagi, menghasilkan <strong>turunan parsial tingkat tinggi</strong>. Untuk $f(x, y)$, terdapat empat turunan parsial tingkat dua:</p>
+ <p class="lesson-text">$$f_{xx} = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial x}\right), \qquad f_{yy} = \frac{\partial}{\partial y}\left(\frac{\partial f}{\partial y}\right)$$</p>
+ <p class="lesson-text">$$f_{xy} = \frac{\partial}{\partial y}\left(\frac{\partial f}{\partial x}\right), \qquad f_{yx} = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right)$$</p>
+ <p class="lesson-text">Notasi alternatifnya: $f_{xy} = \dfrac{\partial^2 f}{\partial y \partial x}$ (dibaca "del kuadrat $f$, del $y$ del $x$"), yang berarti turunkan dulu terhadap $x$, lalu terhadap $y$.</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk $f(x, y) = x^3 y^2 + 2xy$, kita sudah punya:</p>
+ <p class="lesson-text">$$f_x = 3x^2 y^2 + 2y, \qquad f_y = 2x^3 y + 2x$$</p>
+ <p class="lesson-text">Turunan tingkat dua:</p>
+ <p class="lesson-text">$$f_{xx} = 6xy^2, \qquad f_{yy} = 2x^3$$</p>
+ <p class="lesson-text">$$f_{xy} = 6x^2 y + 2, \qquad f_{yx} = 6x^2 y + 2$$</p>
+ <p class="lesson-text">Perhatikan bahwa $f_{xy} = f_{yx}$. Ini bukan kebetulan&mdash;melainkan konsekuensi dari <strong>teorema Clairaut</strong>.</p>
+
+ <h3 class="lesson-subheading">I. Teorema Clairaut</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Jika $f$ memiliki turunan parsial kedua $f_{xy}$ dan $f_{yx}$ yang kontinu pada suatu cakram terbuka di sekitar titik $(a, b)$, maka:</p>
+ <p class="lesson-text">$$f_{xy}(a, b) = f_{yx}(a, b)$$</p>
+ <p class="lesson-text">Dengan kata lain, urutan penurunan tidak mempengaruhi hasil, selama turunannya kontinu. Sifat ini sangat berguna dalam perhitungan: kita dapat memilih urutan yang lebih mudah&mdash;misalnya menurunkan terhadap variabel yang menghasilkan bentuk lebih sederhana lebih dulu.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Catatan.</strong> Teorema Clairaut mensyaratkan kontinuitas dari kedua turunan parsial campuran. Tanpa syarat ini, $f_{xy}$ dan $f_{yx}$ bisa berbeda. Namun untuk fungsi-fungsi yang muncul di sebagian besar aplikasi&mdash;polinomial, trigonometri, eksponensial, dan kombinasinya&mdash;kedua turunan parsial campuran selalu kontinu pada domain, sehingga kesamaan ini selalu berlaku.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan konsep-konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menentukan Domain Fungsi Multivariabel</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan dan gambarkan domain dari $f(x, y) = \sqrt{9 - x^2 - y^2}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Fungsi terdefinisi jika di bawah akar kuadrat non-negatif:</p>
+ <p class="lesson-text">$$9 - x^2 - y^2 \geq 0 \quad \Rightarrow \quad x^2 + y^2 \leq 9$$</p>
+ <p class="lesson-text">Domainnya adalah cakram tertutup berjari-jari $3$ yang berpusat di titik asal. Grafik fungsinya adalah setengah bola atas dengan jari-jari $3$.</p>
+
+ <h3 class="lesson-subheading">B. Limit yang Tidak Ada</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan apakah $\displaystyle\lim_{(x, y) \to (0, 0)} \frac{x^2 - y^2}{x^2 + y^2}$ ada.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Periksa dengan dua jalur pendekatan berbeda.</p>
+ <p class="lesson-text"><strong>Jalur 1: sepanjang sumbu-$X$.</strong> Ambil $y = 0$:</p>
+ <p class="lesson-text">$$f(x, 0) = \frac{x^2 - 0}{x^2 + 0} = 1$$</p>
+ <p class="lesson-text"><strong>Jalur 2: sepanjang sumbu-$Y$.</strong> Ambil $x = 0$:</p>
+ <p class="lesson-text">$$f(0, y) = \frac{0 - y^2}{0 + y^2} = -1$$</p>
+ <p class="lesson-text">Dua jalur memberikan nilai berbeda ($1$ dan $-1$). Karena limit harus sama untuk semua jalur, maka limitnya <strong>tidak ada</strong>.</p>
+
+ <h3 class="lesson-subheading">C. Limit yang Ada dengan Substitusi Polar</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan $\displaystyle\lim_{(x, y) \to (0, 0)} \frac{x^3 + y^3}{x^2 + y^2}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Gunakan substitusi polar $x = r\cos\theta$, $y = r\sin\theta$:</p>
+ <p class="lesson-text">$$\frac{x^3 + y^3}{x^2 + y^2} = \frac{r^3\cos^3\theta + r^3\sin^3\theta}{r^2} = r(\cos^3\theta + \sin^3\theta)$$</p>
+ <p class="lesson-text">Batas dari $\cos^3\theta + \sin^3\theta$ adalah: nilai maksimumnya $1$ (ketika salah satu $\cos\theta$ atau $\sin\theta$ bernilai $1$) dan nilai minimumnya $-1$. Maka:</p>
+ <p class="lesson-text">$$|r(\cos^3\theta + \sin^3\theta)| \leq r$$</p>
+ <p class="lesson-text">Ketika $r \to 0$, batas atasnya menuju $0$. Menurut teorema apit, limitnya adalah $0$&mdash;tanpa bergantung pada jalur pendekatan.</p>
+
+ <h3 class="lesson-subheading">D. Memeriksa Kekontinuan</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Periksa kekontinuan fungsi berikut di $(0, 0)$:</p>
+ <p class="lesson-text">$$f(x, y) = \begin{cases} \dfrac{x^2 y^2}{x^2 + y^2} & \text{jika } (x, y) \neq (0, 0) \\ 0 & \text{jika } (x, y) = (0, 0) \end{cases}$$</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong></p>
+ <p class="lesson-text"><strong>Syarat 1: Nilai $f(0, 0)$ terdefinisi.</strong> Ya, yaitu $0$.</p>
+ <p class="lesson-text"><strong>Syarat 2: Limitnya ada.</strong> Substitusi polar:</p>
+ <p class="lesson-text">$$\frac{x^2 y^2}{x^2 + y^2} = \frac{r^4 \cos^2\theta \sin^2\theta}{r^2} = r^2 \cos^2\theta \sin^2\theta$$</p>
+ <p class="lesson-text">Karena $|\cos^2\theta \sin^2\theta| \leq 1$, maka $|r^2\cos^2\theta\sin^2\theta| \leq r^2 \to 0$ ketika $r \to 0$. Limitnya $0$.</p>
+ <p class="lesson-text"><strong>Syarat 3: Limit sama dengan nilai fungsi.</strong> Keduanya $0$.</p>
+ <p class="lesson-text">Kesimpulan: fungsi ini <strong>kontinu</strong> di $(0, 0)$.</p>
+
+ <h3 class="lesson-subheading">E. Menghitung Turunan Parsial</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\dfrac{\partial f}{\partial x}$ dan $\dfrac{\partial f}{\partial y}$ untuk $f(x, y) = x^2 \cos y + y e^x$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong></p>
+ <p class="lesson-text"><strong>Turunan parsial terhadap $x$.</strong> Anggap $y$ konstan:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial x} = 2x \cos y + y e^x$$</p>
+ <p class="lesson-text"><strong>Turunan parsial terhadap $y$.</strong> Anggap $x$ konstan:</p>
+ <p class="lesson-text">$$\frac{\partial f}{\partial y} = -x^2 \sin y + e^x$$</p>
+
+ <h3 class="lesson-subheading">F. Turunan Parsial Campuran dan Teorema Clairaut</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Untuk $f(x, y) = x^3 y^4 + 2x^2 y$, hitung $f_{xy}$ dan $f_{yx}$, lalu verifikasi kesamaannya.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Hitung turunan parsial pertama:</p>
+ <p class="lesson-text">$$f_x = 3x^2 y^4 + 4xy, \qquad f_y = 4x^3 y^3 + 2x^2$$</p>
+ <p class="lesson-text">Turunan parsial campuran:</p>
+ <p class="lesson-text">$$f_{xy} = \frac{\partial}{\partial y}(3x^2 y^4 + 4xy) = 12x^2 y^3 + 4x$$</p>
+ <p class="lesson-text">$$f_{yx} = \frac{\partial}{\partial x}(4x^3 y^3 + 2x^2) = 12x^2 y^3 + 4x$$</p>
+ <p class="lesson-text">Kedua hasilnya sama, sesuai dengan teorema Clairaut.</p>
+
+ <h3 class="lesson-subheading">G. Penerapan: Laju Perubahan Temperatur</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Suhu (dalam derajat Celsius) pada sebuah pelat logam dimodelkan oleh $T(x, y) = 100 - x^2 - 2y^2$, dengan $x$ dan $y$ dalam meter. Tentukan laju perubahan suhu terhadap posisi $x$ dan $y$ di titik $(2, 1)$, serta interpretasikan hasilnya.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Hitung turunan parsial:</p>
+ <p class="lesson-text">$$\frac{\partial T}{\partial x} = -2x, \qquad \frac{\partial T}{\partial y} = -4y$$</p>
+ <p class="lesson-text">Di titik $(2, 1)$:</p>
+ <p class="lesson-text">$$\frac{\partial T}{\partial x}\bigg|_{(2, 1)} = -4, \qquad \frac{\partial T}{\partial y}\bigg|_{(2, 1)} = -4$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Nilai $\dfrac{\partial T}{\partial x}(2, 1) = -4$ berarti suhu menurun dengan laju $4°C$ per meter ketika kita bergerak ke arah $x$ positif (dengan $y$ tetap). Nilai $\dfrac{\partial T}{\partial y}(2, 1) = -4$ juga berarti suhu menurun dengan laju $4°C$ per meter ketika bergerak ke arah $y$ positif. Kedua turunan parsial ini bersama-sama memberi gambaran tentang arah dan kecepatan perubahan suhu di titik tersebut.</p>
+ </div>
+
+ <h3 class="lesson-subheading">H. Penerapan: Fungsi Produksi Cobb-Douglas</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam ekonomi, fungsi produksi Cobb-Douglas banyak dipakai untuk memodelkan output (produksi) sebuah perusahaan sebagai fungsi dari modal $K$ dan tenaga kerja $L$:</p>
+ <p class="lesson-text">$$Q(K, L) = A K^\alpha L^\beta$$</p>
+ <p class="lesson-text">dengan $A > 0$, $0 < \alpha < 1$, dan $0 < \beta < 1$. Tentukan turunan parsial $\dfrac{\partial Q}{\partial K}$ dan $\dfrac{\partial Q}{\partial L}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Anggap $L$ konstan untuk turunan terhadap $K$:</p>
+ <p class="lesson-text">$$\frac{\partial Q}{\partial K} = A \alpha K^{\alpha - 1} L^\beta$$</p>
+ <p class="lesson-text">Anggap $K$ konstan untuk turunan terhadap $L$:</p>
+ <p class="lesson-text">$$\frac{\partial Q}{\partial L} = A \beta K^\alpha L^{\beta - 1}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi ekonomi.</strong> Turunan $\dfrac{\partial Q}{\partial K}$ disebut <em>produk marjinal modal</em>&mdash;yaitu tambahan output yang dihasilkan dari menambah satu unit modal, dengan tenaga kerja tetap. Turunan $\dfrac{\partial Q}{\partial L}$ disebut <em>produk marjinal tenaga kerja</em>. Dalam ekonomi, kedua besaran ini sangat penting karena menjadi dasar keputusan alokasi sumber daya. Turunan parsial adalah alat matematika yang membuat konsep "produk marjinal" ini dapat didefinisikan secara presisi.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Limit Fungsi Multivariabel</h3>
+ <ul>
+  <li><strong>Menganggap limitnya sama seperti limit satu variabel.</strong> Pada fungsi dua variabel, limit hanya ada jika <em>semua</em> jalur pendekatan memberikan nilai yang sama. Menemukan satu jalur yang konvergen bukan bukti bahwa limitnya ada.</li>
+  <li><strong>Menyimpulkan limitnya ada karena beberapa jalur memberikan nilai yang sama.</strong> Beberapa jalur saja tidak cukup. Bahkan jika 100 jalur memberikan nilai sama, jalur ke-101 bisa saja berbeda. Bukti bahwa limit ada harus menggunakan argumen yang berlaku untuk <em>semua</em> jalur&mdash;misalnya substitusi polar dengan batas yang hanya bergantung pada $r$.</li>
+  <li><strong>Salah menggunakan substitusi polar.</strong> Substitusi polar hanya membuktikan limit jika hasilnya tidak bergantung pada $\theta$ setelah dibatasi. Jika nilai limit masih bergantung pada $\theta$, itu justru menjadi petunjuk bahwa limitnya mungkin tidak ada.</li>
+  <li><strong>Menganggap limit jalur $(x, y) = (t, t)$ mencakup semua jalur.</strong> Jalur $y = x$ hanyalah <em>satu</em> jalur dari tak hingga banyak jalur. Menemukan nilai pada jalur ini tidak menyimpulkan apa pun tentang limit dua sisi.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Kekontinuan</h3>
+ <ul>
+  <li><strong>Menganggap $f(0, 0) = 0$ menjamin kekontinuan.</strong> Nilai fungsi yang didefinisikan di titik $(0, 0)$ tidak menjamin apapun tentang limitnya. Fungsi bisa saja memiliki nilai tapi limitnya tidak ada&mdash;seperti pada $f(x, y) = \dfrac{xy}{x^2 + y^2}$.</li>
+  <li><strong>Menganggap semua polinomial multivariabel kontinu di mana-mana.</strong> Benar, <em>polinomial</em> multivariabel memang kontinu di seluruh $\mathbb{R}^n$. Namun fungsi rasional, fungsi akar, dan fungsi logaritma memiliki batasan domain dan bisa diskontinu di titik tertentu.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Turunan Parsial</h3>
+ <ul>
+  <li><strong>Lupa memperlakukan variabel lain sebagai konstanta.</strong> Saat menghitung $\dfrac{\partial f}{\partial x}$, $y$ harus dianggap sebagai konstanta, bukan variabel. Kesalahan ini menyebabkan hasil yang salah.</li>
+  <li><strong>Menganggap turunan parsial sama dengan turunan biasa.</strong> Meskipun rumusnya mirip, turunan parsial hanya mengukur laju perubahan terhadap satu variabel dengan variabel lain tetap. Turunan parsial bukan "turunan total"&mdash;dan tidak menggambarkan keseluruhan perilaku fungsi.</li>
+  <li><strong>Salah notasi pada turunan parsial campuran.</strong> Notasi $\dfrac{\partial^2 f}{\partial y \partial x}$ berarti turunkan dulu terhadap $x$, lalu terhadap $y$&mdash;dibaca dari kanan ke kiri. Ini sering tertukar dengan $\dfrac{\partial^2 f}{\partial x \partial y}$, yang berarti sebaliknya. Namun menurut teorema Clairaut, keduanya sama untuk fungsi yang kontinu turunan keduanya.</li>
+  <li><strong>Menganggap $f_{xy} = f_{yx}$ selalu.</strong> Meskipun biasanya benar, kesamaan ini memerlukan syarat kontinuitas dari turunan parsial campuran. Tanpa syarat ini, kedua turunan bisa berbeda.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Ringkasan</h2>
+ <ul>
+  <li><strong>Fungsi multivariabel:</strong> fungsi dengan lebih dari satu variabel bebas, misalnya $f(x, y)$ atau $f(x, y, z)$.</li>
+  <li><strong>Domain:</strong> himpunan semua titik $(x, y)$ yang membuat rumus fungsi terdefinisi. Batasan biasanya berasal dari penyebut nol, akar negatif, atau argumen logaritma.</li>
+  <li><strong>Grafik:</strong> permukaan di ruang tiga dimensi, untuk fungsi dua variabel.</li>
+  <li><strong>Kurva level:</strong> himpunan titik $(x, y)$ dengan $f(x, y) = k$. Peta kontur memberi gambaran permukaan tanpa perlu menggambar tiga dimensi.</li>
+  <li><strong>Limit:</strong> $\displaystyle\lim_{(x, y) \to (a, b)} f(x, y) = L$ jika $f(x, y)$ mendekati $L$ ketika $(x, y)$ mendekati $(a, b)$ dari <em>semua</em> jalur.</li>
+  <li><strong>Limit tidak ada:</strong> cukup menunjukkan dua jalur pendekatan yang memberikan nilai berbeda.</li>
+  <li><strong>Substitusi polar:</strong> teknik untuk menunjukkan limit ada&mdash;dengan membuktikan bahwa nilai $f$ dapat dibatasi oleh fungsi dari $r$ saja (tanpa bergantung pada $\theta$).</li>
+  <li><strong>Kekontinuan:</strong> $f$ kontinu di $(a, b)$ jika $f(a, b)$ terdefinisi, limitnya ada, dan keduanya sama.</li>
+  <li><strong>Turunan parsial:</strong> $\dfrac{\partial f}{\partial x}$ mengukur laju perubahan $f$ terhadap $x$ dengan $y$ tetap; $\dfrac{\partial f}{\partial y}$ sebaliknya.</li>
+  <li><strong>Cara menghitung:</strong> anggap variabel lain sebagai konstanta, lalu gunakan aturan-aturan turunan biasa.</li>
+  <li><strong>Notasi:</strong> $\dfrac{\partial f}{\partial x}$, $f_x$, atau $D_x f$.</li>
+  <li><strong>Interpretasi geometris:</strong> turunan parsial adalah kemiringan kurva irisan permukaan dengan bidang yang sejajar salah satu sumbu.</li>
+  <li><strong>Turunan parsial tingkat tinggi:</strong> $f_{xx}$, $f_{yy}$, $f_{xy}$, $f_{yx}$.</li>
+  <li><strong>Teorema Clairaut:</strong> jika $f_{xy}$ dan $f_{yx}$ kontinu, maka $f_{xy} = f_{yx}$&mdash;urutan penurunan tidak mempengaruhi hasil.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Fungsi multivariabel memperluas konsep-konsep dasar kalkulus ke dunia dengan lebih dari satu variabel bebas. Meskipun definisi limit dan kekontinuannya secara struktural mirip dengan versi satu variabel, ada satu perbedaan mendasar yang menjadikan analisis multivariabel jauh lebih halus: pendekatan ke suatu titik dapat dilakukan melalui tak hingga banyak jalur, bukan hanya dua. Pemahaman tentang perbedaan inilah yang menjadi kunci untuk menguasai konsep-konsep multivariabel.</p>
+ <p class="lesson-text">Turunan parsial adalah alat untuk mengukur laju perubahan fungsi multivariabel terhadap satu variabel sementara variabel lainnya dibiarkan tetap. Konsep ini menjadi fondasi bagi banyak konsep lanjutan: gradien, turunan berarah, optimisasi multivariabel, dan analisis vektor. Di materi berikutnya, kita akan memperluas konsep turunan parsial menjadi <strong>gradien</strong> dan mempelajari bagaimana ia dapat dipakai untuk menentukan arah perubahan maksimum dari suatu fungsi&mdash;sebuah konsep yang mendasari banyak teknik optimisasi dan pembelajaran mesin modern.</p>
+</section>
+
+</main>
+</body>
+</html>

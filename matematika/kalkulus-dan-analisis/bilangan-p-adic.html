@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilangan p-adic (Sistem Bilangan Non-Archimedean)</title>
+<meta name="description" content="Materi bilangan p-adic: nilai mutlak p-adic, sifat non-Archimedean, konstruksi Q_p, ekspansi p-adic, sifat topologis, dan lemma Hensel beserta penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Bilangan p-adic (Sistem Bilangan Non-Archimedean)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Analisis Real</strong> &mdash; konsep kelengkapan, barisan Cauchy, supremum, dan sifat Archimedes di $\mathbb{R}$ menjadi titik tolak bagi konstruksi $\mathbb{Q}_p$. Pemahaman tentang nilai mutlak biasa dan ketidaksamaan segitiga diperlukan.</li>
+   <li><strong>Kongruensi &amp; Modulo</strong> &mdash; ekspansi p-adic dan lemma Hensel bertumpu pada aritmetika modulo $p$ dan modulo $p^n$. Pemahaman tentang kelas residu, invers modulo, dan teorema sisa Tionghoa sangat membantu.</li>
+   <li><strong>Aljabar Dasar</strong> &mdash; manipulasi pecahan, pemfaktoran prima, dan sifat-sifat lapangan menjadi dasar untuk memahami $\mathbb{Q}_p$ sebagai lapangan.</li>
+   <li><strong>Barisan dan Deret</strong> &mdash; konsep barisan Cauchy dan kekonvergenan deret di $\mathbb{R}$ perlu dipahami sebelum memperluasnya ke metrik p-adic.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Sepanjang pendidikan matematika, kita telah terbiasa dengan satu cara mengukur "jarak" antara dua bilangan: selisih biasa. Jarak antara $3$ dan $10$ adalah $7$; jarak antara $10$ dan $108$ adalah $98$. Cara mengukur ini begitu alami sehingga kita jarang mempertanyakannya. Namun pada awal abad ke-20, matematikawan Jerman Kurt Hensel menemukan bahwa ada cara <em>lain</em> mengukur jarak antar bilangan yang sama sekali berbeda&mdash;dan cara ini ternyata memberi wawasan yang sangat dalam tentang struktur bilangan.</p>
+ <p class="lesson-text">Gagasan intinya adalah ini: alih-alih mengukur seberapa <em>besar</em> selisih dua bilangan, kita dapat mengukur seberapa <em>dalam</em> dua bilangan tersebut dapat dibagi oleh suatu bilangan prima $p$. Dua bilangan dianggap "dekat" jika selisihnya habis dibagi oleh pangkat $p$ yang tinggi. Sebagai contoh, dalam metrik $7$-adic, bilangan $3$ dan $10$ sangat dekat&mdash;karena selisihnya $7$ habis dibagi oleh $7^1$. Sedangkan bilangan $3$ dan $108$ bahkan lebih dekat&mdash;karena selisihnya $105 = 3 \cdot 5 \cdot 7$ habis dibagi oleh $7^1$. Jika kita perpanjang pola ini, barisan $3, 10, 108, 11660, \ldots$ akan tampak konvergen ke suatu bilangan "$\sqrt{2}$ dalam arti $7$-adic".</p>
+ <p class="lesson-text">Bilangan-bilangan yang muncul dari cara pengukuran ini disebut <strong>bilangan p-adic</strong>, dilambangkan $\mathbb{Q}_p$ untuk setiap bilangan prima $p$. Menurut <strong>teorema Ostrowski</strong>, hanya ada dua cara esensial untuk mengukur jarak antar bilangan rasional: cara biasa (yang mengarah ke $\mathbb{R}$) dan cara p-adic (yang mengarah ke $\mathbb{Q}_p$). Kedua dunia ini saling melengkapi&mdash;dan bersama-sama memberi gambaran lengkap tentang struktur bilangan rasional.</p>
+ <p class="lesson-text">Materi ini mencakup lima topik. Pertama, motivasi dan gagasan dasar nilai mutlak p-adic. Kedua, sifat-sifat aljabar dan analitis dari nilai mutlak p-adic, terutama sifat non-Archimedean. Ketiga, konstruksi lapangan $\mathbb{Q}_p$ melalui barisan Cauchy. Keempat, ekspansi p-adic&mdash;cara menuliskan bilangan p-adic yang analog dengan notasi desimal. Kelima, sifat-sifat topologis dan lemma Hensel, yang menjadi alat utama dalam teori bilangan p-adic.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Motivasi dan Gagasan Dasar</h2>
+ <p class="lesson-text">Bab ini membangun gagasan nilai mutlak p-adic secara bertahap. Kita mulai dari pertanyaan "apa artinya dekat?", lalu memperkenalkan konsep valuasi p-adic, dan diakhiri dengan definisi nilai mutlak p-adic.</p>
+
+ <h3 class="lesson-subheading">A. Cara Mengukur Kedekatan</h3>
+ <p class="lesson-text">Dalam matematika, kedekatan antara dua bilangan diukur menggunakan <strong>nilai mutlak</strong>. Nilai mutlak biasa, yang ditulis $|x|$, didefinisikan sebagai jarak dari $x$ ke $0$ pada garis bilangan:</p>
+ <p class="lesson-text">$$|x| = \begin{cases} x & \text{jika } x \geq 0 \\ -x & \text{jika } x < 0 \end{cases}$$</p>
+ <p class="lesson-text">Sifat-sifat nilai mutlak biasa yang kita kenal:</p>
+ <ul>
+  <li><strong>Multiplikatif:</strong> $|xy| = |x| \cdot |y|$.</li>
+  <li><strong>Definit positif:</strong> $|x| \geq 0$, dan $|x| = 0$ jika dan hanya jika $x = 0$.</li>
+  <li><strong>Ketidaksamaan segitiga:</strong> $|x + y| \leq |x| + |y|$.</li>
+ </ul>
+ <p class="lesson-text">Kita dapat membangun struktur yang kaya&mdash;seperti barisan, limit, dan kelengkapan&mdash;hanya dari ketiga sifat ini. Pertanyaan menariknya adalah: apakah ada cara <em>lain</em> untuk mendefinisikan sebuah "nilai mutlak" pada $\mathbb{Q}$ yang juga memenuhi ketiga sifat di atas, tetapi menghasilkan struktur yang berbeda?</p>
+
+ <h3 class="lesson-subheading">B. Valuasi p-adic</h3>
+ <p class="lesson-text">Untuk menjawab pertanyaan ini, kita perlu memeriksa sifat keterbagian bilangan rasional oleh suatu bilangan prima $p$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Untuk bilangan prima $p$ dan bilangan bulat $n \neq 0$, <strong>valuasi p-adic</strong> dari $n$, ditulis $v_p(n)$, adalah pangkat tertinggi dari $p$ yang membagi $n$. Secara formal:</p>
+ <p class="lesson-text">$$v_p(n) = \max\{k \geq 0 : p^k \mid n\}$$</p>
+ <p class="lesson-text">Kita juga mendefinisikan $v_p(0) = +\infty$ dan untuk bilangan rasional $x = \dfrac{a}{b}$ dengan $a, b \neq 0$:</p>
+ <p class="lesson-text">$$v_p\left(\frac{a}{b}\right) = v_p(a) - v_p(b)$$</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk $p = 5$:</p>
+ <ul>
+  <li>$v_5(25) = 2$, karena $25 = 5^2$.</li>
+  <li>$v_5(100) = 2$, karena $100 = 2^2 \cdot 5^2$.</li>
+  <li>$v_5(7) = 0$, karena $5 \nmid 7$.</li>
+  <li>$v_5\left(\dfrac{15}{2}\right) = v_5(15) - v_5(2) = 1 - 0 = 1$.</li>
+  <li>$v_5\left(\dfrac{1}{25}\right) = v_5(1) - v_5(25) = 0 - 2 = -2$.</li>
+ </ul>
+ <p class="lesson-text">Valuasi p-adic memiliki sifat-sifat penting:</p>
+ <ul>
+  <li><strong>Aditif untuk perkalian:</strong> $v_p(xy) = v_p(x) + v_p(y)$.</li>
+  <li><strong>Subaditif untuk penjumlahan:</strong> $v_p(x + y) \geq \min(v_p(x), v_p(y))$.</li>
+  <li><strong>Sifat kuat:</strong> jika $v_p(x) \neq v_p(y)$, maka $v_p(x + y) = \min(v_p(x), v_p(y))$.</li>
+ </ul>
+ <p class="lesson-text">Sifat ketiga adalah konsekuensi langsung dari sifat kedua&mdash;dan inilah yang akan menjadi ciri khas bilangan p-adic.</p>
+
+ <h3 class="lesson-subheading">C. Nilai Mutlak p-adic</h3>
+ <p class="lesson-text">Dari valuasi p-adic, kita mendefinisikan <strong>nilai mutlak p-adic</strong>:</p>
+ <p class="lesson-text">$$|x|_p = \begin{cases} p^{-v_p(x)} & \text{jika } x \neq 0 \\ 0 & \text{jika } x = 0 \end{cases}$$</p>
+ <p class="lesson-text">Perhatikan pembalikan eksponen: semakin tinggi pangkat $p$ yang membagi $x$, semakin <em>kecil</em> nilai $|x|_p$. Bilangan yang habis dibagi oleh pangkat $p$ besar dianggap "dekat dengan nol".</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk $p = 5$:</p>
+ <ul>
+  <li>$|5|_5 = 5^{-1} = 0{,}2$.</li>
+  <li>$|25|_5 = 5^{-2} = 0{,}04$.</li>
+  <li>$|125|_5 = 5^{-3} = 0{,}008$.</li>
+  <li>$|7|_5 = 5^0 = 1$.</li>
+  <li>$|-1|_5 = 5^0 = 1$ (karena $v_5(-1) = 0$).</li>
+  <li>$|1/5|_5 = 5^1 = 5$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">D. Jarak p-adic dan Sifat Non-Archimedean</h3>
+ <p class="lesson-text">Dari nilai mutlak p-adic, kita mendefinisikan <strong>jarak p-adic</strong> antara dua bilangan rasional $x$ dan $y$:</p>
+ <p class="lesson-text">$$d_p(x, y) = |x - y|_p$$</p>
+ <p class="lesson-text">Karena nilai mutlak p-adic memenuhi ketiga sifat nilai mutlak (definit positif, multiplikatif, dan ketidaksamaan segitiga), jarak ini adalah metrik pada $\mathbb{Q}$. Namun metrik ini memiliki sifat istimewa yang tidak dimiliki oleh metrik biasa.</p>
+
+ <p class="lesson-text"><strong>Proposisi (Ketidaksamaan Segitiga Kuat).</strong> Untuk setiap $x, y \in \mathbb{Q}$:</p>
+ <p class="lesson-text">$$|x + y|_p \leq \max(|x|_p, |y|_p)$$</p>
+ <p class="lesson-text">Ketidaksamaan ini lebih kuat daripada ketidaksamaan segitiga biasa ($|x+y| \leq |x| + |y|$), karena menggunakan maksimum bukan penjumlahan. Nilai mutlak yang memenuhi sifat ini disebut <strong>non-Archimedean</strong>, sedangkan nilai mutlak biasa bersifat <strong>Archimedean</strong>.</p>
+
+ <p class="lesson-text"><strong>Bukti.</strong> Kasus $x = 0$ atau $y = 0$ trivial. Untuk $x, y \neq 0$, tulis $v = v_p(x)$ dan $w = v_p(y)$. Maka $|x|_p = p^{-v}$ dan $|y|_p = p^{-w}$. Dari sifat subaditif valuasi, $v_p(x + y) \geq \min(v, w)$, sehingga:</p>
+ <p class="lesson-text">$$|x + y|_p = p^{-v_p(x+y)} \leq p^{-\min(v, w)} = \max(p^{-v}, p^{-w}) = \max(|x|_p, |y|_p)$$</p>
+ <p class="lesson-text">$\blacksquare$</p>
+
+ <p class="lesson-text">Sebagai konsekuensi langsung: jika $|x|_p \neq |y|_p$, maka $|x + y|_p = \max(|x|_p, |y|_p)$. Dengan kata lain, dalam metrik p-adic, "yang lebih besar menang"&mdash;tidak ada pembatalan parsial seperti pada metrik biasa.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 340" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Perbandingan metrik Archimedean dan non-Archimedean</text>
+
+  <text x="160" y="60" font-size="12" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">Metrik biasa |·|∞</text>
+  <line x1="40" y1="200" x2="290" y2="200" stroke="#e8e8e8" stroke-width="1"/>
+  <polygon points="292,200 282,195 282,205" fill="#e8e8e8"/>
+
+  <circle cx="80" cy="200" r="5" fill="#5dade2"/>
+  <circle cx="180" cy="200" r="5" fill="#5dade2"/>
+  <circle cx="260" cy="200" r="5" fill="#5dade2"/>
+
+  <text x="80" y="225" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">0</text>
+  <text x="180" y="225" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">5</text>
+  <text x="260" y="225" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">50</text>
+
+  <path d="M 80 180 L 260 180" fill="none" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <path d="M 80 165 L 180 165" fill="none" stroke="#daa520" stroke-width="1.8"/>
+  <path d="M 180 150 L 260 150" fill="none" stroke="#daa520" stroke-width="1.8"/>
+
+  <text x="130" y="158" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">|5| = 5</text>
+  <text x="220" y="143" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">|45| = 45</text>
+
+  <text x="160" y="260" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">"semakin besar angkanya</text>
+  <text x="160" y="275" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">semakin jauh dari nol"</text>
+
+  <text x="460" y="60" font-size="12" fill="#22d3ee" text-anchor="middle" font-weight="700" font-style="italic">Metrik p-adic |·|₅</text>
+  <line x1="340" y1="200" x2="590" y2="200" stroke="#e8e8e8" stroke-width="1"/>
+  <polygon points="592,200 582,195 582,205" fill="#e8e8e8"/>
+
+  <circle cx="380" cy="200" r="5" fill="#22d3ee"/>
+  <circle cx="460" cy="200" r="5" fill="#22d3ee"/>
+  <circle cx="560" cy="200" r="5" fill="#22d3ee"/>
+
+  <text x="380" y="225" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">0</text>
+  <text x="460" y="225" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">5</text>
+  <text x="560" y="225" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">50</text>
+
+  <path d="M 380 180 L 560 180" fill="none" stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <path d="M 460 165 L 380 165" fill="none" stroke="#daa520" stroke-width="1.8"/>
+  <path d="M 560 150 L 460 150" fill="none" stroke="#daa520" stroke-width="1.8"/>
+
+  <text x="420" y="158" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">|5|₅ = 1/5</text>
+  <text x="510" y="143" font-size="10" fill="#daa520" text-anchor="middle" font-style="italic">|50|₅ = 1/25</text>
+
+  <text x="460" y="260" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">"semakin habis dibagi 5</text>
+  <text x="460" y="275" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">semakin dekat ke nol"</text>
+ </svg>
+ <figcaption class="visual-caption">Perbandingan intuisi metrik Archimedean (biasa) dan non-Archimedean (p-adic) untuk $p = 5$. Dalam metrik biasa, bilangan yang lebih besar berada lebih jauh dari nol. Dalam metrik $5$-adic, bilangan yang lebih habis dibagi oleh $5$ justru lebih dekat ke nol&mdash;sehingga $|5|_5 = 1/5$, $|50|_5 = 1/25$, dan seterusnya.</figcaption>
+ </figure>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Sifat-Sifat Nilai Mutlak p-adic</h2>
+ <p class="lesson-text">Bab ini membahas sifat-sifat penting dari nilai mutlak p-adic, yang menjadi dasar bagi semua konstruksi berikutnya.</p>
+
+ <h3 class="lesson-subheading">A. Sifat Aljabar</h3>
+ <p class="lesson-text">Nilai mutlak p-adic memenuhi tiga sifat pokok nilai mutlak:</p>
+ <ul>
+  <li><strong>Definit positif:</strong> $|x|_p \geq 0$, dan $|x|_p = 0$ jika dan hanya jika $x = 0$.</li>
+  <li><strong>Multiplikatif:</strong> $|xy|_p = |x|_p \cdot |y|_p$ untuk semua $x, y \in \mathbb{Q}$. Ini mengikuti sifat aditif valuasi: $v_p(xy) = v_p(x) + v_p(y)$.</li>
+  <li><strong>Ketidaksamaan segitiga kuat:</strong> $|x + y|_p \leq \max(|x|_p, |y|_p)$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Konsekuensi Non-Archimedean</h3>
+ <p class="lesson-text">Sifat non-Archimedean memiliki banyak konsekuensi yang tampak aneh bagi intuisi kita&mdash;namun semuanya dapat dibuktikan secara rigor dari ketidaksamaan segitiga kuat.</p>
+
+ <p class="lesson-text"><strong>1. Semua segitiga bersifat sama kaki.</strong> Untuk setiap tiga titik $x, y, z \in \mathbb{Q}$, jarak $d_p(x, y)$, $d_p(y, z)$, $d_p(z, x)$ membentuk segitiga yang <em>sama kaki</em>&mdash;yaitu paling sedikit dua sisinya sama panjang, dan sisi yang lebih pendek atau sama panjangnya tidak lebih panjang dari yang lain.</p>
+ <p class="lesson-text">Lebih tepatnya, jika $d_p(x, y) < d_p(y, z)$, maka $d_p(x, z) = d_p(y, z)$. Buktinya menggunakan ketidaksamaan segitiga kuat: $d_p(y, z) = d_p(y - x + x - z) \leq \max(d_p(y, x), d_p(x, z))$. Jika $d_p(y, x) < d_p(y, z)$, maka $d_p(x, z)$ harus sama dengan $d_p(y, z)$.</p>
+
+ <p class="lesson-text"><strong>2. Deret konvergen jika dan hanya jika sukunya menuju nol.</strong> Dalam $\mathbb{R}$, fakta bahwa $a_n \to 0$ <em>tidak</em> menjamin bahwa $\sum a_n$ konvergen (contoh: deret harmonik). Namun dalam $\mathbb{Q}_p$, sifat ini berlaku:</p>
+ <p class="lesson-text">$$\sum_{n=1}^{\infty} a_n \text{ konvergen} \iff a_n \to 0$$</p>
+ <p class="lesson-text"><strong>Bukti (arah sebaliknya).</strong> Misalkan $a_n \to 0$. Untuk $m > n$, berlaku:</p>
+ <p class="lesson-text">$$|S_m - S_n|_p = |a_{n+1} + a_{n+2} + \cdots + a_m|_p \leq \max(|a_{n+1}|_p, \ldots, |a_m|_p)$$</p>
+ <p class="lesson-text">Karena $a_n \to 0$, nilai maksimum ini menuju nol ketika $n \to \infty$. Jadi $(S_n)$ adalah barisan Cauchy. Karena $\mathbb{Q}_p$ lengkap (akan kita bahas di Bab III), deretnya konvergen. $\blacksquare$</p>
+ <p class="lesson-text">Sifat ini sangat penting karena menyederhanakan analisis deret p-adic secara signifikan&mdash;cukup memeriksa apakah suku-sukunya menuju nol.</p>
+
+ <p class="lesson-text"><strong>3. Rumus produk.</strong> Untuk setiap bilangan rasional $x \neq 0$:</p>
+ <p class="lesson-text">$$|x|_\infty \cdot \prod_p |x|_p = 1$$</p>
+ <p class="lesson-text">dengan produk diambil atas semua bilangan prima $p$, dan $|x|_\infty$ adalah nilai mutlak biasa. Sifat ini menggabungkan semua cara mengukur "$|x|$" menjadi satu identitas tunggal yang elegan.</p>
+ <p class="lesson-text"><strong>Contoh.</strong> Untuk $x = 12 = 2^2 \cdot 3$:</p>
+ <ul>
+  <li>$|12|_\infty = 12$.</li>
+  <li>$|12|_2 = 2^{-2} = 1/4$.</li>
+  <li>$|12|_3 = 3^{-1} = 1/3$.</li>
+  <li>$|12|_p = 1$ untuk $p \neq 2, 3$.</li>
+ </ul>
+ <p class="lesson-text">Produk: $12 \cdot (1/4) \cdot (1/3) = 1$. Sesuai rumus. ✓</p>
+
+ <h3 class="lesson-subheading">C. Teorema Ostrowski</h3>
+ <p class="lesson-text">Salah satu hasil paling mendasar tentang nilai mutlak pada $\mathbb{Q}$ adalah teorema berikut.</p>
+ <p class="lesson-text"><strong>Teorema (Ostrowski).</strong> Setiap nilai mutlak tak trivial pada $\mathbb{Q}$ adalah ekuivalen dengan salah satu dari:</p>
+ <ul>
+  <li>Nilai mutlak biasa $|\cdot|_\infty$, atau</li>
+  <li>Nilai mutlak p-adic $|\cdot|_p$ untuk suatu bilangan prima $p$.</li>
+ </ul>
+ <p class="lesson-text">Dua nilai mutlak disebut <strong>ekuivalen</strong> jika keduanya menghasilkan barisan Cauchy yang sama&mdash;yaitu jika $|x_n| \to 0$ dalam satu nilai mutlak jika dan hanya jika $|x_n| \to 0$ dalam nilai mutlak yang lain.</p>
+ <p class="lesson-text">Teorema ini menunjukkan bahwa "cara mengukur jarak" pada bilangan rasional terbatas pada dua jenis: cara Archimedean (biasa) dan cara non-Archimedean (p-adic). Tidak ada pilihan lain. Karena itu, melengkapi $\mathbb{Q}$ dengan semua nilai mutlak yang mungkin menghasilkan keluarga lapangan $\{\mathbb{R}\} \cup \{\mathbb{Q}_p : p \text{ prima}\}$&mdash;dan ini adalah semua lapangan lengkap yang memuat $\mathbb{Q}$ sebagai sublapangan padat.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Konstruksi Bilangan p-adic</h2>
+ <p class="lesson-text">Bab ini membangun lapangan $\mathbb{Q}_p$ secara rigor, menggunakan prosedur yang sama dengan yang dipakai untuk membangun $\mathbb{R}$ dari $\mathbb{Q}$&mdash;tetapi dengan metrik p-adic, bukan metrik biasa.</p>
+
+ <h3 class="lesson-subheading">A. Mengapa $\mathbb{Q}$ Tidak Lengkap dalam Metrik p-adic</h3>
+ <p class="lesson-text">Sama seperti $\mathbb{Q}$ tidak lengkap dalam metrik biasa&mdash;karena barisan yang seharusnya konvergen ke $\sqrt{2}$ tidak memiliki limit di $\mathbb{Q}$&mdash;$\mathbb{Q}$ juga tidak lengkap dalam metrik p-adic.</p>
+ <p class="lesson-text"><strong>Contoh konkret.</strong> Ambil $p = 5$. Pertimbangkan barisan bilangan rasional berikut, yang didefinisikan secara rekursif:</p>
+ <p class="lesson-text">$$a_1 = 1, \quad a_2 = 1 + 5 = 6, \quad a_3 = 1 + 5 + 25 = 31, \quad \ldots, \quad a_n = \sum_{k=0}^{n-1} 5^k$$</p>
+ <p class="lesson-text">Kita akan memeriksa apakah barisan ini Cauchy dalam metrik $5$-adic. Untuk $m > n$:</p>
+ <p class="lesson-text">$$|a_m - a_n|_5 = \left|\sum_{k=n}^{m-1} 5^k\right|_5 = |5^n(1 + 5 + \cdots + 5^{m-n-1})|_5 = 5^{-n} \cdot |1 + 5 + \cdots|_5$$</p>
+ <p class="lesson-text">Karena $|a_m - a_n|_5 = 5^{-n} \cdot |1 + 5 + \cdots + 5^{m-n-1}|_5$, dan karena $1 + 5 + \cdots + 5^{m-n-1} \equiv 1 \pmod{5}$ (semua suku kecuali yang pertama habis dibagi $5$), maka $|1 + 5 + \cdots + 5^{m-n-1}|_5 = 1$. Jadi $|a_m - a_n|_5 = 5^{-n}$, yang menuju $0$ ketika $n \to \infty$.</p>
+ <p class="lesson-text">Di sisi lain, jika kita hitung batas formalnya sebagai deret geometri, kita peroleh:</p>
+ <p class="lesson-text">$$\sum_{k=0}^{\infty} 5^k = \frac{1}{1 - 5} = -\frac{1}{4}$$</p>
+ <p class="lesson-text">Jadi barisan $a_n$ "konvergen" ke $-1/4$ dalam arti tertentu. Namun $-1/4$ <em>bukan</em> limit dari barisan ini dalam $\mathbb{R}$&mdash;dalam $\mathbb{R}$, barisannya divergen. Limit ini hanya bermakna dalam metrik $5$-adic. Sayangnya, $-1/4$ tidak "cukup" untuk menampung semua barisan Cauchy p-adic&mdash;ada barisan Cauchy $5$-adic yang limitnya bukan bilangan rasional mana pun. Karena itu, kita perlu melengkapi $\mathbb{Q}$ dengan metrik $5$-adic menjadi $\mathbb{Q}_5$.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Formal $\mathbb{Q}_p$</h3>
+ <p class="lesson-text">Konstruksi $\mathbb{Q}_p$ mengikuti pola konstruksi $\mathbb{R}$ dari $\mathbb{Q}$ menggunakan barisan Cauchy.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Barisan $(a_n)$ di $\mathbb{Q}$ disebut <strong>Cauchy p-adic</strong> jika untuk setiap $\varepsilon > 0$ terdapat $N$ sedemikian sehingga untuk setiap $m, n \geq N$, berlaku $|a_m - a_n|_p < \varepsilon$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Dua barisan Cauchy p-adic $(a_n)$ dan $(b_n)$ disebut <strong>ekuivalen</strong> jika $|a_n - b_n|_p \to 0$ ketika $n \to \infty$.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Lapangan bilangan p-adic $\mathbb{Q}_p$ adalah himpunan semua kelas ekuivalen dari barisan Cauchy p-adic di $\mathbb{Q}$, dengan operasi penjumlahan dan perkalian yang didefinisikan komponen demi komponen.</p>
+ <p class="lesson-text">Konstruksi ini secara teknis identik dengan konstruksi $\mathbb{R}$ dari $\mathbb{Q}$&mdash;perbedaannya hanya pada metrik yang dipakai. Dengan alasan yang sama seperti pada $\mathbb{R}$, lapangan $\mathbb{Q}_p$ bersifat <strong>lengkap</strong>: setiap barisan Cauchy p-adic di $\mathbb{Q}_p$ konvergen ke suatu elemen di $\mathbb{Q}_p$.</p>
+
+ <h3 class="lesson-subheading">C. Menyisipkan $\mathbb{Q}$ ke dalam $\mathbb{Q}_p$</h3>
+ <p class="lesson-text">Setiap bilangan rasional $x \in \mathbb{Q}$ dapat dipandang sebagai elemen $\mathbb{Q}_p$ melalui barisan konstan $(x, x, x, \ldots)$. Barisan konstan selalu Cauchy, sehingga kelas ekuivalennya mendefinisikan elemen $\mathbb{Q}_p$. Pemetaan $\mathbb{Q} \to \mathbb{Q}_p$ ini injektif dan mempertahankan operasi lapangan, sehingga $\mathbb{Q}$ dapat dipandang sebagai sublapangan dari $\mathbb{Q}_p$.</p>
+ <p class="lesson-text">Nilai mutlak p-adic dapat diperluas ke seluruh $\mathbb{Q}_p$ melalui limit: jika $x = \lim a_n$ dengan $(a_n)$ barisan Cauchy di $\mathbb{Q}$, maka $|x|_p = \lim |a_n|_p$. Limit ini ada (dalam $\mathbb{R}$) karena $(|a_n|_p)$ adalah barisan Cauchy bilangan real. Dengan definisi ini, nilai mutlak p-adic memenuhi ketiga sifat nilai mutlak pada seluruh $\mathbb{Q}_p$.</p>
+
+ <h3 class="lesson-subheading">D. Cincin Bilangan Bulat p-adic $\mathbb{Z}_p$</h3>
+ <p class="lesson-text">Di dalam $\mathbb{Q}_p$, terdapat subhimpunan istimewa yang memainkan peran penting.</p>
+ <p class="lesson-text"><strong>Definisi.</strong> Himpunan bilangan bulat p-adic didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\mathbb{Z}_p = \{x \in \mathbb{Q}_p : |x|_p \leq 1\}$$</p>
+ <p class="lesson-text">Himpunan ini adalah <strong>subcincin</strong> dari $\mathbb{Q}_p$&mdash;yaitu tertutup terhadap penjumlahan, pengurangan, dan perkalian. Sifat-sifat utamanya:</p>
+ <ul>
+  <li>$\mathbb{Z} \subseteq \mathbb{Z}_p$&mdash;setiap bilangan bulat biasa adalah bilangan bulat p-adic.</li>
+  <li>$\mathbb{Z}_p$ adalah <strong>tertutup</strong> dan <strong>terbatas</strong> dalam $\mathbb{Q}_p$, sehingga <strong>kompak</strong>. Ini adalah sifat yang sangat penting: dalam metrik biasa, himpunan bilangan bulat $\mathbb{Z}$ <em>tidak</em> terbatas.</li>
+  <li><strong>Satuannya</strong> adalah $U_p = \{x \in \mathbb{Z}_p : |x|_p = 1\}$. Setiap $x \in \mathbb{Q}_p \setminus \{0\}$ dapat dituliskan secara unik sebagai $x = p^n u$ dengan $n \in \mathbb{Z}$ dan $u \in U_p$. Bilangan $n$ ini sama dengan $v_p(x)$.</li>
+  <li><strong>Ideal maksimalnya</strong> adalah $p\mathbb{Z}_p = \{x \in \mathbb{Z}_p : |x|_p < 1\}$, dan lapangan residunya adalah $\mathbb{Z}_p / p\mathbb{Z}_p \cong \mathbb{F}_p$&mdash;lapangan dengan $p$ elemen.</li>
+ </ul>
+ <p class="lesson-text">Interpretasi intuitif: $\mathbb{Q}_p$ adalah analog p-adic dari $\mathbb{R}$, dan $\mathbb{Z}_p$ adalah analog p-adic dari interval satuan $[-1, 1]$. Di dalam dunia p-adic, himpunan $\mathbb{Z}_p$ berperan sebagai "unit terkecil" yang masih memiliki banyak struktur.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Ekspansi p-adic</h2>
+ <p class="lesson-text">Salah satu keindahan bilangan p-adic adalah adanya representasi eksplisit yang sangat mirip dengan notasi desimal biasa&mdash;tetapi dengan basis bilangan prima dan digit yang bergerak ke arah sebaliknya.</p>
+
+ <h3 class="lesson-subheading">A. Ekspansi p-adic dari Bilangan Bulat p-adic</h3>
+ <p class="lesson-text"><strong>Teorema.</strong> Setiap $x \in \mathbb{Z}_p$ memiliki ekspansi p-adic yang unik:</p>
+ <p class="lesson-text">$$x = a_0 + a_1 p + a_2 p^2 + a_3 p^3 + \cdots = \sum_{n=0}^{\infty} a_n p^n$$</p>
+ <p class="lesson-text">dengan setiap digit $a_n \in \{0, 1, 2, \ldots, p-1\}$. Deret ini selalu konvergen dalam metrik p-adic&mdash;karena suku-sukunya menuju nol ($|a_n p^n|_p \leq p^{-n} \to 0$).</p>
+ <p class="lesson-text">Ekspansi ini analog dengan notasi desimal bilangan real, tetapi dengan dua perbedaan penting:</p>
+ <ul>
+  <li>Basisnya adalah bilangan prima $p$, bukan $10$.</li>
+  <li>Deretnya berlanjut ke kanan tanpa batas (pangkat $p$ yang terus bertambah), bukan ke kiri seperti pada bagian desimal.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Ekspansi p-adic dari Bilangan Rasional</h3>
+ <p class="lesson-text">Untuk bilangan rasional umum $x \in \mathbb{Q}_p$, ekspansi dapat memuat pangkat negatif dari $p$&mdash;analog dengan bagian desimal pada notasi desimal:</p>
+ <p class="lesson-text">$$x = \sum_{n=k}^{\infty} a_n p^n = a_k p^k + a_{k+1} p^{k+1} + a_{k+2} p^{k+2} + \cdots$$</p>
+ <p class="lesson-text">dengan $k \in \mathbb{Z}$, setiap $a_n \in \{0, 1, \ldots, p-1\}$, dan $a_k \neq 0$.</p>
+ <p class="lesson-text">Bilangan $k = v_p(x)$ adalah eksponen terkecil yang muncul. Jika $k \geq 0$, maka $x \in \mathbb{Z}_p$. Jika $k < 0$, maka $x$ memiliki "bagian desimal"&mdash;tetapi seperti biasa, bagian ini berada di sebelah kanan (pangkat negatif dari $p$).</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Ekspansi p-adic dari $-1$</h3>
+ <p class="lesson-text">Kita akan menurunkan ekspansi p-adic dari $-1$ secara bertahap.</p>
+ <p class="lesson-text"><strong>Langkah 1: Amati bahwa $1 + (p-1) = p$.</strong> Dalam metrik p-adic, $p$ sangat dekat dengan $0$. Karena itu, kita dapat menuliskan $-1$ sebagai $-1 = (p-1) - p$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Iterasi.</strong> Dengan cara yang sama, $-p = (p-1)p - p^2$, sehingga:</p>
+ <p class="lesson-text">$$-1 = (p-1) + (p-1)p - p^2 = (p-1) + (p-1)p + (p-1)p^2 - p^3 = \cdots$$</p>
+ <p class="lesson-text">Jika kita teruskan proses ini, kita memperoleh ekspansi formal:</p>
+ <p class="lesson-text">$$-1 = (p-1) + (p-1)p + (p-1)p^2 + (p-1)p^3 + \cdots = \sum_{n=0}^{\infty} (p-1) p^n$$</p>
+ <p class="lesson-text"><strong>Verifikasi dengan rumus deret geometri.</strong> Jumlah deret geometri dengan suku pertama $a = p-1$ dan rasio $r = p$ adalah $\dfrac{p-1}{1 - p} = \dfrac{p-1}{-(p-1)} = -1$. Sesuai. ✓</p>
+
+ <p class="lesson-text"><strong>Contoh konkret.</strong> Untuk $p = 7$, ekspansi 7-adic dari $-1$ adalah:</p>
+ <p class="lesson-text">$$-1 = 6 + 6 \cdot 7 + 6 \cdot 7^2 + 6 \cdot 7^3 + \cdots$$</p>
+ <p class="lesson-text">Untuk $p = 5$, ekspansi 5-adic dari $-1$ adalah:</p>
+ <p class="lesson-text">$$-1 = 4 + 4 \cdot 5 + 4 \cdot 5^2 + 4 \cdot 5^3 + \cdots$$</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Ekspansi p-adic dari Bilangan Rasional Lain</h3>
+ <p class="lesson-text">Untuk memperoleh ekspansi p-adic dari bilangan rasional seperti $1/3$ dalam $\mathbb{Q}_5$, kita menggunakan prosedur yang mirip dengan pembagian panjang desimal&mdash;tetapi dengan basis $p$ dan mencari digit demi digit.</p>
+ <p class="lesson-text"><strong>Mencari ekspansi 5-adic dari $1/3$.</strong></p>
+ <p class="lesson-text"><strong>Langkah 1: Digit pertama.</strong> Kita mencari $a_0 \in \{0, 1, 2, 3, 4\}$ sedemikian sehingga $a_0 \equiv 1/3 \pmod{5}$, yaitu $3 a_0 \equiv 1 \pmod{5}$. Karena $3 \cdot 2 = 6 \equiv 1 \pmod{5}$, maka $a_0 = 2$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Digit kedua.</strong> Kurangkan $a_0$ dari $1/3$ dan bagi dengan $5$:</p>
+ <p class="lesson-text">$$\frac{1/3 - 2}{5} = \frac{1/3 - 6/3}{5} = \frac{-5/3}{5} = -\frac{1}{3}$$</p>
+ <p class="lesson-text">Kita mencari $a_1$ sedemikian sehingga $a_1 \equiv -1/3 \pmod{5}$, yaitu $3 a_1 \equiv -1 \equiv 4 \pmod{5}$. Karena $3 \cdot 3 = 9 \equiv 4 \pmod{5}$, maka $a_1 = 3$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Digit ketiga.</strong> Kurangi $a_1$ dan bagi dengan $5$:</p>
+ <p class="lesson-text">$$\frac{-1/3 - 3}{5} = \frac{-1/3 - 9/3}{5} = \frac{-10/3}{5} = -\frac{2}{3}$$</p>
+ <p class="lesson-text">Kita mencari $a_2$ sedemikian sehingga $a_2 \equiv -2/3 \pmod{5}$, yaitu $3a_2 \equiv -2 \equiv 3 \pmod{5}$, sehingga $a_2 = 1$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Melanjutkan.</strong> Kita memperoleh pola berulang: digit-digitnya adalah $2, 3, 1, 3, 1, 3, 1, \ldots$. Jadi:</p>
+ <p class="lesson-text">$$\frac{1}{3} = 2 + 3 \cdot 5 + 1 \cdot 25 + 3 \cdot 125 + 1 \cdot 625 + \cdots$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Deret ini dapat dituliskan sebagai $2 + 5 \cdot \dfrac{3 + 1 \cdot 5}{1 - 25} \cdot$&mdash;tetapi verifikasi langsung lebih mudah dilakukan dengan mengalikan hasilnya dengan $3$:</p>
+ <p class="lesson-text">$$3 \cdot (2 + 3 \cdot 5 + 1 \cdot 25 + 3 \cdot 125 + \cdots) = 6 + 9 \cdot 5 + 3 \cdot 25 + 9 \cdot 125 + \cdots$$</p>
+ <p class="lesson-text">Dengan menata ulang (membawa digit yang berlebih), kita memperoleh $1 + 0 \cdot 5 + 0 \cdot 25 + 0 \cdot 125 + \cdots = 1$. Sesuai. ✓</p>
+
+ <h3 class="lesson-subheading">E. Aritmetika dalam Ekspansi p-adic</h3>
+ <p class="lesson-text">Penjumlahan dan perkalian bilangan p-adic dapat dilakukan digit demi digit, seperti pada aritmetika desimal&mdash;tetapi dengan "simpanan" yang bergerak ke kanan (ke arah pangkat yang lebih tinggi), bukan ke kiri.</p>
+ <p class="lesson-text"><strong>Penjumlahan.</strong> Untuk menjumlahkan dua bilangan p-adic, jumlahkan digit-digitnya pada posisi yang sama, dan jika hasilnya $\geq p$, kurangi dengan $p$ dan tambahkan $1$ ke digit berikutnya di sebelah kanan.</p>
+ <p class="lesson-text"><strong>Perkalian.</strong> Serupa&mdash;kalikan setiap digit, dan bawa simpanan ke posisi berikutnya.</p>
+ <p class="lesson-text">Contoh konkret: dalam $\mathbb{Q}_5$, misalkan kita ingin menjumlahkan $1$ dan $-1$. Kita sudah tahu hasilnya $0$. Dalam ekspansi p-adic:</p>
+ <p class="lesson-text">$$1 = 1 + 0 \cdot 5 + 0 \cdot 25 + 0 \cdot 125 + \cdots$$</p>
+ <p class="lesson-text">$$-1 = 4 + 4 \cdot 5 + 4 \cdot 25 + 4 \cdot 125 + \cdots$$</p>
+ <p class="lesson-text">Jumlahkan digit per digit:</p>
+ <ul>
+  <li>Digit ke-$0$: $1 + 4 = 5 = 0 + 5 \cdot 1$ → digit $0$, simpan $1$.</li>
+  <li>Digit ke-$1$: $0 + 4 + 1 = 5 = 0 + 5 \cdot 1$ → digit $0$, simpan $1$.</li>
+  <li>Digit ke-$2$: $0 + 4 + 1 = 5 = 0 + 5 \cdot 1$ → digit $0$, simpan $1$.</li>
+  <li>Dan seterusnya.</li>
+ </ul>
+ <p class="lesson-text">Hasilnya adalah $0 + 0 \cdot 5 + 0 \cdot 25 + \cdots = 0$. Sesuai. ✓</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Sifat Topologis dan Lemma Hensel</h2>
+ <p class="lesson-text">Bab ini membahas sifat-sifat topologis $\mathbb{Q}_p$ dan salah satu alat paling penting dalam teori bilangan p-adic: lemma Hensel.</p>
+
+ <h3 class="lesson-subheading">A. Bola dalam Metrik p-adic</h3>
+ <p class="lesson-text">Sifat non-Archimedean menghasilkan struktur topologis yang sangat berbeda dari metrik biasa.</p>
+ <p class="lesson-text"><strong>Proposisi.</strong> Dalam $\mathbb{Q}_p$, berlaku:</p>
+ <ul>
+  <li><strong>Setiap titik dalam bola adalah pusatnya.</strong> Jika $y \in B(x, r)$ (bola terbuka dengan pusat $x$ dan jari-jari $r$), maka $B(y, r) = B(x, r)$.</li>
+  <li><strong>Dua bola bersifat nested atau disjoint.</strong> Untuk setiap dua bola $B_1$ dan $B_2$, berlaku salah satu dari: $B_1 \subseteq B_2$, $B_2 \subseteq B_1$, atau $B_1 \cap B_2 = \emptyset$.</li>
+  <li><strong>Setiap bola bersifat clopen.</strong> Bola terbuka juga tertutup, dan sebaliknya.</li>
+  <li><strong>$\mathbb{Z}_p$ adalah kompak.</strong> Ini adalah akibat dari sifat non-Archimedean bersama-sama dengan definisi $\mathbb{Z}_p = \{x : |x|_p \leq 1\}$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Bukti sifat ketiga (sebagian).</strong> Kita tunjukkan bahwa bola tertutup $\overline{B}(x, r)$ adalah terbuka. Ambil $y \in \overline{B}(x, r)$, sehingga $|y - x|_p \leq r$. Untuk setiap $z$ dengan $|z - y|_p < r$:</p>
+ <p class="lesson-text">$$|z - x|_p \leq \max(|z - y|_p, |y - x|_p) \leq \max(r, r) = r$$</p>
+ <p class="lesson-text">Jadi $z \in \overline{B}(x, r)$. Ini berarti $B(y, r) \subseteq \overline{B}(x, r)$, sehingga $\overline{B}(x, r)$ terbuka. $\blacksquare$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 380" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <text x="310" y="22" font-size="13" fill="#e8e8e8" text-anchor="middle" font-weight="700" font-style="italic">Struktur bola p-adic: bersarang atau saling lepas</text>
+
+  <circle cx="180" cy="200" r="140" fill="#5dade2" fill-opacity="0.08" stroke="#5dade2" stroke-width="1.5"/>
+  <text x="180" y="80" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">B₁</text>
+
+  <circle cx="220" cy="200" r="80" fill="#5dade2" fill-opacity="0.12" stroke="#5dade2" stroke-width="1.5"/>
+  <text x="220" y="140" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">B₂</text>
+
+  <circle cx="250" cy="220" r="40" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1.5"/>
+  <text x="250" y="225" font-size="11" fill="#5dade2" text-anchor="middle" font-style="italic">B₃</text>
+
+  <text x="180" y="365" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Bola bersarang: B₃ ⊂ B₂ ⊂ B₁</text>
+
+  <circle cx="470" cy="200" r="70" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="1.5"/>
+  <text x="470" y="115" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">A</text>
+
+  <circle cx="470" cy="200" r="25" fill="#daa520" fill-opacity="0.25" stroke="#daa520" stroke-width="1.5"/>
+
+  <circle cx="580" cy="270" r="40" fill="#22d3ee" fill-opacity="0.15" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="580" y="225" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">B</text>
+
+  <text x="520" y="365" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Bola saling lepas: A ∩ B = ∅</text>
+ </svg>
+ <figcaption class="visual-caption">Sifat non-Archimedean dari bola p-adic. Dalam metrik p-adic, dua bola selalu bersifat <em>bersarang</em> (salah satu memuat yang lain, seperti pada gambar kiri) atau <em>saling lepas</em> (seperti pada gambar kanan). Tidak ada kemungkinan dua bola beririsan sebagian. Setiap titik dalam bola juga dapat dipandang sebagai pusatnya.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">B. Lemma Hensel</h3>
+ <p class="lesson-text">Lemma Hensel adalah salah satu alat paling penting dalam teori bilangan p-adic. Ia memberikan kriteria kapan sebuah akar persamaan modulo $p$ dapat "diangkat" menjadi akar sesungguhnya di $\mathbb{Z}_p$.</p>
+
+ <p class="lesson-text"><strong>Lemma (Hensel).</strong> Misalkan $f(x) \in \mathbb{Z}_p[x]$ adalah polinomial dengan koefisien di $\mathbb{Z}_p$. Jika terdapat $a_0 \in \mathbb{Z}_p$ sedemikian sehingga:</p>
+ <p class="lesson-text">$$f(a_0) \equiv 0 \pmod{p} \quad \text{dan} \quad f'(a_0) \not\equiv 0 \pmod{p}$$</p>
+ <p class="lesson-text">maka terdapat <strong>tepat satu</strong> $a \in \mathbb{Z}_p$ sedemikian sehingga $f(a) = 0$ dan $a \equiv a_0 \pmod{p}$.</p>
+
+ <p class="lesson-text"><strong>Interpretasi.</strong> Lemma ini menunjukkan bahwa di dunia p-adic, kita dapat "mengangkat" solusi modulo $p$ menjadi solusi eksak&mdash;analog dengan metode Newton-Raphson dalam analisis numerik, yang melakukan hal yang sama untuk persamaan real.</p>
+
+ <p class="lesson-text"><strong>Gagasan pembuktian.</strong> Lemma Hensel dibuktikan melalui iterasi Newton p-adic. Mulai dari $a_0$, kita definisikan barisan:</p>
+ <p class="lesson-text">$$a_{n+1} = a_n - \frac{f(a_n)}{f'(a_n)}$$</p>
+ <p class="lesson-text">Dapat ditunjukkan bahwa jika $f(a_n) \equiv 0 \pmod{p^n}$ dan $f'(a_n) \not\equiv 0 \pmod{p}$, maka $f(a_{n+1}) \equiv 0 \pmod{p^{n+1}}$ dan $a_{n+1} \equiv a_n \pmod{p^n}$. Barisan $(a_n)$ ini Cauchy dalam metrik p-adic dan konvergen ke akar $a \in \mathbb{Z}_p$. Ketunggalannya berasal dari sifat bahwa $f$ adalah fungsi "Lipschitz kuat" di sekitar $a_0$.</p>
+
+ <h3 class="lesson-subheading">C. Contoh: Menemukan $\sqrt{2}$ dalam $\mathbb{Q}_7$</h3>
+ <p class="lesson-text">Kita akan menggunakan lemma Hensel untuk menunjukkan bahwa $2$ memiliki akar kuadrat dalam $\mathbb{Q}_7$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Definisikan polinomial.</strong> Misalkan $f(x) = x^2 - 2$. Turunannya adalah $f'(x) = 2x$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Cari akar modulo $7$.</strong> Kita mencari $a_0 \in \{0, 1, \ldots, 6\}$ sedemikian sehingga $a_0^2 \equiv 2 \pmod{7}$.</p>
+ <ul>
+  <li>$1^2 = 1 \not\equiv 2$.</li>
+  <li>$2^2 = 4 \not\equiv 2$.</li>
+  <li>$3^2 = 9 \equiv 2 \pmod{7}$ ✓</li>
+ </ul>
+ <p class="lesson-text">Jadi $a_0 = 3$ adalah akar modulo $7$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Periksa syarat Hensel.</strong> $f'(3) = 2 \cdot 3 = 6 \equiv -1 \pmod{7}$, yang <em>tidak</em> habis dibagi $7$. Jadi $f'(3) \not\equiv 0 \pmod{7}$. Syarat Hensel terpenuhi.</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> Terdapat tepat satu $a \in \mathbb{Z}_7$ dengan $a^2 = 2$ dan $a \equiv 3 \pmod{7}$. Dengan kata lain, $\sqrt{2} \in \mathbb{Z}_7 \subseteq \mathbb{Q}_7$. Akar ini dapat dihitung secara iteratif dengan metode Newton p-adic.</p>
+
+ <p class="lesson-text"><strong>Langkah-langkah iterasi Newton p-adic:</strong></p>
+ <p class="lesson-text">Iterasi pertama: kita cari $a_1 = a_0 + 7t_1$ dengan $f(a_1) \equiv 0 \pmod{49}$.</p>
+ <p class="lesson-text">$$f(3 + 7t_1) = (3 + 7t_1)^2 - 2 = 9 + 42 t_1 + 49 t_1^2 - 2 = 7 + 42 t_1 + 49 t_1^2 \equiv 7 + 42 t_1 \pmod{49}$$</p>
+ <p class="lesson-text">Kita ingin $7 + 42 t_1 \equiv 0 \pmod{49}$, yaitu $42 t_1 \equiv -7 \pmod{49}$, atau setelah dibagi $7$: $6 t_1 \equiv -1 \equiv 6 \pmod{7}$. Jadi $t_1 \equiv 1 \pmod{7}$, sehingga $a_1 = 3 + 7 = 10$.</p>
+ <p class="lesson-text">Verifikasi: $10^2 = 100 = 2 \cdot 49 + 2$, sehingga $10^2 \equiv 2 \pmod{49}$. ✓</p>
+ <p class="lesson-text">Iterasi kedua: kita cari $a_2 = 10 + 49 t_2$ dengan $f(a_2) \equiv 0 \pmod{343}$.</p>
+ <p class="lesson-text">Setelah perhitungan serupa, diperoleh $t_2 \equiv 2 \pmod{7}$, sehingga $a_2 = 10 + 98 = 108$.</p>
+ <p class="lesson-text">Verifikasi: $108^2 = 11664 = 34 \cdot 343 + 2$, sehingga $108^2 \equiv 2 \pmod{343}$. ✓</p>
+ <p class="lesson-text">Dengan melanjutkan iterasi, kita memperoleh ekspansi 7-adic dari $\sqrt{2}$:</p>
+ <p class="lesson-text">$$\sqrt{2} = 3 + 1 \cdot 7 + 2 \cdot 49 + 6 \cdot 343 + \cdots$$</p>
+ <p class="lesson-text">Deret ini konvergen dalam metrik 7-adic ke bilangan yang kuadratnya tepat $2$ di $\mathbb{Q}_7$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh tambahan yang menerapkan konsep-konsep dari bab-bab sebelumnya.</p>
+
+ <h3 class="lesson-subheading">A. Menghitung Nilai Mutlak p-adic</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $|60|_{2}$, $|60|_{3}$, $|60|_{5}$, dan $|60|_{7}$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Faktorkan $60 = 2^2 \cdot 3 \cdot 5$.</p>
+ <ul>
+  <li>$v_2(60) = 2$, sehingga $|60|_2 = 2^{-2} = 1/4$.</li>
+  <li>$v_3(60) = 1$, sehingga $|60|_3 = 3^{-1} = 1/3$.</li>
+  <li>$v_5(60) = 1$, sehingga $|60|_5 = 5^{-1} = 1/5$.</li>
+  <li>$v_7(60) = 0$ (karena $7 \nmid 60$), sehingga $|60|_7 = 7^0 = 1$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Verifikasi rumus produk.</strong> $|60|_\infty \cdot |60|_2 \cdot |60|_3 \cdot |60|_5 = 60 \cdot \frac{1}{4} \cdot \frac{1}{3} \cdot \frac{1}{5} = \frac{60}{60} = 1$. ✓</p>
+
+ <h3 class="lesson-subheading">B. Menggunakan Ketidaksamaan Segitiga Kuat</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $|5 + 25|_5$ dan $|5 + 50|_5$, lalu bandingkan dengan $|5|_5 + |25|_5$ dan $|5|_5 + |50|_5$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong></p>
+ <ul>
+  <li>$v_5(5) = 1$, $v_5(25) = 2$, sehingga $|5|_5 = 1/5$ dan $|25|_5 = 1/25$.</li>
+  <li>$v_5(5 + 25) = v_5(30) = 1$ (karena $30 = 2 \cdot 3 \cdot 5$), sehingga $|30|_5 = 1/5$.</li>
+  <li>Perhatikan: $|5 + 25|_5 = 1/5 = \max(1/5, 1/25) = \max(|5|_5, |25|_5)$. Ini adalah kesetaraan karena $|5|_5 \neq |25|_5$.</li>
+ </ul>
+ <ul>
+  <li>$v_5(50) = 2$, sehingga $|50|_5 = 1/25$.</li>
+  <li>$v_5(5 + 50) = v_5(55) = 1$, sehingga $|55|_5 = 1/5$.</li>
+  <li>Perhatikan: $|5 + 50|_5 = 1/5 = \max(|5|_5, |50|_5) = \max(1/5, 1/25)$. Sesuai dengan sifat "yang lebih besar menang".</li>
+ </ul>
+ <p class="lesson-text">Dalam kedua kasus, ketidaksamaan segitiga kuat berlaku dengan tanda sama dengan.</p>
+
+ <h3 class="lesson-subheading">C. Menghitung Ekspansi 3-adic dari $-2$</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan ekspansi 3-adic dari $-2$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Kita bisa menggunakan hubungan $-2 = -1 - 1$. Ekspansi 3-adic dari $-1$ adalah $2 + 2 \cdot 3 + 2 \cdot 9 + 2 \cdot 27 + \cdots$. Mengurangi dengan $1$:</p>
+ <p class="lesson-text">$$-1 - 1 = (2 - 1) + 2 \cdot 3 + 2 \cdot 9 + 2 \cdot 27 + \cdots = 1 + 2 \cdot 3 + 2 \cdot 9 + 2 \cdot 27 + \cdots$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Jumlahkan dengan $2$:</p>
+ <p class="lesson-text">$$(1 + 2 \cdot 3 + 2 \cdot 9 + \cdots) + 2 = 3 + 2 \cdot 3 + 2 \cdot 9 + \cdots = 0 + 4 \cdot 3 + 2 \cdot 9 + \cdots$$</p>
+ <p class="lesson-text">Hmm, kita perlu menyelesaikan simpanan: $3 = 0 + 3 \cdot 1$ (digit $0$, simpan $1$ ke posisi $3$):</p>
+ <ul>
+  <li>Posisi $3^0$: $1 + 2 = 3 = 0 + 3 \cdot 1$ → digit $0$, simpan $1$.</li>
+  <li>Posisi $3^1$: $2 + 0 + 1 = 3 = 0 + 3 \cdot 1$ → digit $0$, simpan $1$.</li>
+  <li>Posisi $3^2$: $2 + 0 + 1 = 3 = 0 + 3 \cdot 1$ → digit $0$, simpan $1$.</li>
+  <li>Dan seterusnya.</li>
+ </ul>
+ <p class="lesson-text">Hasilnya adalah $0 + 0 \cdot 3 + 0 \cdot 9 + \cdots = 0$. Sesuai. ✓</p>
+
+ <h3 class="lesson-subheading">D. Menggunakan Lemma Hensel untuk Mencari Akar</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Tentukan apakah $3$ memiliki akar kuadrat dalam $\mathbb{Q}_5$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Misalkan $f(x) = x^2 - 3$, sehingga $f'(x) = 2x$. Kita perlu mencari akar modulo $5$ terlebih dahulu.</p>
+ <p class="lesson-text">Kuadrat modulo $5$: $0^2 = 0$, $1^2 = 1$, $2^2 = 4$, $3^2 = 9 \equiv 4$, $4^2 = 16 \equiv 1$. Tidak ada kuadrat yang $\equiv 3 \pmod{5}$. Jadi $f$ tidak memiliki akar modulo $5$, sehingga menurut lemma Hensel, $3$ tidak memiliki akar kuadrat dalam $\mathbb{Q}_5$.</p>
+ <p class="lesson-text"><strong>Kesimpulan.</strong> $\sqrt{3} \notin \mathbb{Q}_5$. Ini konsisten dengan fakta bahwa $3$ bukan residu kuadratik modulo $5$.</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Kriteria Keterbagian dan Solvabilitas</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Salah satu aplikasi paling langsung dari bilangan p-adic adalah menentukan apakah sebuah persamaan memiliki solusi rasional. Metode ini terkait dengan <strong>prinsip Hasse</strong> (<em>local-global principle</em>).</p>
+ <p class="lesson-text"><strong>Prinsip Hasse.</strong> Untuk beberapa kelas persamaan (khususnya bentuk kuadratik), persamaan memiliki solusi rasional jika dan hanya jika ia memiliki solusi di $\mathbb{R}$ <em>dan</em> di $\mathbb{Q}_p$ untuk setiap bilangan prima $p$.</p>
+ <p class="lesson-text"><strong>Contoh sederhana.</strong> Persamaan $x^2 + y^2 = 3$ memiliki solusi real (misalnya $x = y = \sqrt{3/2}$). Namun, tidak ada solusi rasional&mdash;dan ketiadaan solusi ini dapat dideteksi melalui analisis di $\mathbb{Q}_2$ dan $\mathbb{Q}_3$. Ini menunjukkan bahwa "solusi lokal" di setiap $p$ belum tentu mengangkat menjadi solusi rasional global untuk persamaan yang lebih rumit. Namun, untuk persamaan kuadratik, prinsip Hasse berlaku.</p>
+
+ <h3 class="lesson-subheading">F. Penerapan: Analisis p-adic dalam Teori Bilangan Modern</h3>
+ <p class="lesson-text"><strong>Kriptografi.</strong> Algoritma kriptografi modern, terutama yang bertumpu pada kurva eliptik, menggunakan bilangan p-adic secara ekstensif. Representasi p-adic memungkinkan perhitungan presisi tinggi pada operasi kurva eliptik, yang menjadi dasar bagi protokol enkripsi yang aman.</p>
+ <p class="lesson-text"><strong>Konjektur dan teorema.</strong> Banyak hasil mendalam dalam teori bilangan dirumuskan menggunakan bahasa p-adic. Contoh paling terkenal adalah <strong>Teorema Terakhir Fermat</strong>, yang dibuktikan oleh Andrew Wiles pada tahun 1994 menggunakan alat-alat dari teori representasi Galois dan bentuk modular&mdash;dua bidang yang secara mendalam terkait dengan analisis p-adic.</p>
+ <p class="lesson-text"><strong>Fungsi zeta p-adic.</strong> Analog p-adic dari fungsi zeta Riemann memainkan peran sentral dalam teori bilangan analitik modern. Fungsi ini memiliki sifat interpolasi yang mirip dengan fungsi zeta biasa, dan menjadi objek studi utama dalam program Langlands.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Bilangan p-adic bukanlah sekadar keingintahuan matematis&mdash;mereka adalah bahasa yang sangat kuat untuk memahami struktur bilangan. Prinsip Hasse dan generalisasinya menunjukkan bahwa untuk memahami sebuah persamaan rasional, kita dapat memeriksa solusinya secara "lokal" di setiap tempat (yaitu di $\mathbb{R}$ dan di setiap $\mathbb{Q}_p$), lalu menggabungkan informasi ini. Pendekatan ini adalah inti dari teori bilangan modern dan memiliki aplikasi mendalam di banyak bidang matematika.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Nilai Mutlak p-adic</h3>
+ <ul>
+  <li><strong>Menganggap $|x|_p$ selalu lebih kecil dari $1$.</strong> Nilai mutlak p-adic bisa bernilai lebih besar dari $1$. Sebagai contoh, $|1/5|_5 = 5 > 1$. Faktanya, bilangan p-adic yang bukan bilangan bulat p-adic selalu memiliki nilai mutlak lebih besar dari $1$.</li>
+  <li><strong>Menganggap $|x|_p \to 0$ berarti $x \to 0$ dalam arti biasa.</strong> Dalam metrik p-adic, $x \to 0$ berarti $v_p(x) \to +\infty$, yaitu $x$ semakin habis dibagi oleh pangkat $p$ yang lebih tinggi. Ini sangat berbeda dari "nilai absolut kecil" dalam metrik biasa.</li>
+  <li><strong>Menganggap ketidaksamaan segitiga biasa tidak berlaku untuk nilai mutlak p-adic.</strong> Ketidaksamaan segitiga biasa <em>tetap berlaku</em>&mdash;hanya saja ada versi yang lebih kuat (non-Archimedean) yang juga berlaku. Jadi $|x+y|_p \leq |x|_p + |y|_p$ juga benar, meskipun $|x+y|_p \leq \max(|x|_p, |y|_p)$ memberi informasi yang lebih tajam.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Konstruksi $\mathbb{Q}_p$</h3>
+ <ul>
+  <li><strong>Menganggap $\mathbb{Q}_p$ berisi $\mathbb{Q}$ sebagai himpunan bagian literal.</strong> Secara teknis, $\mathbb{Q}_p$ dibangun dari barisan Cauchy, bukan dari bilangan rasional langsung. Namun pemetaan $\mathbb{Q} \to \mathbb{Q}_p$ yang memetakan setiap $x$ ke barisan konstan $(x, x, x, \ldots)$ adalah isomorfisme ke sublapangan padat, sehingga kita biasanya mengidentifikasi $x \in \mathbb{Q}$ dengan citranya di $\mathbb{Q}_p$.</li>
+  <li><strong>Menganggap $\mathbb{Z}_p$ sama dengan $\mathbb{Z}$.</strong> $\mathbb{Z}_p$ jauh lebih besar dari $\mathbb{Z}$. Sebagai contoh, $1/3 \notin \mathbb{Z}$ tetapi $1/3 \in \mathbb{Z}_5$ (kita sudah memverifikasi ini di Bab IV). Bahkan, $1/3$ memiliki ekspansi 5-adic tak berhingga, sehingga $1/3 \in \mathbb{Z}_5$ meskipun $1/3$ bukan bilangan bulat.</li>
+  <li><strong>Menganggap $\mathbb{Q}_p$ bersifat Archimedean.</strong> $\mathbb{Q}_p$ dengan metrik p-adic <em>tidak</em> Archimedean&mdash;artinya ada $x, y \in \mathbb{Q}_p$ dengan $|nx|_p < |y|_p$ untuk semua $n \in \mathbb{N}$. Contoh: $|n|_p \leq 1$ untuk semua $n \in \mathbb{N}$, sedangkan $|1/p|_p = p > 1$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Ekspansi p-adic</h3>
+ <ul>
+  <li><strong>Menganggap ekspansi p-adic berlanjut ke kiri seperti desimal.</strong> Ekspansi p-adic berlanjut ke <em>kanan</em> tanpa batas&mdash;artinya semakin banyak digit untuk pangkat $p$ yang terus bertambah. Ini berlawanan dengan notasi desimal, di mana digit-digit setelah titik desimal menjadi semakin kecil.</li>
+  <li><strong>Menganggap semua bilangan p-adic memiliki ekspansi tak berhingga.</strong> Bilangan bulat positif yang lebih kecil dari $p$ memiliki ekspansi p-adic berhingga. Sebagai contoh, $3$ dalam $\mathbb{Q}_5$ memiliki ekspansi $3 + 0 \cdot 5 + 0 \cdot 25 + \cdots$&mdash;hanya satu digit tak nol.</li>
+  <li><strong>Salah mengurangkan digit dalam penjumlahan p-adic.</strong> Penjumlahan p-adic dilakukan seperti penjumlahan biasa, dengan "simpanan" ke digit berikutnya (ke kanan, bukan ke kiri seperti pada desimal).</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Lemma Hensel</h3>
+ <ul>
+  <li><strong>Mengabaikan syarat $f'(a_0) \not\equiv 0 \pmod{p}$.</strong> Lemma Hensel memerlukan syarat ini. Jika $f'(a_0) \equiv 0 \pmod{p}$, akar mungkin masih dapat diangkat&mdash;tetapi memerlukan analisis yang lebih rumit (kadang disebut Hensel orde tinggi), dan mungkin tidak memiliki lift tunggal.</li>
+  <li><strong>Menganggap lemma Hensel berlaku untuk semua polinomial.</strong> Lemma berlaku untuk polinomial dengan koefisien di $\mathbb{Z}_p$. Untuk polinomial dengan koefisien rasional, kita perlu mengalikan dengan pangkat $p$ yang sesuai terlebih dahulu.</li>
+  <li><strong>Menganggap lift dari akar modulo $p$ selalu berada di $\mathbb{Z}_p$.</strong> Lemma Hensel hanya menjamin keberadaan lift di $\mathbb{Z}_p$ (atau lebih tepatnya, di $\mathbb{Z}_p$ jika koefisiennya di $\mathbb{Z}_p$). Untuk lift di $\mathbb{Q}_p$, diperlukan analisis yang lebih umum.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VIII. Ringkasan</h2>
+ <ul>
+  <li><strong>Valuasi p-adic:</strong> $v_p(n)$ adalah pangkat tertinggi dari $p$ yang membagi $n$. Diperluas ke bilangan rasional melalui $v_p(a/b) = v_p(a) - v_p(b)$.</li>
+  <li><strong>Nilai mutlak p-adic:</strong> $|x|_p = p^{-v_p(x)}$ untuk $x \neq 0$, dan $|0|_p = 0$.</li>
+  <li><strong>Ketidaksamaan segitiga kuat:</strong> $|x + y|_p \leq \max(|x|_p, |y|_p)$. Nilai mutlak dengan sifat ini disebut <em>non-Archimedean</em>.</li>
+  <li><strong>Konsekuensi:</strong> dalam metrik p-adic, "yang lebih besar menang"&mdash;jika $|x|_p \neq |y|_p$, maka $|x + y|_p = \max(|x|_p, |y|_p)$.</li>
+  <li><strong>Rumus produk:</strong> untuk setiap $x \in \mathbb{Q} \setminus \{0\}$, $|x|_\infty \cdot \prod_p |x|_p = 1$.</li>
+  <li><strong>Teorema Ostrowski:</strong> setiap nilai mutlak tak trivial pada $\mathbb{Q}$ ekuivalen dengan nilai mutlak biasa atau salah satu nilai mutlak p-adic.</li>
+  <li><strong>Konstruksi $\mathbb{Q}_p$:</strong> melengkapi $\mathbb{Q}$ terhadap metrik p-adic melalui barisan Cauchy, dengan cara yang sama seperti $\mathbb{R}$ dibangun dari $\mathbb{Q}$.</li>
+  <li><strong>$\mathbb{Z}_p$:</strong> cincin bilangan bulat p-adic, $\{x \in \mathbb{Q}_p : |x|_p \leq 1\}$. Bersifat kompak.</li>
+  <li><strong>Ekspansi p-adic:</strong> setiap $x \in \mathbb{Q}_p$ memiliki ekspansi unik $x = \sum_{n=k}^{\infty} a_n p^n$ dengan $a_n \in \{0, 1, \ldots, p-1\}$.</li>
+  <li><strong>Kekonvergenan deret:</strong> dalam $\mathbb{Q}_p$, $\sum a_n$ konvergen jika dan hanya jika $a_n \to 0$.</li>
+  <li><strong>Bola p-adic:</strong> setiap titik dalam bola adalah pusatnya; dua bola selalu bersarang atau saling lepas; setiap bola bersifat clopen (terbuka dan tertutup sekaligus).</li>
+  <li><strong>Lemma Hensel:</strong> jika $f(a_0) \equiv 0 \pmod{p}$ dan $f'(a_0) \not\equiv 0 \pmod{p}$, maka terdapat tepat satu $a \in \mathbb{Z}_p$ dengan $f(a) = 0$ dan $a \equiv a_0 \pmod{p}$.</li>
+  <li><strong>Penerapan:</strong> teori bilangan (lemma Hensel, prinsip Hasse), kriptografi, fungsi zeta p-adic, dan banyak hasil mendalam dalam matematika modern.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Bilangan p-adic adalah salah satu contoh paling indah dari bagaimana memperluas gagasan dasar dapat mengungkap struktur yang sama sekali baru. Dengan hanya mengubah cara mengukur "kedekatan"&mdash;dari ukuran biasa menjadi habis-dibagi-oleh-$p$&mdash;kita memperoleh dunia matematika yang kaya, dengan sifat-sifat yang mengejutkan dan aplikasi yang mendalam. Teorema Ostrowski menunjukkan bahwa bilangan real dan bilangan p-adic bersama-sama merupakan <em>semua</em> cara lengkap untuk melengkapi bilangan rasional, sehingga keduanya memiliki peran yang sama pentingnya dalam memahami struktur bilangan.</p>
+ <p class="lesson-text">Meskipun pada awalnya terasa eksotis&mdash;terutama karena metrik non-Archimedean memiliki sifat yang berlawanan dengan intuisi kita&mdash;bilangan p-adic terbukti menjadi alat yang sangat kuat di berbagai bidang matematika modern. Dari lemma Hensel yang menyelesaikan persamaan polinomial secara lokal, hingga prinsip Hasse yang menghubungkan solusi lokal dengan solusi global, hingga alat-alat canggih dalam teori bilangan yang dipakai untuk membuktikan teorema-teorema besar seperti Teorema Terakhir Fermat&mdash;bilangan p-adic adalah bahasa alami untuk memahami struktur aritmetika bilangan.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>Teori Ukuran &amp; Integral Lebesgue</strong> akan membawa kita ke arah yang berbeda&mdash;memperluas konsep ukuran dan integral ke kelas fungsi yang jauh lebih umum daripada yang dapat ditangani oleh integral Riemann. Sedangkan <strong>Analisis Kompleks</strong> akan mempelajari fungsi bernilai kompleks dengan alat-alat yang sangat berbeda. Semua topik ini bertumpu pada fondasi analisis real dan memperluasnya ke arah yang berbeda-beda, membentuk kerangka matematika modern yang saling terkait.</p>
+</section>
+
+</main>
+</body>
+</html>

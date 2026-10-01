@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikasi Integral (Luas Daerah, Volume Benda Putar, Panjang Busur)</title>
+<meta name="description" content="Materi aplikasi integral: menghitung luas daerah antara kurva, volume benda putar dengan metode cakram, cincin, dan kulit tabung, serta panjang busur kurva.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Aplikasi Integral (Luas Daerah, Volume Benda Putar, Panjang Busur)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Integral Tentu</strong> &mdash; seluruh rumus dalam materi ini diturunkan dari definisi integral tentu sebagai limit jumlah Riemann, dan dihitung menggunakan Teorema Fundamental Kalkulus.</li>
+   <li><strong>Teknik Pengintegralan</strong> &mdash; banyak integran yang muncul dalam aplikasi memerlukan substitusi atau manipulasi aljabar sebelum dapat dihitung.</li>
+   <li><strong>Turunan Fungsi</strong> &mdash; rumus panjang busur secara eksplisit menggunakan turunan $f'(x)$ dari fungsi yang diukur panjangnya.</li>
+   <li><strong>Bangun Ruang dan Geometri Analitik</strong> &mdash; pemahaman tentang rumus luas dan volume bangun dasar&mdash;persegi, segitiga, tabung, kerucut&mdash;menjadi dasar untuk memahami rumus-rumus yang diturunkan di sini.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Setelah mempelajari integral tentu sebagai limit jumlah Riemann dan teknik-teknik pengintegralan untuk menghitungnya, kita memiliki alat yang cukup untuk menyelesaikan berbagai masalah geometris. Materi ini membahas tiga penerapan klasik dari integral: menghitung luas daerah, volume benda putar, dan panjang busur.</p>
+ <p class="lesson-text">Ketiga topik ini muncul dari pertanyaan yang berbeda. Luas daerah berkaitan dengan seberapa besar bidang yang dibatasi oleh kurva. Volume benda putar berkaitan dengan bangun ruang tiga dimensi yang terbentuk ketika sebuah daerah diputar mengelilingi sebuah garis. Panjang busur berkaitan dengan jarak yang ditempuh sepanjang kurva. Meskipun terlihat berbeda, ketiganya dihitung dengan cara yang sama.</p>
+ <p class="lesson-text">Pendekatannya mengikuti pola yang konsisten. Pertama, bagi objek yang hendak diukur menjadi elemen-elemen kecil yang bentuknya sederhana&mdash;persegi panjang tipis, cakram, kulit tabung, atau segmen garis. Kedua, rumuskan ukuran setiap elemen menggunakan geometri dasar. Ketiga, jumlahkan seluruh elemen dan ambil limitnya&mdash;yang berarti mengintegralkannya. Materi ini akan menunjukkan bagaimana pola ini diterapkan pada ketiga topik tersebut.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Luas Daerah</h2>
+ <p class="lesson-text">Bab ini membahas cara menghitung luas daerah yang dibatasi oleh kurva. Kita mulai dari rumus luas antara dua kurva, lalu mempelajari cara menentukan kurva atas dan menangani kasus ketika kurva berpotongan di dalam interval.</p>
+
+ <h3 class="lesson-subheading">A. Luas di Bawah Kurva</h3>
+ <p class="lesson-text">Misalkan $f$ kontinu dan non-negatif pada $[a, b]$. Luas daerah yang dibatasi oleh kurva $y = f(x)$ di atas, sumbu-$X$ di bawah, garis $x = a$ di kiri, dan garis $x = b$ di kanan adalah:</p>
+ <p class="lesson-text">$$L = \int_a^b f(x)\, dx$$</p>
+ <p class="lesson-text">Rumus ini merupakan tafsiran langsung dari integral tentu sebagai luas daerah&mdash;sesuai dengan apa yang sudah kita bahas di materi Integral Tentu. Jika $f(x) \leq 0$ pada sebagian interval, integralnya menghitung luas bertanda; untuk memperoleh luas geometris, kita pecah integral di titik-titik tempat $f$ berganti tanda.</p>
+
+ <h3 class="lesson-subheading">B. Luas antara Dua Kurva</h3>
+ <p class="lesson-text">Misalkan $f$ dan $g$ keduanya kontinu pada $[a, b]$, dan $f(x) \geq g(x)$ untuk semua $x$ dalam interval tersebut&mdash;yaitu kurva $f$ berada di atas atau menyentuh kurva $g$. Kita ingin menghitung luas daerah yang dibatasi oleh kedua kurva, dari $x = a$ sampai $x = b$.</p>
+ <p class="lesson-text"><strong>Penurunan rumusnya.</strong> Bagi interval $[a, b]$ menjadi $n$ subinterval, masing-masing dengan lebar $\Delta x$. Pada setiap subinterval, ambil satu titik sampel $x_i^*$. Irisan vertikal tipis pada posisi $x_i^*$ memiliki:</p>
+ <ul>
+  <li>Batas atas: kurva $y = f(x_i^*)$.</li>
+  <li>Batas bawah: kurva $y = g(x_i^*)$.</li>
+  <li>Tinggi: selisihnya, yaitu $f(x_i^*) - g(x_i^*)$.</li>
+  <li>Lebar: $\Delta x$.</li>
+ </ul>
+ <p class="lesson-text">Irisan ini berbentuk persegi panjang tipis dengan luas $\left[f(x_i^*) - g(x_i^*)\right] \cdot \Delta x$. Menjumlahkan seluruh irisan:</p>
+ <p class="lesson-text">$$L_n = \sum_{i=1}^{n} \left[f(x_i^*) - g(x_i^*)\right] \Delta x$$</p>
+ <p class="lesson-text">Ketika $n \to \infty$, jumlah ini menuju integral tentu:</p>
+ <p class="lesson-text">$$L = \int_a^b [f(x) - g(x)]\, dx$$</p>
+ <p class="lesson-text">Rumus ini dapat diingat sebagai <strong>"kurva atas dikurangi kurva bawah"</strong>. Urutannya penting: pada setiap irisan, kita menghitung tinggi dari kurva bawah ke kurva atas, sehingga hasilnya selalu positif&mdash;sesuai dengan sifat luas.</p>
+
+ <h3 class="lesson-subheading">C. Bagaimana Menentukan Kurva Atas</h3>
+ <p class="lesson-text">Sebelum menyusun integral, kita harus mengetahui kurva mana yang berada di atas sepanjang interval integrasi. Ada dua situasi:</p>
+ <ul>
+  <li><strong>Kurva tidak berpotongan di dalam interval.</strong> Jika $f$ dan $g$ hanya bertemu di titik ujung (atau tidak bertemu sama sekali pada $[a, b]$), maka peran kurva atas dan bawah tetap sama. Kita cukup mengambil satu titik uji di dalam interval, misalnya $x = \frac{a + b}{2}$, lalu bandingkan nilai $f$ dan $g$ di titik tersebut.</li>
+  <li><strong>Kurva berpotongan di dalam interval.</strong> Jika $f$ dan $g$ berpotongan di titik $c$ dengan $a < c < b$, maka di kiri dan kanan $c$, peran kurva atas dan bawah bisa bertukar. Dalam situasi ini, integral perlu dipecah di titik $c$, dan kurva atas diperiksa ulang di setiap subinterval.</li>
+ </ul>
+ <p class="lesson-text">Kunci praktisnya: cari titik potong dengan menyetel $f(x) = g(x)$, lalu uji satu titik di setiap subinterval untuk menentukan kurva mana yang lebih tinggi.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="320" x2="580" y2="320" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,320 572,315 572,325" fill="#e8e8e8"/>
+  <text x="586" y="324" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="100" y1="350" x2="100" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="100,37 95,47 105,47" fill="#e8e8e8"/>
+  <text x="106" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 120 320 Q 330 320 540 80 L 120 320 Z" fill="#22d3ee" fill-opacity="0.10" stroke="none"/>
+  <line x1="120" y1="320" x2="540" y2="80" stroke="#daa520" stroke-width="2.8"/>
+  <path d="M 120 320 Q 330 320 540 80" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <rect x="300" y="225" width="30" height="75" fill="#22d3ee" fill-opacity="0.28" stroke="#22d3ee" stroke-width="1.3"/>
+  <line x1="300" y1="225" x2="330" y2="225" stroke="#daa520" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <line x1="300" y1="300" x2="330" y2="300" stroke="#5dade2" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <text x="350" y="230" font-size="11" fill="#daa520" font-style="italic">f(xᵢ*)</text>
+  <text x="350" y="305" font-size="11" fill="#5dade2" font-style="italic">g(xᵢ*)</text>
+  <text x="315" y="268" font-size="10" fill="#22d3ee" text-anchor="middle" font-style="italic">tinggi</text>
+
+  <circle cx="120" cy="320" r="5" fill="#e8e8e8"/>
+  <circle cx="540" cy="80" r="5" fill="#e8e8e8"/>
+  <text x="120" y="342" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">a</text>
+  <text x="540" y="342" font-size="12" fill="#e8e8e8" text-anchor="middle" font-style="italic">b</text>
+
+  <text x="550" y="76" font-size="12" fill="#daa520" font-style="italic">y = f(x)</text>
+  <text x="550" y="100" font-size="12" fill="#5dade2" font-style="italic">y = g(x)</text>
+
+  <line x1="300" y1="360" x2="330" y2="360" stroke="#22d3ee" stroke-width="1"/>
+  <line x1="300" y1="356" x2="300" y2="364" stroke="#22d3ee" stroke-width="1"/>
+  <line x1="330" y1="356" x2="330" y2="364" stroke="#22d3ee" stroke-width="1"/>
+  <text x="315" y="378" font-size="11" fill="#22d3ee" text-anchor="middle" font-style="italic">Δx</text>
+ </svg>
+ <figcaption class="visual-caption">Luas antara dua kurva. Setiap irisan vertikal tipis pada posisi $x_i^*$ memiliki tinggi $f(x_i^*) - g(x_i^*)$&mdash;yaitu selisih antara kurva atas dan kurva bawah&mdash;dan lebar $\Delta x$. Jumlah seluruh irisan menuju integral $\int_a^b [f(x) - g(x)]\, dx$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">D. Contoh Perhitungan</h3>
+
+ <p class="lesson-text"><strong>Contoh 1: Kurva tidak berpotongan di dalam interval.</strong> Hitung luas daerah yang dibatasi oleh $y = 2x$ dan $y = x^2$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Tentukan titik potong.</strong> Setel $2x = x^2$, sehingga $x(x - 2) = 0$. Titik potongnya adalah $x = 0$ dan $x = 2$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Tentukan kurva atas.</strong> Ambil titik uji $x = 1$. Di titik ini, $2x = 2$ dan $x^2 = 1$. Karena $2 > 1$, kurva atas adalah $y = 2x$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Susun dan hitung integral.</strong></p>
+ <p class="lesson-text">$$L = \int_0^2 (2x - x^2)\, dx = \left[x^2 - \frac{x^3}{3}\right]_0^2 = 4 - \frac{8}{3} = \frac{4}{3}$$</p>
+ <p class="lesson-text">Luasnya adalah $\dfrac{4}{3}$ satuan luas.</p>
+
+ <p class="lesson-text"><strong>Contoh 2: Kurva berpotongan di dalam interval.</strong> Hitung luas daerah yang dibatasi oleh $y = \sin x$ dan $y = \cos x$ pada $[0, \pi/2]$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Tentukan titik potong.</strong> Setel $\sin x = \cos x$, yang terpenuhi ketika $x = \pi/4$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Tentukan kurva atas di setiap subinterval.</strong></p>
+ <ul>
+  <li>Pada $(0, \pi/4)$: ambil $x = \pi/6$. Nilai $\sin(\pi/6) = 0{,}5$ dan $\cos(\pi/6) \approx 0{,}87$. Karena $\cos > \sin$, kurva atas adalah $y = \cos x$.</li>
+  <li>Pada $(\pi/4, \pi/2)$: ambil $x = \pi/3$. Nilai $\sin(\pi/3) \approx 0{,}87$ dan $\cos(\pi/3) = 0{,}5$. Karena $\sin > \cos$, kurva atas adalah $y = \sin x$.</li>
+ </ul>
+ <p class="lesson-text"><strong>Langkah 3: Pecah integral dan hitung.</strong></p>
+ <p class="lesson-text">$$L = \int_0^{\pi/4}(\cos x - \sin x)\, dx + \int_{\pi/4}^{\pi/2}(\sin x - \cos x)\, dx$$</p>
+ <p class="lesson-text">Integral pertama:</p>
+ <p class="lesson-text">$$\Big[\sin x + \cos x\Big]_0^{\pi/4} = \left(\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\right) - (0 + 1) = \sqrt{2} - 1$$</p>
+ <p class="lesson-text">Integral kedua:</p>
+ <p class="lesson-text">$$\Big[-\cos x - \sin x\Big]_{\pi/4}^{\pi/2} = (0 - 1) - \left(-\frac{\sqrt{2}}{2} - \frac{\sqrt{2}}{2}\right) = -1 + \sqrt{2}$$</p>
+ <p class="lesson-text">Total: $L = (\sqrt{2} - 1) + (\sqrt{2} - 1) = 2\sqrt{2} - 2$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Volume Benda Putar</h2>
+ <p class="lesson-text">Bab ini membahas cara menghitung volume bangun ruang yang terbentuk ketika sebuah daerah di bidang diputar mengelilingi sebuah garis. Tiga metode utama dibahas, masing-masing cocok untuk situasi yang berbeda.</p>
+
+ <h3 class="lesson-subheading">A. Metode Cakram</h3>
+ <p class="lesson-text">Misalkan $f$ kontinu dan non-negatif pada $[a, b]$. Daerah di bawah kurva $y = f(x)$ diputar mengelilingi sumbu-$X$. Bangun ruang yang terbentuk memiliki penampang melintang tegak lurus sumbu-$X$ berupa cakram (disk) berbentuk lingkaran.</p>
+ <p class="lesson-text"><strong>Penurunan rumusnya.</strong> Iris bangun menjadi potongan-potongan tipis tegak lurus sumbu-$X$, masing-masing dengan tebal $\Delta x$. Pada posisi $x_i^*$, potongan tersebut adalah cakram dengan jari-jari $r = f(x_i^*)$ dan tebal $\Delta x$. Volume cakram adalah luas alas dikali tebal:</p>
+ <p class="lesson-text">$$V_i = \pi [f(x_i^*)]^2 \cdot \Delta x$$</p>
+ <p class="lesson-text">Jumlahkan seluruh cakram, lalu ambil limitnya:</p>
+ <p class="lesson-text">$$V = \pi \int_a^b [f(x)]^2\, dx$$</p>
+ <p class="lesson-text">Rumus ini dipakai ketika bangun putar dapat diiris menjadi cakram-cakram tanpa lubang di tengah&mdash;yaitu ketika daerahnya menyentuh sumbu putar sepanjang interval.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="320" x2="580" y2="320" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,320 572,315 572,325" fill="#e8e8e8"/>
+  <text x="586" y="324" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="110" y1="350" x2="110" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="110,37 105,47 115,47" fill="#e8e8e8"/>
+  <text x="116" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 130 320 Q 150 220 210 200 Q 330 170 480 120 Q 520 108 550 105" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <rect x="255" y="182" width="20" height="138" fill="#daa520" fill-opacity="0.30" stroke="#daa520" stroke-width="1.5"/>
+  <circle cx="265" cy="182" r="20" fill="none" stroke="#daa520" stroke-width="1.3" stroke-dasharray="3,3" opacity="0.7"/>
+
+  <line x1="265" y1="182" x2="265" y2="320" stroke="#daa520" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="265" y1="182" x2="290" y2="182" stroke="#daa520" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="298" y="186" font-size="11" fill="#daa520" font-style="italic">r = f(xᵢ*)</text>
+
+  <line x1="255" y1="335" x2="275" y2="335" stroke="#daa520" stroke-width="1"/>
+  <line x1="255" y1="331" x2="255" y2="339" stroke="#daa520" stroke-width="1"/>
+  <line x1="275" y1="331" x2="275" y2="339" stroke="#daa520" stroke-width="1"/>
+  <text x="265" y="352" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">Δx</text>
+
+  <text x="560" y="108" font-size="13" fill="#5dade2" font-style="italic">y = f(x)</text>
+ </svg>
+ <figcaption class="visual-caption">Metode cakram. Daerah di bawah kurva $y = f(x)$ diputar mengelilingi sumbu-$X$. Setiap irisan tegak lurus sumbu-$X$ dengan tebal $\Delta x$ membentuk cakram dengan jari-jari $f(x_i^*)$. Volume cakram adalah $\pi [f(x_i^*)]^2 \Delta x$.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Hitung volume benda putar yang terbentuk ketika daerah di bawah $y = \sqrt{x}$, dari $x = 0$ sampai $x = 4$, diputar mengelilingi sumbu-$X$.</p>
+ <p class="lesson-text">Gunakan rumus cakram dengan $f(x) = \sqrt{x}$:</p>
+ <p class="lesson-text">$$V = \pi \int_0^4 (\sqrt{x})^2\, dx = \pi \int_0^4 x\, dx = \pi \left[\frac{x^2}{2}\right]_0^4 = 8\pi$$</p>
+
+ <h3 class="lesson-subheading">B. Metode Cincin</h3>
+ <p class="lesson-text">Metode cakram mengasumsikan daerah yang diputar menyentuh sumbu putar. Jika tidak&mdash;yaitu jika ada jarak antara daerah dan sumbu putar&mdash;maka penampang melintang bukan cakram penuh, melainkan <strong>cincin</strong> (<em>washer</em>): cakram dengan lubang di tengahnya.</p>
+ <p class="lesson-text">Misalkan daerah yang diputar dibatasi oleh dua kurva $y = f(x)$ (kurva luar) dan $y = g(x)$ (kurva dalam), dengan $f(x) \geq g(x) \geq 0$ pada $[a, b]$. Setiap irisan tegak lurus pada posisi $x_i^*$ membentuk cincin dengan jari-jari luar $R = f(x_i^*)$, jari-jari dalam $r = g(x_i^*)$, dan tebal $\Delta x$.</p>
+ <p class="lesson-text"><strong>Penurunan rumusnya.</strong> Volume cincin adalah volume cakram luar dikurangi volume cakram dalam:</p>
+ <p class="lesson-text">$$V_i = \pi [f(x_i^*)]^2 \Delta x - \pi [g(x_i^*)]^2 \Delta x = \pi\left([f(x_i^*)]^2 - [g(x_i^*)]^2\right) \Delta x$$</p>
+ <p class="lesson-text">Jumlahkan seluruh cincin, lalu ambil limitnya:</p>
+ <p class="lesson-text">$$V = \pi \int_a^b \left([R(x)]^2 - [r(x)]^2\right) dx$$</p>
+ <p class="lesson-text">Perhatikan bahwa rumusnya adalah selisih <em>kuadrat</em> jari-jari, bukan kuadrat selisih jari-jari. Ini karena volume cakram sebanding dengan kuadrat jari-jarinya.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="320" x2="580" y2="320" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,320 572,315 572,325" fill="#e8e8e8"/>
+  <text x="586" y="324" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="110" y1="350" x2="110" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="110,37 105,47 115,47" fill="#e8e8e8"/>
+  <text x="116" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <line x1="120" y1="320" x2="550" y2="80" stroke="#daa520" stroke-width="2.5"/>
+  <path d="M 120 320 Q 330 300 550 180" fill="none" stroke="#5dade2" stroke-width="2.5"/>
+
+  <rect x="320" y="180" width="20" height="46" fill="#daa520" fill-opacity="0.30" stroke="#daa520" stroke-width="1.3"/>
+  <rect x="320" y="226" width="20" height="94" fill="#5dade2" fill-opacity="0.20" stroke="#5dade2" stroke-width="1.3" stroke-dasharray="3,3"/>
+
+  <line x1="340" y1="180" x2="395" y2="180" stroke="#daa520" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="340" y1="226" x2="395" y2="226" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="402" y="184" font-size="11" fill="#daa520" font-style="italic">R = f(xᵢ*)</text>
+  <text x="402" y="230" font-size="11" fill="#5dade2" font-style="italic">r = g(xᵢ*)</text>
+
+  <line x1="320" y1="335" x2="340" y2="335" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="320" y1="331" x2="320" y2="339" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="340" y1="331" x2="340" y2="339" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="330" y="352" font-size="11" fill="#e8e8e8" text-anchor="middle" font-style="italic">Δx</text>
+
+  <text x="560" y="76" font-size="12" fill="#daa520" font-style="italic">f(x)</text>
+  <text x="560" y="180" font-size="12" fill="#5dade2" font-style="italic">g(x)</text>
+ </svg>
+ <figcaption class="visual-caption">Metode cincin. Daerah antara dua kurva diputar mengelilingi sumbu-$X$. Setiap irisan tegak lurus membentuk cincin dengan jari-jari luar $R = f(x_i^*)$ (warna emas) dan jari-jari dalam $r = g(x_i^*)$ (warna biru). Volume cincin adalah $\pi([R]^2 - [r]^2) \Delta x$.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Hitung volume benda putar yang terbentuk ketika daerah antara $y = x$ dan $y = x^2$, pada $x \in [0, 1]$, diputar mengelilingi sumbu-$X$.</p>
+ <p class="lesson-text">Titik potong: $x = x^2$ memberi $x = 0$ dan $x = 1$. Ambil titik uji $x = 0{,}5$: nilai $x = 0{,}5$ dan $x^2 = 0{,}25$. Karena $x > x^2$, kurva $y = x$ berada di luar dan kurva $y = x^2$ berada di dalam.</p>
+ <p class="lesson-text">$$V = \pi \int_0^1 (x^2 - x^4)\, dx = \pi \left[\frac{x^3}{3} - \frac{x^5}{5}\right]_0^1 = \pi\left(\frac{1}{3} - \frac{1}{5}\right) = \frac{2\pi}{15}$$</p>
+
+ <h3 class="lesson-subheading">C. Metode Kulit Tabung</h3>
+ <p class="lesson-text">Metode cakram dan cincin menggunakan irisan tegak lurus terhadap sumbu putar. Metode kulit tabung (<em>shell method</em>) menggunakan irisan yang sejajar dengan sumbu putar. Metode ini sangat berguna ketika fungsi diberikan sebagai $y = f(x)$ tetapi daerahnya diputar mengelilingi sumbu-$Y$&mdash;karena kita tidak perlu menyatakan $x$ dalam $y$.</p>
+ <p class="lesson-text">Misalkan $f$ kontinu dan non-negatif pada $[a, b]$, dengan $0 \leq a < b$. Daerah di bawah kurva $y = f(x)$ dari $x = a$ sampai $x = b$ diputar mengelilingi sumbu-$Y$. Setiap irisan vertikal tipis pada posisi $x_i^*$ dengan lebar $\Delta x$ membentuk kulit tabung setelah diputar.</p>
+ <p class="lesson-text"><strong>Penurunan rumusnya.</strong> Bayangkan kulit tabung dibentangkan menjadi lembaran datar. Lembaran ini berbentuk persegi panjang dengan panjang $2\pi x_i^*$ (keliling lingkaran), tinggi $f(x_i^*)$, dan tebal $\Delta x$. Volume lembaran kira-kira sama dengan volume kulit tabung:</p>
+ <p class="lesson-text">$$V_i = 2\pi x_i^* \cdot f(x_i^*) \cdot \Delta x$$</p>
+ <p class="lesson-text">Jumlahkan seluruh kulit, lalu ambil limitnya:</p>
+ <p class="lesson-text">$$V = 2\pi \int_a^b x \cdot f(x)\, dx$$</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="320" x2="580" y2="320" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,320 572,315 572,325" fill="#e8e8e8"/>
+  <text x="586" y="324" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="110" y1="350" x2="110" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="110,37 105,47 115,47" fill="#e8e8e8"/>
+  <text x="116" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 110 320 Q 320 300 530 120" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <rect x="305" y="192" width="20" height="128" fill="#daa520" fill-opacity="0.30" stroke="#daa520" stroke-width="1.5"/>
+
+  <line x1="110" y1="308" x2="305" y2="308" stroke="#daa520" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="207" y="302" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">xᵢ* (jari-jari)</text>
+
+  <line x1="325" y1="192" x2="380" y2="192" stroke="#5dade2" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="386" y="196" font-size="11" fill="#5dade2" font-style="italic">f(xᵢ*)</text>
+
+  <path d="M 145 130 Q 110 95 155 65" fill="none" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrRotApp)"/>
+  <defs>
+   <marker id="arrRotApp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <polygon points="0,0 10,5 0,10" fill="#22d3ee"/>
+   </marker>
+  </defs>
+  <text x="60" y="90" font-size="11" fill="#22d3ee" font-style="italic">putar</text>
+
+  <line x1="305" y1="335" x2="325" y2="335" stroke="#daa520" stroke-width="1"/>
+  <line x1="305" y1="331" x2="305" y2="339" stroke="#daa520" stroke-width="1"/>
+  <line x1="325" y1="331" x2="325" y2="339" stroke="#daa520" stroke-width="1"/>
+  <text x="315" y="352" font-size="11" fill="#daa520" text-anchor="middle" font-style="italic">Δx</text>
+
+  <text x="540" y="118" font-size="13" fill="#5dade2" font-style="italic">y = f(x)</text>
+ </svg>
+ <figcaption class="visual-caption">Metode kulit tabung. Daerah di bawah kurva diputar mengelilingi sumbu-$Y$. Setiap irisan vertikal tipis pada posisi $x_i^*$ dengan lebar $\Delta x$ membentuk kulit tabung setelah diputar. Volume kulit adalah $2\pi x_i^* \cdot f(x_i^*) \cdot \Delta x$&mdash;yaitu keliling lingkaran dikali tinggi dikali tebal.</figcaption>
+ </figure>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Hitung volume benda putar yang terbentuk ketika daerah di bawah $y = x^2$, dari $x = 0$ sampai $x = 2$, diputar mengelilingi sumbu-$Y$.</p>
+ <p class="lesson-text">Gunakan rumus kulit tabung dengan $f(x) = x^2$ dan batas $a = 0$, $b = 2$:</p>
+ <p class="lesson-text">$$V = 2\pi \int_0^2 x \cdot x^2\, dx = 2\pi \int_0^2 x^3\, dx = 2\pi \left[\frac{x^4}{4}\right]_0^2 = 2\pi \cdot 4 = 8\pi$$</p>
+
+ <h3 class="lesson-subheading">D. Memilih Metode yang Tepat</h3>
+ <p class="lesson-text">Ketiga metode memberikan hasil yang sama untuk bangun yang sama, tetapi tingkat kesulitan perhitungannya bisa berbeda. Pemilihan metode bergantung pada sumbu putar dan cara fungsi diberikan.</p>
+
+ <div class="lesson-table">
+ <table>
+  <thead>
+   <tr><th>Sumbu Putar</th><th>Metode Cakram / Cincin</th><th>Metode Kulit Tabung</th></tr>
+  </thead>
+  <tbody>
+   <tr>
+    <td>Sumbu-$X$</td>
+    <td>Iris tegak lurus sumbu-$X$; integrasikan terhadap $x$.</td>
+    <td>Iris sejajar sumbu-$X$; integrasikan terhadap $y$.</td>
+   </tr>
+   <tr>
+    <td>Sumbu-$Y$</td>
+    <td>Iris tegak lurus sumbu-$Y$; integrasikan terhadap $y$.</td>
+    <td>Iris sejajar sumbu-$Y$; integrasikan terhadap $x$.</td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+
+ <p class="lesson-text">Jika fungsi diberikan sebagai $y = f(x)$ dan diputar mengelilingi sumbu-$X$, metode cakram atau cincin lebih mudah karena kita tetap mengintegralkan terhadap $x$. Jika fungsi diberikan sebagai $y = f(x)$ tetapi diputar mengelilingi sumbu-$Y$, metode kulit tabung biasanya lebih mudah karena tidak perlu mencari $x$ dalam $y$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Panjang Busur</h2>
+ <p class="lesson-text">Panjang busur adalah panjang kurva sepanjang segmen tertentu. Untuk kurva lurus seperti garis, panjangnya dapat dihitung dengan Teorema Pythagoras. Untuk kurva melengkung, kita menggunakan pendekatan yang sama seperti aproksimasi luas: bagi kurva menjadi segmen-segmen kecil, lalu integralkan.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Dasar</h3>
+ <p class="lesson-text">Misalkan $f$ memiliki turunan kontinu pada $[a, b]$. Kita ingin menghitung panjang kurva $y = f(x)$ dari titik $(a, f(a))$ sampai titik $(b, f(b))$.</p>
+ <p class="lesson-text">Iris kurva menjadi $n$ potongan, dengan titik-titik pembagi $x_0 = a, x_1, \ldots, x_n = b$. Setiap potongan, dari titik $(x_{i-1}, f(x_{i-1}))$ ke titik $(x_i, f(x_i))$, didekati dengan segmen garis lurus. Panjang segmen ini, menurut Teorema Pythagoras:</p>
+ <p class="lesson-text">$$\Delta s_i = \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2}$$</p>
+ <p class="lesson-text">dengan $\Delta x_i = x_i - x_{i-1}$ dan $\Delta y_i = f(x_i) - f(x_{i-1})$.</p>
+ <p class="lesson-text">Ketika potongan dibuat sangat kecil, berlaku $\Delta y_i \approx f'(x_{i-1}) \cdot \Delta x_i$&mdash;yaitu kemiringan garis singgung dikali perubahan $x$. Substitusikan ke rumus Pythagoras:</p>
+ <p class="lesson-text">$$\Delta s_i \approx \sqrt{(\Delta x_i)^2 + [f'(x_{i-1}) \Delta x_i]^2}$$</p>
+ <p class="lesson-text">Faktorkan $(\Delta x_i)^2$ keluar dari akar:</p>
+ <p class="lesson-text">$$\Delta s_i \approx \sqrt{(\Delta x_i)^2 \left(1 + [f'(x_{i-1})]^2\right)} = \sqrt{1 + [f'(x_{i-1})]^2} \cdot \Delta x_i$$</p>
+ <p class="lesson-text">Menjumlahkan panjang seluruh segmen, lalu mengambil limitnya:</p>
+ <p class="lesson-text">$$L = \int_a^b \sqrt{1 + [f'(x)]^2}\, dx$$</p>
+ <p class="lesson-text">Angka $1$ di dalam akar berasal dari kontribusi $dx^2$ pada Teorema Pythagoras, setelah $dx^2$ difaktorkan keluar. Jika $f'(x) = 0$ (kurva datar), bentuknya menjadi $1$&mdash;sesuai dengan panjang elemen horizontal sebesar $dx$.</p>
+
+ <figure>
+ <svg viewBox="0 0 620 400" style="max-width:100%; height:auto; width:620px;" xmlns="http://www.w3.org/2000/svg">
+  <line x1="70" y1="320" x2="580" y2="320" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="582,320 572,315 572,325" fill="#e8e8e8"/>
+  <text x="586" y="324" font-size="13" fill="#b8b8b8" font-style="italic">x</text>
+  <line x1="90" y1="350" x2="90" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="90,37 85,47 95,47" fill="#e8e8e8"/>
+  <text x="96" y="36" font-size="13" fill="#b8b8b8" font-style="italic">y</text>
+
+  <path d="M 130 300 Q 300 280 500 100" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <line x1="270" y1="272" x2="380" y2="215" stroke="#daa520" stroke-width="3.2"/>
+  <circle cx="270" cy="272" r="5" fill="#daa520"/>
+  <circle cx="380" cy="215" r="5" fill="#daa520"/>
+
+  <line x1="270" y1="272" x2="380" y2="272" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="380" y1="272" x2="380" y2="215" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <text x="325" y="290" font-size="11" fill="#b8b8b8" text-anchor="middle" font-style="italic">Δx</text>
+  <text x="388" y="248" font-size="11" fill="#b8b8b8" font-style="italic">Δy</text>
+  <text x="315" y="232" font-size="13" fill="#daa520" text-anchor="middle" font-weight="700" font-style="italic">Δs</text>
+
+  <text x="510" y="100" font-size="13" fill="#5dade2" font-style="italic">y = f(x)</text>
+ </svg>
+ <figcaption class="visual-caption">Aproksimasi panjang busur. Kurva $y = f(x)$ diiris menjadi potongan-potongan kecil. Setiap potongan didekati dengan segmen garis lurus dengan panjang $\Delta s = \sqrt{(\Delta x)^2 + (\Delta y)^2}$. Karena $\Delta y \approx f'(x)\, \Delta x$, diperoleh $\Delta s \approx \sqrt{1 + [f'(x)]^2}\, \Delta x$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">B. Contoh Perhitungan</h3>
+
+ <p class="lesson-text"><strong>Contoh 1: Verifikasi dengan Pythagoras.</strong> Hitung panjang busur kurva $y = x$ dari $x = 0$ sampai $x = 1$.</p>
+ <p class="lesson-text">Kurva ini adalah garis lurus. Panjangnya dapat dihitung langsung dengan Teorema Pythagoras: segitiga siku-siku dengan kedua kaki $1$, sehingga panjang sisi miringnya $\sqrt{2}$.</p>
+ <p class="lesson-text">Mari verifikasi dengan rumus integral. Turunan $f'(x) = 1$, sehingga $[f'(x)]^2 = 1$:</p>
+ <p class="lesson-text">$$L = \int_0^1 \sqrt{1 + 1}\, dx = \int_0^1 \sqrt{2}\, dx = \sqrt{2}$$</p>
+ <p class="lesson-text">Hasilnya sama dengan perhitungan Pythagoras.</p>
+
+ <p class="lesson-text"><strong>Contoh 2: Kurva dengan integral sederhana.</strong> Hitung panjang busur kurva $y = \dfrac{2}{3} x^{3/2}$ dari $x = 0$ sampai $x = 3$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung turunan.</strong></p>
+ <p class="lesson-text">$$f'(x) = \frac{2}{3} \cdot \frac{3}{2} \cdot x^{1/2} = \sqrt{x}$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Susun bentuk $\sqrt{1 + [f'(x)]^2}$.</strong> Karena $[f'(x)]^2 = x$, maka $1 + [f'(x)]^2 = 1 + x$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral.</strong></p>
+ <p class="lesson-text">$$L = \int_0^3 \sqrt{1 + x}\, dx$$</p>
+ <p class="lesson-text">Gunakan substitusi $u = 1 + x$, sehingga $du = dx$. Batas: $x = 0 \Rightarrow u = 1$; $x = 3 \Rightarrow u = 4$.</p>
+ <p class="lesson-text">$$L = \int_1^4 u^{1/2}\, du = \left[\frac{2}{3} u^{3/2}\right]_1^4 = \frac{2}{3}(8 - 1) = \frac{14}{3}$$</p>
+
+ <p class="lesson-text"><strong>Contoh 3: Fungsi yang dirancang agar akar hilang.</strong> Hitung panjang busur kurva $y = \dfrac{1}{3}(x^2 + 2)^{3/2}$ dari $x = 0$ sampai $x = 1$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Hitung turunan.</strong> Dengan aturan rantai:</p>
+ <p class="lesson-text">$$f'(x) = \frac{1}{3} \cdot \frac{3}{2} \cdot (x^2 + 2)^{1/2} \cdot 2x = x\sqrt{x^2 + 2}$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Susun $\sqrt{1 + [f'(x)]^2}$.</strong></p>
+ <p class="lesson-text">$$[f'(x)]^2 = x^2(x^2 + 2) = x^4 + 2x^2$$</p>
+ <p class="lesson-text">$$1 + [f'(x)]^2 = x^4 + 2x^2 + 1 = (x^2 + 1)^2$$</p>
+ <p class="lesson-text">Bentuk ini adalah kuadrat sempurna, sehingga $\sqrt{1 + [f'(x)]^2} = x^2 + 1$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Hitung integral.</strong></p>
+ <p class="lesson-text">$$L = \int_0^1 (x^2 + 1)\, dx = \left[\frac{x^3}{3} + x\right]_0^1 = \frac{1}{3} + 1 = \frac{4}{3}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Mengapa fungsi seperti ini yang sering muncul dalam soal?</strong> Integral dengan akar kuadrat yang tidak sempurna&mdash;misalnya $\int \sqrt{1 + x^3}\, dx$&mdash;seringkali tidak memiliki anti-turunan dalam bentuk elementer. Untuk memperoleh soal yang dapat diselesaikan dengan teknik dasar, fungsi harus dirancang sedemikian sehingga $1 + [f'(x)]^2$ menjadi kuadrat sempurna&mdash;atau setidaknya memiliki bentuk yang mudah disubstitusi.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Contoh Penerapan</h2>
+ <p class="lesson-text">Bab ini menyajikan dua contoh penerapan nyata dari konsep-konsep yang sudah dibahas di bab sebelumnya. Contoh-contoh ini menunjukkan bagaimana integral dipakai untuk menjawab pertanyaan konkret tentang kapasitas dan material.</p>
+
+ <h3 class="lesson-subheading">A. Kapasitas Tangki Air Berbentuk Paraboloid</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah tangki air berbentuk benda putar yang diperoleh dengan memutar kurva $y = \sqrt{x}$ dari $x = 0$ sampai $x = 4$ (dalam meter) mengelilingi sumbu-$X$. Berapa volume air yang dapat ditampung tangki tersebut?</p>
+ <p class="lesson-text"><strong>Model.</strong> Karena daerah yang diputar menyentuh sumbu putar, kita gunakan metode cakram dengan $f(x) = \sqrt{x}$:</p>
+ <p class="lesson-text">$$V = \pi \int_0^4 (\sqrt{x})^2\, dx = \pi \int_0^4 x\, dx = \pi \left[\frac{x^2}{2}\right]_0^4 = 8\pi$$</p>
+ <p class="lesson-text">Numeriknya: $V \approx 25{,}1$ m³.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Tangki tersebut dapat menampung sekitar $25$ meter kubik air&mdash;yaitu sekitar $25.000$ liter. Bangun yang terbentuk disebut <em>paraboloid</em>: permukaan yang diperoleh dengan memutar parabola. Volume paraboloid tidak dapat dihitung dengan rumus kerucut, karena penampang melintangnya bukan segitiga&mdash;melainkan parabola. Hanya integral yang dapat menangani bentuk seperti ini.</p>
+ </div>
+
+ <h3 class="lesson-subheading">B. Volume Material Pipa Berongga</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah pipa berbentuk benda putar memiliki jari-jari luar $R(x) = 2$ cm dan jari-jari dalam $r(x) = 1 + \dfrac{x}{2}$ cm, dengan $x$ dari $0$ sampai $2$ cm. Hitung volume material yang menyusun pipa tersebut.</p>
+ <p class="lesson-text"><strong>Model.</strong> Volume material adalah selisih antara volume bangun luar dan volume bangun dalam. Karena ada rongga di tengahnya, kita gunakan metode cincin:</p>
+ <p class="lesson-text">$$V = \pi \int_0^2 \left([R(x)]^2 - [r(x)]^2\right) dx = \pi \int_0^2 \left(4 - \left(1 + \frac{x}{2}\right)^2\right) dx$$</p>
+ <p class="lesson-text">Kembangkan bentuk dalam kurung: $\left(1 + \dfrac{x}{2}\right)^2 = 1 + x + \dfrac{x^2}{4}$, sehingga $4 - \left(1 + x + \dfrac{x^2}{4}\right) = 3 - x - \dfrac{x^2}{4}$.</p>
+ <p class="lesson-text">$$V = \pi \int_0^2 \left(3 - x - \frac{x^2}{4}\right) dx = \pi \left[3x - \frac{x^2}{2} - \frac{x^3}{12}\right]_0^2$$</p>
+ <p class="lesson-text">$$= \pi \left(6 - 2 - \frac{8}{12}\right) = \pi \left(4 - \frac{2}{3}\right) = \frac{10\pi}{3}$$</p>
+ <p class="lesson-text">Numeriknya: $V \approx 10{,}47$ cm³.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Volume material pipa tersebut sekitar $10{,}47$ cm³. Contoh ini menggambarkan bagaimana metode cincin dipakai untuk benda berongga&mdash;yaitu benda dengan rongga di bagian dalamnya. Contoh serupa muncul dalam perhitungan volume pipa, cangkir, dan berbagai benda berongga lainnya.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Luas Daerah</h3>
+ <ul>
+  <li><strong>Menukar kurva atas dan kurva bawah.</strong> Rumusnya selalu "kurva atas dikurangi kurva bawah". Jika urutannya dibalik, hasilnya negatif&mdash;padahal luas selalu positif. Selalu periksa dengan titik uji sebelum menyusun integral.</li>
+  <li><strong>Lupa memecah integral di titik potong.</strong> Jika kedua kurva berpotongan di dalam interval, peran atas dan bawah bisa bertukar. Integral harus dipecah di titik potong, dan kurva atas diperiksa ulang pada setiap subinterval.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Volume Benda Putar</h3>
+ <ul>
+  <li><strong>Lupa memangkatkan dua jari-jari.</strong> Rumusnya adalah $\pi [f(x)]^2$, bukan $\pi f(x)$. Misalnya, $f(x) = 3$ memberi $9$, bukan $3$.</li>
+  <li><strong>Salah menerapkan rumus cincin.</strong> Rumusnya adalah $\pi([R]^2 - [r]^2)$, <em>bukan</em> $\pi([R - r]^2)$. Misalnya, $5^2 - 3^2 = 16$ sedangkan $(5 - 3)^2 = 4$&mdash;hasilnya sangat berbeda.</li>
+  <li><strong>Menggunakan metode cakram untuk benda berongga.</strong> Jika daerah tidak menyentuh sumbu putar, ada lubang di tengah&mdash;dan rumus cakram tidak berlaku. Gunakan metode cincin.</li>
+  <li><strong>Lupa mengalikan dengan $2\pi$ pada metode kulit tabung.</strong> Rumusnya adalah $2\pi \int x \cdot f(x)\, dx$, bukan $\int x \cdot f(x)\, dx$.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Panjang Busur</h3>
+ <ul>
+  <li><strong>Lupa menambahkan $1$ di dalam akar.</strong> Rumusnya adalah $\sqrt{1 + [f'(x)]^2}$, bukan $|f'(x)|$. Tanpa angka $1$, hasilnya tidak akan sesuai dengan panjang kurva yang sebenarnya.</li>
+  <li><strong>Menganggap panjang busur selalu dapat dihitung secara eksak.</strong> Banyak integral panjang busur&mdash;misalnya $\int \sqrt{1 + \cos^2 x}\, dx$&mdash;tidak memiliki anti-turunan dalam bentuk elementer. Dalam kasus seperti ini, nilai numerik dihitung dengan metode aproksimasi.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Ringkasan</h2>
+ <ul>
+  <li><strong>Luas di bawah kurva:</strong> $L = \displaystyle\int_a^b f(x)\, dx$ jika $f(x) \geq 0$. Jika $f$ berganti tanda, pecah integral di titik nol dan jumlahkan nilai absolutnya.</li>
+  <li><strong>Luas antara dua kurva:</strong> $L = \displaystyle\int_a^b [f(x) - g(x)]\, dx$, dengan $f(x) \geq g(x)$ pada $[a, b]$. Jika kurva berpotongan, pecah integral di titik potong dan periksa kurva atas pada setiap subinterval.</li>
+  <li><strong>Volume metode cakram</strong> (daerah menyentuh sumbu putar): $V = \pi \displaystyle\int_a^b [f(x)]^2\, dx$ untuk pemutaran mengelilingi sumbu-$X$.</li>
+  <li><strong>Volume metode cincin</strong> (benda berongga): $V = \pi \displaystyle\int_a^b \left([R(x)]^2 - [r(x)]^2\right) dx$, dengan $R$ jari-jari luar dan $r$ jari-jari dalam.</li>
+  <li><strong>Volume metode kulit tabung</strong> (pemutaran mengelilingi sumbu-$Y$): $V = 2\pi \displaystyle\int_a^b x \cdot f(x)\, dx$.</li>
+  <li><strong>Panjang busur:</strong> $L = \displaystyle\int_a^b \sqrt{1 + [f'(x)]^2}\, dx$.</li>
+  <li><strong>Verifikasi hasil:</strong> luas, volume, dan panjang busur semuanya bernilai non-negatif. Jika hasilnya negatif, ada kesalahan dalam menyusun integral&mdash;biasanya urutan pengurangan yang terbalik.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Aplikasi integral menunjukkan bahwa konsep yang semula tampak abstrak ini memiliki penerapan konkret dalam geometri. Luas, volume, dan panjang busur semuanya dihitung dengan pola yang sama: bagi objek menjadi elemen-elemen kecil, rumuskan ukuran setiap elemen, lalu integralkan. Kuncinya adalah memilih elemen yang tepat&mdash;persegi panjang tipis untuk luas, cakram atau kulit tabung untuk volume, dan segmen garis pendek untuk panjang busur.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>barisan</strong> membawa kita ke arah yang berbeda: dari fungsi kontinu ke urutan bilangan yang tak berhingga banyaknya. Konsep limit yang sudah kita kuasai akan menjadi fondasi untuk memahami konvergensi barisan, dan pada akhirnya membuka jalan menuju deret tak hingga dan analisis Fourier.</p>
+</section>
+
+</main>
+</body>
+</html>

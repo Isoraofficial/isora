@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teknik Pengintegralan (Substitusi, Parsial, Pecahan Parsial)</title>
+<meta name="description" content="Materi teknik pengintegralan: metode substitusi (perubahan variabel), integrasi parsial, dan dekomposisi pecahan parsial, beserta prosedur dan contoh penerapannya.">
+<script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<main class="lesson">
+<h1 class="lesson-title">Teknik Pengintegralan (Substitusi, Parsial, Pecahan Parsial)</h1>
+
+<aside class="box-prasyarat" aria-label="Prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Turunan Fungsi</strong> &mdash; setiap teknik pengintegralan adalah kebalikan dari aturan turunan tertentu: substitusi membalik aturan rantai, integrasi parsial membalik aturan produk, dan pecahan parsial memerlukan pemahaman aljabar turunan rasional.</li>
+   <li><strong>Integral Tak Tentu</strong> &mdash; teknik-teknik di materi ini dibangun di atas aturan-aturan integral dasar. Kemampuan mengenali bentuk-bentuk standar sangat diperlukan untuk memilih teknik yang tepat.</li>
+   <li><strong>Integral Tentu</strong> &mdash; pada substitusi untuk integral tentu, batas integrasi juga ikut berubah. Pemahaman tentang definisi dan sifat-sifat integral tentu menjadi penting.</li>
+   <li><strong>Trigonometri Dasar</strong> &mdash; banyak integran yang memerlukan substitusi melibatkan fungsi trigonometri, dan identitas dasar sering muncul dalam penyederhanaan.</li>
+   <li><strong>Aljabar Dasar</strong> &mdash; dekomposisi pecahan parsial memerlukan pemfaktoran polinomial, penyamaan koefisien, dan manipulasi pecahan aljabar.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Pendahuluan</h2>
+ <p class="lesson-text">Pada materi sebelumnya, kita sudah menguasai aturan-aturan integral dasar. Namun, aturan-aturan tersebut hanya berlaku untuk integran dengan bentuk sederhana. Perhatikan beberapa contoh berikut:</p>
+ <p class="lesson-text">$$\int 2x\cos(x^2)\, dx, \qquad \int x e^x\, dx, \qquad \int \frac{1}{x^2 - 1}\, dx$$</p>
+ <p class="lesson-text">Ketiga integran ini tidak dapat diintegralkan langsung dengan aturan dasar. Yang pertama adalah perkalian fungsi aljabar dengan trigonometri komposit. Yang kedua adalah perkalian dua fungsi berbeda. Yang ketiga adalah fungsi rasional dengan penyebut yang dapat difaktorkan.</p>
+ <p class="lesson-text">Untuk menangani bentuk-bentuk seperti ini, kita memerlukan teknik-teknik yang lebih umum. Ada tiga teknik utama, masing-masing menargetkan struktur tertentu dari integran:</p>
+ <ul>
+  <li><strong>Substitusi</strong> &mdash; untuk integran yang berbentuk komposisi fungsi, yaitu $f(g(x)) \cdot g'(x)$. Ini adalah kebalikan dari aturan rantai.</li>
+  <li><strong>Integrasi parsial</strong> &mdash; untuk integran yang berbentuk hasil kali dua fungsi berbeda jenis, misalnya aljabar dengan eksponensial, atau aljabar dengan logaritma. Ini adalah kebalikan dari aturan produk.</li>
+  <li><strong>Pecahan parsial</strong> &mdash; untuk integran berupa fungsi rasional $\frac{P(x)}{Q(x)}$, di mana $Q(x)$ dapat difaktorkan menjadi faktor-faktor sederhana.</li>
+ </ul>
+ <p class="lesson-text">Materi ini membahas ketiga teknik tersebut. Setiap teknik dimulai dari gagasan dasarnya, dilanjutkan dengan prosedur penerapan, dan ditutup dengan contoh-contoh yang bervariasi tingkat kesulitannya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Substitusi</h2>
+ <p class="lesson-text">Substitusi adalah teknik paling sering dipakai dalam pengintegralan. Ia muncul dari gagasan sederhana: jika integran memiliki struktur tertentu yang menyerupai aturan rantai, kita dapat menyederhanakannya dengan mengganti sebagian ekspresi dengan satu variabel baru.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Dasar: Kebalikan Aturan Rantai</h3>
+ <p class="lesson-text">Ingat kembali aturan rantai untuk turunan: jika $F$ adalah anti-turunan dari $f$, maka:</p>
+ <p class="lesson-text">$$\frac{d}{dx} F(g(x)) = F'(g(x)) \cdot g'(x) = f(g(x)) \cdot g'(x)$$</p>
+ <p class="lesson-text">Dari sini, dengan membalik operasinya, kita memperoleh:</p>
+ <p class="lesson-text">$$\int f(g(x)) \cdot g'(x)\, dx = F(g(x)) + C$$</p>
+ <p class="lesson-text">Inilah aturan dasar untuk substitusi. Perhatikan bahwa integran harus mengandung <em>dua komponen</em>: fungsi komposit $f(g(x))$ dan turunan dari fungsi dalam $g'(x)$. Jika kedua komponen ini muncul, kita dapat mengganti $u = g(x)$, sehingga integralnya menjadi:</p>
+ <p class="lesson-text">$$\int f(u)\, du = F(u) + C$$</p>
+ <p class="lesson-text">Setelah menghitung integral dalam variabel $u$, kita kembalikan $u = g(x)$ untuk memperoleh jawaban dalam variabel asli $x$.</p>
+
+ <h3 class="lesson-subheading">B. Prosedur Substitusi pada Integral Tak Tentu</h3>
+ <p class="lesson-text">Langkah-langkah penerapan substitusi:</p>
+ <ol>
+  <li><strong>Pilih $u$.</strong> Pilih ekspresi yang muncul di dalam fungsi komposit&mdash;biasanya bagian yang "di dalam" tanda kurung, akar, atau fungsi trigonometri.</li>
+  <li><strong>Hitung $du$.</strong> Turunkan $u$ terhadap $x$, lalu tuliskan $du = u'(x)\, dx$.</li>
+  <li><strong>Ubah integral.</strong> Ganti semua kemunculan $x$ dengan $u$ dan semua kemunculan $dx$ dengan $du$ (atau kelipatannya).</li>
+  <li><strong>Hitung integral dalam $u$.</strong> Gunakan aturan-aturan dasar integral.</li>
+  <li><strong>Kembalikan ke $x$.</strong> Substitusi balik $u = g(x)$ ke dalam hasil.</li>
+ </ol>
+
+ <h3 class="lesson-subheading">C. Contoh 1: Substitusi Sederhana</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int 2x \cos(x^2)\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Pilih $u$.</strong> Ekspresi di dalam fungsi $\cos$ adalah $x^2$. Ambil $u = x^2$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung $du$.</strong> Turunan $x^2$ adalah $2x$, sehingga $du = 2x\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Ubah integral.</strong> Integran $2x \cos(x^2)\, dx$ dapat ditulis sebagai $\cos(x^2) \cdot 2x\, dx = \cos(u)\, du$. Maka:</p>
+ <p class="lesson-text">$$\int 2x \cos(x^2)\, dx = \int \cos(u)\, du$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Hitung integral.</strong></p>
+ <p class="lesson-text">$$\int \cos(u)\, du = \sin(u) + C$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Kembalikan ke $x$.</strong> Substitusi balik $u = x^2$:</p>
+ <p class="lesson-text">$$\int 2x \cos(x^2)\, dx = \sin(x^2) + C$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Turunkan hasilnya menggunakan aturan rantai: $\dfrac{d}{dx} \sin(x^2) = \cos(x^2) \cdot 2x = 2x \cos(x^2)$. Sesuai dengan integran asal.</p>
+
+ <h3 class="lesson-subheading">D. Contoh 2: Substitusi dengan Faktor Konstanta</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int (3x + 1)^5\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Pilih $u$.</strong> Ekspresi di dalam tanda kurung: $u = 3x + 1$.</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung $du$.</strong> $du = 3\, dx$, sehingga $dx = \dfrac{du}{3}$.</p>
+ <p class="lesson-text"><strong>Langkah 3: Ubah integral.</strong></p>
+ <p class="lesson-text">$$\int (3x+1)^5\, dx = \int u^5 \cdot \frac{du}{3} = \frac{1}{3} \int u^5\, du$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Hitung integral.</strong></p>
+ <p class="lesson-text">$$\frac{1}{3} \cdot \frac{u^6}{6} + C = \frac{u^6}{18} + C$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Kembalikan ke $x$.</strong></p>
+ <p class="lesson-text">$$\int (3x+1)^5\, dx = \frac{(3x+1)^6}{18} + C$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Turunkan: $\dfrac{d}{dx} \dfrac{(3x+1)^6}{18} = \dfrac{6(3x+1)^5 \cdot 3}{18} = (3x+1)^5$. Sesuai.</p>
+
+ <h3 class="lesson-subheading">E. Contoh 3: Substitusi yang Memerlukan Manipulasi</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int x\sqrt{x + 4}\, dx$.</p>
+ <p class="lesson-text">Substitusi langsung $u = x + 4$ akan menyisakan faktor $x$ yang masih mengandung variabel lama. Kita perlu mengubah $x$ menjadi bentuk $u$:</p>
+ <p class="lesson-text">$$u = x + 4 \quad \Rightarrow \quad x = u - 4, \quad du = dx$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int x\sqrt{x+4}\, dx = \int (u - 4)\sqrt{u}\, du = \int (u - 4)u^{1/2}\, du$$</p>
+ <p class="lesson-text">$$= \int (u^{3/2} - 4u^{1/2})\, du = \frac{2}{5}u^{5/2} - \frac{8}{3}u^{3/2} + C$$</p>
+ <p class="lesson-text">Substitusi balik $u = x + 4$:</p>
+ <p class="lesson-text">$$\int x\sqrt{x+4}\, dx = \frac{2}{5}(x+4)^{5/2} - \frac{8}{3}(x+4)^{3/2} + C$$</p>
+
+ <h3 class="lesson-subheading">F. Substitusi pada Integral Tentu</h3>
+ <p class="lesson-text">Untuk integral tentu, substitusi juga mengubah <strong>batas integrasi</strong>. Terdapat dua pendekatan yang sama-sahnya:</p>
+ <ul>
+  <li><strong>Mengubah batas.</strong> Ubah batas integrasi dari nilai-nilai $x$ menjadi nilai-nilai $u$ menggunakan $u = g(x)$, hitung integral dalam variabel $u$, lalu evaluasi langsung di batas baru. Hasilnya sudah dalam bentuk bilangan.</li>
+  <li><strong>Tidak mengubah batas.</strong> Hitung integral tak tentu dalam variabel $u$, kembalikan ke $x$, baru evaluasi di batas asli.</li>
+ </ul>
+ <p class="lesson-text">Pendekatan pertama biasanya lebih cepat. Rumusnya:</p>
+ <p class="lesson-text">$$\int_a^b f(g(x)) \, g'(x)\, dx = \int_{g(a)}^{g(b)} f(u)\, du$$</p>
+
+ <p class="lesson-text"><strong>Contoh.</strong> Hitung $\displaystyle\int_0^1 x e^{x^2}\, dx$.</p>
+ <p class="lesson-text">Ambil $u = x^2$, maka $du = 2x\, dx$, sehingga $x\, dx = \dfrac{du}{2}$.</p>
+ <p class="lesson-text">Ubah batas integrasi:</p>
+ <ul>
+  <li>Ketika $x = 0$, maka $u = 0^2 = 0$.</li>
+  <li>Ketika $x = 1$, maka $u = 1^2 = 1$.</li>
+ </ul>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int_0^1 x e^{x^2}\, dx = \int_0^1 e^u \cdot \frac{du}{2} = \frac{1}{2}\int_0^1 e^u\, du = \frac{1}{2}\Big[e^u\Big]_0^1 = \frac{1}{2}(e - 1)$$</p>
+
+ <h3 class="lesson-subheading">G. Contoh Tambahan: Integran Trigonometri</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int \frac{\cos x}{1 + \sin x}\, dx$.</p>
+ <p class="lesson-text">Ambil $u = 1 + \sin x$. Maka $du = \cos x\, dx$. Integralnya menjadi:</p>
+ <p class="lesson-text">$$\int \frac{1}{u}\, du = \ln|u| + C = \ln|1 + \sin x| + C$$</p>
+ <p class="lesson-text">Karena $1 + \sin x \geq 0$ untuk semua $x$ (nilai minimumnya $0$ ketika $\sin x = -1$), maka kita dapat menuliskan hasilnya tanpa tanda nilai mutlak:</p>
+ <p class="lesson-text">$$\int \frac{\cos x}{1 + \sin x}\, dx = \ln(1 + \sin x) + C$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Bagaimana mengenali bahwa substitusi diperlukan?</strong> Perhatikan integran secara keseluruhan. Substitusi cocok dipakai jika integran mengandung sebuah ekspresi $g(x)$ di suatu tempat, <em>dan</em> turunannya $g'(x)$ muncul sebagai faktor lain (mungkin hingga kelipatan konstanta). Ketika pola ini terlihat, integran sebenarnya adalah turunan dari suatu fungsi komposit&mdash;dan substitusi secara efektif "membalik" aturan rantai.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Integrasi Parsial</h2>
+ <p class="lesson-text">Teknik kedua, integrasi parsial, ditujukan untuk integran yang berbentuk hasil kali dua fungsi berbeda jenis&mdash;misalnya $x e^x$, $x \sin x$, atau $\ln x$. Integran seperti ini tidak dapat diselesaikan dengan substitusi, karena turunan salah satu faktornya tidak muncul sebagai faktor lain.</p>
+
+ <h3 class="lesson-subheading">A. Gagasan Dasar: Kebalikan Aturan Produk</h3>
+ <p class="lesson-text">Ingat kembali aturan produk untuk turunan:</p>
+ <p class="lesson-text">$$\frac{d}{dx}[u \cdot v] = u' \cdot v + u \cdot v'$$</p>
+ <p class="lesson-text">Jika kita integrasikan kedua ruas terhadap $x$, kita memperoleh:</p>
+ <p class="lesson-text">$$u \cdot v = \int u' v\, dx + \int u v'\, dx$$</p>
+ <p class="lesson-text">Dengan memindahkan salah satu suku ke ruas kiri, kita dapatkan:</p>
+ <p class="lesson-text">$$\int u v'\, dx = u \cdot v - \int u' v\, dx$$</p>
+ <p class="lesson-text">Inilah rumus <strong>integrasi parsial</strong>. Dengan notasi diferensial $dv = v'\, dx$ dan $du = u'\, dx$, rumusnya dituliskan sebagai:</p>
+ <p class="lesson-text">$$\int u\, dv = u \cdot v - \int v\, du$$</p>
+ <p class="lesson-text">Perhatikan strukturnya: integran asal $\int u\, dv$ diubah menjadi produk $u \cdot v$ (yang mudah dihitung) dikurangi integral baru $\int v\, du$. Teknik ini berhasil ketika integral baru lebih mudah dihitung daripada integral asal.</p>
+
+ <figure>
+ <svg viewBox="0 0 520 420" style="max-width:100%; height:auto; width:520px;" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sumbu v (horizontal) -->
+  <line x1="60" y1="350" x2="500" y2="350" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="502,350 492,345 492,355" fill="#e8e8e8"/>
+  <text x="506" y="354" font-size="13" fill="#b8b8b8" font-style="italic">v</text>
+  <!-- Sumbu u (vertikal) -->
+  <line x1="80" y1="370" x2="80" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+  <polygon points="80,37 75,47 85,47" fill="#e8e8e8"/>
+  <text x="86" y="36" font-size="13" fill="#b8b8b8" font-style="italic">u</text>
+
+  <!-- Region di bawah kurva (∫u dv) -->
+  <path d="M 80 350 Q 250 210 420 100 L 420 350 Z" fill="#5dade2" fill-opacity="0.18"/>
+
+  <!-- Region di atas kurva (∫v du) -->
+  <path d="M 80 350 L 80 100 L 420 100 Q 250 210 80 350 Z" fill="#daa520" fill-opacity="0.18"/>
+
+  <!-- Kurva -->
+  <path d="M 80 350 Q 250 210 420 100" fill="none" stroke="#5dade2" stroke-width="2.8"/>
+
+  <!-- Garis bantu kotak -->
+  <line x1="420" y1="100" x2="420" y2="350" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="5,4" opacity="0.5"/>
+  <line x1="80" y1="100" x2="420" y2="100" stroke="#b8b8b8" stroke-width="1" stroke-dasharray="5,4" opacity="0.5"/>
+
+  <!-- Titik P -->
+  <circle cx="420" cy="100" r="5.5" fill="#5dade2"/>
+  <text x="430" y="96" font-size="13" fill="#5dade2" font-style="italic">P(V, U)</text>
+
+  <!-- Label sumbu V dan U -->
+  <line x1="420" y1="345" x2="420" y2="355" stroke="#b8b8b8" stroke-width="1"/>
+  <text x="420" y="372" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">V</text>
+  <line x1="75" y1="100" x2="85" y2="100" stroke="#b8b8b8" stroke-width="1"/>
+  <text x="70" y="104" font-size="13" fill="#e8e8e8" text-anchor="end" font-style="italic">U</text>
+
+  <!-- Label region ∫u dv (bawah kurva, warna biru) -->
+  <text x="310" y="255" font-size="14" fill="#5dade2" text-anchor="middle" font-weight="700" font-style="italic">∫ u dv</text>
+
+  <!-- Label region ∫v du (atas kurva, warna kuning) -->
+  <text x="175" y="200" font-size="14" fill="#daa520" text-anchor="middle" font-weight="700" font-style="italic">∫ v du</text>
+
+  <!-- Keterangan di bawah -->
+  <text x="260" y="405" font-size="13" fill="#e8e8e8" text-anchor="middle" font-style="italic">Luas persegi panjang U·V = ∫u dv + ∫v du</text>
+ </svg>
+ <figcaption class="visual-caption">Interpretasi geometris integrasi parsial. Persegi panjang dengan lebar $V$ dan tinggi $U$ memiliki luas $U \cdot V$. Luas ini terbagi menjadi dua bagian oleh kurva: daerah di bawah kurva adalah $\int u\, dv$, dan daerah di kiri kurva adalah $\int v\, du$. Karena kedua bagian menjumlah tepat seluruh persegi panjang, berlaku $U \cdot V = \int u\, dv + \int v\, du$&mdash;yang setelah disusun ulang menghasilkan rumus $\int u\, dv = U \cdot V - \int v\, du$.</figcaption>
+ </figure>
+
+ <h3 class="lesson-subheading">B. Cara Memilih $u$ dan $dv$</h3>
+ <p class="lesson-text">Kunci keberhasilan integrasi parsial terletak pada pemilihan $u$ dan $dv$ yang tepat. Kesalahan pemilihan dapat menyebabkan integral baru menjadi lebih rumit, bukan lebih sederhana.</p>
+ <p class="lesson-text">Pedoman umum yang banyak dipakai adalah aturan <strong>LIATE</strong>. Prioritas pemilihan $u$ mengikuti urutan berikut:</p>
+ <ul>
+  <li><strong>L</strong> &mdash; <em>Logarithmic</em>: fungsi logaritma, seperti $\ln x$.</li>
+  <li><strong>I</strong> &mdash; <em>Inverse trigonometric</em>: fungsi trigonometri invers, seperti $\arcsin x$, $\arctan x$.</li>
+  <li><strong>A</strong> &mdash; <em>Algebraic</em>: fungsi aljabar, seperti $x^n$, $\sqrt{x}$, $x^3 + 1$.</li>
+  <li><strong>T</strong> &mdash; <em>Trigonometric</em>: fungsi trigonometri, seperti $\sin x$, $\cos x$.</li>
+  <li><strong>E</strong> &mdash; <em>Exponential</em>: fungsi eksponensial, seperti $e^x$, $a^x$.</li>
+ </ul>
+ <p class="lesson-text">Aturannya: pilih $u$ sebagai fungsi yang paling awal muncul dalam urutan LIATE, dan $dv$ sebagai sisanya. Alasan intuitifnya: kita ingin $u$ menjadi lebih sederhana saat diturunkan — inilah alasan mengapa logaritma dan invers trigonometri diprioritaskan, dan $dv$ menjadi lebih sederhana atau setidaknya tetap mudah saat diintegralkan.</p>
+
+ <h3 class="lesson-subheading">C. Contoh 1: Parsial Sederhana</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int x e^x\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Pilih $u$ dan $dv$.</strong> Integran adalah $x \cdot e^x$. Berdasarkan LIATE, $x$ adalah aljabar (A) dan $e^x$ adalah eksponensial (E). Karena A muncul lebih awal, ambil:</p>
+ <p class="lesson-text">$$u = x, \qquad dv = e^x\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Hitung $du$ dan $v$.</strong></p>
+ <p class="lesson-text">$$du = dx, \qquad v = \int e^x\, dx = e^x$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Terapkan rumus.</strong></p>
+ <p class="lesson-text">$$\int x e^x\, dx = u \cdot v - \int v\, du = x \cdot e^x - \int e^x\, dx$$</p>
+ <p class="lesson-text"><strong>Langkah 4: Hitung integral baru.</strong> Integral yang tersisa jauh lebih sederhana:</p>
+ <p class="lesson-text">$$\int e^x\, dx = e^x + C$$</p>
+ <p class="lesson-text"><strong>Langkah 5: Gabungkan hasilnya.</strong></p>
+ <p class="lesson-text">$$\int x e^x\, dx = x e^x - e^x + C = e^x(x - 1) + C$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Turunkan $e^x(x-1)$: $\dfrac{d}{dx}[e^x(x-1)] = e^x(x-1) + e^x(1) = e^x \cdot x - e^x + e^x = x e^x$. Sesuai.</p>
+
+ <h3 class="lesson-subheading">D. Contoh 2: Parsial dengan Logaritma</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int \ln x\, dx$.</p>
+ <p class="lesson-text">Integran ini hanya terdiri dari satu fungsi, sehingga tampaknya tidak ada $u$ dan $dv$ yang bisa dipilih. Namun kita bisa memperlakukannya sebagai $\ln x \cdot 1$:</p>
+ <p class="lesson-text">$$u = \ln x, \qquad dv = dx$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$du = \frac{1}{x}\, dx, \qquad v = x$$</p>
+ <p class="lesson-text">Terapkan rumus:</p>
+ <p class="lesson-text">$$\int \ln x\, dx = x \ln x - \int x \cdot \frac{1}{x}\, dx = x \ln x - \int 1\, dx = x \ln x - x + C$$</p>
+ <p class="lesson-text">Jadi $\displaystyle\int \ln x\, dx = x(\ln x - 1) + C$.</p>
+ <p class="lesson-text">Perhatikan bahwa tanpa integrasi parsial, integral ini akan sangat sulit dihitung&mdash;tetapi dengan memilih $u = \ln x$ (yang turunannya adalah fungsi rasional sederhana) dan $dv = dx$ (yang integralnya adalah $x$), masalahnya menjadi sangat mudah.</p>
+
+ <h3 class="lesson-subheading">E. Contoh 3: Parsial dengan Trigonometri</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int x \sin x\, dx$.</p>
+ <p class="lesson-text"><strong>Pilih $u$ dan $dv$.</strong> Integran $x \sin x$ mengandung aljabar (A) dan trigonometri (T). A muncul lebih awal, jadi:</p>
+ <p class="lesson-text">$$u = x, \qquad dv = \sin x\, dx$$</p>
+ <p class="lesson-text">Maka $du = dx$ dan $v = -\cos x$.</p>
+ <p class="lesson-text">Terapkan rumus:</p>
+ <p class="lesson-text">$$\int x \sin x\, dx = x \cdot (-\cos x) - \int (-\cos x)\, dx = -x \cos x + \int \cos x\, dx = -x \cos x + \sin x + C$$</p>
+ <p class="lesson-text"><strong>Verifikasi.</strong> Turunkan: $\dfrac{d}{dx}[-x \cos x + \sin x] = -\cos x + x \sin x + \cos x = x \sin x$. Sesuai.</p>
+
+ <h3 class="lesson-subheading">F. Contoh 4: Parsial Berulang</h3>
+ <p class="lesson-text">Ketika integran mengandung polinomial berderajat lebih tinggi&mdash;misalnya $x^2 e^x$&mdash;integrasi parsial mungkin perlu dilakukan beberapa kali.</p>
+ <p class="lesson-text">Hitung $\displaystyle\int x^2 e^x\, dx$.</p>
+ <p class="lesson-text">Ambil $u = x^2$ dan $dv = e^x\, dx$, sehingga $du = 2x\, dx$ dan $v = e^x$:</p>
+ <p class="lesson-text">$$\int x^2 e^x\, dx = x^2 e^x - \int 2x e^x\, dx$$</p>
+ <p class="lesson-text">Integral baru, $\int 2x e^x\, dx$, masih memerlukan integrasi parsial. Kali ini ambil $u = 2x$ dan $dv = e^x\, dx$:</p>
+ <p class="lesson-text">$$\int 2x e^x\, dx = 2x e^x - \int 2 e^x\, dx = 2x e^x - 2 e^x + C$$</p>
+ <p class="lesson-text">Substitusi kembali:</p>
+ <p class="lesson-text">$$\int x^2 e^x\, dx = x^2 e^x - (2x e^x - 2 e^x) + C = e^x(x^2 - 2x + 2) + C$$</p>
+ <p class="lesson-text">Perhatikan pola yang muncul: setiap penerapan integrasi parsial menurunkan derajat polinomialnya satu. Untuk polinomial berderajat $n$, kita perlu menerapkan integrasi parsial sebanyak $n$ kali.</p>
+
+ <h3 class="lesson-subheading">G. Kasus Khusus: Parsial Siklik</h3>
+ <p class="lesson-text">Ada kalanya integrasi parsial menghasilkan integral yang sama dengan yang semula&mdash;sehingga kita dapat menyelesaikannya secara aljabar. Contoh klasik adalah $\displaystyle\int e^x \sin x\, dx$.</p>
+ <p class="lesson-text">Ambil $u = \sin x$ dan $dv = e^x\, dx$, sehingga $du = \cos x\, dx$ dan $v = e^x$:</p>
+ <p class="lesson-text">$$\int e^x \sin x\, dx = e^x \sin x - \int e^x \cos x\, dx$$</p>
+ <p class="lesson-text">Untuk integral $\int e^x \cos x\, dx$, terapkan integrasi parsial lagi dengan $u = \cos x$ dan $dv = e^x\, dx$:</p>
+ <p class="lesson-text">$$\int e^x \cos x\, dx = e^x \cos x + \int e^x \sin x\, dx$$</p>
+ <p class="lesson-text">Substitusi kembali ke persamaan sebelumnya:</p>
+ <p class="lesson-text">$$\int e^x \sin x\, dx = e^x \sin x - \left(e^x \cos x + \int e^x \sin x\, dx\right) = e^x \sin x - e^x \cos x - \int e^x \sin x\, dx$$</p>
+ <p class="lesson-text">Perhatikan bahwa integral yang dicari muncul di kedua ruas. Pindahkan ke ruas kiri:</p>
+ <p class="lesson-text">$$2 \int e^x \sin x\, dx = e^x(\sin x - \cos x)$$</p>
+ <p class="lesson-text">$$\int e^x \sin x\, dx = \frac{e^x(\sin x - \cos x)}{2} + C$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Kapan integrasi parsial menjadi pilihan yang tepat?</strong> Integrasi parsial cocok ketika integran berbentuk perkalian dua fungsi berbeda jenis. Untuk memilih $u$ dan $dv$, gunakan urutan LIATE. Jika salah satu faktornya adalah polinomial, pilih polinomial itu sebagai $u$&mdash;setiap penurunan derajatnya akan menyederhanakan integral baru. Jika tidak ada polinomial (seperti pada $\int e^x \sin x\, dx$), integrasi parsial mungkin perlu dilakukan dua kali hingga integral awal muncul kembali.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Pecahan Parsial</h2>
+ <p class="lesson-text">Teknik ketiga, pecahan parsial, ditujukan khusus untuk integran berbentuk fungsi rasional, yaitu rasio dua polinomial $\dfrac{P(x)}{Q(x)}$. Gagasan dasarnya adalah memecah fungsi rasional yang rumit menjadi penjumlahan fungsi rasional yang lebih sederhana&mdash;yang masing-masing mudah diintegralkan.</p>
+
+ <h3 class="lesson-subheading">A. Kapan Teknik Ini Dipakai</h3>
+ <p class="lesson-text">Teknik pecahan parsial dipakai ketika integran berbentuk $\dfrac{P(x)}{Q(x)}$ dan:</p>
+ <ul>
+  <li>Derajat $P$ lebih kecil dari derajat $Q$ (yaitu <em>fungsi rasional sejati</em>). Jika tidak, lakukan pembagian polinomial terlebih dahulu.</li>
+  <li>$Q(x)$ dapat difaktorkan menjadi faktor-faktor linear atau kuadratik yang sederhana.</li>
+  <li>Integran tidak dapat diatasi dengan substitusi sederhana. (Jika $P$ merupakan kelipatan dari turunan $Q$, substitusi langsung lebih cepat.)</li>
+ </ul>
+
+ <h3 class="lesson-subheading">B. Kasus-Kasus Dekomposisi</h3>
+ <p class="lesson-text">Bentuk dekomposisi bergantung pada bagaimana $Q(x)$ difaktorkan. Berikut tiga kasus utama.</p>
+
+ <p class="lesson-text"><strong>Kasus 1: Faktor linear berbeda.</strong> Jika $Q(x)$ dapat difaktorkan menjadi faktor linear berbeda, yaitu $Q(x) = (a_1 x + b_1)(a_2 x + b_2) \cdots (a_n x + b_n)$, maka:</p>
+ <p class="lesson-text">$$\frac{P(x)}{Q(x)} = \frac{A_1}{a_1 x + b_1} + \frac{A_2}{a_2 x + b_2} + \cdots + \frac{A_n}{a_n x + b_n}$$</p>
+
+ <p class="lesson-text"><strong>Kasus 2: Faktor linear berulang.</strong> Jika $Q(x)$ mengandung faktor $(ax + b)^n$, maka dekomposisinya menjadi:</p>
+ <p class="lesson-text">$$\frac{P(x)}{Q(x)} \supset \frac{A_1}{ax + b} + \frac{A_2}{(ax + b)^2} + \cdots + \frac{A_n}{(ax + b)^n}$$</p>
+
+ <p class="lesson-text"><strong>Kasus 3: Faktor kuadratik tak dapat direduksi.</strong> Jika $Q(x)$ mengandung faktor kuadratik $ax^2 + bx + c$ yang tidak dapat difaktorkan lebih lanjut (diskriminannya negatif), maka dekomposisinya menggunakan pembilang linear:</p>
+ <p class="lesson-text">$$\frac{P(x)}{Q(x)} \supset \frac{Ax + B}{ax^2 + bx + c}$$</p>
+
+ <h3 class="lesson-subheading">C. Prosedur Umum</h3>
+ <ol>
+  <li><strong>Pastikan fungsi rasionalnya sejati.</strong> Jika derajat pembilang $\geq$ derajat penyebut, lakukan pembagian polinomial terlebih dahulu.</li>
+  <li><strong>Faktorkan penyebut</strong> $Q(x)$ menjadi faktor linear dan kuadratik.</li>
+  <li><strong>Tuliskan dekomposisi</strong> sesuai kasus yang berlaku, dengan konstanta yang belum diketahui ($A$, $B$, $C$, ...).</li>
+  <li><strong>Tentukan konstanta</strong> dengan menyamakan koefisien atau mensubstitusi nilai $x$ yang sesuai (biasanya akar-akar dari faktor linear).</li>
+  <li><strong>Integralkan</strong> setiap suku hasil dekomposisi.</li>
+ </ol>
+
+ <h3 class="lesson-subheading">D. Contoh 1: Faktor Linear Berbeda</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int \frac{1}{x^2 - 1}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Faktorkan penyebut.</strong></p>
+ <p class="lesson-text">$$x^2 - 1 = (x - 1)(x + 1)$$</p>
+ <p class="lesson-text"><strong>Langkah 2: Tuliskan dekomposisi.</strong></p>
+ <p class="lesson-text">$$\frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Tentukan konstanta.</strong> Kalikan kedua ruas dengan $(x-1)(x+1)$:</p>
+ <p class="lesson-text">$$1 = A(x+1) + B(x-1)$$</p>
+ <p class="lesson-text">Substitusi $x = 1$: $1 = A(2) + 0$, sehingga $A = \dfrac{1}{2}$.</p>
+ <p class="lesson-text">Substitusi $x = -1$: $1 = 0 + B(-2)$, sehingga $B = -\dfrac{1}{2}$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Integralkan.</strong></p>
+ <p class="lesson-text">$$\int \frac{1}{x^2 - 1}\, dx = \frac{1}{2}\int \frac{1}{x-1}\, dx - \frac{1}{2}\int \frac{1}{x+1}\, dx = \frac{1}{2}\ln|x-1| - \frac{1}{2}\ln|x+1| + C$$</p>
+ <p class="lesson-text">Hasil ini dapat dituliskan lebih ringkas dengan sifat logaritma:</p>
+ <p class="lesson-text">$$= \frac{1}{2}\ln\left|\frac{x-1}{x+1}\right| + C$$</p>
+
+ <h3 class="lesson-subheading">E. Contoh 2: Faktor Linear Berulang</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int \frac{1}{x(x-1)^2}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Penyebut sudah terfaktor.</strong> Bentuknya adalah $x \cdot (x-1)^2$. Karena faktor $(x-1)$ berulang dua kali, kita memerlukan tiga suku dalam dekomposisi.</p>
+ <p class="lesson-text"><strong>Langkah 2: Tuliskan dekomposisi.</strong></p>
+ <p class="lesson-text">$$\frac{1}{x(x-1)^2} = \frac{A}{x} + \frac{B}{x-1} + \frac{C}{(x-1)^2}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Tentukan konstanta.</strong> Kalikan kedua ruas dengan $x(x-1)^2$:</p>
+ <p class="lesson-text">$$1 = A(x-1)^2 + Bx(x-1) + Cx$$</p>
+ <p class="lesson-text">Substitusi $x = 0$: $1 = A(1) + 0 + 0$, sehingga $A = 1$.</p>
+ <p class="lesson-text">Substitusi $x = 1$: $1 = 0 + 0 + C(1)$, sehingga $C = 1$.</p>
+ <p class="lesson-text">Untuk menentukan $B$, samakan koefisien $x^2$ pada kedua ruas. Ruas kiri memiliki koefisien $0$; ruas kanan memiliki koefisien $A + B$ (dari $A x^2$ dan $B x^2$). Maka $A + B = 0$, sehingga $B = -A = -1$.</p>
+ <p class="lesson-text"><strong>Langkah 4: Integralkan.</strong></p>
+ <p class="lesson-text">$$\int \frac{1}{x(x-1)^2}\, dx = \int \frac{1}{x}\, dx - \int \frac{1}{x-1}\, dx + \int \frac{1}{(x-1)^2}\, dx$$</p>
+ <p class="lesson-text">$$= \ln|x| - \ln|x-1| - \frac{1}{x-1} + C$$</p>
+
+ <h3 class="lesson-subheading">F. Contoh 3: Faktor Kuadratik Tak Dapat Direduksi</h3>
+ <p class="lesson-text">Hitung $\displaystyle\int \frac{5x + 3}{(x-1)(x^2 + 1)}\, dx$.</p>
+ <p class="lesson-text"><strong>Langkah 1: Penyebut sudah terfaktor.</strong> Faktor $x^2 + 1$ tidak dapat difaktorkan lebih lanjut karena diskriminannya negatif ($b^2 - 4ac = 0 - 4 = -4 < 0$).</p>
+ <p class="lesson-text"><strong>Langkah 2: Tuliskan dekomposisi.</strong> Untuk faktor linear $(x-1)$ digunakan pembilang konstanta; untuk faktor kuadratik $(x^2 + 1)$ digunakan pembilang linear:</p>
+ <p class="lesson-text">$$\frac{5x+3}{(x-1)(x^2+1)} = \frac{A}{x-1} + \frac{Bx + C}{x^2 + 1}$$</p>
+ <p class="lesson-text"><strong>Langkah 3: Tentukan konstanta.</strong> Kalikan kedua ruas dengan $(x-1)(x^2+1)$:</p>
+ <p class="lesson-text">$$5x + 3 = A(x^2 + 1) + (Bx + C)(x - 1)$$</p>
+ <p class="lesson-text">Substitusi $x = 1$: $5 + 3 = A(1 + 1) + 0$, sehingga $8 = 2A$ dan $A = 4$.</p>
+ <p class="lesson-text">Untuk $B$ dan $C$, kembangkan ruas kanan dan samakan koefisien:</p>
+ <p class="lesson-text">Ruas kanan $= 4x^2 + 4 + Bx^2 - Bx + Cx - C = (4 + B)x^2 + (C - B)x + (4 - C)$</p>
+ <p class="lesson-text">Samakan dengan $5x + 3$:</p>
+ <ul>
+  <li>Koefisien $x^2$: $4 + B = 0 \Rightarrow B = -4$.</li>
+  <li>Koefisien $x$: $C - B = 5 \Rightarrow C - (-4) = 5 \Rightarrow C = 1$.</li>
+  <li>Konstanta: $4 - C = 3 \Rightarrow C = 1$. (Konsisten.)</li>
+ </ul>
+ <p class="lesson-text"><strong>Langkah 4: Integralkan.</strong></p>
+ <p class="lesson-text">$$\int \frac{5x+3}{(x-1)(x^2+1)}\, dx = 4\int \frac{1}{x-1}\, dx + \int \frac{-4x + 1}{x^2 + 1}\, dx$$</p>
+ <p class="lesson-text">Integral pertama: $4\ln|x-1|$.</p>
+ <p class="lesson-text">Integral kedua dipecah menjadi dua:</p>
+ <p class="lesson-text">$$\int \frac{-4x + 1}{x^2 + 1}\, dx = -4\int \frac{x}{x^2 + 1}\, dx + \int \frac{1}{x^2 + 1}\, dx$$</p>
+ <p class="lesson-text">Untuk suku pertama, gunakan substitusi $u = x^2 + 1$ dengan $du = 2x\, dx$:</p>
+ <p class="lesson-text">$$-4 \cdot \frac{1}{2}\ln(x^2 + 1) = -2\ln(x^2 + 1)$$</p>
+ <p class="lesson-text">Untuk suku kedua, gunakan anti-turunan standar $\arctan x$:</p>
+ <p class="lesson-text">$$\int \frac{1}{x^2 + 1}\, dx = \arctan x$$</p>
+ <p class="lesson-text">Maka hasil keseluruhannya:</p>
+ <p class="lesson-text">$$\int \frac{5x+3}{(x-1)(x^2+1)}\, dx = 4\ln|x-1| - 2\ln(x^2 + 1) + \arctan x + C$$</p>
+
+ <h3 class="lesson-subheading">G. Catatan: Fungsi Rasional Tak Sejati</h3>
+ <p class="lesson-text">Jika derajat pembilang $\geq$ derajat penyebut, lakukan pembagian polinomial terlebih dahulu. Misalnya, untuk $\dfrac{x^3 + 1}{x^2 + 1}$:</p>
+ <p class="lesson-text">$$x^3 + 1 = x(x^2 + 1) + (1 - x)$$</p>
+ <p class="lesson-text">sehingga:</p>
+ <p class="lesson-text">$$\frac{x^3 + 1}{x^2 + 1} = x + \frac{1 - x}{x^2 + 1}$$</p>
+ <p class="lesson-text">Sekarang fungsi rasional sisanya sudah sejati dan dapat didekomposisi lebih lanjut jika perlu.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Contoh Soal dan Penerapan</h2>
+ <p class="lesson-text">Berikut beberapa contoh yang menerapkan ketiga teknik, serta kombinasi di antara mereka.</p>
+
+ <h3 class="lesson-subheading">A. Substitusi pada Integral Tentu</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int_0^{\pi/2} \sin^3 x \cos x\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Ambil $u = \sin x$, maka $du = \cos x\, dx$. Ubah batas integrasi:</p>
+ <ul>
+  <li>Ketika $x = 0$, maka $u = \sin 0 = 0$.</li>
+  <li>Ketika $x = \pi/2$, maka $u = \sin(\pi/2) = 1$.</li>
+ </ul>
+ <p class="lesson-text">$$\int_0^{\pi/2} \sin^3 x \cos x\, dx = \int_0^1 u^3\, du = \left[\frac{u^4}{4}\right]_0^1 = \frac{1}{4}$$</p>
+
+ <h3 class="lesson-subheading">B. Integrasi Parsial Berulang</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int x^2 \cos x\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Ambil $u = x^2$ dan $dv = \cos x\, dx$, sehingga $du = 2x\, dx$ dan $v = \sin x$:</p>
+ <p class="lesson-text">$$\int x^2 \cos x\, dx = x^2 \sin x - \int 2x \sin x\, dx$$</p>
+ <p class="lesson-text">Untuk integral $\int x \sin x\, dx$, ambil $u = x$ dan $dv = \sin x\, dx$:</p>
+ <p class="lesson-text">$$\int x \sin x\, dx = -x \cos x + \int \cos x\, dx = -x \cos x + \sin x + C$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int x^2 \cos x\, dx = x^2 \sin x - 2(-x \cos x + \sin x) + C = x^2 \sin x + 2x \cos x - 2\sin x + C$$</p>
+
+ <h3 class="lesson-subheading">C. Kombinasi Substitusi dan Parsial</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int x \ln x\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Ini bukan bentuk substitusi (tidak ada komposisi fungsi dengan turunannya), dan bukan bentuk pecahan parsial. Kita gunakan integrasi parsial. Berdasarkan LIATE, $\ln x$ (L) lebih tinggi prioritasnya daripada $x$ (A). Maka:</p>
+ <p class="lesson-text">$$u = \ln x, \qquad dv = x\, dx$$</p>
+ <p class="lesson-text">$$du = \frac{1}{x}\, dx, \qquad v = \frac{x^2}{2}$$</p>
+ <p class="lesson-text">$$\int x \ln x\, dx = \frac{x^2}{2} \ln x - \int \frac{x^2}{2} \cdot \frac{1}{x}\, dx = \frac{x^2}{2}\ln x - \frac{1}{2}\int x\, dx$$</p>
+ <p class="lesson-text">$$= \frac{x^2}{2}\ln x - \frac{x^2}{4} + C = \frac{x^2}{4}(2\ln x - 1) + C$$</p>
+
+ <h3 class="lesson-subheading">D. Pecahan Parsial dengan Faktor Linear Berbeda</h3>
+ <p class="lesson-text"><strong>Soal.</strong> Hitung $\displaystyle\int \frac{x + 5}{x^2 + x - 2}\, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian.</strong> Faktorkan penyebut: $x^2 + x - 2 = (x + 2)(x - 1)$. Tuliskan dekomposisi:</p>
+ <p class="lesson-text">$$\frac{x+5}{(x+2)(x-1)} = \frac{A}{x+2} + \frac{B}{x-1}$$</p>
+ <p class="lesson-text">Kalikan kedua ruas dengan $(x+2)(x-1)$:</p>
+ <p class="lesson-text">$$x + 5 = A(x - 1) + B(x + 2)$$</p>
+ <p class="lesson-text">Substitusi $x = 1$: $6 = 3B$, sehingga $B = 2$.</p>
+ <p class="lesson-text">Substitusi $x = -2$: $3 = -3A$, sehingga $A = -1$.</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int \frac{x+5}{x^2+x-2}\, dx = -\int \frac{1}{x+2}\, dx + 2\int \frac{1}{x-1}\, dx = -\ln|x+2| + 2\ln|x-1| + C$$</p>
+
+ <h3 class="lesson-subheading">E. Penerapan: Populasi dengan Laju Logistik</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Sebuah populasi bakteri tumbuh dengan laju yang sebanding dengan hasil kali populasi dan selisih antara kapasitas daya dukung $K$ dengan populasi saat ini. Model matematikanya adalah persamaan diferensial $\dfrac{dP}{dt} = kP(K - P)$, dengan $P(t)$ populasi pada waktu $t$ dan $k$ konstanta laju. Salah satu langkah dalam menyelesaikan model ini adalah menghitung integral:</p>
+ <p class="lesson-text">$$\int \frac{1}{P(K - P)}\, dP$$</p>
+ <p class="lesson-text"><strong>Dekomposisi pecahan parsial.</strong> Perhatikan bahwa $\dfrac{1}{P(K-P)}$ dapat dipecah menjadi:</p>
+ <p class="lesson-text">$$\frac{1}{P(K-P)} = \frac{A}{P} + \frac{B}{K-P}$$</p>
+ <p class="lesson-text">Kalikan dengan $P(K-P)$: $1 = A(K-P) + BP$.</p>
+ <p class="lesson-text">Substitusi $P = 0$: $1 = AK$, sehingga $A = \dfrac{1}{K}$.</p>
+ <p class="lesson-text">Substitusi $P = K$: $1 = BK$, sehingga $B = \dfrac{1}{K}$.</p>
+ <p class="lesson-text">Maka integralnya menjadi:</p>
+ <p class="lesson-text">$$\int \frac{1}{P(K-P)}\, dP = \frac{1}{K}\int \frac{1}{P}\, dP + \frac{1}{K}\int \frac{1}{K-P}\, dP = \frac{1}{K}\left(\ln|P| - \ln|K-P|\right) + C$$</p>
+ <p class="lesson-text">$$= \frac{1}{K}\ln\left|\frac{P}{K-P}\right| + C$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Interpretasi.</strong> Hasil integral ini menjadi kunci untuk menyelesaikan model pertumbuhan logistik, yang dipakai untuk memodelkan penyebaran penyakit, pertumbuhan populasi dengan sumber daya terbatas, dan adopsi teknologi baru. Tanpa teknik pecahan parsial, integral ini akan sangat sulit dihitung.</p>
+ </div>
+
+ <h3 class="lesson-subheading">F. Penerapan: Reaksi Kimia dengan Laju Orde Kedua</h3>
+ <p class="lesson-text"><strong>Situasi.</strong> Dalam kinetika kimia, laju reaksi orde kedua antara dua reaktan dengan konsentrasi awal yang berbeda dimodelkan oleh $\dfrac{d[A]}{dt} = -k[A][B]$. Menyelesaikan model ini melibatkan integral:</p>
+ <p class="lesson-text">$$\int \frac{1}{[A][B]}\, d[A]$$</p>
+ <p class="lesson-text">dengan hubungan $[B] = [B]_0 - [A]_0 + [A]$. Setelah substitusi, integran menjadi fungsi rasional yang memerlukan dekomposisi pecahan parsial untuk diselesaikan.</p>
+ <div class="lesson-note">
+  <p class="lesson-text"><strong>Poin penting.</strong> Ketiga teknik&mdash;substitusi, parsial, dan pecahan parsial&mdash;sering muncul dalam penyelesaian persamaan diferensial, yang menjadi bahasa utama fisika, kimia, biologi, dan teknik. Menguasai ketiganya adalah investasi besar untuk materi-materi lanjutan.</p>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Kesalahan Umum</h2>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Substitusi</h3>
+ <ul>
+  <li><strong>Lupa mengubah $dx$ menjadi $du$.</strong> Setelah mengganti variabel, semua kemunculan $x$ dan $dx$ harus dihilangkan. Jika masih ada $x$ atau $dx$ di integran, substitusinya belum lengkap.</li>
+  <li><strong>Lupa mengalikan dengan faktor konstan yang muncul.</strong> Jika $du = 3\, dx$, maka $dx = \dfrac{du}{3}$&mdash;bukan $du = dx$. Faktor $\dfrac{1}{3}$ harus disertakan.</li>
+  <li><strong>Tidak mengubah batas pada integral tentu.</strong> Ada dua pilihan: ubah batas integrasi dari $x$ ke $u$, atau kembalikan dulu ke $x$ sebelum evaluasi. Jangan campur keduanya&mdash;ini menyebabkan hasil yang salah.</li>
+  <li><strong>Memilih $u$ yang tidak tepat.</strong> Pilih $u$ sebagai fungsi dalam (biasanya yang "di dalam" kurung, akar, atau fungsi trigonometri). Jika setelah substitusi integralnya malah lebih rumit, kemungkinan pilihan $u$-nya salah.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Integrasi Parsial</h3>
+ <ul>
+  <li><strong>Salah memilih $u$ dan $dv$.</strong> Jika setelah integrasi parsial muncul integral yang lebih rumit, biasanya pilihan $u$ dan $dv$ perlu dibalik. Gunakan pedoman LIATE sebagai titik awal.</li>
+  <li><strong>Lupa tanda negatif pada rumus.</strong> Rumus $\int u\, dv = uv - \int v\, du$ mengandung tanda minus. Tanda ini sering tertukar dan menghasilkan kesalahan.</li>
+  <li><strong>Tidak menyelesaikan integral yang tersisa.</strong> Setelah menerapkan rumus, masih ada integral $\int v\, du$ yang harus dihitung. Jangan berhenti di tengah jalan.</li>
+  <li><strong>Salah mengidentifikasi $u$ sebagai fungsi yang lebih sederhana setelah diturunkan.</strong> Untuk $x \ln x$, pilih $u = \ln x$ (bukan $u = x$), karena turunan $\ln x = \dfrac{1}{x}$ menghilangkan logaritma yang sulit diintegralkan. Sebaliknya, jika $u = x$, maka $dv = \ln x\, dx$, dan kita perlu mencari anti-turunan $\ln x$&mdash;yang justru kembali ke masalah awal.</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kesalahan terkait Pecahan Parsial</h3>
+ <ul>
+  <li><strong>Tidak memfaktorkan penyebut terlebih dahulu.</strong> Dekomposisi tidak dapat ditulis sebelum penyebutnya difaktorkan menjadi faktor-faktor sederhana.</li>
+  <li><strong>Lupa menuliskan suku-suku tambahan untuk faktor berulang.</strong> Jika penyebut mengandung $(x-a)^2$, dekomposisi harus memuat dua suku: $\dfrac{A}{x-a} + \dfrac{B}{(x-a)^2}$. Bukan hanya satu.</li>
+  <li><strong>Menggunakan pembilang konstanta untuk faktor kuadratik tak dapat direduksi.</strong> Untuk faktor seperti $x^2 + 1$, pembilangnya harus berbentuk linear $Ax + B$, bukan konstanta $A$.</li>
+  <li><strong>Menerapkan pecahan parsial pada fungsi rasional tidak sejati.</strong> Jika derajat pembilang $\geq$ derajat penyebut, harus dilakukan pembagian polinomial terlebih dahulu. Mengabaikan langkah ini menghasilkan dekomposisi yang salah.</li>
+  <li><strong>Menukar urutan konstanta.</strong> Setelah menyamakan koefisien, periksa ulang setiap konstanta. Kesalahan kecil pada satu konstanta akan merambat ke seluruh jawaban.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Ringkasan</h2>
+ <ul>
+  <li><strong>Tiga teknik utama pengintegralan:</strong> substitusi, integrasi parsial, dan pecahan parsial. Masing-masing menargetkan struktur integran yang berbeda.</li>
+  <li><strong>Substitusi:</strong> $\displaystyle\int f(g(x)) g'(x)\, dx = \int f(u)\, du$ dengan $u = g(x)$. Kebalikan dari aturan rantai. Cocok untuk integran berbentuk komposisi.</li>
+  <li><strong>Substitusi pada integral tentu:</strong> $\displaystyle\int_a^b f(g(x)) g'(x)\, dx = \int_{g(a)}^{g(b)} f(u)\, du$. Batas integrasi ikut berubah.</li>
+  <li><strong>Integrasi parsial:</strong> $\displaystyle\int u\, dv = uv - \int v\, du$. Kebalikan dari aturan produk. Cocok untuk integran berbentuk perkalian dua fungsi berbeda jenis.</li>
+  <li><strong>LIATE:</strong> pedoman memilih $u$ dalam integrasi parsial. Urutan prioritas: <em>Logarithmic</em>, <em>Inverse trigonometric</em>, <em>Algebraic</em>, <em>Trigonometric</em>, <em>Exponential</em>.</li>
+  <li><strong>Parsial berulang:</strong> untuk integran dengan polinomial berderajat $n$, integrasi parsial mungkin perlu dilakukan hingga $n$ kali.</li>
+  <li><strong>Parsial siklik:</strong> jika integrasi parsial menghasilkan integral awal yang sama, selesaikan secara aljabar&mdash;seperti pada $\int e^x \sin x\, dx$.</li>
+  <li><strong>Pecahan parsial:</strong> untuk integran berbentuk $\dfrac{P(x)}{Q(x)}$ dengan derajat $P <$ derajat $Q$. Faktorkan $Q$, tuliskan dekomposisi, tentukan konstanta, lalu integralkan setiap suku.</li>
+  <li><strong>Dekomposisi pecahan parsial:</strong>
+   <ul>
+    <li>Faktor linear berbeda: $\dfrac{A}{ax + b}$.</li>
+    <li>Faktor linear berulang: $\dfrac{A_1}{ax+b} + \dfrac{A_2}{(ax+b)^2} + \cdots$.</li>
+    <li>Faktor kuadratik tak dapat direduksi: $\dfrac{Ax + B}{ax^2 + bx + c}$.</li>
+   </ul>
+  </li>
+  <li><strong>Fungsi rasional tak sejati:</strong> jika derajat pembilang $\geq$ derajat penyebut, lakukan pembagian polinomial terlebih dahulu.</li>
+  <li><strong>Verifikasi:</strong> setiap hasil integral dapat diperiksa dengan menurunkannya kembali. Jika turunannya sama dengan integran asal, perhitungannya benar.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penutup</h2>
+ <p class="lesson-text">Teknik pengintegralan memperluas kemampuan kita jauh melampaui aturan-aturan dasar. Substitusi "membalik" aturan rantai, integrasi parsial "membalik" aturan produk, dan pecahan parsial memecah fungsi rasional menjadi bagian-bagian yang mudah diintegralkan. Ketiga teknik ini bukan sekadar trik&mdash;masing-masing berasal dari sifat fundamental turunan.</p>
+ <p class="lesson-text">Mengenali teknik mana yang tepat untuk suatu integran adalah keterampilan yang berkembang melalui latihan. Perhatikan struktur integran: apakah ia berbentuk komposisi (substitusi), perkalian dua fungsi berbeda (parsial), atau fungsi rasional (pecahan parsial)? Terkadang satu integral memerlukan lebih dari satu teknik secara berurutan&mdash;misalnya substitusi yang diikuti integrasi parsial, atau pecahan parsial yang dilanjutkan dengan substitusi.</p>
+ <p class="lesson-text">Materi berikutnya tentang <strong>aplikasi integral</strong> akan menunjukkan bagaimana integral&mdash;beserta teknik-teknik yang sudah dipelajari&mdash;dipakai untuk menghitung besaran geometris dan fisik seperti luas daerah, volume benda putar, panjang busur, dan pusat massa.</p>
+</section>
+
+</main>
+</body>
+</html>

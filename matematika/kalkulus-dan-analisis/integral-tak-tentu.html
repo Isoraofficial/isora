@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Integral Tak Tentu (Anti-turunan, Konstanta Integrasi, Aturan Dasar)</title>
+ <meta name="description" content="Materi lengkap integral tak tentu: pengertian anti-turunan, notasi integral, keluarga anti-turunan dan konstanta integrasi, aturan pangkat, aturan konstanta dan kelipatan, aturan jumlah/selisih, integral fungsi trigonometri, eksponen, logaritma, sifat linearitas, serta contoh penerapan.">
+ <script src="/head.js"></script>
+</head>
+<body>
+
+<script src="/nav.js"></script>
+
+<div class="lesson">
+<h2 class="lesson-title">Integral Tak Tentu (Anti-turunan, Integral Dasar)</h2>
+
+<div class="box-prasyarat">
+ <div class="btn-prasyarat">Prasyarat</div>
+ <div class="content-prasyarat">
+  <ul>
+   <li><strong>Turunan</strong> — definisi turunan, notasi $f'(x)$ dan $\dfrac{dy}{dx}$, aturan pangkat, aturan kelipatan konstanta, aturan jumlah/selisih, serta turunan fungsi trigonometri, eksponen, dan logaritma, karena integral tak tentu adalah operasi kebalikan dari turunan.</li>
+   <li><strong>Konsep Integral</strong> — pengertian integral sebagai anti-turunan dan sebagai luas, serta notasi integral $\int f(x) \, dx$, karena materi ini adalah pendalaman dari wajah anti-turunan yang sudah diperkenalkan.</li>
+   <li><strong>Aljabar Dasar</strong> — manipulasi bentuk aljabar, pangkat, akar, dan pecahan, karena integran sering perlu disederhanakan terlebih dahulu sebelum diintegralkan.</li>
+  </ul>
+ </div>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Pendahuluan</h3>
+ <p class="lesson-text">Pada materi <strong>Konsep Integral</strong>, kita telah mengenal integral dari dua sudut pandang: sebagai <strong>anti-turunan</strong> (operasi kebalikan dari turunan) dan sebagai <strong>luas</strong> (daerah di bawah kurva). Keduanya dihubungkan oleh Teorema Fundamental Kalkulus.</p>
+ <p class="lesson-text">Dalam materi ini, kita akan <strong>fokus secara mendalam pada wajah pertama integral</strong>—yaitu integral tak tentu sebagai anti-turunan. Ini adalah fondasi teknis yang harus dikuasai sebelum kita melangkah ke integral tentu dan aplikasinya. Tanpa kefasihan menghitung integral tak tentu, kita tidak akan bisa menghitung integral tentu (karena TFK Bagian 2 memerlukan anti-turunan).</p>
+ <p class="lesson-text">Pertanyaan utama yang akan kita jawab: <strong>Diberikan sebuah fungsi $f(x)$, bagaimana cara mencari fungsi $F(x)$ sedemikian sehingga $F'(x) = f(x)$?</strong> Proses ini disebut <strong>pengintegralan</strong> atau <strong>anti-diferensiasi</strong>, dan hasilnya disebut <strong>integral tak tentu</strong>.</p>
+ <p class="lesson-text">Integral tak tentu adalah <em>keterampilan</em>—seperti halnya turunan. Semakin banyak Anda berlatih, semakin cepat dan akurat Anda mengenali pola. Kabar baiknya: aturan-aturan integral tak tentu sebagian besar adalah <strong>kebalikan dari aturan turunan</strong>, sehingga Anda tidak perlu menghafal dari nol—cukup pahami hubungannya dengan turunan.</p>
+ <p class="lesson-text">Dalam materi ini, kita akan membahas: (1) pengertian anti-turunan secara mendalam, (2) mengapa ada konstanta integrasi $C$, (3) notasi integral tak tentu, (4) aturan-aturan dasar (pangkat, konstanta, kelipatan, jumlah/selisih), (5) integral fungsi trigonometri, eksponen, dan logaritma, (6) sifat linearitas integral, (7) contoh-contoh bertahap, dan (8) contoh penerapan sederhana. Setiap aturan akan disertai <em>verifikasi</em> melalui turunan, sehingga Anda dapat memastikan kebenarannya sendiri.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">I. Pengertian Anti-Turunan</h3>
+ <p class="lesson-subheading">A. Definisi</p>
+ <p class="lesson-text">Sebuah fungsi $F$ disebut <strong>anti-turunan</strong> (atau <em>primitif</em>) dari fungsi $f$ pada suatu interval jika:</p>
+ <p class="lesson-text">$$F'(x) = f(x)$$</p>
+ <p class="lesson-text">untuk setiap $x$ pada interval tersebut. Dengan kata lain, $F$ adalah anti-turunan dari $f$ jika <strong>turunan dari $F$ sama dengan $f$</strong>.</p>
+ <p class="lesson-text">Proses mencari $F$ dari $f$ disebut <strong>pengintegralan</strong> atau <strong>anti-diferensiasi</strong>. Sedangkan $f$ sendiri disebut <strong>integran</strong>.</p>
+
+ <p class="lesson-subheading">B. Contoh Sederhana</p>
+ <p class="lesson-text">Mari kita lihat beberapa contoh untuk memahami konsep ini.</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Cari anti-turunan dari $f(x) = 2x$.</p>
+ <p class="lesson-text">Kita mencari fungsi $F$ sedemikian sehingga $F'(x) = 2x$. Dari aturan turunan pangkat, kita tahu bahwa jika $F(x) = x^2$, maka $F'(x) = 2x$. Jadi, $F(x) = x^2$ adalah anti-turunan dari $2x$. ✓</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Cari anti-turunan dari $f(x) = \cos x$.</p>
+ <p class="lesson-text">Kita mencari $F$ dengan $F'(x) = \cos x$. Dari tabel turunan, kita tahu bahwa $(\sin x)' = \cos x$. Jadi, $F(x) = \sin x$ adalah anti-turunan dari $\cos x$. ✓</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Cari anti-turunan dari $f(x) = e^x$.</p>
+ <p class="lesson-text">Fungsi $F(x) = e^x$ memiliki $F'(x) = e^x$. Jadi, $F(x) = e^x$ adalah anti-turunannya. Fakta unik: $e^x$ adalah satu-satunya fungsi (selain kelipatannya) yang menjadi anti-turunan bagi dirinya sendiri. ✓</p>
+
+ <p class="lesson-subheading">C. Hubungan dengan Turunan</p>
+ <p class="lesson-text">Perhatikan bahwa mencari anti-turunan pada dasarnya adalah <strong>menebak dengan panduan turunan</strong>. Kita bertanya pada diri sendiri: "Fungsi apa yang jika diturunkan menghasilkan integran ini?" Jawabannya adalah anti-turunannya.</p>
+ <p class="lesson-text">Karena itu, <strong>menguasai tabel turunan adalah kunci untuk menguasai integral tak tentu</strong>. Semakin banyak fungsi turunan yang Anda kenali, semakin cepat Anda dapat mengenali anti-turunannya.</p>
+
+ <figure>
+  <svg viewBox="0 0 700 300" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Panel kiri: Turunan -->
+   <text x="130" y="30" font-size="14" fill="#5dade2" font-style="italic">Operasi Turunan</text>
+   <circle cx="130" cy="120" r="45" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+   <text x="105" y="126" font-size="14" fill="#5dade2" font-style="italic">F(x)</text>
+   <circle cx="130" cy="230" r="45" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+   <text x="108" y="236" font-size="14" fill="#daa520" font-style="italic">f(x)</text>
+   <!-- Panah turun -->
+   <line x1="200" y1="145" x2="200" y2="205" stroke="#5dade2" stroke-width="2"/>
+   <polygon points="200,212 194,200 206,200" fill="#5dade2"/>
+   <text x="210" y="180" font-size="13" fill="#5dade2" font-style="italic">turunkan</text>
+
+   <!-- Panel kanan: Integral -->
+
+<text x="500" y="30" font-size="14" fill="#daa520" font-style="italic">Operasi Integral</text>
+<circle cx="450" cy="120" r="45" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="2"/>
+<text x="425" y="126" font-size="14" fill="#5dade2" font-style="italic">F(x)</text>
+<circle cx="450" cy="230" r="45" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="2"/>
+<text x="428" y="236" font-size="14" fill="#daa520" font-style="italic">f(x)</text>
+
+   <!-- Panah naik -->
+
+   <line x1="400" y1="205" x2="400" y2="145" stroke="#daa520" stroke-width="2"/>
+   <polygon points="400,138 394,150 406,150" fill="#daa520"/>
+   <text x="280" y="180" font-size="13" fill="#daa520" font-style="italic">integralkan (anti-turunan)</text>
+
+   <!-- Keterangan -->
+
+<text x="80" y="285" font-size="12" fill="#b8b8b8" font-style="italic">Turunan: dari F ke f</text>
+<text x="410" y="285" font-size="12" fill="#b8b8b8" font-style="italic">Integral: dari f kembali ke F (+ C)</text>
+</svg>
+
+  <figcaption style="font-size:0.85em; color:#b8b8b8; margin-top:8px;">Gambar 1: Turunan dan integral adalah dua operasi yang saling berkebalikan. Turunan mengubah $F(x)$ menjadi $f(x)$; integral mengubah $f(x)$ kembali menjadi $F(x)$ (plus konstanta $C$).</figcaption>
+ </figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">II. Keluarga Anti-Turunan dan Konstanta Integrasi</h3>
+ <p class="lesson-subheading">A. Anti-Turunan Tidak Tunggal</p>
+ <p class="lesson-text">Perhatikan fakta penting: <strong>anti-turunan tidak tunggal</strong>. Jika $F(x)$ adalah anti-turunan dari $f(x)$, maka $F(x) + C$ juga merupakan anti-turunan dari $f(x)$, untuk setiap konstanta $C$.</p>
+ <p class="lesson-text"><strong>Mengapa?</strong> Karena turunan dari konstanta adalah nol:</p>
+ <p class="lesson-text">$$(F(x) + C)' = F'(x) + 0 = f(x)$$</p>
+ <p class="lesson-text">Sebagai contoh konkret, perhatikan bahwa fungsi-fungsi berikut semuanya memiliki turunan $2x$:</p>
+ <ul>
+  <li>$x^2$ → turunannya $2x$.</li>
+  <li>$x^2 + 1$ → turunannya $2x$.</li>
+  <li>$x^2 - 5$ → turunannya $2x$.</li>
+  <li>$x^2 + 100$ → turunannya $2x$.</li>
+  <li>$x^2 + \pi$ → turunannya $2x$.</li>
+ </ul>
+ <p class="lesson-text">Semuanya adalah anti-turunan dari $2x$. Mereka membentuk <strong>keluarga fungsi</strong> yang berbeda satu sama lain hanya oleh konstanta penambah.</p>
+
+ <p class="lesson-subheading">B. Konstanta Integrasi $C$</p>
+ <p class="lesson-text">Karena anti-turunan tidak tunggal, kita selalu menambahkan konstanta $C$ (disebut <strong>konstanta integrasi</strong>) pada hasil integral tak tentu. Konstanta ini mewakili "kemungkinan pergeseran vertikal" yang tidak dapat ditentukan tanpa informasi tambahan.</p>
+
+ <figure>
+  <svg viewBox="0 0 600 400" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Sumbu -->
+   <line x1="60" y1="200" x2="560" y2="200" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="562,200 552,195 552,205" fill="#e8e8e8"/>
+   <text x="566" y="204" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="300" y1="360" x2="300" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="300,37 295,47 305,47" fill="#e8e8e8"/>
+   <text x="306" y="35" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+
+   <!-- Tiga parabola: y = x^2 + C untuk C = -1, 0, 1, 2 -->
+
+   <!-- Skala: 40px per unit x, 30px per unit y -->
+
+   <!-- y = x^2 + 2 → puncak di (300, 140) -->
+
+   <path d="M 180 200 Q 240 140 300 140 Q 360 140 420 200" fill="none" stroke="#f0c75e" stroke-width="2"/>
+   <text x="425" y="145" font-size="11" fill="#f0c75e" font-style="italic">F(x) + 2</text>
+
+   <!-- y = x^2 + 1 → puncak di (300, 170) -->
+
+   <path d="M 180 230 Q 240 170 300 170 Q 360 170 420 230" fill="none" stroke="#daa520" stroke-width="2.2"/>
+   <text x="425" y="175" font-size="11" fill="#daa520" font-style="italic">F(x) + 1</text>
+
+   <!-- y = x^2 → puncak di (300, 200) -->
+
+   <path d="M 180 260 Q 240 200 300 200 Q 360 200 420 260" fill="none" stroke="#5dade2" stroke-width="2.2"/>
+   <text x="425" y="205" font-size="11" fill="#5dade2" font-style="italic">F(x)</text>
+
+   <!-- y = x^2 - 1 → puncak di (300, 230) -->
+
+   <path d="M 180 290 Q 240 230 300 230 Q 360 230 420 290" fill="none" stroke="#e74c3c" stroke-width="2"/>
+   <text x="425" y="235" font-size="11" fill="#e74c3c" font-style="italic">F(x) − 1</text>
+
+   <!-- Keterangan -->
+
+<text x="120" y="340" font-size="12" fill="#b8b8b8" font-style="italic">Semua kurva memiliki turunan yang sama: F'(x) = 2x</text>
+<text x="120" y="375" font-size="12" fill="#b8b8b8" font-style="italic">Karena itu, ∫ 2x dx = x² + C, dengan C sebarang konstanta</text>
+</svg>
+
+  <figcaption style="font-size:0.85em; color:#b8b8b8; margin-top:8px;">Gambar 2: Keluarga anti-turunan $F(x) + C$. Keempat parabola ini hanyalah pergeseran vertikal dari kurva yang sama. Semuanya memiliki turunan yang sama, sehingga semuanya adalah anti-turunan dari $2x$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">C. Kapan Konstanta $C$ Dapat Ditentukan?</p>
+ <p class="lesson-text">Dalam beberapa masalah, kita diberikan <strong>syarat awal</strong> (initial condition) yang memungkinkan kita menentukan nilai $C$. Misalnya, jika kita tahu bahwa $F(0) = 5$ dan $F'(x) = 2x$, maka:</p>
+ <p class="lesson-text">$$F(x) = x^2 + C$$</p>
+ <p class="lesson-text">Substitusi $x = 0$: $F(0) = 0 + C = 5$, sehingga $C = 5$. Maka anti-turunan spesifik yang memenuhi syarat adalah $F(x) = x^2 + 5$.</p>
+ <p class="lesson-text">Jika tidak ada syarat awal, kita hanya dapat menyatakan anti-turunan dalam bentuk umum dengan $C$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">III. Notasi Integral Tak Tentu</h3>
+ <p class="lesson-subheading">A. Simbol Integral</p>
+ <p class="lesson-text">Kita menggunakan notasi berikut untuk menyatakan anti-turunan umum:</p>
+ <p class="lesson-text">$$\int f(x) \, dx = F(x) + C \quad \text{di mana } F'(x) = f(x)$$</p>
+ <p class="lesson-text">Mari kita bedah setiap bagian dari notasi ini:</p>
+ <ul>
+  <li><strong>$\int$</strong>: simbol integral (dari huruf "S" panjang, singkatan dari "summa" = jumlah). Simbol ini menunjukkan operasi pengintegralan.</li>
+  <li><strong>$f(x)$</strong>: <strong>integran</strong>, yaitu fungsi yang diintegralkan.</li>
+  <li><strong>$dx$</strong>: <strong>diferensial variabel integrasi</strong>. Menunjukkan bahwa variabel integrasi adalah $x$. Bukan sekadar hiasan—ia memberi tahu kita variabel mana yang diintegralkan.</li>
+  <li><strong>$F(x) + C$</strong>: hasil integral, dengan $C$ sebagai konstanta integrasi.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Membaca Notasi</p>
+ <p class="lesson-text">Notasi $\displaystyle\int f(x) \, dx$ dibaca sebagai "<strong>integral tak tentu dari $f(x)$ terhadap $x$</strong>". Frasa "terhadap $x$" sangat penting karena integran bisa memiliki beberapa variabel (meskipun dalam materi ini kita fokus pada satu variabel).</p>
+
+ <p class="lesson-subheading-alt">Contoh pembacaan:</p>
+ <ul>
+  <li>$\displaystyle\int x^2 \, dx$ dibaca: "integral $x^2$ terhadap $x$".</li>
+  <li>$\displaystyle\int \sin t \, dt$ dibaca: "integral $\sin t$ terhadap $t$".</li>
+  <li>$\displaystyle\int e^u \, du$ dibaca: "integral $e^u$ terhadap $u$".</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Hubungan dengan Notasi Turunan</p>
+ <p class="lesson-text">Perhatikan bahwa notasi Leibniz untuk turunan adalah $\dfrac{dy}{dx}$. Dalam notasi ini, $dx$ juga muncul sebagai "diferensial variabel". Integral tak tentu dapat dipandang sebagai "membatalkan" $dx$—simbol $\int$ dan $dx$ bekerja berpasangan, sama seperti $\dfrac{d}{dx}$ dan $dx$.</p>
+ <p class="lesson-text">Ini mengapa notasi $\displaystyle\int f(x) \, dx$ sering terasa alami setelah kita terbiasa dengan notasi Leibniz untuk turunan.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IV. Aturan-Aturan Dasar Integral Tak Tentu</h3>
+ <p class="lesson-subheading">A. Aturan Konstanta</p>
+ <p class="lesson-text">Untuk konstanta $k$:</p>
+ <p class="lesson-text">$$\int k \, dx = kx + C$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Kita mencari fungsi yang jika diturunkan menghasilkan $k$. Fungsi $kx$ memiliki turunan $k$. Karena itu, $\int k \, dx = kx + C$. ∎</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$\displaystyle\int 5 \, dx = 5x + C$.</li>
+  <li>$\displaystyle\int (-3) \, dx = -3x + C$.</li>
+  <li>$\displaystyle\int 0 \, dx = C$ (turunan dari konstanta adalah nol, jadi anti-turunan dari nol adalah konstanta).</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Aturan Pangkat</p>
+ <p class="lesson-text">Untuk $n \neq -1$:</p>
+ <p class="lesson-text">$$\int x^n \, dx = \frac{x^{n+1}}{n+1} + C$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Verifikasi dengan menurunkan ruas kanan:</p>
+ <p class="lesson-text">$$\frac{d}{dx}\left[\frac{x^{n+1}}{n+1} + C\right] = \frac{(n+1) x^n}{n+1} + 0 = x^n$$</p>
+ <p class="lesson-text">Karena turunan dari ruas kanan menghasilkan integran $x^n$, maka rumus ini benar. ∎</p>
+ <p class="lesson-text">Perhatikan pola: aturan pangkat integral adalah kebalikan dari aturan pangkat turunan. Pada turunan, pangkat berkurang satu (dan dikalikan pangkat lama). Pada integral, pangkat bertambah satu (dan dibagi pangkat baru).</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$\displaystyle\int x^3 \, dx = \frac{x^4}{4} + C$.</li>
+  <li>$\displaystyle\int x^5 \, dx = \frac{x^6}{6} + C$.</li>
+  <li>$\displaystyle\int x^{1/2} \, dx = \frac{x^{3/2}}{3/2} + C = \frac{2}{3} x^{3/2} + C$.</li>
+  <li>$\displaystyle\int x^{-2} \, dx = \frac{x^{-1}}{-1} + C = -\frac{1}{x} + C$.</li>
+  <li>$\displaystyle\int x^{-1/3} \, dx = \frac{x^{2/3}}{2/3} + C = \frac{3}{2} x^{2/3} + C$.</li>
+ </ul>
+
+ <p class="lesson-subheading">C. Kasus Khusus $n = -1$</p>
+ <p class="lesson-text">Aturan pangkat tidak berlaku ketika $n = -1$, karena akan menghasilkan pembagian dengan nol ($n + 1 = 0$). Untuk kasus ini, kita menggunakan aturan khusus:</p>
+ <p class="lesson-text">$$\int \frac{1}{x} \, dx = \ln|x| + C$$</p>
+ <p class="lesson-subheading-alt">Mengapa ada tanda nilai mutlak?</p>
+ <p class="lesson-text">Karena fungsi $\ln x$ hanya terdefinisi untuk $x > 0$, sedangkan integran $\dfrac{1}{x}$ terdefinisi untuk $x \neq 0$. Untuk $x < 0$, kita dapat menggunakan $\ln(-x)$, yang turunannya adalah:</p>
+ <p class="lesson-text">$$\frac{d}{dx}\ln(-x) = \frac{1}{-x} \cdot (-1) = \frac{1}{x}$$</p>
+ <p class="lesson-text">Jadi, baik untuk $x > 0$ maupun $x < 0$, anti-turunannya adalah $\ln|x|$. Tanda nilai mutlak ini memastikan hasil integral valid untuk kedua sisi.</p>
+
+ <figure>
+  <svg viewBox="0 0 600 340" style="max-width:100%; height:auto; width:600px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Sumbu -->
+   <line x1="60" y1="170" x2="560" y2="170" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="562,170 552,165 552,175" fill="#e8e8e8"/>
+   <text x="566" y="174" font-size="12" fill="#e8e8e8" font-style="italic">x</text>
+   <line x1="310" y1="300" x2="310" y2="40" stroke="#e8e8e8" stroke-width="1.5"/>
+   <polygon points="310,37 305,47 315,47" fill="#e8e8e8"/>
+   <text x="316" y="35" font-size="12" fill="#e8e8e8" font-style="italic">y</text>
+
+   <!-- Asimtot di x = 0 (pixel 310) -->
+
+   <line x1="310" y1="40" x2="310" y2="300" stroke="#5dade2" stroke-width="1.2" stroke-dasharray="5,4"/>
+
+   <!-- Cabang kiri: y = ln(-x), untuk x < 0 -->
+
+   <!-- Pada x = -0.5 → y ≈ -0.69 (di bawah) -->
+
+   <!-- Kurva naik dari -∞ saat x→0⁻ -->
+
+   <path d="M 180 220 Q 250 200 290 130 Q 305 90 308 70" fill="none" stroke="#daa520" stroke-width="2.5"/>
+
+   <!-- Cabang kanan: y = ln(x), untuk x > 0 -->
+
+   <path d="M 440 220 Q 370 200 330 130 Q 315 90 312 70" fill="none" stroke="#daa520" stroke-width="2.5"/>
+
+   <!-- Label -->
+
+<text x="200" y="245" font-size="11" fill="#daa520" font-style="italic">y = ln(−x)</text>
+<text x="350" y="245" font-size="11" fill="#daa520" font-style="italic">y = ln(x)</text>
+<text x="318" y="60" font-size="11" fill="#5dade2" font-style="italic">asimtot: x = 0</text>
+
+   <!-- Keterangan -->
+
+<text x="80" y="320" font-size="12" fill="#b8b8b8" font-style="italic">∫ (1/x) dx = ln|x| + C berlaku untuk x &gt; 0 dan x &lt; 0</text>
+</svg>
+
+  <figcaption style="font-size:0.85em; color:#b8b8b8; margin-top:8px;">Gambar 3: Grafik $\ln|x|$. Fungsi ini simetris terhadap sumbu-$Y$ dan terdefinisi untuk semua $x \neq 0$. Turunannya adalah $\dfrac{1}{x}$ di kedua sisi, sehingga $\ln|x|$ adalah anti-turunan yang valid dari $\dfrac{1}{x}$.</figcaption>
+ </figure>
+
+ <p class="lesson-subheading">D. Aturan Kelipatan Konstanta</p>
+ <p class="lesson-text">Untuk konstanta $k$ dan fungsi $f$:</p>
+ <p class="lesson-text">$$\int k \cdot f(x) \, dx = k \int f(x) \, dx$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Karena konstanta dapat "dikeluarkan" dari turunan: $(k \cdot F(x))' = k \cdot F'(x)$. Dengan kata lain, mengalikan fungsi dengan konstanta $k$ berarti mengalikan anti-turunannya juga dengan $k$. ∎</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$\displaystyle\int 3x^2 \, dx = 3 \int x^2 \, dx = 3 \cdot \frac{x^3}{3} + C = x^3 + C$.</li>
+  <li>$\displaystyle\int 5 \sin x \, dx = 5 \int \sin x \, dx = -5\cos x + C$.</li>
+ </ul>
+
+ <p class="lesson-subheading">E. Aturan Jumlah dan Selisih</p>
+ <p class="lesson-text">Untuk fungsi $f$ dan $g$:</p>
+ <p class="lesson-text">$$\int [f(x) + g(x)] \, dx = \int f(x) \, dx + \int g(x) \, dx$$</p>
+ <p class="lesson-text">$$\int [f(x) - g(x)] \, dx = \int f(x) \, dx - \int g(x) \, dx$$</p>
+ <p class="lesson-subheading-alt">Mengapa?</p>
+ <p class="lesson-text">Turunan dari jumlah adalah jumlah turunan: $(F + G)' = F' + G'$. Jadi jika $F$ adalah anti-turunan $f$ dan $G$ adalah anti-turunan $g$, maka $F + G$ adalah anti-turunan dari $f + g$. ∎</p>
+ <p class="lesson-text"><strong>Catatan penting:</strong> Meskipun kita memisahkan integral menjadi beberapa bagian, kita hanya perlu menuliskan <strong>satu konstanta $C$</strong> di akhir. Ini karena jika setiap integral menghasilkan konstanta sendiri ($C_1, C_2, C_3$), jumlahnya tetap merupakan konstanta ($C_1 + C_2 + C_3 = C$).</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <p class="lesson-text">$\displaystyle\int (3x^2 + 4x - 5) \, dx = \int 3x^2 \, dx + \int 4x \, dx - \int 5 \, dx = x^3 + 2x^2 - 5x + C$.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">V. Integral Fungsi Trigonometri</h3>
+ <p class="lesson-subheading">A. Tabel Integral Trigonometri Dasar</p>
+ <p class="lesson-text">Integral fungsi trigonometri adalah kebalikan dari turunan fungsi trigonometri. Karena kita sudah menguasai tabel turunan trigonometri, tabel integral trigonometri dapat diturunkan langsung darinya.</p>
+
+ <div class="lesson-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Integral</th>
+     <th>Hasil</th>
+     <th>Verifikasi (turunan hasil)</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\displaystyle\int \sin x \, dx$</td>
+     <td>$-\cos x + C$</td>
+     <td>$(-\cos x)' = \sin x$ ✓</td>
+    </tr>
+    <tr>
+     <td>$\displaystyle\int \cos x \, dx$</td>
+     <td>$\sin x + C$</td>
+     <td>$(\sin x)' = \cos x$ ✓</td>
+    </tr>
+    <tr>
+     <td>$\displaystyle\int \sec^2 x \, dx$</td>
+     <td>$\tan x + C$</td>
+     <td>$(\tan x)' = \sec^2 x$ ✓</td>
+    </tr>
+    <tr>
+     <td>$\displaystyle\int \csc^2 x \, dx$</td>
+     <td>$-\cot x + C$</td>
+     <td>$(-\cot x)' = \csc^2 x$ ✓</td>
+    </tr>
+    <tr>
+     <td>$\displaystyle\int \sec x \tan x \, dx$</td>
+     <td>$\sec x + C$</td>
+     <td>$(\sec x)' = \sec x \tan x$ ✓</td>
+    </tr>
+    <tr>
+     <td>$\displaystyle\int \csc x \cot x \, dx$</td>
+     <td>$-\csc x + C$</td>
+     <td>$(-\csc x)' = \csc x \cot x$ ✓</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <p class="lesson-subheading">B. Pola Tanda Negatif</p>
+ <p class="lesson-text">Perhatikan pola tanda negatif pada tabel:</p>
+ <ul>
+  <li>Integral $\sin x$ adalah $-\cos x$ (tanda negatif).</li>
+  <li>Integral $\cos x$ adalah $\sin x$ (tanpa tanda negatif).</li>
+  <li>Integral $\csc^2 x$ adalah $-\cot x$ (tanda negatif).</li>
+  <li>Integral $\sec^2 x$ adalah $\tan x$ (tanpa tanda negatif).</li>
+ </ul>
+ <p class="lesson-text">Pola ini konsisten dengan turunan: turunan dari fungsi "co-" (cos, cot, csc) selalu memiliki tanda negatif, dan sebaliknya, integral dari fungsi yang turunannya memiliki tanda negatif juga akan memiliki tanda negatif. Secara umum: <strong>jika turunan $F$ adalah $f$, maka integral $f$ adalah $F$</strong>—termasuk tandanya.</p>
+
+ <p class="lesson-subheading-alt">Contoh Penerapan:</p>
+ <ul>
+  <li>$\displaystyle\int 3\sin x \, dx = 3 \int \sin x \, dx = -3\cos x + C$.</li>
+  <li>$\displaystyle\int (2\cos x + \sec^2 x) \, dx = 2\sin x + \tan x + C$.</li>
+  <li>$\displaystyle\int -\sin x \, dx = -(-\cos x) + C = \cos x + C$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VI. Integral Fungsi Eksponen dan Logaritma</h3>
+ <p class="lesson-subheading">A. Integral Fungsi Eksponen</p>
+ <p class="lesson-text">Fungsi $e^x$ adalah fungsi istimewa: turunannya sama dengan dirinya sendiri. Akibatnya, integralnya juga sama dengan dirinya sendiri:</p>
+ <p class="lesson-text">$$\int e^x \, dx = e^x + C$$</p>
+ <p class="lesson-text">Untuk eksponen dengan basis umum $a > 0, a \neq 1$:</p>
+ <p class="lesson-text">$$\int a^x \, dx = \frac{a^x}{\ln a} + C$$</p>
+ <p class="lesson-subheading-alt">Mengapa ada pembagian dengan $\ln a$?</p>
+ <p class="lesson-text">Verifikasi dengan menurunkan $\dfrac{a^x}{\ln a}$:</p>
+ <p class="lesson-text">$$\frac{d}{dx}\left[\frac{a^x}{\ln a}\right] = \frac{a^x \ln a}{\ln a} = a^x$$</p>
+ <p class="lesson-text">Karena turunannya adalah $a^x$, maka rumus ini benar. Ketika $a = e$, maka $\ln e = 1$, sehingga rumusnya menjadi $\int e^x \, dx = e^x + C$—konsisten dengan kasus khusus di atas.</p>
+
+ <p class="lesson-subheading-alt">Contoh:</p>
+ <ul>
+  <li>$\displaystyle\int 5 e^x \, dx = 5e^x + C$.</li>
+  <li>$\displaystyle\int 2^x \, dx = \frac{2^x}{\ln 2} + C$.</li>
+  <li>$\displaystyle\int (e^x + 3^x) \, dx = e^x + \frac{3^x}{\ln 3} + C$.</li>
+ </ul>
+
+ <p class="lesson-subheading">B. Integral Fungsi Logaritma</p>
+ <p class="lesson-text">Integral $\ln x$ sedikit lebih rumit dan biasanya memerlukan teknik pengintegralan khusus (integral parsial) yang akan dibahas di materi lanjutan. Namun, hasilnya sering muncul dan layak untuk dicatat:</p>
+ <p class="lesson-text">$$\int \ln x \, dx = x \ln x - x + C$$</p>
+ <p class="lesson-subheading-alt">Verifikasi:</p>
+ <p class="lesson-text">Turunkan $x \ln x - x$:</p>
+ <p class="lesson-text">$$(x \ln x - x)' = 1 \cdot \ln x + x \cdot \frac{1}{x} - 1 = \ln x + 1 - 1 = \ln x$$</p>
+ <p class="lesson-text">Karena turunannya adalah $\ln x$, rumus ini benar. ✓</p>
+ <p class="lesson-text">Perhatikan: untuk mengintegralkan $\ln x$, kita memerlukan teknik yang lebih canggih. Ini adalah contoh pertama di mana integral tak tentu tidak bisa langsung diselesaikan dengan "aturan kebalikan turunan" yang sederhana. Kita akan mempelajari teknik-teknik seperti ini di materi <strong>Teknik Pengintegralan</strong>.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VII. Sifat Linearitas Integral</h3>
+ <p class="lesson-subheading">A. Penggabungan Aturan</p>
+ <p class="lesson-text">Dari aturan-aturan di atas, kita dapat merumuskan <strong>sifat linearitas</strong> integral—sifat yang memungkinkan kita memecah integral dari kombinasi linear fungsi:</p>
+ <p class="lesson-text">$$\int [k_1 f(x) + k_2 g(x)] \, dx = k_1 \int f(x) \, dx + k_2 \int g(x) \, dx$$</p>
+ <p class="lesson-text">Untuk setiap konstanta $k_1, k_2$ dan fungsi $f, g$.</p>
+ <p class="lesson-text">Sifat ini adalah gabungan dari aturan kelipatan dan aturan jumlah/selisih. Sifat linearitas inilah yang membuat integral tak tentu relatif mudah dihitung untuk kombinasi linear dari fungsi-fungsi yang sudah kita kenali (polinomial, trigonometri, eksponen).</p>
+
+ <p class="lesson-subheading">B. Contoh Bertahap</p>
+ <p class="lesson-subheading-alt">Contoh 1:</p>
+ <p class="lesson-text">Hitung $\displaystyle\int (4x^3 - 2x + 7) \, dx$.</p>
+ <p class="lesson-text">Pecah menjadi tiga integral:</p>
+ <p class="lesson-text">$$= \int 4x^3 \, dx - \int 2x \, dx + \int 7 \, dx = 4 \cdot \frac{x^4}{4} - 2 \cdot \frac{x^2}{2} + 7x + C = x^4 - x^2 + 7x + C$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 2:</p>
+ <p class="lesson-text">Hitung $\displaystyle\int \left(\frac{3}{x} + \sqrt{x}\right) dx$.</p>
+ <p class="lesson-text">Ingat bahwa $\dfrac{3}{x} = 3 \cdot \dfrac{1}{x}$ dan $\sqrt{x} = x^{1/2}$:</p>
+ <p class="lesson-text">$$= 3 \int \frac{1}{x} \, dx + \int x^{1/2} \, dx = 3 \ln|x| + \frac{2}{3} x^{3/2} + C$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 3:</p>
+ <p class="lesson-text">Hitung $\displaystyle\int (5\sin x - 2\cos x + 3e^x) \, dx$.</p>
+ <p class="lesson-text">$$= 5\int \sin x \, dx - 2\int \cos x \, dx + 3\int e^x \, dx = -5\cos x - 2\sin x + 3e^x + C$$</p>
+
+ <p class="lesson-subheading-alt">Contoh 4 (dengan menyederhanakan dulu):</p>
+ <p class="lesson-text">Hitung $\displaystyle\int \frac{x^3 + 2x^2 - x}{x} \, dx$.</p>
+ <p class="lesson-text">Sederhanakan integran terlebih dahulu dengan membagi setiap suku dengan $x$:</p>
+ <p class="lesson-text">$$\frac{x^3 + 2x^2 - x}{x} = x^2 + 2x - 1$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int (x^2 + 2x - 1) \, dx = \frac{x^3}{3} + x^2 - x + C$$</p>
+ <p class="lesson-text"><strong>Pelajaran:</strong> sebelum mengintegralkan, sering kali kita perlu menyederhanakan integran terlebih dahulu—misalnya dengan membagi, mengalikan, atau menggunakan identitas trigonometri. Penyederhanaan awal yang baik akan menghemat banyak pekerjaan.</p>
+
+ <figure>
+  <svg viewBox="0 0 700 340" style="max-width:100%; height:auto; width:700px;" xmlns="http://www.w3.org/2000/svg">
+   <!-- Diagram alur integral -->
+   <rect x="60" y="60" width="220" height="80" rx="8" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="1.8"/>
+   <text x="80" y="100" font-size="14" fill="#daa520" font-style="italic">1. Sederhanakan</text>
+   <text x="80" y="122" font-size="11" fill="#b8b8b8" font-style="italic">Bagi, kalikan, identitas</text>
+
+   <rect x="320" y="60" width="220" height="80" rx="8" fill="#5dade2" fill-opacity="0.15" stroke="#5dade2" stroke-width="1.8"/>
+   <text x="340" y="100" font-size="14" fill="#5dade2" font-style="italic">2. Pecah menjadi jumlah</text>
+   <text x="340" y="122" font-size="11" fill="#b8b8b8" font-style="italic">Sifat linearitas</text>
+
+   <rect x="60" y="190" width="220" height="80" rx="8" fill="#f0c75e" fill-opacity="0.15" stroke="#f0c75e" stroke-width="1.8"/>
+   <text x="80" y="230" font-size="14" fill="#f0c75e" font-style="italic">3. Integralkan tiap suku</text>
+   <text x="80" y="252" font-size="11" fill="#b8b8b8" font-style="italic">Aturan pangkat, dll.</text>
+
+   <rect x="320" y="190" width="220" height="80" rx="8" fill="#daa520" fill-opacity="0.15" stroke="#daa520" stroke-width="1.8"/>
+   <text x="340" y="230" font-size="14" fill="#daa520" font-style="italic">4. Tambahkan C</text>
+   <text x="340" y="252" font-size="11" fill="#b8b8b8" font-style="italic">Satu konstanta saja</text>
+
+   <!-- Panah -->
+
+   <line x1="280" y1="100" x2="320" y2="100" stroke="#e8e8e8" stroke-width="1.8"/>
+   <polygon points="325,100 315,95 315,105" fill="#e8e8e8"/>
+   <line x1="430" y1="145" x2="430" y2="185" stroke="#e8e8e8" stroke-width="1.8"/>
+   <polygon points="430,192 425,180 435,180" fill="#e8e8e8"/>
+   <line x1="320" y1="230" x2="280" y2="230" stroke="#e8e8e8" stroke-width="1.8"/>
+   <polygon points="275,230 285,225 285,235" fill="#e8e8e8"/>
+
+<text x="180" y="320" font-size="12" fill="#b8b8b8" font-style="italic">Alur sistematis menghitung integral tak tentu</text>
+</svg>
+
+  <figcaption style="font-size:0.85em; color:#b8b8b8; margin-top:8px;">Gambar 4: Alur sistematis menghitung integral tak tentu. Mulai dengan menyederhanakan integran, pecah menjadi jumlah/selisih, integralkan setiap suku dengan aturan yang sesuai, lalu tambahkan konstanta $C$.</figcaption>
+ </figure>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">VIII. Contoh Soal Bertahap</h3>
+ <p class="lesson-subheading">Contoh 1: Polinomial Sederhana</p>
+ <p class="lesson-text">Hitung $\displaystyle\int (6x^2 - 4x + 3) \, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <p class="lesson-text">$$= 6 \cdot \frac{x^3}{3} - 4 \cdot \frac{x^2}{2} + 3x + C = 2x^3 - 2x^2 + 3x + C$$</p>
+ <p class="lesson-subheading-alt">Verifikasi:</p>
+ <p class="lesson-text">$(2x^3 - 2x^2 + 3x + C)' = 6x^2 - 4x + 3$. ✓</p>
+
+ <p class="lesson-subheading">Contoh 2: Pangkat Negatif</p>
+ <p class="lesson-text">Hitung $\displaystyle\int \left(\frac{4}{x^2} - \frac{1}{x^3}\right) dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Ubah menjadi pangkat negatif:</p>
+ <p class="lesson-text">$$\int (4x^{-2} - x^{-3}) \, dx = 4 \cdot \frac{x^{-1}}{-1} - \frac{x^{-2}}{-2} + C = -\frac{4}{x} + \frac{1}{2x^2} + C$$</p>
+
+ <p class="lesson-subheading">Contoh 3: Akar dan Pecahan</p>
+ <p class="lesson-text">Hitung $\displaystyle\int \frac{x + \sqrt{x}}{\sqrt{x}} \, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Sederhanakan dulu:</p>
+ <p class="lesson-text">$$\frac{x + \sqrt{x}}{\sqrt{x}} = \frac{x}{x^{1/2}} + \frac{x^{1/2}}{x^{1/2}} = x^{1/2} + 1$$</p>
+ <p class="lesson-text">Maka:</p>
+ <p class="lesson-text">$$\int (x^{1/2} + 1) \, dx = \frac{2}{3} x^{3/2} + x + C$$</p>
+
+ <p class="lesson-subheading">Contoh 4: Trigonometri</p>
+ <p class="lesson-text">Hitung $\displaystyle\int (4\sin x - 3\cos x) \, dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <p class="lesson-text">$$= 4(-\cos x) - 3(\sin x) + C = -4\cos x - 3\sin x + C$$</p>
+
+ <p class="lesson-subheading">Contoh 5: Campuran Fungsi</p>
+ <p class="lesson-text">Hitung $\displaystyle\int \left(2e^x + \frac{3}{x} - 5\sin x\right) dx$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong></p>
+ <p class="lesson-text">$$= 2e^x + 3\ln|x| - 5(-\cos x) + C = 2e^x + 3\ln|x| + 5\cos x + C$$</p>
+
+ <p class="lesson-subheading">Contoh 6: Menentukan Fungsi dari Turunannya</p>
+ <p class="lesson-text">Diketahui $f'(x) = 6x^2 - 4x + 1$ dan $f(1) = 5$. Tentukan $f(x)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Cari integral tak tentu terlebih dahulu:</p>
+ <p class="lesson-text">$$f(x) = \int (6x^2 - 4x + 1) \, dx = 2x^3 - 2x^2 + x + C$$</p>
+ <p class="lesson-text">Gunakan syarat awal $f(1) = 5$:</p>
+ <p class="lesson-text">$$f(1) = 2(1)^3 - 2(1)^2 + 1 + C = 2 - 2 + 1 + C = 1 + C = 5$$</p>
+ <p class="lesson-text">Maka $C = 4$, dan $f(x) = 2x^3 - 2x^2 + x + 4$.</p>
+
+ <p class="lesson-subheading">Contoh 7: Aplikasi Fisika Sederhana</p>
+ <p class="lesson-text">Sebuah partikel bergerak dengan kecepatan $v(t) = 3t^2 + 2t$ (dalam m/detik). Jika pada saat $t = 0$ posisi partikel adalah $s(0) = 5$ m, tentukan fungsi posisi $s(t)$.</p>
+ <p class="lesson-text"><strong>Penyelesaian:</strong> Posisi adalah anti-turunan dari kecepatan:</p>
+ <p class="lesson-text">$$s(t) = \int v(t) \, dt = \int (3t^2 + 2t) \, dt = t^3 + t^2 + C$$</p>
+ <p class="lesson-text">Gunakan syarat awal $s(0) = 5$:</p>
+ <p class="lesson-text">$$s(0) = 0 + 0 + C = 5 \quad \Rightarrow \quad C = 5$$</p>
+ <p class="lesson-text">Jadi, $s(t) = t^3 + t^2 + 5$ meter.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">IX. Sifat-Sifat Penting Lain</h3>
+ <p class="lesson-subheading">A. Integral Tidak Bergantung pada Nama Variabel</p>
+ <p class="lesson-text">Variabel integrasi adalah <strong>variabel boneka</strong>—nama yang dipilih hanyalah konvensi dan tidak mempengaruhi hasil:</p>
+ <p class="lesson-text">$$\int f(x) \, dx = \int f(t) \, dt = \int f(u) \, du$$</p>
+ <p class="lesson-text">Ini sangat berguna ketika kita perlu mengganti variabel untuk menyederhanakan perhitungan (teknik substitusi, yang akan dipelajari di materi lanjutan).</p>
+
+ <p class="lesson-subheading">B. Integral dan Turunan Saling Membatalkan</p>
+ <p class="lesson-text">Dua sifat fundamental yang menghubungkan integral dan turunan:</p>
+ <ul>
+  <li>$\dfrac{d}{dx}\left[\displaystyle\int f(x) \, dx\right] = f(x)$ (turunkan integral tak tentu → kembali ke integran).</li>
+  <li>$\displaystyle\int F'(x) \, dx = F(x) + C$ (integralkan turunan → kembali ke fungsi asli plus $C$).</li>
+ </ul>
+ <p class="lesson-text">Kedua sifat ini menunjukkan bahwa integral dan turunan adalah operasi yang saling membatalkan—seperti perkalian dan pembagian, atau penjumlahan dan pengurangan.</p>
+
+ <p class="lesson-subheading">C. Verifikasi sebagai Kebiasaan Baik</p>
+ <p class="lesson-text">Karena integral adalah operasi kebalikan dari turunan, kita dapat <strong>selalu memeriksa jawaban</strong> dengan menurunkan hasil integral. Jika turunannya sama dengan integran awal, jawaban kita benar.</p>
+ <p class="lesson-text">Kebiasaan ini sangat berharga—terutama ketika kita berhadapan dengan integran yang kompleks atau ketika kita menggunakan teknik pengintegralan yang lebih canggih. Verifikasi hanya memerlukan satu langkah turunan, tetapi dapat menyelamatkan kita dari kesalahan yang sulit dideteksi.</p>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">X. Kesalahan Umum</h3>
+ <ul>
+  <li><strong>Lupa menambahkan konstanta integrasi $C$.</strong> Ini adalah kesalahan paling klasik dan paling sering terjadi. Setiap integral tak tentu <em>harus</em> diakhiri dengan $+C$, karena ada tak hingga banyak anti-turunan yang berbeda hanya oleh konstanta.</li>
+  <li><strong>Menggunakan aturan pangkat untuk $n = -1$.</strong> Aturan $\int x^n dx = \frac{x^{n+1}}{n+1} + C$ hanya berlaku untuk $n \neq -1$. Untuk $n = -1$, gunakan $\int \frac{1}{x} dx = \ln|x| + C$. Menggunakan aturan pangkat untuk $n = -1$ akan menghasilkan pembagian dengan nol.</li>
+  <li><strong>Lupa tanda negatif pada integral fungsi trigonometri tertentu.</strong> Ingat: $\int \sin x \, dx = -\cos x + C$ (dengan tanda negatif), $\int \csc^2 x \, dx = -\cot x + C$, dan $\int \csc x \cot x \, dx = -\csc x + C$. Tanda negatif ini konsisten dengan turunan fungsi "co-" dan tidak boleh dilupakan.</li>
+  <li><strong>Menuliskan konstanta $C$ lebih dari satu kali.</strong> Ketika mengintegralkan jumlah beberapa fungsi, kita hanya perlu menuliskan $C$ satu kali di akhir. Menulis $C_1 + C_2 + C_3$ adalah pemborosan notasi—jumlah ketiganya tetap satu konstanta yang dapat ditulis sebagai $C$.</li>
+  <li><strong>Menukar tanda atau koefisien saat menerapkan aturan pangkat.</strong> Contoh kesalahan: $\int x^3 dx = \frac{x^4}{4} + C$ (benar), bukan $\frac{x^4}{3} + C$ atau $4x^4 + C$. Pastikan pembagian menggunakan pangkat baru ($n+1$), bukan pangkat lama.</li>
+  <li><strong>Menganggap integran dapat diintegralkan dengan memecahnya sembarangan.</strong> Ingat bahwa $\int f(x) \cdot g(x) \, dx \neq \int f(x) \, dx \cdot \int g(x) \, dx$. Aturan perkalian pada turunan <em>tidak</em> memiliki padanan sederhana pada integral. Untuk mengintegralkan perkalian, kita memerlukan teknik khusus (seperti substitusi atau integral parsial).</li>
+  <li><strong>Menghilangkan tanda nilai mutlak pada $\ln|x|$.</strong> Meskipun banyak buku teks menuliskannya sebagai $\ln x$ dalam konteks tertentu, secara umum hasil integral $\int \frac{1}{x} dx$ adalah $\ln|x| + C$—dengan tanda nilai mutlak, untuk memastikan validitas di $x < 0$.</li>
+  <li><strong>Tidak menyederhanakan integran sebelum mengintegralkan.</strong> Contoh: $\int \frac{x^2 + x}{x} dx$—sering kali lebih mudah jika kita menyederhanakan dulu menjadi $\int (x + 1) dx$. Kesalahan ini sering mengakibatkan integran yang lebih rumit dari yang seharusnya.</li>
+  <li><strong>Menganggap integral tak tentu menghasilkan bilangan.</strong> Integral tak tentu menghasilkan <em>fungsi</em> (plus konstanta $C$), bukan bilangan. Bilangan hanya muncul pada integral tentu.</li>
+  <li><strong>Tidak memverifikasi jawaban.</strong> Karena integral adalah kebalikan turunan, kita selalu dapat memeriksa jawaban dengan menurunkan hasilnya. Melewatkan langkah verifikasi ini berarti melewatkan kesempatan untuk mendeteksi kesalahan sejak dini.</li>
+  <li><strong>Salah menerapkan sifat linearitas untuk fungsi nonlinear.</strong> Sifat linearitas hanya berlaku untuk kombinasi <em>linear</em> dari fungsi (jumlah/selisih dan kelipatan konstanta). Untuk perkalian fungsi, atau fungsi komposisi, kita tidak dapat menggunakan sifat ini.</li>
+  <li><strong>Menganggap $\int f(x) \, dx$ sama dengan $\int f(t) \, dt$ adalah kesalahan.</strong> Sebenarnya ini benar—variabel integrasi adalah variabel boneka. Yang penting adalah konsistensi: jangan mencampur $x$ dan $t$ dalam satu integral. Contohnya, $\int x \cdot f(t) \, dt$ berbeda dengan $\int x \cdot f(x) \, dx$—pada kasus pertama, $x$ dianggap konstanta terhadap $t$.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">XI. Ringkasan</h3>
+ <ul>
+  <li><strong>Anti-turunan</strong>: fungsi $F$ disebut anti-turunan dari $f$ jika $F'(x) = f(x)$.</li>
+  <li><strong>Integral tak tentu</strong>: himpunan semua anti-turunan dari $f$, ditulis $\displaystyle\int f(x) \, dx = F(x) + C$, dengan $C$ adalah konstanta integrasi.</li>
+  <li><strong>Konstanta integrasi $C$</strong> selalu ditambahkan karena turunan dari konstanta adalah nol—setiap anti-turunan berbeda hanya oleh konstanta.</li>
+  <li><strong>Notasi</strong>: $\int$ (simbol integral), $f(x)$ (integran), $dx$ (variabel integrasi), $F(x) + C$ (hasil).</li>
+  <li><strong>Aturan-aturan dasar</strong>:
+   <ul>
+    <li>Konstanta: $\int k \, dx = kx + C$.</li>
+    <li>Pangkat: $\int x^n \, dx = \dfrac{x^{n+1}}{n+1} + C$ untuk $n \neq -1$.</li>
+    <li>Kasus khusus: $\int \dfrac{1}{x} \, dx = \ln|x| + C$.</li>
+    <li>Kelipatan: $\int k \cdot f(x) \, dx = k \int f(x) \, dx$.</li>
+    <li>Jumlah/selisih: $\int [f(x) \pm g(x)] \, dx = \int f(x) \, dx \pm \int g(x) \, dx$.</li>
+   </ul></li>
+  <li><strong>Integral trigonometri</strong>: $\int \sin x \, dx = -\cos x + C$, $\int \cos x \, dx = \sin x + C$, $\int \sec^2 x \, dx = \tan x + C$, dan seterusnya.</li>
+  <li><strong>Integral eksponen</strong>: $\int e^x \, dx = e^x + C$, $\int a^x \, dx = \dfrac{a^x}{\ln a} + C$.</li>
+  <li><strong>Sifat linearitas</strong>: $\int [k_1 f(x) + k_2 g(x)] \, dx = k_1 \int f(x) \, dx + k_2 \int g(x) \, dx$.</li>
+  <li><strong>Alur sistematis</strong>: sederhanakan integran → pecah menjadi jumlah/selisih → integralkan tiap suku → tambahkan $C$.</li>
+  <li><strong>Verifikasi</strong>: selalu periksa jawaban dengan menurunkan hasilnya. Jika turunannya sama dengan integran, jawaban benar.</li>
+  <li><strong>Aplikasi</strong>: menentukan fungsi dari turunannya, mencari posisi dari kecepatan, dan banyak lagi.</li>
+ </ul>
+</div>
+
+<div class="lesson-section">
+ <h3 class="lesson-section-heading">Penutup</h3>
+ <p class="lesson-text">Integral tak tentu adalah salah satu keterampilan paling penting dalam kalkulus—ia adalah <em>alat teknis</em> yang akan terus Anda gunakan sepanjang perjalanan matematika Anda. Hampir semua aplikasi integral (baik integral tentu untuk menghitung luas dan volume, maupun persamaan diferensial untuk memodelkan sistem dinamis) bergantung pada kemampuan kita mencari anti-turunan dengan cepat dan akurat.</p>
+ <p class="lesson-text">Kabar baiknya: integral tak tentu adalah kebalikan dari turunan, yang sudah Anda kuasai. Setiap aturan integral adalah "cermin" dari aturan turunan yang sesuai. Karena itu, menguasai integral tak tentu bukanlah tentang menghafal rumus baru, melainkan tentang <strong>mengenali pola terbalik</strong> dari aturan turunan yang sudah Anda kenal.</p>
+ <p class="lesson-text">Yang perlu ditekankan: integral tak tentu bukan sekadar teknik menghitung—ia adalah cara berpikir tentang "membalikkan" laju perubahan. Ketika kita mengetahui kecepatan suatu objek, integral tak tentu memberi kita posisinya. Ketika kita mengetahui laju pertumbuhan populasi, integral tak tentu memberi kita jumlah populasi. Ketika kita mengetahui gaya yang bekerja pada suatu benda, integral tak tentu memberi kita energi yang terlibat.</p>
+ <p class="lesson-text">Penguasaan integral tak tentu akan membuka pintu ke materi-materi lanjutan: <strong>integral tentu</strong> (yang menggunakan anti-turunan untuk menghitung luas dan akumulasi), <strong>teknik pengintegralan</strong> (substitusi, parsial, pecahan parsial), <strong>aplikasi integral</strong> (luas, volume, panjang busur, pusat massa), <strong>persamaan diferensial</strong> (yang menyatukan turunan dan integral), serta <strong>analisis Fourier</strong> (yang menggunakan integral untuk menguraikan sinyal). Kuasai dasar ini dengan baik, dan sisa kalkulus akan terasa jauh lebih mudah.</p>
+ <p class="lesson-text">Akhir kata: berlatihlah sebanyak mungkin. Integral tak tentu adalah keterampilan yang diperoleh melalui pengulangan. Semakin sering Anda berlatih, semakin cepat Anda mengenali pola, dan semakin percaya diri Anda dalam menghadapi integran yang lebih kompleks.</p>
+</div>
+
+</div>
+</body>
+</html>
