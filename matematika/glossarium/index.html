@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossarium — Matematika</title>
+<meta name="description" content="Glossarium istilah-istilah penting dalam matematika.">
+<script src="/js/head.js"></script>
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h1 class="title-page">Glossarium Matematika</h1>
+ <input type="search" id="search" class="search-input" placeholder="Cari istilah...">
+ <p class="list-count" id="istilah-count"></p>
+ <div class="container-card" id="list"></div>
+</main>
+
+<script src="data.js"></script>
+<script>
+const listEl = document.getElementById('list');
+const searchEl = document.getElementById('search');
+const countEl = document.getElementById('istilah-count');
+
+function render(items) {
+ listEl.innerHTML = '';
+ 
+ if (countEl) {
+  countEl.textContent = `Menampilkan ${items.length} istilah`;
+ }
+ 
+ if (items.length === 0) {
+  listEl.innerHTML = '<p class="empty">Tidak ada istilah yang cocok.</p>';
+  return;
+ }
+ 
+ items.forEach(t => {
+  const article = document.createElement('article');
+  article.className = 'card';
+  article.innerHTML = `
+   <h2 class="card-title">${t.istilah}</h2>
+   <p class="card-text card-note">❝ ${t.definisi} ❞</p>
+   <p class="card-text">${t.deskripsi}</p>`;
+  listEl.appendChild(article);
+ });
+ 
+ if (window.renderMathInElement) {
+  renderMathInElement(listEl, {
+   delimiters: [
+    { left: '$$', right: '$$', display: true },
+    { left: '$', right: '$', display: false }
+   ],
+   throwOnError: false
+  });
+ }
+}
+
+function filterData(query) {
+ const q = query.toLowerCase().trim();
+ if (!q) return data;
+ return data.filter(t => t.istilah.toLowerCase().includes(q));
+}
+
+searchEl.addEventListener('input', e => {
+ render(filterData(e.target.value));
+});
+
+render(data);
+</script>
+</body>
+</html>
