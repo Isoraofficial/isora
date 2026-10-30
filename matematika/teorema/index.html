@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Teorema — Matematika</title>
+ <meta name="description" content="Ringkasan teorema paling penting dalam matematika.">
+ <script src="/js/head.js"></script>
+ <script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h1 class="title-page">Teorema Matematika</h1>
+ <input type="search" id="search" class="search-input" placeholder="Cari teorema...">
+ <p class="list-count" id="teorema-count"></p>
+ <div class="container-card" id="list"></div>
+</main>
+
+<script src="data.js"></script>
+<script>
+const listEl = document.getElementById('list');
+const searchEl = document.getElementById('search');
+const countEl = document.getElementById('teorema-count');
+
+function render(items) {
+ listEl.innerHTML = '';
+ 
+ if (countEl) {
+  countEl.textContent = `Menampilkan ${items.length} teorema`;
+ }
+ 
+ if (items.length === 0) {
+  listEl.innerHTML = '<p class="empty">Tidak ada teorema yang cocok.</p>';
+  return;
+ }
+ 
+ items.forEach(t => {
+  const article = document.createElement('article');
+  article.className = 'card';
+  article.innerHTML = `
+   <h2 class="card-title">${t.nama}</h2>
+   <div class="card-text">${t.pernyataan}</div>
+    <p class="card-text">${t.penjelasan}</p>
+    ${t.contoh ? `
+    <p class="card-text"><strong>Contoh</strong>: ${t.contoh}</p>` : ''}
+    ${t.meta ? `<p class="text-meta">~ ${t.meta}</p>` : ''}`;
+  listEl.appendChild(article);
+ });
+ 
+ if (window.renderMathInElement) {
+  renderMathInElement(listEl, {
+   delimiters: [
+    { left: '$$', right: '$$', display: true },
+    { left: '$', right: '$', display: false }
+   ],
+   throwOnError: false
+  });
+ }
+}
+
+function filterData(query) {
+ const q = query.toLowerCase().trim();
+ if (!q) return data;
+ return data.filter(t => t.nama.toLowerCase().includes(q));
+}
+
+searchEl.addEventListener('input', e => {
+ render(filterData(e.target.value));
+});
+
+render(data);
+</script>
+</body>
+</html>
