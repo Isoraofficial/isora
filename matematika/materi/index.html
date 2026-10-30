@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematika</title>
+  <script src="/js/head.js"></script>
+</head>
+<body>
+  
+<script src="/js/nav.js"></script>
+
+<main>
+ <h1 class="title-page">Materi Matematika</h1>
+ <div class="filter-bar">
+  <input type="search" id="searchInput" class="search-input" placeholder="Cari materi...">
+  <div class="tag-scroll">
+   <div class="tag-rows">
+    <div class="tag-row" id="tagRow1"></div>
+    <div class="tag-row" id="tagRow2"></div>
+   </div>
+  </div>
+ </div>
+ <p class="list-count" id="materialCount"></p>
+ <div class="container-card" id="materialList"></div>
+</main>
+
+<script src="data.js"></script>
+<script>
+ const searchInput = document.getElementById('searchInput');
+ const tagRow1 = document.getElementById('tagRow1');
+ const tagRow2 = document.getElementById('tagRow2');
+ const materialList = document.getElementById('materialList');
+ const materialCount = document.getElementById('materialCount');
+ 
+ const ALL = 'Semua';
+ let activeTag = ALL;
+ let keyword = '';
+ 
+ function collectTags() {
+  const set = new Set();
+  data.forEach(item => item.tag.forEach(t => set.add(t)));
+  return [ALL, ...Array.from(set).sort()];
+ }
+ 
+ function buildTagButton(tag) {
+  const btn = document.createElement('button');
+  btn.className = 'tag-btn';
+  btn.textContent = tag;
+  btn.dataset.tag = tag;
+  if (activeTag === tag) btn.classList.add('active');
+  
+  btn.addEventListener('click', () => {
+   if (tag === ALL) {
+    activeTag = ALL;
+   } else {
+    activeTag = (activeTag === tag) ? ALL : tag;
+   }
+   
+   document.querySelectorAll('.tag-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tag === activeTag);
+   });
+   
+   renderMaterials();
+  });
+  return btn;
+ }
+ 
+ function renderTags() {
+  tagRow1.innerHTML = '';
+  tagRow2.innerHTML = '';
+  
+  const tags = collectTags();
+  const buttons = tags.map(buildTagButton);
+  
+  buttons.forEach(btn => tagRow1.appendChild(btn));
+  
+  const gap = 8;
+  const totalWidth = buttons.reduce(
+   (sum, btn) => sum + btn.getBoundingClientRect().width + gap, 0
+  );
+  const half = totalWidth / 2;
+  
+  let acc = 0;
+  let splitIndex = buttons.length;
+  for (let i = 0; i < buttons.length; i++) {
+   acc += buttons[i].getBoundingClientRect().width + gap;
+   if (acc >= half) { splitIndex = i + 1; break; }
+  }
+  
+  buttons.slice(splitIndex).forEach(btn => tagRow2.appendChild(btn));
+ }
+ 
+ function filterData() {
+  return data.filter(item => {
+   const matchKeyword =
+    keyword === '' ||
+    item.title.toLowerCase().includes(keyword) ||
+    item.desc.toLowerCase().includes(keyword);
+   
+   const matchTag = activeTag === ALL || item.tag.includes(activeTag);
+   
+   return matchKeyword && matchTag;
+  });
+ }
+ 
+ function renderMaterials() {
+  const items = filterData();
+  materialList.innerHTML = '';
+  
+  materialCount.textContent = (activeTag === ALL && keyword === '') ?
+   `Menampilkan seluruh ${items.length} materi.` :
+   `Menampilkan ${items.length} materi.`;
+  
+  if (items.length === 0) {
+   materialList.innerHTML = '<p class="empty">Tidak ada materi.</p>';
+   return;
+  }
+  
+  items.forEach(item => {
+   const link = document.createElement('a');
+   link.className = 'card';
+   link.href = item.url + '.html';
+   link.innerHTML = `
+      <h3 class="card-title">${item.title}</h3>
+      <p class="card-text">${item.desc}</p>
+      <div class="box-tag-chip">
+        ${item.tag.map(t => `<span class="tag-chip">${t}</span>`).join('')}
+      </div>
+    `;
+   materialList.appendChild(link);
+  });
+ }
+ 
+ searchInput.addEventListener('input', e => {
+  keyword = e.target.value.toLowerCase().trim();
+  renderMaterials();
+ });
+ 
+ renderTags();
+ renderMaterials();
+</script>
+</body>
+</html>

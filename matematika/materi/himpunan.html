@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Himpunan (operasi himpunan, kardinalitas, himpunan kuasa)</title>
+<meta name="description" content="Pengantar lengkap himpunan: pengertian dan notasi, jenis himpunan khusus, hubungan antar himpunan, lima operasi dasar, hukum-hukum aljabar himpunan, kardinalitas dengan prinsip inklusi-eksklusi, himpunan kuasa, hasil kali Kartesius, serta contoh soal dan pembahasan.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Himpunan (operasi himpunan, kardinalitas, himpunan kuasa)</h1>
+
+<aside class="box-prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><a class="link-prasyarat" href="logika-proposisi">Logika proposisi</a> — memahami operator $\land$, $\lor$, dan $\neg$ beserta tabel kebenarannya, karena aljabar himpunan memakai struktur yang serupa.</li>
+   <li><a class="link-prasyarat" href="sistem-bilangan">Sistem bilangan</a> — mengenal himpunan bilangan $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, dan $\mathbb{R}$, karena notasi ini dipakai di seluruh halaman.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <p class="lesson-text">Coba pikirkan kata "<em>kumpulan</em>" dalam kehidupan sehari-hari. Ada kumpulan buku di rak, kumpulan siswa di kelas, kumpulan negara di Asia Tenggara. Yang menarik dari setiap kumpulan adalah pertanyaannya selalu sama: <em>siapa saja anggotanya?</em> Buku di rak bisa kita tunjuk satu per satu. Siswa di kelas bisa kita daftar. Asia Tenggara bisa kita sebutkan nama negaranya. Begitu daftar anggotanya jelas, kumpulan itu menjadi sesuatu yang bisa dibicarakan secara matematis — itulah yang disebut <strong>himpunan</strong>.</p>
+ <p class="lesson-text">Himpunan adalah salah satu gagasan paling dasar dalam matematika. Nyaris semua konsep lain dibangun di atasnya: bilangan dibentuk dari himpunan, fungsi adalah pemetaan antar himpunan, relasi adalah himpunan pasangan terurut, dan peluang dihitung dari himpunan kejadian. Karena itu, memahami himpunan bukan sekadar menghafal simbol $\cup$ dan $\cap$, melainkan membangun cara berpikir tentang <em>kelompok objek</em> yang akan dipakai di seluruh cabang matematika.</p>
+ <p class="lesson-text">Menariknya, aljabar himpunan memiliki struktur yang sangat mirip dengan logika proposisi. Operasi gabungan ($\cup$) berperilaku seperti "<em>atau</em>" ($\lor$), irisan ($\cap$) seperti "<em>dan</em>" ($\land$), dan komplemen (${}^c$) seperti "<em>bukan</em>" ($\neg$). Kaitan ini bukan kebetulan — keduanya berbagi hukum-hukum yang sama, hanya dengan simbol berbeda.</p>
+ <p class="lesson-text">Sepanjang halaman ini kita akan membahas pengertian dan notasi himpunan, jenis-jenis himpunan khusus, hubungan antar himpunan, lima operasi dasar, hukum-hukum aljabar himpunan, cara menghitung banyaknya anggota (kardinalitas), himpunan kuasa, hasil kali Kartesius, dan ditutup dengan contoh soal serta pembahasan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Himpunan dan Notasi Dasar</h2>
+
+ <h3 class="lesson-subheading">A. Pengertian Himpunan</h3>
+ <p class="lesson-text"><strong>Himpunan</strong> adalah kumpulan objek yang <em>terdefinisi dengan jelas</em> — artinya, untuk setiap objek yang mungkin, kita bisa memutuskan dengan pasti apakah objek tersebut anggota himpunan atau bukan. Kata "<em>terdefinisi dengan jelas</em>" di sini krusial: tanpa syarat itu, sebuah kumpulan tidak bisa disebut himpunan dalam arti matematis.</p>
+ <p class="lesson-text">Contoh yang jelas: "<em>himpunan bilangan asli kurang dari 5</em>" — anggotanya pasti $\{1, 2, 3, 4\}$. Siapa pun akan setuju. Sebaliknya, "<em>himpunan orang yang ramah</em>" <em>bukan</em> himpunan, karena kata "<em>ramah</em>" tidak punya definisi yang tegas — apakah seseorang ramah bisa berbeda bagi setiap penilai.</p>
+ <p class="lesson-text">Objek yang termasuk dalam himpunan disebut <strong>anggota</strong> atau <strong>elemen</strong>. Himpunan biasanya diberi nama dengan huruf kapital seperti $A$, $B$, $C$, sedangkan anggotanya dengan huruf kecil seperti $a$, $b$, $x$.</p>
+
+ <h3 class="lesson-subheading">B. Notasi Keanggotaan</h3>
+ <p class="lesson-text">Dua simbol utama yang perlu diingat:</p>
+ <ul>
+  <li>$x \in A$ — dibaca "<em>$x$ anggota $A$</em>" atau "<em>$x$ elemen $A$</em>".</li>
+  <li>$x \notin A$ — dibaca "<em>$x$ bukan anggota $A$</em>".</li>
+ </ul>
+ <p class="lesson-text">Contoh: jika $A = \{1, 2, 3, 4\}$, maka $3 \in A$ dan $7 \notin A$. Simbol $\in$ berasal dari huruf Yunani <em>epsilon</em>, dan dipilih karena merupakan huruf pertama kata "<em>estin</em>" yang berarti "<em>adalah</em>".</p>
+
+ <h3 class="lesson-subheading">C. Cara Menyajikan Himpunan</h3>
+ <p class="lesson-text">Ada dua cara utama untuk menyajikan himpunan:</p>
+ <ul>
+  <li><strong>Cara tabulasi</strong> (enumerasi) — menuliskan semua anggotanya dalam kurung kurawal, dipisah koma. Contoh: $A = \{1, 2, 3, 4\}$.</li>
+  <li><strong>Cara notasi pembentuk himpunan</strong> (<em>set-builder</em>) — menuliskan aturan keanggotaan. Contoh:</li>
+  <p class="lesson-text">$$A = \{ x \mid x \in \mathbb{N} \text{ dan } x < 5 \}$$</p>
+ </ul>
+ <p class="lesson-text">Dibaca: "<em>$A$ adalah himpunan semua $x$ sedemikian sehingga $x$ bilangan asli dan $x$ kurang dari 5</em>". Tanda "$\mid$" dibaca "<em>sedemikian sehingga</em>".</p>
+ <p class="lesson-text">Cara tabulasi cocok untuk himpunan kecil, sedangkan notasi pembentuk dipakai ketika anggotanya terlalu banyak atau mengikuti pola tertentu. Keduanya menyatakan himpunan yang <em>sama</em> jika anggotanya identik.</p>
+ <p class="lesson-text">Urutan penulisan anggota <em>tidak</em> penting, dan anggota yang ditulis berulang tidak menambah apa-apa. Jadi $\{1, 2, 3\}$, $\{3, 1, 2\}$, dan $\{1, 2, 2, 3, 3\}$ adalah himpunan yang sama. Kata "<em>himpunan</em>" menekankan identitas anggota, bukan urutan atau frekuensinya.</p>
+
+ <h3 class="lesson-subheading">D. Jenis-jenis Himpunan Khusus</h3>
+ <p class="lesson-text">Beberapa himpunan punya peran khusus dan layak dikenali:</p>
+ <ul>
+  <li><strong>Himpunan kosong</strong>, dinotasikan $\varnothing$ atau $\{\}$, adalah himpunan yang tidak punya anggota sama sekali. Contoh: himpunan bilangan asli yang kurang dari 1.</li>
+  <li><strong>Himpunan semesta</strong>, dinotasikan $U$ atau $S$, adalah himpunan yang memuat semua objek yang sedang dibicarakan. Contoh: jika kita sedang membahas bilangan asli, semestanya adalah $\mathbb{N}$.</li>
+  <li><strong>Himpunan berhingga</strong> adalah himpunan yang banyak anggotanya bisa dihitung sampai selesai. Contoh: $\{1, 2, 3\}$.</li>
+  <li><strong>Himpunan tak berhingga</strong> adalah himpunan yang anggotanya tidak habis dihitung. Contoh: $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{R}$.</li>
+ </ul>
+ <p class="lesson-text">Perhatikan bahwa $\varnothing$ dan $\{\varnothing\}$ <em>berbeda</em>. Yang pertama adalah himpunan kosong tanpa anggota; yang kedua adalah himpunan yang berisi <em>satu</em> anggota, yaitu himpunan kosong itu sendiri. Ini salah satu jebakan klasik dalam himpunan.</p>
+
+ <h3 class="lesson-subheading">E. Hubungan antar Himpunan</h3>
+ <p class="lesson-text">Dua himpunan bisa punya hubungan khusus. Yang paling penting adalah <strong>himpunan bagian</strong> (<em>subset</em>):</p>
+ <p class="lesson-text">$A \subseteq B$ berarti <em>setiap</em> anggota $A$ juga anggota $B$. Jika $A \subseteq B$ tetapi $A \neq B$, kita menulis $A \subset B$ (himpunan bagian <em>sejati</em>). Sebaliknya, jika ada anggota $A$ yang bukan anggota $B$, maka $A \not\subseteq B$.</p>
+ <p class="lesson-text">Dua fakta penting tentang relasi $\subseteq$:</p>
+ <ul>
+  <li><strong>Himpunan kosong adalah himpunan bagian dari setiap himpunan.</strong> Mengapa? Karena tidak ada anggota $\varnothing$ yang bisa melanggar syarat "harus juga anggota himpunan lain". Dengan kata lain, syaratnya <em>terpenuhi secara hampa</em> (<em>vacuously true</em>).</li>
+  <li><strong>Setiap himpunan adalah himpunan bagian dari dirinya sendiri.</strong> $A \subseteq A$ selalu benar, karena jelas setiap anggota $A$ adalah anggota $A$.</li>
+ </ul>
+ <p class="lesson-text">Relasi $\subseteq$ juga bersifat <em>transitif</em>: jika $A \subseteq B$ dan $B \subseteq C$, maka $A \subseteq C$. Sifat ini mengalirkan keanggotaan dari himpunan kecil ke himpunan besar secara bertahap.</p>
+ <p class="lesson-text">Dua himpunan disebut <strong>sama</strong> ($A = B$) jika keduanya memiliki anggota yang persis sama. Secara formal, kesamaan himpunan didefinisikan melalui relasi bagian:</p>
+ <p class="lesson-text">$$A = B \iff A \subseteq B \text{ dan } B \subseteq A$$</p>
+ <p class="lesson-text">Inilah cara paling umum untuk membuktikan kesamaan himpunan: buktikan kedua arah relasi bagian.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Operasi Himpunan</h2>
+ <p class="lesson-text">Dari dua himpunan atau lebih, kita dapat membentuk himpunan baru melalui <strong>operasi</strong>. Ada lima operasi dasar yang perlu dipahami, dan masing-masing punya analogi dalam logika proposisi: gabungan seperti "<em>atau</em>", irisan seperti "<em>dan</em>", komplemen seperti "<em>bukan</em>".</p>
+
+ <h3 class="lesson-subheading">A. Gabungan (Union)</h3>
+ <p class="lesson-text"><strong>Gabungan</strong> dari $A$ dan $B$, dinotasikan $A \cup B$, adalah himpunan semua anggota yang termasuk $A$ <em>atau</em> $B$ (atau keduanya).</p>
+ <p class="lesson-text">$$A \cup B = \{ x \mid x \in A \text{ atau } x \in B \}$$</p>
+ <p class="lesson-text">Contoh: jika $A = \{1, 2, 3\}$ dan $B = \{3, 4, 5\}$, maka $A \cup B = \{1, 2, 3, 4, 5\}$. Perhatikan bahwa anggota yang muncul di kedua himpunan (yaitu 3) hanya ditulis <em>sekali</em> — sesuai sifat himpunan yang tidak mengizinkan anggota berulang.</p>
+
+ <h3 class="lesson-subheading">B. Irisan (Intersection)</h3>
+ <p class="lesson-text"><strong>Irisan</strong> dari $A$ dan $B$, dinotasikan $A \cap B$, adalah himpunan semua anggota yang termasuk $A$ <em>dan</em> $B$ sekaligus.</p>
+ <p class="lesson-text">$$A \cap B = \{ x \mid x \in A \text{ dan } x \in B \}$$</p>
+ <p class="lesson-text">Dengan $A = \{1, 2, 3\}$ dan $B = \{3, 4, 5\}$, maka $A \cap B = \{3\}$, karena hanya 3 yang muncul di kedua himpunan. Jika $A \cap B = \varnothing$, artinya $A$ dan $B$ tidak punya anggota bersama — keduanya disebut <strong>saling lepas</strong> (<em>disjoint</em>).</p>
+
+ <h3 class="lesson-subheading">C. Komplemen</h3>
+ <p class="lesson-text"><strong>Komplemen</strong> dari $A$ terhadap himpunan semesta $U$, dinotasikan $A^c$ atau $\bar{A}$, adalah himpunan semua anggota $U$ yang <em>tidak</em> termasuk $A$.</p>
+ <p class="lesson-text">$$A^c = \{ x \mid x \in U \text{ dan } x \notin A \}$$</p>
+ <p class="lesson-text">Komplemen selalu didefinisikan <em>relatif terhadap semesta</em>. Jika semestanya berubah, komplemennya juga berubah. Contoh: jika $U = \{1, 2, 3, 4, 5\}$ dan $A = \{1, 2, 3\}$, maka $A^c = \{4, 5\}$. Namun jika $U = \mathbb{N}$, maka $A^c$ adalah semua bilangan asli yang lebih besar dari 3.</p>
+
+ <h3 class="lesson-subheading">D. Selisih (Difference)</h3>
+ <p class="lesson-text"><strong>Selisih</strong> $A$ terhadap $B$, dinotasikan $A \setminus B$ atau $A - B$, adalah himpunan anggota $A$ yang <em>tidak</em> termasuk $B$.</p>
+ <p class="lesson-text">$$A \setminus B = \{ x \mid x \in A \text{ dan } x \notin B \}$$</p>
+ <p class="lesson-text">Contoh: $A = \{1, 2, 3\}$ dan $B = \{3, 4, 5\}$ menghasilkan $A \setminus B = \{1, 2\}$, sedangkan $B \setminus A = \{4, 5\}$. Perhatikan bahwa $A \setminus B$ dan $B \setminus A$ <em>berbeda</em> — selisih tidak komutatif. Namun keduanya bisa ditulis menggunakan irisan dan komplemen: $A \setminus B = A \cap B^c$.</p>
+
+ <h3 class="lesson-subheading">E. Beda Setangkup (Symmetric Difference)</h3>
+ <p class="lesson-text"><strong>Beda setangkup</strong> dari $A$ dan $B$, dinotasikan $A \triangle B$, adalah himpunan anggota yang termasuk <em>tepat salah satu</em> di antara $A$ atau $B$ — tetapi tidak keduanya.</p>
+ <p class="lesson-text">$$A \triangle B = (A \cup B) \setminus (A \cap B) = (A \setminus B) \cup (B \setminus A)$$</p>
+ <p class="lesson-text">Dengan $A = \{1, 2, 3\}$ dan $B = \{3, 4, 5\}$, maka $A \triangle B = \{1, 2, 4, 5\}$. Anggota 3 tidak masuk karena ia ada di kedua himpunan. Beda setangkup sering dipakai untuk mengukur "<em>seberapa berbeda</em>" dua himpunan — semakin sedikit anggotanya, semakin mirip keduanya.</p>
+
+ <h3 class="lesson-subheading">F. Ringkasan Operasi</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Operasi</th>
+     <th>Notasi</th>
+     <th>Definisi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Gabungan</td>
+     <td>$A \cup B$</td>
+     <td>$x \in A$ atau $x \in B$</td>
+    </tr>
+    <tr>
+     <td>Irisan</td>
+     <td>$A \cap B$</td>
+     <td>$x \in A$ dan $x \in B$</td>
+    </tr>
+    <tr>
+     <td>Komplemen</td>
+     <td>$A^c$</td>
+     <td>$x \in U$ dan $x \notin A$</td>
+    </tr>
+    <tr>
+     <td>Selisih</td>
+     <td>$A \setminus B$</td>
+     <td>$x \in A$ dan $x \notin B$</td>
+    </tr>
+    <tr>
+     <td>Beda Setangkup</td>
+     <td>$A \triangle B$</td>
+     <td>$x$ di tepat salah satu dari $A$ atau $B$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Hukum-Hukum Aljabar Himpunan</h2>
+ <p class="lesson-text">Sama seperti logika proposisi memiliki hukum-hukum yang memungkinkan penyederhanaan, himpunan juga memiliki hukum serupa. Hukum-hukum ini bukan kebetulan — keduanya berbagi struktur yang sama, sehingga menukar $\land \leftrightarrow \cap$, $\lor \leftrightarrow \cup$, dan $\neg \leftrightarrow {}^c$ akan mengubah hukum logika proposisi menjadi hukum himpunan.</p>
+
+ <h3 class="lesson-subheading">A. Hukum Identitas, Dominasi, dan Komplemen</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Identitas</td>
+     <td>$A \cap U = A$ &nbsp;&nbsp; dan &nbsp;&nbsp; $A \cup \varnothing = A$</td>
+    </tr>
+    <tr>
+     <td>Dominasi</td>
+     <td>$A \cup U = U$ &nbsp;&nbsp; dan &nbsp;&nbsp; $A \cap \varnothing = \varnothing$</td>
+    </tr>
+    <tr>
+     <td>Komplemen Ganda</td>
+     <td>$(A^c)^c = A$</td>
+    </tr>
+    <tr>
+     <td>Hukum Komplemen</td>
+     <td>$A \cup A^c = U$ &nbsp;&nbsp; dan &nbsp;&nbsp; $A \cap A^c = \varnothing$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Hukum identitas menempatkan $U$ dan $\varnothing$ sebagai "unsur netral" untuk operasi masing-masing: $U$ netral bagi $\cap$ (seperti angka 1 pada perkalian), dan $\varnothing$ netral bagi $\cup$ (seperti angka 0 pada penjumlahan). Sebaliknya, hukum dominasi menunjukkan unsur yang "menelan": $U$ menelan melalui $\cup$, dan $\varnothing$ menelan melalui $\cap$.</p>
+
+ <h3 class="lesson-subheading">B. Hukum Idempoten, Komutatif, dan Asosiatif</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Idempoten</td>
+     <td>$A \cap A = A$ &nbsp;&nbsp; dan &nbsp;&nbsp; $A \cup A = A$</td>
+    </tr>
+    <tr>
+     <td>Komutatif</td>
+     <td>$A \cap B = B \cap A$ &nbsp;&nbsp; dan &nbsp;&nbsp; $A \cup B = B \cup A$</td>
+    </tr>
+    <tr>
+     <td>Asosiatif</td>
+     <td>$(A \cap B) \cap C = A \cap (B \cap C)$</td>
+    </tr>
+    <tr>
+     <td>Asosiatif</td>
+     <td>$(A \cup B) \cup C = A \cup (B \cup C)$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text"><strong>Idempoten</strong> berarti mengambil irisan atau gabungan suatu himpunan dengan dirinya sendiri menghasilkan himpunan yang sama. <strong>Komutatif</strong> berarti urutan tidak penting. <strong>Asosiatif</strong> berarti pengelompokan juga tidak penting.</p>
+
+ <h3 class="lesson-subheading">C. Hukum Distributif dan Absorpsi</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Distributif</td>
+     <td>$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$</td>
+    </tr>
+    <tr>
+     <td>Distributif</td>
+     <td>$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$</td>
+    </tr>
+    <tr>
+     <td>Absorpsi</td>
+     <td>$A \cup (A \cap B) = A$ &nbsp;&nbsp; dan &nbsp;&nbsp; $A \cap (A \cup B) = A$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Seperti pada logika proposisi, hukum distributif berlaku <em>dua arah</em>: baik $\cap$ mendistribusi $\cup$, maupun sebaliknya. Hukum absorpsi menyatakan bahwa himpunan yang "menelan" bagian yang lebih kecil akan kembali ke dirinya sendiri.</p>
+
+ <h3 class="lesson-subheading">D. Hukum De Morgan</h3>
+ <p class="lesson-text">Hukum <strong>De Morgan</strong> menjelaskan bagaimana mengomplemen gabungan dan irisan:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Bentuk</th>
+     <th>Ekuivalen</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$(A \cup B)^c$</td>
+     <td>$A^c \cap B^c$</td>
+    </tr>
+    <tr>
+     <td>$(A \cap B)^c$</td>
+     <td>$A^c \cup B^c$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Secara verbal: komplemen dari gabungan sama dengan irisan dari komplemen-komplemennya; komplemen dari irisan sama dengan gabungan dari komplemen-komplemennya. Perhatikan bahwa operatornya <em>berubah</em> — $\cup$ menjadi $\cap$ dan sebaliknya. Ini konsisten dengan intuisi: kalau sebuah objek <em>bukan</em> anggota $A \cup B$, berarti ia bukan anggota $A$ <em>dan</em> bukan anggota $B$.</p>
+
+ <h3 class="lesson-subheading">E. Hukum Selisih dan Beda Setangkup</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Selisih sebagai Irisan</td>
+     <td>$A \setminus B = A \cap B^c$</td>
+    </tr>
+    <tr>
+     <td>De Morgan untuk Selisih</td>
+     <td>$(A \setminus B)^c = A^c \cup B$</td>
+    </tr>
+    <tr>
+     <td>Beda Setangkup</td>
+     <td>$A \triangle B = (A \cup B) \setminus (A \cap B)$</td>
+    </tr>
+    <tr>
+     <td>Komutatif Beda Setangkup</td>
+     <td>$A \triangle B = B \triangle A$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Baris <em>Selisih sebagai Irisan</em> adalah trik paling sering dipakai: mengubah selisih menjadi irisan dan komplemen. Dengan cara ini, selisih bisa "diseragamkan" menjadi bentuk yang hanya mengandung $\cap$, $\cup$, dan ${}^c$ — sehingga hukum-hukum lain bisa diterapkan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Kardinalitas</h2>
+
+ <h3 class="lesson-subheading">A. Definisi Kardinalitas</h3>
+ <p class="lesson-text"><strong>Kardinalitas</strong> sebuah himpunan adalah banyaknya anggota himpunan tersebut, dinotasikan $|A|$ atau $n(A)$. Contoh: jika $A = \{1, 2, 3, 4\}$, maka $|A| = 4$. Jika $B = \varnothing$, maka $|B| = 0$.</p>
+ <p class="lesson-text">Perlu kehati-hatian: kardinalitas menghitung <em>banyak anggota yang berbeda</em>, bukan banyak penulisan. Himpunan $\{1, 1, 2, 2, 2\}$ hanya punya dua anggota berbeda — yaitu 1 dan 2 — sehingga kardinalitasnya adalah 2, bukan 5.</p>
+
+ <h3 class="lesson-subheading">B. Himpunan Berhingga dan Tak Berhingga</h3>
+ <p class="lesson-text">Berdasarkan kardinalitasnya, himpunan dibedakan menjadi dua:</p>
+ <ul>
+  <li><strong>Himpunan berhingga</strong> — kardinalitasnya berupa bilangan bulat tak negatif. Contoh: $\{1, 2, 3\}$ memiliki $|A| = 3$.</li>
+  <li><strong>Himpunan tak berhingga</strong> — anggotanya tidak habis dihitung. Contoh: $\mathbb{N}$ memiliki kardinalitas tak berhingga, dinotasikan $|\mathbb{N}| = \aleph_0$ (dibaca <em>alef-nol</em>).</li>
+ </ul>
+ <p class="lesson-text">Yang menarik: tidak semua himpunan tak berhingga punya kardinalitas yang sama. Himpunan bilangan real $\mathbb{R}$ memiliki kardinalitas yang <em>lebih besar</em> dari $\mathbb{N}$, meskipun keduanya sama-sama tak berhingga. Ini salah satu temuan paling mengejutkan dalam matematika, tetapi pembahasannya di luar cakupan halaman ini.</p>
+
+ <h3 class="lesson-subheading">C. Prinsip Inklusi-Eksklusi</h3>
+ <p class="lesson-text">Bagaimana cara menghitung $|A \cup B|$? Kita mungkin tergoda menjawab $|A| + |B|$. Namun ini <em>salah</em> jika $A$ dan $B$ punya anggota bersama — anggota yang beririsan akan dihitung dua kali. Untuk mengoreksinya, kita kurangi sekali:</p>
+ <p class="lesson-text">$$|A \cup B| = |A| + |B| - |A \cap B|$$</p>
+ <p class="lesson-text">Inilah <strong>prinsip inklusi-eksklusi</strong> untuk dua himpunan. Untuk tiga himpunan, formula menjadi lebih panjang — setiap tambahan himpunan menambah suku, dengan tanda bergantian +, −, +:</p>
+ <p class="lesson-text">$$|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$$</p>
+ <p class="lesson-text">Pola tandanya mudah diingat: tambahkan kardinalitas semua himpunan tunggal, kurangi semua irisan ganda, tambahkan kembali irisan tripel. Untuk lebih banyak himpunan, pola ini berlanjut dengan tanda bergantian.</p>
+
+ <h3 class="lesson-subheading">D. Kardinalitas Komplemen dan Selisih</h3>
+ <p class="lesson-text">Beberapa rumus tambahan yang sering dipakai:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Rumus</th>
+     <th>Penjelasan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$|A^c| = |U| - |A|$</td>
+     <td>komplemen adalah sisa dari semesta</td>
+    </tr>
+    <tr>
+     <td>$|A \setminus B| = |A| - |A \cap B|$</td>
+     <td>anggota $A$ yang bukan anggota $B$</td>
+    </tr>
+    <tr>
+     <td>$|A \triangle B| = |A| + |B| - 2|A \cap B|$</td>
+     <td>anggota di tepat salah satu himpunan</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Rumus pertama mengikuti langsung dari definisi komplemen. Rumus kedua masuk akal: untuk mendapatkan anggota $A$ yang bukan anggota $B$, kita ambil seluruh $A$ lalu kurangi yang beririsan dengan $B$. Rumus ketiga dihasilkan dari mengurangkan dua kali irisan (satu dari $A$, satu dari $B$).</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Himpunan Kuasa</h2>
+
+ <h3 class="lesson-subheading">A. Definisi</h3>
+ <p class="lesson-text"><strong>Himpunan kuasa</strong> (<em>power set</em>) dari $A$ adalah himpunan yang berisi <em>semua</em> himpunan bagian dari $A$. Ia dinotasikan $\mathcal{P}(A)$ atau $2^A$. Dengan kata lain:</p>
+ <p class="lesson-text">$$\mathcal{P}(A) = \{ X \mid X \subseteq A \}$$</p>
+ <p class="lesson-text">Himpunan kuasa mengumpulkan <em>semua</em> kemungkinan himpunan bagian — dari yang terkecil ($\varnothing$) sampai yang terbesar ($A$ itu sendiri). Karena itu, tidak ada himpunan bagian $A$ yang terlewat.</p>
+
+ <h3 class="lesson-subheading">B. Cara Menyusun</h3>
+ <p class="lesson-text">Untuk menyusun $\mathcal{P}(A)$ secara sistematis, kita kelompokkan himpunan bagian berdasarkan banyaknya anggota: mulai dari yang kosong (0 anggota), lalu yang bertambah satu-satu sampai seluruh $A$.</p>
+ <p class="lesson-text">Contoh: $A = \{a, b, c\}$. Maka:</p>
+ <ul>
+  <li>Himpunan bagian dengan 0 anggota: $\varnothing$.</li>
+  <li>Himpunan bagian dengan 1 anggota: $\{a\}$, $\{b\}$, $\{c\}$.</li>
+  <li>Himpunan bagian dengan 2 anggota: $\{a, b\}$, $\{a, c\}$, $\{b, c\}$.</li>
+  <li>Himpunan bagian dengan 3 anggota: $\{a, b, c\}$.</li>
+ </ul>
+ <p class="lesson-text">Sehingga $\mathcal{P}(A) = \{ \varnothing, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\} \}$. Ada 8 himpunan bagian secara total.</p>
+
+ <h3 class="lesson-subheading">C. Kardinalitas Himpunan Kuasa</h3>
+ <p class="lesson-text">Perhatikan pola: untuk $|A| = 3$, kita dapat $|\mathcal{P}(A)| = 8 = 2^3$. Ternyata ini bukan kebetulan. Secara umum:</p>
+ <p class="lesson-text">$$|\mathcal{P}(A)| = 2^{|A|}$$</p>
+ <p class="lesson-text">Mengapa $2^{|A|}$? Karena untuk menyusun himpunan bagian, setiap anggota $A$ punya <em>dua pilihan</em>: masuk ke himpunan bagian, atau tidak masuk. Jika $A$ punya $n$ anggota, dan setiap anggota punya 2 pilihan independen, maka total kombinasinya adalah $2 \times 2 \times \cdots \times 2$ sebanyak $n$ kali — yaitu $2^n$. Inilah sebabnya notasi $2^A$ juga sering dipakai untuk himpunan kuasa.</p>
+
+ <h3 class="lesson-subheading">D. Beberapa Kasus Kecil</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$A$</th>
+     <th>$\mathcal{P}(A)$</th>
+     <th>$|\mathcal{P}(A)|$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\varnothing$</td>
+     <td>$\{ \varnothing \}$</td>
+     <td>$2^0 = 1$</td>
+    </tr>
+    <tr>
+     <td>$\{1\}$</td>
+     <td>$\{ \varnothing, \{1\} \}$</td>
+     <td>$2^1 = 2$</td>
+    </tr>
+    <tr>
+     <td>$\{1, 2\}$</td>
+     <td>$\{ \varnothing, \{1\}, \{2\}, \{1, 2\} \}$</td>
+     <td>$2^2 = 4$</td>
+    </tr>
+    <tr>
+     <td>$\{1, 2, 3\}$</td>
+     <td>$8$ himpunan bagian</td>
+     <td>$2^3 = 8$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Kasus paling kecil, $\mathcal{P}(\varnothing) = \{ \varnothing \}$, sering membingungkan. Ingat kembali bahwa $\varnothing$ adalah himpunan bagian dari setiap himpunan — termasuk dari dirinya sendiri. Jadi himpunan kuasa dari himpunan kosong berisi tepat satu anggota, yaitu himpunan kosong itu sendiri. Kardinalitasnya $2^0 = 1$, bukan 0.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Hasil Kali Kartesius</h2>
+
+ <h3 class="lesson-subheading">A. Pasangan Terurut</h3>
+ <p class="lesson-text">Sebelum mendefinisikan hasil kali Kartesius, kita perlu memahami <strong>pasangan terurut</strong> (<em>ordered pair</em>) — pasangan objek dengan <em>urutan</em> yang penting. Pasangan terurut dinotasikan $(a, b)$, dengan $a$ sebagai komponen pertama dan $b$ sebagai komponen kedua.</p>
+ <p class="lesson-text">Perbedaan mendasar dengan himpunan: <em>urutan menentukan identitas</em>. Pada himpunan, $\{a, b\}$ dan $\{b, a\}$ adalah himpunan yang sama. Namun pada pasangan terurut, $(a, b)$ dan $(b, a)$ adalah dua pasangan <strong>berbeda</strong> kecuali $a = b$. Inilah yang membuat pasangan terurut menjadi alat penting untuk menyatakan <em>hubungan berurutan</em>, seperti koordinat titik pada bidang: titik $(2, 5)$ dan $(5, 2)$ jelas berbeda.</p>
+ <p class="lesson-text">Secara formal, dua pasangan terurut $(a, b)$ dan $(c, d)$ sama jika dan hanya jika $a = c$ dan $b = d$.</p>
+
+ <h3 class="lesson-subheading">B. Definisi Hasil Kali Kartesius</h3>
+ <p class="lesson-text"><strong>Hasil kali Kartesius</strong> dari himpunan $A$ dan $B$, dinotasikan $A \times B$, adalah himpunan semua pasangan terurut $(a, b)$ dengan $a \in A$ dan $b \in B$:</p>
+ <p class="lesson-text">$$A \times B = \{ (a, b) \mid a \in A \text{ dan } b \in B \}$$</p>
+ <p class="lesson-text">Nama "Kartesius" berasal dari René Descartes, yang memperkenalkan sistem koordinat untuk menggabungkan dua bilangan menjadi satu titik pada bidang. Sistem koordinat $\mathbb{R} \times \mathbb{R}$ — yang biasa kita tulis $\mathbb{R}^2$ — adalah contoh paling terkenal dari hasil kali Kartesius.</p>
+
+ <h3 class="lesson-subheading">C. Contoh Konstruksi</h3>
+ <p class="lesson-text">Misalkan $A = \{1, 2\}$ dan $B = \{x, y, z\}$. Maka:</p>
+ <p class="lesson-text">$$A \times B = \{ (1, x), (1, y), (1, z), (2, x), (2, y), (2, z) \}$$</p>
+ <p class="lesson-text">Sebaliknya, hasil kali dalam urutan terbalik:</p>
+ <p class="lesson-text">$$B \times A = \{ (x, 1), (x, 2), (y, 1), (y, 2), (z, 1), (z, 2) \}$$</p>
+ <p class="lesson-text">Perhatikan bahwa $A \times B$ dan $B \times A$ memiliki anggota yang <em>berbeda</em>. Sebagai contoh, $(1, x)$ ada di $A \times B$ tetapi tidak ada di $B \times A$ — yang ada di $B \times A$ adalah $(x, 1)$, dan itu pasangan yang berbeda. Jadi hasil kali Kartesius <strong>tidak komutatif</strong>.</p>
+
+ <h3 class="lesson-subheading">D. Kardinalitas Hasil Kali Kartesius</h3>
+ <p class="lesson-text">Untuk himpunan berhingga, kardinalitas $A \times B$ mudah dihitung: setiap elemen $A$ bisa dipasangkan dengan setiap elemen $B$. Karena ada $|A|$ pilihan untuk komponen pertama dan $|B|$ pilihan untuk komponen kedua, maka dengan prinsip perkalian:</p>
+ <p class="lesson-text">$$|A \times B| = |A| \cdot |B|$$</p>
+ <p class="lesson-text">Pada contoh tadi, $|A| = 2$ dan $|B| = 3$, sehingga $|A \times B| = 2 \times 3 = 6$ — sesuai dengan perhitungan langsung kita. Untuk hasil kali tiga himpunan, berlaku $|A \times B \times C| = |A| \cdot |B| \cdot |C|$.</p>
+
+ <h3 class="lesson-subheading">E. Sifat-Sifat Hasil Kali Kartesius</h3>
+ <p class="lesson-text">Beberapa sifat penting yang sering dipakai:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sifat</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Tidak Komutatif</td>
+     <td>$A \times B \neq B \times A$ (kecuali kasus khusus)</td>
+    </tr>
+    <tr>
+     <td>Distributif terhadap $\cup$</td>
+     <td>$A \times (B \cup C) = (A \times B) \cup (A \times C)$</td>
+    </tr>
+    <tr>
+     <td>Distributif terhadap $\cap$</td>
+     <td>$A \times (B \cap C) = (A \times B) \cap (A \times C)$</td>
+    </tr>
+    <tr>
+     <td>Distributif terhadap $\setminus$</td>
+     <td>$A \times (B \setminus C) = (A \times B) \setminus (A \times C)$</td>
+    </tr>
+    <tr>
+     <td>Kasus Himpunan Kosong</td>
+     <td>$A \times \varnothing = \varnothing$ &nbsp;&nbsp; dan &nbsp;&nbsp; $\varnothing \times A = \varnothing$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Sifat <em>tidak komutatif</em> sudah kita bahas — itu akibat langsung dari sifat pasangan terurut. Sifat <em>distributif</em> memungkinkan kita mengeluarkan hasil kali Kartesius dari tanda kurung, mirip dengan distribusi aritmetika ($a(b + c) = ab + ac$). Sifat <em>kasus himpunan kosong</em> masuk akal: kalau salah satu himpunan tidak punya anggota, tidak ada pasangan yang bisa dibentuk.</p>
+
+ <h3 class="lesson-subheading">F. Perluasan ke Lebih dari Dua Himpunan</h3>
+ <p class="lesson-text">Hasil kali Kartesius dapat diperluas ke tiga himpunan atau lebih. Untuk tiga himpunan:</p>
+ <p class="lesson-text">$$A \times B \times C = \{ (a, b, c) \mid a \in A, b \in B, c \in C \}$$</p>
+ <p class="lesson-text">Anggotanya berupa <strong>triple terurut</strong> (pasangan tiga). Contoh: jika $A = \{0, 1\}$, $B = \{0, 1\}$, dan $C = \{0, 1\}$, maka $A \times B \times C$ adalah himpunan semua triple biner $(a, b, c)$ — ada $2^3 = 8$ anggota, mulai dari $(0, 0, 0)$ sampai $(1, 1, 1)$. Himpunan inilah yang menjadi dasar representasi bilangan biner 3-bit dalam ilmu komputer.</p>
+ <p class="lesson-text">Secara umum, hasil kali Kartesius dari $n$ himpunan dinotasikan $A_1 \times A_2 \times \cdots \times A_n$, dengan kardinalitas $|A_1| \cdot |A_2| \cdots |A_n|$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h2>
+
+ <h3 class="lesson-subheading">Soal 1 — Prinsip Inklusi-Eksklusi Tiga Himpunan</h3>
+ <p class="lesson-text">Dalam sebuah kelas berisi 50 mahasiswa, 25 orang mengikuti klub musik, 20 orang mengikuti klub olahraga, dan 15 orang mengikuti klub debat. Diketahui 7 orang mengikuti musik dan olahraga, 5 orang mengikuti musik dan debat, 4 orang mengikuti olahraga dan debat, dan 2 orang mengikuti ketiga klub tersebut. Berapa mahasiswa yang <em>tidak</em> mengikuti klub apa pun?</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Misalkan $M$, $O$, $D$ berturut-turut menyatakan himpunan anggota klub musik, olahraga, dan debat. Terapkan prinsip inklusi-eksklusi untuk tiga himpunan:</p>
+ <ul>
+  <li>$|M \cup O \cup D| = |M| + |O| + |D| - |M \cap O| - |M \cap D| - |O \cap D| + |M \cap O \cap D|$</li>
+  <li>$= 25 + 20 + 15 - 7 - 5 - 4 + 2$</li>
+  <li>$= 60 - 16 + 2 = 46$.</li>
+ </ul>
+ <p class="lesson-text">Kardinalitas gabungan adalah 46, artinya 46 mahasiswa mengikuti minimal satu klub. Karena semesta berisi 50 orang, mahasiswa yang tidak mengikuti klub apa pun adalah $50 - 46 = 4$ orang. ∎</p>
+
+ <h3 class="lesson-subheading">Soal 2 — Himpunan Kuasa dengan Syarat Tertentu</h3>
+ <p class="lesson-text">Misalkan $S = \{1, 2, 3, 4, 5\}$. Ada berapa himpunan bagian dari $S$ yang <em>memuat</em> $1$ tetapi <em>tidak memuat</em> $2$?</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Kita bisa menyusun himpunan bagian dengan aturan berikut:</p>
+ <ul>
+  <li>Anggota 1: <em>wajib masuk</em>. Hanya ada 1 pilihan.</li>
+  <li>Anggota 2: <em>wajib tidak masuk</em>. Hanya ada 1 pilihan.</li>
+  <li>Anggota 3, 4, 5: masing-masing <em>bebas</em> — boleh masuk atau tidak. Masing-masing punya 2 pilihan.</li>
+ </ul>
+ <p class="lesson-text">Dengan prinsip perkalian, banyak himpunan bagian yang memenuhi adalah $1 \times 1 \times 2 \times 2 \times 2 = 8$. Jadi ada <strong>8 himpunan bagian</strong>. Pola ini konsisten dengan rumus $2^n$: karena 3 anggota yang bebas, hasilnya $2^3 = 8$. ∎</p>
+
+ <h3 class="lesson-subheading">Soal 3 — Pembuktian dengan Hukum Himpunan</h3>
+<p class="lesson-text">Buktikan bahwa $(A \setminus B) \cup (B \setminus A) = (A \cup B) \setminus (A \cap B)$.</p>
+<p class="lesson-text"><strong>Pembahasan.</strong> Kita mulai dari sisi kanan — yang bentuknya lebih kompleks — lalu menyederhanakannya dengan hukum-hukum himpunan sampai menjadi sisi kiri.</p>
+<ul>
+ <li>$(A \cup B) \setminus (A \cap B)$ — bentuk awal sisi kanan.</li>
+ <li>$= (A \cup B) \cap (A \cap B)^c$ — definisi selisih: $X \setminus Y = X \cap Y^c$.</li>
+ <li>$= (A \cup B) \cap (A^c \cup B^c)$ — Hukum De Morgan: $(A \cap B)^c = A^c \cup B^c$.</li>
+ <li>$= [(A \cup B) \cap A^c] \cup [(A \cup B) \cap B^c]$ — Hukum distributif.</li>
+ <li>$= [(A \cap A^c) \cup (B \cap A^c)] \cup [(A \cap B^c) \cup (B \cap B^c)]$ — Hukum distributif lagi pada tiap suku.</li>
+ <li>$= [\varnothing \cup (B \cap A^c)] \cup [(A \cap B^c) \cup \varnothing]$ — Hukum komplemen: $A \cap A^c = \varnothing$ dan $B \cap B^c = \varnothing$.</li>
+ <li>$= (B \cap A^c) \cup (A \cap B^c)$ — Hukum identitas: $X \cup \varnothing = X$.</li>
+ <li>$= (B \setminus A) \cup (A \setminus B)$ — definisi selisih, dibalik.</li>
+ <li>$= (A \setminus B) \cup (B \setminus A)$ — Hukum komutatif.</li>
+</ul>
+<p class="lesson-text">Sisi kanan sudah menjadi sisi kiri. Karena setiap langkah memakai hukum yang sah, kesamaan terbukti. ∎</p>
+
+ <h3 class="lesson-subheading">Soal 4 — Hasil Kali Kartesius dan Kardinalitasnya</h3>
+ <p class="lesson-text">Diketahui $A = \{1, 2, 3\}$ dan $B = \{a, b\}$. Tentukan $A \times B$, $B \times A$, dan tentukan $|A \times B|$ serta $|B \times A|$.</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Susun pasangan terurut dengan mengambil setiap anggota dari himpunan pertama, lalu memasangkannya dengan setiap anggota himpunan kedua.</p>
+ <ul>
+  <li>$A \times B = \{ (1, a), (1, b), (2, a), (2, b), (3, a), (3, b) \}$</li>
+  <li>$B \times A = \{ (a, 1), (a, 2), (a, 3), (b, 1), (b, 2), (b, 3) \}$</li>
+ </ul>
+ <p class="lesson-text">Kardinalitasnya:</p>
+ <ul>
+  <li>$|A \times B| = |A| \cdot |B| = 3 \cdot 2 = 6$.</li>
+  <li>$|B \times A| = |B| \cdot |A| = 2 \cdot 3 = 6$.</li>
+ </ul>
+ <p class="lesson-text">Menarik: meskipun $A \times B$ dan $B \times A$ adalah himpunan yang <strong>berbeda</strong> (anggotanya tidak sama), keduanya memiliki <em>kardinalitas yang sama</em> — karena perkalian bersifat komutatif. ∎</p>
+
+ <h3 class="lesson-subheading">Soal 5 — Beda Setangkup dengan Tiga Himpunan</h3>
+ <p class="lesson-text">Diketahui $A = \{1, 2, 3, 4\}$, $B = \{3, 4, 5, 6\}$, dan $C = \{4, 5, 7\}$. Tentukan $(A \triangle B) \setminus C$.</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Kerjakan langkah demi langkah sesuai urutan operasi (kurung dulu).</p>
+ <ul>
+  <li>Hitung $A \triangle B$: &nbsp; anggota yang di tepat salah satu dari $A$ atau $B$. Anggota 3 dan 4 ada di keduanya, jadi dibuang. Sisanya: $A \triangle B = \{1, 2, 5, 6\}$.</li>
+  <li>Hitung $(A \triangle B) \setminus C$: &nbsp; buang anggota $C = \{4, 5, 7\}$ dari hasil sebelumnya. Yang perlu dibuang hanya 5 (karena 4 dan 7 tidak ada di hasil sebelumnya).</li>
+  <li>Hasil akhir: &nbsp; $(A \triangle B) \setminus C = \{1, 2, 6\}$.</li>
+ </ul>
+ <p class="lesson-text">Verifikasi cepat: 1, 2, dan 6 semuanya bukan anggota $C$, dan semuanya adalah anggota $A \triangle B$. Jadi hasilnya konsisten. ∎</p>
+
+ <h3 class="lesson-subheading">Soal 6 — Distributif Kartesius terhadap Irisan</h3>
+ <p class="lesson-text">Diketahui $A = \{1, 2\}$, $B = \{2, 3\}$, dan $C = \{2, 4\}$. Buktikan bahwa $A \times (B \cap C) = (A \times B) \cap (A \times C)$ dengan menghitung kedua sisi.</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Hitung kedua sisi secara terpisah, lalu bandingkan hasilnya.</p>
+ <p class="lesson-text">Sisi kiri:</p>
+ <ul>
+  <li>$B \cap C = \{2, 3\} \cap \{2, 4\} = \{2\}$.</li>
+  <li>$A \times (B \cap C) = \{1, 2\} \times \{2\} = \{ (1, 2), (2, 2) \}$.</li>
+ </ul>
+ <p class="lesson-text">Sisi kanan:</p>
+ <ul>
+  <li>$A \times B = \{ (1, 2), (1, 3), (2, 2), (2, 3) \}$.</li>
+  <li>$A \times C = \{ (1, 2), (1, 4), (2, 2), (2, 4) \}$.</li>
+  <li>$(A \times B) \cap (A \times C)$ adalah pasangan yang muncul di <em>kedua</em> himpunan. Yang sama: $(1, 2)$ dan $(2, 2)$.</li>
+  <li>Hasil: $\{ (1, 2), (2, 2) \}$.</li>
+ </ul>
+ <p class="lesson-text">Kedua sisi menghasilkan himpunan yang sama, yaitu $\{ (1, 2), (2, 2) \}$. Terbukti bahwa $A \times (B \cap C) = (A \times B) \cap (A \times C)$. ∎</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Kesalahan Umum</h2>
+ <ul>
+  <li>Menganggap $\{1, 2, 2, 3\}$ punya <strong>empat</strong> anggota. Dalam himpunan, anggota berulang hanya dihitung sekali — himpunan ini punya 3 anggota.</li>
+  <li>Mengira urutan penulisan anggota memengaruhi kesamaan himpunan. $\{1, 2, 3\}$ dan $\{3, 1, 2\}$ adalah himpunan yang <strong>sama</strong>.</li>
+  <li>Menukar $\varnothing$ dengan $\{\varnothing\}$. Yang pertama adalah himpunan <em>tanpa</em> anggota; yang kedua adalah himpunan yang berisi <em>satu</em> anggota (yaitu himpunan kosong).</li>
+  <li>Menghitung $|A \cup B|$ sebagai $|A| + |B|$. Rumus yang benar adalah $|A| + |B| - |A \cap B|$ — anggota irisan harus dikurangi sekali karena terhitung ganda.</li>
+  <li>Menganggap selisih himpunan bersifat komutatif. $A \setminus B$ <strong>tidak sama</strong> dengan $B \setminus A$ secara umum.</li>
+  <li>Menganggap $A \triangle B$ sama dengan $A \cup B$. Beda setangkup <em>membuang</em> anggota yang ada di keduanya; gabungan <em>menyimpan</em> mereka.</li>
+  <li>Lupa menyebutkan <strong>semesta</strong> saat menghitung komplemen. Komplemen selalu relatif terhadap semesta — jika semesta berubah, hasilnya juga berubah.</li>
+  <li>Mengira $|\mathcal{P}(A)|$ sama dengan $|A|$. Himpunan kuasa jauh lebih besar: $|\mathcal{P}(A)| = 2^{|A|}$. Untuk $|A| = 3$, himpunan kuasanya punya 8 anggota, bukan 3.</li>
+  <li>Menganggap $\mathcal{P}(\varnothing) = \varnothing$. Sebenarnya $\mathcal{P}(\varnothing) = \{ \varnothing \}$ — kardinalitasnya 1, bukan 0.</li>
+  <li>Menukar arah relasi $\subseteq$ pada pembuktian kesamaan himpunan. Untuk membuktikan $A = B$ dari definisi, harus dibuktikan <strong>dua arah</strong>: $A \subseteq B$ dan $B \subseteq A$.</li>
+  <li>Menganggap hasil kali Kartesius bersifat <strong>komutatif</strong> karena kardinalitasnya sama. $|A \times B| = |B \times A|$ memang selalu benar, tetapi $A \times B \neq B \times A$ secara umum — anggota keduanya berbeda. Kesamaan kardinalitas tidak berarti kesamaan himpunan.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Ringkasan</h2>
+ <ul>
+  <li><strong>Himpunan</strong> adalah kumpulan objek yang terdefinisi dengan jelas; anggotanya ditulis dalam kurung kurawal dan dinotasikan dengan $\in$ / $\notin$.</li>
+  <li>Ada dua cara menyajikan himpunan: <strong>tabulasi</strong> (daftar anggota) dan <strong>notasi pembentuk himpunan</strong> (aturan keanggotaan).</li>
+  <li><strong>Himpunan kosong</strong> ($\varnothing$) tidak punya anggota; <strong>himpunan semesta</strong> ($U$) memuat semua objek yang sedang dibicarakan.</li>
+  <li>Relasi <strong>himpunan bagian</strong> ($\subseteq$) menyatakan setiap anggota satu himpunan juga anggota himpunan lain. Kesamaan himpunan $A = B$ ekuivalen dengan $A \subseteq B$ dan $B \subseteq A$.</li>
+  <li><strong>Lima operasi dasar</strong>: gabungan ($\cup$), irisan ($\cap$), komplemen (${}^c$), selisih ($\setminus$), dan beda setangkup ($\triangle$).</li>
+  <li><strong>Hukum aljabar himpunan</strong> (identitas, komplemen, distributif, absorpsi, De Morgan, dan lain-lain) memungkinkan penyederhanaan bentuk himpunan tanpa mengubah anggotanya.</li>
+  <li><strong>Kardinalitas</strong> ($|A|$) adalah banyak anggota berbeda. Prinsip <strong>inklusi-eksklusi</strong> menghitung $|A \cup B|$ sebagai $|A| + |B| - |A \cap B|$, dan diperluas dengan pola tanda bergantian untuk lebih banyak himpunan.</li>
+  <li><strong>Himpunan kuasa</strong> $\mathcal{P}(A)$ berisi semua himpunan bagian dari $A$, dan kardinalitasnya adalah $|\mathcal{P}(A)| = 2^{|A|}$.</li>
+  <li><strong>Hasil kali Kartesius</strong> $A \times B$ berisi semua pasangan terurut $(a, b)$ dengan $a \in A$ dan $b \in B$; kardinalitasnya $|A \times B| = |A| \cdot |B|$.</li>
+  <li><strong>Hasil kali Kartesius tidak komutatif</strong> — $A \times B \neq B \times A$ secara umum, meskipun kardinalitas keduanya sama.</li>
+  <li>Hasil kali Kartesius bersifat <strong>distributif</strong> terhadap $\cup$, $\cap$, dan $\setminus$: $A \times (B \cup C) = (A \times B) \cup (A \times C)$, dan seterusnya.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

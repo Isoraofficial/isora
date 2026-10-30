@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relasi (relasi biner, sifat relasi, relasi ekivalensi, relasi urutan)</title>
+<meta name="description" content="Pengantar lengkap relasi: relasi biner, domain dan range, relasi invers, komposisi relasi, sifat-sifat relasi (refleksif, simetris, antisimetris, transitif), relasi ekivalensi dengan himpunan kuosien dan korespondensi partisi, relasi urutan parsial dan total beserta elemen khusus poset, serta contoh soal dan pembahasan.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Relasi (relasi biner, sifat relasi, relasi ekivalensi, relasi urutan)</h1>
+
+<aside class="box-prasyarat">
+ <p class="btn-prasyarat">Prasyarat</p>
+ <div class="content-prasyarat">
+  <ul>
+   <li><a class="link-prasyarat" href="himpunan">Himpunan</a> — memahami operasi himpunan, himpunan bagian, dan <em>hasil kali Kartesius</em>, karena relasi dibangun dari pasangan terurut.</li>
+   <li><a class="link-prasyarat" href="logika-predikat">Logika predikat</a> — memahami kuantor $\forall$ dan $\exists$, karena sifat-sifat relasi didefinisikan memakai pernyataan berkuantor.</li>
+   <li><a class="link-prasyarat" href="matriks">Matriks</a> — memahami notasi baris-kolom dan elemen matriks, karena relasi berhingga dapat direpresentasikan sebagai matriks 0-1.</li>
+   <li><a class="link-prasyarat" href="kongruensi-dan-modulo">Kongruensi dan modulo</a> — memahami notasi $a \equiv b \pmod{n}$, karena kongruensi modulo adalah contoh utama relasi ekivalensi.</li>
+  </ul>
+ </div>
+</aside>
+
+<section class="lesson-section">
+ <p class="lesson-text">Bayangkan sebuah pesta ulang tahun dengan lima anak: Ani, Budi, Cici, Dani, dan Eka. Kalau kita hanya daftarkan nama mereka, itu cuma <em>himpunan</em>. Tapi di pesta itu, ada yang berteman, ada yang bersaudara, ada yang lebih tua. Setiap hubungan ini melibatkan <strong>pasangan</strong> anak — dan justru hubungan inilah yang sering menjadi inti cerita. Untuk membicarakannya secara matematis, kita perlu konsep baru: <strong>relasi</strong>.</p>
+ <p class="lesson-text">Ide dasarnya sederhana. Kalau Ani berteman dengan Budi, kita tuliskan pasangan $(\text{Ani}, \text{Budi})$. Kumpulkan semua pasangan anak yang berteman, dan kita dapat sebuah himpunan — himpunan inilah yang menjadi wakil dari relasi "berteman". Karena pasangannya diambil dari hasil kali Kartesius, relasi tidak lain adalah <strong>himpunan bagian dari $A \times A$</strong>. Jadi relasi tetap tinggal di ranah himpunan, tetapi membawa makna tambahan tentang <em>hubungan</em> antar objek.</p>
+ <p class="lesson-text">Hubungan semacam ini muncul di mana-mana. Tanda "$=$" adalah relasi, "$\leq$" adalah relasi, "$\subseteq$" antar himpunan juga relasi, dan relasi "kongruen modulo $n$" di teori bilangan juga relasi. Masing-masing punya karakter berbeda: ada yang arahnya bisa dibalik, ada yang tidak; ada yang bisa "mengalir" dari satu pasangan ke pasangan lain, ada yang tidak. Dengan mempelajari sifat-sifatnya, kita bisa mengelompokkan relasi ke dalam kelas-kelas tertentu — dan dua kelas paling penting adalah <strong>relasi ekivalensi</strong> dan <strong>relasi urutan</strong>.</p>
+ <p class="lesson-text">Sepanjang halaman ini kita akan membahas relasi biner beserta cara merepresentasikannya, komposisi relasi, sifat-sifat relasi, dua kelas relasi istimewa, tabel perbandingan beberapa relasi konkret, dan ditutup dengan contoh soal serta pembahasan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Relasi Biner</h2>
+
+ <h3 class="lesson-subheading">A. Definisi Relasi Biner</h3>
+ <p class="lesson-text">Sebuah <strong>relasi biner</strong> dari himpunan $A$ ke himpunan $B$ adalah himpunan bagian dari $A \times B$. Kata "<em>biner</em>" menandakan bahwa relasi ini melibatkan <em>dua</em> objek — satu dari $A$ dan satu dari $B$. Jika $R$ adalah relasi dari $A$ ke $B$, kita menulis:</p>
+ <p class="lesson-text">$$R \subseteq A \times B$$</p>
+ <p class="lesson-text">Setiap pasangan $(a, b) \in R$ berarti "<em>objek $a$ berelasi dengan objek $b$</em>" menurut aturan $R$. Notasi $(a, b) \in R$ kadang ditulis lebih ringkas sebagai $a \, R \, b$. Keduanya bermakna sama.</p>
+ <p class="lesson-text">Contoh sederhana: misalkan $A = \{1, 2, 3\}$ dan relasi $R$ adalah "<em>kurang dari</em>" pada $A$. Maka $R$ berisi semua pasangan $(a, b)$ dengan $a < b$:</p>
+ <p class="lesson-text">$$R = \{ (1, 2), (1, 3), (2, 3) \}$$</p>
+ <p class="lesson-text">Perhatikan bahwa $(2, 1) \notin R$ — karena $2 < 1$ tidak benar. Arah pasangan penting, karena urutan bermakna dalam relasi biner.</p>
+ <p class="lesson-text">Ketika $A = B$, relasi tersebut disebut <strong>relasi pada himpunan $A$</strong> (bukan lagi "<em>dari $A$ ke $B$</em>"). Dalam hal ini $R \subseteq A \times A$. Sebagian besar relasi yang dibahas di halaman ini adalah relasi pada satu himpunan, karena sifat-sifat relasi (refleksif, simetris, transitif) hanya bermakna dalam konteks tersebut.</p>
+
+ <h3 class="lesson-subheading">B. Domain, Range, dan Relasi Invers</h3>
+ <p class="lesson-text">Dari sebuah relasi $R \subseteq A \times B$, kita dapat mengambil dua himpunan penting:</p>
+ <ul>
+  <li><strong>Domain</strong> dari $R$, dinotasikan $\text{dom}(R)$, adalah himpunan semua elemen $A$ yang muncul sebagai komponen pertama di suatu pasangan di $R$: $$\text{dom}(R) = \{ a \in A \mid \exists b \in B, \; (a, b) \in R \}$$</li>
+  <li><strong>Range</strong> dari $R$, dinotasikan $\text{ran}(R)$, adalah himpunan semua elemen $B$ yang muncul sebagai komponen kedua di suatu pasangan di $R$: $$\text{ran}(R) = \{ b \in B \mid \exists a \in A, \; (a, b) \in R \}$$</li>
+ </ul>
+ <p class="lesson-text">Pada contoh $R = \{(1, 2), (1, 3), (2, 3)\}$ di $A = \{1, 2, 3\}$: domainnya adalah $\{1, 2\}$, karena angka 3 tidak muncul sebagai komponen pertama. Range-nya adalah $\{2, 3\}$, karena angka 1 tidak muncul sebagai komponen kedua.</p>
+ <p class="lesson-text">Dari relasi $R$, kita juga bisa membentuk <strong>relasi invers</strong>, dinotasikan $R^{-1}$, dengan membalik setiap pasangan:</p>
+ <p class="lesson-text">$$R^{-1} = \{ (b, a) \mid (a, b) \in R \}$$</p>
+ <p class="lesson-text">Relasi invers ini adalah bagian dari $B \times A$ — jadi ia bukan relasi pada $A$ (kecuali $A = B$). Pada contoh di atas, $R^{-1} = \{(2, 1), (3, 1), (3, 2)\}$, yang merupakan relasi "<em>lebih dari</em>" pada $A$. Perhatikan bahwa domain dari $R^{-1}$ sama dengan range dari $R$, dan sebaliknya.</p>
+
+ <h3 class="lesson-subheading">C. Cara Merepresentasikan Relasi</h3>
+ <p class="lesson-text">Ada tiga cara utama untuk merepresentasikan relasi biner, masing-masing punya keunggulan pada situasi berbeda.</p>
+ <p class="lesson-text"><strong>1. Himpunan pasangan terurut.</strong> Ini cara paling langsung dan formal — cukup daftar semua pasangan yang termasuk relasi. Contoh: $R = \{(1, 2), (1, 3), (2, 3)\}$. Cocok untuk himpunan kecil dan untuk pembuktian formal.</p>
+ <p class="lesson-text"><strong>2. Diagram panah.</strong> Untuk relasi dari $A$ ke $B$, gambar dua kolom: elemen $A$ di kiri, elemen $B$ di kanan. Tarik panah dari $a$ ke $b$ untuk setiap $(a, b) \in R$. Cara ini memberi gambaran visual yang cepat tentang pola relasi, tetapi tidak praktis untuk himpunan besar.</p>
+ <p class="lesson-text"><strong>3. Matriks relasi.</strong> Untuk relasi pada himpunan berhingga $A = \{a_1, a_2, \ldots, a_n\}$, kita buat matriks $M_R$ berukuran $n \times n$ dengan aturan:</p>
+ <p class="lesson-text">$$(M_R)_{ij} = \begin{cases} 1, & \text{jika } (a_i, a_j) \in R \\ 0, & \text{jika } (a_i, a_j) \notin R \end{cases}$$</p>
+ <p class="lesson-text">Contoh: untuk $A = \{1, 2, 3\}$ dan $R = \{(1, 2), (2, 3), (3, 1)\}$:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th></th>
+     <th>1</th>
+     <th>2</th>
+     <th>3</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>1</strong></td>
+     <td>0</td>
+     <td>1</td>
+     <td>0</td>
+    </tr>
+    <tr>
+     <td><strong>2</strong></td>
+     <td>0</td>
+     <td>0</td>
+     <td>1</td>
+    </tr>
+    <tr>
+     <td><strong>3</strong></td>
+     <td>1</td>
+     <td>0</td>
+     <td>0</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Baris menyatakan komponen pertama, kolom menyatakan komponen kedua. Angka 1 di baris $i$ kolom $j$ berarti $(a_i, a_j) \in R$. Cara ini sangat berguna untuk memeriksa sifat-sifat relasi secara sistematis: misalnya, relasi refleksif jika diagonal utamanya semua bernilai 1, dan simetris jika matriksnya simetris terhadap diagonal.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Komposisi Relasi</h2>
+
+ <h3 class="lesson-subheading">A. Intuisi Komposisi</h3>
+ <p class="lesson-text">Bayangkan tiga himpunan: $A$ berisi siswa, $B$ berisi mata pelajaran, dan $C$ berisi guru. Sebuah relasi $R$ menyatakan "<em>siswa mengambil mata pelajaran</em>", sedangkan relasi $S$ menyatakan "<em>mata pelajaran diajar oleh guru</em>". Dari dua relasi ini, kita bisa membentuk relasi <em>baru</em>: "<em>siswa diajar oleh guru</em>" (melalui mata pelajaran yang diambilnya). Relasi baru inilah yang disebut <strong>komposisi</strong> dari $R$ dan $S$.</p>
+ <p class="lesson-text">Idenya: kalau $a$ berelasi dengan $b$ melalui $R$, dan $b$ berelasi dengan $c$ melalui $S$, maka $a$ berelasi dengan $c$ melalui komposisi keduanya — dengan $b$ sebagai "<em>jembatan</em>".</p>
+
+ <h3 class="lesson-subheading">B. Definisi Formal</h3>
+ <p class="lesson-text">Misalkan $R \subseteq A \times B$ dan $S \subseteq B \times C$. <strong>Komposisi</strong> $S \circ R$ (dibaca "<em>$S$ setelah $R$</em>") adalah relasi dari $A$ ke $C$ yang didefinisikan:</p>
+ <p class="lesson-text">$$S \circ R = \{ (a, c) \in A \times C \mid \exists b \in B, \; (a, b) \in R \text{ dan } (b, c) \in S \}$$</p>
+ <p class="lesson-text">Kuantor $\exists$ di sini kunci: yang dicari bukan sembarang $b$, melainkan <em>minimal satu</em> $b$ yang menjadi jembatan antara $a$ dan $c$. Kalau ada jembatan seperti itu, maka $(a, c) \in S \circ R$. Kalau tidak ada, maka tidak.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Perhatikan urutan penulisan: $S \circ R$ berarti "<em>$R$ dikerjakan dulu, lalu $S$</em>". Ini sesuai konvensi penulisan fungsi — jika $f(x)$ lalu dilanjutkan $g$, kita menulis $g \circ f$. Sebagian buku memakai notasi $R ; S$ dengan urutan kiri-ke-kanan, tetapi di halaman ini kita pakai $S \circ R$ agar konsisten dengan notasi fungsi.</p>
+ </div>
+
+ <h3 class="lesson-subheading">C. Contoh Penerapan</h3>
+ <p class="lesson-text">Misalkan $A = \{1, 2, 3\}$, $B = \{a, b\}$, dan $C = \{x, y\}$. Definisikan:</p>
+ <ul>
+  <li>$R = \{ (1, a), (2, a), (3, b) \} \subseteq A \times B$</li>
+  <li>$S = \{ (a, x), (b, y) \} \subseteq B \times C$</li>
+ </ul>
+ <p class="lesson-text">Untuk membentuk $S \circ R$, periksa setiap pasangan di $R$ dan cari jembatannya di $S$:</p>
+ <ul>
+  <li>$(1, a) \in R$ dan $(a, x) \in S$ &nbsp; → &nbsp; $(1, x) \in S \circ R$</li>
+  <li>$(2, a) \in R$ dan $(a, x) \in S$ &nbsp; → &nbsp; $(2, x) \in S \circ R$</li>
+  <li>$(3, b) \in R$ dan $(b, y) \in S$ &nbsp; → &nbsp; $(3, y) \in S \circ R$</li>
+ </ul>
+ <p class="lesson-text">Maka $S \circ R = \{ (1, x), (2, x), (3, y) \}$.</p>
+
+ <h3 class="lesson-subheading">D. Komposisi melalui Matriks</h3>
+ <p class="lesson-text">Jika relasi direpresentasikan sebagai matriks 0-1, komposisi dapat dihitung dengan <strong>perkalian Boolean</strong>: $M_{S \circ R} = M_R \cdot M_S$, dengan aturan penjumlahan $1 + 1 = 1$ (bukan 2). Aturan ini konsisten dengan sifat $\exists$ — kehadiran satu jembatan saja sudah cukup.</p>
+ <p class="lesson-text">Menggunakan contoh di atas, dengan $A = \{1, 2, 3\}$, $B = \{a, b\}$, $C = \{x, y\}$:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$M_R$</th>
+     <th>$a$</th>
+     <th>$b$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>1</strong></td>
+     <td>1</td>
+     <td>0</td>
+    </tr>
+    <tr>
+     <td><strong>2</strong></td>
+     <td>1</td>
+     <td>0</td>
+    </tr>
+    <tr>
+     <td><strong>3</strong></td>
+     <td>0</td>
+     <td>1</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$M_S$</th>
+     <th>$x$</th>
+     <th>$y$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>$a$</strong></td>
+     <td>1</td>
+     <td>0</td>
+    </tr>
+    <tr>
+     <td><strong>$b$</strong></td>
+     <td>0</td>
+     <td>1</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perkalian Boolean $M_R \cdot M_S$ menghasilkan matriks $3 \times 2$ yang sesuai dengan $S \circ R = \{(1, x), (2, x), (3, y)\}$.</p>
+
+ <h3 class="lesson-subheading">E. Sifat Komposisi</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sifat</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Tidak Komutatif</td>
+     <td>$S \circ R \neq R \circ S$ secara umum</td>
+    </tr>
+    <tr>
+     <td>Asosiatif</td>
+     <td>$(T \circ S) \circ R = T \circ (S \circ R)$</td>
+    </tr>
+    <tr>
+     <td>Identitas</td>
+     <td>$R \circ I_A = R$ &nbsp; dan &nbsp; $I_B \circ R = R$</td>
+    </tr>
+    <tr>
+     <td>Invers Komposisi</td>
+     <td>$(S \circ R)^{-1} = R^{-1} \circ S^{-1}$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Di sini $I_A$ adalah <strong>relasi identitas</strong> pada $A$ — yaitu $\{(a, a) \mid a \in A\}$, yang berperan seperti angka 1 pada perkalian. Sifat <em>tidak komutatif</em> mudah dipahami: "siswa diambil mata pelajaran" lalu "mata pelajaran diajar guru" berbeda maknanya dari urutan sebaliknya — yang terakhir bahkan tidak punya arti jelas.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Sifat-Sifat Relasi</h2>
+ <p class="lesson-text">Ketika relasi $R$ didefinisikan pada satu himpunan $A$ (yaitu $R \subseteq A \times A$), ada enam sifat penting yang menentukan jenis relasinya. Sifat-sifat ini didefinisikan memakai kuantor — karena itulah logika predikat menjadi prasyarat.</p>
+
+ <h3 class="lesson-subheading">A. Refleksif dan Irefleksif</h3>
+ <p class="lesson-text">Sebuah relasi disebut <strong>refleksif</strong> jika setiap elemen $A$ berelasi dengan dirinya sendiri:</p>
+ <p class="lesson-text">$$\forall a \in A, \; (a, a) \in R$$</p>
+ <p class="lesson-text">Secara intuitif: bayangkan setiap orang berdiri di depan cermin dan mengakui dirinya sendiri. Kalau semua orang melakukannya, relasinya refleksif. Contoh: relasi "$=$" pada bilangan real refleksif (setiap bilangan sama dengan dirinya sendiri), relasi "$\leq$" juga refleksif ($a \leq a$).</p>
+ <p class="lesson-text">Sebaliknya, relasi disebut <strong>irefleksif</strong> jika <em>tidak ada</em> elemen $A$ yang berelasi dengan dirinya sendiri:</p>
+ <p class="lesson-text">$$\forall a \in A, \; (a, a) \notin R$$</p>
+ <p class="lesson-text">Contoh: relasi "$<$" pada $\mathbb{R}$ irefleksif — tidak ada bilangan yang kurang dari dirinya sendiri. Relasi "berbeda dengan" ($\neq$) juga irefleksif.</p>
+ <p class="lesson-text">Perhatikan bahwa kedua sifat ini <em>tidak</em> sama dengan negasi satu sama lain. Negasi dari refleksif adalah "<em>ada</em> elemen yang tidak berelasi dengan dirinya sendiri", bukan "semua elemen tidak berelasi dengan dirinya sendiri". Jadi ada relasi yang bukan refleksif dan bukan irefleksif sekaligus — misalnya relasi $R = \{(1, 1)\}$ pada $A = \{1, 2\}$: $1$ berelasi dengan dirinya sendiri, tetapi $2$ tidak.</p>
+
+ <h3 class="lesson-subheading">B. Simetris, Antisimetris, dan Asimetris</h3>
+ <p class="lesson-text">Relasi disebut <strong>simetris</strong> jika arah relasi bisa dibalik — kapan pun $(a, b) \in R$, maka $(b, a) \in R$ juga:</p>
+ <p class="lesson-text">$$\forall a, b \in A, \; (a, b) \in R \Rightarrow (b, a) \in R$$</p>
+ <p class="lesson-text">Contoh: relasi "sama dengan" ($=$) simetris — kalau $a = b$, maka $b = a$. Relasi "berbeda dengan" ($\neq$) juga simetris. Relasi "bertetangga" pada graf tak berarah juga simetris — kalau Ani bertetangga dengan Budi, maka Budi bertetangga dengan Ani.</p>
+ <p class="lesson-text">Relasi disebut <strong>antisimetris</strong> jika relasi dua arah hanya mungkin untuk elemen yang sama:</p>
+ <p class="lesson-text">$$\forall a, b \in A, \; (a, b) \in R \land (b, a) \in R \Rightarrow a = b$$</p>
+ <p class="lesson-text">Contoh: relasi "$\leq$" pada $\mathbb{R}$ antisimetris — kalau $a \leq b$ <em>dan</em> $b \leq a$, maka pastilah $a = b$. Relasi "$\subseteq$" pada himpunan kuasa juga antisimetris, karena $A \subseteq B$ dan $B \subseteq A$ hanya mungkin jika $A = B$.</p>
+ <p class="lesson-text">Terakhir, relasi disebut <strong>asimetris</strong> jika sekali berelasi, arah baliknya <em>dilarang</em>:</p>
+ <p class="lesson-text">$$\forall a, b \in A, \; (a, b) \in R \Rightarrow (b, a) \notin R$$</p>
+ <p class="lesson-text">Contoh: relasi "$<$" pada $\mathbb{R}$ asimetris — kalau $a < b$, mustahil $b < a$.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Hubungan antar ketiga sifat ini sering membingungkan: <strong>asimetris selalu mengakibatkan antisimetris</strong>, tetapi tidak sebaliknya. Relasi "$\leq$" adalah antisimetris tetapi bukan asimetris (karena $a \leq a$ diperbolehkan). Selain itu, relasi asimetris otomatis bersifat <em>irefleksif</em>, sebab jika $(a, a) \in R$ maka $(a, a) \notin R$ — kontradiksi.</p>
+ </div>
+
+ <h3 class="lesson-subheading">C. Transitif</h3>
+ <p class="lesson-text">Relasi disebut <strong>transitif</strong> jika relasi "mengalir" dari satu pasangan ke pasangan berikutnya:</p>
+ <p class="lesson-text">$$\forall a, b, c \in A, \; (a, b) \in R \land (b, c) \in R \Rightarrow (a, c) \in R$$</p>
+ <p class="lesson-text">Secara intuitif: kalau A bisa "sampai" ke B dalam satu langkah, dan B bisa "sampai" ke C dalam satu langkah, maka A harus bisa "sampai" ke C (langsung, tanpa perantara). Contoh: relasi "$\leq$" transitif — kalau $a \leq b$ dan $b \leq c$, maka $a \leq c$. Relasi "$\subseteq$" juga transitif. Begitu pula relasi "habis membagi" ($\mid$).</p>
+ <p class="lesson-text">Perlu kehati-hatian: transitif hanya menuntut <em>jika</em> ada rantai $(a, b)$ dan $(b, c)$, <em>maka</em> $(a, c)$ harus ada. Kalau tidak ada rantai semacam itu, sifat transitif terpenuhi secara hampa (<em>vacuously true</em>) — tidak ada yang perlu diperiksa. Inilah yang membuat banyak relasi kecil terlihat "transitif" hanya karena tidak punya cukup pasangan untuk mengujinya.</p>
+
+ <h3 class="lesson-subheading">D. Contoh: Relasi "Bertetangga"</h3>
+ <p class="lesson-text">Relasi "bertetangga" pada graf tak berarah adalah contoh yang bagus untuk melihat sifat-sifat yang <em>tidak</em> terpenuhi. Misalkan $G$ adalah graf dengan simpul $V = \{a, b, c, d\}$ dan sisi $\{a\!-\!b, b\!-\!c, c\!-\!d\}$ (berupa lintasan). Definisikan relasi $T$ pada $V$ dengan $x \, T \, y$ jika $x$ bertetangga dengan $y$ (ada sisi antara keduanya).</p>
+ <ul>
+  <li><strong>Refleksif?</strong> Tidak. Tidak ada simpul yang bertetangga dengan dirinya sendiri. Relasi ini justru <em>irefleksif</em>.</li>
+  <li><strong>Simetris?</strong> Ya. Karena graf tak berarah, setiap sisi bersifat dua arah.</li>
+  <li><strong>Transitif?</strong> Tidak. $a \, T \, b$ dan $b \, T \, c$, tetapi $a$ dan $c$ tidak bertetangga (tidak ada sisi langsung antara mereka).</li>
+ </ul>
+ <p class="lesson-text">Jadi relasi "bertetangga" adalah <strong>irefleksif, simetris, dan tidak transitif</strong>. Ia bukan relasi ekivalensi (karena tidak refleksif dan tidak transitif), dan juga bukan relasi urutan (karena tidak antisimetris). Ini contoh relasi yang berada "di luar" kedua kelas istimewa — penting untuk menunjukkan bahwa tidak semua relasi adalah ekivalensi atau urutan.</p>
+
+ <h3 class="lesson-subheading">E. Ringkasan Sifat</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Sifat</th>
+     <th>Definisi Formal</th>
+     <th>Makna Informal</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>Refleksif</strong></td>
+     <td>$\forall a, (a, a) \in R$</td>
+     <td>Setiap elemen berelasi dengan dirinya sendiri</td>
+    </tr>
+    <tr>
+     <td><strong>Irefleksif</strong></td>
+     <td>$\forall a, (a, a) \notin R$</td>
+     <td>Tidak ada elemen yang berelasi dengan dirinya sendiri</td>
+    </tr>
+    <tr>
+     <td><strong>Simetris</strong></td>
+     <td>$\forall a, b, (a, b) \in R \Rightarrow (b, a) \in R$</td>
+     <td>Arah relasi bisa dibalik</td>
+    </tr>
+    <tr>
+     <td><strong>Antisimetris</strong></td>
+     <td>$\forall a, b, (a, b) \in R \land (b, a) \in R \Rightarrow a = b$</td>
+     <td>Relasi dua arah hanya untuk elemen yang sama</td>
+    </tr>
+    <tr>
+     <td><strong>Asimetris</strong></td>
+     <td>$\forall a, b, (a, b) \in R \Rightarrow (b, a) \notin R$</td>
+     <td>Sekali berelasi, arah balik dilarang</td>
+    </tr>
+    <tr>
+     <td><strong>Transitif</strong></td>
+     <td>$\forall a, b, c, (a, b) \in R \land (b, c) \in R \Rightarrow (a, c) \in R$</td>
+     <td>Relasi mengalir dari satu pasangan ke pasangan berikutnya</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Relasi Ekivalensi</h2>
+
+ <h3 class="lesson-subheading">A. Definisi</h3>
+ <p class="lesson-text">Sebuah relasi disebut <strong>relasi ekivalensi</strong> jika ia memenuhi tiga sifat sekaligus: <strong>refleksif</strong>, <strong>simetris</strong>, dan <strong>transitif</strong>. Ketiga sifat ini bekerja sama untuk menghasilkan struktur yang sangat khas — himpunan asalnya terbagi menjadi kelompok-kelompok yang saling lepas, dan setiap kelompok berisi elemen-elemen yang "setara" satu sama lain.</p>
+ <p class="lesson-text">Notasi $\sim$ sering dipakai untuk menandai relasi ekivalensi. Jadi $a \sim b$ berarti "$a$ ekivalen dengan $b$" menurut relasi tersebut.</p>
+ <p class="lesson-text">Contoh paling intuitif adalah relasi "<em>memiliki sisa yang sama saat dibagi 3</em>" pada bilangan bulat. Dua bilangan berelasi jika sisa pembagiannya dengan 3 sama. Relasi ini refleksif, simetris, dan transitif — karena itu, ia adalah relasi ekivalensi. Jika $a \sim b$ dan $b \sim c$, maka ketiganya pasti memiliki sisa yang sama ketika dibagi 3, sehingga $a \sim c$ juga berlaku.</p>
+
+ <h3 class="lesson-subheading">B. Kelas Ekivalensi</h3>
+ <p class="lesson-text">Untuk setiap elemen $a$ di himpunan $A$, <strong>kelas ekivalensi</strong> dari $a$ adalah himpunan semua elemen yang berelasi dengan $a$:</p>
+ <p class="lesson-text">$$[a] = \{ x \in A \mid (x, a) \in R \}$$</p>
+ <p class="lesson-text">Kelas ekivalensi $[a]$ sering disebut juga "<em>kelas dari $a$</em>". Elemen $a$ sendiri selalu termasuk di dalamnya (karena refleksif), dan siapa pun yang berelasi dengan $a$ juga ikut masuk.</p>
+ <p class="lesson-text">Sifat penting dari kelas-kelas ekivalensi: dua kelas $[a]$ dan $[b]$ <em>pasti identik atau sama sekali lepas</em>. Tidak ada kemungkinan keduanya tumpang-tindih sebagian. Mengapa? Karena jika ada elemen $x$ yang termasuk keduanya, maka $x \sim a$ dan $x \sim b$. Dari simetri, $a \sim x$. Gabungkan dengan transitif: $a \sim x$ dan $x \sim b$ menghasilkan $a \sim b$. Akibatnya, setiap anggota $[a]$ juga anggota $[b]$ dan sebaliknya — sehingga $[a] = [b]$.</p>
+
+ <h3 class="lesson-subheading">C. Himpunan Kuosien $A/R$</h3>
+ <p class="lesson-text">Kumpulan <em>semua</em> kelas ekivalensi dari relasi $R$ pada $A$ disebut <strong>himpunan kuosien</strong>, dinotasikan $A/R$ (dibaca "$A$ modulo $R$"):</p>
+ <p class="lesson-text">$$A/R = \{ [a] \mid a \in A \}$$</p>
+ <p class="lesson-text">Perhatikan perbedaan penting: setiap elemen $a$ menghasilkan satu kelas $[a]$, tetapi kelas yang <em>berbeda</em> mungkin lebih sedikit dari banyaknya elemen $A$. Kalau $a \sim b$, maka $[a] = [b]$ — jadi himpunan kuosien hanya memuat kelas-kelas yang benar-benar berbeda.</p>
+ <p class="lesson-text">Contoh: pada relasi kongruensi modulo 3 di $\mathbb{Z}$, himpunan kuosiennya adalah $\mathbb{Z}/{\sim} = \{ [0], [1], [2] \}$. Meskipun $\mathbb{Z}$ tak berhingga, himpunan kuosiennya hanya berisi 3 elemen — inilah keindahan relasi ekivalensi: ia "<em>meringkas</em>" himpunan besar menjadi beberapa kelas.</p>
+ <p class="lesson-text">Notasi lain yang sering dipakai: $\mathbb{Z}/3\mathbb{Z}$ atau $\mathbb{Z}_3$ untuk himpunan kuosien modulo 3.</p>
+
+ <h3 class="lesson-subheading">D. Partisi dan Korespondensi</h3>
+ <p class="lesson-text">Kumpulan semua kelas ekivalensi membentuk <strong>partisi</strong> dari $A$ — yaitu pembagian $A$ menjadi beberapa bagian yang <em>saling lepas</em> dan <em>gabungannya sama dengan $A$</em>. Konsekuensinya:</p>
+ <ul>
+  <li>Setiap elemen $A$ berada di tepat satu kelas ekivalensi.</li>
+  <li>Dua kelas yang berbeda tidak beririsan ($[a] \cap [b] = \varnothing$ jika $[a] \neq [b]$).</li>
+  <li>Gabungan semua kelas ekivalensi adalah seluruh $A$.</li>
+ </ul>
+ <p class="lesson-text">Hubungan ini bekerja <em>dua arah</em>, dan itulah yang membuatnya istimewa:</p>
+ <ul>
+  <li><strong>Dari relasi ke partisi.</strong> Setiap relasi ekivalensi pada $A$ menghasilkan partisi dari $A$ — partisinya adalah himpunan kuosien $A/R$.</li>
+  <li><strong>Dari partisi ke relasi.</strong> Setiap partisi dari $A$ menghasilkan relasi ekivalensi pada $A$ — cukup nyatakan dua elemen berelasi jika mereka berada di blok partisi yang sama.</li>
+ </ul>
+ <p class="lesson-text">Ini bukan sekadar dua fakta terpisah, melainkan <strong>korespondensi satu-satu</strong> (bijeksi) antara himpunan relasi ekivalensi pada $A$ dan himpunan partisi dari $A$. Setiap relasi ekivalensi menentukan tepat satu partisi, dan setiap partisi menentukan tepat satu relasi ekivalensi. Karena itu, relasi ekivalensi dan partisi sering dianggap sebagai "dua sisi dari koin yang sama" — mempelajari yang satu otomatis mempelajari yang lain.</p>
+
+ <h3 class="lesson-subheading">E. Contoh: Kongruensi Modulo</h3>
+ <p class="lesson-text">Contoh paling klasik dan paling banyak dipakai adalah <strong>kongruensi modulo</strong>. Untuk bilangan bulat $n \geq 2$, relasi pada $\mathbb{Z}$ didefinisikan:</p>
+ <p class="lesson-text">$$a \equiv b \pmod{n} \iff n \mid (a - b)$$</p>
+ <p class="lesson-text">Dibaca: "<em>$a$ kongruen dengan $b$ modulo $n$</em>", yang berarti selisih $a - b$ habis dibagi $n$. Relasi ini adalah relasi ekivalensi — ketiga sifatnya bisa dibuktikan langsung dari definisi keterbagian.</p>
+ <p class="lesson-text">Kelas ekivalensinya dinotasikan $[a]_n$ dan berisi semua bilangan bulat yang kongruen dengan $a$ modulo $n$:</p>
+ <p class="lesson-text">$$[a]_n = \{ \ldots, a - 2n, a - n, a, a + n, a + 2n, \ldots \}$$</p>
+ <p class="lesson-text">Untuk $n = 3$, himpunan $\mathbb{Z}$ terbagi menjadi tepat tiga kelas ekivalensi:</p>
+ <ul>
+  <li>$[0]_3 = \{ \ldots, -6, -3, 0, 3, 6, \ldots \}$</li>
+  <li>$[1]_3 = \{ \ldots, -5, -2, 1, 4, 7, \ldots \}$</li>
+  <li>$[2]_3 = \{ \ldots, -4, -1, 2, 5, 8, \ldots \}$</li>
+ </ul>
+ <p class="lesson-text">Himpunan kuosiennya adalah $\mathbb{Z}/{\equiv_3} = \{ [0]_3, [1]_3, [2]_3 \}$. Bilangan bulat lain, misalnya $[100]_3$, akan sama dengan salah satu dari ketiga kelas di atas — karena $100 \equiv 1 \pmod{3}$, maka $[100]_3 = [1]_3$.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Relasi Urutan</h2>
+
+ <h3 class="lesson-subheading">A. Urutan Parsial (Partial Order)</h3>
+ <p class="lesson-text">Sebuah relasi disebut <strong>urutan parsial</strong> jika ia memenuhi tiga sifat: <strong>refleksif</strong>, <strong>antisimetris</strong>, dan <strong>transitif</strong>. Himpunan yang dilengkapi urutan parsial disebut <strong>poset</strong> (<em>partially ordered set</em>), biasanya ditulis $(A, \preceq)$.</p>
+ <p class="lesson-text">Contoh klasiknya adalah relasi "$\subseteq$" pada himpunan kuasa $\mathcal{P}(S)$ dari suatu himpunan $S$. Memenuhi ketiga sifat:</p>
+ <ul>
+  <li><strong>Refleksif:</strong> $A \subseteq A$ untuk setiap himpunan $A$.</li>
+  <li><strong>Antisimetris:</strong> jika $A \subseteq B$ dan $B \subseteq A$, maka $A = B$.</li>
+  <li><strong>Transitif:</strong> jika $A \subseteq B$ dan $B \subseteq C$, maka $A \subseteq C$.</li>
+ </ul>
+ <p class="lesson-text">Kata "<em>parsial</em>" di sini penting: tidak semua pasangan elemen dapat dibandingkan. Pada himpunan kuasa $\mathcal{P}(\{1, 2, 3\})$, himpunan $\{1\}$ dan $\{2\}$ <em>tidak dapat dibandingkan</em> — $\{1\} \not\subseteq \{2\}$ dan $\{2\} \not\subseteq \{1\}$. Keduanya memang bukan himpunan bagian satu sama lain. Inilah yang membuat urutannya disebut "<em>parsial</em>", bukan penuh.</p>
+
+ <h3 class="lesson-subheading">B. Notasi Standar Poset</h3>
+ <p class="lesson-text">Dalam poset $(A, \preceq)$, kita memakai tiga notasi standar:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Notasi</th>
+     <th>Dibaca</th>
+     <th>Makna Formal</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$a \preceq b$</td>
+     <td>"$a$ mendahului atau sama dengan $b$"</td>
+     <td>$(a, b) \in R$</td>
+    </tr>
+    <tr>
+     <td>$a \prec b$</td>
+     <td>"$a$ mendahului $b$ secara ketat"</td>
+     <td>$a \preceq b$ dan $a \neq b$</td>
+    </tr>
+    <tr>
+     <td>$a \parallel b$</td>
+     <td>"$a$ dan $b$ tidak dapat dibandingkan"</td>
+     <td>Bukan $a \preceq b$ dan bukan $b \preceq a$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Notasi $\preceq$ dan $\prec$ mengikuti pola yang sama seperti $\leq$ dan $<$. Yang berbeda adalah notasi $\parallel$ — simbol ini <em>tidak</em> berarti "paralel", melainkan menandai bahwa kedua elemen berada di "<em>cabang berbeda</em>" dan tidak dapat dibandingkan. Contoh: pada $\mathcal{P}(\{1, 2\})$ dengan relasi $\subseteq$, kita punya $\{1\} \parallel \{2\}$, karena keduanya tidak dapat dibandingkan.</p>
+
+ <h3 class="lesson-subheading">C. Urutan Total (Total Order)</h3>
+ <p class="lesson-text">Sebuah urutan parsial disebut <strong>urutan total</strong> (atau urutan linear) jika <em>setiap</em> dua elemen dapat dibandingkan. Secara formal, ditambahkan syarat:</p>
+ <p class="lesson-text">$$\forall a, b \in A, \; (a, b) \in R \lor (b, a) \in R$$</p>
+ <p class="lesson-text">Contoh: relasi "$\leq$" pada bilangan real $\mathbb{R}$ adalah urutan total. Untuk setiap dua bilangan real $a$ dan $b$, pasti salah satu dari $a \leq b$ atau $b \leq a$ benar (boleh keduanya, jika $a = b$). Tidak ada pasangan yang "tidak bisa dibandingkan".</p>
+ <p class="lesson-text">Bandingkan dengan relasi "$\mid$" (habis membagi) pada bilangan asli $\mathbb{Z}^+$ — relasi ini adalah urutan parsial tetapi <em>bukan</em> urutan total, karena $2$ dan $3$ tidak bisa dibandingkan: $2 \nmid 3$ dan $3 \nmid 2$. Keduanya sama-sama bilangan asli, tetapi tidak ada yang "lebih kecil" menurut relasi keterbagian.</p>
+
+ <h3 class="lesson-subheading">D. Elemen Khusus pada Poset</h3>
+ <p class="lesson-text">Dalam sebuah poset $(A, \preceq)$, beberapa elemen memiliki peran khusus. Sebelum melihat contohnya, kita definisikan dulu:</p>
+ <ul>
+  <li><strong>Elemen minimal</strong> — elemen $m$ yang tidak ada elemen lain "lebih kecil" darinya: tidak ada $x \neq m$ dengan $x \preceq m$.</li>
+  <li><strong>Elemen maksimal</strong> — elemen $M$ yang tidak ada elemen lain "lebih besar" darinya: tidak ada $x \neq M$ dengan $M \preceq x$.</li>
+  <li><strong>Elemen terkecil</strong> — elemen $s$ yang "lebih kecil" atau sama dengan <em>semua</em> elemen: $s \preceq a$ untuk setiap $a \in A$. Perhatikan: terkecil harus bisa dibandingkan dengan semua elemen, sedangkan minimal tidak.</li>
+  <li><strong>Elemen terbesar</strong> — elemen $t$ dengan $a \preceq t$ untuk setiap $a \in A$.</li>
+ </ul>
+ <p class="lesson-text">Sebuah poset bisa punya beberapa elemen minimal sekaligus, tetapi hanya boleh punya <em>paling banyak satu</em> elemen terkecil. Perbedaan halus ini sering menjadi jebakan.</p>
+
+ <h3 class="lesson-subheading">E. Contoh Konkret: Poset $(\mathbb{Z}^+, \mid)$</h3>
+ <p class="lesson-text">Mari periksa elemen-elemen khusus pada poset $(\mathbb{Z}^+, \mid)$ — himpunan bilangan bulat positif dengan relasi keterbagian. Di sini $a \preceq b$ berarti $a \mid b$.</p>
+ <ul>
+  <li><strong>Elemen terkecil:</strong> $1$. Karena $1 \mid n$ untuk setiap $n \in \mathbb{Z}^+$, maka $1 \preceq n$ untuk semua $n$. Jadi $1$ memenuhi syarat terkecil — dan karena $1$ juga minimal, semua elemen minimal lainnya (kalau ada) harus sama dengan $1$.</li>
+  <li><strong>Elemen minimal:</strong> hanya $1$. Untuk setiap $n > 1$, kita punya $1 \mid n$ dan $1 \neq n$, sehingga $1 \preceq n$ — berarti $n$ <em>bukan</em> minimal. Jadi satu-satunya elemen minimal adalah $1$.</li>
+  <li><strong>Elemen maksimal:</strong> tidak ada. Untuk setiap $n \in \mathbb{Z}^+$, bilangan $2n$ juga di $\mathbb{Z}^+$, dan $n \mid 2n$ dengan $n \neq 2n$ — sehingga selalu ada elemen "lebih besar".</li>
+  <li><strong>Elemen terbesar:</strong> tidak ada, karena itu akan menjadi maksimal sekaligus — sedangkan maksimal saja tidak ada.</li>
+ </ul>
+ <p class="lesson-text">Kesimpulan: poset $(\mathbb{Z}^+, \mid)$ <strong>punya elemen terkecil (yaitu 1)</strong>, tetapi <strong>tidak punya elemen terbesar maupun maksimal</strong>. Ini contoh bagus untuk melihat bahwa sifat "minimal" dan "terkecil" tidak selalu hadir bersama.</p>
+ <p class="lesson-text">Sebagai pembanding, perhatikan subposet $\{1, 2, 3, 6\}$ dengan relasi $\mid$. Di sini $6$ menjadi elemen terbesar (karena semua elemen membagi 6), dan $1$ tetap elemen terkecil. Jadi dengan membatasi domain ke himpunan berhingga, elemen terbesar bisa muncul kembali.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Tabel Perbandingan Empat Relasi</h2>
+ <p class="lesson-text">Untuk merangkum, mari kita bandingkan empat relasi konkret menurut sifat-sifat yang telah dibahas. Tabel ini menunjukkan bahwa relasi yang berbeda bisa jatuh ke kelas yang sangat berbeda:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Relasi</th>
+     <th>Refleksif</th>
+     <th>Simetris</th>
+     <th>Antisimetris</th>
+     <th>Transitif</th>
+     <th>Jenis</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\leq$ pada $\mathbb{R}$</td>
+     <td>Ya</td>
+     <td>Tidak</td>
+     <td>Ya</td>
+     <td>Ya</td>
+     <td>Urutan total</td>
+    </tr>
+    <tr>
+     <td>$\equiv \pmod{5}$ pada $\mathbb{Z}$</td>
+     <td>Ya</td>
+     <td>Ya</td>
+     <td>Tidak</td>
+     <td>Ya</td>
+     <td>Ekivalensi</td>
+    </tr>
+    <tr>
+     <td>Bertetangga pada graf</td>
+     <td>Tidak</td>
+     <td>Ya</td>
+     <td>Tidak</td>
+     <td>Tidak</td>
+     <td>Bukan keduanya</td>
+    </tr>
+    <tr>
+     <td>$\subseteq$ pada $\mathcal{P}(S)$</td>
+     <td>Ya</td>
+     <td>Tidak</td>
+     <td>Ya</td>
+     <td>Ya</td>
+     <td>Urutan parsial</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perhatikan bahwa baris pertama dan baris keempat sama-sama memenuhi refleksif + antisimetris + transitif — keduanya urutan parsial. Perbedaannya: pada $\leq$, semua pasangan dapat dibandingkan (urutan total); pada $\subseteq$, ada pasangan yang tidak dapat dibandingkan (urutan parsial). Sedangkan baris kedua (kongruensi modulo) mencerminkan relasi ekivalensi — refleksif + simetris + transitif. Baris ketiga (bertetangga) tidak masuk ke kelas mana pun karena tidak refleksif dan tidak transitif.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Contoh Soal dan Pembahasan</h2>
+
+ <h3 class="lesson-subheading">Soal 1 — Memeriksa Sifat Relasi</h3>
+ <p class="lesson-text">Diberikan relasi $R$ pada $A = \{1, 2, 3, 4\}$ dengan $R = \{(1,1), (2,2), (3,3), (4,4), (1,2), (2,1), (2,3), (3,2)\}$. Periksa sifat refleksif, simetris, dan transitif. Apakah $R$ relasi ekivalensi?</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Periksa satu per satu.</p>
+ <ul>
+  <li><strong>Refleksif?</strong> Cek setiap elemen $A$: $(1,1) \in R$, $(2,2) \in R$, $(3,3) \in R$, $(4,4) \in R$. Semua ada, jadi <em>refleksif</em>.</li>
+  <li><strong>Simetris?</strong> Cek setiap pasangan: $(1,2)$ ada, $(2,1)$ ada. $(2,3)$ ada, $(3,2)$ ada. Tidak ada pasangan lain yang perlu dicek. Jadi <em>simetris</em>.</li>
+  <li><strong>Transitif?</strong> Cek rantai: $(1,2)$ dan $(2,3)$ ada — apakah $(1,3)$ ada? <em>Tidak.</em> Jadi transitif <em>gagal</em>.</li>
+ </ul>
+ <p class="lesson-text">Karena transitif gagal, $R$ <strong>bukan</strong> relasi ekivalensi meskipun refleksif dan simetris terpenuhi. <strong>Terbukti.</strong></p>
+
+ <h3 class="lesson-subheading">Soal 2 — Komposisi Relasi</h3>
+ <p class="lesson-text">Diketahui $A = \{1, 2, 3\}$, $B = \{p, q\}$, $C = \{x, y, z\}$, dengan $R = \{(1, p), (2, q), (3, p)\} \subseteq A \times B$ dan $S = \{(p, x), (p, z), (q, y)\} \subseteq B \times C$. Tentukan $S \circ R$ dan $R^{-1} \circ S^{-1}$.</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Untuk komposisi $S \circ R$, cari semua pasangan $(a, c)$ yang punya jembatan di $B$:</p>
+ <ul>
+  <li>$(1, p) \in R$ dan $(p, x), (p, z) \in S$ &nbsp; → &nbsp; $(1, x), (1, z) \in S \circ R$</li>
+  <li>$(2, q) \in R$ dan $(q, y) \in S$ &nbsp; → &nbsp; $(2, y) \in S \circ R$</li>
+  <li>$(3, p) \in R$ dan $(p, x), (p, z) \in S$ &nbsp; → &nbsp; $(3, x), (3, z) \in S \circ R$</li>
+ </ul>
+ <p class="lesson-text">Jadi $S \circ R = \{(1, x), (1, z), (2, y), (3, x), (3, z)\}$.</p>
+ <p class="lesson-text">Untuk $R^{-1} \circ S^{-1}$, kita bisa menghitung dari definisi invers lalu komposisi. Tapi ada cara lebih cepat memakai sifat $(S \circ R)^{-1} = R^{-1} \circ S^{-1}$. Karena kita sudah punya $S \circ R$, cukup balik setiap pasangan:</p>
+ <p class="lesson-text">$$(S \circ R)^{-1} = \{(x, 1), (z, 1), (y, 2), (x, 3), (z, 3)\}$$</p>
+ <p class="lesson-text">Itulah $R^{-1} \circ S^{-1}$. <strong>Terbukti.</strong></p>
+
+ <h3 class="lesson-subheading">Soal 3 — Kelas Ekivalensi dan Himpunan Kuosien</h3>
+ <p class="lesson-text">Misalkan $A = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$ dengan relasi ekivalensi $a \sim b \iff a \equiv b \pmod{3}$. Tentukan semua kelas ekivalensi, himpunan kuosien $A/{\sim}$, dan partisi yang terbentuk.</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Kelompokkan setiap anggota $A$ berdasarkan sisa pembagiannya dengan 3.</p>
+ <ul>
+  <li>Sisa 0: $\{3, 6, 9\}$ &nbsp; → kelas $[3]$ atau $[0]$</li>
+  <li>Sisa 1: $\{1, 4, 7, 10\}$ &nbsp; → kelas $[1]$</li>
+  <li>Sisa 2: $\{2, 5, 8\}$ &nbsp; → kelas $[2]$</li>
+ </ul>
+ <p class="lesson-text">Himpunan kuosiennya adalah:</p>
+ <p class="lesson-text">$$A/{\sim} = \{ \{1, 4, 7, 10\},\; \{2, 5, 8\},\; \{3, 6, 9\} \}$$</p>
+ <p class="lesson-text">Partisi dari $A$ sama dengan himpunan kuosien ini — karena korespondensi partisi ↔ relasi ekivalensi bersifat satu-satu. Verifikasi: gabungan ketiganya sama dengan $A$, dan tidak ada elemen yang muncul di dua kelas sekaligus. <strong>Terbukti.</strong></p>
+
+ <h3 class="lesson-subheading">Soal 4 — Memeriksa Relasi Urutan</h3>
+ <p class="lesson-text">Diberikan relasi $a \mid b$ ("$a$ habis membagi $b$") pada himpunan $A = \{1, 2, 3, 6\}$. Periksa apakah relasi ini merupakan urutan parsial. Apakah urutan total? Tentukan juga elemen minimal, maksimal, terkecil, dan terbesar.</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Periksa ketiga sifat urutan parsial.</p>
+ <ul>
+  <li><strong>Refleksif?</strong> Setiap bilangan habis membagi dirinya sendiri. Refleksif terpenuhi.</li>
+  <li><strong>Antisimetris?</strong> Kalau $a \mid b$ dan $b \mid a$, maka $a = b$. Terpenuhi untuk bilangan positif.</li>
+  <li><strong>Transitif?</strong> Kalau $a \mid b$ dan $b \mid c$, maka $a \mid c$. Terpenuhi.</li>
+ </ul>
+ <p class="lesson-text">Jadi relasi ini <strong>urutan parsial</strong>. Namun bukan urutan total, karena $2$ dan $3$ tidak bisa dibandingkan ($2 \nmid 3$ dan $3 \nmid 2$).</p>
+ <p class="lesson-text">Untuk elemen khusus: karena $A$ berhingga dan terbatas pada $\{1, 2, 3, 6\}$, kita bisa periksa langsung.</p>
+ <ul>
+  <li><strong>Terkecil:</strong> $1$, karena $1 \mid n$ untuk setiap $n \in A$.</li>
+  <li><strong>Terbesar:</strong> $6$, karena setiap $n \in A$ habis membagi $6$.</li>
+  <li><strong>Minimal:</strong> hanya $1$. Setiap $n \in \{2, 3, 6\}$ punya pembagi sejati $1$, sehingga bukan minimal.</li>
+  <li><strong>Maksimal:</strong> hanya $6$. Setiap $n \in \{1, 2, 3\}$ punya kelipatan sejati di $A$ (yaitu $6$), sehingga bukan maksimal.</li>
+ </ul>
+ <p class="lesson-text">Pada kasus berhingga ini, elemen terkecil sekaligus minimal, dan elemen terbesar sekaligus maksimal. <strong>Terbukti.</strong></p>
+
+ <h3 class="lesson-subheading">Soal 5 — Memeriksa Sifat dari Matriks</h3>
+ <p class="lesson-text">Diberikan relasi $R$ pada $A = \{1, 2, 3\}$ dengan matriks:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th></th>
+     <th>1</th>
+     <th>2</th>
+     <th>3</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><strong>1</strong></td>
+     <td>1</td>
+     <td>0</td>
+     <td>1</td>
+    </tr>
+    <tr>
+     <td><strong>2</strong></td>
+     <td>0</td>
+     <td>1</td>
+     <td>0</td>
+    </tr>
+    <tr>
+     <td><strong>3</strong></td>
+     <td>1</td>
+     <td>0</td>
+     <td>1</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Periksa sifat refleksif dan simetris. Apakah $R$ relasi ekivalensi?</p>
+ <p class="lesson-text"><strong>Pembahasan.</strong> Terjemahkan matriks menjadi daftar pasangan:</p>
+ <p class="lesson-text">$$R = \{(1,1), (1,3), (2,2), (3,1), (3,3)\}$$</p>
+ <p class="lesson-text"><strong>Refleksif?</strong> Cek diagonal utama: $(1,1)$, $(2,2)$, $(3,3)$ semuanya bernilai 1 di matriks. Jadi <em>refleksif</em>.</p>
+ <p class="lesson-text"><strong>Simetris?</strong> Cek pasangan: $(1,3)$ ada, $(3,1)$ ada. Tidak ada pasangan lain yang melibatkan dua elemen berbeda. Jadi <em>simetris</em>.</p>
+ <p class="lesson-text"><strong>Transitif?</strong> Cek rantai: $(1,3)$ dan $(3,1)$ ada — apakah $(1,1)$ ada? Ya. $(3,1)$ dan $(1,3)$ ada — apakah $(3,3)$ ada? Ya. Jadi <em>transitif</em> juga terpenuhi.</p>
+ <p class="lesson-text">Karena memenuhi refleksif + simetris + transitif, $R$ <strong>adalah</strong> relasi ekivalensi. Kelas ekivalensinya: $[1] = [3] = \{1, 3\}$ dan $[2] = \{2\}$. <strong>Terbukti.</strong></p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Kesalahan Umum</h2>
+ <ul>
+  <li>Menganggap "<em>bukan refleksif</em>" sama dengan "<em>irefleksif</em>". Yang pertama berarti "<em>ada</em> elemen yang tidak berelasi dengan dirinya sendiri"; yang kedua berarti "<em>semua</em> elemen tidak berelasi dengan dirinya sendiri".</li>
+  <li>Mengira relasi asimetris sama dengan antisimetris. Asimetris <strong>selalu mengakibatkan antisimetris</strong>, tetapi tidak sebaliknya. Relasi "$\leq$" antisimetris tetapi tidak asimetris.</li>
+  <li>Menganggap "<em>tidak simetris</em>" sama dengan "<em>antisimetris</em>". Keduanya sifat berbeda: tidak simetris hanya berarti <em>ada</em> satu pasangan yang tidak punya pasangan balik; antisimetris mensyaratkan sesuatu yang lebih kuat.</li>
+  <li>Memeriksa transitif hanya pada satu atau dua rantai. Transitif harus berlaku untuk <em>semua</em> rantai $(a, b)$ dan $(b, c)$ — jika ada satu saja yang gagal, seluruh relasi gagal transitif.</li>
+  <li>Menganggap kelas ekivalensi $[a]$ dan $[b]$ selalu berbeda ketika $a \neq b$. Padahal kelas yang berbeda hanya jika elemen-elemennya tidak berelasi. Jika $a \sim b$, maka $[a] = [b]$ meskipun $a \neq b$.</li>
+  <li>Menukar notasi $S \circ R$ dengan $R \circ S$. Urutan komposisi penting: $S \circ R$ berarti "$R$ dulu, lalu $S$" — dan $S \circ R \neq R \circ S$ secara umum.</li>
+  <li>Mengira urutan parsial otomatis bisa membandingkan <em>semua</em> pasangan. Kata "<em>parsial</em>" justru menunjukkan ada pasangan yang tidak dapat dibandingkan — itulah perbedaannya dengan urutan total.</li>
+  <li>Menukar pengertian <strong>elemen minimal</strong> dengan <strong>elemen terkecil</strong>. Minimal berarti tidak ada yang lebih kecil darinya; terkecil berarti lebih kecil dari semua elemen. Sebuah poset bisa punya beberapa elemen minimal, tetapi paling banyak satu elemen terkecil.</li>
+  <li>Menuliskan relasi sebagai himpunan biasa $\{1, 2, 3\}$ padahal relasi berisi <em>pasangan terurut</em>: $(1, 2) \neq (2, 1)$, sedangkan $\{1, 2\} = \{2, 1\}$.</li>
+  <li>Membalik urutan komponen saat menghitung $R^{-1}$. Invers dari $(a, b)$ adalah $(b, a)$ — bukan $(a, b)$ dengan tanda dibalik, atau tanpa perubahan urutan.</li>
+  <li>Mengira himpunan kuosien $A/R$ selalu lebih kecil dari $A$. Ini hanya benar kalau ada minimal dua elemen di $A$ yang berelasi. Kalau setiap elemen hanya berelasi dengan dirinya sendiri (relasi identitas), maka $A/R$ berisi $|A|$ kelas.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Ringkasan</h2>
+ <ul>
+  <li><strong>Relasi biner</strong> dari $A$ ke $B$ adalah himpunan bagian dari $A \times B$; notasi $(a, b) \in R$ dapat ditulis $a \, R \, b$.</li>
+  <li>Relasi <strong>pada himpunan</strong> $A$ berarti $R \subseteq A \times A$.</li>
+  <li><strong>Domain</strong> $\text{dom}(R)$ adalah himpunan komponen pertama, dan <strong>range</strong> $\text{ran}(R)$ adalah himpunan komponen kedua.</li>
+  <li><strong>Relasi invers</strong> $R^{-1}$ diperoleh dengan membalik setiap pasangan; $\text{dom}(R^{-1}) = \text{ran}(R)$ dan $\text{ran}(R^{-1}) = \text{dom}(R)$.</li>
+  <li>Relasi dapat direpresentasikan melalui <strong>pasangan terurut</strong>, <strong>diagram panah</strong>, atau <strong>matriks 0-1</strong>.</li>
+  <li><strong>Komposisi</strong> $S \circ R$ (dengan $R \subseteq A \times B$ dan $S \subseteq B \times C$) didefinisikan oleh $(a, c) \in S \circ R \iff \exists b, (a, b) \in R \land (b, c) \in S$.</li>
+  <li><strong>Enam sifat relasi</strong>: refleksif, irefleksif, simetris, antisimetris, asimetris, dan transitif.</li>
+  <li><strong>Relasi ekivalensi</strong> = refleksif + simetris + transitif. Ia membagi himpunan menjadi <strong>kelas-kelas ekivalensi</strong> yang saling lepas.</li>
+  <li><strong>Himpunan kuosien</strong> $A/R$ adalah himpunan semua kelas ekivalensi. Terdapat <strong>korespondensi satu-satu</strong> antara relasi ekivalensi pada $A$ dan partisi dari $A$.</li>
+  <li><strong>Relasi urutan parsial</strong> = refleksif + antisimetris + transitif; himpunan yang dilengkapinya disebut <strong>poset</strong> $(A, \preceq)$.</li>
+  <li>Notasi poset: $a \preceq b$ (mendahului atau sama), $a \prec b$ (mendahului ketat), $a \parallel b$ (tidak dapat dibandingkan).</li>
+  <li><strong>Relasi urutan total</strong> adalah urutan parsial di mana setiap dua elemen dapat dibandingkan.</li>
+  <li><strong>Elemen khusus poset</strong>: minimal, maksimal, terkecil, terbesar. Poset $(\mathbb{Z}^+, \mid)$ punya elemen terkecil (1) tetapi tidak punya elemen terbesar maupun maksimal.</li>
+  <li>Relasi ekivalensi dan relasi urutan berada di dua kutub: ekivalensi menuntut <strong>simetris</strong>, urutan menuntut <strong>antisimetris</strong>.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

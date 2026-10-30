@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logika Proposisi (pernyataan, nilai kebenaran, operator logika)</title>
+<meta name="description" content="Pengantar logika proposisi dengan pendekatan intuitif: pengertian pernyataan, kalimat terbuka, notasi nilai kebenaran, lima operator logika, tabel kebenaran, hukum-hukum logika, konvers/invers/kontraposisi, serta tautologi, kontradiksi, dan kontingensi.">
+<script src="/js/head.js"></script>
+<script src="/js/latex.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Logika Proposisi (pernyataan, nilai kebenaran, operator logika)</h1>
+
+<section class="lesson-section">
+ <p class="lesson-text">Coba bayangkan kamu duduk sebagai juri di sebuah lomba debat. Tugasmu sederhana: setiap kali peserta bicara, putuskan apakah kalimatnya <strong>benar</strong> atau <strong>salah</strong>. Sebagian mudah dinilai — "<em>Indonesia merdeka pada 1945</em>" jelas benar, "<em>4 adalah bilangan ganjil</em>" jelas salah. Tapi begitu peserta berkata "<em>tolong jelaskan alasanmu!</em>" atau "<em>semoga kita semua menang</em>", kamu langsung berhenti — bukan karena jawabannya sulit, melainkan karena kalimat itu <em>tidak bisa dinilai sama sekali</em>. Di titik itulah logika proposisi mulai bekerja.</p>
+ <p class="lesson-text">Logika proposisi adalah studi tentang <strong>struktur</strong> nilai benar/salah. Isi kalimatnya tidak diperiksa — entah tentang angka, cuaca, atau warna — yang diperhatikan hanyalah bagaimana nilai benar/salah mengalir dari bagian-bagian kecil ke hasil gabungannya. Ini mirip mesin hitung: apa pun angkanya, selama polanya sama, hasilnya bisa diprediksi. Karena itu aturan logika proposisi berlaku <em>universal</em>, dan menjadi fondasi seluruh penalaran matematis: setiap definisi, teorema, dan pembuktian dibangun di atasnya.</p>
+ <p class="lesson-text">Sepanjang halaman ini, kita akan membahas ciri sebuah pernyataan, notasi nilai kebenarannya, lima operator logika dasar, cara menyusun tabel kebenaran, hukum-hukum logika, bentuk turunan implikasi, serta penggolongan proposisi menjadi <strong>tautologi</strong>, <strong>kontradiksi</strong>, atau <strong>kontingensi</strong>.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">I. Pernyataan dan Nilai Kebenaran</h2>
+
+ <h3 class="lesson-subheading">A. Pengertian Pernyataan</h3>
+ <p class="lesson-text">Coba pikirkan: apa yang membuat sebuah kalimat layak dinilai benar atau salah? Jawabannya sederhana — kalimat itu harus <em>mengklaim sesuatu tentang dunia</em>. Kalimat "<em>2 + 3 = 5</em>" mengklaim suatu hubungan; kalimat "<em>hari ini hujan</em>" (dengan konteks waktu yang jelas) mengklaim suatu keadaan. Sedangkan "<em>tolong tutup pintu</em>" tidak mengklaim apa pun — ia meminta. "<em>Apakah kamu lapar?</em>" juga tidak mengklaim — ia bertanya.</p>
+ <p class="lesson-text">Kalimat yang mengklaim dan dapat dinilai benar atau salah inilah yang disebut <strong>pernyataan</strong> (atau <em>proposisi</em>). Secara formal, pernyataan adalah kalimat deklaratif yang memiliki <strong>tepat satu</strong> nilai kebenaran: <strong>benar</strong> atau <strong>salah</strong>. Frasa "tepat satu" mengandung dua syarat sekaligus:</p>
+ <ul>
+  <li><strong>Tidak boleh keduanya.</strong> Tidak ada pernyataan yang sekaligus benar <em>dan</em> salah.</li>
+  <li><strong>Tidak boleh kosong.</strong> Setiap pernyataan harus punya salah satu nilai — kalimat yang tidak bisa dinilai sama sekali bukan pernyataan.</li>
+ </ul>
+ <p class="lesson-text">Nilai kebenaran sebuah pernyataan bersifat <em>mutlak</em> — tidak bergantung pada siapa yang mengucapkan, kapan, atau di mana. "$2 + 3 = 5$" benar di Jakarta, di Tokyo, hari ini, maupun seratus tahun lalu. Inilah yang membedakannya dari kalimat opini seperti "<em>bakso itu enak</em>" — yang bisa benar bagi satu orang dan salah bagi yang lain, sehingga bukan pernyataan dalam arti logis.</p>
+ <p class="lesson-text">Dalam logika proposisi, pernyataan sederhana diperlakukan sebagai <strong>atom</strong>: tidak dibelah lagi menjadi bagian yang lebih kecil. Frasa "<em>dan</em>", "<em>atau</em>", "<em>jika</em>", "<em>bukan</em>" yang mungkin muncul di dalamnya diperlakukan sebagai penghubung antar pernyataan, bukan bagian dari pernyataan itu sendiri.</p>
+ <p class="lesson-text">Contoh pernyataan yang bernilai <strong>benar</strong>:</p>
+ <ul>
+  <li>"Indonesia merdeka pada tahun 1945."</li>
+  <li>"$2 + 3 = 5$."</li>
+  <li>"Bilangan 17 adalah bilangan prima."</li>
+  <li>"Matahari terbit dari arah timur."</li>
+  <li>"Segitiga memiliki tiga sisi."</li>
+ </ul>
+ <p class="lesson-text">Contoh pernyataan yang bernilai <strong>salah</strong>:</p>
+ <ul>
+  <li>"$3 + 4 = 8$."</li>
+  <li>"Matahari terbit dari arah barat."</li>
+  <li>"4 adalah bilangan ganjil."</li>
+  <li>"$1$ adalah bilangan prima."</li>
+  <li>"Lingkaran memiliki empat sudut."</li>
+ </ul>
+ <p class="lesson-text">Perhatikan: pernyataan yang bernilai salah tetap disebut <em>pernyataan</em>. Kata "<em>salah</em>" di sini menunjukkan <strong>nilai kebenarannya</strong>, bukan menyatakan bahwa kalimat itu bukan pernyataan. Yang menentukan adalah <em>apakah kalimat itu dapat dinilai</em>, bukan apakah nilainya benar.</p>
+
+ <h3 class="lesson-subheading">B. Ciri-ciri Pernyataan</h3>
+ <p class="lesson-text">Supaya lebih cepat mengenali, ada beberapa ciri yang biasanya dimiliki sebuah pernyataan:</p>
+ <ul>
+  <li>Berbentuk <strong>kalimat deklaratif</strong> (kalimat berita), bukan kalimat tanya, perintah, atau seruan. Kalimat berita menyampaikan informasi; tiga jenis lainnya menyampaikan hal lain — pertanyaan, permintaan, atau ekspresi.</li>
+  <li>Memiliki nilai kebenaran yang <strong>pasti</strong> — meskipun kita sendiri belum tahu nilainya. Contoh: "<em>Ada kehidupan di planet lain</em>" <em>adalah</em> pernyataan, meski kita belum tahu benar atau salahnya. Yang penting nilainya <em>ada</em> — entah kita tahu atau tidak.</li>
+  <li><strong>Tidak mengandung variabel bebas</strong> yang belum diberi nilai. Kalimat "$x > 5$" belum bisa dinilai selama $x$ belum ditentukan — karena itu bukan pernyataan.</li>
+  <li><strong>Tidak berubah nilai</strong> seiring waktu, tempat, atau siapa pengucapnya. Perlu kehati-hatian: kalimat seperti "<em>hari ini hujan</em>" <em>bisa</em> menjadi pernyataan, asalkan konteks "<em>hari ini</em>" sudah jelas (misalnya tanggalnya sudah ditetapkan). Tanpa konteks itu, nilainya bergantung pada kapan diucapkan — jadi belum lengkap sebagai pernyataan.</li>
+ </ul>
+ <p class="lesson-text">Sebaliknya, kalimat berikut <em>bukan</em> pernyataan karena tidak dapat dinilai benar atau salah:</p>
+ <ul>
+  <li>Kalimat tanya: "<em>Apakah 5 bilangan prima?</em>"</li>
+  <li>Kalimat perintah: "<em>Hitunglah nilai dari 2 + 3!</em>"</li>
+  <li>Kalimat harapan: "<em>Semoga besok hujan.</em>"</li>
+  <li>Kalimat seru: "<em>Wah, indahnya!</em>"</li>
+  <li>Kalimat definisi sepihak tanpa klaim: "<em>Misalkan $x$ bilangan bulat.</em>"</li>
+ </ul>
+
+ <h3 class="lesson-subheading">C. Kalimat Terbuka</h3>
+ <p class="lesson-text">Sekarang, ada kasus yang agak licik. Perhatikan kalimat "$x + 2 = 5$". Sekilas ia terlihat seperti pernyataan — ada tanda sama dengan, ada angka. Tapi tunggu: apakah kalimat ini benar atau salah? Jawabannya <em>tergantung</em>. Kalau $x = 3$, benar. Kalau $x = 1$, salah. Karena nilainya belum pasti, kalimat ini <strong>bukan pernyataan</strong>. Ia disebut <strong>kalimat terbuka</strong> — ada "lubang" (variabel) yang belum diisi.</p>
+ <p class="lesson-text">Coba bayangkan kalimat terbuka seperti formulir kosong. Formulir itu sendiri bukan jawaban; begitu diisi, ia baru menjadi sesuatu yang bisa dinilai. Begitu pula kalimat terbuka: begitu variabelnya diganti dengan nilai tertentu, ia <em>berubah</em> menjadi pernyataan. Contoh: "$x + 2 = 5$ dengan $x = 3$" adalah pernyataan bernilai benar. Karena itu, <em>kalimat terbuka bukan pernyataan, tetapi dapat membentuk pernyataan</em>.</p>
+ <p class="lesson-text">Hal ini penting karena banyak rumus dan identitas matematika dimulai sebagai kalimat terbuka. Identitas "$x + x = 2x$" baru menjadi pernyataan setelah dikuantifikasi: "<em>untuk setiap bilangan real $x$, berlaku $x + x = 2x$</em>" — kalimat terakhir inilah pernyataan, dan bernilai benar. Kuantor "<em>untuk setiap</em>" menutup lubang pada variabel, sehingga nilainya menjadi pasti.</p>
+
+ <h3 class="lesson-subheading">D. Notasi Nilai Kebenaran</h3>
+<p class="lesson-text">Nilai kebenaran sebuah pernyataan biasanya dinotasikan dengan huruf <strong>T</strong> (<em>true</em> = benar) dan <strong>F</strong> (<em>false</em> = salah). Notasi ini dipakai secara internasional dan akan digunakan konsisten di seluruh halaman ini.</p>
+<p class="lesson-text">Untuk mempermudah penulisan, kita sering memberi nama pendek pada sebuah pernyataan — misalnya $p$, $q$, atau $r$. Contoh:</p>
+<ul>
+ <li>$p$ : "5 bilangan prima" &nbsp; (nilai kebenaran: <strong>T</strong>)</li>
+ <li>$q$ : "5 bilangan genap" &nbsp; (nilai kebenaran: <strong>F</strong>)</li>
+</ul>
+<p class="lesson-text">Dengan penamaan ini, pernyataan majemuk yang panjang bisa ditulis ringkas. Pernyataan majemuk "<em>5 bilangan prima <strong>dan</strong> 5 bilangan genap</em>" cukup ditulis $p \land q$ — jauh lebih singkat, dan maknanya tetap sama. Nama $p$, $q$, $r$ ini disebut <strong>variabel proposisional</strong>.</p>
+<div class="lesson-note">
+ <p class="lesson-text">Dalam banyak buku teks berbahasa Indonesia, nilai kebenaran sering dinotasikan dengan <strong>B</strong> (benar) dan <strong>S</strong> (salah). Keduanya identik — hanya berbeda simbol. Singkatan <em>B/S</em> lebih umum di Indonesia, sedangkan <em>T/F</em> lebih umum di literatur internasional. Di halaman ini kita pakai <strong>T/F</strong> agar konsisten dengan sumber rujukan luar.</p>
+</div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">II. Operator Logika</h2>
+ <p class="lesson-text">Dari pernyataan sederhana, kita dapat membentuk <strong>pernyataan majemuk</strong> dengan bantuan operator logika. Ibaratnya seperti menyusun lego: pernyataan sederhana adalah balok-balok, dan operator logika adalah cara kita menyambungnya.</p>
+ <p class="lesson-text">Ada lima operator dasar: <strong>negasi</strong>, <strong>konjungsi</strong>, <strong>disjungsi</strong>, <strong>implikasi</strong>, dan <strong>biimplikasi</strong>. Masing-masing punya aturan nilai kebenaran sendiri — aturan ini paling mudah disajikan melalui <strong>tabel kebenaran</strong> (<em>truth table</em>).</p>
+ <p class="lesson-text">Tabel kebenaran memuat semua kombinasi nilai kebenaran komponen, lalu menunjukkan nilai kebenaran hasil gabungannya. Untuk $n$ komponen, jumlah barisnya adalah $2^n$ — karena setiap komponen punya dua kemungkinan nilai:</p>
+ <ul>
+  <li>$n = 1$ komponen → $2$ baris</li>
+  <li>$n = 2$ komponen → $4$ baris</li>
+  <li>$n = 3$ komponen → $8$ baris</li>
+  <li>$n = 4$ komponen → $16$ baris</li>
+ </ul>
+ <p class="lesson-text">Semua kombinasi wajib dicantumkan — tidak boleh ada yang terlewat — supaya aturannya benar-benar mencakup seluruh kemungkinan dan tidak ambigu.</p>
+
+ <h3 class="lesson-subheading">A. Negasi</h3>
+ <p class="lesson-text">Pikirkan sebuah saklar lampu: posisinya cuma dua, dan menekan saklar <em>membalik</em> kondisinya. Begitulah negasi bekerja. Ia adalah operator yang membalik nilai kebenaran: pernyataan yang tadinya benar menjadi salah, dan sebaliknya.</p>
+ <p class="lesson-text">Negasi dinotasikan $\neg p$ dan dibaca "<em>bukan p</em>" atau "<em>tidak benar bahwa p</em>". Karena hanya ada satu masukan, tabel kebenarannya cuma dua baris:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$\neg p$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Contoh: jika $p$ = "<em>5 bilangan prima</em>" (<strong>T</strong>), maka $\neg p$ = "<em>5 bukan bilangan prima</em>" (<strong>F</strong>). Jika $p$ = "<em>4 bilangan ganjil</em>" (<strong>F</strong>), maka $\neg p$ = "<em>4 bukan bilangan ganjil</em>" (<strong>T</strong>).</p>
+ <p class="lesson-text">Satu jebakan yang sering muncul: orang mengira negasi sama dengan membuat kalimat menjadi <em>antonimnya</em>. Padahal tidak. Negasi dari "<em>semua siswa lulus</em>" adalah "<em>ada siswa yang tidak lulus</em>", bukan "<em>semua siswa tidak lulus</em>". Negasi harus membalik <strong>nilai kebenaran</strong>, bukan mengganti kata kunci. Kalau "<em>semua siswa lulus</em>" salah, maka ada <em>paling sedikit satu</em> siswa yang tidak lulus — itulah negasinya.</p>
+ <p class="lesson-text">Sifat menarik lain: negasi bersifat <em>involutif</em> — menegasikan dua kali mengembalikan pernyataan ke nilai semula. Secara formal, $\neg(\neg p) \equiv p$. Coba periksa: kalau $p$ = <strong>T</strong>, maka $\neg p$ = <strong>F</strong>, lalu $\neg(\neg p)$ = <strong>T</strong> = $p$. Ini masuk akal: membalik sesuatu lalu membaliknya lagi berarti tidak mengubah apa pun.</p>
+
+ <h3 class="lesson-subheading">B. Konjungsi</h3>
+ <p class="lesson-text">Bayangkan pintu brankas yang butuh dua kunci untuk terbuka. Kalau salah satu kunci tidak dipakai, pintu tetap terkunci. Begitulah konjungsi: ia hanya "terbuka" (bernilai benar) ketika <em>kedua</em> pernyataannya benar.</p>
+ <p class="lesson-text">Konjungsi dinotasikan $p \land q$ dan dibaca "<em>p dan q</em>". Karena ada dua masukan, tabelnya punya empat baris — satu untuk setiap kombinasi T/F:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$p \land q$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Contoh: "<em>2 bilangan prima dan 2 bilangan genap</em>" → <strong>T</strong> $\land$ <strong>T</strong> = <strong>T</strong>. Sedangkan "<em>2 bilangan prima dan 2 bilangan ganjil</em>" → <strong>T</strong> $\land$ <strong>F</strong> = <strong>F</strong>.</p>
+ <p class="lesson-text">Menariknya, beberapa kata lain juga bermakna konjungsi: "<em>tetapi</em>", "<em>walaupun</em>", "<em>meskipun</em>", "<em>sedangkan</em>". Secara emosional, "<em>meskipun</em>" terasa kontras, tapi secara logika tetap konjungsi. Contoh: "<em>Dia rajin meskipun miskin</em>" setara dengan "<em>Dia rajin dan dia miskin</em>". Yang berubah hanyalah nuansa, bukan <strong>struktur kebenarannya</strong>.</p>
+
+ <h3 class="lesson-subheading">C. Disjungsi</h3>
+ <p class="lesson-text">Sekarang bayangkan pintu darurat dengan dua jalur keluar. Pintu ini hanya benar-benar <em>tertutup</em> kalau kedua jalurnya buntu. Kalau salah satu jalur terbuka, kita bisa keluar. Begitulah disjungsi — ia bernilai salah hanya jika <em>kedua</em> pernyataannya salah.</p>
+ <p class="lesson-text">Disjungsi dinotasikan $p \lor q$ dan dibaca "<em>p atau q</em>":</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$p \lor q$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Perhatikan baris pertama: ketika $p$ dan $q$ keduanya benar, $p \lor q$ tetap benar. Ini disebut <strong>disjungsi inklusif</strong> — "<em>atau</em>" yang mengizinkan keduanya sekaligus. Dalam bahasa sehari-hari, "<em>atau</em>" kadang dipakai secara eksklusif — misalnya "<em>kamu boleh pilih es teh atau es jeruk</em>" biasanya berarti <em>tidak boleh keduanya</em>. Tapi dalam logika proposisi, "<em>atau</em>" secara <em>default</em> bermakna <strong>inklusif</strong>. Kalau ingin makna eksklusif, itu operator lain (<em>XOR</em>) dan harus dinyatakan khusus.</p>
+ <p class="lesson-text">Contoh: "<em>5 bilangan genap atau 5 bilangan prima</em>" → <strong>F</strong> $\lor$ <strong>T</strong> = <strong>T</strong>. "<em>1 bilangan prima atau 1 bilangan komposit</em>" → <strong>F</strong> $\lor$ <strong>F</strong> = <strong>F</strong>. "<em>2 bilangan prima atau 2 bilangan genap</em>" → <strong>T</strong> $\lor$ <strong>T</strong> = <strong>T</strong>.</p>
+
+ <h3 class="lesson-subheading">D. Implikasi</h3>
+ <p class="lesson-text">Sekarang operator yang paling sering membingungkan pemula: implikasi. Mari kita bangun intuisinya dulu.</p>
+ <p class="lesson-text">Bayangkan saya berjanji kepada teman: "<em>Jika besok hujan, maka saya akan membawa payung.</em>" Kapan janji saya bisa disebut <em>dilanggar</em>? Hanya pada satu situasi: besok hujan, dan saya tetap tidak membawa payung. Di situasi lain — besok tidak hujan (saya bawa payung atau tidak) — janji saya tidak dilanggar, karena janji itu hanya mengikat saat syaratnya terpenuhi.</p>
+ <p class="lesson-text">Itulah inti implikasi. Secara formal, $p \Rightarrow q$ dibaca "<em>jika p maka q</em>", dan bernilai salah <strong>hanya ketika $p$ benar dan $q$ salah</strong>. Pada semua kemungkinan lain, ia bernilai benar. Di sini $p$ disebut <strong>anteseden</strong> (syarat) dan $q$ disebut <strong>konsekuen</strong> (akibat):</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$p \Rightarrow q$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Kenapa ketika $p$ salah implikasi selalu benar? Karena implikasi bukan pernyataan sebab-akibat, melainkan <strong>perjanjian nilai kebenaran</strong>. Jika syaratnya tidak terpenuhi, perjanjian tidak berlaku — tapi juga tidak dilanggar. Dalam hukum, "<em>tidak melanggar</em>" sama dengan "<em>benar</em>".</p>
+ <p class="lesson-text">Contoh konkret: "<em>Jika 3 bilangan ganjil, maka 3 habis dibagi 2</em>" → <strong>T</strong> $\Rightarrow$ <strong>F</strong> = <strong>F</strong>, karena syaratnya terpenuhi tetapi akibatnya salah. Sebaliknya, "<em>Jika 3 bilangan genap, maka 3 habis dibagi 2</em>" → <strong>F</strong> $\Rightarrow$ <strong>F</strong> = <strong>T</strong>, karena syaratnya tidak terpenuhi.</p>
+ <p class="lesson-text">Perhatikan bahwa implikasi tidak mengharuskan anteseden dan konsekuen punya isi yang berhubungan. "<em>Jika bulan terbuat dari keju, maka $2 + 2 = 4$</em>" tetap bernilai benar — karena antesedennya salah. Yang diuji hanya <em>nilai kebenarannya</em>, bukan kaitan tematiknya.</p>
+ <p class="lesson-text">Notasi lain untuk implikasi: $p \to q$, dan variasi bacaan "<em>p hanya jika q</em>" (perhatikan urutan — maknanya tetap $p \Rightarrow q$, bukan sebaliknya).</p>
+
+ <h3 class="lesson-subheading">E. Biimplikasi</h3>
+ <p class="lesson-text">Terakhir, biimplikasi. Kalau implikasi adalah janji satu arah, biimplikasi adalah <em>kesepakatan dua arah</em>: dua pernyataan yang selalu bernasib sama. Ia bernilai benar ketika kedua pernyataan memiliki nilai kebenaran yang <em>sama</em> — sama-sama benar, atau sama-sama salah. Kalau berbeda, salah.</p>
+ <p class="lesson-text">Biimplikasi dinotasikan $p \Leftrightarrow q$ dan dibaca "<em>p jika dan hanya jika q</em>":</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$p \Leftrightarrow q$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Biimplikasi menyatakan <strong>kesetaraan</strong> dua pernyataan. Kata "<em>jika dan hanya jika</em>" adalah gabungan dua implikasi sekaligus: $(p \Rightarrow q) \land (q \Rightarrow p)$. Arah maju ($p \Rightarrow q$) menyatakan $p$ <em>cukup</em> untuk $q$; arah balik ($q \Rightarrow p$) menyatakan $p$ <em>perlu</em> untuk $q$. Digabungkan, keduanya berarti $p$ dan $q$ selalu sejalan. Karena alasan itu, istilah ini sering disingkat menjadi <em>iff</em> (<em>if and only if</em>) dalam penulisan matematis formal.</p>
+ <p class="lesson-text">Contoh: "<em>2 + 2 = 4 jika dan hanya jika 4 bilangan genap</em>" → <strong>T</strong> $\Leftrightarrow$ <strong>T</strong> = <strong>T</strong>. Contoh lain: "<em>5 bilangan genap jika dan hanya jika 5 bilangan prima</em>" → <strong>F</strong> $\Leftrightarrow$ <strong>T</strong> = <strong>F</strong>, karena nilai kedua komponen berbeda.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">III. Proposisi Majemuk dan Urutan Operasi</h2>
+
+ <h3 class="lesson-subheading">A. Proposisi Majemuk</h3>
+ <p class="lesson-text">Begitu operator-operator tadi digabungkan, kita bisa membentuk proposisi yang kompleks. Contoh: $\neg p \lor (q \land r)$ melibatkan tiga komponen ($p$, $q$, $r$) dan tiga operator sekaligus. Ini disebut <strong>proposisi majemuk</strong>.</p>
+ <p class="lesson-text">Yang menarik dari proposisi majemuk: nilainya sepenuhnya bisa ditentukan hanya dari nilai komponennya — tanpa perlu tahu isi kalimatnya. Kalau tahu $p$ = <strong>T</strong>, $q$ = <strong>F</strong>, dan $r$ = <strong>T</strong>, kita bisa mengevaluasi seluruh ekspresi apa pun bentuknya. Inilah yang membuat logika proposisi sangat terstruktur dan dapat "dihitung" seperti aritmetika.</p>
+
+ <h3 class="lesson-subheading">B. Urutan Operasi Logika</h3>
+ <p class="lesson-text">Kalau dalam aritmetika kita tahu bahwa perkalian dikerjakan sebelum penjumlahan, dalam logika proposisi ada aturan serupa. Ketika beberapa operator muncul bersamaan, urutan pengerjaannya adalah (dari yang paling tinggi ke paling rendah):</p>
+ <ol>
+  <li>Tanda kurung $(\;)$ — selalu dikerjakan lebih dulu.</li>
+  <li>Negasi $\neg$</li>
+  <li>Konjungsi $\land$</li>
+  <li>Disjungsi $\lor$</li>
+  <li>Implikasi $\Rightarrow$</li>
+  <li>Biimplikasi $\Leftrightarrow$</li>
+ </ol>
+ <p class="lesson-text">Aturan ini disepakati agar setiap ekspresi punya satu tafsir tunggal. Tapi kalau ragu, lebih baik pakai <strong>tanda kurung</strong> secara eksplisit — terutama pada implikasi. Ekspresi $p \Rightarrow q \Rightarrow r$ <em>ambigu</em>: apakah dibaca $(p \Rightarrow q) \Rightarrow r$ atau $p \Rightarrow (q \Rightarrow r)$? Keduanya tidak selalu menghasilkan nilai yang sama. Menuliskan kurung mencegah kebingungan ini sepenuhnya.</p>
+
+ <h3 class="lesson-subheading">C. Contoh Penerapan</h3>
+<p class="lesson-text"><strong>Contoh 1.</strong> Misalkan $p$ = <strong>T</strong>, $q$ = <strong>F</strong>, $r$ = <strong>T</strong>. Nilai proposisi majemuk $\neg p \lor (q \land r)$ langkah demi langkah:</p>
+<ol>
+ <li>Kerjakan yang di dalam kurung lebih dulu: $q \land r$ = <strong>F</strong> $\land$ <strong>T</strong> = <strong>F</strong>.</li>
+ <li>Hitung negasi: $\neg p$ = <strong>F</strong> &nbsp; (karena $p$ = <strong>T</strong>).</li>
+ <li>Gabungkan: $\neg p \lor (q \land r)$ = <strong>F</strong> $\lor$ <strong>F</strong> = <strong>F</strong>.</li>
+</ol>
+
+<p class="lesson-text"><strong>Contoh 2.</strong> Sekarang kita bandingkan dua ekspresi yang tampak mirip tetapi berbeda peletakan kurungnya. Misalkan $p$ = <strong>F</strong>, $q$ = <strong>T</strong>, $r$ = <strong>F</strong>. Nilai dari $(p \Rightarrow q) \Rightarrow r$:</p>
+<ol>
+ <li>Hitung yang di dalam kurung: $p \Rightarrow q$ = <strong>F</strong> $\Rightarrow$ <strong>T</strong> = <strong>T</strong>.</li>
+ <li>Terapkan implikasi luar: <strong>T</strong> $\Rightarrow$ $r$ = <strong>T</strong> $\Rightarrow$ <strong>F</strong> = <strong>F</strong>.</li>
+</ol>
+<p class="lesson-text">Dengan nilai yang sama, sekarang hitung $p \Rightarrow (q \Rightarrow r)$:</p>
+<ol>
+ <li>Hitung yang di dalam kurung: $q \Rightarrow r$ = <strong>T</strong> $\Rightarrow$ <strong>F</strong> = <strong>F</strong>.</li>
+ <li>Terapkan implikasi luar: $p \Rightarrow$ <strong>F</strong> = <strong>F</strong> $\Rightarrow$ <strong>F</strong> = <strong>T</strong>.</li>
+</ol>
+<p class="lesson-text">Perhatikan: pada nilai $p$, $q$, $r$ yang <em>sama</em>, kedua ekspresi menghasilkan nilai yang <strong>berbeda</strong> — $(p \Rightarrow q) \Rightarrow r$ bernilai <strong>F</strong>, sedangkan $p \Rightarrow (q \Rightarrow r)$ bernilai <strong>T</strong>. Inilah buktinya bahwa peletakan tanda kurung bisa mengubah nilai kebenaran. Karena itu, ekspresi seperti $p \Rightarrow q \Rightarrow r$ tanpa kurung dinyatakan <em>ambigu</em> — dan menuliskan kurung secara eksplisit bukanlah formalitas, melainkan keharusan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">IV. Menyusun Tabel Kebenaran</h2>
+ <p class="lesson-text">Untuk proposisi majemuk yang rumit, tabel kebenaran menjadi alat penyelamat. Kalau kita hanya menebak nilai dari kepala, kesalahan pelacakan sangat mudah terjadi. Dengan tabel yang rapi, setiap subekspresi punya kolomnya sendiri — dan hasil akhir tinggal dibaca di kolom terakhir.</p>
+
+ <h3 class="lesson-subheading">A. Langkah Umum</h3>
+ <ol>
+  <li>Tentukan jumlah komponen dan hitung jumlah baris: $2^n$.</li>
+  <li>Buat kolom untuk setiap komponen, isi semua kombinasi T/F secara sistematis.</li>
+  <li>Buat kolom untuk setiap subekspresi, dari yang paling dalam (di dalam kurung) ke yang paling luar.</li>
+  <li>Isi setiap kolom subekspresi berdasarkan operatornya.</li>
+  <li>Kolom paling kanan adalah hasil akhir proposisi majemuk.</li>
+ </ol>
+
+ <h3 class="lesson-subheading">B. Contoh Dua Komponen</h3>
+ <p class="lesson-text">Mari susun tabel untuk $\neg(p \land q)$ dan bandingkan dengan $\neg p \lor \neg q$:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$p \land q$</th>
+     <th>$\neg(p \land q)$</th>
+     <th>$\neg p$</th>
+     <th>$\neg q$</th>
+     <th>$\neg p \lor \neg q$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Kedua kolom terakhir isinya identik pada setiap baris. Ini bukan kebetulan — inilah <strong>Hukum De Morgan</strong>, yang akan dibahas pada bagian berikutnya. Tabel kebenaran semacam ini adalah cara paling langsung untuk membuktikan bahwa dua proposisi <strong>ekuivalen</strong>.</p>
+
+ <h3 class="lesson-subheading">C. Contoh Tiga Komponen</h3>
+ <p class="lesson-text">Sekarang untuk $(p \lor q) \Rightarrow \neg r$ — tiga komponen, jadi delapan baris:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$r$</th>
+     <th>$p \lor q$</th>
+     <th>$\neg r$</th>
+     <th>$(p \lor q) \Rightarrow \neg r$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Mari baca baris ketiga sebagai contoh: $p$ = <strong>T</strong>, $q$ = <strong>F</strong>, $r$ = <strong>T</strong>. Maka $p \lor q$ = <strong>T</strong>, dan $\neg r$ = <strong>F</strong>. Karena anteseden <strong>T</strong> dan konsekuen <strong>F</strong>, implikasi $(p \lor q) \Rightarrow \neg r$ bernilai <strong>F</strong> — cocok dengan kolom terakhir di baris itu. Adapun pola pengisian kolomnya: nilai $r$ bergantian tiap satu baris, $q$ tiap dua baris, dan $p$ tiap empat baris, sehingga semua delapan kombinasi tercakup tanpa ada yang dobel atau hilang.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">V. Hukum-Hukum Logika Proposisi</h2>
+ <p class="lesson-text">Dua proposisi majemuk disebut <strong>ekuivalen secara logis</strong> jika keduanya memiliki nilai kebenaran yang sama pada setiap baris tabel kebenarannya. Notasinya $\equiv$. Ekuivalensi logis sangat berguna: ia memungkinkan kita menyederhanakan atau mengubah bentuk proposisi tanpa mengubah nilai kebenarannya — seperti memindah-mindah suku dalam aljabar.</p>
+
+ <h3 class="lesson-subheading">A. Hukum Identitas dan Negasi Ganda</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Identitas</td>
+     <td>$p \land T \equiv p$ &nbsp;&nbsp; dan &nbsp;&nbsp; $p \lor F \equiv p$</td>
+    </tr>
+    <tr>
+     <td>Dominasi</td>
+     <td>$p \lor T \equiv T$ &nbsp;&nbsp; dan &nbsp;&nbsp; $p \land F \equiv F$</td>
+    </tr>
+    <tr>
+     <td>Negasi Ganda</td>
+     <td>$\neg(\neg p) \equiv p$</td>
+    </tr>
+    <tr>
+     <td>Komplemen</td>
+     <td>$p \lor \neg p \equiv T$ &nbsp;&nbsp; dan &nbsp;&nbsp; $p \land \neg p \equiv F$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Hukum identitas terasa intuitif kalau kita ingat peran <strong>T</strong> dan <strong>F</strong> sebagai "unsur netral". Menggabungkan $p$ dengan <strong>T</strong> lewat $\land$ tidak mengubah apa pun — sama seperti mengalikan angka dengan $1$. Menggabungkan $p$ dengan <strong>F</strong> lewat $\lor$ juga tidak mengubah apa pun — seperti menambah angka dengan $0$. Sebaliknya, hukum dominasi menunjukkan unsur yang "<em>menelan</em>": <strong>T</strong> menelan melalui $\lor$, dan <strong>F</strong> menelan melalui $\land$.</p>
+ <p class="lesson-text">Hukum komplemen menyatakan bahwa pernyataan dan negasinya pasti salah satu benar — <em>tidak mungkin keduanya salah</em>, dan <em>tidak mungkin keduanya benar</em>.</p>
+
+ <h3 class="lesson-subheading">B. Hukum Idempoten, Komutatif, dan Asosiatif</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Idempoten</td>
+     <td>$p \land p \equiv p$ &nbsp;&nbsp; dan &nbsp;&nbsp; $p \lor p \equiv p$</td>
+    </tr>
+    <tr>
+     <td>Komutatif</td>
+     <td>$p \land q \equiv q \land p$ &nbsp;&nbsp; dan &nbsp;&nbsp; $p \lor q \equiv q \lor p$</td>
+    </tr>
+    <tr>
+     <td>Asosiatif</td>
+     <td>$(p \land q) \land r \equiv p \land (q \land r)$</td>
+    </tr>
+    <tr>
+     <td>Asosiatif</td>
+     <td>$(p \lor q) \lor r \equiv p \lor (q \lor r)$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text"><strong>Idempoten</strong> berarti mengulang pernyataan yang sama tidak menambah apa-apa — "<em>hari ini hujan dan hari ini hujan</em>" sama saja dengan "<em>hari ini hujan</em>". <strong>Komutatif</strong> berarti urutan tidak penting untuk $\land$ dan $\lor$. <strong>Asosiatif</strong> berarti pengelompokan juga tidak penting — yang menentukan hanyalah nilai komponennya.</p>
+
+ <h3 class="lesson-subheading">C. Hukum Distributif dan Absorpsi</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Distributif</td>
+     <td>$p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$</td>
+    </tr>
+    <tr>
+     <td>Distributif</td>
+     <td>$p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$</td>
+    </tr>
+    <tr>
+     <td>Absorpsi</td>
+     <td>$p \lor (p \land q) \equiv p$ &nbsp;&nbsp; dan &nbsp;&nbsp; $p \land (p \lor q) \equiv p$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Hukum <strong>distributif</strong> mirip dengan aritmetika ($a(b + c) = ab + ac$), tapi di logika proposisi ia berlaku <em>dua arah</em> — baik $\land$ yang mendistribusi $\lor$, maupun sebaliknya. Ini salah satu perbedaan menarik antara logika dan aritmetika.</p>
+ <p class="lesson-text">Hukum <strong>absorpsi</strong> mungkin terasa aneh pada awalnya: $p \lor (p \land q) \equiv p$. Kenapa? Karena kalau $p$ sudah benar, seluruh ekspresi pasti benar — tidak peduli apa kata $q$. Kalau $p$ salah, maka $p \land q$ juga salah, dan seluruh ekspresi salah. Jadi nilai ekspresi hanya mengikuti $p$. Bagian $(p \land q)$ "diserap" oleh $p$.</p>
+
+ <h3 class="lesson-subheading">D. Hukum De Morgan</h3>
+ <p class="lesson-text">Hukum <strong>De Morgan</strong> menjelaskan bagaimana menegasikan konjungsi dan disjungsi — dua hukum yang sering dipakai dan sangat berguna ketika kita ingin memindahkan negasi ke dalam tanda kurung:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Bentuk</th>
+     <th>Ekuivalen</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>$\neg(p \land q)$</td>
+     <td>$\neg p \lor \neg q$</td>
+    </tr>
+    <tr>
+     <td>$\neg(p \lor q)$</td>
+     <td>$\neg p \land \neg q$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Secara verbal: negasi dari "<em>p dan q</em>" sama dengan "<em>bukan p atau bukan q</em>"; negasi dari "<em>p atau q</em>" sama dengan "<em>bukan p dan bukan q</em>". Perhatikan bahwa operatornya <em>berubah</em> — $\land$ berubah menjadi $\lor$ dan sebaliknya. Ini konsisten dengan intuisi: kalau "<em>A dan B</em>" tidak terjadi, berarti <em>minimal salah satu</em> tidak terjadi.</p>
+
+ <h3 class="lesson-subheading">E. Hukum Implikasi dan Biimplikasi</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Definisi Implikasi</td>
+     <td>$p \Rightarrow q \equiv \neg p \lor q$</td>
+    </tr>
+    <tr>
+     <td>Kontraposisi</td>
+     <td>$p \Rightarrow q \equiv \neg q \Rightarrow \neg p$</td>
+    </tr>
+    <tr>
+     <td>Definisi Biimplikasi</td>
+     <td>$p \Leftrightarrow q \equiv (p \Rightarrow q) \land (q \Rightarrow p)$</td>
+    </tr>
+    <tr>
+     <td>Negasi Implikasi</td>
+     <td>$\neg(p \Rightarrow q) \equiv p \land \neg q$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Baris <em>Definisi Implikasi</em> menjelaskan kenapa implikasi berperilaku seperti yang kita lihat di tabelnya: $p \Rightarrow q$ sama saja dengan "<em>bukan p atau q</em>". Kalau $p$ salah, $\neg p$ benar, dan seluruh disjungsi pasti benar. Kalau $p$ benar, hasilnya bergantung pada $q$ — persis seperti tabel implikasi.</p>
+ <p class="lesson-text">Baris <em>Negasi Implikasi</em> menjelaskan cara menyanggah "<em>jika p maka q</em>". Untuk membuktikan implikasi salah, kita harus menunjukkan bahwa $p$ benar <em>tetapi</em> $q$ salah — bukan sekadar menyatakan "$p$ salah" atau "$q$ salah".</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VI. Konvers, Invers, dan Kontraposisi</h2>
+
+ <h3 class="lesson-subheading">A. Definisi</h3>
+ <p class="lesson-text">Dari sebuah implikasi $p \Rightarrow q$, kita bisa membentuk tiga pernyataan turunan dengan menukar dan/atau menegasikan komponennya. Bayangkan implikasi seperti pernyataan bersyarat; kita bisa <em>memutarnya</em>, <em>menyangkalnya</em>, atau melakukan <em>keduanya sekaligus</em>:</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Nama</th>
+     <th>Bentuk</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Implikasi (asli)</td>
+     <td>$p \Rightarrow q$</td>
+    </tr>
+    <tr>
+     <td>Konvers</td>
+     <td>$q \Rightarrow p$</td>
+    </tr>
+    <tr>
+     <td>Invers</td>
+     <td>$\neg p \Rightarrow \neg q$</td>
+    </tr>
+    <tr>
+     <td>Kontraposisi</td>
+     <td>$\neg q \Rightarrow \neg p$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">B. Ekuivalensi</h3>
+ <p class="lesson-text">Dari keempat bentuk di atas, tidak semuanya setara. Yang penting untuk diingat:</p>
+ <ul>
+  <li><strong>Kontraposisi selalu ekuivalen</strong> dengan implikasi aslinya: $p \Rightarrow q \equiv \neg q \Rightarrow \neg p$.</li>
+  <li><strong>Konvers ekuivalen dengan invers</strong>: keduanya saling berkontraposisi satu sama lain.</li>
+  <li>Konvers dan invers <strong>tidak ekuivalen</strong> dengan implikasi aslinya secara umum.</li>
+ </ul>
+ <p class="lesson-text">Mari kita lihat mengapa. Ambil implikasi "<em>Jika besok hujan, maka saya membawa payung</em>". Dari sini:</p>
+ <ul>
+  <li>Konvers: "<em>Jika saya membawa payung, maka besok hujan.</em>"</li>
+  <li>Invers: "<em>Jika besok tidak hujan, maka saya tidak membawa payung.</em>"</li>
+  <li>Kontraposisi: "<em>Jika saya tidak membawa payung, maka besok tidak hujan.</em>"</li>
+ </ul>
+ <p class="lesson-text">Hanya <strong>kontraposisi</strong> yang <em>pasti</em> benar jika implikasi aslinya benar. Mengapa? Karena kontraposisi tidak menambah klaim baru — ia hanya membaca implikasi yang sama dari sudut berbeda. Kalau benar bahwa hujan mengakibatkan saya membawa payung, maka pastilah ketika saya tidak membawa payung, itu berarti tidak hujan.</p>
+ <p class="lesson-text">Sebaliknya, konvers dan invers bisa saja salah meskipun implikasi aslinya benar. Dalam contoh tadi, saya bisa membawa payung karena alasan lain — misalnya karena baru pulang dari toko payung, atau karena ingin bergaya. Fakta bahwa saya membawa payung tidak otomatis berarti besok hujan. Inilah sebabnya konvers dan invers <strong>bukan implikasi yang sah</strong> untuk dibalik arah logikanya.</p>
+ <p class="lesson-text">Karena kontraposisi selalu ekuivalen dengan aslinya, ia sering dipakai sebagai teknik pembuktian: daripada membuktikan $p \Rightarrow q$ secara langsung, kadang lebih mudah membuktikan $\neg q \Rightarrow \neg p$. Teknik ini dikenal sebagai <strong>pembuktian dengan kontraposisi</strong>.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">VII. Tautologi, Kontradiksi, dan Kontingensi</h2>
+ <p class="lesson-text">Ketika kita menyusun tabel kebenaran, ada tiga pola yang mungkin muncul. Sebagian proposisi selalu benar, sebagian selalu salah, dan sebagian lagi bergantung pada nilai komponennya. Mengenali pola ini membantu kita memahami sifat proposisi tanpa harus menghitung nilainya di setiap situasi.</p>
+
+ <h3 class="lesson-subheading">A. Tautologi</h3>
+ <p class="lesson-text"><strong>Tautologi</strong> adalah proposisi majemuk yang <em>selalu bernilai benar</em>, apa pun nilai komponennya. Contoh klasik: $p \lor \neg p$. Apapun $p$-nya, salah satu dari $p$ atau negasinya pasti benar — seperti hukum komplemen dalam bentuk proposisi majemuk.</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$\neg p$</th>
+     <th>$p \lor \neg p$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Tautologi bukan sekadar "kebetulan benar". Ia benar <em>karena strukturnya</em>, bukan karena nilai komponen tertentu. Kalau kita ganti $p$ dengan pernyataan apa pun — "<em>hari ini hujan</em>", "<em>1 + 1 = 2</em>", atau "<em>kucing bisa terbang</em>" — hasilnya tetap benar.</p>
+
+ <h3 class="lesson-subheading">B. Kontradiksi</h3>
+ <p class="lesson-text"><strong>Kontradiksi</strong> adalah kebalikannya: proposisi yang <em>selalu bernilai salah</em>, apa pun nilai komponennya. Contoh: $p \land \neg p$. Tidak mungkin $p$ sekaligus benar dan salah — jadi ekspresi ini selalu salah.</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$\neg p$</th>
+     <th>$p \land \neg p$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>F</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Kontradiksi biasanya menandakan ada sesuatu yang salah dalam asumsi kita. Dalam pembuktian matematis, menemukan kontradiksi dari suatu asumsi adalah cara sah untuk menyimpulkan bahwa asumsi itu salah — inilah dasar dari <strong>pembuktian dengan kontradiksi</strong> (<em>reductio ad absurdum</em>).</p>
+
+ <h3 class="lesson-subheading">C. Kontingensi</h3>
+ <p class="lesson-text"><strong>Kontingensi</strong> adalah golongan paling umum: proposisi yang nilainya <em>bergantung pada nilai komponennya</em> — bisa benar di beberapa baris dan salah di baris lain. Contoh: $p \Rightarrow q$.</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>$p$</th>
+     <th>$q$</th>
+     <th>$p \Rightarrow q$</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>T</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>T</td>
+     <td>F</td>
+     <td>F</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>T</td>
+     <td>T</td>
+    </tr>
+    <tr>
+     <td>F</td>
+     <td>F</td>
+     <td>T</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Sebagian besar proposisi yang kita temui sehari-hari bersifat <strong>kontingen</strong>. Kalimat "<em>jika saya belajar, saya lulus</em>" bisa benar atau salah tergantung keadaan — tidak selalu benar seperti tautologi, dan tidak selalu salah seperti kontradiksi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Kesalahan Umum</h2>
+ <ul>
+  <li>Menganggap "<em>atau</em>" selalu berarti salah satu tapi <strong>tidak keduanya</strong>. Dalam logika proposisi, $p \lor q$ tetap benar ketika keduanya benar.</li>
+  <li>Membaca <strong>implikasi</strong> sebagai hubungan sebab-akibat. $p \Rightarrow q$ hanya mengatur <em>nilai kebenaran</em>, bukan klaim bahwa $p$ <em>menyebabkan</em> $q$.</li>
+  <li>Menganggap <strong>kalimat terbuka</strong> seperti "$x + 1 = 3$" sebagai pernyataan. Kalimat ini baru menjadi pernyataan setelah $x$ diberi nilai.</li>
+  <li>Menegasikan pernyataan majemuk dengan hanya menempelkan "<em>tidak</em>" di depan. Negasi "<em>semua siswa lulus</em>" bukan "<em>semua siswa tidak lulus</em>", melainkan "<em>ada siswa yang tidak lulus</em>".</li>
+  <li>Menukar <strong>anteseden</strong> dan <strong>konsekuen</strong> pada implikasi. $p \Rightarrow q$ tidak sama dengan $q \Rightarrow p$.</li>
+  <li>Menganggap <strong>konvers</strong> atau <strong>invers</strong> ekuivalen dengan implikasi aslinya. Hanya <em>kontraposisi</em> yang selalu ekuivalen.</li>
+  <li>Mengabaikan <strong>urutan operasi</strong> sehingga $\neg p \land q$ dikira sama dengan $\neg(p \land q)$ — padahal keduanya berbeda.</li>
+  <li>Menganggap pernyataan yang <strong>salah</strong> bukan pernyataan. Salah <em>tetap</em> pernyataan; yang bukan pernyataan adalah kalimat yang tidak bisa dinilai sama sekali.</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Ringkasan</h2>
+ <ul>
+  <li><strong>Pernyataan</strong> adalah kalimat deklaratif yang bernilai <strong>T</strong> (benar) atau <strong>F</strong> (salah), <em>tidak keduanya</em> dan <em>tidak pula kosong</em>.</li>
+  <li>Kalimat <em>tanya</em>, <em>perintah</em>, <em>harapan</em>, <em>seruan</em>, dan <strong>kalimat terbuka</strong> <em>bukan</em> pernyataan.</li>
+  <li>Lima operator logika dasar: <strong>negasi</strong> ($\neg$), <strong>konjungsi</strong> ($\land$), <strong>disjungsi</strong> ($\lor$), <strong>implikasi</strong> ($\Rightarrow$), <strong>biimplikasi</strong> ($\Leftrightarrow$).</li>
+  <li><strong>Urutan operasi</strong>: kurung → negasi → konjungsi → disjungsi → implikasi → biimplikasi.</li>
+  <li><strong>Tabel kebenaran</strong> untuk $n$ komponen memiliki $2^n$ baris.</li>
+  <li><strong>Hukum-hukum logika</strong> (De Morgan, distributif, absorpsi, dan lain-lain) memungkinkan penyederhanaan proposisi tanpa mengubah nilai kebenarannya.</li>
+  <li>Dari $p \Rightarrow q$: <strong>kontraposisi</strong> ($\neg q \Rightarrow \neg p$) selalu ekuivalen dengan aslinya; <strong>konvers</strong> dan <strong>invers</strong> tidak.</li>
+  <li>Berdasarkan tabel kebenarannya, proposisi digolongkan menjadi <strong>tautologi</strong> (selalu benar), <strong>kontradiksi</strong> (selalu salah), atau <strong>kontingensi</strong> (bergantung nilai komponen).</li>
+  <li>Notasi <em>B/S</em> (Indonesia) dan <em>T/F</em> (internasional) <strong>ekuivalen</strong> — hanya berbeda simbol.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>
