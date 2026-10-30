@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Penerapan Matematika — Matematika</title>
+ <meta name="description" content="Penerapan matematika dalam kehidupan sehari-hari: keuangan, rumah tangga, kesehatan, dan lainnya.">
+ <script src="/js/head.js"></script>
+ <script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h1 class="title-page">Penerapan Matematika</h1>
+ <input type="search" id="search" class="search-input" placeholder="Cari penerapan...">
+ <p class="list-count" id="penerapan-count"></p>
+ <div class="container-card" id="list"></div>
+</main>
+
+<script src="data.js"></script>
+<script>
+const listEl = document.getElementById('list');
+const searchEl = document.getElementById('search');
+
+function render(items) {
+ listEl.innerHTML = '';
+ 
+ if (items.length === 0) {
+  listEl.innerHTML = '<p class="empty">Tidak ada penerapan yang cocok.</p>';
+  return;
+ }
+ 
+ items.forEach(p => {
+  const article = document.createElement('article');
+  article.className = 'card';
+  article.innerHTML = `
+  <h2 class="card-title">${p.nama}</h2>
+  <p class="card-text">${p.deskripsi}</p>
+  <div class="card-rumus">${p.rumus}</div>
+  <p class="card-text"><strong>Contoh</strong>: ${p.contoh}</p>`;
+  listEl.appendChild(article);
+ });
+ 
+ if (window.renderMathInElement) {
+  renderMathInElement(listEl, {
+   delimiters: [
+    { left: '$$', right: '$$', display: true },
+    { left: '$', right: '$', display: false }
+   ],
+   throwOnError: false
+  });
+ }
+}
+
+function filterData(query) {
+ const q = query.toLowerCase().trim();
+ if (!q) return data;
+ return data.filter(p => p.nama.toLowerCase().includes(q));
+}
+
+searchEl.addEventListener('input', e => {
+ render(filterData(e.target.value));
+});
+
+render(data);
+</script>
+</body>
+</html>
