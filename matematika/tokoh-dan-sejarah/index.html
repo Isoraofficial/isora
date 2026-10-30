@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Tokoh & Sejarah</title>
+ <script src="/js/head.js"></script>
+ <script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h1 class="title-page">Tokoh & Sejarah Matematika</h1>
+ <input type="search" class="search-input" id="search" placeholder="Cari tokoh...">
+ <section class="container-card" id="list"></section>
+</main>
+
+<script src="data.js"></script>
+<script>
+const listEl = document.getElementById('list');
+const searchEl = document.getElementById('search');
+
+function render(items) {
+ listEl.innerHTML = '';
+
+ if (items.length === 0) {
+  listEl.innerHTML = '<p class="empty">Tidak ada hasil.</p>';
+  return;
+ }
+
+ items.forEach(t => {
+  const card = document.createElement('article');
+  card.className = 'card';
+  card.innerHTML = `
+  <div class="box-top-tokoh">
+   <img class="card-img-tokoh" src="/assets/img/tokoh/${t.img}.jpg" alt="${t.nama}" loading="lazy">
+   <div class="box-tokoh">
+    <h2 class="name-tokoh">${t.nama}</h2>
+    <div class="tahun-tokoh">${t.tahun_hidup}</div>
+   </div>
+  </div>
+  
+  <div class="box-item-tokoh">
+   <p class="subtext-tokoh">Bidang</p>
+   <div class="box-tag-chip">
+   ${t.bidang.map(b => `<span class="tag-chip">${b}</span>`).join('')}</div>
+  </div>
+  
+  <div class="box-item-tokoh">
+   <p class="subtext-tokoh">Ringkasan</p>
+   <p class="card-text">${t.ringkasan}</p>
+  </div>
+  
+  <div class="box-item-tokoh">
+   <p class="subtext-tokoh">Karya / penemuan</p>
+   <ul class="karya">${t.karya_penemuan.map(k => `<li>${k}</li>`).join('')}</ul>
+  </div>
+  
+  <div class="box-item-tokoh">
+   <p class="subtext-tokoh">Sorotan karier</p>
+   <ul class="sorotan">${(t.sorotan_karier || []).map(s => `<li>${s}</li>`).join('')}</ul>
+  </div>`;
+    listEl.appendChild(card);
+  });
+}
+
+function filterData(query) {
+ const q = query.toLowerCase().trim();
+ if (!q) return data;
+ return data.filter(t => t.nama.toLowerCase().includes(q));
+}
+searchEl.addEventListener('input', e => {
+  render(filterData(e.target.value));});
+render(data);
+</script>
+</body>
+</html>
