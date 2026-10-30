@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Simbol $ Notasi</title>
+ <script src="/js/head.js"></script>
+ <script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+
+<main>
+ <h2 class="title-page">Simbol & Notasi Matematika</h2>
+ <div class="lesson-section">
+  <input type="text" id="glossInput" class="search-input" placeholder="Cari simbol, nama, atau deskripsi...">
+  
+ <div class="tag-scroll">
+   <div class="tag-rows">
+    <div class="tag-row" id="glossRow1"></div>
+    <div class="tag-row" id="glossRow2"></div>
+   </div>
+  </div>
+  <p class="list-count" id="glossInfo"></p>
+  <div class="container-card" id="glossGrid"></div>
+ </div>
+</main>
+
+<script src="data.js"></script>
+<script>
+
+const inputEl = document.getElementById('glossInput');
+const row1El = document.getElementById('glossRow1');
+const row2El = document.getElementById('glossRow2');
+const infoEl = document.getElementById('glossInfo');
+const gridEl = document.getElementById('glossGrid');
+
+let activeCat = 'Semua';
+let query = '';
+
+function typesetMath(container) {
+ if (typeof renderMathInElement === 'function') {
+  renderMathInElement(container, {
+   delimiters: [
+    { left: '$$', right: '$$', display: true },
+    { left: '$',  right: '$',  display: false }
+   ],
+   throwOnError: false,
+   ignoredTags: ['script','noscript','style','textarea','pre','code']
+  });
+ }
+}
+
+function buildButton(cat) {
+ const btn = document.createElement('button');
+ btn.className = 'tag-btn' + (cat === activeCat ? ' active' : '');
+ btn.textContent = cat;
+ btn.addEventListener('click', () => {
+  activeCat = cat;
+  document.querySelectorAll('.tag-btn').forEach(b => {
+   b.classList.toggle('active', b.textContent === activeCat);
+  });
+  renderGrid();
+ });
+ return btn;
+}
+
+function renderCats() {
+ row1El.innerHTML = '';
+ row2El.innerHTML = '';
+ 
+ const cats = ['Semua', ...Array.from(new Set(data.map(s => s.cat)))];
+ const buttons = cats.map(buildButton);
+ 
+ buttons.forEach(btn => row1El.appendChild(btn));
+ 
+ const gap = 8;
+ const totalWidth = buttons.reduce(
+  (sum, btn) => sum + btn.getBoundingClientRect().width + gap, 0
+ );
+ const half = totalWidth / 2;
+ 
+ let acc = 0;
+ let splitIndex = buttons.length;
+ for (let i = 0; i < buttons.length; i++) {
+  acc += buttons[i].getBoundingClientRect().width + gap;
+  if (acc >= half) { splitIndex = i + 1; break; }
+ }
+ 
+ buttons.slice(splitIndex).forEach(btn => row2El.appendChild(btn));
+}
+
+function renderGrid() {
+ const q = query.trim().toLowerCase();
+ const filtered = data.filter(s => {
+  const matchCat = activeCat === 'Semua' || s.cat === activeCat;
+  const matchQ = !q ||
+   s.sym.toLowerCase().includes(q) ||
+   s.name.toLowerCase().includes(q) ||
+   s.desc.toLowerCase().includes(q) ||
+   s.cat.toLowerCase().includes(q);
+  return matchCat && matchQ;
+ });
+ 
+ gridEl.innerHTML = '';
+ 
+ if (filtered.length === 0) {
+  gridEl.innerHTML = '<div class="empty">Tidak ada simbol yang cocok dengan pencarian Anda.</div>';
+  infoEl.textContent = '';
+  return;
+ }
+ 
+ infoEl.textContent = (q || activeCat !== 'Semua') ?
+  `Menampilkan ${filtered.length} dari ${data.length} simbol.` :
+  `Menampilkan seluruh ${data.length} simbol.`;
+ 
+ const frag = document.createDocumentFragment();
+ filtered.forEach(s => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+   <span class="card-sym">${s.sym}</span>
+   <div class="card-title" style="margin-top:8px;">${s.name}</div>
+   <div class="card-text">${s.desc}</div>
+   <span class="tag-chip" style="margin-top:4px;">${s.cat}</span>
+    `;
+  frag.appendChild(card);
+ });
+ gridEl.appendChild(frag);
+
+ typesetMath(gridEl);
+}
+
+let searchTimer;
+inputEl.addEventListener('input', e => {
+ query = e.target.value;
+ clearTimeout(searchTimer);
+ searchTimer = setTimeout(renderGrid, 120);
+});
+
+renderCats();
+renderGrid();
+</script>
+
+</body>
+</html>
