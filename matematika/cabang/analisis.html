@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analisis — Matematika</title>
+<meta name="description" content="Pengenalan cabang Analisis: pengertian, sejarah, sub-bidang, konsep kunci, dan penerapannya.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Analisis</h1>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Apa Itu Analisis?</h2>
+ <p class="lesson-text"><strong>Analisis adalah cabang matematika yang mempelajari perubahan, gerak, dan kedekatan secara rigor — limit, turunan, integral, deret, dan perilaku fungsi secara mendalam.</strong></p>
+ <p class="lesson-text">Jika aljabar mempelajari struktur statis, analisis mempelajari hal-hal yang berubah: bagaimana suatu nilai mendekati nilai lain, bagaimana fungsi berperilaku di sekitar suatu titik, dan bagaimana perubahan kecil pada input memengaruhi output.</p>
+ <p class="lesson-text">Istilah "analisis" berasal dari kata Yunani <em>analysis</em> yang berarti "penguraian". Dari kalkulus Newton dan Leibniz, analisis berkembang menjadi disiplin yang lebih rigor, mendalam, dan luas — mencakup analisis real, analisis kompleks, analisis fungsional, dan persamaan diferensial.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Peran Analisis</h2>
+ <p class="lesson-text">Analisis adalah bahasa matematika untuk perubahan dan kontinuitas. Hampir semua model kuantitatif dalam sains dan teknik — dari gerak planet sampai dinamika populasi — dirumuskan dalam bahasa analisis.</p>
+ <p class="lesson-text">Sebagai contoh, kecepatan sesaat bukanlah "jarak dibagi waktu" seperti pada kecepatan rata-rata, melainkan limit dari perbandingan itu ketika selang waktu mengecil menuju nol:</p>
+ <p class="lesson-text">$$v = \lim_{\Delta t \to 0} \frac{\Delta s}{\Delta t} = \frac{ds}{dt}$$</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Analisis bukan sekadar kalkulus yang lebih sulit. Kalkulus mengajarkan cara menghitung; analisis menjelaskan mengapa cara itu bekerja dan kapan ia gagal.</p>
+ </div>
+ <p class="lesson-text">Karena itu, analisis menjadi fondasi bagi banyak cabang lain. Persamaan diferensial memodelkan perubahan. Analisis fungsional mempelajari ruang fungsi sebagai objek. Teori probabilitas modern berdiri di atas teori ukuran, yang merupakan bagian dari analisis real.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Perkembangan Analisis</h2>
+ <p class="lesson-text">Analisis lahir dari kalkulus pada abad ke-17, tetapi baru menjadi rigor pada abad ke-19 melalui upaya Cauchy, Weierstrass, dan Riemann.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Era</th>
+     <th>Periode</th>
+     <th>Tokoh Kunci</th>
+     <th>Kontribusi</th>
+     <th>Karya Utama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Awal</td>
+     <td>1660–1700</td>
+     <td>Newton, Leibniz</td>
+     <td>Kalkulus diferensial dan integral</td>
+     <td>Principia, Nova Methodus</td>
+    </tr>
+    <tr>
+     <td>Pengembangan</td>
+     <td>1700-an</td>
+     <td>Euler, Bernoulli</td>
+     <td>Deret, persamaan diferensial, fungsi khusus</td>
+     <td>Introductio in Analysin</td>
+    </tr>
+    <tr>
+     <td>Rigorisasi</td>
+     <td>1800-an</td>
+     <td>Cauchy, Weierstrass</td>
+     <td>Definisi rigor limit, ε-δ</td>
+     <td>Cours d'Analyse</td>
+    </tr>
+    <tr>
+     <td>Modern</td>
+     <td>1900–sekarang</td>
+     <td>Lebesgue, Hilbert, Banach</td>
+     <td>Teori ukuran, analisis fungsional, ruang Banach</td>
+     <td>Leçons sur l'intégration</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Sub-Bidang</h2>
+
+ <h3 class="lesson-subheading">Analisis Real</h3>
+ <p class="lesson-text">Mempelajari bilangan real, barisan, deret, limit, kontinuitas, turunan, dan integral secara rigor. Ini adalah fondasi dari semua analisis lainnya.</p>
+ <ul>
+  <li>Sifat kelengkapan bilangan real</li>
+  <li>Barisan dan deret konvergen</li>
+  <li>Kontinuitas dan turunan</li>
+  <li>Integral Riemann dan integral Lebesgue</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Analisis Kompleks</h3>
+ <p class="lesson-text">Mempelajari fungsi dari bilangan kompleks ke bilangan kompleks. Fungsi holomorfik memiliki sifat yang jauh lebih kuat daripada fungsi real — misalnya, jika sebuah fungsi kompleks memiliki turunan di sekitar suatu titik, maka ia otomatis memiliki turunan tak hingga banyaknya di titik itu.</p>
+ <ul>
+  <li>Bilangan kompleks dan bidang kompleks</li>
+  <li>Fungsi holomorfik dan persamaan Cauchy–Riemann</li>
+  <li>Integral kontur dan teorema residu</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Analisis Fungsional</h3>
+ <p class="lesson-text">Mempelajari ruang fungsi dan operator di antara mereka. Alih-alih mempelajari satu fungsi, analisis fungsional mempelajari kumpulan fungsi sebagai objek geometri.</p>
+ <ul>
+  <li>Ruang vektor topologis dan ruang Banach</li>
+  <li>Ruang Hilbert dan hasil kali dalam</li>
+  <li>Operator linear dan spektrumnya</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Persamaan Diferensial</h3>
+ <p class="lesson-text">Mempelajari persamaan yang memuat turunan fungsi yang tidak diketahui. Persamaan ini menjadi bahasa utama untuk memodelkan perubahan dalam fisika, biologi, ekonomi, dan teknik.</p>
+ <ul>
+  <li>Persamaan diferensial biasa (ODE)</li>
+  <li>Persamaan diferensial parsial (PDE)</li>
+  <li>Masalah nilai awal dan nilai batas</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Analisis Harmonik</h3>
+ <p class="lesson-text">Mempelajari representasi fungsi sebagai superposisi gelombang dasar. Deret Fourier dan transformasi Fourier adalah alat utamanya.</p>
+ <ul>
+  <li>Deret Fourier dan transformasi Fourier</li>
+  <li>Analisis waktu–frekuensi</li>
+  <li>Analisis harmonik abstrak</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Cabang Lanjut</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Cabang</th>
+     <th>Objek</th>
+     <th>Fokus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Teori ukuran</td>
+     <td>Himpunan dan fungsi terukur</td>
+     <td>Integrasi Lebesgue dan probabilitas</td>
+    </tr>
+    <tr>
+     <td>Analisis non-standar</td>
+     <td>Bilangan hiperreal</td>
+     <td>Kalkulus dengan infinitesimal</td>
+    </tr>
+    <tr>
+     <td>Analisis global</td>
+     <td>Manifold</td>
+     <td>Persamaan diferensial pada manifold</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Konsep Dasar</h2>
+
+ <h3 class="lesson-subheading">Limit</h3>
+ <p class="lesson-text">Limit mendeskripsikan nilai yang didekati suatu fungsi ketika input mendekati suatu titik. Secara formal:</p>
+ <p class="lesson-text">$$\lim_{x \to a} f(x) = L$$</p>
+ <p class="lesson-text">artinya untuk setiap $\varepsilon > 0$, ada $\delta > 0$ sehingga jika $0 < |x - a| < \delta$, maka $|f(x) - L| < \varepsilon$.</p>
+
+ <h3 class="lesson-subheading">Kontinuitas</h3>
+ <p class="lesson-text">Fungsi $f$ kontinu di titik $a$ jika $\lim_{x \to a} f(x) = f(a)$. Secara intuitif, grafik fungsi kontinu tidak "melompat" atau "berlubang".</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Kontinuitas mungkin tampak sederhana, tetapi definisi formalnya sangat halus. Fungsi Weierstrass, misalnya, kontinu di setiap titik tetapi tidak memiliki turunan di titik mana pun — sesuatu yang tidak mungkin dibayangkan dari gambar.</p>
+ </div>
+
+ <h3 class="lesson-subheading">Turunan</h3>
+ <p class="lesson-text">Turunan mengukur laju perubahan sesaat suatu fungsi:</p>
+ <p class="lesson-text">$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$</p>
+ <p class="lesson-text">Turunan menyatakan kemiringan garis singgung pada grafik fungsi di titik $x$.</p>
+
+ <h3 class="lesson-subheading">Integral</h3>
+ <p class="lesson-text">Integral tentu menyatakan "luas bertanda" di bawah kurva, dan didefinisikan sebagai limit jumlah Riemann:</p>
+ <p class="lesson-text">$$\int_a^b f(x)\,dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*)\,\Delta x$$</p>
+ <p class="lesson-text">Teorema Fundamental Kalkulus menghubungkan turunan dan integral sebagai operasi yang saling membalik:</p>
+ <p class="lesson-text">$$\int_a^b f'(x)\,dx = f(b) - f(a)$$</p>
+
+ <h3 class="lesson-subheading">Barisan dan Deret</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Konsep</th>
+     <th>Definisi Singkat</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Barisan konvergen</td>
+     <td>Barisan $(a_n)$ menuju $L$ jika untuk setiap $\varepsilon > 0$ ada $N$ sehingga $|a_n - L| < \varepsilon$ untuk $n > N$</td>
+    </tr>
+    <tr>
+     <td>Deret konvergen</td>
+     <td>Deret $\sum a_n$ konvergen jika barisan jumlah parsialnya konvergen</td>
+    </tr>
+    <tr>
+     <td>Deret geometri</td>
+     <td>$\sum_{n=0}^{\infty} r^n = \frac{1}{1-r}$ untuk $|r| < 1$</td>
+    </tr>
+    <tr>
+     <td>Deret p</td>
+     <td>$\sum_{n=1}^{\infty} \frac{1}{n^p}$ konvergen jika $p > 1$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Kekonvergenan dan Kelengkapan</h3>
+ <p class="lesson-text">Bilangan real memiliki sifat kelengkapan (completeness): setiap barisan Cauchy di $\mathbb{R}$ konvergen ke bilangan real. Sifat inilah yang membedakan $\mathbb{R}$ dari $\mathbb{Q}$ dan menjadi fondasi seluruh analisis real.</p>
+ <p class="lesson-text">Tanpa kelengkapan, banyak teorema analisis — termasuk teorema nilai antara dan teorema nilai ekstrem — tidak akan berlaku.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Definisi Formal</h2>
+
+ <h3 class="lesson-subheading">Definisi Limit (ε-δ)</h3>
+ <p class="lesson-text">Bilangan $L$ adalah limit fungsi $f$ di titik $a$, ditulis $\lim_{x \to a} f(x) = L$, jika untuk setiap $\varepsilon > 0$ terdapat $\delta > 0$ sehingga untuk semua $x$ dengan $0 < |x - a| < \delta$ berlaku $|f(x) - L| < \varepsilon$.</p>
+
+ <h3 class="lesson-subheading">Definisi Kekontinuan Seragam</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Jenis</th>
+     <th>Definisi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Kontinu di titik</td>
+     <td>$\forall \varepsilon > 0,\ \exists \delta > 0 : |x - a| < \delta \Rightarrow |f(x) - f(a)| < \varepsilon$</td>
+    </tr>
+    <tr>
+     <td>Kontinu seragam</td>
+     <td>$\forall \varepsilon > 0,\ \exists \delta > 0 : \forall x, y,\ |x - y| < \delta \Rightarrow |f(x) - f(y)| < \varepsilon$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Aksioma Kelengkapan</h3>
+ <p class="lesson-text">Bilangan real $\mathbb{R}$ memenuhi sifat supremum: setiap himpunan bagian tak kosong dari $\mathbb{R}$ yang terbatas di atas memiliki batas atas terkecil (supremum) di $\mathbb{R}$.</p>
+ <p class="lesson-text">Sifat ini menjadi dasar bagi hampir semua teorema analisis real, termasuk teorema nilai antara dan teorema Bolzano–Weierstrass.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penerapan</h2>
+
+ <h3 class="lesson-subheading">Fisika</h3>
+ <p class="lesson-text">Persamaan diferensial menjadi bahasa utama mekanika klasik, elektromagnetisme, dan relativitas. Persamaan Schrödinger dalam mekanika kuantum adalah persamaan diferensial parsial. Analisis fungsional menjadi fondasi formal mekanika kuantum melalui ruang Hilbert.</p>
+
+ <h3 class="lesson-subheading">Teknologi</h3>
+ <p class="lesson-text">Pemrosesan sinyal memakai transformasi Fourier untuk menganalisis frekuensi. Kompresi gambar dan audio memakai transformasi wavelet. Kontrol otomatis memakai persamaan diferensial untuk merancang sistem yang stabil. Machine learning memakai optimisasi berbasis kalkulus dan analisis fungsional.</p>
+
+ <h3 class="lesson-subheading">Bidang Lain</h3>
+ <ul>
+  <li>Ekonomi: model pertumbuhan dan keseimbangan memakai persamaan diferensial</li>
+  <li>Biologi: dinamika populasi dan epidemiologi memakai ODE dan PDE</li>
+  <li>Keuangan: kalkulus stokastik dan persamaan Black–Scholes</li>
+  <li>Meteorologi: simulasi cuaca memakai PDE dan analisis numerik</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Tokoh Kunci</h2>
+
+ <h3 class="lesson-subheading">Isaac Newton</h3>
+ <p class="lesson-text">Isaac Newton (1643–1727) adalah matematikawan dan fisikawan Inggris yang mengembangkan kalkulus diferensial dan integral secara independen dari Leibniz. Karyanya, <em>Principia</em>, merumuskan hukum gerak dan gravitasi dalam bahasa kalkulus, mengubah fisika menjadi ilmu kuantitatif.</p>
+
+ <h3 class="lesson-subheading">Gottfried Wilhelm Leibniz</h3>
+ <p class="lesson-text">Gottfried Wilhelm Leibniz (1646–1716) adalah polymath Jerman yang mengembangkan kalkulus secara independen dan menciptakan notasi $dy/dx$ dan $\int$ yang masih dipakai sampai hari ini. Notasinya lebih mudah digunakan daripada notasi Newton, sehingga menjadi standar dalam matematika modern.</p>
+
+ <h3 class="lesson-subheading">Augustin-Louis Cauchy</h3>
+ <p class="lesson-text">Augustin-Louis Cauchy (1789–1857) adalah matematikawan Prancis yang membuat analisis menjadi rigor. Ia memberikan definisi formal limit dan kontinuitas, serta meletakkan dasar analisis kompleks melalui teorema integral Cauchy.</p>
+
+ <h3 class="lesson-subheading">Karl Weierstrass</h3>
+ <p class="lesson-text">Karl Weierstrass (1815–1897) adalah matematikawan Jerman yang menyempurnakan definisi ε-δ untuk limit dan kontinuitas. Ia juga memberikan contoh fungsi kontinu di mana-mana tetapi tidak memiliki turunan di titik mana pun — hasil yang mengubah cara matematikawan memandang fungsi.</p>
+
+ <h3 class="lesson-subheading">Bernhard Riemann</h3>
+ <p class="lesson-text">Bernhard Riemann (1826–1866) adalah matematikawan Jerman yang merumuskan integral Riemann, yang menjadi dasar integral modern. Karyanya juga memperkenalkan fungsi zeta dan permukaan Riemann, yang menjadi fondasi analisis kompleks dan teori bilangan analitik.</p>
+
+ <h3 class="lesson-subheading">Henri Lebesgue</h3>
+ <p class="lesson-text">Henri Lebesgue (1875–1941) adalah matematikawan Prancis yang mengembangkan teori ukuran dan integral Lebesgue. Integral ini memperluas integral Riemann dan menjadi fondasi analisis modern, teori probabilitas, dan analisis fungsional.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Istilah Kunci</h2>
+ <ul>
+  <li><strong>Limit</strong> — nilai yang didekati fungsi ketika input mendekati titik tertentu.</li>
+  <li><strong>Kontinuitas</strong> — sifat fungsi yang tidak memiliki lompatan di suatu titik.</li>
+  <li><strong>Turunan</strong> — laju perubahan sesaat suatu fungsi.</li>
+  <li><strong>Integral</strong> — akumulasi perubahan sepanjang interval, dinyatakan sebagai limit jumlah.</li>
+  <li><strong>Barisan Cauchy</strong> — barisan yang suku-sukunya semakin berdekatan satu sama lain.</li>
+  <li><strong>Kelengkapan</strong> — sifat ruang di mana setiap barisan Cauchy konvergen.</li>
+  <li><strong>Kekonvergenan seragam</strong> — kekonvergenan yang berlaku serentak untuk semua titik.</li>
+  <li><strong>Fungsi holomorfik</strong> — fungsi kompleks yang memiliki turunan di sekitar suatu titik.</li>
+  <li><strong>Ruang Hilbert</strong> — ruang vektor lengkap dengan hasil kali dalam.</li>
+  <li><strong>Transformasi Fourier</strong> — alat untuk menguraikan fungsi menjadi komponen frekuensi.</li>
+  <li><strong>Teori ukuran</strong> — generalisasi panjang, luas, dan volume untuk himpunan yang lebih umum.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

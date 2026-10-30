@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometri — Matematika</title>
+<meta name="description" content="Pengenalan cabang Geometri: pengertian, sejarah, sub-bidang, konsep kunci, dan penerapannya.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Geometri</h1>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Apa Itu Geometri?</h2>
+ <p class="lesson-text"><strong>Geometri adalah cabang matematika yang mempelajari bentuk, ukuran, posisi, dan sifat ruang — dari bangun datar sederhana sampai ruang melengkung dalam relativitas umum.</strong></p>
+ <p class="lesson-text">Jika aritmetika bertanya "berapa banyak", geometri bertanya "bagaimana bentuknya, di mana letaknya, dan bagaimana objek-objek itu berhubungan dalam ruang?"</p>
+ <p class="lesson-text">Istilah "geometri" berasal dari kata Yunani <em>geo</em> (bumi) dan <em>metron</em> (ukuran) — pada awalnya memang tentang mengukur tanah. Dari kebutuhan praktis itu, geometri berkembang menjadi salah satu cabang matematika paling tua dan paling dalam.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Peran Geometri</h2>
+ <p class="lesson-text">Geometri menghubungkan intuisi visual dengan rigor matematika. Ia menyediakan bahasa untuk menyatakan posisi, jarak, sudut, dan transformasi — konsep yang muncul di hampir semua cabang matematika terapan.</p>
+ <p class="lesson-text">Dalam matematika murni, geometri menjadi tempat bertemunya aljabar, analisis, dan topologi. Geometri analitik menyatakan objek geometri dengan koordinat. Geometri diferensial memakai kalkulus untuk mempelajari lengkungan. Geometri aljabar menyatakan bentuk geometri sebagai solusi persamaan polinomial.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Geometri bukan sekadar gambar. Gambar hanyalah alat bantu; yang dipelajari adalah sifat-sifat yang tetap benar terlepas dari bagaimana objek itu digambar.</p>
+ </div>
+ <p class="lesson-text">Karena itu, geometri menjadi fondasi bagi banyak bidang lain: dari fisika (ruang dan waktu), grafik komputer (transformasi 3D), sampai robotika (kinematika dan navigasi).</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Perkembangan Geometri</h2>
+ <p class="lesson-text">Geometri adalah salah satu cabang matematika tertua, tetapi juga salah satu yang paling banyak mengalami revolusi konseptual.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Era</th>
+     <th>Periode</th>
+     <th>Tokoh Kunci</th>
+     <th>Kontribusi</th>
+     <th>Karya Utama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Kuno</td>
+     <td>c. 300 SM</td>
+     <td>Euclid, Archimedes</td>
+     <td>Geometri aksiomatik, metode ekshausti</td>
+     <td>Elements</td>
+    </tr>
+    <tr>
+     <td>Islam</td>
+     <td>800–1200</td>
+     <td>Al-Khwarizmi, Omar Khayyam, Al-Biruni</td>
+     <td>Trigonometri sistematis, solusi geometris kubik</td>
+     <td>Kitab al-Jabr</td>
+    </tr>
+    <tr>
+     <td>Analitik</td>
+     <td>1600–1700</td>
+     <td>Descartes, Fermat</td>
+     <td>Geometri koordinat, irisan aljabar dan geometri</td>
+     <td>La Géométrie</td>
+    </tr>
+    <tr>
+     <td>Non-Euclid</td>
+     <td>1800-an</td>
+     <td>Gauss, Lobachevsky, Riemann</td>
+     <td>Geometri non-Euclid, geometri Riemann</td>
+     <td>Über die Hypothesen</td>
+    </tr>
+    <tr>
+     <td>Modern</td>
+     <td>1900–sekarang</td>
+     <td>Hilbert, Poincaré, Grothendieck</td>
+     <td>Aksiomatisasi, geometri diferensial, geometri aljabar</td>
+     <td>Grundlagen der Geometrie</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Sub-Bidang</h2>
+
+ <h3 class="lesson-subheading">Geometri Euklides</h3>
+ <p class="lesson-text">Geometri yang didasarkan pada lima aksioma Euclid, termasuk aksioma kesejajaran. Ini adalah geometri yang diajarkan di sekolah: bangun datar, bangun ruang, sudut, dan kesebangunan.</p>
+ <ul>
+  <li>Titik, garis, bidang, dan sudut</li>
+  <li>Segitiga, segi banyak, dan lingkaran</li>
+  <li>Kesebangunan dan kekongruenan</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Geometri Analitik</h3>
+ <p class="lesson-text">Menyatakan objek geometri dengan koordinat dan persamaan. Titik menjadi pasangan bilangan, garis menjadi persamaan linear, dan lingkaran menjadi persamaan kuadrat.</p>
+ <p class="lesson-text">Sebagai contoh, jarak antara dua titik $(x_1, y_1)$ dan $(x_2, y_2)$ adalah:</p>
+ <p class="lesson-text">$$d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$</p>
+ <p class="lesson-text">dan lingkaran berpusat di $(a, b)$ dengan jari-jari $r$ memiliki persamaan:</p>
+ <p class="lesson-text">$$(x - a)^2 + (y - b)^2 = r^2$$</p>
+ <ul>
+  <li>Sistem koordinat Cartesian dan polar</li>
+  <li>Persamaan garis, lingkaran, dan irisan kerucut</li>
+  <li>Vektor dan transformasi linear</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Trigonometri</h3>
+ <p class="lesson-text">Mempelajari hubungan antara sudut dan panjang sisi pada segitiga, serta perluasannya ke fungsi periodik. Perbandingan trigonometri menjadi alat utama dalam pengukuran dan pemodelan gelombang.</p>
+ <p class="lesson-text">Untuk segitiga siku-siku dengan sudut $\theta$, berlaku:</p>
+ <p class="lesson-text">$$\sin\theta = \frac{\text{sisi depan}}{\text{hipotenusa}}, \quad \cos\theta = \frac{\text{sisi samping}}{\text{hipotenusa}}, \quad \tan\theta = \frac{\sin\theta}{\cos\theta}$$</p>
+ <p class="lesson-text">Pada segitiga sebarang dengan sisi $a, b, c$ dan sudut $A, B, C$ di hadapan masing-masing sisi, berlaku aturan sinus dan kosinus:</p>
+ <p class="lesson-text">$$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}, \quad c^2 = a^2 + b^2 - 2ab\cos C$$</p>
+
+ <h3 class="lesson-subheading">Geometri Diferensial</h3>
+ <p class="lesson-text">Mempelajari lengkungan dan permukaan menggunakan kalkulus. Fokusnya pada sifat lokal seperti kelengkungan (curvature) dan torsion, serta bagaimana sifat lokal menentukan bentuk global.</p>
+ <p class="lesson-text">Kelengkungan kurva $\gamma(t) = (x(t), y(t))$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\kappa = \frac{|x'y'' - y'x''|}{(x'^2 + y'^2)^{3/2}}$$</p>
+ <ul>
+  <li>Kurva dan permukaan parametrik</li>
+  <li>Kelengkungan Gauss dan tensor Riemann</li>
+  <li>Manifold dan geometri Riemann</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Geometri Proyektif</h3>
+ <p class="lesson-text">Mempelajari sifat geometri yang tetap sama di bawah proyeksi. Dalam geometri ini, "titik di tak hingga" ditambahkan sehingga garis sejajar pun berpotongan.</p>
+ <ul>
+  <li>Bidang proyektif dan ruang proyektif</li>
+  <li>Dualitas titik–garis</li>
+  <li>Teorema Desargues dan Pascal</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Geometri Non-Euclid</h3>
+ <p class="lesson-text">Geometri yang menolak aksioma kesejajaran Euclid. Dalam geometri hiperbolik, melalui satu titik di luar garis dapat ditarik banyak garis sejajar; dalam geometri eliptik, tidak ada garis sejajar sama sekali.</p>
+ <p class="lesson-text">Pada bola (geometri eliptik), jumlah sudut segitiga selalu lebih dari $180°$. Semakin besar segitiganya, semakin besar kelebihannya — dan kelebihan ini sebanding dengan luas segitiga:</p>
+ <p class="lesson-text">$$A + B + C - \pi = \frac{\text{Luas}}{R^2}$$</p>
+ <p class="lesson-text">dengan $R$ jari-jari bola.</p>
+
+ <h3 class="lesson-subheading">Cabang Lanjut</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Cabang</th>
+     <th>Objek</th>
+     <th>Fokus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Geometri aljabar</td>
+     <td>Varietas aljabar</td>
+     <td>Solusi persamaan polinomial secara geometri</td>
+    </tr>
+    <tr>
+     <td>Geometri komputasional</td>
+     <td>Objek diskrit</td>
+     <td>Algoritma untuk masalah geometri</td>
+    </tr>
+    <tr>
+     <td>Geometri simplektik</td>
+     <td>Manifold simplektik</td>
+     <td>Struktur Hamiltonian dan mekanika klasik</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Konsep Dasar</h2>
+
+ <h3 class="lesson-subheading">Titik, Garis, dan Bidang</h3>
+ <p class="lesson-text">Tiga objek dasar geometri. Titik tidak memiliki ukuran, garis memiliki panjang tetapi tidak lebar, dan bidang memiliki panjang dan lebar tetapi tidak ketebalan. Ketiganya tidak didefinisikan secara formal — hanya dijelaskan melalui aksioma.</p>
+
+ <h3 class="lesson-subheading">Sudut dan Jarak</h3>
+ <p class="lesson-text">Sudut mengukur besarnya "bukaan" antara dua sinar yang berbagi titik pangkal. Jarak mengukur seberapa jauh dua objek terpisah. Keduanya menjadi konsep fundamental yang kemudian digeneralisasi dalam ruang berdimensi lebih tinggi.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Dalam ruang melengkung, jarak terpendek antara dua titik bukan garis lurus, melainkan geodesik — kurva yang mengikuti kelengkungan ruang. Inilah yang terjadi pada bola dan pada ruang-waktu relativitas umum.</p>
+ </div>
+
+ <h3 class="lesson-subheading">Transformasi Geometri</h3>
+ <p class="lesson-text">Transformasi memindahkan atau mengubah objek geometri. Empat jenis dasar: translasi (geser), rotasi (putar), refleksi (cermin), dan dilatasi (skala). Transformasi yang mempertahankan jarak disebut isometri.</p>
+ <p class="lesson-text">Dalam bentuk matriks, rotasi sebesar $\theta$ di sekitar titik asal dapat ditulis sebagai:</p>
+ <p class="lesson-text">$$R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$$</p>
+ <p class="lesson-text">Transformasi linear apapun dari $\mathbb{R}^2$ ke $\mathbb{R}^2$ dapat dinyatakan sebagai perkalian matriks $2 \times 2$.</p>
+
+ <h3 class="lesson-subheading">Kesebangunan dan Kekongruenan</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Istilah</th>
+     <th>Definisi</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Kongruen</td>
+     <td>Sama bentuk dan sama ukuran</td>
+    </tr>
+    <tr>
+     <td>Sebangun</td>
+     <td>Sama bentuk, ukuran boleh berbeda</td>
+    </tr>
+    <tr>
+     <td>Isometri</td>
+     <td>Transformasi yang mempertahankan jarak: $d(T(P), T(Q)) = d(P, Q)$</td>
+    </tr>
+    <tr>
+     <td>Similaritas</td>
+     <td>Transformasi yang mempertahankan perbandingan jarak: $d(T(P), T(Q)) = k\, d(P, Q)$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Aksioma Kesejajaran dan Krisisnya</h3>
+ <p class="lesson-text">Aksioma kelima Euclid — tentang garis sejajar — sejak lama dianggap kurang elegan dibanding empat aksioma lainnya. Selama hampir 2000 tahun, matematikawan mencoba menurunkannya dari aksioma lain.</p>
+ <p class="lesson-text">Pada abad ke-19, Lobachevsky, Bolyai, dan Gauss menunjukkan bahwa menolak aksioma ini menghasilkan geometri yang konsisten — geometri non-Euclid. Penemuan ini mengubah pemahaman bahwa geometri bukan satu, tetapi banyak.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Aksioma Formal</h2>
+
+ <h3 class="lesson-subheading">Aksioma Euklides</h3>
+ <p class="lesson-text">Euclid merumuskan lima aksioma dasar dalam <em>Elements</em>. Empat aksioma pertama sederhana; aksioma kelima yang paling banyak diperdebatkan.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aksioma</th>
+     <th>Isi Singkat</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>Dua titik dapat dihubungkan dengan tepat satu garis lurus</td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>Segmen garis dapat diperpanjang menjadi garis lurus</td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>Dapat dibuat lingkaran dengan pusat dan jari-jari tertentu</td>
+    </tr>
+    <tr>
+     <td>4</td>
+     <td>Semua sudut siku-siku sama besar</td>
+    </tr>
+    <tr>
+     <td>5</td>
+     <td>Melalui titik di luar garis, hanya ada satu garis sejajar dengan garis itu</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Aksiomatisasi Hilbert</h3>
+ <p class="lesson-text">Pada 1899, David Hilbert menulis <em>Grundlagen der Geometrie</em>, yang merumuskan ulang geometri Euklides dengan 20 aksioma yang lebih rigor. Karya ini menutup celah-celah tersembunyi dalam <em>Elements</em> dan menjadi model aksiomatisasi modern.</p>
+ <p class="lesson-text">Aksioma Hilbert dibagi menjadi lima kelompok: insidensi, urutan, kekongruenan, kesejajaran, dan kontinuitas. Setiap kelompok menyatakan aspek berbeda dari geometri bidang dan ruang.</p>
+
+ <h3 class="lesson-subheading">Teorema Pythagoras</h3>
+ <p class="lesson-text">Salah satu hasil paling terkenal dalam geometri Euklides. Untuk segitiga siku-siku dengan sisi tegak $a$ dan $b$, serta hipotenusa $c$:</p>
+ <p class="lesson-text">$$a^2 + b^2 = c^2$$</p>
+ <p class="lesson-text">Teorema ini berlaku di ruang Euklides, tetapi tidak di ruang melengkung. Pada bola, misalnya, hubungan antar sisi segitiga mengikuti aturan kosinus bola yang berbeda.</p>
+
+ <h3 class="lesson-subheading">Karakteristik Euler untuk Polihedron</h3>
+ <p class="lesson-text">Untuk polihedron konveks, berlaku hubungan:</p>
+ <p class="lesson-text">$$V - E + F = 2$$</p>
+ <p class="lesson-text">dengan $V$ jumlah vertex, $E$ jumlah edge, dan $F$ jumlah muka. Rumus ini menjadi jembatan antara geometri dan topologi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penerapan</h2>
+
+ <h3 class="lesson-subheading">Sains</h3>
+ <p class="lesson-text">Fisika memakai geometri diferensial sebagai bahasa relativitas umum: gravitasi adalah kelengkungan ruang-waktu. Dalam astronomi, trigonometri bola dipakai untuk menghitung posisi bintang dan navigasi. Dalam kimia, geometri molekul menentukan sifat zat.</p>
+
+ <h3 class="lesson-subheading">Teknologi</h3>
+ <p class="lesson-text">Grafik komputer memakai transformasi matriks untuk memutar, menskala, dan memindahkan objek 3D. Visi komputer memakai geometri proyektif untuk merekonstruksi adegan dari gambar. GPS memakai geometri bola dan trilaterasi untuk menentukan posisi.</p>
+
+ <h3 class="lesson-subheading">Industri dan Rekayasa</h3>
+ <ul>
+  <li>Arsitektur dan teknik sipil: perancangan struktur dan analisis beban</li>
+  <li>Robotika: kinematika lengan robot dan perencanaan jalur</li>
+  <li>Geometri komputasional: triangulasi, convex hull, dan pengolahan citra</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Tokoh Kunci</h2>
+
+ <h3 class="lesson-subheading">Euclid</h3>
+ <p class="lesson-text">Euclid (fl. 300 SM) adalah matematikawan Yunani yang mengajar di Alexandria. Melalui <em>Elements</em>, ia menyusun geometri secara aksiomatik dan menjadi standar pendidikan matematika selama lebih dari 2000 tahun. Karyanya menjadi model pertama sistem deduktif dalam matematika.</p>
+
+ <h3 class="lesson-subheading">Archimedes</h3>
+ <p class="lesson-text">Archimedes (c. 287–212 SM) adalah matematikawan dan penemu Yunani dari Syracuse. Ia menghitung luas dan volume bangun lengkung dengan metode ekshausti, mendekati konsep integral ribuan tahun sebelum Newton dan Leibniz. Rumus volume bola $V = \frac{4}{3}\pi r^3$ dan luas permukaannya $L = 4\pi r^2$ masih dipelajari sampai sekarang.</p>
+
+ <h3 class="lesson-subheading">René Descartes</h3>
+ <p class="lesson-text">René Descartes (1596–1650) adalah filsuf dan matematikawan Prancis yang menyatukan aljabar dan geometri melalui sistem koordinat. Karyanya, <em>La Géométrie</em>, membuka jalan bagi geometri analitik dan seluruh matematika modern.</p>
+
+ <h3 class="lesson-subheading">Carl Friedrich Gauss</h3>
+ <p class="lesson-text">Carl Friedrich Gauss (1777–1855) adalah matematikawan Jerman yang berkontribusi besar pada geometri diferensial permukaan. Ia juga salah satu yang pertama menyadari kemungkinan geometri non-Euclid, meski tidak mempublikasikannya secara luas.</p>
+
+ <h3 class="lesson-subheading">Bernhard Riemann</h3>
+ <p class="lesson-text">Bernhard Riemann (1826–1866) adalah matematikawan Jerman yang menggeneralisasi geometri ke ruang berdimensi sebarang dengan metrik yang bervariasi. Geometri Riemann-nya menjadi bahasa matematika bagi teori relativitas umum Einstein.</p>
+
+ <h3 class="lesson-subheading">David Hilbert</h3>
+ <p class="lesson-text">David Hilbert (1862–1943) adalah matematikawan Jerman yang mengaksiomatisasi geometri secara rigor pada 1899. Karyanya, <em>Grundlagen der Geometrie</em>, menjadi model bagi aksiomatisasi cabang matematika lainnya di abad ke-20.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Istilah Kunci</h2>
+ <ul>
+  <li><strong>Titik</strong> — objek tanpa ukuran, menandai posisi dalam ruang.</li>
+  <li><strong>Garis</strong> — objek lurus dengan panjang tetapi tanpa lebar.</li>
+  <li><strong>Bidang</strong> — permukaan datar berdimensi dua.</li>
+  <li><strong>Sudut</strong> — besaran bukaan antara dua sinar yang berbagi titik pangkal.</li>
+  <li><strong>Kongruen</strong> — sama bentuk dan sama ukuran.</li>
+  <li><strong>Sebangun</strong> — sama bentuk, ukuran boleh berbeda.</li>
+  <li><strong>Isometri</strong> — transformasi $T$ dengan $d(T(P), T(Q)) = d(P, Q)$ untuk semua $P, Q$.</li>
+  <li><strong>Geodesik</strong> — kurva terpendek antara dua titik pada ruang melengkung.</li>
+  <li><strong>Manifold</strong> — ruang yang secara lokal menyerupai $\mathbb{R}^n$.</li>
+  <li><strong>Kelengkungan</strong> — ukuran seberapa jauh suatu ruang menyimpang dari datar.</li>
+  <li><strong>Trigonometri</strong> — studi hubungan antara sudut dan panjang sisi segitiga.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matematika Terapan — Matematika</title>
+<meta name="description" content="Pengenalan Matematika Terapan: pengertian, sejarah, sub-bidang, konsep kunci, dan penerapannya.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Matematika Terapan</h1>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Apa Itu Matematika Terapan?</h2>
+ <p class="lesson-text"><strong>Matematika terapan adalah bidang yang menggunakan alat dari berbagai cabang matematika untuk memodelkan dan menyelesaikan masalah dunia nyata — dari optimisasi rantai pasok sampai pemodelan penyebaran penyakit.</strong></p>
+ <p class="lesson-text">Berbeda dengan cabang matematika murni yang mempelajari struktur karena keindahannya sendiri, matematika terapan berangkat dari pertanyaan konkret: bagaimana mengatur jadwal kereta agar efisien? Bagaimana memprediksi harga saham? Bagaimana merancang sayap pesawat yang stabil?</p>
+ <p class="lesson-text">Istilah "terapan" tidak berarti matematikanya lebih mudah. Sebaliknya, masalah nyata sering kali lebih rumit daripada masalah murni karena melibatkan banyak variabel, data yang tidak lengkap, dan kompromi antara akurasi dan efisiensi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Peran Matematika Terapan</h2>
+ <p class="lesson-text">Matematika terapan adalah jembatan antara matematika abstrak dan dunia nyata. Ia menerjemahkan situasi konkret menjadi model matematika, menyelesaikan model itu, lalu menerjemahkan hasilnya kembali menjadi keputusan atau prediksi.</p>
+ <p class="lesson-text">Sebagai contoh, dalam pemodelan epidemi, jumlah individu rentan $S$, terinfeksi $I$, dan sembuh $R$ dapat dimodelkan dengan sistem persamaan diferensial:</p>
+ <p class="lesson-text">$$\frac{dS}{dt} = -\beta \frac{SI}{N}, \quad \frac{dI}{dt} = \beta \frac{SI}{N} - \gamma I, \quad \frac{dR}{dt} = \gamma I$$</p>
+ <p class="lesson-text">dengan $\beta$ laju penularan, $\gamma$ laju kesembuhan, dan $N$ populasi total. Model ini menjadi dasar banyak kebijakan kesehatan publik.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Model matematika tidak pernah sepenuhnya benar. Yang penting adalah apakah model itu cukup berguna untuk menjawab pertanyaan yang diajukan — dan menyadari asumsi apa yang mendasarinya.</p>
+ </div>
+ <p class="lesson-text">Karena itu, matematika terapan sering bekerja di batas antar-disiplin: bersama fisikawan, ekonom, biolog, insinyur, dan pembuat kebijakan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Perkembangan Matematika Terapan</h2>
+ <p class="lesson-text">Matematika terapan sudah ada sejak zaman kuno — dari survei tanah di Mesir sampai astronomi Babilonia. Tetapi sebagai disiplin mandiri, ia baru muncul pada abad ke-20.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Era</th>
+     <th>Periode</th>
+     <th>Tokoh Kunci</th>
+     <th>Kontribusi</th>
+     <th>Karya Utama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Kuno</td>
+     <td>c. 2000 SM–500 M</td>
+     <td>Babilonia, Mesir, Archimedes</td>
+     <td>Astronomi, survei tanah, mekanika</td>
+     <td>—</td>
+    </tr>
+    <tr>
+     <td>Klasik</td>
+     <td>1600–1800</td>
+     <td>Newton, Euler, Bernoulli</td>
+     <td>Mekanika, hidrodinamika, kalkulus variasi</td>
+     <td>Principia</td>
+    </tr>
+    <tr>
+     <td>Modern Awal</td>
+     <td>1900–1950</td>
+     <td>von Neumann, Kolmogorov</td>
+     <td>Teori permainan, teori probabilitas aksiomatik</td>
+     <td>Theory of Games</td>
+    </tr>
+    <tr>
+     <td>Kontemporer</td>
+     <td>1950–sekarang</td>
+     <td>Black, Scholes, Merton</td>
+     <td>Matematika keuangan, optimisasi, machine learning</td>
+     <td>—</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Sub-Bidang</h2>
+
+ <h3 class="lesson-subheading">Optimisasi</h3>
+ <p class="lesson-text">Mencari nilai terbaik dari suatu fungsi dengan kendala tertentu. Optimisasi menjadi inti dari riset operasi, machine learning, dan desain teknik.</p>
+ <ul>
+  <li>Optimisasi linear (program linear)</li>
+  <li>Optimisasi non-linear dan konveks</li>
+  <li>Optimisasi kombinatorial dan integer</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Riset Operasi</h3>
+ <p class="lesson-text">Menerapkan metode matematika untuk pengambilan keputusan dalam organisasi. Fokusnya pada alokasi sumber daya yang efisien.</p>
+ <ul>
+  <li>Teori antrean</li>
+  <li>Penjadwalan dan perencanaan produksi</li>
+  <li>Analisis jaringan dan rantai pasok</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Teori Kontrol</h3>
+ <p class="lesson-text">Mempelajari cara merancang sistem yang berperilaku sesuai keinginan — dari autopilot pesawat sampai robot industri.</p>
+ <ul>
+  <li>Sistem linear dan fungsi transfer</li>
+  <li>Kontrol optimal dan kontrol umpan balik</li>
+  <li>Kontrol stokastik</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Matematika Keuangan</h3>
+ <p class="lesson-text">Menerapkan matematika untuk penetapan harga instrumen keuangan dan manajemen risiko.</p>
+ <ul>
+  <li>Model Black–Scholes</li>
+  <li>Kalkulus stokastik dan gerak Brown</li>
+  <li>Manajemen risiko dan teori portofolio</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Teori Permainan</h3>
+ <p class="lesson-text">Mempelajari interaksi strategis antara beberapa pengambil keputusan yang rasional.</p>
+ <ul>
+  <li>Keseimbangan Nash</li>
+  <li>Permainan kooperatif dan non-kooperatif</li>
+  <li>Desain mekanisme dan lelang</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Pemodelan Matematika</h3>
+ <p class="lesson-text">Merumuskan situasi nyata menjadi model matematika yang bisa dianalisis. Ini adalah keterampilan inti dari matematika terapan.</p>
+ <ul>
+  <li>Model populasi (Lotka–Volterra)</li>
+  <li>Model epidemi (SIR, SEIR)</li>
+  <li>Model iklim dan dinamika fluida</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Cabang Lanjut</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Cabang</th>
+     <th>Objek</th>
+     <th>Fokus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Analisis numerik</td>
+     <td>Algoritma aproksimasi</td>
+     <td>Solusi numerik untuk masalah kontinu</td>
+    </tr>
+    <tr>
+     <td>Statistika terapan</td>
+     <td>Data nyata</td>
+     <td>Inferensi dan prediksi dari data</td>
+    </tr>
+    <tr>
+     <td>Teori informasi</td>
+     <td>Sinyal dan data</td>
+     <td>Kuantifikasi informasi dan kompresi</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Konsep Dasar</h2>
+
+ <h3 class="lesson-subheading">Pemodelan</h3>
+ <p class="lesson-text">Pemodelan matematika adalah proses menerjemahkan masalah nyata menjadi bentuk matematika. Prosesnya berulang: rumuskan model, selesaikan, bandingkan dengan data, lalu perbaiki.</p>
+ <p class="lesson-text">Model yang baik selalu menyatakan asumsinya secara eksplisit. Tanpa asumsi, model tidak bisa dievaluasi.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Semua model salah, tetapi sebagian model berguna. Kalimat ini — sering dikaitkan dengan George Box — merangkum sikap sehat dalam matematika terapan: tujuan model bukan meniru kenyataan sempurna, melainkan menjawab pertanyaan tertentu dengan cukup baik.</p>
+ </div>
+
+ <h3 class="lesson-subheading">Optimisasi Berkendala</h3>
+ <p class="lesson-text">Banyak masalah terapan berbentuk: cari $x$ yang meminimumkan atau memaksimumkan $f(x)$ dengan kendala $g(x) \leq 0$ dan $h(x) = 0$.</p>
+ <p class="lesson-text">Masalah seperti ini diselesaikan dengan metode pengali Lagrange untuk kendala kesetaraan:</p>
+ <p class="lesson-text">$$\nabla f(x) = \lambda \nabla g(x)$$</p>
+ <p class="lesson-text">dan kondisi Karush–Kuhn–Tucker (KKT) untuk kendala pertidaksamaan, yang menjadi fondasi program linear dan optimisasi non-linear.</p>
+
+ <h3 class="lesson-subheading">Persamaan Diferensial dalam Pemodelan</h3>
+ <p class="lesson-text">Banyak fenomena alam dan sosial berubah terhadap waktu, dan persamaan diferensial menjadi alat utama untuk memodelkannya.</p>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Model</th>
+     <th>Persamaan</th>
+     <th>Fenomena</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Pertumbuhan eksponensial</td>
+     <td>$\frac{dN}{dt} = rN$</td>
+     <td>Populasi tanpa batas, bunga majemuk</td>
+    </tr>
+    <tr>
+     <td>Logistik</td>
+     <td>$\frac{dN}{dt} = rN\left(1 - \frac{N}{K}\right)$</td>
+     <td>Populasi dengan daya dukung terbatas</td>
+    </tr>
+    <tr>
+     <td>Pendinginan Newton</td>
+     <td>$\frac{dT}{dt} = -k(T - T_\text{env})$</td>
+     <td>Perubahan suhu benda terhadap lingkungan</td>
+    </tr>
+    <tr>
+     <td>Oskilasi harmonik</td>
+     <td>$\frac{d^2x}{dt^2} = -\omega^2 x$</td>
+     <td>Pegas, pendulum kecil, getaran</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Ekspektasi dan Risiko</h3>
+ <p class="lesson-text">Dalam keuangan dan pengambilan keputusan, kita sering bekerja dengan ketidakpastian. Nilai harapan dari variabel acak $X$ didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\mathbb{E}[X] = \int_{-\infty}^{\infty} x\, f(x)\, dx$$</p>
+ <p class="lesson-text">untuk variabel kontinu dengan fungsi kepadatan $f(x)$. Risiko sering diukur dengan variansi:</p>
+ <p class="lesson-text">$$\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]$$</p>
+ <p class="lesson-text">Konsep-konsep ini menjadi fondasi teori portofolio dan manajemen risiko modern.</p>
+
+ <h3 class="lesson-subheading">Keseimbangan Nash</h3>
+ <p class="lesson-text">Dalam teori permainan, keseimbangan Nash adalah situasi di mana tidak ada pemain yang bisa mendapatkan hasil lebih baik dengan mengubah strateginya sendiri, dengan asumsi pemain lain tidak berubah.</p>
+ <p class="lesson-text">Keseimbangan Nash menjadi konsep kunci dalam ekonomi, ilmu politik, dan biologi evolusi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Teorema dan Prinsip Kunci</h2>
+
+ <h3 class="lesson-subheading">Teorema Dualitas Program Linear</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Keterangan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Primal</td>
+     <td>$\max\ c^T x$ dengan $Ax \leq b,\ x \geq 0$</td>
+    </tr>
+    <tr>
+     <td>Dual</td>
+     <td>$\min\ b^T y$ dengan $A^T y \geq c,\ y \geq 0$</td>
+    </tr>
+    <tr>
+     <td>Dualitas kuat</td>
+     <td>Jika salah satu punya solusi optimal, keduanya punya dan nilai optimumnya sama</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Teorema ini bukan hanya hasil teoretis; ia menjadi dasar algoritma simpleks dan banyak teknik optimisasi modern.</p>
+
+ <h3 class="lesson-subheading">Persamaan Black–Scholes</h3>
+ <p class="lesson-text">Untuk penetapan harga opsi Eropa, harga $V(S, t)$ dari opsi memenuhi persamaan diferensial parsial:</p>
+ <p class="lesson-text">$$\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + rS \frac{\partial V}{\partial S} - rV = 0$$</p>
+ <p class="lesson-text">dengan $S$ harga aset, $\sigma$ volatilitas, dan $r$ suku bunga bebas risiko. Solusi analitiknya untuk opsi call adalah:</p>
+ <p class="lesson-text">$$C(S, t) = S\Phi(d_1) - Ke^{-r(T-t)}\Phi(d_2)$$</p>
+ <p class="lesson-text">dengan $\Phi$ fungsi distribusi normal kumulatif. Persamaan ini menjadi tonggak matematika keuangan modern.</p>
+
+ <h3 class="lesson-subheading">Prinsip Maksimum Pontryagin</h3>
+ <p class="lesson-text">Dalam teori kontrol optimal, prinsip maksimum Pontryagin memberikan kondisi perlu untuk solusi optimal dari sistem yang dikendalikan sepanjang waktu. Prinsip ini dipakai dalam perancangan lintasan roket, robotika, dan ekonomi dinamis.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penerapan</h2>
+
+ <h3 class="lesson-subheading">Industri dan Logistik</h3>
+ <p class="lesson-text">Optimisasi rute pengiriman, penjadwalan produksi, dan manajemen inventori semuanya memakai metode dari riset operasi. Maskapai penerbangan memakai optimisasi untuk menentukan harga tiket dan jadwal kru. Raksasa e-commerce memakai optimisasi untuk merancang jaringan gudang.</p>
+
+ <h3 class="lesson-subheading">Keuangan</h3>
+ <p class="lesson-text">Penetapan harga opsi, manajemen portofolio, dan pengukuran risiko memakai kalkulus stokastik dan optimisasi. Model Black–Scholes dan turunannya menjadi standar di industri keuangan. Value-at-Risk (VaR) menjadi ukuran risiko yang luas dipakai regulator.</p>
+
+ <h3 class="lesson-subheading">Kesehatan dan Biologi</h3>
+ <p class="lesson-text">Pemodelan epidemi memakai sistem persamaan diferensial untuk memprediksi penyebaran penyakit. Optimisasi terapi memakai kontrol optimal untuk menentukan dosis obat. Pencitraan medis (CT, MRI) memakai transformasi matematika untuk merekonstruksi gambar dari data sensor.</p>
+
+ <h3 class="lesson-subheading">Teknik dan Fisika Terapan</h3>
+ <ul>
+  <li>Analisis struktur: memastikan jembatan dan gedung tahan terhadap beban</li>
+  <li>Dinamika fluida: merancang sayap pesawat dan sistem pendingin</li>
+  <li>Teori kontrol: autopilot, robot industri, dan kendaraan otonom</li>
+  <li>Energi: optimisasi jaringan listrik dan prediksi beban</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Tokoh Kunci</h2>
+
+ <h3 class="lesson-subheading">Isaac Newton</h3>
+ <p class="lesson-text">Isaac Newton (1643–1727) adalah matematikawan dan fisikawan Inggris yang merumuskan hukum gerak dan gravitasi dalam bahasa kalkulus. Karyanya, <em>Principia</em>, menjadi model pertama matematika terapan yang berhasil menjelaskan fenomena alam secara kuantitatif.</p>
+
+ <h3 class="lesson-subheading">Leonhard Euler</h3>
+ <p class="lesson-text">Leonhard Euler (1707–1783) adalah matematikawan Swiss yang memberikan kontribusi besar pada mekanika, hidrodinamika, dan kalkulus variasi. Persamaan Euler–Lagrange menjadi fondasi mekanika analitik, sementara persamaan Euler untuk fluida masih dipakai dalam dinamika fluida modern.</p>
+
+ <h3 class="lesson-subheading">John von Neumann</h3>
+ <p class="lesson-text">John von Neumann (1903–1957) adalah matematikawan Hungaria-Amerika yang meletakkan dasar teori permainan, komputasi modern, dan analisis fungsional. Karyanya, <em>Theory of Games and Economic Behavior</em> (1944, bersama Morgenstern), mengubah ekonomi menjadi ilmu yang matematis.</p>
+
+ <h3 class="lesson-subheading">Andrey Kolmogorov</h3>
+ <p class="lesson-text">Andrey Kolmogorov (1903–1987) adalah matematikawan Rusia yang mengaksiomatisasi teori probabilitas pada 1933. Sebelumnya, probabilitas lebih merupakan intuisi dan teknik; setelah Kolmogorov, ia menjadi cabang matematika yang rigor dan menjadi fondasi bagi statistika, machine learning, dan matematika keuangan.</p>
+
+ <h3 class="lesson-subheading">Fischer Black dan Myron Scholes</h3>
+ <p class="lesson-text">Fischer Black (1938–1995) dan Myron Scholes (1941–) mengembangkan model penetapan harga opsi yang kemudian dikenal sebagai model Black–Scholes. Karya mereka mengubah industri keuangan secara fundamental, dan Scholes menerima Nobel Ekonomi 1997 untuk hasil ini.</p>
+
+ <h3 class="lesson-subheading">George Dantzig</h3>
+ <p class="lesson-text">George Dantzig (1914–2005) adalah matematikawan Amerika yang mengembangkan algoritma simpleks untuk program linear pada 1947. Algoritma ini menjadi salah satu algoritma paling berpengaruh abad ke-20 dan masih menjadi dasar banyak perangkat lunak optimisasi komersial.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Istilah Kunci</h2>
+ <ul>
+  <li><strong>Model matematika</strong> — representasi matematis dari situasi nyata, dengan asumsi yang dinyatakan eksplisit.</li>
+  <li><strong>Optimisasi</strong> — proses mencari nilai terbaik (maksimum atau minimum) dari suatu fungsi.</li>
+  <li><strong>Kendala</strong> — batasan yang harus dipenuhi dalam masalah optimisasi.</li>
+  <li><strong>Program linear</strong> — optimisasi fungsi linear dengan kendala linear.</li>
+  <li><strong>Riset operasi</strong> — penerapan matematika untuk pengambilan keputusan organisasi.</li>
+  <li><strong>Keseimbangan Nash</strong> — situasi di mana tidak ada pemain yang bisa memperbaiki hasilnya dengan mengubah strategi sendiri.</li>
+  <li><strong>Kalkulus stokastik</strong> — kalkulus untuk proses yang melibatkan keacakan, seperti gerak Brown.</li>
+  <li><strong>Persamaan diferensial parsial (PDE)</strong> — persamaan yang memuat turunan parsial fungsi terhadap beberapa variabel.</li>
+  <li><strong>Kontrol optimal</strong> — perancangan sinyal kendali untuk meminimumkan biaya sepanjang waktu.</li>
+  <li><strong>Teori antrean</strong> — studi matematis tentang antrean dan waktu tunggu.</li>
+  <li><strong>Volatilitas</strong> — ukuran fluktuasi harga aset, dipakai dalam model keuangan.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

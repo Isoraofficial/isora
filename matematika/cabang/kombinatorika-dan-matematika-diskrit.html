@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kombinatorika & Matematika Diskrit — Matematika</title>
+<meta name="description" content="Pengenalan cabang Kombinatorika & Matematika Diskrit: pengertian, sejarah, sub-bidang, konsep kunci, dan penerapannya.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Kombinatorika & Matematika Diskrit</h1>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Apa Itu Kombinatorika & Matematika Diskrit?</h2>
+ <p class="lesson-text"><strong>Kombinatorika & Matematika Diskrit adalah cabang matematika yang mempelajari objek-objek yang dapat dihitung satu per satu — cara menyusun, menghitung, dan mengatur struktur diskrit seperti graf, permutasi, dan relasi.</strong></p>
+ <p class="lesson-text">Jika analisis mempelajari hal-hal kontinu, matematika diskrit mempelajari hal-hal yang terpisah dan dapat dihitung: berapa cara menyusun kursi, berapa jalur terpendek dalam jaringan, berapa banyak kemungkinan sandi yang bisa dibentuk.</p>
+ <p class="lesson-text">Istilah "kombinatorika" berasal dari kata Latin <em>combinare</em> yang berarti "menggabungkan". Dari teknik menghitung sederhana, cabang ini berkembang menjadi fondasi bagi ilmu komputer, kriptografi, dan teori jaringan.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Peran Kombinatorika & Matematika Diskrit</h2>
+ <p class="lesson-text">Kombinatorika adalah matematika tentang "menghitung dengan cerdas". Banyak masalah nyata tidak bisa diselesaikan dengan menghitung satu per satu — jumlah kemungkinan terlalu besar. Kombinatorika menyediakan cara menghitungnya tanpa harus mendaftar semuanya.</p>
+ <p class="lesson-text">Sebagai contoh, jumlah cara menyusun 10 buku di rak adalah $10! = 3{,}628{,}800$ — bisa dihitung tanpa benar-benar menyusun semuanya. Inilah inti kombinatorika: menemukan pola dan rumus di balik penghitungan.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Kombinatorika bukan sekadar "matematika hitung-hitungan". Ia mempelajari struktur tersembunyi di balik cara objek tersusun — dan justru di situlah keindahannya.</p>
+ </div>
+ <p class="lesson-text">Karena itu, cabang ini menjadi fondasi bagi banyak bidang lain. Ilmu komputer memakai kombinatorika untuk menganalisis algoritma. Teori informasi memakai kombinatorika untuk mengukur efisiensi kode. Probabilitas memakai kombinatorika untuk menghitung peluang.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Perkembangan Kombinatorika & Matematika Diskrit</h2>
+ <p class="lesson-text">Kombinatorika sudah ada sejak zaman kuno, tetapi baru menjadi disiplin matematika mandiri pada abad ke-20, seiring berkembangnya ilmu komputer.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Era</th>
+     <th>Periode</th>
+     <th>Tokoh Kunci</th>
+     <th>Kontribusi</th>
+     <th>Karya Utama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Kuno</td>
+     <td>c. 300 SM</td>
+     <td>Euclid, Aryabhata</td>
+     <td>Permutasi dan kombinasi awal, segitiga binomial</td>
+     <td>Elements</td>
+    </tr>
+    <tr>
+     <td>Klasik</td>
+     <td>1600–1700</td>
+     <td>Pascal, Fermat</td>
+     <td>Segitiga Pascal, fondasi probabilitas</td>
+     <td>Traité du triangle arithmétique</td>
+    </tr>
+    <tr>
+     <td>Teori Graf</td>
+     <td>1736</td>
+     <td>Euler</td>
+     <td>Jembatan Königsberg, awal teori graf</td>
+     <td>Solutio problematis</td>
+    </tr>
+    <tr>
+     <td>Modern</td>
+     <td>1900–sekarang</td>
+     <td>Erdős, Ramsey, Shannon</td>
+     <td>Kombinatorika ekstremal, teori Ramsey, teori informasi</td>
+     <td>—</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Sub-Bidang</h2>
+
+ <h3 class="lesson-subheading">Kombinatorika Enumeratif</h3>
+ <p class="lesson-text">Mempelajari cara menghitung jumlah konfigurasi yang mungkin: permutasi, kombinasi, dan susunan objek. Ini adalah inti dari kombinatorika klasik.</p>
+ <ul>
+  <li>Permutasi dan kombinasi</li>
+  <li>Prinsip inklusi–eksklusi</li>
+  <li>Fungsi pembangkit</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Teori Graf</h3>
+ <p class="lesson-text">Mempelajari graf — kumpulan titik (vertex) yang dihubungkan oleh sisi (edge). Graf menjadi model untuk jaringan, peta, dan relasi.</p>
+ <ul>
+  <li>Lintasan dan siklus Euler dan Hamilton</li>
+  <li>Pohon dan graf planar</li>
+  <li>Pewarnaan graf</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kombinatorika Ekstremal</h3>
+ <p class="lesson-text">Mempelajari seberapa besar atau kecil suatu struktur kombinatorial bisa dibuat sebelum muncul sifat tertentu. Contoh: berapa banyak sisi maksimum yang bisa dimiliki graf tanpa mengandung segitiga?</p>
+ <ul>
+  <li>Teori Ramsey</li>
+  <li>Teori graf ekstremal</li>
+  <li>Ketaksamaan kombinatorial</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Teori Kode</h3>
+ <p class="lesson-text">Mempelajari cara mengodekan informasi agar tahan terhadap galat. Teori kode menjadi fondasi komunikasi digital dan penyimpanan data.</p>
+ <ul>
+  <li>Kode linear dan kode Hamming</li>
+  <li>Kode siklik dan kode Reed–Solomon</li>
+  <li>Batas-batas teoritis efisiensi kode</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Kombinatorika Aljabar</h3>
+ <p class="lesson-text">Menggunakan alat dari aljabar untuk menyelesaikan masalah kombinatorial, dan sebaliknya.</p>
+ <ul>
+  <li>Fungsi simetris dan teori partisi</li>
+  <li>Teori representasi grup simetris</li>
+  <li>Metode matriks dalam kombinatorika</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Cabang Lanjut</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Cabang</th>
+     <th>Objek</th>
+     <th>Fokus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Kombinatorika probabilistik</td>
+     <td>Struktur acak</td>
+     <td>Eksistensi melalui metode probabilistik</td>
+    </tr>
+    <tr>
+     <td>Kombinatorika geometris</td>
+     <td>Konfigurasi geometris</td>
+     <td>Kombinasi titik, garis, dan bentuk</td>
+    </tr>
+    <tr>
+     <td>Teori matroid</td>
+     <td>Struktur independen</td>
+     <td>Generalisasi graf dan aljabar linear</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Konsep Dasar</h2>
+
+ <h3 class="lesson-subheading">Permutasi dan Kombinasi</h3>
+ <p class="lesson-text">Permutasi menghitung susunan objek dengan memperhatikan urutan. Kombinasi menghitung susunan tanpa memperhatikan urutan.</p>
+ <p class="lesson-text">$$P(n, k) = \frac{n!}{(n-k)!} \qquad \binom{n}{k} = \frac{n!}{k!\,(n-k)!}$$</p>
+ <p class="lesson-text">Misalnya, jumlah cara memilih 3 anggota dari 10 orang adalah $\binom{10}{3} = 120$, sedangkan jumlah cara menyusun 3 dari 10 orang dalam barisan adalah $P(10, 3) = 720$.</p>
+
+ <h3 class="lesson-subheading">Prinsip Pigeonhole</h3>
+ <p class="lesson-text">Jika $n + 1$ burung ditempatkan ke dalam $n$ lubang, maka setidaknya ada satu lubang yang berisi lebih dari satu burung. Prinsip ini tampak sepele, tetapi sangat kuat dalam pembuktian eksistensi.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Prinsip pigeonhole tidak memberi tahu lubang mana yang berisi lebih dari satu burung — ia hanya menjamin bahwa hal itu pasti terjadi. Dalam banyak pembuktian, jaminan ini sudah cukup.</p>
+ </div>
+
+ <h3 class="lesson-subheading">Segitiga Pascal</h3>
+ <p class="lesson-text">Segitiga Pascal adalah susunan bilangan binomial yang memenuhi relasi:</p>
+ <p class="lesson-text">$$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$</p>
+ <p class="lesson-text">Setiap bilangan adalah jumlah dua bilangan di atasnya. Segitiga ini muncul di banyak konteks: koefisien ekspansi binomial, distribusi probabilitas, dan pola fraktal.</p>
+
+ <h3 class="lesson-subheading">Relasi Rekurensi</h3>
+ <p class="lesson-text">Relasi rekurensi mendefinisikan barisan dengan menyatakan setiap suku sebagai fungsi dari suku-suku sebelumnya. Contoh paling terkenal adalah barisan Fibonacci:</p>
+ <p class="lesson-text">$$F_n = F_{n-1} + F_{n-2}, \quad F_0 = 0,\ F_1 = 1$$</p>
+ <p class="lesson-text">Solusi dari relasi rekurensi sering dinyatakan dalam bentuk tertutup, misalnya rumus Binet untuk Fibonacci:</p>
+ <p class="lesson-text">$$F_n = \frac{\varphi^n - \psi^n}{\sqrt{5}}$$</p>
+ <p class="lesson-text">dengan $\varphi = \frac{1+\sqrt{5}}{2}$ (rasio emas) dan $\psi = \frac{1-\sqrt{5}}{2}$.</p>
+
+ <h3 class="lesson-subheading">Graf</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Konsep</th>
+     <th>Definisi Singkat</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Graf $G = (V, E)$</td>
+     <td>Himpunan vertex $V$ dan himpunan edge $E$</td>
+    </tr>
+    <tr>
+     <td>Derajat vertex</td>
+     <td>Banyaknya edge yang menempel pada vertex</td>
+    </tr>
+    <tr>
+     <td>Lintasan</td>
+     <td>Barisan vertex yang terhubung oleh edge</td>
+    </tr>
+    <tr>
+     <td>Siklus</td>
+     <td>Lintasan yang kembali ke titik awal</td>
+    </tr>
+    <tr>
+     <td>Pohon</td>
+     <td>Graf terhubung tanpa siklus</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="lesson-text">Salah satu hasil klasik dalam teori graf adalah rumus Euler untuk graf planar terhubung:</p>
+ <p class="lesson-text">$$V - E + F = 2$$</p>
+ <p class="lesson-text">dengan $V$ jumlah vertex, $E$ jumlah edge, dan $F$ jumlah muka (termasuk muka luar).</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Teorema Kunci</h2>
+
+ <h3 class="lesson-subheading">Teorema Binomial</h3>
+ <p class="lesson-text">Ekspansi $(x + y)^n$ dapat dinyatakan sebagai:</p>
+ <p class="lesson-text">$$(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k$$</p>
+ <p class="lesson-text">Koefisien binomial $\binom{n}{k}$ menyatakan banyaknya cara memilih $k$ faktor $y$ dari $n$ faktor yang tersedia.</p>
+
+ <h3 class="lesson-subheading">Teorema Ramsey</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aspek</th>
+     <th>Keterangan</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Pernyataan</td>
+     <td>Untuk setiap $r, s \geq 1$, ada bilangan terkecil $R(r, s)$ sehingga setiap graf dengan $R(r, s)$ vertex pasti memuat clique berukuran $r$ atau independent set berukuran $s$</td>
+    </tr>
+    <tr>
+     <td>Contoh</td>
+     <td>$R(3, 3) = 6$: dari 6 orang, selalu ada 3 orang yang saling kenal atau 3 orang yang saling tidak kenal</td>
+    </tr>
+    <tr>
+     <td>Status</td>
+     <td>Nilai eksak $R(r, s)$ untuk $r, s$ besar sebagian besar belum diketahui</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Teorema Euler untuk Graf Planar</h3>
+ <p class="lesson-text">Untuk graf planar terhubung, berlaku $V - E + F = 2$. Dari rumus ini dapat diturunkan bahwa graf planar dengan $V \geq 3$ memiliki paling banyak $3V - 6$ sisi. Akibatnya, graf lengkap $K_5$ tidak planar.</p>
+
+ <h3 class="lesson-subheading">Batas Kode Hamming</h3>
+ <p class="lesson-text">Untuk kode dengan panjang $n$, jarak minimum $d$, dan $M$ kata kode, berlaku batas Hamming:</p>
+ <p class="lesson-text">$$M \cdot \sum_{i=0}^{\lfloor (d-1)/2 \rfloor} \binom{n}{i} \leq 2^n$$</p>
+ <p class="lesson-text">Batas ini menyatakan seberapa banyak informasi yang dapat dikodekan tanpa kehilangan kemampuan mendeteksi dan mengoreksi galat.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penerapan</h2>
+
+ <h3 class="lesson-subheading">Ilmu Komputer</h3>
+ <p class="lesson-text">Analisis algoritma memakai kombinatorika untuk menghitung kompleksitas. Struktur data seperti pohon, graf, dan heap adalah objek kombinatorial. Basis data relasional memakai teori himpunan dan relasi. Kriptografi modern memakai kombinatorika untuk merancang fungsi hash dan protokol keamanan.</p>
+
+ <h3 class="lesson-subheading">Jaringan dan Telekomunikasi</h3>
+ <p class="lesson-text">Topologi jaringan dimodelkan sebagai graf. Algoritma routing mencari jalur terpendek dalam graf berbobot. Teori kode dipakai dalam transmisi data satelit, CD, dan komunikasi 5G untuk memastikan data tiba tanpa galat.</p>
+
+ <h3 class="lesson-subheading">Bidang Lain</h3>
+ <ul>
+  <li>Biologi: analisis filogenetik memakai pohon, sekuensing DNA memakai kombinatorika</li>
+  <li>Ekonomi: teori lelang dan alokasi sumber daya memakai kombinatorika</li>
+  <li>Riset operasi: penjadwalan dan optimisasi kombinatorial</li>
+  <li>Fisika statistik: kombinatorika konfigurasi partikel</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Tokoh Kunci</h2>
+
+ <h3 class="lesson-subheading">Leonhard Euler</h3>
+ <p class="lesson-text">Leonhard Euler (1707–1783) adalah matematikawan Swiss yang pada 1736 memecahkan masalah Jembatan Königsberg — apakah mungkin melewati tujuh jembatan di kota itu masing-masing tepat sekali. Jawabannya tidak, dan buktinya dianggap sebagai awal lahirnya teori graf.</p>
+
+ <h3 class="lesson-subheading">Blaise Pascal</h3>
+ <p class="lesson-text">Blaise Pascal (1623–1662) adalah matematikawan dan filsuf Prancis yang mengembangkan segitiga Pascal dan meletakkan dasar teori probabilitas bersama Fermat. Korespondensi mereka tentang masalah perjudian menjadi awal mula teori probabilitas modern.</p>
+
+ <h3 class="lesson-subheading">Arthur Cayley</h3>
+ <p class="lesson-text">Arthur Cayley (1821–1895) adalah matematikawan Inggris yang memberikan kontribusi besar pada teori graf, terutama dalam penghitungan pohon dan graf berlabel. Ia juga mengembangkan teori matriks dan teori grup secara formal.</p>
+
+ <h3 class="lesson-subheading">Frank Ramsey</h3>
+ <p class="lesson-text">Frank Ramsey (1903–1930) adalah matematikawan dan filsuf Inggris yang merumuskan teorema Ramsey pada 1930. Meski meninggal pada usia 26 tahun, hasilnya menjadi fondasi bagi kombinatorika ekstremal dan teori Ramsey modern.</p>
+
+ <h3 class="lesson-subheading">Paul Erdős</h3>
+ <p class="lesson-text">Paul Erdős (1913–1996) adalah matematikawan Hungaria yang menjadi salah satu tokoh paling produktif dalam sejarah matematika, dengan lebih dari 1500 makalah. Ia meletakkan dasar kombinatorika ekstremal dan metode probabilistik dalam kombinatorika, serta terkenal karena gaya hidupnya yang nomaden dan kolaborasinya yang luas.</p>
+
+ <h3 class="lesson-subheading">Claude Shannon</h3>
+ <p class="lesson-text">Claude Shannon (1916–2001) adalah matematikawan dan insinyur Amerika yang mendirikan teori informasi pada 1948. Karyanya menghubungkan kombinatorika, probabilitas, dan teori kode, serta menjadi fondasi bagi komunikasi digital modern.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Istilah Kunci</h2>
+ <ul>
+  <li><strong>Permutasi</strong> — susunan objek dengan memperhatikan urutan.</li>
+  <li><strong>Kombinasi</strong> — susunan objek tanpa memperhatikan urutan.</li>
+  <li><strong>Koefisien binomial</strong> — $\binom{n}{k}$, banyaknya cara memilih $k$ objek dari $n$.</li>
+  <li><strong>Prinsip pigeonhole</strong> — jika $n+1$ objek ditempatkan di $n$ tempat, minimal satu tempat berisi lebih dari satu objek.</li>
+  <li><strong>Relasi rekurensi</strong> — definisi barisan yang mengacu pada suku sebelumnya.</li>
+  <li><strong>Graf</strong> — pasangan $(V, E)$ berisi vertex dan edge.</li>
+  <li><strong>Pohon</strong> — graf terhubung tanpa siklus.</li>
+  <li><strong>Graf planar</strong> — graf yang dapat digambar di bidang tanpa sisi yang saling memotong.</li>
+  <li><strong>Clique</strong> — himpunan vertex yang semuanya saling terhubung.</li>
+  <li><strong>Bilangan Ramsey</strong> — $R(r, s)$, ambang batas munculnya clique atau independent set.</li>
+  <li><strong>Kode Hamming</strong> — kode koreksi galat yang menyisipkan bit paritas pada data.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

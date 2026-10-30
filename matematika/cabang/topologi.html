@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topologi — Matematika</title>
+<meta name="description" content="Pengenalan cabang Topologi: pengertian, sejarah, sub-bidang, konsep kunci, dan penerapannya.">
+<script src="/js/head.js"></script>
+<link rel="stylesheet" href="/css/lesson.css">
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main class="lesson">
+<h1 class="lesson-title">Topologi</h1>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Apa Itu Topologi?</h2>
+ <p class="lesson-text"><strong>Topologi adalah cabang matematika yang mempelajari sifat ruang yang tetap sama ketika ruang itu ditarik, dipelintir, atau diregangkan — asalkan tidak disobek atau ditembus.</strong></p>
+ <p class="lesson-text">Jika geometri peduli pada jarak, sudut, dan ukuran, topologi hanya peduli pada "bentuk" dalam pengertian paling dasar: berapa banyak lubang yang dimiliki suatu objek, apakah ia terhubung, dan bagaimana bagian-bagiannya tersusun. Karena itu topologi sering disebut sebagai geometri karet.</p>
+ <p class="lesson-text">Istilah "topologi" berasal dari kata Yunani <em>topos</em> (tempat) dan <em>logos</em> (kajian). Dari awalnya sebagai studi tentang posisi dan kedekatan, topologi berkembang menjadi salah satu cabang matematika paling abstrak dan paling luas jangkauannya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Peran Topologi</h2>
+ <p class="lesson-text">Topologi menyediakan bahasa untuk membicarakan "kedekatan" tanpa perlu mengukur jarak. Konsep seperti kontinuitas, keterhubungan, dan kekompakan dapat dinyatakan secara umum, berlaku untuk ruang apa pun — bukan hanya bilangan real atau ruang Euklides.</p>
+ <p class="lesson-text">Sebagai contoh, dalam topologi, cangkir kopi dan donat dianggap sama karena keduanya memiliki tepat satu lubang. Ini bukan lelucon: inilah makna dari "sama secara topologis" — ada transformasi kontinu yang bisa mengubah yang satu menjadi yang lain tanpa merobek atau menempel.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Topologi bukan geometri yang lebih longgar. Ia adalah cara berbeda dalam memandang ruang: bukan melalui ukuran, tetapi melalui struktur kedekatan dan keterhubungan.</p>
+ </div>
+ <p class="lesson-text">Karena itu, topologi menjadi fondasi bagi banyak cabang lain. Analisis fungsional mempelajari ruang fungsi sebagai ruang topologi. Geometri diferensial mempelajari manifold — ruang yang secara lokal menyerupai ruang Euklides. Aljabar homologis lahir untuk menghitung sifat topologis melalui alat aljabar.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Perkembangan Topologi</h2>
+ <p class="lesson-text">Topologi baru menjadi cabang matematika mandiri pada akhir abad ke-19 dan awal abad ke-20, meski akarnya sudah ada dalam karya Euler dan Riemann.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Era</th>
+     <th>Periode</th>
+     <th>Tokoh Kunci</th>
+     <th>Kontribusi</th>
+     <th>Karya Utama</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Awal</td>
+     <td>1736</td>
+     <td>Euler</td>
+     <td>Jembatan Königsberg, awal teori graf dan topologi</td>
+     <td>Solutio problematis</td>
+    </tr>
+    <tr>
+     <td>Klasik</td>
+     <td>1850–1900</td>
+     <td>Riemann, Möbius</td>
+     <td>Permukaan Riemann, pita Möbius, genus</td>
+     <td>Über die Hypothesen</td>
+    </tr>
+    <tr>
+     <td>Aksiomatik</td>
+     <td>1900–1930</td>
+     <td>Poincaré, Hausdorff</td>
+     <td>Topologi aljabar, aksioma ruang topologi</td>
+     <td>Analysis Situs</td>
+    </tr>
+    <tr>
+     <td>Modern</td>
+     <td>1930–sekarang</td>
+     <td>Hopf, Milnor, Thurston</td>
+     <td>Homotopi, manifold, klasifikasi permukaan</td>
+     <td>—</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Sub-Bidang</h2>
+
+ <h3 class="lesson-subheading">Topologi Umum</h3>
+ <p class="lesson-text">Mempelajari konsep dasar ruang topologi: himpunan terbuka, kontinuitas, kekompakan, dan keterhubungan. Sub-bidang ini menjadi fondasi bagi semua topologi lainnya.</p>
+ <ul>
+  <li>Ruang topologi dan aksioma pemisah</li>
+  <li>Kekompakan dan keterhubungan</li>
+  <li>Konvergensi dan kontinuitas umum</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Topologi Aljabar</h3>
+ <p class="lesson-text">Menghitung sifat topologis suatu ruang dengan alat dari aljabar. Alih-alih memeriksa bentuk secara langsung, topologi aljabar mempelajari grup dan ring yang menempel pada ruang itu.</p>
+ <ul>
+  <li>Grup fundamental dan ruang penutup</li>
+  <li>Homologi dan kohomologi</li>
+  <li>Homotopi dan ruang lingkaran</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Topologi Diferensial</h3>
+ <p class="lesson-text">Mempelajari manifold halus — ruang yang secara lokal menyerupai ruang Euklides dan dilengkapi struktur diferensial. Kalkulus dapat dijalankan pada manifold semacam ini.</p>
+ <ul>
+  <li>Manifold halus dan peta koordinat</li>
+  <li>Vektor tangen dan bentuk diferensial</li>
+  <li>Teori Morse dan teorema Stokes umum</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Topologi Geometris</h3>
+ <p class="lesson-text">Mempelajari manifold dari sudut pandang bentuk dan klasifikasi. Fokusnya pada pertanyaan seperti: berapa banyak jenis permukaan yang mungkin? Bagaimana cara mengenali dua ruang yang sama?</p>
+ <ul>
+  <li>Klasifikasi permukaan</li>
+  <li>Manifold 3 dimensi dan konjektur geometrisasi</li>
+  <li>Teori simpul</li>
+ </ul>
+
+ <h3 class="lesson-subheading">Cabang Lanjut</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Cabang</th>
+     <th>Objek</th>
+     <th>Fokus</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Teori homotopi</td>
+     <td>Ruang dan pemetaan</td>
+     <td>Kelas homotopi dan ruang loop</td>
+    </tr>
+    <tr>
+     <td>Topologi simplektik</td>
+     <td>Manifold simplektik</td>
+     <td>Struktur Hamiltonian dan mekanika klasik</td>
+    </tr>
+    <tr>
+     <td>K-teori topologis</td>
+     <td>Bundel vektor</td>
+     <td>Kelas karakteristik dan invarian topologis</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Konsep Dasar</h2>
+
+ <h3 class="lesson-subheading">Ruang Topologi</h3>
+ <p class="lesson-text">Ruang topologi adalah pasangan $(X, \tau)$, dengan $X$ himpunan dan $\tau$ kumpulan himpunan bagian dari $X$ yang disebut himpunan terbuka. Kumpulan $\tau$ harus memenuhi tiga aksioma: himpunan kosong dan $X$ sendiri terbuka, irisan berhingga dari himpunan terbuka terbuka, dan gabungan sebarang dari himpunan terbuka terbuka.</p>
+
+ <h3 class="lesson-subheading">Kontinuitas</h3>
+ <p class="lesson-text">Fungsi $f : X \to Y$ antara dua ruang topologi disebut kontinu jika prapeta setiap himpunan terbuka di $Y$ adalah himpunan terbuka di $X$:</p>
+ <p class="lesson-text">$$f \text{ kontinu} \iff \forall\, U \subseteq Y \text{ terbuka},\ f^{-1}(U) \subseteq X \text{ terbuka}$$</p>
+ <p class="lesson-text">Definisi ini memperluas definisi kontinuitas di kalkulus ke konteks yang jauh lebih umum.</p>
+ <div class="lesson-note">
+  <p class="lesson-text">Dalam topologi, kontinuitas tidak dinyatakan dengan limit atau $\varepsilon$-$\delta$. Ia dinyatakan murni melalui himpunan terbuka — dan justru karena itu bisa dipakai untuk ruang yang jauh dari bilangan real.</p>
+ </div>
+
+ <h3 class="lesson-subheading">Homeomorfisme</h3>
+ <p class="lesson-text">Homeomorfisme adalah fungsi bijektif $f : X \to Y$ yang kontinu dan inversnya $f^{-1} : Y \to X$ juga kontinu. Dua ruang yang memiliki homeomorfisme di antara mereka disebut homeomorfik, dan dianggap sama secara topologis:</p>
+ <p class="lesson-text">$$X \cong Y \iff \exists\, f : X \to Y \text{ homeomorfisme}$$</p>
+
+ <h3 class="lesson-subheading">Invarian Topologis</h3>
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Invarian</th>
+     <th>Makna</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>Keterhubungan</td>
+     <td>Ruang $X$ tidak dapat ditulis sebagai gabungan dua himpunan terbuka tak kosong yang saling lepas</td>
+    </tr>
+    <tr>
+     <td>Kekompakan</td>
+     <td>Setiap selimut terbuka dari $X$ memiliki subselimut berhingga</td>
+    </tr>
+    <tr>
+     <td>Genus</td>
+     <td>Jumlah lubang pada permukaan; untuk permukaan tertutup terhubung, $\chi = 2 - 2g$</td>
+    </tr>
+    <tr>
+     <td>Grup fundamental</td>
+     <td>Grup $\pi_1(X)$ yang mengukur loop tak terpangkas pada ruang</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Manifold</h3>
+ <p class="lesson-text">Manifold adalah ruang topologi yang secara lokal menyerupai ruang Euklides berdimensi $n$. Secara formal, setiap titik memiliki lingkungan yang homeomorfik terhadap $\mathbb{R}^n$.</p>
+ <p class="lesson-text">Bumi yang tampak datar dari permukaan adalah contoh intuitif manifold 2 dimensi. Manifold menjadi objek utama dalam topologi geometris dan geometri diferensial. Sifat lokalnya sederhana, tetapi sifat globalnya bisa sangat rumit — dan justru di situlah topologi bekerja.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Aksioma Formal</h2>
+
+ <h3 class="lesson-subheading">Aksioma Ruang Topologi</h3>
+ <p class="lesson-text">Sebuah topologi pada himpunan $X$ adalah kumpulan $\tau$ dari himpunan bagian $X$ yang memenuhi tiga aksioma berikut.</p>
+
+ <div class="box-table">
+  <table>
+   <thead>
+    <tr>
+     <th>Aksioma</th>
+     <th>Isi Formal</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>$\emptyset \in \tau$ dan $X \in \tau$</td>
+    </tr>
+    <tr>
+     <td>2</td>
+     <td>$U_1, \ldots, U_n \in \tau \Rightarrow \bigcap_{i=1}^{n} U_i \in \tau$</td>
+    </tr>
+    <tr>
+     <td>3</td>
+     <td>$\{U_\alpha\}_{\alpha \in A} \subseteq \tau \Rightarrow \bigcup_{\alpha \in A} U_\alpha \in \tau$</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3 class="lesson-subheading">Konjektur Poincaré</h3>
+ <p class="lesson-text">Dirumuskan oleh Henri Poincaré pada 1904, konjektur ini menyatakan bahwa setiap manifold tertutup 3 dimensi yang terhubung sederhana (grup fundamentalnya trivial) adalah homeomorfik terhadap bola 3 dimensi $S^3$:</p>
+ <p class="lesson-text">$$M^3 \text{ tertutup},\ \pi_1(M) = 0 \;\Rightarrow\; M \cong S^3$$</p>
+ <p class="lesson-text">Konjektur ini bertahan lebih dari 100 tahun sebelum dibuktikan oleh Grigori Perelman pada 2002–2003 melalui aliran Ricci. Ini menjadi salah satu dari tujuh Millennium Prize Problems, dan Perelman menolak hadiahnya.</p>
+
+ <h3 class="lesson-subheading">Karakteristik Euler</h3>
+ <p class="lesson-text">Untuk polihedron dan permukaan, karakteristik Euler didefinisikan sebagai:</p>
+ <p class="lesson-text">$$\chi = V - E + F$$</p>
+ <p class="lesson-text">dengan $V$ jumlah vertex, $E$ jumlah edge, dan $F$ jumlah muka. Untuk permukaan tertutup terhubung berorientasi dengan genus $g$, berlaku $\chi = 2 - 2g$. Bola memiliki $\chi = 2$, torus memiliki $\chi = 0$, dan seterusnya.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Penerapan</h2>
+
+ <h3 class="lesson-subheading">Sains</h3>
+ <p class="lesson-text">Fisika teoretis memakai topologi untuk mempelajari fase materi, string theory, dan teori medan kuantum topologis. Dalam kosmologi, bentuk global alam semesta adalah pertanyaan topologis. Dalam biologi, topologi dipakai untuk menganalisis lipatan protein dan jaringan saraf.</p>
+
+ <h3 class="lesson-subheading">Teknologi</h3>
+ <p class="lesson-text">Analisis data topologis (TDA) memakai alat topologi untuk menemukan struktur tersembunyi dalam data berdimensi tinggi. Dalam jaringan komputer, topologi jaringan mendeskripsikan bagaimana node terhubung. Dalam visi komputer, topologi dipakai untuk mengenali bentuk objek yang berubah karena perspektif.</p>
+
+ <h3 class="lesson-subheading">Industri</h3>
+ <ul>
+  <li>Robotika: perencanaan jalur dalam ruang konfigurasi</li>
+  <li>Desain obat: analisis bentuk molekul target</li>
+  <li>Analisis data: deteksi klaster dan fitur persisten</li>
+ </ul>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Tokoh Kunci</h2>
+
+ <h3 class="lesson-subheading">Leonhard Euler</h3>
+ <p class="lesson-text">Leonhard Euler (1707–1783) adalah matematikawan Swiss yang pada 1736 memecahkan masalah Jembatan Königsberg, yang dianggap sebagai awal lahirnya teori graf dan topologi. Ia juga merumuskan karakteristik Euler $\chi = V - E + F$ untuk permukaan, yang menghubungkan jumlah titik, sisi, dan muka pada polihedron.</p>
+
+ <h3 class="lesson-subheading">Bernhard Riemann</h3>
+ <p class="lesson-text">Bernhard Riemann (1826–1866) adalah matematikawan Jerman yang memperkenalkan konsep permukaan Riemann dan menggeneralisasi geometri ke ruang berdimensi sebarang. Karyanya meletakkan dasar untuk memahami ruang topologi secara lebih dalam.</p>
+
+ <h3 class="lesson-subheading">Henri Poincaré</h3>
+ <p class="lesson-text">Henri Poincaré (1854–1912) adalah matematikawan Prancis yang dijuluki sebagai pendiri topologi aljabar modern. Karyanya, <em>Analysis Situs</em>, memperkenalkan grup fundamental $\pi_1(X)$, homologi, dan banyak alat dasar lainnya. Konjektur Poincaré yang ia rumuskan pada 1904 menjadi salah satu masalah paling terkenal dalam matematika.</p>
+
+ <h3 class="lesson-subheading">Felix Hausdorff</h3>
+ <p class="lesson-text">Felix Hausdorff (1868–1942) adalah matematikawan Jerman yang merumuskan aksioma ruang topologi secara rigor pada 1914. Karyanya, <em>Grundzüge der Mengenlehre</em>, menjadi fondasi topologi umum modern.</p>
+
+ <h3 class="lesson-subheading">Grigori Perelman</h3>
+ <p class="lesson-text">Grigori Perelman (1966–) adalah matematikawan Rusia yang membuktikan Konjektur Poincaré pada 2002–2003 melalui aliran Ricci dengan pembedahan. Ia menolak Fields Medal 2006 dan Millennium Prize 2010, memilih hidup menyendiri di St. Petersburg.</p>
+
+ <h3 class="lesson-subheading">William Thurston</h3>
+ <p class="lesson-text">William Thurston (1946–2012) adalah matematikawan Amerika yang merumuskan konjektur geometrisasi, yang kemudian menjadi kerangka kerja bagi pembuktian Perelman. Kontribusinya mengubah cara matematikawan memandang manifold 3 dimensi.</p>
+</section>
+
+<section class="lesson-section">
+ <h2 class="lesson-section-heading">Istilah Kunci</h2>
+ <ul>
+  <li><strong>Topologi</strong> — kumpulan $\tau$ himpunan terbuka pada suatu himpunan $X$ yang memenuhi tiga aksioma.</li>
+  <li><strong>Himpunan terbuka</strong> — elemen dasar dalam topologi; konsep pengganti "lingkungan" dalam ruang metrik.</li>
+  <li><strong>Kontinu</strong> — fungsi yang prapeta himpunan terbukanya terbuka.</li>
+  <li><strong>Homeomorfisme</strong> — fungsi bijektif kontinu dengan invers yang juga kontinu.</li>
+  <li><strong>Kekompakan</strong> — sifat ruang di mana setiap selimut terbuka memiliki subselimut berhingga.</li>
+  <li><strong>Keterhubungan</strong> — sifat ruang yang tidak dapat dipecah menjadi dua bagian terbuka tak kosong.</li>
+  <li><strong>Manifold</strong> — ruang yang secara lokal homeomorfik terhadap $\mathbb{R}^n$.</li>
+  <li><strong>Genus</strong> — jumlah "lubang" pada suatu permukaan; terkait karakteristik Euler melalui $\chi = 2 - 2g$.</li>
+  <li><strong>Grup fundamental $\pi_1(X)$</strong> — grup yang mengukur loop pada ruang yang tidak dapat dipangkas menjadi titik.</li>
+  <li><strong>Homotopi</strong> — deformasi kontinu antara dua fungsi atau dua ruang.</li>
+  <li><strong>Homologi</strong> — invarian aljabar yang menghitung "lubang" berdimensi berbeda pada ruang.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>

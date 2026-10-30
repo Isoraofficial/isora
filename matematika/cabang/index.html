@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cabang - Matematika</title>
+  <script src="/js/head.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h1 class="title-page">Cabang Matematika</h1>
+ <section class="container-topic-menu" id="list-cabang"></section>
+</main>
+<script>
+const dataCabang = [
+  {
+    title: "Fondasi & Logika",
+    href: "fondasi-dan-logika",
+    icon: "building-block"
+  },
+  {
+    title: "Aljabar",
+    href: "aljabar",
+    icon: "square-root"
+  },
+  {
+    title: "Geometri",
+    href: "geometri",
+    icon: "cube"
+  },
+  {
+    title: "Topologi",
+    href: "topologi",
+    icon: "topology"
+  },
+  {
+    title: "Teori Bilangan",
+    href: "teori-bilangan",
+    icon: "number-blocks"
+  },
+  {
+    title: "Analisis",
+    href: "analisis",
+    icon: "data-analysis"
+  },
+  {
+    title: "Kombinatorika & Matematika Diskrit",
+    href: "kombinatorika-dan-matematika-diskrit",
+    icon: "combine"
+  },
+  {
+    title: "Probabilitas & Statistika",
+    href: "probabilitas-dan-statistika",
+    icon: "dice"
+  },
+  {
+    title: "Matematika Terapan",
+    href: "matematika-terapan",
+    icon: "mathematics"
+  },
+  {
+    title: "Matematika Komputasi",
+    href: "matematika-komputasi",
+    icon: "laptop"
+  }
+];
+
+const listCabangEl = document.getElementById('list-cabang');
+
+const renderHTML = dataCabang.map(item => `
+  <a class="topic-menu" href="${item.href}.html">
+   ${item.icon ? `<svg class="svg-topic-menu">
+    <use href="/assets/img/icon/math/menu-branch.svg#${item.icon}"></use></svg>` : ''}
+    <span class="title-topic-menu title-topic-menu-second">${item.title}</span>
+  </a>
+`).join('');
+
+listCabangEl.innerHTML = renderHTML;
+</script>
+</body>
+</html>
