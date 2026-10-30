@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Tabel - Matematika</title>
+ <script src="/js/head.js"></script>
+ <script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h2 class="title-page">Tabel Matematika</h2>
+ <section class="container-topic-menu" id="list-table"></section>
+</main>
+
+<script>
+const dataTabel = [
+ { title: "Perkalian 1-250", href: "perkalian", icon: "multiply" },
+ { title: "Pangkat & Akar", href: "pangkat-dan-akar", icon: "formula" },
+ { title: "Bilangan Prima", href: "bilangan-prima", icon: "number-2" },
+ { title: "Faktorial", href: "faktorial", icon: "exclamation-mark" },
+ { title: "Identitas Trigonometri", href: "identitas-trigonometri", icon: "trigonometry" },
+ { title: "Konversi Basis Bilangan", href: "konversi-basis-bilangan", icon: "binary" },
+ { title: "Konversi Derajat Radian", href: "konversi-derajat-radian", icon: "360-degrees" },
+ { title: "Konversi Satuan Berat", href: "konversi-satuan-berat", icon: "kilogram" },
+ { title: "Konversi Satuan Panjang", href: "konversi-satuan-panjang", icon: "length" },
+ { title: "Konversi Satuan Volume", href: "konversi-satuan-volume", icon: "3d" },
+ { title: "Prefix SI", href: "prefix-si", icon: "bioethics" },
+ { title: "Segitiga Pascal", href: "segitiga-pascal", icon: "pythagoreanism" },
+ { title: "Sudut Istimewa", href: "sudut-istimewa", icon: "trigonometry-circle" }
+];
+
+const listTabelEl = document.getElementById('list-table');
+
+const renderHTML = dataTabel.map(item => `
+ <a class="topic-menu" href="${item.href}.html">
+  ${item.icon ? `<svg class="svg-topic-menu">
+   <use href="/assets/img/icon/math/menu-table.svg#${item.icon}"></use></svg>` : ''}
+  <span class="title-topic-menu title-topic-menu-second">${item.title}</span>
+ </a>`).join('');
+
+listTabelEl.innerHTML = renderHTML;
+</script>
+</body>
+</html>
