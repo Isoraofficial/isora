@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumus — Matematika</title>
+<meta name="description" content="Kumpulan rumus penting dalam matematika beserta variabel dan penjelasannya.">
+<script src="/js/head.js"></script>
+<script src="/js/latex.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+<main>
+ <h1 class="title-page">Rumus Matematika</h1>
+ <input type="search" id="search" class="search-input" placeholder="Cari rumus...">
+ <p class="list-count" id="rumus-count"></p>
+ <div class="container-card" id="list"></div>
+</main>
+
+<script src="data.js"></script>
+<script>
+const listEl = document.getElementById('list');
+const searchEl = document.getElementById('search');
+const countEl = document.getElementById('rumus-count');
+
+function render(items) {
+ listEl.innerHTML = '';
+ 
+ if (countEl) {
+  countEl.textContent = `Menampilkan ${items.length} rumus`;
+ }
+ 
+ if (items.length === 0) {
+  listEl.innerHTML = '<p class="empty">Tidak ada rumus yang cocok.</p>';
+  return;
+ }
+ 
+ items.forEach(r => {
+  const article = document.createElement('article');
+  article.className = 'card';
+  article.innerHTML = `
+   <h2 class="card-title">${r.nama}</h2>
+   <div class="card-rumus">${r.rumus}</div>
+   <div class="card-box-variabel">
+    <p class="card-label-variabel">Variabel</p>
+    <ul class="card-variabel-list">
+     ${r.variabel.map(v => `<li><span class="card-variabel-simbol">${v.simbol}</span> — ${v.keterangan}</li>`).join('')}
+    </ul>
+   </div>
+   <p class="card-text">${r.deskripsi}</p>
+    `;
+  listEl.appendChild(article);
+ });
+ 
+ if (window.renderMathInElement) {
+  renderMathInElement(listEl, {
+   delimiters: [
+    { left: '$$', right: '$$', display: true },
+    { left: '$', right: '$', display: false }
+   ],
+   throwOnError: false
+  });
+ }
+}
+
+function filterData(query) {
+ const q = query.toLowerCase().trim();
+ if (!q) return data;
+ return data.filter(r => r.nama.toLowerCase().includes(q));
+}
+
+searchEl.addEventListener('input', e => {
+ render(filterData(e.target.value));
+});
+
+render(data);
+</script>
+</body>
+</html>
