@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Matematika</title>
+ <script src="/js/head.js"></script>
+</head>
+<body>
+
+<script src="/js/nav.js"></script>
+
+<main>
+ <div class="container-topic-menu" id="list-materi"></div>
+</main>
+
+<script>
+const materiData = [
+ {
+  href: "materi",
+  img: "book",
+  title: "Materi",
+  desc: "Bacaan konsep & topik"
+ },
+ {
+  href: "cabang",
+  img: "math-book",
+  title: "Cabang",
+  desc: "Bidang-bidang matematika"
+ },
+ {
+  href: "simbol-dan-notasi",
+  img: "mathematics",
+  title: "Simbol & Notasi",
+  desc: "Arti simbol matematika"
+ },
+ {
+  href: "teorema",
+  img: "math",
+  title: "Teorema",
+  desc: "Kebenaran matematis"
+ },
+ {
+  href: "glossarium",
+  img: "dictionary",
+  title: "Glosarium",
+  desc: "Istilah & definisi"
+ },
+ {
+  href: "rumus",
+  img: "notebook",
+  title: "Rumus",
+  desc: "Kumpulan rumus"
+ },
+ {
+  href: "tokoh-dan-sejarah",
+  img: "history",
+  title: "Tokoh & Sejarah",
+  desc: "Matematikawan & perkembangannya"
+ },
+ {
+  href: "tabel",
+  img: "table",
+  title: "Tabel",
+  desc: "Referensi cepat nilai & data"
+ },
+ {
+  href: "kalkulator",
+  img: "calculator",
+  title: "Kalkulator",
+  desc: "Hitung otomatis & solver"
+ },
+ {
+  href: "tips-dan-trik",
+  img: "chat",
+  title: "Tips & Trik",
+  desc: "Cara cepat & pintasan"
+ },
+ {
+  href: "penerapan",
+  img: "educational-tool",
+  title: "Penerapan",
+  desc: "Matematika di dunia nyata"
+ },
+ {
+  href: "kuis",
+  img: "formula",
+  title: "Kuis",
+  desc: "Uji pemahaman"
+ }
+];
+
+const listMateriEl = document.getElementById('list-materi');
+
+const renderHTML = materiData.map(item => `
+ <a class="topic-menu" href="${item.href}">
+  <svg class="img-topic-menu">
+  <use href="/assets/img/icon/math/menu-math.svg#${item.img}"></use></svg>
+  <div class="box-topic-menu">
+   <p class="title-topic-menu">${item.title}</p>
+   <span class="text-topic-menu">${item.desc}</span>
+  </div>
+ </a>`).join('');
+
+listMateriEl.innerHTML = renderHTML;
+</script> 
+</body>
+</html>
